@@ -1,0 +1,101 @@
+{
+  "step": "41_riess_freedman_unification",
+  "description": "Quantitative unification of SH0ES, CCHP, and CMB H0 under TEP",
+  "h0_values": {
+    "cepheid": {
+      "h0": 73.04,
+      "err": 1.04,
+      "source": "Riess et al. 2022"
+    },
+    "trgb": {
+      "h0": 68.81,
+      "err": 1.27,
+      "source": "Freedman et al. 2025"
+    },
+    "jagb": {
+      "h0": 68.85,
+      "err": 1.35,
+      "source": "Freedman et al. 2025"
+    },
+    "cmb": {
+      "h0": 67.4,
+      "err": 0.5,
+      "source": "Planck 2018"
+    },
+    "tep_corrected": {
+      "h0": 66.65,
+      "err": 1.58,
+      "source": "TEP-H0 companion paper"
+    }
+  },
+  "tension_analysis": {
+    "before_tep": {
+      "cepheid_vs_cmb": {
+        "delta_h0": 5.640000000000001,
+        "sigma_tension": 4.887561225309663,
+        "p_value": 1.0209275099893764e-06
+      },
+      "cepheid_vs_trgb": {
+        "delta_h0": 4.230000000000004,
+        "sigma_tension": 2.5769220010398692,
+        "p_value": 0.009968444185797202
+      },
+      "trgb_vs_cmb": {
+        "delta_h0": 1.4099999999999966,
+        "sigma_tension": 1.0330571343264383,
+        "p_value": 0.30157716188902106
+      }
+    },
+    "after_tep": {
+      "corrected_cepheid_vs_cmb": {
+        "delta_h0": -0.75,
+        "sigma_tension": -0.4525633371511782,
+        "p_value": 0.650863203885774
+      },
+      "corrected_cepheid_vs_trgb": {
+        "delta_h0": -2.1599999999999966,
+        "sigma_tension": -1.0655401704151977,
+        "p_value": 0.28663155738919266
+      }
+    },
+    "tension_reduction": {
+      "cepheid_vs_cmb_sigma_before": 4.887561225309663,
+      "cepheid_vs_cmb_sigma_after": -0.4525633371511782,
+      "cepheid_vs_trgb_sigma_before": 2.5769220010398692,
+      "cepheid_vs_trgb_sigma_after": -1.0655401704151977,
+      "reduction_cmb": 5.340124562460842,
+      "reduction_trgb": 3.642462171455067
+    }
+  },
+  "unification": {
+    "h0_unified_mean": 67.51428347838709,
+    "h0_unified_err": 0.44629614713242494,
+    "chi2_after_tep": 1.3923766010369047,
+    "chi2_before_tep": 23.956145771751856,
+    "dof": 2,
+    "p_value_after_tep": 0.49848174978138393,
+    "p_value_before_tep": 6.280425117688028e-06,
+    "unified": true,
+    "chi2_reduction": 22.563769170714952
+  },
+  "tep_prediction": "The TEP-corrected Cepheid H0 converges to the TRGB and CMB values, resolving the Hubble tension by accounting for temporal shear in massive Cepheid host potentials.",
+  "tep_confirmed": true,
+  "key_finding": "H0 unified = 67.51 +/- 0.45 km/s/Mpc",
+  "methodology": "Published H0 values from SH0ES (Cepheid), CCHP (TRGB and JAGB), and Planck (CMB) are compared before and after applying the TEP magnitude correction to the Cepheid distance scale. Tension is quantified in sigma units. An inverse-variance weighted mean and chi-squared consistency test (dof = 2) assess three-way unification after TEP correction.",
+  "provenance": {
+    "data_sources": [
+      "Riess et al. 2022 (SH0ES Cepheid H0)",
+      "Freedman et al. 2025 (CCHP TRGB and JAGB H0)",
+      "Planck 2018 (CMB H0)",
+      "TEP-H0 companion paper (TEP-corrected Cepheid H0)"
+    ],
+    "pipeline_block": "standalone"
+  },
+  "scientific_context": "This step addresses whether the Hubble tension between the SH0ES Cepheid, CCHP TRGB/JAGB, and Planck CMB H0 measurements can be resolved under the TEP framework. The TEP temporal shear effect compresses Cepheid distances in massive host potentials, inflating the Cepheid-based H0. After correction, the Cepheid H0 is expected to converge to both the TRGB and CMB values, unifying all three distance scales.",
+  "void_prediction": "The void model offers no mechanism to resolve the Hubble tension between Cepheid, TRGB, and CMB distance scales.",
+  "downstream_consumers": [],
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_41_riess_freedman_unification.json",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_41_h0_unification.png"
+  ]
+}

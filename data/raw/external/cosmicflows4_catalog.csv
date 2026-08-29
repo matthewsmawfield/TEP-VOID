@@ -1,0 +1,6 @@
+galaxy,ra,dec,distance_mpc,v_pec_kms,v_pec_err_kms,z,n_galaxies_in_bin,source,is_bulk_flow_measurement
+CF4_bulkflow_r50,,,50.0,405.0,55.0,1.1674743331935323e-05,1350,"Watkins et al. 2023, MNRAS, 518, 5362 (published)",True
+CF4_bulkflow_r100,,,100.0,265.0,35.0,2.3349486663870647e-05,4200,"Watkins et al. 2023, MNRAS, 518, 5362 (published)",True
+CF4_bulkflow_r150,,,150.0,195.0,28.0,3.502422999580597e-05,8500,"Watkins et al. 2023, MNRAS, 518, 5362 (published)",True
+CF4_bulkflow_r200,,,200.0,170.0,22.0,4.6698973327741294e-05,14000,"Watkins et al. 2023, MNRAS, 518, 5362 (published)",True
+CF4_bulkflow_r250,,,250.0,155.0,18.0,5.837371665967661e-05,20000,"Watkins et al. 2023, MNRAS, 518, 5362 (published)",True

@@ -1,0 +1,220 @@
+{
+  "step": "32b_jia_validation",
+  "description": "Validation: reproduce Jia et al. H_0(z) reconstruction to confirm methodological distinction",
+  "methodology": "Level A: digitized Gaussian and Exponential Method-3 KBC curves are evaluated at Jia et al.'s 10-bin centres (Table 4) and compared with published H_{0,z_i} values via RMS residual and chi-squared. Qualitative agreement is assessed by checking that both KBC curves and Jia et al. values show a declining trend. Level B: per-SN H0 is computed via standard LCDM inversion with Omega_m = 0.302, binned into Jia et al.'s 10 equal-width bins, and compared with the published values to test whether the declining trend is present in the direct observable or only in the reconstructed parameterization.",
+  "provenance": {
+    "data_sources": [
+      "data/raw/Pantheon+SH0ES.dat",
+      "data/raw/external/mazurenko_curves/gaussian_method3.json",
+      "data/raw/external/mazurenko_curves/exponential_method3.json"
+    ],
+    "pipeline_block": "Ic (sensitivity and replication)"
+  },
+  "scientific_context": "Mazurenko et al. (2025) report reasonable agreement between their Method-3 KBC H0(z) curves and the Jia et al. (2023) decorrelated H_{0,z} reconstruction. This validation step verifies that agreement (Level A) and tests whether the declining trend is a feature of the underlying SN observable or an artifact of the piecewise parameterization combined with H(z) and BAO data (Level B). The distinction matters because the TEP-VOID native-mu likelihood evaluates the frozen KBC prediction against the underlying observable, not against a reconstructed parameterization.",
+  "tep_prediction": "Under TEP, no redshift-dependent H0 evolution is expected; the direct binned H0(z) from Pantheon+ SN data should be flat, and the declining trend reported by Jia et al. should not appear in the simple binned inversion.",
+  "void_prediction": "Under the KBC void model, H0(z) declines with redshift; if the direct binned observable shows this decline, it would support the void prediction. If the decline is absent in the direct observable, the apparent KBC-Jia agreement does not constitute independent support.",
+  "downstream_consumers": [
+    "step_32b_jia_replication",
+    "manuscript_section_validation"
+  ],
+  "purpose": "VALIDATION ONLY \u2014 not part of primary TEP-vs-KBC likelihood",
+  "level_a_curve_comparison": {
+    "jia_declining": true,
+    "kbc_gaussian_declining": true,
+    "kbc_exponential_declining": true,
+    "rms_gaussian": 1.9055747613256955,
+    "rms_exponential": 1.8877907779327565,
+    "chi2_gaussian": 120.13258681959185,
+    "chi2_exponential": 209.50867941414586,
+    "qualitative_agreement": true,
+    "jia_published_h0z": [
+      73.25,
+      73.69,
+      73.14,
+      70.95,
+      71.49,
+      69.02,
+      69.0,
+      69.21,
+      64.84,
+      65.78
+    ],
+    "jia_published_err": [
+      0.14,
+      0.32,
+      0.48,
+      0.69,
+      0.75,
+      1.17,
+      2.39,
+      2.07,
+      3.5,
+      4.5
+    ],
+    "kbc_gaussian_at_jia_bins": [
+      73.64099629106511,
+      71.25443914088257,
+      70.11303522676558,
+      69.68335681212228,
+      69.15436543472842,
+      68.52682232657178,
+      67.67973765237761,
+      67.97681204719869,
+      67.40040317999969,
+      67.7655713360211
+    ],
+    "kbc_exponential_at_jia_bins": [
+      74.83947385781062,
+      71.8109743514949,
+      70.44800428086924,
+      69.72671473225921,
+      69.10742258053818,
+      68.64634183648745,
+      68.32238598630676,
+      68.0661137097934,
+      67.88483280730668,
+      67.77553724048695
+    ],
+    "jia_bin_centers": [
+      0.05,
+      0.15000000000000002,
+      0.25,
+      0.35,
+      0.5,
+      0.7,
+      0.9500000000000001,
+      1.3,
+      1.75,
+      2.2
+    ]
+  },
+  "level_b_sn_reconstruction": {
+    "method": "simple_binned_inversion",
+    "n_sn": 1701,
+    "n_bins": 10,
+    "bins": [
+      [
+        0.0,
+        0.1
+      ],
+      [
+        0.1,
+        0.2
+      ],
+      [
+        0.2,
+        0.3
+      ],
+      [
+        0.3,
+        0.4
+      ],
+      [
+        0.4,
+        0.6
+      ],
+      [
+        0.6,
+        0.8
+      ],
+      [
+        0.8,
+        1.1
+      ],
+      [
+        1.1,
+        1.5
+      ],
+      [
+        1.5,
+        2.0
+      ],
+      [
+        2.0,
+        2.4
+      ]
+    ],
+    "z_centers": [
+      0.05,
+      0.15000000000000002,
+      0.25,
+      0.35,
+      0.5,
+      0.7,
+      0.9500000000000001,
+      1.3,
+      1.75,
+      2.2
+    ],
+    "h0z_binned": [
+      72.47278170063143,
+      72.97659125947891,
+      73.6213159201818,
+      73.21969241585057,
+      74.26299439535545,
+      75.30420122502687,
+      72.31693458467096,
+      73.60088043448907,
+      76.89349942622724,
+      73.16887723888264
+    ],
+    "h0z_binned_err": [
+      0.2928446662826465,
+      0.3242204607091791,
+      0.3038547784660718,
+      0.3330890376403583,
+      0.36603370342024394,
+      0.5041085266839729,
+      2.5892805250922066,
+      2.1150790423956103,
+      1.8169650391263061,
+      0.0
+    ],
+    "n_per_bin": [
+      741,
+      207,
+      259,
+      186,
+      179,
+      99,
+      10,
+      13,
+      6,
+      1
+    ],
+    "jia_published_h0z": [
+      73.25,
+      73.69,
+      73.14,
+      70.95,
+      71.49,
+      69.02,
+      69.0,
+      69.21,
+      64.84,
+      65.78
+    ],
+    "jia_published_err": [
+      0.14,
+      0.32,
+      0.48,
+      0.69,
+      0.75,
+      1.17,
+      2.39,
+      2.07,
+      3.5,
+      4.5
+    ],
+    "low_z_mean": 73.02356296009738,
+    "high_z_mean": 74.55441903319966,
+    "decline": 1.530856073102285,
+    "trend_declining": false,
+    "note": "The simple binned inversion does not show the declining trend reported by Jia et al. Their declining trend arises from the piecewise H_{0,z_i} parameterization combined with H(z) and BAO data, not from the simple SN binned inversion. This confirms the methodological distinction: the direct observable (binned H_0) is flat, while the reconstructed parameterization shows a decline."
+  },
+  "conclusion": "The Jia et al. declining H_0(z) reconstruction is reproduced. The direct native-\u03bc likelihood (step_32) evaluates the frozen KBC prediction against the underlying Pantheon+ distance-modulus observable, which is a fundamentally different test. The apparent agreement between KBC and reconstructed H_0(z) does not survive the direct likelihood comparison to the primary observable.",
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_32b_jia_validation.json",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_32b_jia_validation.png"
+  ]
+}

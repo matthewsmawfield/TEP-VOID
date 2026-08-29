@@ -1,0 +1,605 @@
+{
+  "step": "36_xi_regression",
+  "description": "Test whether Cepheid-TRGB distance divergence scales with the TEP gravitational potential coordinate X_i across the full 22-galaxy CF4 matched sample.",
+  "n_galaxies": 22,
+  "xi_regression": {
+    "n_galaxies": 22,
+    "slope": 535563.2056150315,
+    "slope_err": 254377.86621803514,
+    "slope_significance_sigma": 2.105384456507642,
+    "intercept": -0.09004233597915313,
+    "intercept_err": 0.018662683397361324,
+    "r_squared": 0.06933268028559314,
+    "chi2": 34.222672130459046,
+    "chi2_reduced": 1.7111336065229523,
+    "dof": 20,
+    "pearson_r": 0.3026094881070777,
+    "pearson_p": 0.1710425096560538,
+    "spearman_rho": 0.1507622811970638,
+    "spearman_p": 0.5030459858018412,
+    "tep_predicted_slope": {
+      "default": -365000.0,
+      "joint": -400000.0,
+      "canonical": -960000.0
+    },
+    "tep_consistency_sigma": {
+      "default": 3.5402577236933457,
+      "joint": 3.6778483109577285,
+      "canonical": 5.87929770718785
+    },
+    "unscreened": {
+      "slope": 403243.84307069634,
+      "slope_err": 166383.76320229843,
+      "slope_significance_sigma": 2.4235768882112043,
+      "intercept": -0.1049714692651971
+    }
+  },
+  "subset_regression": {
+    "r22_matched": {
+      "n": 6,
+      "screened": {
+        "slope": 517638.91785399226,
+        "slope_err": 388564.920126348,
+        "slope_significance_sigma": 1.3321812933747952,
+        "intercept": -0.0234539281136303,
+        "pearson_r": 0.6554936188285079,
+        "pearson_p": 0.1575831609397323
+      },
+      "unscreened": {
+        "slope": 522039.054516764,
+        "slope_err": 376155.42893556115,
+        "slope_significance_sigma": 1.3878280475547624,
+        "intercept": -0.06320963303603587,
+        "pearson_r": 0.7188521861336317,
+        "pearson_p": 0.10745460285576107
+      }
+    },
+    "non_r22": {
+      "n": 16,
+      "screened": {
+        "slope": -546498.5497666383,
+        "slope_err": 560429.6182703465,
+        "slope_significance_sigma": 0.9751421622813161,
+        "intercept": -0.14860917128853485,
+        "pearson_r": -0.2510910629620443,
+        "pearson_p": 0.3482229079853889
+      },
+      "unscreened": {
+        "slope": 72937.33437019827,
+        "slope_err": 242772.4320660528,
+        "slope_significance_sigma": 0.30043499481997893,
+        "intercept": -0.12238417015437511,
+        "pearson_r": -0.027950203844179775,
+        "pearson_p": 0.9181606697578202
+      }
+    }
+  },
+  "mass_potential_confound": {
+    "r22_mean_xi": 4.6503292878117015e-08,
+    "non_r22_mean_xi": -2.9529679661546953e-08,
+    "r22_mean_vrot": 171.0666666666667,
+    "non_r22_mean_vrot": 114.14999999999999,
+    "r22_median_vrot": 178.14999999999998,
+    "non_r22_median_vrot": 96.25,
+    "r22_mean_delta_mu": -0.00899999999999975,
+    "non_r22_mean_delta_mu": -0.10650000000000048,
+    "welch_t_xi": 1.5193379130937181,
+    "welch_p_xi": 0.1833427423518796,
+    "interpretation": "If non-R22 has comparable or higher mean vrot than R22, the larger |\u0394\u03bc| in non-R22 is consistent with TEP. If non-R22 has lower mean vrot, the pattern is in tension with the naive mass-scaling prediction."
+  },
+  "leave_one_out": {
+    "full_weighted_mean": -0.10534531898996527,
+    "full_weighted_sem": 0.017189086256881165,
+    "full_weighted_sigma": 6.128616577730725,
+    "loo_means": [
+      -0.11011966119325488,
+      -0.09201060658745534,
+      -0.10476419021582044,
+      -0.08776931481045294,
+      -0.09973982644897277,
+      -0.10710093608725019,
+      -0.10215886865329772,
+      -0.10741438940211831,
+      -0.10759617763881835,
+      -0.10735336054545218,
+      -0.1088398350288712,
+      -0.10990550469858407,
+      -0.10519881950488588,
+      -0.10303997331003598,
+      -0.10569115240018749,
+      -0.10750424901604268,
+      -0.10472656844378551,
+      -0.11705329437316327,
+      -0.11344187307640272,
+      -0.11005664033532357,
+      -0.09780866515071848,
+      -0.10436147610141149
+    ],
+    "loo_sigmas": [
+      6.251756840768286,
+      4.909568801929725,
+      6.03176304865128,
+      4.660218447704741,
+      5.700767757445566,
+      6.025557158254712,
+      5.839228993936653,
+      6.068857417418783,
+      6.176713722876254,
+      6.147225763043959,
+      6.256633296635593,
+      6.288081978806467,
+      6.042323061497202,
+      5.9402554520698665,
+      6.121194610451152,
+      6.1577149474942505,
+      6.055746441606331,
+      6.613450560431774,
+      6.477870829680871,
+      6.3384885118370375,
+      5.529278755667384,
+      5.958207911023701
+    ],
+    "loo_pgcs": [
+      143,
+      1014,
+      2557,
+      2758,
+      3238,
+      3844,
+      5818,
+      9332,
+      13179,
+      13727,
+      21396,
+      32007,
+      32192,
+      34695,
+      37967,
+      39600,
+      40809,
+      45314,
+      50063,
+      51969,
+      63616,
+      73049
+    ],
+    "most_influential_pgc": 2758,
+    "min_loo_sigma": 4.660218447704741,
+    "max_loo_sigma": 6.613450560431774
+  },
+  "leave_one_out_regression": {
+    "full_slope": 535563.2042358891,
+    "loo_slopes": [
+      608220.4979190341,
+      453487.9338216354,
+      587350.884006321,
+      478595.99002809916,
+      521990.9567387621,
+      579275.2131989727,
+      535410.7335145097,
+      534519.1475986517,
+      551710.0898449182,
+      526564.6342146436,
+      521595.9057466817,
+      532018.3248787331,
+      545340.6453423371,
+      576028.9668502371,
+      537614.9209025716,
+      554503.3633010746,
+      532437.6515017753,
+      676916.2588917492,
+      104211.55291852004,
+      475599.98901699326,
+      522075.056830401,
+      533346.2186711084
+    ],
+    "loo_slope_errs": [
+      258257.30408044407,
+      261807.9620523484,
+      262769.3131088322,
+      255863.76973625718,
+      254510.61228880665,
+      259754.2276012634,
+      254377.91413766527,
+      254387.47777867294,
+      254956.32362664043,
+      262346.1731304491,
+      254638.51492552183,
+      254390.12650663994,
+      256296.09649493426,
+      256387.22889087073,
+      256543.8675924577,
+      255274.35741985438,
+      255445.47060439567,
+      258221.79932811405,
+      437319.4373987268,
+      257000.54600681743,
+      254495.78699036027,
+      254615.75144210542
+    ],
+    "loo_sigmas": [
+      2.35509504788132,
+      1.7321395814958471,
+      2.2352339284117835,
+      1.870510977468334,
+      2.0509594945551086,
+      2.230089644924629,
+      2.104784667841698,
+      2.10120070479139,
+      2.163939619135887,
+      2.007136707699618,
+      2.0483778971898303,
+      2.0913481674173653,
+      2.1277758530088104,
+      2.2467147421583133,
+      2.0956062054721176,
+      2.172185913640644,
+      2.084349549209087,
+      2.621452800085301,
+      0.23829618353666948,
+      1.8505796832212842,
+      2.05140942804753,
+      2.0947102276678304
+    ],
+    "loo_pgcs": [
+      143,
+      1014,
+      2557,
+      2758,
+      3238,
+      3844,
+      5818,
+      9332,
+      13179,
+      13727,
+      21396,
+      32007,
+      32192,
+      34695,
+      37967,
+      39600,
+      40809,
+      45314,
+      50063,
+      51969,
+      63616,
+      73049
+    ],
+    "most_influential_pgc": 50063,
+    "m101_excluded_slope": 104211.55291852004,
+    "m101_excluded_slope_err": 437319.4373987268,
+    "m101_excluded_sigma": 0.23829618353666948
+  },
+  "sensitivity_analysis": {
+    "exclusion_m101_ngc5643": {
+      "n": 20,
+      "excluded_pgcs": [
+        50063,
+        51969
+      ],
+      "slope": -155264.73388058163,
+      "slope_err": 456094.77136444004,
+      "slope_significance_sigma": 0.3404220868748311
+    },
+    "hierarchical_full": {
+      "n": 22,
+      "slope": 172167.4853576169,
+      "slope_err": 319321.5894874511,
+      "slope_significance_sigma": 0.5391664423127984,
+      "pipeline_offset": 0.11886644759122333,
+      "pipeline_offset_err": 0.0631379222604243,
+      "pipeline_offset_sigma": 1.8826474381107472
+    },
+    "hierarchical_exclusion": {
+      "n": 20,
+      "slope": -348276.81216219213,
+      "slope_err": 481946.9552403056,
+      "slope_significance_sigma": 0.7226455284659624,
+      "pipeline_offset": 0.08391433999843104,
+      "pipeline_offset_err": 0.06770354244877998
+    },
+    "hierarchical_studentt_full": {
+      "n": 22,
+      "nu": 4,
+      "slope": 294818.5866516494,
+      "slope_err": 298961.74665138376,
+      "slope_significance_sigma": 0.9861415045699286,
+      "pipeline_offset": 0.1150416230830989,
+      "pipeline_offset_err": 0.05910954535522405,
+      "pipeline_offset_sigma": 1.946244424512929
+    }
+  },
+  "power_calculation": {
+    "typical_per_galaxy_error_mag": 0.093575252882763,
+    "n_r22_matched": 6,
+    "sem_n6": 0.03820193701911167,
+    "mde_n6_80pct_power": 0.10702598205602584,
+    "factor_80pct_5pct": 2.8015852181129683,
+    "n_needed_for_0.02mag": 172,
+    "n_needed_for_0.03mag": 77,
+    "n_needed_for_0.05mag": 28
+  },
+  "tep_h0_comparison": {
+    "n_galaxies": 18,
+    "screened": {
+      "slope": -101366.00387997572,
+      "slope_err": 378690.3579003119,
+      "slope_significance_sigma": 0.26767516459096047,
+      "intercept": -0.0021629481371854857,
+      "intercept_err": 0.017790438363838437,
+      "pearson_r": 0.01874736132799306,
+      "pearson_p": 0.941142383467314,
+      "sign_correct": true
+    },
+    "unscreened": {
+      "slope": -117173.11014740745,
+      "slope_err": 287454.71622749825,
+      "slope_significance_sigma": 0.4076228481660185,
+      "intercept": 0.0036376012688143374,
+      "intercept_err": 0.023546179737130805,
+      "pearson_r": 0.037224741479134696,
+      "pearson_p": 0.8834137491121741,
+      "sign_correct": true
+    },
+    "tep_predicted_slope_default": -365000.0,
+    "tep_predicted_slope_joint": -400000.0,
+    "data_source": "Raw SH0ES Cepheid (R22) + EDD/CCHP TRGB (TEP-H0 Paper 11), with full TEP screening S_total from Step 03",
+    "note": "This regression uses the same data as TEP-H0 Step 20 and Step 44. The simple regression alone is underpowered (N=18, R^2<0.01); the joint multi-block likelihood (Step 44) combines redshift-distance and anchor constraints to achieve kappa_Cep = (0.400 +/- 0.270) x 10^6 mag (1.48sigma, correct sign)."
+  },
+  "galaxy_table": [
+    {
+      "PGC": 40809,
+      "galaxy_name": "NGC 4424",
+      "r22_matched": true,
+      "vrot_kms": 28.6,
+      "X_i": -8.441322533839621e-08,
+      "X_i_unscreened": -7.998571129352108e-08,
+      "delta_mu": -0.1559999999999988,
+      "delta_mu_err": 0.1564736399525492
+    },
+    {
+      "PGC": 143,
+      "galaxy_name": "WLM",
+      "r22_matched": false,
+      "vrot_kms": 26.2,
+      "X_i": -8.071738997038192e-08,
+      "X_i_unscreened": -8.071738997038192e-08,
+      "delta_mu": -0.010000000000001563,
+      "delta_mu_err": 0.07871467461661771
+    },
+    {
+      "PGC": 3844,
+      "galaxy_name": "IC 1613",
+      "r22_matched": false,
+      "vrot_kms": 26.8,
+      "X_i": -8.05404786114694e-08,
+      "X_i_unscreened": -8.05404786114694e-08,
+      "delta_mu": -0.0799999999999983,
+      "delta_mu_err": 0.06753517601961218
+    },
+    {
+      "PGC": 45314,
+      "galaxy_name": "IC 4182",
+      "r22_matched": false,
+      "vrot_kms": 39.4,
+      "X_i": -7.590006028769218e-08,
+      "X_i_unscreened": -7.590006028769218e-08,
+      "delta_mu": 0.08899999999999864,
+      "delta_mu_err": 0.07211102550927978
+    },
+    {
+      "PGC": 1014,
+      "galaxy_name": "NGC 0055",
+      "r22_matched": false,
+      "vrot_kms": 58.7,
+      "X_i": -6.536699163455219e-08,
+      "X_i_unscreened": -6.536699163455219e-08,
+      "delta_mu": -0.17600000000000193,
+      "delta_mu_err": 0.04313930922024598
+    },
+    {
+      "PGC": 39600,
+      "galaxy_name": "NGC 4258",
+      "r22_matched": false,
+      "vrot_kms": 212.9,
+      "X_i": -6.040910348217064e-08,
+      "X_i_unscreened": 1.6762593564327737e-07,
+      "delta_mu": -0.036999999999999034,
+      "delta_mu_err": 0.09822932352408827
+    },
+    {
+      "PGC": 13179,
+      "galaxy_name": "NGC 1365",
+      "r22_matched": true,
+      "vrot_kms": 198.3,
+      "X_i": -5.6256507568360514e-08,
+      "X_i_unscreened": 1.342268513206822e-07,
+      "delta_mu": -0.021999999999998465,
+      "delta_mu_err": 0.106
+    },
+    {
+      "PGC": 2758,
+      "galaxy_name": "NGC 0247",
+      "r22_matched": false,
+      "vrot_kms": 84.5,
+      "X_i": -4.4813229679084905e-08,
+      "X_i_unscreened": -4.4813229679084905e-08,
+      "delta_mu": -0.1930000000000014,
+      "delta_mu_err": 0.04205948168962618
+    },
+    {
+      "PGC": 73049,
+      "galaxy_name": "NGC 7793",
+      "r22_matched": false,
+      "vrot_kms": 85.9,
+      "X_i": -4.348606069222415e-08,
+      "X_i_unscreened": -4.348606069222415e-08,
+      "delta_mu": -0.13100000000000023,
+      "delta_mu_err": 0.08944271909999159
+    },
+    {
+      "PGC": 3238,
+      "galaxy_name": "NGC 0300",
+      "r22_matched": false,
+      "vrot_kms": 89.4,
+      "X_i": -4.007272848276566e-08,
+      "X_i_unscreened": -4.007272848276566e-08,
+      "delta_mu": -0.26099999999999923,
+      "delta_mu_err": 0.09219544457292887
+    },
+    {
+      "PGC": 63616,
+      "galaxy_name": "NGC 6822",
+      "r22_matched": false,
+      "vrot_kms": 92.4,
+      "X_i": -3.7038531779907443e-08,
+      "X_i_unscreened": -3.7038531779907443e-08,
+      "delta_mu": -0.23300000000000054,
+      "delta_mu_err": 0.07280109889280519
+    },
+    {
+      "PGC": 5818,
+      "galaxy_name": "NGC 0598 (M33)",
+      "r22_matched": false,
+      "vrot_kms": 100.1,
+      "X_i": -2.879240405198007e-08,
+      "X_i_unscreened": -2.879240405198007e-08,
+      "delta_mu": -0.19399999999999906,
+      "delta_mu_err": 0.09228217596047461
+    },
+    {
+      "PGC": 9332,
+      "galaxy_name": "NGC 0925",
+      "r22_matched": false,
+      "vrot_kms": 105.6,
+      "X_i": -2.6180423179828638e-08,
+      "X_i_unscreened": -2.2498420847398762e-08,
+      "delta_mu": -0.0710000000000015,
+      "delta_mu_err": 0.07211102550927978
+    },
+    {
+      "PGC": 32007,
+      "galaxy_name": "NGC 3351 (M95)",
+      "r22_matched": false,
+      "vrot_kms": 150.7,
+      "X_i": -2.4972789516794813e-08,
+      "X_i_unscreened": 4.180791236475654e-08,
+      "delta_mu": 0.028999999999999915,
+      "delta_mu_err": 0.09486832980505137
+    },
+    {
+      "PGC": 21396,
+      "galaxy_name": "NGC 2403",
+      "r22_matched": false,
+      "vrot_kms": 120.2,
+      "X_i": -8.928678732300735e-09,
+      "X_i_unscreened": -4.1581649134445416e-09,
+      "delta_mu": 0.03900000000000148,
+      "delta_mu_err": 0.1118033988749895
+    },
+    {
+      "PGC": 32192,
+      "galaxy_name": "NGC 3368 (M96)",
+      "r22_matched": false,
+      "vrot_kms": 202.2,
+      "X_i": 2.2693587077397988e-08,
+      "X_i_unscreened": 1.4291637009594697e-07,
+      "delta_mu": -0.11100000000000065,
+      "delta_mu_err": 0.10816653826391967
+    },
+    {
+      "PGC": 34695,
+      "galaxy_name": "NGC 3627 (M66)",
+      "r22_matched": false,
+      "vrot_kms": 174.7,
+      "X_i": 3.376226299007684e-08,
+      "X_i_unscreened": 8.525467175353821e-08,
+      "delta_mu": -0.23100000000000165,
+      "delta_mu_err": 0.12806248474865697
+    },
+    {
+      "PGC": 51969,
+      "galaxy_name": "NGC 5643",
+      "r22_matched": true,
+      "vrot_kms": 171.2,
+      "X_i": 3.890127346531942e-08,
+      "X_i_unscreened": 7.851952280173167e-08,
+      "delta_mu": 0.12599999999999767,
+      "delta_mu_err": 0.12167168939404104
+    },
+    {
+      "PGC": 13727,
+      "galaxy_name": "NGC 1448",
+      "r22_matched": true,
+      "vrot_kms": 185.1,
+      "X_i": 6.351938499815082e-08,
+      "X_i_unscreened": 1.0607190924227903e-07,
+      "delta_mu": -0.04299999999999926,
+      "delta_mu_err": 0.09730878685915265
+    },
+    {
+      "PGC": 37967,
+      "galaxy_name": "NGC 4038",
+      "r22_matched": true,
+      "vrot_kms": 169.1,
+      "X_i": 6.369224527100483e-08,
+      "X_i_unscreened": 7.454385725394369e-08,
+      "delta_mu": -0.06700000000000017,
+      "delta_mu_err": 0.1818130908378162
+    },
+    {
+      "PGC": 2557,
+      "galaxy_name": "M 31",
+      "r22_matched": false,
+      "vrot_kms": 256.7,
+      "X_i": 8.828814544892663e-08,
+      "X_i_unscreened": 2.82053537767966e-07,
+      "delta_mu": -0.13300000000000267,
+      "delta_mu_err": 0.11981652640600128
+    },
+    {
+      "PGC": 50063,
+      "galaxy_name": "M 101",
+      "r22_matched": true,
+      "vrot_kms": 274.1,
+      "X_i": 2.5357658644098375e-07,
+      "X_i_unscreened": 3.334352722964997e-07,
+      "delta_mu": 0.10800000000000054,
+      "delta_mu_err": 0.08989438247187641
+    }
+  ],
+  "constants": {
+    "sigma_ref_kms": 87.165,
+    "u_ref_kms2": 7597.737225000001,
+    "c_kms": 299792.458,
+    "kappa_cep_default_mag": 365000.0,
+    "kappa_cep_joint_mag": 400000.0,
+    "kappa_cep_canonical_mag": 960000.0
+  },
+  "data_source": {
+    "cf4_table": "data/raw/external/cf4_table2.dat",
+    "vrot_catalog": "data/raw/external/cf4_matched_galaxies_vrot.csv",
+    "vrot_source": "HyperLEDA (Makarov et al. 2014, A&A 570, A13)",
+    "vrot_query_date": "2026-08-28"
+  },
+  "output_files": [
+    "results/outputs/step_36_xi_regression.json",
+    "results/outputs/step_36_22galaxy_table.csv",
+    "results/figures/step_36_xi_regression.png"
+  ],
+  "methodology": "Weighted linear regression Delta_mu = slope * X_i + intercept on the 22-galaxy CF4 matched sample, with weights = 1/delta_mu_err^2. X_i = (S_total * U_i - U_ref) / c^2 with screening from Tully 2015 group catalog. Subsets (R22 vs non-R22), leave-one-out, hierarchical regression with pipeline-offset indicator, Student-t (nu=4) robust regression, and power calculation for N=6.",
+  "provenance": {
+    "data_sources": [
+      "CF4 Table 2 (cf4_table2.dat) \u2014 Cepheid and TRGB distance moduli",
+      "HyperLEDA rotation velocity catalog (cf4_matched_galaxies_vrot.csv)",
+      "Tully 2015 2MRS group catalog \u2014 screening factors",
+      "TEP-H0 Step 03 stratified screening factors",
+      "TEP-H0 raw SH0ES Cepheid + EDD/CCHP TRGB data for comparison"
+    ],
+    "pipeline_block": "Host mass and Xi regression"
+  },
+  "scientific_context": "This step tests whether the Cepheid-TRGB distance divergence scales with the TEP gravitational potential coordinate X_i across the full 22-galaxy CF4 matched sample. TEP predicts Delta_mu = kappa_mu * X_i with a non-zero negative slope, while a pipeline-offset systematic would produce a constant offset independent of X_i (slope approximately zero). The regression discriminates between TEP (slope != 0) and reduction artifact (slope = 0).",
+  "tep_prediction": "Delta_mu = kappa_mu * X_i with a non-zero negative slope (deeper potential yields shorter Cepheid distance). The predicted slope magnitude is kappa_Cep ~ 0.365e6 mag (default), 0.400e6 mag (joint), or 0.960e6 mag (canonical).",
+  "void_prediction": "A pipeline-offset systematic produces a constant offset independent of X_i, yielding a regression slope consistent with zero. No physical scaling between Delta_mu and gravitational potential is expected.",
+  "downstream_consumers": []
+}

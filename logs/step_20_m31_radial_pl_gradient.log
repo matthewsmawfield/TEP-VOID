@@ -1,0 +1,20 @@
+[21:43:12] [INFO] 
+[21:43:12] [INFO] ================================================================================
+[21:43:12] [INFO]    Step 20: M31 Radial P-L Gradient
+[21:43:12] [INFO] ================================================================================
+[21:43:12] [INFO] 
+[21:43:12] [PROCESS] This step addresses whether the M31 Cepheid period-luminosity relation exhibits a radial zero-point gradient between the inner and outer disk. Under the TEP framework, Cepheids in the deeper gravitational potential of M31's inner region undergo period contraction, producing a measurable P-L zero-point offset Delta_W. The kinematic void model predicts Delta_W = 0.
+[21:43:12] [PROCESS] Loading M31 radial P-L gradient results...
+[21:43:12] [SUCCESS] Found alternative TEP-H0 M31 results: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-H0/results/outputs/step_10_m31_robustness_summary.json
+[21:43:12] [PROCESS] Parsing step_10_m31_robustness_summary.json...
+[21:43:12] [SUCCESS] Found alternative TEP-H0 M31 results: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-H0/results/outputs/step_26_m31_phat_robustness_summary.json
+[21:43:12] [PROCESS] Parsing step_26_m31_phat_robustness_summary.json...
+[21:43:12] [PROCESS] Compiling M31 radial P-L gradient results...
+[21:43:12] [PROCESS] Methodology: Pan-STARRS and HST PHAT Cepheid photometry are partitioned into inner and outer radial bins. The P-L zero-point offset Delta_W is computed as the difference in fitted intercepts. Significance is assessed via chi-squared against the void null hypothesis (Delta_W = 0).
+[21:43:12] [INFO]   Pan-STARRS results:
+[21:43:12] [TEST]     Delta_W = +0.356 +/- 0.136 mag (2.62 sigma)
+[21:43:12] [INFO]   PHAT results:
+[21:43:12] [TEST]     Delta_W = +0.681 +/- 0.187 mag (3.65 sigma)
+[21:43:12] [TEST] Both M31 datasets show a positive Delta_W, consistent with the TEP prediction that inner Cepheids are fainter due to period contraction in the deeper potential. The void prediction of Delta_W = 0 is rejected at 2.62 sigma by the less significant dataset.
+[21:43:12] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_20_m31_radial_pl_gradient.json
+[21:43:12] [SUCCESS] Step 20 complete

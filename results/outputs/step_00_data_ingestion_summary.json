@@ -1,0 +1,40 @@
+{
+  "step": "00_data_ingestion",
+  "description": "Ingestion of SH0ES (R22 Cepheid) and CCHP (TRGB) distance moduli, velocity dispersions, and cross-matching to build the matched host catalog for indicator divergence testing.",
+  "shoes_rows": 1701,
+  "r22_cepheid_hosts": 40,
+  "trgb_hosts": 18,
+  "vdisp_entries": 41,
+  "matched_hosts": 18,
+  "matched_with_vdisp": 18,
+  "shoes_file": "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/Pantheon+SH0ES.dat",
+  "r22_file": "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/r22_cepheid_distances.csv",
+  "trgb_file": "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/trgb_distances_freedman2024.csv",
+  "vdisp_file": "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/velocity_dispersions_literature.csv",
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/shoes_cepheid_hosts.csv",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/r22_cepheid_hosts.csv",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cchp_trgb_hosts.csv",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/matched_hosts.csv"
+  ],
+  "methodology": "Cross-matching of R22 Cepheid and CCHP TRGB distance-modulus catalogs on normalized galaxy names (inner join), with HyperLEDA velocity dispersions attached via left join. Divergence delta_mu = mu_Cepheid - mu_TRGB computed with Gaussian uncertainty propagation.",
+  "provenance": {
+    "data_sources": [
+      "Pantheon+SH0ES.dat (Riess et al. 2022, GitHub)",
+      "R22 Cepheid distance moduli (Riess et al. 2022)",
+      "CCHP TRGB distance moduli (Freedman et al. 2025)",
+      "HyperLEDA velocity dispersions"
+    ],
+    "software_versions": {
+      "python": "3.13.5",
+      "numpy": "2.1.3",
+      "pandas": "2.2.3"
+    },
+    "pipeline_block": "Block 0 \u2014 Data Ingestion"
+  },
+  "scientific_context": "Assembles the matched Cepheid\u2013TRGB host-galaxy sample whose indicator divergence (delta_mu) is the primary observable for testing whether local gravitational potential depth modulates the distance ladder, as predicted by the Temporal Equivalence Principle, versus the standard void-based explanation of the Hubble tension.",
+  "downstream_consumers": [
+    "01_host_potential_catalog",
+    "03_pantheon_ingestion"
+  ]
+}

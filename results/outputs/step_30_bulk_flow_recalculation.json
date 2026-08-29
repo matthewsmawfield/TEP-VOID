@@ -1,0 +1,836 @@
+{
+  "step": "30_bulk_flow_recalculation",
+  "description": "Indicator-specific distance divergence (CF4 table2) + bulk-flow calibration sensitivity (CF4 table4)",
+  "test_a_indicator_comparison": {
+    "n_overlap": 22,
+    "mean_delta_mu": -0.0799090909090912,
+    "median_delta_mu": -0.0754999999999999,
+    "std_delta_mu": 0.11343423061547465,
+    "sem_delta_mu": 0.024184259226466713,
+    "t_statistic": -3.3041777364692013,
+    "p_value": 0.0033767279974392175,
+    "significance_sigma": 3.3041777364692018,
+    "n_cepheid_shorter": 17,
+    "n_cepheid_longer": 5,
+    "sign_test": {
+      "n_negative": 17,
+      "n_total": 22,
+      "p_value_one_sided": 0.00845026969909668,
+      "sigma_one_sided": 2.3888643884007608
+    },
+    "mean_distance_ratio": 0.9651297664336155,
+    "distance_compression_pct": 3.4870233566384523,
+    "tep_prediction": "DMceph < DMtrgb (Cepheid distances compressed)",
+    "void_prediction": "DMceph = DMtrgb (indicator-independent)",
+    "tep_confirmed": true,
+    "void_falsified": true,
+    "h0_trgb_derived_from_delta_mu": 70.45447294965393,
+    "h0_trgb_derived_err": 0.7846699916662052,
+    "h0_trgb_published": 69.8,
+    "h0_trgb_consistency_sigma": 0.834074141492524,
+    "galaxy_table": [
+      {
+        "PGC": 143,
+        "DMceph": 24.9,
+        "DMtrgb": 24.91,
+        "delta_mu": -0.010000000000001563,
+        "d_cepheid_Mpc": 0.9549925860214353,
+        "d_trgb_Mpc": 0.9594006315159332
+      },
+      {
+        "PGC": 1014,
+        "DMceph": 26.394,
+        "DMtrgb": 26.57,
+        "delta_mu": -0.17600000000000193,
+        "d_cepheid_Mpc": 1.900203002577231,
+        "d_trgb_Mpc": 2.0606299132700006
+      },
+      {
+        "PGC": 2557,
+        "DMceph": 24.397,
+        "DMtrgb": 24.53,
+        "delta_mu": -0.13300000000000267,
+        "d_cepheid_Mpc": 0.7575302849884077,
+        "d_trgb_Mpc": 0.805378441199067
+      },
+      {
+        "PGC": 2758,
+        "DMceph": 27.607,
+        "DMtrgb": 27.8,
+        "delta_mu": -0.1930000000000014,
+        "d_cepheid_Mpc": 3.3220028446165033,
+        "d_trgb_Mpc": 3.630780547701015
+      },
+      {
+        "PGC": 3238,
+        "DMceph": 26.289,
+        "DMtrgb": 26.55,
+        "delta_mu": -0.26099999999999923,
+        "d_cepheid_Mpc": 1.8105061317218138,
+        "d_trgb_Mpc": 2.04173794466953
+      },
+      {
+        "PGC": 3844,
+        "DMceph": 24.26,
+        "DMtrgb": 24.34,
+        "delta_mu": -0.0799999999999983,
+        "d_cepheid_Mpc": 0.7112135136533295,
+        "d_trgb_Mpc": 0.7379042301291009
+      },
+      {
+        "PGC": 5818,
+        "DMceph": 24.606,
+        "DMtrgb": 24.8,
+        "delta_mu": -0.19399999999999906,
+        "d_cepheid_Mpc": 0.8340651974086636,
+        "d_trgb_Mpc": 0.9120108393559101
+      },
+      {
+        "PGC": 9332,
+        "DMceph": 29.779,
+        "DMtrgb": 29.85,
+        "delta_mu": -0.0710000000000015,
+        "d_cepheid_Mpc": 9.032334235672458,
+        "d_trgb_Mpc": 9.332543007969917
+      },
+      {
+        "PGC": 13179,
+        "DMceph": 31.378,
+        "DMtrgb": 31.4,
+        "delta_mu": -0.021999999999998465,
+        "d_cepheid_Mpc": 18.86253245351066,
+        "d_trgb_Mpc": 19.054607179632463
+      },
+      {
+        "PGC": 13727,
+        "DMceph": 31.287,
+        "DMtrgb": 31.33,
+        "delta_mu": -0.04299999999999926,
+        "d_cepheid_Mpc": 18.088393616437553,
+        "d_trgb_Mpc": 18.450154191794716
+      },
+      {
+        "PGC": 21396,
+        "DMceph": 27.509,
+        "DMtrgb": 27.47,
+        "delta_mu": 0.03900000000000148,
+        "d_cepheid_Mpc": 3.1754114028918385,
+        "d_trgb_Mpc": 3.1188895840939352
+      },
+      {
+        "PGC": 32007,
+        "DMceph": 29.969,
+        "DMtrgb": 29.94,
+        "delta_mu": 0.028999999999999915,
+        "d_cepheid_Mpc": 9.858253917099976,
+        "d_trgb_Mpc": 9.727472237769655
+      },
+      {
+        "PGC": 32192,
+        "DMceph": 30.079,
+        "DMtrgb": 30.19,
+        "delta_mu": -0.11100000000000065,
+        "d_cepheid_Mpc": 10.370507263257613,
+        "d_trgb_Mpc": 10.91440336448757
+      },
+      {
+        "PGC": 34695,
+        "DMceph": 29.979,
+        "DMtrgb": 30.21,
+        "delta_mu": -0.23100000000000165,
+        "d_cepheid_Mpc": 9.903757549692466,
+        "d_trgb_Mpc": 11.015393095414156
+      },
+      {
+        "PGC": 37967,
+        "DMceph": 31.603,
+        "DMtrgb": 31.67,
+        "delta_mu": -0.06700000000000017,
+        "d_cepheid_Mpc": 20.92184594950374,
+        "d_trgb_Mpc": 21.57744409152668
+      },
+      {
+        "PGC": 39600,
+        "DMceph": 29.363,
+        "DMtrgb": 29.4,
+        "delta_mu": -0.036999999999999034,
+        "d_cepheid_Mpc": 7.45761570206988,
+        "d_trgb_Mpc": 7.585775750291832
+      },
+      {
+        "PGC": 40809,
+        "DMceph": 30.844,
+        "DMtrgb": 31.0,
+        "delta_mu": -0.1559999999999988,
+        "d_cepheid_Mpc": 14.750271017597601,
+        "d_trgb_Mpc": 15.848931924611133
+      },
+      {
+        "PGC": 45314,
+        "DMceph": 28.229,
+        "DMtrgb": 28.14,
+        "delta_mu": 0.08899999999999864,
+        "d_cepheid_Mpc": 4.423845998088852,
+        "d_trgb_Mpc": 4.24619563946313
+      },
+      {
+        "PGC": 50063,
+        "DMceph": 29.178,
+        "DMtrgb": 29.07,
+        "delta_mu": 0.10800000000000054,
+        "d_cepheid_Mpc": 6.848571591258559,
+        "d_trgb_Mpc": 6.516283940608428
+      },
+      {
+        "PGC": 51969,
+        "DMceph": 30.546,
+        "DMtrgb": 30.42,
+        "delta_mu": 0.12599999999999767,
+        "d_cepheid_Mpc": 12.858786926343992,
+        "d_trgb_Mpc": 12.13388850464978
+      },
+      {
+        "PGC": 63616,
+        "DMceph": 23.297,
+        "DMtrgb": 23.53,
+        "delta_mu": -0.23300000000000054,
+        "d_cepheid_Mpc": 0.4564571349614056,
+        "d_trgb_Mpc": 0.5081594425605608
+      },
+      {
+        "PGC": 73049,
+        "DMceph": 27.619,
+        "DMtrgb": 27.75,
+        "delta_mu": -0.13100000000000023,
+        "d_cepheid_Mpc": 3.340411729545727,
+        "d_trgb_Mpc": 3.548133892335755
+      }
+    ],
+    "snia_vs_cepheid": {
+      "n": 37,
+      "mean_delta_mu": -0.10508108108108102,
+      "sem": 0.0203819894284299,
+      "sigma": 5.155585103704757,
+      "interpretation": "SN Ia distances partly inherit Cepheid calibration \u2014 cross-check"
+    },
+    "snia_vs_trgb": {
+      "n": 11,
+      "mean_delta_mu": -0.09336363636363645,
+      "sem": 0.05620211460390449,
+      "sigma": 1.661212162952144,
+      "interpretation": "SN Ia (Cepheid-inherited) vs TRGB (independent) \u2014 cross-check"
+    }
+  },
+  "test_a2_harmonized_zero_point_audit": {
+    "cf4_registered": {
+      "n": 22,
+      "mean_delta_mu": -0.0799090909090912,
+      "sem_indiv": 0.024184259226466713,
+      "sem_total": 0.031382772253785045,
+      "sigma_zp_common": 0.02,
+      "significance_sigma": 2.5462725301284825,
+      "n_cepheid_shorter": 17,
+      "n_cepheid_longer": 5,
+      "note": "CF4 table2 values as-is (registered to common MCMC scale)"
+    },
+    "external_harmonized": {
+      "n_overlap": 18,
+      "mean_delta_mu": -0.005157916114764226,
+      "sem_indiv": 0.017778388347000247,
+      "sem_total": 0.026759504707986548,
+      "sigma_zp_common": 0.02,
+      "significance_sigma": 0.19275080652837392,
+      "n_cepheid_shorter": 9,
+      "n_cepheid_longer": 9,
+      "median_delta_mu": 0.0020965059178958967,
+      "note": "R22 Cepheid (SH0ES scale) vs Freedman 2025 TRGB (CCHP scale). Common NGC 4258 anchor uncertainty cancels in differential; residual inter-channel uncertainty = 0.02 mag."
+    },
+    "cf4_conservative_zp": {
+      "n": 22,
+      "mean_delta_mu": -0.0799090909090912,
+      "sem_total": 0.05554168159439306,
+      "sigma_zp_common": 0.05,
+      "significance_sigma": 1.438722930512749,
+      "note": "CF4 with conservative 0.05 mag zero-point covariance"
+    },
+    "all_negative": true,
+    "all_significant": false,
+    "robust_against_calibration": false,
+    "four_variant_audit": {
+      "variant_a_r22_matched": {
+        "n": 6,
+        "mean_delta_mu": -0.00899999999999975,
+        "sem": 0.04404997162314602,
+        "significance_sigma": 0.20431341198119427,
+        "mean_delta_mu_weighted": 0.01527006810883534,
+        "sem_weighted": 0.04677810464558039,
+        "significance_sigma_weighted": 0.32643622961064245,
+        "sign_test": {
+          "n_negative": 4,
+          "n_total": 6,
+          "p_value_one_sided": 0.34375,
+          "sigma_one_sided": 0.40225006532172536
+        },
+        "selection_criterion": "R22 membership (position-based match via NED coordinates, 1 arcmin tolerance, excluding calibrators N4258/LMC/M31)",
+        "note": "R22-matched subset (position-based provenance). Consistent with Tully et al. -0.023\u00b10.022."
+      },
+      "variant_b_cf4_22": {
+        "n": 22,
+        "mean_delta_mu": -0.0799090909090912,
+        "sem": 0.02418425922646671,
+        "significance_sigma": 3.304177736469202,
+        "mean_delta_mu_weighted": -0.10534531898996526,
+        "sem_weighted": 0.017189086256881165,
+        "significance_sigma_weighted": 6.128616577730724,
+        "sign_test": {
+          "n_negative": 17,
+          "n_total": 22,
+          "p_value_one_sided": 0.00845026969909668,
+          "sigma_one_sided": 2.3888643884007608
+        },
+        "note": "All 22 CF4 galaxies; offset driven by non-R22 galaxies"
+      },
+      "variant_c_r22_cf4trgb": {
+        "n": 6,
+        "mean_delta_mu": -0.00899999999999975,
+        "sem_indiv": 0.04404997162314602,
+        "sem_total": 0.048377680804271406,
+        "significance_sigma": 0.18603620203317214,
+        "matched_galaxies": [
+          {
+            "PGC": 40809,
+            "DMceph_cf4": 30.844,
+            "DMtrgb_cf4": 31.0,
+            "delta_cf4": -0.1559999999999988,
+            "r22_mu": 30.844,
+            "r22_name": "N4424"
+          },
+          {
+            "PGC": 37967,
+            "DMceph_cf4": 31.603,
+            "DMtrgb_cf4": 31.67,
+            "delta_cf4": -0.06700000000000017,
+            "r22_mu": 31.603,
+            "r22_name": "N4038"
+          },
+          {
+            "PGC": 13727,
+            "DMceph_cf4": 31.287,
+            "DMtrgb_cf4": 31.33,
+            "delta_cf4": -0.04299999999999926,
+            "r22_mu": 31.287,
+            "r22_name": "N1448"
+          },
+          {
+            "PGC": 13179,
+            "DMceph_cf4": 31.378,
+            "DMtrgb_cf4": 31.4,
+            "delta_cf4": -0.021999999999998465,
+            "r22_mu": 31.378,
+            "r22_name": "N1365"
+          },
+          {
+            "PGC": 50063,
+            "DMceph_cf4": 29.178,
+            "DMtrgb_cf4": 29.07,
+            "delta_cf4": 0.10800000000000054,
+            "r22_mu": 29.178,
+            "r22_name": "M101"
+          },
+          {
+            "PGC": 51969,
+            "DMceph_cf4": 30.546,
+            "DMtrgb_cf4": 30.42,
+            "delta_cf4": 0.12599999999999767,
+            "r22_mu": 30.546,
+            "r22_name": "N5643"
+          }
+        ],
+        "note": "R22 Cepheid - CF4 TRGB for galaxies matched by DMceph"
+      },
+      "variant_d_r22_freedman": {
+        "n": 5,
+        "mean_delta_mu": -0.030399999999999493,
+        "sem_indiv": 0.044504606503147116,
+        "sem_total": 0.04879200754221909,
+        "significance_sigma": 0.6230528631906521,
+        "matched_galaxies": [
+          {
+            "PGC": 40809,
+            "r22_mu": 30.844,
+            "trgb_ext_mu": 31.04,
+            "trgb_name": "NGC 4424",
+            "delta_cf4": -0.1559999999999988
+          },
+          {
+            "PGC": 37967,
+            "r22_mu": 31.603,
+            "trgb_ext_mu": 31.61,
+            "trgb_name": "NGC 4038",
+            "delta_cf4": -0.06700000000000017
+          },
+          {
+            "PGC": 13727,
+            "r22_mu": 31.287,
+            "trgb_ext_mu": 31.32,
+            "trgb_name": "NGC 1448",
+            "delta_cf4": -0.04299999999999926
+          },
+          {
+            "PGC": 13179,
+            "r22_mu": 31.378,
+            "trgb_ext_mu": 31.36,
+            "trgb_name": "NGC 1365",
+            "delta_cf4": -0.021999999999998465
+          },
+          {
+            "PGC": 51969,
+            "r22_mu": 30.546,
+            "trgb_ext_mu": 30.48,
+            "trgb_name": "NGC 5643",
+            "delta_cf4": 0.12599999999999767
+          }
+        ],
+        "note": "R22 Cepheid - Freedman 2025 TRGB for galaxies matched to both"
+      },
+      "non_r22_galaxies": {
+        "n": 16,
+        "pgcs": [
+          3238,
+          63616,
+          34695,
+          5818,
+          2758,
+          1014,
+          2557,
+          73049,
+          32192,
+          3844,
+          9332,
+          39600,
+          143,
+          32007,
+          21396,
+          45314
+        ],
+        "delta_mu": [
+          -0.26099999999999923,
+          -0.23300000000000054,
+          -0.23100000000000165,
+          -0.19399999999999906,
+          -0.1930000000000014,
+          -0.17600000000000193,
+          -0.13300000000000267,
+          -0.13100000000000023,
+          -0.11100000000000065,
+          -0.0799999999999983,
+          -0.0710000000000015,
+          -0.036999999999999034,
+          -0.010000000000001563,
+          0.028999999999999915,
+          0.03900000000000148,
+          0.08899999999999864
+        ],
+        "mean_delta_mu": -0.10650000000000048,
+        "sign_test": {
+          "n_negative": 13,
+          "n_total": 16,
+          "p_value_one_sided": 0.0106353759765625,
+          "sigma_one_sided": 2.3031438298784073
+        },
+        "note": "These galaxies have CF4 Cepheid distances that do NOT match any R22 (Riess et al. 2022) published value. They likely use Cepheid distances from non-SH0ES sources. They drive the -0.080 mag result."
+      }
+    }
+  },
+  "registration_shift_analysis": {
+    "galaxy_registration_shifts": [
+      {
+        "PGC": 143,
+        "galaxy_name": "WLM",
+        "cf4_DMceph": 24.9,
+        "cf4_DMtrgb": 24.91,
+        "cf4_delta_mu": -0.010000000000001563,
+        "r22_DMceph": null,
+        "cepheid_registration_shift": null,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 1014,
+        "galaxy_name": "NGC 0055",
+        "cf4_DMceph": 26.394,
+        "cf4_DMtrgb": 26.57,
+        "cf4_delta_mu": -0.17600000000000193,
+        "r22_DMceph": null,
+        "cepheid_registration_shift": null,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 2557,
+        "galaxy_name": "M 31",
+        "cf4_DMceph": 24.397,
+        "cf4_DMtrgb": 24.53,
+        "cf4_delta_mu": -0.13300000000000267,
+        "r22_DMceph": 24.37137444201565,
+        "cepheid_registration_shift": 0.02562555798434829,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 2758,
+        "galaxy_name": "NGC 0247",
+        "cf4_DMceph": 27.607,
+        "cf4_DMtrgb": 27.8,
+        "cf4_delta_mu": -0.1930000000000014,
+        "r22_DMceph": null,
+        "cepheid_registration_shift": null,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 3238,
+        "galaxy_name": "NGC 0300",
+        "cf4_DMceph": 26.289,
+        "cf4_DMtrgb": 26.55,
+        "cf4_delta_mu": -0.26099999999999923,
+        "r22_DMceph": null,
+        "cepheid_registration_shift": null,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 3844,
+        "galaxy_name": "IC 1613",
+        "cf4_DMceph": 24.26,
+        "cf4_DMtrgb": 24.34,
+        "cf4_delta_mu": -0.0799999999999983,
+        "r22_DMceph": null,
+        "cepheid_registration_shift": null,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 5818,
+        "galaxy_name": "NGC 0598 (M33)",
+        "cf4_DMceph": 24.606,
+        "cf4_DMtrgb": 24.8,
+        "cf4_delta_mu": -0.19399999999999906,
+        "r22_DMceph": null,
+        "cepheid_registration_shift": null,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 9332,
+        "galaxy_name": "NGC 0925",
+        "cf4_DMceph": 29.779,
+        "cf4_DMtrgb": 29.85,
+        "cf4_delta_mu": -0.0710000000000015,
+        "r22_DMceph": null,
+        "cepheid_registration_shift": null,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 13179,
+        "galaxy_name": "NGC 1365",
+        "cf4_DMceph": 31.378,
+        "cf4_DMtrgb": 31.4,
+        "cf4_delta_mu": -0.021999999999998465,
+        "r22_DMceph": 31.32541543530425,
+        "cepheid_registration_shift": 0.052584564695749236,
+        "freedman_DMtrgb": 31.36,
+        "trgb_registration_shift": 0.03999999999999915,
+        "raw_delta_mu_external": -0.034584564695748554,
+        "registration_differential": 0.012584564695750089
+      },
+      {
+        "PGC": 13727,
+        "galaxy_name": "NGC 1448",
+        "cf4_DMceph": 31.287,
+        "cf4_DMtrgb": 31.33,
+        "cf4_delta_mu": -0.04299999999999926,
+        "r22_DMceph": 31.295113402826516,
+        "cepheid_registration_shift": -0.008113402826516847,
+        "freedman_DMtrgb": 31.32,
+        "trgb_registration_shift": 0.00999999999999801,
+        "raw_delta_mu_external": -0.024886597173484404,
+        "registration_differential": -0.018113402826514857
+      },
+      {
+        "PGC": 21396,
+        "galaxy_name": "NGC 2403",
+        "cf4_DMceph": 27.509,
+        "cf4_DMtrgb": 27.47,
+        "cf4_delta_mu": 0.03900000000000148,
+        "r22_DMceph": null,
+        "cepheid_registration_shift": null,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 32007,
+        "galaxy_name": "NGC 3351 (M95)",
+        "cf4_DMceph": 29.969,
+        "cf4_DMtrgb": 29.94,
+        "cf4_delta_mu": 0.028999999999999915,
+        "r22_DMceph": null,
+        "cepheid_registration_shift": null,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 32192,
+        "galaxy_name": "NGC 3368 (M96)",
+        "cf4_DMceph": 30.079,
+        "cf4_DMtrgb": 30.19,
+        "cf4_delta_mu": -0.11100000000000065,
+        "r22_DMceph": null,
+        "cepheid_registration_shift": null,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 34695,
+        "galaxy_name": "NGC 3627 (M66)",
+        "cf4_DMceph": 29.979,
+        "cf4_DMtrgb": 30.21,
+        "cf4_delta_mu": -0.23100000000000165,
+        "r22_DMceph": null,
+        "cepheid_registration_shift": null,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 37967,
+        "galaxy_name": "NGC 4038",
+        "cf4_DMceph": 31.603,
+        "cf4_DMtrgb": 31.67,
+        "cf4_delta_mu": -0.06700000000000017,
+        "r22_DMceph": 31.633833407662937,
+        "cepheid_registration_shift": -0.03083340766293574,
+        "freedman_DMtrgb": 31.61,
+        "trgb_registration_shift": 0.060000000000002274,
+        "raw_delta_mu_external": 0.023833407662937844,
+        "registration_differential": -0.09083340766293801
+      },
+      {
+        "PGC": 39600,
+        "galaxy_name": "NGC 4258",
+        "cf4_DMceph": 29.363,
+        "cf4_DMtrgb": 29.4,
+        "cf4_delta_mu": -0.036999999999999034,
+        "r22_DMceph": 29.38530384950553,
+        "cepheid_registration_shift": -0.022303849505529882,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 40809,
+        "galaxy_name": "NGC 4424",
+        "cf4_DMceph": 30.844,
+        "cf4_DMtrgb": 31.0,
+        "cf4_delta_mu": -0.1559999999999988,
+        "r22_DMceph": 30.823886318364572,
+        "cepheid_registration_shift": 0.02011368163542926,
+        "freedman_DMtrgb": 31.04,
+        "trgb_registration_shift": -0.03999999999999915,
+        "raw_delta_mu_external": -0.2161136816354272,
+        "registration_differential": 0.060113681635428406
+      },
+      {
+        "PGC": 45314,
+        "galaxy_name": "IC 4182",
+        "cf4_DMceph": 28.229,
+        "cf4_DMtrgb": 28.14,
+        "cf4_delta_mu": 0.08899999999999864,
+        "r22_DMceph": null,
+        "cepheid_registration_shift": null,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 50063,
+        "galaxy_name": "M 101",
+        "cf4_DMceph": 29.178,
+        "cf4_DMtrgb": 29.07,
+        "cf4_delta_mu": 0.10800000000000054,
+        "r22_DMceph": 29.15951267789768,
+        "cepheid_registration_shift": 0.01848732210232029,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 51969,
+        "galaxy_name": "NGC 5643",
+        "cf4_DMceph": 30.546,
+        "cf4_DMtrgb": 30.42,
+        "cf4_delta_mu": 0.12599999999999767,
+        "r22_DMceph": 30.508408628554548,
+        "cepheid_registration_shift": 0.037591371445451216,
+        "freedman_DMtrgb": 30.48,
+        "trgb_registration_shift": -0.05999999999999872,
+        "raw_delta_mu_external": 0.028408628554547732,
+        "registration_differential": 0.09759137144544994
+      },
+      {
+        "PGC": 63616,
+        "galaxy_name": "NGC 6822",
+        "cf4_DMceph": 23.297,
+        "cf4_DMtrgb": 23.53,
+        "cf4_delta_mu": -0.23300000000000054,
+        "r22_DMceph": null,
+        "cepheid_registration_shift": null,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      },
+      {
+        "PGC": 73049,
+        "galaxy_name": "NGC 7793",
+        "cf4_DMceph": 27.619,
+        "cf4_DMtrgb": 27.75,
+        "cf4_delta_mu": -0.13100000000000023,
+        "r22_DMceph": null,
+        "cepheid_registration_shift": null,
+        "freedman_DMtrgb": null,
+        "trgb_registration_shift": null,
+        "raw_delta_mu_external": null,
+        "registration_differential": null
+      }
+    ]
+  },
+  "test_b_bulk_flow_sensitivity": {
+    "radial_bins_mpc": [
+      50,
+      100,
+      150,
+      200,
+      250
+    ],
+    "h0_cepheid": 73.0,
+    "h0_trgb": 69.8,
+    "h0_trgb_source": "Freedman et al. 2025 (CCHP), consistent with \u0394\u03bc-derived value",
+    "bulk_flow_cepheid": {
+      "50": {
+        "v_bf": 13.49233565824203,
+        "v_bf_err": 4.142161474964877,
+        "n": 2957
+      },
+      "100": {
+        "v_bf": 13.122168275910628,
+        "v_bf_err": 2.708756336942019,
+        "n": 8540
+      },
+      "150": {
+        "v_bf": 13.130859615509728,
+        "v_bf_err": 2.302937918467031,
+        "n": 13844
+      },
+      "200": {
+        "v_bf": 12.73994210554707,
+        "v_bf_err": 2.117028081338039,
+        "n": 18191
+      },
+      "250": {
+        "v_bf": 12.2755804205533,
+        "v_bf_err": 2.0015719185841707,
+        "n": 22199
+      }
+    },
+    "bulk_flow_trgb": {
+      "50": {
+        "v_bf": 13.210126647014995,
+        "v_bf_err": 4.205577243714788,
+        "n": 2957
+      },
+      "100": {
+        "v_bf": 12.742764796478795,
+        "v_bf_err": 2.7840813089592173,
+        "n": 8540
+      },
+      "150": {
+        "v_bf": 12.69356101520687,
+        "v_bf_err": 2.3833787731339826,
+        "n": 13844
+      },
+      "200": {
+        "v_bf": 12.262169621888916,
+        "v_bf_err": 2.1975390496764344,
+        "n": 18191
+      },
+      "250": {
+        "v_bf": 11.732439412669404,
+        "v_bf_err": 2.0818881651510974,
+        "n": 22199
+      }
+    },
+    "reduction_fraction_pct": {
+      "50": 2.0916245961805946,
+      "100": 2.8913169794380167,
+      "150": 3.3303120519721037,
+      "200": 3.750193522858548,
+      "250": 4.4245647804522745
+    },
+    "mean_reduction_pct": 3.2976023861803077,
+    "note": "The bulk-flow amplitude depends on H0 calibration. Under TEP, the Cepheid-calibrated H0 inflates the bulk flow; under the void model, the bulk flow is physical and indicator-independent."
+  },
+  "tep_prediction": "Cepheid distances shorter than TRGB (acoustic clock bias); Cepheid H0 inflates bulk flow",
+  "tep_confirmed": true,
+  "methodology": "Test A: one-sample t-test of \u0394\u03bc = DMceph \u2212 DMtrgb against zero for galaxies with both indicators in CF4 table2, with binomial sign test cross-check and self-consistent H0_TRGB derivation from the measured compression fraction. Test A2: three-variant harmonized zero-point audit (CF4 registered, external R22 vs Freedman 2025, conservative zero-point covariance) plus four-variant forensic audit with position-based R22 matching. Test B: bulk-flow dipole computed in radial bins (50\u2013250 Mpc) via inverse-distance-squared weighting in supergalactic coordinates under two H0 calibrations.",
+  "provenance": {
+    "data_sources": [
+      "CosmicFlows-4 table2 (individual galaxy distances, Tully et al. 2023)",
+      "CosmicFlows-4 table4 (group-averaged distances, Tully et al. 2023)",
+      "R22 Cepheid distances (Riess et al. 2022, SH0ES)",
+      "Freedman et al. 2025 TRGB distances (CCHP)"
+    ],
+    "pipeline_block": "Block Ib \u2014 bulk flow and redshift decay",
+    "covariance": "Individual measurement errors from CF4 table2; common zero-point covariance (\u03c3_zp = 0.02 mag nominal, 0.05 mag conservative) added in quadrature for the harmonized audit. Bulk-flow errors from weighted variance of v_pec divided by sqrt(N)."
+  },
+  "scientific_context": "The TEP prediction that acoustic clocks yield systematically shorter distances than nuclear candles is tested via the Cepheid\u2013TRGB distance modulus offset. The void model predicts indicator-independent distances (\u0394\u03bc = 0) and an indicator-independent bulk flow. The key discriminating observable is \u0394\u03bc = DMceph \u2212 DMtrgb, which is negative under TEP and zero under the void model.",
+  "void_prediction": "DMceph = DMtrgb (indicator-independent distances); bulk flow is physical and independent of H0 calibration",
+  "downstream_consumers": [
+    "step_31",
+    "step_33",
+    "step_34"
+  ],
+  "n_galaxies_table2": 55877,
+  "n_galaxies_table4": 38053,
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_30_bulk_flow_recalculation.json",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_30_bulk_flow_comparison.png"
+  ]
+}

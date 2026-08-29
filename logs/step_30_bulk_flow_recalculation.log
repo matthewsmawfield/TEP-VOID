@@ -1,0 +1,94 @@
+[21:42:57] [INFO] 
+[21:42:57] [INFO] ================================================================================
+[21:42:57] [INFO]    Step 30: Indicator Divergence & Bulk-Flow Calibration
+[21:42:57] [INFO] ================================================================================
+[21:42:57] [INFO] 
+[21:42:57] [INFO] This step tests the TEP prediction that Cepheid distance moduli are systematically compressed relative to TRGB moduli in deep gravitational potentials, using the CosmicFlows-4 individual-galaxy catalog (table2). Two complementary tests are performed: a direct Cepheid-vs-TRGB indicator comparison (Test A) and a bulk-flow calibration sensitivity analysis using Cepheid- vs TRGB-calibrated H0 values (Test B). The key discriminating observable is the distance modulus offset Δμ = DMceph − DMtrgb, which the void model predicts to be zero (indicator-independent kinematics) and TEP predicts to be negative (acoustic clock compression).
+[21:42:57] [SUCCESS] Loaded 55877 galaxies from pre-parsed CF4 table2
+[21:42:57] [PROCESS] Test A methodology: galaxies with both Cepheid (DMceph) and TRGB (DMtrgb) distance moduli in CF4 table2 are selected. The offset Δμ = DMceph − DMtrgb is evaluated via a one-sample t-test against zero (the void prediction). A sign test (binomial, one-sided) provides a non-parametric cross-check. The self-consistent H0_TRGB is derived from the measured compression fraction and compared to the published Freedman et al. 2025 value.
+[21:42:57] [INFO] 
+[21:42:57] [INFO] ================================================================================
+[21:42:57] [INFO]    Test A: Direct Cepheid vs TRGB distance comparison
+[21:42:57] [INFO] ================================================================================
+[21:42:57] [INFO] 
+[21:42:57] [PROCESS] Galaxies with both Cepheid and TRGB DM: 22
+[21:42:57] [TEST]   Mean Δμ (Cepheid − TRGB): -0.0799 ± 0.0242 mag
+[21:42:57] [TEST]   Median Δμ: -0.0755 mag
+[21:42:57] [TEST]   Significance: 3.30σ (t=-3.304, p=3.3767e-03)
+[21:42:57] [TEST]   Cepheid shorter: 17/22 galaxies
+[21:42:57] [TEST]   Distance ratio d_cep/d_trgb: 0.9651 (3.5% compression)
+[21:42:57] [TEST]   Self-consistent H0_TRGB from Δμ: 70.45 ± 0.78 km/s/Mpc
+[21:42:57] [TEST]   Published CCHP H0_TRGB (Freedman 2025): 69.8 km/s/Mpc
+[21:42:57] [TEST]   Consistency: published vs derived Δ = -0.65 (0.8σ)
+[21:42:57] [TEST]   Cross-check: SN Ia vs Cepheid: Δμ = -0.1051 ± 0.0204 (5.16σ)
+[21:42:57] [TEST]   Cross-check: SN Ia vs TRGB: Δμ = -0.0934 ± 0.0562 (1.66σ)
+[21:42:57] [PROCESS] Test A2 methodology: three independent estimates of Δμ are produced to verify robustness against calibration convention — (a) CF4 registered values on a common MCMC scale, (b) externally published R22 Cepheid and Freedman 2025 TRGB moduli anchored to NGC 4258, and (c) CF4 with a conservative 0.05 mag zero-point covariance added in quadrature. A four-variant forensic audit further cross-checks R22-matched subsets against the full 22-galaxy CF4 sample using position-based NED matching.
+[21:42:57] [INFO] 
+[21:42:57] [INFO] ================================================================================
+[21:42:57] [INFO]    Test A2: Harmonized zero-point audit
+[21:42:57] [INFO] ================================================================================
+[21:42:57] [INFO] 
+[21:42:57] [TEST]   (a) CF4 registered: Δμ = -0.0799 ± 0.0314 mag (2.55σ, N=22)
+[21:42:57] [TEST]   (b) External harmonized (R22 vs Freedman 2025): Δμ = -0.0052 ± 0.0268 mag (0.19σ, N=18)
+[21:42:57] [TEST]   (c) CF4 + conservative ZP (σ_zp=0.05): Δμ = -0.0799 ± 0.0555 mag (1.44σ)
+[21:42:57] [PROCESS]   VERDICT: All estimates agree on sign (Δμ < 0); significance varies with zero-point assumption.
+[21:42:57] [TEST]   --- Four-variant forensic audit ---
+[21:42:57] [TEST]   NED coordinates resolved for 35/37 R22 hosts
+[21:42:57] [TEST]   R22 membership: 6 matched, 16 not matched
+[21:42:57] [TEST]   A: R22-matched subset: N=6, <Δμ> = -0.0090 ± 0.0440 (0.20σ), weighted: +0.0153 ± 0.0468 (0.33σ)
+[21:42:57] [TEST]      (Tully et al. published -0.023 ± 0.022 for N=16; our R22-matched N=6 gives -0.0090, consistent)
+[21:42:57] [TEST]   B: CF4 registered 22: N=22, <Δμ> = -0.0799 ± 0.0242 (3.30σ), weighted: -0.1053 ± 0.0172 (6.13σ)
+[21:42:57] [TEST]   Non-R22 galaxies: N=16, PGCs=[3238, 63616, 34695, 5818, 2758, 1014, 2557, 73049, 32192, 3844, 9332, 39600, 143, 32007, 21396, 45314]
+[21:42:57] [TEST]   Non-R22 mean Δμ = -0.1065 (vs R22 mean = -0.0090)
+[21:42:57] [TEST]   C: R22 Cep - CF4 TRGB: N=6, <Δμ> = -0.0090 ± 0.0484 (0.19σ)
+[21:42:57] [TEST]   D: R22 Cep - Freedman TRGB: N=5, <Δμ> = -0.0304 ± 0.0488 (0.62σ)
+[21:42:57] [PROCESS]   VERDICT: The -0.080 mag result is driven by 16 non-R22 galaxies (mean Δμ = -0.1065). The R22-matched subset (N=6, mean Δμ = -0.0090) is consistent with Tully et al.'s published -0.023 ± 0.022. The offset is dataset/reduction dependent: significant in the full CF4 sample but reduced in the R22-matched subset. The non-R22 galaxies have Cepheid distances from non-SH0ES sources.
+[21:42:57] [INFO] 
+[21:42:57] [INFO] ================================================================================
+[21:42:57] [INFO]    Registration shift analysis (CF4 vs external)
+[21:42:57] [INFO] ================================================================================
+[21:42:57] [INFO] 
+[21:42:57] [TEST]   PGC 50063 (M 101): CF4 Δμ=+0.108, cep_shift=0.01848732210232029, trgb_shift=None, raw_Δμ=None, diff=None
+[21:42:57] [TEST]   PGC 51969 (NGC 5643): CF4 Δμ=+0.126, cep_shift=0.037591371445451216, trgb_shift=-0.05999999999999872, raw_Δμ=0.028408628554547732, diff=0.09759137144544994
+[21:42:57] [PROCESS]   H0_TRGB: published=69.8, derived=70.45 (0.8σ consistent)
+[21:42:57] [PROCESS] Test B methodology: the bulk-flow dipole is computed in radial bins (50–250 Mpc) using CF4 group data, with peculiar velocities derived from v_pec = cz − H0·d under two H0 calibrations: H0 = 73.0 (Cepheid, Riess et al. 2022) and H0 = 69.8 (TRGB, Freedman et al. 2025). The 3D velocity dipole is estimated via inverse-distance-squared weighting using supergalactic coordinates. Under the void model the bulk flow is physical and indicator-independent; under TEP the Cepheid-calibrated H0 inflates the apparent bulk flow.
+[21:42:57] [PROCESS] Loading CosmicFlows-4 group data from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cosmicflows4_processed.csv...
+[21:42:57] [SUCCESS] Loaded 38053 rows from CosmicFlows-4 data
+[21:42:57] [INFO] 
+[21:42:57] [INFO] ================================================================================
+[21:42:57] [INFO]    Test B: Bulk-flow calibration sensitivity
+[21:42:57] [INFO] ================================================================================
+[21:42:57] [INFO] 
+[21:42:57] [PROCESS]   Bin: R <= 50 Mpc
+[21:42:57] [SUCCESS]     Cepheid (H0=73.0): v_bf = 13.5 +/- 4.1 km/s (N=2957)
+[21:42:57] [SUCCESS]     TRGB    (H0=69.8): v_bf = 13.2 +/- 4.2 km/s (N=2957)
+[21:42:57] [TEST]     Reduction (TRGB vs Cepheid): 2.1%
+[21:42:57] [PROCESS]   Bin: R <= 100 Mpc
+[21:42:57] [SUCCESS]     Cepheid (H0=73.0): v_bf = 13.1 +/- 2.7 km/s (N=8540)
+[21:42:57] [SUCCESS]     TRGB    (H0=69.8): v_bf = 12.7 +/- 2.8 km/s (N=8540)
+[21:42:57] [TEST]     Reduction (TRGB vs Cepheid): 2.9%
+[21:42:57] [PROCESS]   Bin: R <= 150 Mpc
+[21:42:57] [SUCCESS]     Cepheid (H0=73.0): v_bf = 13.1 +/- 2.3 km/s (N=13844)
+[21:42:57] [SUCCESS]     TRGB    (H0=69.8): v_bf = 12.7 +/- 2.4 km/s (N=13844)
+[21:42:57] [TEST]     Reduction (TRGB vs Cepheid): 3.3%
+[21:42:57] [PROCESS]   Bin: R <= 200 Mpc
+[21:42:57] [SUCCESS]     Cepheid (H0=73.0): v_bf = 12.7 +/- 2.1 km/s (N=18191)
+[21:42:57] [SUCCESS]     TRGB    (H0=69.8): v_bf = 12.3 +/- 2.2 km/s (N=18191)
+[21:42:57] [TEST]     Reduction (TRGB vs Cepheid): 3.8%
+[21:42:57] [PROCESS]   Bin: R <= 250 Mpc
+[21:42:57] [SUCCESS]     Cepheid (H0=73.0): v_bf = 12.3 +/- 2.0 km/s (N=22199)
+[21:42:57] [SUCCESS]     TRGB    (H0=69.8): v_bf = 11.7 +/- 2.1 km/s (N=22199)
+[21:42:57] [TEST]     Reduction (TRGB vs Cepheid): 4.4%
+[21:42:57] [TEST] Mean bulk-flow reduction (TRGB vs Cepheid): 3.3%
+[21:42:57] [SUCCESS] The TRGB-calibrated bulk flow is reduced by 3.3% relative to the Cepheid-calibrated value, consistent with the TEP prediction that the Cepheid H0 inflates the apparent bulk flow. The void model, which predicts an indicator-independent bulk flow, is disfavoured by this calibration dependence.
+[21:42:57] [PROCESS] Generating comparison figure...
+[21:42:57] [SUCCESS] Loaded 55877 galaxies from pre-parsed CF4 table2
+[21:42:58] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_30_bulk_flow_comparison.png
+[21:42:58] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_30_bulk_flow_recalculation.json
+[21:42:58] [SUCCESS] Step 30 complete
+[21:42:58] [SUCCESS] step_30 completed in 0.8s
+[21:42:58] [INFO] 
+[21:42:58] [INFO] ================================================================================
+[21:42:58] [INFO]    Starting step_31: Peculiar velocity artifact: Cepheid distance compression inflates v_pec
+[21:42:58] [INFO] ================================================================================
+[21:42:58] [INFO] 

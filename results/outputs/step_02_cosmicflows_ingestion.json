@@ -1,0 +1,43 @@
+{
+  "step": "02_cosmicflows_ingestion",
+  "description": "Ingestion of the CosmicFlows-4 catalog (Tully et al. 2023): 55,877 individual galaxy distances from table2 and 38,053 galaxy group peculiar velocities from table4.",
+  "data_source": "cds_table2+table4",
+  "n_galaxies": 55877,
+  "n_groups": 38053,
+  "n_entries": 38053,
+  "download_results": {
+    "table2": "local_copy",
+    "table4": "local_copy"
+  },
+  "provenance": {
+    "catalog": "CosmicFlows-4 (Tully et al. 2023, ApJ, 944, 94)",
+    "cds_reference": "J/ApJ/944/94",
+    "cds_url": "http://cdsarc.u-strasbg.fr/ftp/J/ApJ/944/94",
+    "table2": "55,877 individual galaxy distances (all methodologies)",
+    "table4": "38,053 galaxy groups with peculiar velocities",
+    "download_method": "Playwright headless browser (bypasses CDS Anubis protection)",
+    "data_sources": [
+      "CDS archive J/ApJ/944/94 table2.dat (individual galaxy distances)",
+      "CDS archive J/ApJ/944/94 table4.dat (group peculiar velocities)"
+    ],
+    "software_versions": {
+      "python": "3.13.5",
+      "numpy": "2.1.3",
+      "pandas": "2.2.3"
+    },
+    "pipeline_block": "Block 0 \u2014 Data Ingestion"
+  },
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/cf4_table2.dat",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/cf4_table4.dat",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cf4_galaxies.csv",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cf4_groups.csv",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cosmicflows4_processed.csv"
+  ],
+  "methodology": "Fixed-width parsing of CF4 table2 (28 columns) and table4 (22 columns) per the CDS ReadMe. Distances derived from distance moduli via d = 10^((DM-25)/5) Mpc. Redshifts from CMB-frame velocities (z = Vcmb/c, c = 299792.458 km/s). Group peculiar velocities from the ramped estimator Vpec (Eq. 11, Tully et al. 2023).",
+  "scientific_context": "Ingests the CosmicFlows-4 peculiar velocity catalog to characterize the local bulk-flow field, which constitutes the void-based null-hypothesis benchmark against which the Temporal Equivalence Principle prediction is tested.",
+  "downstream_consumers": [
+    "06_bulk_flow_estimation",
+    "07_void_geometry"
+  ]
+}

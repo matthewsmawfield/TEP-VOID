@@ -1,0 +1,46 @@
+[13:37:10] [INFO] 
+[13:37:10] [INFO] ================================================================================
+[13:37:10] [INFO]    Step 49: Band-Dependence Test
+[13:37:10] [INFO] ================================================================================
+[13:37:10] [INFO] 
+[13:37:10] [PROCESS] Test the TEP prediction that the optical-to-NIR Cepheid distance differential scales with the gravitational potential coordinate X_i, with a predicted slope of (|b_H| - |b_V|) * kappa_P = 0.50 * kappa_P.
+[13:37:10] [PROCESS] Leavitt law slopes: b_V = -2.76, b_H = -3.26, |b_H|/|b_V| = 1.181 (18.1% larger in NIR)
+[13:37:10] [PROCESS] Loading Madore & Freedman (2023) Table 2...
+[13:37:10] [SUCCESS]   20 galaxies with VIH (NIR) and VI (optical) distances
+[13:37:10] [PROCESS] Loading Key Project (Freedman et al. 2001) distances...
+[13:37:10] [SUCCESS]   31 Key Project galaxies loaded
+[13:37:10] [PROCESS] Loading SH0ES R22 NIR Cepheid distances...
+[13:37:10] [SUCCESS]   40 R22 galaxies loaded
+[13:37:10] [PROCESS] Loading host potential catalog...
+[13:37:10] [SUCCESS]   41 galaxies with V_rot and X_i
+[13:37:10] [PROCESS] 
+Merging Madore & Freedman (2023) with host potential catalog...
+[13:37:10] [SUCCESS]   20 galaxies matched (primary sample)
+[13:37:10] [PROCESS] 
+Merging Key Project + R22 + host potential catalog...
+[13:37:10] [TEST]   9 Key Project ↔ R22 matches
+[13:37:10] [SUCCESS]   9 galaxies matched (secondary sample)
+[13:37:10] [PROCESS] 
+Regression: Primary: MF2023 VIH vs VI
+[13:37:10] [TEST]   N=20, slope = 8.1344e+05 ± 1.5212e+05 (5.35σ)
+[13:37:10] [TEST]   intercept = -0.0022 ± 0.0112
+[13:37:10] [TEST]   Pearson r = +0.1907 (p = 0.4207)
+[13:37:10] [TEST]   Spearman ρ = +0.1504 (p = 0.5269)
+[13:37:10] [TEST]   R² = 0.0201, χ²/dof = 5.19
+[13:37:10] [TEST]   TEP predicted slope: 1.8250e+05 (default κ_P), 2.0000e+05 (joint κ_P)
+[13:37:10] [TEST]   vs TEP (default): |slope - pred|/σ = 4.15σ
+[13:37:10] [TEST]   vs TEP (joint): |slope - pred|/σ = 4.03σ
+[13:37:10] [PROCESS] 
+Regression: Secondary: Key Project vs R22
+[13:37:10] [TEST]   N=9, slope = -5.6681e+05 ± 7.3516e+05 (0.77σ)
+[13:37:10] [TEST]   intercept = +0.0665 ± 0.0311
+[13:37:10] [TEST]   Pearson r = -0.3605 (p = 0.3406)
+[13:37:10] [TEST]   Spearman ρ = -0.4500 (p = 0.2242)
+[13:37:10] [TEST]   R² = 0.1265, χ²/dof = 0.82
+[13:37:10] [TEST]   TEP predicted slope: 1.8250e+05 (default κ_P), 2.0000e+05 (joint κ_P)
+[13:37:10] [TEST]   vs TEP (default): |slope - pred|/σ = 1.02σ
+[13:37:10] [TEST]   vs TEP (joint): |slope - pred|/σ = 1.04σ
+[13:37:10] [SUCCESS] Matched catalog saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/band_dependence_matched.csv
+[13:37:11] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_49_band_dependence.png
+[13:37:11] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_49_band_dependence.json
+[13:37:11] [SUCCESS] Step 49 complete

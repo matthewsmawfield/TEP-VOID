@@ -1,0 +1,56 @@
+{
+  "step": "21_lmc_radial_stratification",
+  "description": "LMC OGLE-IV Cepheid radial potential stratification",
+  "galaxy": "LMC (Large Magellanic Cloud)",
+  "results": {
+    "lmc": {
+      "delta_W": 0.028384033160063993,
+      "delta_W_err": 0.008598097721808445,
+      "significance_sigma": 3.301199181310765,
+      "dataset": "LMC OGLE-IV (from TEP-H0 step_14_lmc_results.csv)",
+      "n_cepheids_total": null,
+      "n_inner": 419,
+      "n_outer": 419,
+      "inner_cut_kpc": 0.916163164827299,
+      "outer_cut_kpc": 2.9276828809313855,
+      "inner_intercept": 15.883585486566028,
+      "inner_intercept_err": 0.0066149374713875,
+      "outer_intercept": 15.855201453405964,
+      "outer_intercept_err": 0.0054927121427762,
+      "void_prediction": 0.0,
+      "chi2_vs_void": 10.897916034686865,
+      "p_value_vs_void": 0.0009627251045082994,
+      "void_falsified": true
+    },
+    "void_prediction": {
+      "delta_W": 0.0,
+      "description": "Void model predicts no internal radial gradient (Delta_W = 0)"
+    },
+    "tep_prediction": {
+      "delta_W_positive": true,
+      "description": "TEP predicts Delta_W > 0: inner Cepheids fainter due to period contraction"
+    },
+    "interpretation": "LMC radial P-L gradient detected at 3.30 sigma. Void prediction of Delta_W = 0 is falsified at >2 sigma.",
+    "source": {
+      "project": "TEP-H0",
+      "file": "step_14_lmc_results.csv"
+    }
+  },
+  "methodology": "OGLE-IV Cepheid photometry is partitioned into inner and outer radial bins using projected galactocentric radius cuts. The P-L zero-point offset Delta_W is computed as the difference in fitted intercepts. Significance is assessed via chi-squared against the void null hypothesis (Delta_W = 0).",
+  "provenance": {
+    "data_sources": [
+      "LMC OGLE-IV Cepheid survey",
+      "TEP-H0 companion project (step_14)"
+    ],
+    "pipeline_block": "standalone"
+  },
+  "scientific_context": "This step tests whether the LMC exhibits an internal radial gradient in the Cepheid P-L zero-point. Under TEP, Cepheids in the deeper central potential of the LMC undergo period contraction, producing a positive Delta_W. The kinematic void model predicts Delta_W = 0 because a physical recession velocity affects the entire galaxy uniformly.",
+  "tep_prediction": "Delta_W > 0: inner Cepheids are fainter due to period contraction in the deeper central potential of the LMC.",
+  "void_prediction": "Delta_W = 0: no internal radial gradient, as a kinematic recession velocity cannot produce a distance gradient within a single galaxy.",
+  "downstream_consumers": [
+    "22_void_null_prediction"
+  ],
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_21_lmc_radial_stratification.json"
+  ]
+}

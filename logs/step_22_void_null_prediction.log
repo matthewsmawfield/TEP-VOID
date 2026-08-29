@@ -1,0 +1,25 @@
+[21:43:13] [INFO] 
+[21:43:13] [INFO] ================================================================================
+[21:43:13] [INFO]    Step 22: Void Null Prediction — Internal Radial Gradient Test
+[21:43:13] [INFO] ================================================================================
+[21:43:13] [INFO] 
+[21:43:13] [PROCESS] This step quantifies and tests the void model null prediction that no single galaxy can exhibit an internal radial P-L gradient. The kinematic void model requires Delta_W = 0 because a physical recession velocity acts uniformly on an entire galaxy. The TEP framework predicts Delta_W > 0, with amplitude scaling with gravitational potential depth, so the M31 and LMC measurements provide an independent, sample-variance-free falsification test.
+[21:43:13] [PROCESS] Loading step_20 (M31) and step_21 (LMC) results...
+[21:43:13] [PROCESS] Loading M31 results: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_20_m31_radial_pl_gradient.json
+[21:43:13] [SUCCESS]   M31 results loaded
+[21:43:13] [PROCESS] Loading LMC results: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_21_lmc_radial_stratification.json
+[21:43:13] [SUCCESS]   LMC results loaded
+[21:43:13] [PROCESS] Testing void null prediction: Delta_W = 0 for all internal gradients...
+[21:43:13] [PROCESS] Methodology: Three independent internal radial gradient measurements (M31 Pan-STARRS, M31 PHAT, LMC OGLE-IV) are tested against the void null hypothesis Delta_W = 0. Individual chi-squared contributions are summed for a combined test. An inverse-variance weighted meta-analysis yields a pooled Delta_W. The M31-to-LMC gradient ratio tests the TEP potential-depth scaling prediction.
+[21:43:13] [TEST]   M31 Pan-STARRS: Delta_W = +0.3560 +/- 0.1357 (2.62 sigma, chi2=6.88)
+[21:43:13] [TEST]   M31 PHAT: Delta_W = +0.6808 +/- 0.1867 (3.65 sigma, chi2=13.29)
+[21:43:13] [TEST]   LMC OGLE-IV: Delta_W = +0.0284 +/- 0.0086 (3.30 sigma, chi2=10.90)
+[21:43:13] [TEST]   Combined chi-squared: 31.07 (dof=3)
+[21:43:13] [TEST]   Combined p-value:     8.223600e-07
+[21:43:13] [TEST]   Combined significance: 4.93 sigma
+[21:43:13] [TEST]   Weighted mean Delta_W: +0.0311 +/- 0.0086 mag (3.62 sigma)
+[21:43:13] [TEST]   M31/LMC gradient ratio: 24.0 +/- 9.8
+[21:43:13] [INFO]   (TEP predicts ratio >> 1: M31 deeper potential than LMC)
+[21:43:13] [SUCCESS] The combined significance of 4.93 sigma from three independent single-galaxy measurements falsifies the void null hypothesis without any sample-variance contamination. The M31/LMC ratio of 24.0 is consistent with the TEP prediction that Delta_W scales with gravitational potential depth.
+[21:43:13] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_22_void_null_prediction.json
+[21:43:13] [SUCCESS] Step 22 complete

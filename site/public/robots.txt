@@ -1,0 +1,4 @@
+# robots.txt for TEP-VOID: Cosmological Voids vs Temporal Shear
+User-agent: *
+Allow: /
+Sitemap: https://mlsmawfield.com/tep/void/sitemap.xml

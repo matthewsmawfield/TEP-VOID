@@ -1,0 +1,36 @@
+[21:42:55] [INFO] 
+[21:42:55] [INFO] ================================================================================
+[21:42:55] [INFO]    Step 00: Data Ingestion — SH0ES + CCHP
+[21:42:55] [INFO] ================================================================================
+[21:42:55] [INFO] 
+[21:42:55] [INFO] Scientific context: This step addresses the foundational data-assembly question of whether independent distance indicators (Cepheid variables from the SH0ES/R22 programme and TRGB stars from the CCHP/Freedman 2025 programme) yield mutually consistent distance moduli for the same set of SN Ia host galaxies. The resulting matched catalog provides the indicator-pair sample whose divergence (delta_mu = mu_Cepheid - mu_TRGB) is the primary observable for testing whether local gravitational potential depth modulates the distance ladder in a manner consistent with the Temporal Equivalence Principle versus the standard void-based explanation of the Hubble tension.
+[21:42:55] [INFO] Data sources: Pantheon+SH0ES.dat (GitHub, Riess et al. 2022), R22 Cepheid distance moduli, CCHP TRGB distance moduli (Freedman et al. 2025), and HyperLEDA velocity dispersions. This step constitutes Block 0 of the TEP-VOID pipeline and feeds all downstream indicator-divergence and potential-stratification analyses.
+[21:42:55] [PROCESS] Pantheon+SH0ES.dat already exists (566 KB)
+[21:42:55] [PROCESS] Loading SH0ES Cepheid + SN Ia data...
+[21:42:55] [SUCCESS] Loaded 1701 rows from Pantheon+SH0ES.dat
+[21:42:55] [SUCCESS] Saved Cepheid hosts to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/shoes_cepheid_hosts.csv
+[21:42:55] [PROCESS] Loading R22 Cepheid distances from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/r22_cepheid_distances.csv
+[21:42:55] [SUCCESS] Loaded 40 R22 Cepheid distance moduli
+[21:42:55] [SUCCESS] Saved R22 Cepheid hosts to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/r22_cepheid_hosts.csv
+[21:42:55] [PROCESS] Loading CCHP TRGB distances from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/trgb_distances_freedman2024.csv
+[21:42:55] [SUCCESS] Loaded 18 TRGB host galaxies
+[21:42:55] [SUCCESS] Saved TRGB hosts to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cchp_trgb_hosts.csv
+[21:42:55] [PROCESS] Loading velocity dispersions from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/velocity_dispersions_literature.csv
+[21:42:55] [SUCCESS] Loaded 41 velocity dispersion entries
+[21:42:55] [PROCESS] Methodology: Cross-matching is performed on normalized galaxy names (case-insensitive, whitespace-collapsed, NGC zero-padding removed). An inner join between the Cepheid and TRGB catalogs retains only galaxies with both indicators. Velocity dispersions are attached via a left join. The divergence observable delta_mu = mu_Cepheid - mu_TRGB is computed with Gaussian uncertainty propagation (delta_mu_err = sqrt(mu_cep_err^2 + mu_trgb_err^2)).
+[21:42:55] [PROCESS] Cross-matching Cepheid + TRGB + velocity dispersions...
+[21:42:55] [SUCCESS]   Cepheid + TRGB match: 18 galaxies
+[21:42:55] [SUCCESS]   With velocity dispersions: 18/18
+[21:42:55] [SUCCESS]   Final matched catalog: 18 galaxies
+[21:42:55] [TEST]   Mean delta_mu: -0.0052 mag
+[21:42:55] [TEST]   delta_mu range: [-0.2161, 0.1072]
+[21:42:55] [SUCCESS] Saved matched hosts to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/matched_hosts.csv
+[21:42:55] [TEST] Interpretation: 18 galaxies possess both Cepheid and TRGB distance moduli, forming the indicator-pair sample. The mean divergence delta_mu = -0.0052 mag quantifies the systematic offset between the two distance scales; a statistically significant non-zero mean would indicate that the two indicators are not mutually calibrated, motivating the potential-stratified analysis in subsequent blocks.
+[21:42:55] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_00_data_ingestion_summary.json
+[21:42:55] [SUCCESS] Step 00 complete
+[21:42:55] [SUCCESS] step_00 completed in 0.3s
+[21:42:55] [INFO] 
+[21:42:55] [INFO] ================================================================================
+[21:42:55] [INFO]    Starting step_01: Host galaxy gravitational potential catalog
+[21:42:55] [INFO] ================================================================================
+[21:42:55] [INFO] 

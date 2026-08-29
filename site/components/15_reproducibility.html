@@ -1,0 +1,171 @@
+<h2>Data Availability and Reproducibility</h2>
+
+<h3>Open Science Commitment</h3>
+
+<p>
+    This preprint is released under CC and MIT licenses. All
+    materials required to reproduce the analysis—scripts, data
+    references, and the manuscript source—are openly available.
+    Feedback and collaboration are welcome.
+</p>
+
+<h3>Repository Structure</h3>
+
+<p>
+    The complete project is hosted at
+    <a href="https://github.com/matthewsmawfield/TEP-VOID">https://github.com/matthewsmawfield/TEP-VOID</a>
+    and is structured as follows:
+</p>
+
+<ul>
+    <li><em>site/components/</em>—HTML source files for
+        each manuscript section. These are the only files that should
+        be edited; all other formats are auto-generated.</li>
+    <li><em>scripts/steps/</em>—Reproducible analysis pipeline
+        with 21 active step scripts organized into four blocks
+        (data ingestion, indicator divergence and void
+        falsification, void boundary test, and TEP reconstruction
+        / synthesis).</li>
+    <li><em>core/</em>—Shared TEP framework Python
+        modules (scalar field, conformal scaling, screening,
+        cosmology, constants).</li>
+    <li><em>scripts/</em>—Utility scripts including the
+        pipeline runner (<code>run_pipeline.py</code>) and PDF
+        generation (<code>generate_site_pdf.py</code>).</li>
+    <li><em>results/</em>—Generated outputs and figures
+        (populated by running the pipeline).</li>
+</ul>
+
+<h3>Reproducing the Analysis</h3>
+
+<p>
+    The full analysis pipeline can be reproduced by running:
+</p>
+
+<pre><code>cd /path/to/TEP-VOID
+python3 scripts/run_pipeline.py</code></pre>
+
+<p>
+    This executes all 21 active step scripts in sequence, populating
+    <code>results/figures/</code> and <code>results/outputs/</code>
+    with fresh data. Individual blocks or steps can be run
+    selectively:
+</p>
+
+<pre><code>python3 scripts/run_pipeline.py --block I      # Indicator divergence only
+python3 scripts/run_pipeline.py --step 40       # Single step only</code></pre>
+
+<p>
+    The pipeline is fully implemented and all 21 steps run successfully
+    against real published data. The pipeline structure, data sources,
+    and analysis methodology are documented in
+    <code>scripts/README.md</code>.
+</p>
+
+<h3>Building the Manuscript</h3>
+
+<p>
+    The manuscript site is built from the HTML component files:
+</p>
+
+<pre><code>cd site
+npm install
+npm run build</code></pre>
+
+<p>
+    This generates the static site in <code>site/dist/</code> and the
+    markdown version at the repository root
+    (<code>31-TEP-VOID-v0.1-Valencia.md</code>). A PDF can be
+    generated from the built site:
+</p>
+
+<pre><code>python3 scripts/generate_site_pdf.py</code></pre>
+
+<h3>Revision Notes</h3>
+
+<p>
+    The headline $\Delta$AIC values reported in this version
+    ($+101.5$/$+117.1$ at $z \ge 0.05$; $+194.3$/$+328.7$ full
+    sample) differ from earlier preprint versions
+    ($+91.5$/$+106.9$; $+179.4$/$+310.3$). The shift arises from a
+    correction to the covariance submatrix extraction in step_32:
+    the earlier version used an approximate row-index mapping that
+    mismatched a subset of Pantheon+ rows near the $z = 0.05$
+    boundary. The corrected extraction uses the exact CID-based
+    row mapping from the Pantheon+ covariance matrix, retaining
+    all 1,053 rows in the $z \ge 0.05$ range with the matched
+    $1{,}053 \times 1{,}053$ submatrix. The shift strengthens the
+    rejection; the conclusion is unchanged.
+</p>
+
+<h3>Data Sources</h3>
+
+<p>
+    The analysis draws on the following publicly available datasets:
+</p>
+
+<ul>
+    <li><em>SH0ES Cepheid + SN Ia host sample</em>
+        (Riess et al. 2022, 2024a, 2024b): 42 local SNe Ia calibrated by
+        Cepheids, with JWST validation from programs GO-1685 and
+        GO-1995.</li>
+    <li><em>CCHP TRGB and JAGB calibrations</em>
+        (Freedman et al. 2019, 2025): HST and JWST-based TRGB and JAGB
+        distance measurements in SN Ia hosts.</li>
+    <li><em>CosmicFlows-4 catalog</em> (Tully et al. 2023;
+        Watkins et al. 2023): 55,877 galaxy distances and 38,053 group
+        distances/peculiar velocities.</li>
+    <li><em>Pantheon+ supernova catalog</em>
+        (Scolnic et al. 2022): 1,543 unique SN Ia distance-redshift
+        measurements after deduplication by CID (raw catalog: 1,701
+        entries).</li>
+    <li><em>HyperLEDA and RC3 galaxy parameters</em>:
+        Rotation velocities, velocity dispersions, and photometric
+        parameters for host galaxy potential characterization.</li>
+    <li><em>M31 Pan-STARRS Cepheid catalog</em>
+        (Kodric et al. 2018): 2,686 Cepheid variables in M31.</li>
+    <li><em>OGLE-IV LMC Cepheid survey</em>
+        (Soszyński et al. 2015): Fundamental-mode Cepheids in
+        the LMC.</li>
+    <li><em>HST PHAT (Panchromatic Hubble Andromeda Treasury)</em>:
+        High-resolution spatial matching for M31 crowding controls.</li>
+</ul>
+
+<h3>Companion Papers</h3>
+
+<p>
+    This paper is part of the TEP Research Series. The quantitative
+    Cepheid bias analysis (37-host endpoint likelihood, M31 and LMC
+    differential tests, unified $H_0$ reconstruction) is developed in
+    detail in the companion paper TEP-H0 (Paper 11), which should be
+    consulted for the full statistical methodology and numerical
+    results. The measurement taxonomy and screening regime analysis
+    are developed in TEP-EXP (Paper 9). The JWST high-redshift
+    anomalies are addressed in TEP-JWST (Paper 12).
+</p>
+
+<h3>Citation</h3>
+
+<p>
+    If you use this code or data, please cite:
+</p>
+
+<pre><code>@misc{smawfield2026void,
+  title        = {Cosmological Voids versus Temporal Shear:
+                  An Empirical Falsification of Kinematic
+                  Hubble Tension Solutions},
+  author       = {Smawfield, Matthew Lukin},
+  year         = {2026},
+  doi          = {10.5281/zenodo.22150140},
+  url          = {https://doi.org/10.5281/zenodo.22150140},
+  note         = {Preprint, Version v0.1 (Valencia)}
+}</code></pre>
+
+<h3>Contact</h3>
+
+<p>
+    <em>Matthew Lukin Smawfield</em><br>
+    Email: matthew@mlsmawfield.com<br>
+    ORCID: <a href="https://orcid.org/0009-0003-8219-3159">0009-0003-8219-3159</a><br>
+    Website: <a href="https://mlsmawfield.com/tep/void/">https://mlsmawfield.com/tep/void/</a>
+</p>

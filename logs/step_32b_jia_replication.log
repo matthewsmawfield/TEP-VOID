@@ -1,0 +1,91 @@
+[21:42:59] [INFO] ======================================================================
+[21:42:59] [INFO] Step 32b (Replication): Jia et al. Pantheon+-only
+[21:42:59] [INFO] six-bin H0 estimator — actual piecewise H_th method
+[21:42:59] [INFO] REVIEWER-REQUESTED REPLICATION
+[21:42:59] [INFO] ======================================================================
+[21:42:59] [PROCESS] Scientific context: Jia, Hu & Wang (2023) report a declining H0(z) at 5.6 sigma using a piecewise H_{0,z_i} parameterization combined with Pantheon+ SNe, H(z) data, and BAO. Mazurenko et al. (2025) cite this as supporting evidence for the KBC void H0(z) prediction. This replication tests whether the published decline survives when Jia et al.'s actual piecewise H_th method (Eq 8 + Eq 18) is implemented with Pantheon+ SN-only data and diagonal errors. The distinction between the piecewise H_th luminosity-distance integral and the simple single-H0 inversion is critical: only the former correctly captures the inter-bin correlations inherent in the parameterization. This test matters for the falsification because if the decline is an artifact of the piecewise parameterization rather than a feature of the underlying observable, the claimed agreement between KBC and Jia et al. does not constitute independent support for the void model.
+[21:42:59] [PROCESS]   Loaded 1701 Pantheon+ SNe
+[21:42:59] [INFO]   Omega_m = 0.3 (fiducial, as in Jia et al.)
+[21:42:59] [INFO]   Bin edges: [0.0, 0.1, 0.2, 0.3, 0.6, 1.0, 2.4]
+[21:42:59] [INFO] 
+[21:42:59] [TEST]   --- 1. Jia piecewise H_th method (Eq 8 + Eq 18) ---
+[21:42:59] [PROCESS] Methodology: Four estimators are computed for comparison. (1) Jia piecewise H_th: H_{0,z_i} are fit by minimizing chi-squared with the cumulative piecewise Hubble parameter H_th(z) from Eq 8 and luminosity distance d_L from Eq 18, using MU_SH0ES with diagonal errors and no free M. Multiple restarts are used to avoid local minima from inter-bin correlations. (2) Free-M fit: M and H_{0,z_i} are fit simultaneously using m_b_corr with a Cepheid anchor (sigma_anchor = 0.15 mag). (3) Simple d_L: a single H_{0,z_i} is used for the entire integral, which is only correct for bin 1. (4) Simple inversion: per-SN H0 via LCDM inversion, binned by unweighted mean. Omega_m = 0.3 (fiducial). Six bins with edges [0.0, 0.1, 0.2, 0.3, 0.6, 1.0, 2.4].
+[21:42:59] [PROCESS]   Fitting Jia piecewise H_th method (6 H0 params)...
+[21:43:00] [TEST]   z=[0.0,0.1]: H0=72.37 +/- 0.19  (Jia pub: 73.25)
+[21:43:00] [TEST]   z=[0.1,0.2]: H0=76.01 +/- 0.82  (Jia pub: 73.69)
+[21:43:00] [TEST]   z=[0.2,0.3]: H0=70.96 +/- 1.49  (Jia pub: 73.14)
+[21:43:00] [TEST]   z=[0.3,0.6]: H0=78.32 +/- 1.53  (Jia pub: 70.50)
+[21:43:00] [TEST]   z=[0.6,1.0]: H0=69.92 +/- 5.61  (Jia pub: 69.50)
+[21:43:00] [TEST]   z=[1.0,2.4]: H0=72.66 +/- 13.56  (Jia pub: 66.00)
+[21:43:00] [TEST]   chi2/dof = 807.9/1695 = 0.477
+[21:43:00] [INFO] 
+[21:43:00] [TEST]   --- 1b. Jia piecewise H_th, FULL STAT+SYS covariance ---
+[21:43:00] [PROCESS]   Loading Pantheon+SH0ES_STAT+SYS.cov...
+[21:43:00] [SUCCESS]   Loaded 1701x1701 covariance matrix
+[21:43:00] [PROCESS]   Inverting covariance submatrix...
+[21:43:00] [PROCESS]   Fitting Jia piecewise H_th with full covariance...
+[21:43:01] [TEST]   z=[0.0,0.1]: H0=72.26 +/- 0.16
+[21:43:01] [TEST]   z=[0.1,0.2]: H0=76.57 +/- 0.68
+[21:43:01] [TEST]   z=[0.2,0.3]: H0=70.72 +/- 1.03
+[21:43:01] [TEST]   z=[0.3,0.6]: H0=78.10 +/- 1.17
+[21:43:01] [TEST]   z=[0.6,1.0]: H0=68.76 +/- 3.92
+[21:43:01] [TEST]   z=[1.0,2.4]: H0=70.08 +/- 9.27
+[21:43:01] [TEST]   chi2/dof = 1978.2/1695 = 1.167
+[21:43:01] [TEST]   Decline (high-z - low-z): -0.87 km/s/Mpc
+[21:43:01] [INFO] 
+[21:43:01] [TEST]   --- 1c. Jia piecewise H_th, full cov + marg ZP ---
+[21:43:01] [PROCESS]   Fitting Jia piecewise H_th with full cov + marg ZP...
+[21:43:02] [TEST]   z=[0.0,0.1]: H0=74.68 +/- 34.34
+[21:43:02] [TEST]   z=[0.1,0.2]: H0=79.14 +/- 36.40
+[21:43:02] [TEST]   z=[0.2,0.3]: H0=73.10 +/- 33.64
+[21:43:02] [TEST]   z=[0.3,0.6]: H0=80.72 +/- 37.12
+[21:43:02] [TEST]   z=[0.6,1.0]: H0=71.06 +/- 33.09
+[21:43:02] [TEST]   z=[1.0,2.4]: H0=72.43 +/- 34.26
+[21:43:02] [TEST]   chi2/dof = 1978.2/1695 = 1.167
+[21:43:02] [TEST]   Decline (high-z - low-z): -0.90 km/s/Mpc
+[21:43:02] [INFO] 
+[21:43:02] [TEST]   --- 2. With M free + Cepheid anchor ---
+[21:43:02] [PROCESS]   Fitting with M as free parameter (7 params: M + 6 H0)...
+[21:43:02] [TEST]   M = -19.272 +/- 0.012
+[21:43:02] [TEST]   z=[0.0,0.1]: H0=71.76 +/- 0.44
+[21:43:02] [TEST]   z=[0.1,0.2]: H0=75.39 +/- 0.91
+[21:43:02] [TEST]   z=[0.2,0.3]: H0=70.35 +/- 1.51
+[21:43:02] [TEST]   z=[0.3,0.6]: H0=77.62 +/- 1.56
+[21:43:02] [TEST]   z=[0.6,1.0]: H0=69.81 +/- 5.56
+[21:43:02] [TEST]   z=[1.0,2.4]: H0=70.20 +/- 12.83
+[21:43:02] [TEST]   chi2/dof = 894.9/1694 = 0.528
+[21:43:02] [INFO] 
+[21:43:02] [TEST]   --- 3. Simple d_L (single H0 per bin) ---
+[21:43:02] [PROCESS]   Fitting simple d_L (single H0 per bin, NOT Jia's method)...
+[21:43:02] [TEST]   z=[0.0,0.1]: H0=72.34 +/- 0.27  (n=741)
+[21:43:02] [TEST]   z=[0.1,0.2]: H0=73.51 +/- 0.42  (n=207)
+[21:43:02] [TEST]   z=[0.2,0.3]: H0=73.86 +/- 0.42  (n=259)
+[21:43:02] [TEST]   z=[0.3,0.6]: H0=73.81 +/- 0.36  (n=365)
+[21:43:02] [TEST]   z=[0.6,1.0]: H0=75.22 +/- 0.83  (n=104)
+[21:43:02] [TEST]   z=[1.0,2.4]: H0=71.53 +/- 2.05  (n=25)
+[21:43:02] [INFO] 
+[21:43:02] [TEST]   --- 4. Simple inversion (current code) ---
+[21:43:02] [TEST]   z=[0.0,0.1]: H0=72.48 +/- 0.29  (n=741)
+[21:43:02] [TEST]   z=[0.1,0.2]: H0=72.99 +/- 0.32  (n=207)
+[21:43:02] [TEST]   z=[0.2,0.3]: H0=73.65 +/- 0.30  (n=259)
+[21:43:02] [TEST]   z=[0.3,0.6]: H0=73.77 +/- 0.25  (n=365)
+[21:43:02] [TEST]   z=[0.6,1.0]: H0=75.48 +/- 0.50  (n=104)
+[21:43:02] [TEST]   z=[1.0,2.4]: H0=73.18 +/- 1.45  (n=25)
+[21:43:02] [INFO] 
+[21:43:02] [TEST]   --- Trend analysis ---
+[21:43:02] [TEST]   Jia piecewise: low-z mean=73.11, high-z mean=73.63, decline=0.52
+[21:43:02] [TEST]   With M free: low-z mean=72.50, high-z mean=72.54, decline=0.04
+[21:43:02] [TEST]   Simple d_L: low-z mean=73.23, high-z mean=73.52, decline=0.29
+[21:43:02] [TEST]   Simple inversion: low-z mean=73.04, high-z mean=74.15, decline=1.11
+[21:43:02] [INFO] 
+[21:43:02] [TEST]   Jia piecewise H_th method: NO significant decline (0.52 km/s/Mpc)
+[21:43:02] [TEST] Interpretation: The Jia piecewise H_th method does NOT show a significant declining H0(z) trend (0.52 km/s/Mpc) in the SN-only replication with diagonal errors. This suggests that the published 5.6 sigma decline is driven by the H(z) and BAO data and/or the full covariance matrix, not by the Pantheon+ SN distance moduli alone. The full-covariance replication below confirms this.
+[21:43:02] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_32b_jia_replication.png
+[21:43:02] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_32b_jia_replication.json
+[21:43:02] [SUCCESS] Step 32b replication complete
+[21:43:02] [SUCCESS] step_32r completed in 2.8s
+[21:43:02] [INFO] 
+[21:43:02] [INFO] ================================================================================
+[21:43:02] [INFO]    Starting step_32b: VALIDATION: reproduce Jia et al. H_0(z) reconstruction, confirm direct-μ likelihood differs
+[21:43:02] [INFO] ================================================================================
+[21:43:02] [INFO] 

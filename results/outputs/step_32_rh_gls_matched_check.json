@@ -1,0 +1,32 @@
+{
+  "step": "32_rh_gls_matched_check",
+  "description": "Verification: KBC model R_H predictions run through the same two-bin GLS covariance-aware estimator used for the observed R_H, instead of arithmetic means of the KBC curve in each bin.",
+  "methodology": "The KBC model shift s_i = 5*log10(H_ref/H_KBC(z_i)) is fed through the identical GLS zero-point estimator (1^T C^-1 s)/(1^T C^-1 1) in each bin using the same Pantheon+ STAT+SYS covariance submatrix. The resulting R_H_KBC_GLS is compared to the observed R_H using the observed sigma_R_H.",
+  "omega_m": 0.315,
+  "h0_ref": 73.04,
+  "observed": {
+    "R_H": 1.006625078731506,
+    "sigma_R_H": 0.006421648038329234,
+    "H0_low": 73.00755330695986,
+    "H0_high": 73.4912340956131,
+    "n_low": 178,
+    "n_high": 614
+  },
+  "kbc_gaussian": {
+    "R_H_gls_matched": 0.9569063534979414,
+    "R_H_arithmetic_mean": 0.9523956656086616,
+    "Z_gls_matched": 7.742362231129123,
+    "Z_arithmetic_mean": 8.44478127719901,
+    "H0_low_gls": 72.21566058995765,
+    "H0_high_gls": 69.10362444058137
+  },
+  "kbc_exponential": {
+    "R_H_gls_matched": 0.9493579948132362,
+    "R_H_arithmetic_mean": 0.9458355889532554,
+    "Z_gls_matched": 8.917817291831744,
+    "Z_arithmetic_mean": 9.466337833436718,
+    "H0_low_gls": 73.3792055645913,
+    "H0_high_gls": 69.66313545578866
+  },
+  "verdict": "SURVIVES"
+}

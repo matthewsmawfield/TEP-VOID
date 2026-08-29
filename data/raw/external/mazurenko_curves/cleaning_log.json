@@ -1,0 +1,31 @@
+{
+  "procedure": "Remove digitized points where z > 0.5 AND H0 > 75.0",
+  "criterion": "The KBC/MOND H0(z) curves converge to ~67.4 km/s/Mpc at high z. The maximum H0 in any KBC model is ~74.8 at z~0. At z > 0.5, all KBC models predict H0 < 70. Points with H0 > 75 at z > 0.5 are therefore outside the physically possible range and are identified as graphical artifacts (misread vector elements from axis labels or other curves). This is an objective amplitude cut, NOT a monotonicity assumption.",
+  "threshold": {
+    "z_min": 0.5,
+    "h0_max": 75.0
+  },
+  "curves": {
+    "gaussian": {
+      "file": "gaussian_method3.json",
+      "n_points_current": 94,
+      "n_points_failing_criterion": 0,
+      "removed_points": [],
+      "status": "Already cleaned (artifacts removed in previous pass)"
+    },
+    "exponential": {
+      "file": "exponential_method3.json",
+      "n_points_current": 54,
+      "n_points_failing_criterion": 0,
+      "removed_points": [],
+      "status": "Already cleaned (artifacts removed in previous pass)"
+    },
+    "maxwell_boltzmann": {
+      "file": "maxwell_boltzmann_method3.json",
+      "n_points_current": 67,
+      "n_points_failing_criterion": 0,
+      "removed_points": [],
+      "status": "Already cleaned (artifacts removed in previous pass)"
+    }
+  }
+}

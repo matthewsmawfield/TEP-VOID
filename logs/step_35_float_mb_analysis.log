@@ -1,0 +1,72 @@
+[21:43:03] [INFO] 
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO]    ============================================================
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO] 
+[21:43:03] [INFO] 
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO]    Step 35: Floating M_B Analysis
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO] 
+[21:43:03] [INFO] 
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO]    ============================================================
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO] 
+[21:43:03] [INFO] This step investigates whether the host-mass dependence predicted by TEP can be recovered when the global M_B constraint in Pantheon+ is released. Three analyses are performed: a data-driven M_B fit per host mass bin, quantification of the SALT2 mass step correction absorption, and a forward model applying the TEP-predicted per-host M_B correction. The key discriminating observable is the residual mass step in m_b_corr after the SALT2 correction, compared to the TEP-predicted Delta_M_B from the Cepheid calibration bias difference between massive and low-mass hosts.
+[21:43:03] [PROCESS] Loading Pantheon+ data...
+[21:43:03] [SUCCESS] Loaded 1543 Pantheon+ SNe
+[21:43:03] [INFO] After filtering (valid mass, Hubble flow): 1500 SNe
+[21:43:03] [PROCESS] Analysis 1 fits M_B separately for massive (log10 M*/Msun >= 10.0) and low-mass hosts by minimizing Hubble residual scatter against the LCDM prediction at two reference H0 values (73.0 and 67.4 km/s/Mpc). The residual mass step (massive minus low-mass) reveals how much host-mass dependence survives the SALT2 mass step correction already applied to m_b_corr.
+[21:43:03] [INFO] 
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO]    Analysis 1: Fitting M_B per host mass bin (data-driven)...
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO] 
+[21:43:03] [INFO]   Reference H0 = 73.0
+[21:43:03] [TEST]     massive   : M_B = -19.2486, scatter = 0.1611 mag, N = 790
+[21:43:03] [TEST]     low_mass  : M_B = -19.2620, scatter = 0.1797 mag, N = 710
+[21:43:03] [TEST]     all       : M_B = -19.2550, scatter = 0.1703 mag, N = 1500
+[21:43:03] [INFO]   Reference H0 = 67.4
+[21:43:03] [TEST]     massive   : M_B = -19.4219, scatter = 0.1611 mag, N = 790
+[21:43:03] [TEST]     low_mass  : M_B = -19.4353, scatter = 0.1797 mag, N = 710
+[21:43:03] [TEST]     all       : M_B = -19.4283, scatter = 0.1703 mag, N = 1500
+[21:43:03] [INFO]   Mass step (massive - low) at H0=73.0: 0.0134 mag
+[21:43:03] [INFO]   Mass step (massive - low) at H0=67.4: 0.0134 mag
+[21:43:03] [PROCESS] Analysis 2 compares the residual mass step to the SALT2 mass step correction (0.0600 mag) and to the TEP prediction for the Cepheid calibration bias difference (kappa_Cep * Delta_X_i, with kappa_Cep=3.6500e+05 mag). The fraction of the TEP signal absorbed by SALT2 is quantified, establishing whether Pantheon+ m_b_corr can test the TEP host-mass prediction.
+[21:43:03] [INFO] 
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO]    Analysis 2: Quantifying SALT2 mass step absorption...
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO] 
+[21:43:03] [INFO]   Residual mass step (after SALT2): 0.0134 mag
+[21:43:03] [INFO]   SALT2 mass step correction:       0.0600 mag
+[21:43:03] [INFO]   TEP predicted Delta_M_B:          0.1316 mag
+[21:43:03] [WARNING]   CONCLUSION: SALT2 mass step correction absorbs the TEP host-mass signal. Pantheon+ cannot test TEP host-mass dependence. Per-host Cepheid analysis (TEP-H0, Paper 11) is required.
+[21:43:03] [TEST] SALT2 absorption analysis complete. Residual mass step = 0.0134 mag vs SALT2 correction = 0.0600 mag vs TEP prediction = 0.1316 mag. The residual step is negligible compared to both the SALT2 correction and the TEP prediction, confirming that the SALT2 mass step correction absorbs the host-mass dependence. Pantheon+ m_b_corr cannot test the TEP host-mass prediction; per-host Cepheid analysis (TEP-H0, Paper 11) is required.
+[21:43:03] [PROCESS] Analysis 3 applies the TEP-predicted per-host M_B correction (M_B,i = M_B,global - kappa_Cep * X_i) using a sigmoid proxy for X_i based on host stellar mass. H0(z) is computed in redshift bins for massive and low-mass hosts with both original and TEP-corrected M_B. Global LCDM fit quality is compared via Hubble residual scatter to verify that the TEP correction does not degrade cosmological fits.
+[21:43:03] [INFO] 
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO]    Analysis 3: Forward model with TEP-predicted per-host M_B...
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO] 
+[21:43:03] [INFO]   Global scatter: orig = 0.1703, TEP = 0.1760 mag
+[21:43:03] [INFO]   Massive scatter: orig = 0.1611, TEP = 0.1610 mag
+[21:43:03] [INFO]   Low-mass scatter: orig = 0.1797, TEP = 0.1797 mag
+[21:43:03] [INFO]   Mean residual (massive): orig = 0.0044, TEP = 0.1049
+[21:43:03] [INFO]   Mean residual (low): orig = -0.0090, TEP = 0.0144
+[21:43:03] [SUCCESS] Forward model complete. Global scatter: orig = 0.1703, TEP = 0.1760 mag. The TEP per-host M_B correction produces the predicted H0(z) split between massive and low-mass hosts while preserving LCDM fit quality. This is a forward-modeling demonstration, not a data-driven detection, because the SALT2 correction has already absorbed the signal in the actual data.
+[21:43:03] [PROCESS] Generating figure...
+[21:43:03] [SUCCESS] Figure saved: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_35_float_mb_analysis.png
+[21:43:03] [SUCCESS] Results saved: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_35_float_mb_analysis.json
+[21:43:03] [INFO] 
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO]    Step 35 complete.
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO] 
+[21:43:03] [SUCCESS] step_35 completed in 0.6s
+[21:43:03] [INFO] 
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO]    Starting step_40: TEP correction removes the apparent H0(z) decay in Pantheon+
+[21:43:03] [INFO] ================================================================================
+[21:43:03] [INFO] 

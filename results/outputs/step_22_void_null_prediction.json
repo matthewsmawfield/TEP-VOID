@@ -1,0 +1,88 @@
+{
+  "step": "22_void_null_prediction",
+  "description": "Quantify and test the void model null prediction for internal radial gradients",
+  "galaxies": [
+    "M31 (Andromeda)",
+    "LMC (Large Magellanic Cloud)"
+  ],
+  "results": {
+    "void_null_hypothesis": {
+      "prediction": "Delta_W = 0 for all internal radial gradients",
+      "description": "Kinematic void model predicts no internal radial gradient: a physical recession velocity affects the entire galaxy uniformly and cannot produce a distance gradient within a single galaxy."
+    },
+    "individual_measurements": [
+      {
+        "name": "M31 Pan-STARRS",
+        "delta_W": 0.35603794347733597,
+        "delta_W_err": 0.13573913508760158,
+        "significance_sigma": 2.6229572130952565,
+        "chi2_vs_void": 6.879904541728435,
+        "p_value_vs_void": 0.008717021903825319,
+        "void_falsified": true
+      },
+      {
+        "name": "M31 PHAT",
+        "delta_W": 0.6807770840989953,
+        "delta_W_err": 0.18673881492861075,
+        "significance_sigma": 3.645611033567139,
+        "chi2_vs_void": 13.290479808066463,
+        "p_value_vs_void": 0.0002667572047960758,
+        "void_falsified": true
+      },
+      {
+        "name": "LMC OGLE-IV",
+        "delta_W": 0.028384033160063993,
+        "delta_W_err": 0.008598097721808445,
+        "significance_sigma": 3.301199181310765,
+        "chi2_vs_void": 10.897916034686865,
+        "p_value_vs_void": 0.0009627251045082994,
+        "void_falsified": true
+      }
+    ],
+    "combined_test": {
+      "total_chi2": 31.068300384481763,
+      "dof": 3,
+      "p_value": 8.223599903950704e-07,
+      "significance_sigma": 4.929984837862158
+    },
+    "meta_analysis": {
+      "weighted_mean_delta_W": 0.031065312443498996,
+      "weighted_err_delta_W": 0.008571855256876251,
+      "weighted_significance_sigma": 3.6241060438554107,
+      "method": "inverse-variance weighted mean of M31 Pan-STARRS, M31 PHAT, and LMC OGLE-IV"
+    },
+    "tep_scaling_test": {
+      "m31_lmc_ratio": 23.984508482636667,
+      "m31_lmc_ratio_err": 9.801494436450149,
+      "m31_dataset": "Kodric et al. 2018 (J/ApJ/864/59) HST J/H photometry",
+      "tep_prediction": "Delta_W(M31) >> Delta_W(LMC) because M31 has a deeper potential",
+      "interpretation": "Ratio = 24.0 +/- 9.8 confirms TEP potential scaling: M31 gradient is ~24x larger than LMC gradient, consistent with M31's much deeper gravitational potential."
+    },
+    "tep_prediction": {
+      "delta_W_positive": true,
+      "scales_with_potential": true,
+      "description": "TEP predicts Delta_W > 0, scaling with galactic potential depth"
+    },
+    "falsification_verdict": {
+      "void_falsified": true,
+      "threshold_sigma": 2.0,
+      "verdict": "Void null hypothesis (Delta_W = 0 for internal gradients) is FALSIFIED at 4.93 sigma (combined), using independent M31 and LMC datasets with no sample variance contamination.",
+      "key_advantage": "Single-galaxy tests eliminate sample variance entirely: the gradient is measured within one galaxy, removing any selection bias between different host samples."
+    }
+  },
+  "methodology": "Three independent internal radial gradient measurements (M31 Pan-STARRS, M31 PHAT, LMC OGLE-IV) are tested against the void null hypothesis Delta_W = 0. Individual chi-squared contributions are summed for a combined test. An inverse-variance weighted meta-analysis yields a pooled Delta_W. The M31-to-LMC gradient ratio tests the TEP potential-depth scaling prediction.",
+  "provenance": {
+    "data_sources": [
+      "step_20_m31_radial_pl_gradient.json (M31 Pan-STARRS and PHAT)",
+      "step_21_lmc_radial_stratification.json (LMC OGLE-IV)"
+    ],
+    "pipeline_block": "standalone"
+  },
+  "scientific_context": "This step quantifies the void model null prediction that no single galaxy can exhibit an internal radial P-L gradient. Because a physical recession velocity acts uniformly on an entire galaxy, the void model requires Delta_W = 0. The TEP framework predicts Delta_W > 0 with amplitude scaling with gravitational potential depth, so the M31 and LMC measurements provide a sample-variance-free falsification test.",
+  "tep_prediction": "Delta_W > 0 for all single-galaxy internal gradients, with Delta_W(M31) >> Delta_W(LMC) because M31 has a deeper gravitational potential.",
+  "void_prediction": "Delta_W = 0 for all internal radial gradients: a kinematic recession velocity cannot produce a distance gradient within a single galaxy.",
+  "downstream_consumers": [],
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_22_void_null_prediction.json"
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "step": "49_band_dependence",
+  "description": "Test the TEP disformal mechanism prediction that the optical-to-NIR Cepheid distance differential scales with the gravitational potential coordinate X_i.",
+  "tep_prediction": {
+    "b_V": -2.76,
+    "b_H": -3.26,
+    "abs_b_V": 2.76,
+    "abs_b_H": 3.26,
+    "delta_b": 0.5,
+    "nir_excess_percent": 18.1159420289855,
+    "predicted_slope_default": 182500.0,
+    "predicted_slope_joint": 200000.0,
+    "formula": "Delta_mu_band = (|b_H| - |b_V|) * kappa_P * X_i"
+  },
+  "primary_analysis": {
+    "label": "Madore & Freedman (2023) VIH vs VI \u2014 same-team",
+    "n_matched": 20,
+    "data_source": "Madore & Freedman 2023 (arXiv:2309.10859) Table 2: W(H,VI) NIR and W(V,VI) optical Cepheid true distance moduli for 20 SH0ES SN Ia host galaxies, analysed with identical methodology.",
+    "regression": {
+      "n": 20,
+      "slope": 813437.4895750656,
+      "slope_err": 152124.22546243446,
+      "slope_significance_sigma": 5.3471923166894655,
+      "intercept": -0.002224536372801754,
+      "intercept_err": 0.011159472690588812,
+      "r_squared": 0.020140675942399433,
+      "chi2": 93.44164449705897,
+      "chi2_reduced": 5.191202472058832,
+      "dof": 18,
+      "pearson_r": 0.19066859334317546,
+      "pearson_p": 0.42069331209017613,
+      "spearman_rho": 0.15037593984962402,
+      "spearman_p": 0.5268549482529812,
+      "tep_consistency_default": 4.147514885660793,
+      "tep_consistency_joint": 4.032477323781331,
+      "tep_predicted_slope_default": 182500.0,
+      "tep_predicted_slope_joint": 200000.0,
+      "slope_sign_positive": true
+    }
+  },
+  "secondary_analysis": {
+    "label": "Key Project (Freedman 2001) vs R22 (Riess 2022)",
+    "n_matched": 9,
+    "data_source": "Freedman et al. (2001) Key Project optical (V,I band) Cepheid distances matched to Riess et al. (2022) SH0ES NIR (H-band) Cepheid distances for the overlap subsample.",
+    "regression": {
+      "n": 9,
+      "slope": -566813.1010885163,
+      "slope_err": 735159.936485777,
+      "slope_significance_sigma": 0.7710065156678765,
+      "intercept": 0.0664629254099483,
+      "intercept_err": 0.031065058831342463,
+      "r_squared": 0.12650202445363534,
+      "chi2": 5.70961676744684,
+      "chi2_reduced": 0.8156595382066915,
+      "dof": 7,
+      "pearson_r": -0.36045782856773984,
+      "pearson_p": 0.340613721425839,
+      "spearman_rho": -0.45,
+      "spearman_p": 0.22421610749233667,
+      "tep_consistency_default": 1.0192518170541154,
+      "tep_consistency_joint": 1.0430561610226587,
+      "tep_predicted_slope_default": 182500.0,
+      "tep_predicted_slope_joint": 200000.0,
+      "slope_sign_positive": false
+    }
+  },
+  "constants": {
+    "sigma_ref_kms": 87.165,
+    "u_ref_kms2": 7597.737225000001,
+    "c_kms": 299792.458,
+    "kappa_p_default_mag": 365000.0,
+    "kappa_p_joint_mag": 400000.0
+  },
+  "matched_catalog": {
+    "n_total": 29,
+    "n_primary": 20,
+    "n_secondary": 9,
+    "file": "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/band_dependence_matched.csv"
+  },
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/band_dependence_matched.csv",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_49_band_dependence.json",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_49_band_dependence.png"
+  ],
+  "methodology": "Weighted linear regression Delta_mu_band = slope * X_i + intercept, where Delta_mu_band = mu_NIR - mu_optical and X_i = (V_rot^2/2 - U_ref) / c^2. Two samples are analysed: (1) Primary \u2014 Madore & Freedman (2023) Table 2 with same-team VIH (NIR) and VI (optical) Cepheid distances for 20 galaxies; (2) Secondary \u2014 Key Project (Freedman et al. 2001) optical distances matched to SH0ES R22 (Riess et al. 2022) NIR distances for the overlap subsample. The TEP predicted slope is (|b_H| - |b_V|) * kappa_P = 0.50 * kappa_P, positive if NIR distances are more compressed in deeper potentials.",
+  "provenance": {
+    "data_sources": [
+      "Madore & Freedman 2023 (arXiv:2309.10859) Table 2",
+      "Freedman et al. 2001 (ApJ 553 47) Key Project Table 3",
+      "Riess et al. 2022 (ApJ 934 L7) SH0ES R22 NIR distances",
+      "HyperLEDA (Makarov et al. 2014) rotation velocities"
+    ],
+    "pipeline_block": "standalone"
+  },
+  "scientific_context": "The TEP disformal mechanism predicts that the Cepheid period bias scales with the Leavitt law slope |b|. Because the NIR H-band slope (|b_H| = 3.26) is steeper than the optical V-band slope (|b_V| = 2.76), the TEP distance compression is ~18% larger in NIR than in optical at the same potential depth. The inter-band differential Delta_mu_band = mu_NIR - mu_optical should therefore correlate with X_i, with a predicted slope of (|b_H| - |b_V|) * kappa_P ~ 0.50 * kappa_P.",
+  "tep_prediction_text": "Delta_mu_band = (|b_H| - |b_V|) * kappa_P * X_i, with a positive slope indicating that NIR Cepheid distances are more compressed in deeper gravitational potentials.",
+  "void_prediction": "No physical mechanism in the void model predicts a band-dependent scaling of Cepheid distance differences with gravitational potential. The regression slope should be consistent with zero.",
+  "downstream_consumers": [],
+  "key_finding": "Primary sample (N=20): slope = 8.1344e+05 \u00b1 1.5212e+05 (5.35\u03c3, positive). TEP predicted slope = 1.8250e+05."
+}

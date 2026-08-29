@@ -1,0 +1,175 @@
+{
+  "step": "32_omega_m_sensitivity",
+  "description": "Omega_m sensitivity of the H0(z) rejection of KBC void curves. Native mu-space DeltaAIC (void vs flat) recomputed for varying reference-cosmology Omega_m values. The KBC H0(z) curves are digitized predictions and are NOT modified \u2014 only the reference cosmology mu_ref(z) changes.",
+  "methodology": "Native mu-space DeltaAIC computed for both digitized KBC Method-3 curves (Gaussian and Exponential) at Omega_m = 0.28, 0.30, 0.302, and 0.315. For each Omega_m, the reference distance modulus mu_ref(z) is recomputed via the comoving-distance integral. All 1701 Pantheon+ rows are used without binning, with the full 1701x1701 STAT+SYS covariance matrix and analytically marginalized zero-point. The void model shift s_i = 5*log10(H_ref/H_KBC(z_i)) is independent of Omega_m. Two sample cuts are evaluated: full sample and z >= 0.05. Both flat and void models have k=1, so DeltaAIC = DeltaChi2.",
+  "provenance": {
+    "data_sources": [
+      "data/raw/Pantheon+SH0ES.dat",
+      "data/raw/Pantheon+SH0ES_STAT+SYS.cov",
+      "data/raw/external/mazurenko_curves/gaussian_method3.json",
+      "data/raw/external/mazurenko_curves/exponential_method3.json"
+    ],
+    "pipeline_block": "Ic (sensitivity and replication)"
+  },
+  "scientific_context": "The primary step_32 result rejects the KBC void H0(z) curves using a reference cosmology with Omega_m = 0.302. This sensitivity test evaluates whether that rejection depends on the assumed matter density by recomputing mu_ref(z) for Omega_m spanning 0.28 to 0.315. Persistence of the rejection across all values confirms robustness to the reference cosmology parameters.",
+  "tep_prediction": "Under TEP, no redshift-dependent H0 evolution is expected; the flat reference cosmology should be preferred, yielding positive DeltaAIC (void rejected) at all Omega_m values.",
+  "void_prediction": "Under the KBC void model, H0(z) declines with redshift; if the rejection were an artifact of a specific Omega_m choice, DeltaAIC could approach zero for alternative values. The persistence of large positive DeltaAIC falsifies this expectation.",
+  "downstream_consumers": [
+    "step_32_redshift_decay_profile",
+    "manuscript_section_sensitivity"
+  ],
+  "method": "native_mu_space_full_covariance",
+  "covariance_matrix": "Pantheon+SH0ES_STAT+SYS.cov (1701x1701)",
+  "binned": false,
+  "diagonal_errors": false,
+  "zero_point_marginalized": true,
+  "h0_ref": 73.04,
+  "omega_m_values": [
+    0.28,
+    0.3,
+    0.302,
+    0.315
+  ],
+  "k_per_model": 1,
+  "delta_aic_definition": "AIC(void) - AIC(flat), both k=1 => DeltaAIC = DeltaChi2",
+  "conversion": "s_i = 5*log10(H_ref / H_KBC(z_i))",
+  "reference_cosmology": "mu_ref(z) = 5*log10((1+z)*D_C(z)*c/H_ref) + 25, D_C(z) = integral_0^z dz'/E(z'), E(z) = sqrt(Omega_m*(1+z)^3 + (1-Omega_m))",
+  "kbc_curves_unchanged": true,
+  "digitization_shift": 0.0,
+  "gaussian_denoising": "Gaussian Method-3 curve denoised via parametric fit H(z)=H_inf+A*exp(-z^2/(2*sigma^2)), identical to step_32. Exponential curve used as-is (already clean).",
+  "results": {
+    "omega_m_0.280": {
+      "omega_m": 0.28,
+      "samples": {
+        "full": {
+          "label": "Full sample (no cut)",
+          "z_min": 0.0,
+          "n_sne": 1701,
+          "chi2_flat": 2020.4827728381908,
+          "gaussian": {
+            "chi2_void": 2240.575477548779,
+            "delta_aic": 220.09270471058812
+          },
+          "exponential": {
+            "chi2_void": 2381.1331544280943,
+            "delta_aic": 360.6503815899034
+          }
+        },
+        "z_ge_0.05": {
+          "label": "z >= 0.05",
+          "z_min": 0.05,
+          "n_sne": 1053,
+          "chi2_flat": 923.7013030521277,
+          "gaussian": {
+            "chi2_void": 1042.5061483663346,
+            "delta_aic": 118.80484531420689
+          },
+          "exponential": {
+            "chi2_void": 1058.3117690596505,
+            "delta_aic": 134.61046600752275
+          }
+        }
+      }
+    },
+    "omega_m_0.300": {
+      "omega_m": 0.3,
+      "samples": {
+        "full": {
+          "label": "Full sample (no cut)",
+          "z_min": 0.0,
+          "n_sne": 1701,
+          "chi2_flat": 2008.6770317987825,
+          "gaussian": {
+            "chi2_void": 2205.3066101103987,
+            "delta_aic": 196.62957831161611
+          },
+          "exponential": {
+            "chi2_void": 2340.286099707263,
+            "delta_aic": 331.6090679084805
+          }
+        },
+        "z_ge_0.05": {
+          "label": "z >= 0.05",
+          "z_min": 0.05,
+          "n_sne": 1053,
+          "chi2_flat": 919.4755092359123,
+          "gaussian": {
+            "chi2_void": 1022.5109396941215,
+            "delta_aic": 103.03543045820913
+          },
+          "exponential": {
+            "chi2_void": 1038.1058419072901,
+            "delta_aic": 118.6303326713778
+          }
+        }
+      }
+    },
+    "omega_m_0.302": {
+      "omega_m": 0.302,
+      "samples": {
+        "full": {
+          "label": "Full sample (no cut)",
+          "z_min": 0.0,
+          "n_sne": 1701,
+          "chi2_flat": 2007.6643716422939,
+          "gaussian": {
+            "chi2_void": 2201.980404159015,
+            "delta_aic": 194.31603251672118
+          },
+          "exponential": {
+            "chi2_void": 2336.4051928457866,
+            "delta_aic": 328.7408212034927
+          }
+        },
+        "z_ge_0.05": {
+          "label": "z >= 0.05",
+          "z_min": 0.05,
+          "n_sne": 1053,
+          "chi2_flat": 919.1656101944635,
+          "gaussian": {
+            "chi2_void": 1020.6486800879279,
+            "delta_aic": 101.4830698934644
+          },
+          "exponential": {
+            "chi2_void": 1036.2211358042468,
+            "delta_aic": 117.05552560978333
+          }
+        }
+      }
+    },
+    "omega_m_0.315": {
+      "omega_m": 0.315,
+      "samples": {
+        "full": {
+          "label": "Full sample (no cut)",
+          "z_min": 0.0,
+          "n_sne": 1701,
+          "chi2_flat": 2001.7904630830242,
+          "gaussian": {
+            "chi2_void": 2181.2090909618582,
+            "delta_aic": 179.41862787883406
+          },
+          "exponential": {
+            "chi2_void": 2312.041992280334,
+            "delta_aic": 310.25152919730976
+          }
+        },
+        "z_ge_0.05": {
+          "label": "z >= 0.05",
+          "z_min": 0.05,
+          "n_sne": 1053,
+          "chi2_flat": 917.6226052022104,
+          "gaussian": {
+            "chi2_void": 1009.1206320243172,
+            "delta_aic": 91.4980268221068
+          },
+          "exponential": {
+            "chi2_void": 1024.541374804457,
+            "delta_aic": 106.9187696022467
+          }
+        }
+      }
+    }
+  },
+  "note": "All values computed in native mu-space using ALL Pantheon+ rows (no binning) with the full 1701x1701 STAT+SYS covariance matrix. A common zero-point is analytically marginalized. Both flat and void models have k=1. Only the reference cosmology Omega_m is varied; the KBC H0(z) predictions are digitized and unchanged."
+}

@@ -1,0 +1,42 @@
+{
+  "step": "32_rh_full_sample",
+  "description": "Calibration-independent relative H0 evolution: R_H = H0(z > 0.25) / H0(0.05 <= z < 0.15), computed with a GLS zero-point fit to the native Pantheon+ distance moduli and the full STAT+SYS covariance matrix at Omega_m = 0.302.",
+  "definition": "R_H = H0(z > 0.25) / H0(0.05 <= z < 0.15), Omega_m = 0.302",
+  "omega_m": 0.302,
+  "h0_ref": 73.04,
+  "methodology": "A generalized least-squares zero-point offset is fit to the native Pantheon+ distance moduli using the full 1701x1701 STAT+SYS covariance matrix at Omega_m = 0.302. H0 is then inferred per SN via LCDM distance modulus inversion, and the ratio R_H = <H0(z > 0.25)> / <H0(0.05 <= z < 0.15)> is formed. The common zero-point cancels identically in the ratio, making R_H calibration-independent. Significance is assessed against the flat prediction R_H = 1 and the KBC Gaussian (R_H ~ 0.9524) and Exponential (R_H ~ 0.9458) predictions.",
+  "provenance": {
+    "data_sources": [
+      "Pantheon+SH0ES.dat (1701 rows, native mu-space)",
+      "Pantheon+SH0ES_STAT+SYS.cov (1701x1701 covariance)",
+      "KBC Gaussian curve (digitized from Mazurenko et al. 2025, Fig. 3)",
+      "KBC Exponential curve (digitized from Mazurenko et al. 2025, Fig. 3)"
+    ],
+    "pipeline_block": "Ic (sensitivity and replication)",
+    "covariance": "Pantheon+ STAT+SYS full 1701x1701"
+  },
+  "scientific_context": "This test addresses whether H0 declines with redshift as predicted by the KBC void/MOND model, or remains flat as predicted by TEP for global M_B calibration. The ratio R_H cancels the common zero-point, providing a calibration-independent discriminating observable between the two models. This is the primary falsification statistic of the paper.",
+  "tep_prediction": "R_H = 1.0 (flat H0(z) for global M_B; zero-point bias cancels in the ratio)",
+  "void_prediction": "R_H < 1.0 (KBC Gaussian ~ 0.9524, Exponential ~ 0.9458; gradual H0 decline)",
+  "downstream_consumers": [
+    "step_42_falsification_summary",
+    "manuscript_section_8"
+  ],
+  "primary": {
+    "label": "Full sample (PRIMARY)",
+    "n_low": 178,
+    "n_high": 614,
+    "H0_low": 73.00755330695986,
+    "sigma_H0_low": 0.3626032318792263,
+    "H0_high": 73.4912340956131,
+    "sigma_H0_high": 0.294230240539967,
+    "R_H": 1.006625078731506,
+    "sigma_R_H": 0.006421648038329234,
+    "sigma_ln_R_H": 0.006379384116300226,
+    "Z_vs_flat": 1.0316788917677553,
+    "R_H_kbc_gaussian": 0.9523956656086616,
+    "Z_vs_kbc_gaussian": 8.44478127719901,
+    "R_H_kbc_exponential": 0.9458355889532554,
+    "Z_vs_kbc_exponential": 9.466337833436718
+  }
+}

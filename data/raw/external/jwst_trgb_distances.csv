@@ -1,0 +1,41 @@
+# JWST TRGB distance moduli for Cepheid/TRGB overlap galaxies
+#
+# Sources:
+#   CCHP F115W: Freedman et al. 2024/2025, JWST GO-1995 (arXiv:2408.06153v3, Table 2)
+#     "Status Report on the Chicago-Carnegie Hubble Program (CCHP)"
+#     10 galaxies observed with JWST/NIRCam F115W
+#
+#   Anand F090W: Anand et al. 2024, JWST GO-1685 + GO-2875 (ApJ 976, 177, Table 2)
+#     "Tip of the Red Giant Branch Distances with JWST. II."
+#     8 galaxies observed with JWST/NIRCam F090W (s=0.10 smoothing)
+#
+#   Maser: NGC 4258 geometric distance from Reid et al. 2019
+#     mu = 29.397 +/- 0.032 mag (JWST TRGB calibrated to this)
+#
+# Cepheid distances are R22 (Riess et al. 2022) fit variant 10, from:
+#   - CCHP Table 3 (for CCHP galaxies)
+#   - Anand Table 2 (for Anand-only galaxies)
+#   - TEP-H0 pipeline (for NGC 4258)
+# Both JWST TRGB and R22 Cepheid are anchored to NGC 4258 maser.
+#
+# PGC numbers from TEP-H0 hosts_processed.csv and cf4_matched_galaxies_vrot.csv
+#
+galaxy,pgc,jwst_trgb_mu,jwst_trgb_mu_err,trgb_source,trgb_program,trgb_filter,cep_mu,cep_mu_err,cep_source,cep_fit_variant,jwst_program
+M101,50063,29.151,0.042,CCHP F115W (Freedman et al. 2024 arXiv:2408.06153v3 Table 2),GO-1995,F115W,29.194,0.039,R22 (CCHP Table 3),10,GO-1995
+NGC 1365,13179,31.366,0.069,CCHP F115W (Freedman et al. 2024 arXiv:2408.06153v3 Table 2),GO-1995,F115W,31.379,0.057,R22 (CCHP Table 3),10,GO-1995
+NGC 2442,21373,31.646,0.097,CCHP F115W (Freedman et al. 2024 arXiv:2408.06153v3 Table 2),GO-1995,F115W,31.457,0.065,R22 (CCHP Table 3),10,GO-1995
+NGC 3972,37466,31.747,0.068,CCHP F115W (Freedman et al. 2024 arXiv:2408.06153v3 Table 2),GO-1995,F115W,31.644,0.090,R22 (CCHP Table 3),10,GO-1995
+NGC 4038,37967,31.645,0.078,CCHP F115W (Freedman et al. 2024 arXiv:2408.06153v3 Table 2),GO-1995,F115W,31.615,0.117,R22 (CCHP Table 3),10,GO-1995
+NGC 4424,40809,30.926,0.030,CCHP F115W (Freedman et al. 2024 arXiv:2408.06153v3 Table 2),GO-1995,F115W,30.856,0.130,R22 (CCHP Table 3),10,GO-1995
+NGC 4536,41823,30.923,0.052,CCHP F115W (Freedman et al. 2024 arXiv:2408.06153v3 Table 2),GO-1995,F115W,30.838,0.051,R22 (CCHP Table 3),10,GO-1995
+NGC 4639,42741,31.774,0.073,CCHP F115W (Freedman et al. 2024 arXiv:2408.06153v3 Table 2),GO-1995,F115W,31.818,0.085,R22 (CCHP Table 3),10,GO-1995
+NGC 5643,51969,30.643,0.071,CCHP F115W (Freedman et al. 2024 arXiv:2408.06153v3 Table 2),GO-1995,F115W,30.570,0.050,R22 (CCHP Table 3),10,GO-1995
+NGC 7250,68535,31.629,0.047,CCHP F115W (Freedman et al. 2024 arXiv:2408.06153v3 Table 2),GO-1995,F115W,31.628,0.126,R22 (CCHP Table 3),10,GO-1995
+NGC 1448,13727,31.34,0.05,Anand F090W (Anand et al. 2024 ApJ 976 177 Table 2 s=0.10),GO-1685,F090W,31.30,0.05,R22 (Anand Table 2),10,GO-1685
+NGC 1559,14814,31.50,0.05,Anand F090W (Anand et al. 2024 ApJ 976 177 Table 2 s=0.10),GO-1685,F090W,31.50,0.07,R22 (Anand Table 2),10,GO-1685
+NGC 2525,22721,31.87,0.06,Anand F090W (Anand et al. 2024 ApJ 976 177 Table 2 s=0.10),GO-2875,F090W,32.06,0.11,R22 (Anand Table 2),10,GO-2875
+NGC 3370,32207,32.19,0.06,Anand F090W (Anand et al. 2024 ApJ 976 177 Table 2 s=0.10),GO-2875,F090W,32.13,0.06,R22 (Anand Table 2),10,GO-2875
+NGC 3447,32694,31.93,0.06,Anand F090W (Anand et al. 2024 ApJ 976 177 Table 2 s=0.10),GO-2875,F090W,31.95,0.05,R22 (Anand Table 2),10,GO-2875
+NGC 5584,51344,31.95,0.08,Anand F090W (Anand et al. 2024 ApJ 976 177 Table 2 s=0.10),GO-1685,F090W,31.77,0.06,R22 (Anand Table 2),10,GO-1685
+NGC 5861,54097,32.10,0.06,Anand F090W (Anand et al. 2024 ApJ 976 177 Table 2 s=0.10),GO-1685,F090W,32.23,0.11,R22 (Anand Table 2),10,GO-1685
+NGC 4258,39600,29.397,0.032,Maser (Reid et al. 2019 JWST TRGB calibrated),NIRCam anchor,N/A,29.385,0.022,R22 (TEP-H0 pipeline),multi-anchor,GO-1685

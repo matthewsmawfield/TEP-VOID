@@ -1,0 +1,354 @@
+{
+  "step": "34_void_boundary_test",
+  "description": "Void boundary test: does H0 tension persist at z > 0.25 (well beyond void wall)?",
+  "void_model_prediction": "H0 gradually declines to 67.4 per published HBK20/Mazurenko et al. 2024 Gaussian (sigma_z=0.82) and Exponential (z_0=0.74) profiles; convergence to 1\u03c3 Planck at z\u22481.8",
+  "tep_model_prediction": "H0 remains elevated at all redshifts; tension governed by host potential depth, not distance from Earth",
+  "h0_z_by_host_mass": {
+    "bins": [
+      {
+        "z_lo": 0.01,
+        "z_hi": 0.05,
+        "z_mid": 0.022360679774997897,
+        "all": {
+          "n_sne": 423,
+          "h0_median": 72.00542683455019,
+          "h0_mean": 72.43940793212722,
+          "h0_sem": 0.4127717573226511,
+          "h0_std": 6.180098850711999,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "massive": {
+          "n_sne": 222,
+          "h0_median": 71.46223538703335,
+          "h0_mean": 72.29107986735191,
+          "h0_sem": 0.5419516140640256,
+          "h0_std": 5.936722305495244,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "low_mass": {
+          "n_sne": 201,
+          "h0_median": 72.42770063688691,
+          "h0_mean": 72.60323295889398,
+          "h0_sem": 0.6295200963947456,
+          "h0_std": 6.449169369937671,
+          "h0_err_method": "per_sn_mu_err"
+        }
+      },
+      {
+        "z_lo": 0.05,
+        "z_hi": 0.1,
+        "z_mid": 0.07071067811865477,
+        "all": {
+          "n_sne": 87,
+          "h0_median": 72.85797454140224,
+          "h0_mean": 73.08785861257878,
+          "h0_sem": 0.8468201749947039,
+          "h0_std": 5.368611543397417,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "massive": {
+          "n_sne": 47,
+          "h0_median": 72.1286003983014,
+          "h0_mean": 72.36831669552225,
+          "h0_sem": 0.9781847893503637,
+          "h0_std": 4.4057176522986765,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "low_mass": {
+          "n_sne": 40,
+          "h0_median": 73.89766815120919,
+          "h0_mean": 73.93332036512022,
+          "h0_sem": 1.4392036860808612,
+          "h0_std": 6.26935790370342,
+          "h0_err_method": "per_sn_mu_err"
+        }
+      },
+      {
+        "z_lo": 0.1,
+        "z_hi": 0.15,
+        "z_mid": 0.1224744871391589,
+        "all": {
+          "n_sne": 85,
+          "h0_median": 72.81317084105741,
+          "h0_mean": 72.47283228555231,
+          "h0_sem": 0.7481129872725873,
+          "h0_std": 4.10126859219624,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "massive": {
+          "n_sne": 41,
+          "h0_median": 72.41991127130699,
+          "h0_mean": 72.42938086211308,
+          "h0_sem": 0.966414355503123,
+          "h0_std": 3.7952066088943663,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "low_mass": {
+          "n_sne": 44,
+          "h0_median": 73.05063804666844,
+          "h0_mean": 72.51332111193886,
+          "h0_sem": 1.1303606219904256,
+          "h0_std": 4.410929008996407,
+          "h0_err_method": "per_sn_mu_err"
+        }
+      },
+      {
+        "z_lo": 0.15,
+        "z_hi": 0.25,
+        "z_mid": 0.19364916731037085,
+        "all": {
+          "n_sne": 261,
+          "h0_median": 73.6790730866432,
+          "h0_mean": 73.53006301435816,
+          "h0_sem": 0.4341947472824989,
+          "h0_std": 4.916568778501792,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "massive": {
+          "n_sne": 162,
+          "h0_median": 73.81301686369645,
+          "h0_mean": 73.62483111262911,
+          "h0_sem": 0.5486734194303403,
+          "h0_std": 4.672565654509548,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "low_mass": {
+          "n_sne": 99,
+          "h0_median": 73.15652719945503,
+          "h0_mean": 73.37498794446023,
+          "h0_sem": 0.710091451508079,
+          "h0_std": 5.312635003455337,
+          "h0_err_method": "per_sn_mu_err"
+        }
+      },
+      {
+        "z_lo": 0.25,
+        "z_hi": 0.4,
+        "z_mid": 0.31622776601683794,
+        "all": {
+          "n_sne": 306,
+          "h0_median": 73.39251331708562,
+          "h0_mean": 73.33791115152943,
+          "h0_sem": 0.42490063816503,
+          "h0_std": 4.72711746596394,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "massive": {
+          "n_sne": 173,
+          "h0_median": 72.73681356592276,
+          "h0_mean": 72.84174165879143,
+          "h0_sem": 0.5630541211240313,
+          "h0_std": 4.6978661723982915,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "low_mass": {
+          "n_sne": 133,
+          "h0_median": 73.75552223724085,
+          "h0_mean": 73.98330455185777,
+          "h0_sem": 0.6475210487389392,
+          "h0_std": 4.704447079054579,
+          "h0_err_method": "per_sn_mu_err"
+        }
+      },
+      {
+        "z_lo": 0.4,
+        "z_hi": 0.65,
+        "z_mid": 0.5099019513592785,
+        "all": {
+          "n_sne": 215,
+          "h0_median": 73.97243328449208,
+          "h0_mean": 74.44346788984456,
+          "h0_sem": 0.588111077235677,
+          "h0_std": 4.960550144788641,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "massive": {
+          "n_sne": 89,
+          "h0_median": 73.97357784799554,
+          "h0_mean": 74.5151372964719,
+          "h0_sem": 0.8687254586617348,
+          "h0_std": 5.072641226831104,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "low_mass": {
+          "n_sne": 126,
+          "h0_median": 73.96037364353529,
+          "h0_mean": 74.3928442613538,
+          "h0_sem": 0.7940556049022974,
+          "h0_std": 4.899585016837912,
+          "h0_err_method": "per_sn_mu_err"
+        }
+      },
+      {
+        "z_lo": 0.65,
+        "z_hi": 1.0,
+        "z_mid": 0.806225774829855,
+        "all": {
+          "n_sne": 68,
+          "h0_median": 75.33888079764132,
+          "h0_mean": 75.44642964092462,
+          "h0_sem": 1.1771930203272316,
+          "h0_std": 5.197260167306671,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "massive": {
+          "n_sne": 29,
+          "h0_median": 73.32223544247753,
+          "h0_mean": 74.31228621457934,
+          "h0_sem": 1.6276774567726429,
+          "h0_std": 5.039116789147115,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "low_mass": {
+          "n_sne": 39,
+          "h0_median": 75.92076943196834,
+          "h0_mean": 76.2897670605147,
+          "h0_sem": 1.6577220854802697,
+          "h0_std": 5.215705490339433,
+          "h0_err_method": "per_sn_mu_err"
+        }
+      },
+      {
+        "z_lo": 1.0,
+        "z_hi": 2.3,
+        "z_mid": 1.51657508881031,
+        "all": {
+          "n_sne": 25,
+          "h0_median": 73.16887723888264,
+          "h0_mean": 73.07999085752596,
+          "h0_sem": 2.627552640263804,
+          "h0_std": 7.386870932859792,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "massive": {
+          "n_sne": 17,
+          "h0_median": 73.50260980939792,
+          "h0_mean": 74.27342413107078,
+          "h0_sem": 3.4603588061664414,
+          "h0_std": 7.435910386642762,
+          "h0_err_method": "per_sn_mu_err"
+        },
+        "low_mass": {
+          "n_sne": 8,
+          "h0_median": 69.07689340855836,
+          "h0_mean": 70.54394515124321,
+          "h0_sem": 3.6540015348454014,
+          "h0_std": 7.063299983626417,
+          "h0_err_method": "per_sn_mu_err"
+        }
+      }
+    ]
+  },
+  "boundary_test": {
+    "void_wall_z": 0.0730505368483953,
+    "h0_cmb": 67.4,
+    "h0_sh0es": 73.0,
+    "h0_massive_z_gt_03": 73.54276960002572,
+    "h0_massive_z_gt_03_err": 0.38496626014185864,
+    "h0_massive_z_gt_03_bins": 4,
+    "tension_massive_high_z": 9.73451081833089,
+    "h0_lowmass_z_gt_03": 74.3559815650251,
+    "h0_massive_z_lt_015": 72.32108138899454,
+    "void_falsified": true,
+    "tep_supported": true,
+    "verdict": "KBC gradual decay NOT observed: H0 changes from 72.3 at z < 0.15 to 73.5 at z > 0.25 (\u0394 = +1.2 km/s/Mpc). The published KBC/MOND model (HBK20/Mazurenko et al. 2024) predicts a gradual decline towards the Planck value (67.4), but the observed H0 does not decline \u2014 it is flat or increases. NOTE: The absolute H0 = 73.5 at z > 0.25 is NOT an independent measurement; Pantheon+ MU_SH0ES uses M_B = -19.253 calibrated from Cepheid anchors, so the Cepheid zero-point is inherited by construction. The calibration-independent test is the relative evolution, which rejects the KBC gradual decline. The TEP prediction (flat H0(z) for global M_B) is consistent with the observed flat profile. The host-mass dependence of the TEP effect is established in TEP-H0 (Paper 11) using per-host Cepheid distances, not the global M_B used here."
+  },
+  "model_comparison": {
+    "massive": {
+      "n_bins": 8,
+      "void_fit": {
+        "profile": "gaussian",
+        "sigma_z": 9.999987575392629,
+        "delta_h0": 5.6385547615019025
+      },
+      "void_fit_exponential": {
+        "z_0": 9.999998518780078,
+        "delta_h0": 5.7467113617097905
+      },
+      "tep_fit": {
+        "delta_h0": 5.6363889770353985,
+        "decay_index": 2.642590970173211e-08
+      },
+      "chi2_void": 7.721702910155493,
+      "chi2_void_reduced": 1.2869504850259155,
+      "chi2_void_exp": 9.553623547033219,
+      "chi2_tep": 7.661710179038142,
+      "chi2_tep_reduced": 1.276951696506357,
+      "aic_void": 11.721702910155493,
+      "aic_void_exp": 13.553623547033219,
+      "aic_tep": 11.661710179038142,
+      "delta_aic": 0.05999273111735093,
+      "fixed_prediction": {
+        "void_gaussian_chi2": 19.368731330022783,
+        "void_gaussian_aic": 21.368731330022783,
+        "void_exponential_chi2": 47.70176421718497,
+        "void_exponential_aic": 49.70176421718497,
+        "tep_prediction": "flat H0(z) (global M_B zero-point bias)",
+        "tep_chi2_flat": 7.66170979502299,
+        "tep_aic_flat": 9.66170979502299,
+        "tep_n03_reference_chi2": 12.424381841664106,
+        "delta_aic_fixed_gaussian": 11.707021534999793,
+        "delta_aic_fixed_exponential": 40.04005442216199
+      },
+      "tep_preferred": true
+    },
+    "low_mass": {
+      "n_bins": 8,
+      "void_fit": {
+        "profile": "gaussian",
+        "sigma_z": 9.999995928086925,
+        "delta_h0": 6.131631938436692
+      },
+      "void_fit_exponential": {
+        "z_0": 9.999999979017225,
+        "delta_h0": 6.265177801329941
+      },
+      "tep_fit": {
+        "delta_h0": 6.12840976148009,
+        "decay_index": 1.3354142435346626e-09
+      },
+      "chi2_void": 8.248869342717299,
+      "chi2_void_reduced": 1.3748115571195498,
+      "chi2_void_exp": 10.016589220635403,
+      "chi2_tep": 8.212656635148033,
+      "chi2_tep_reduced": 1.3687761058580055,
+      "aic_void": 12.248869342717299,
+      "aic_void_exp": 14.016589220635403,
+      "aic_tep": 12.212656635148033,
+      "delta_aic": 0.0362127075692662,
+      "fixed_prediction": {
+        "void_gaussian_chi2": 19.71865846909939,
+        "void_gaussian_aic": 21.71865846909939,
+        "void_exponential_chi2": 50.614473949955396,
+        "void_exponential_aic": 52.614473949955396,
+        "tep_prediction": "flat H0(z) (global M_B zero-point bias)",
+        "tep_chi2_flat": 8.21265658541251,
+        "tep_aic_flat": 10.21265658541251,
+        "tep_n03_reference_chi2": 12.98873116168029,
+        "delta_aic_fixed_gaussian": 11.506001883686878,
+        "delta_aic_fixed_exponential": 42.401817364542886
+      },
+      "tep_preferred": true
+    }
+  },
+  "tep_confirmed": true,
+  "void_falsified": true,
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_34_void_boundary_test.png"
+  ],
+  "methodology": "H0(z) inferred per SN by inverting the LCDM distance modulus in redshift bins split by host stellar mass at log10(M*/Msun)=10.0. Per-SN H0 errors propagated from mu_err where available. Boundary test uses calibration-independent relative evolution delta_H0 = H0(z>0.25) - H0(z<0.15) in massive hosts. Model comparison via AIC with fitted (k=2) and fixed-prediction (k=1) parameterizations for void (Gaussian, Exponential) and TEP (flat for global M_B) models.",
+  "provenance": {
+    "data_sources": [
+      "data/interim/pantheon_plus_sne.csv",
+      "data/raw/external/mazurenko_curves/gaussian_method3.json",
+      "data/raw/external/mazurenko_curves/exponential_method3.json"
+    ],
+    "pipeline_block": "Block II \u2014 Void boundary test and float M_B"
+  },
+  "scientific_context": "Tests whether the KBC void model's predicted gradual H0(z) decline towards the Planck value can account for the Hubble tension, or whether the TEP flat H0(z) prediction for global M_B better describes the Pantheon+ sample. The key discriminating observable is the calibration-independent relative evolution of H0 from z < 0.15 to z > 0.25 in massive hosts.",
+  "tep_prediction": "Flat H0(z) at all redshifts when M_B is global; the Cepheid clock bias is imprinted on the zero-point, not on the distance-dependent part. The (1+z)^-0.3 decay applies to per-host Cepheid calibration (TEP-H0, Paper 11).",
+  "void_prediction": "Gradual H0(z) decline from ~73 at z~0 to ~67.4 at z>>1, converging to within 1-sigma of Planck at z~1.8 per the published HBK20/Mazurenko et al. 2024 Gaussian (sigma_z=0.82) and Exponential (z_0=0.74) profiles.",
+  "downstream_consumers": [
+    "step_35_float_mb_analysis"
+  ]
+}

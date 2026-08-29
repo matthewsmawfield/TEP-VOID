@@ -1,0 +1,56 @@
+{
+  "step": "32c_free_param_native",
+  "description": "Free-parameter void family fits in native mu-space with full 1701x1701 STAT+SYS covariance and marginalized zero-point. Tests whether the void family degenerates to flat when amplitude and scale are free parameters.",
+  "methodology": "All models are evaluated as relative modulus shapes s(z) = 5*log10(H_ref/H(z)) against the Pantheon+ distance-modulus residual d = mu - mu_ref, with the full STAT+SYS covariance and analytically marginalized zero-point. AIC penalizes 2k per model (k=1 for flat, k=3 for void/TEP with 2 free shape params + zero-point).",
+  "results": {
+    "full_sample": {
+      "n_sn": 1701,
+      "flat": {
+        "chi2": 2007.6678564812107,
+        "k": 1
+      },
+      "void_gauss": {
+        "dH0": 3.496507783986567e-15,
+        "sigma_z": 0.28252162670823305,
+        "chi2": 2007.667947982026,
+        "k": 3,
+        "delta_aic": 4.000091500815188
+      },
+      "void_exp": {
+        "dH0": 4.512827464682492e-16,
+        "z0": 0.2825156448635204,
+        "chi2": 2007.667947982026,
+        "k": 3,
+        "delta_aic": 4.000091500815188
+      },
+      "tep": {
+        "dH0": 19.999999997031594,
+        "n": -0.24726083500749557,
+        "chi2": 1990.1004177549821,
+        "k": 3,
+        "delta_aic": -13.567438726228602
+      }
+    },
+    "z_ge_0.05": {
+      "n_sn": 1053,
+      "flat": {
+        "chi2": 919.1656539787173,
+        "k": 1
+      },
+      "void_gauss": {
+        "dH0": 2.8822037272539985e-14,
+        "sigma_z": 0.17498126144105036,
+        "chi2": 919.1656539787167,
+        "k": 3,
+        "delta_aic": 3.9999999999994316
+      },
+      "void_exp": {
+        "dH0": 4.259825366433655e-14,
+        "z0": 0.1749889223497032,
+        "chi2": 919.1656539787167,
+        "k": 3,
+        "delta_aic": 3.9999999999994316
+      }
+    }
+  }
+}

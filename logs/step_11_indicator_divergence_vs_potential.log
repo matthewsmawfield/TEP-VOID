@@ -1,0 +1,27 @@
+[21:42:57] [INFO] 
+[21:42:57] [INFO] ================================================================================
+[21:42:57] [INFO]    Step 11: Indicator Divergence vs Gravitational Potential
+[21:42:57] [INFO] ================================================================================
+[21:42:57] [INFO] 
+[21:42:57] [PROCESS] Scientific question: does the Cepheid-TRGB distance divergence scale with the depth of the host galaxy gravitational potential? The TEP framework predicts that Delta_mu = kappa * sigma_v, with a non-zero coupling kappa, because each indicator's clock rate responds differently to the local potential. The kinematic void model predicts kappa = 0, since distances are indicator-independent and no potential dependence is expected. This step tests the potential-scaling hypothesis by correlating Delta_mu with host velocity dispersion sigma_v, providing the central discriminant between the two frameworks in Block Ia.
+[21:42:57] [PROCESS] Loading matched host data and potential catalog...
+[21:42:57] [PROCESS] Loading step_10 per-galaxy results: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_10_per_galaxy_delta_mu.csv
+[21:42:57] [SUCCESS]   18 hosts with Delta_mu
+[21:42:57] [SUCCESS] Final sample: 18 hosts with Delta_mu and sigma_v
+[21:42:57] [PROCESS] Methodology: the sample comprises matched hosts with both Delta_mu (from step_10) and velocity dispersion sigma_v (from the host potential catalog or HyperLEDA). The analysis uses Pearson and Spearman rank correlations to assess monotonic association, and an inverse-variance weighted linear regression Delta_mu = kappa * sigma_v + intercept to quantify the potential scaling. The slope significance (kappa / kappa_err) is the primary statistic for the void-vs-TEP comparison.
+[21:42:57] [PROCESS] Computing correlation between Delta_mu and sigma_v...
+[21:42:57] [TEST]   Pearson r:  +0.1485 (p=0.5565)
+[21:42:57] [TEST]   Spearman rho: -0.2590 (p=0.2993)
+[21:42:57] [TEST]   Linear fit: Delta_mu = (-0.000118 +/- 0.000654) * sigma_v + (+0.0101 +/- 0.0730)
+[21:42:57] [TEST]   kappa significance: 0.18 sigma
+[21:42:57] [TEST] Interpretation: the fitted slope is kappa = -0.000118 +/- 0.000654 mag/(km/s) (0.18 sigma). A non-zero kappa indicates that the divergence scales with host potential depth, consistent with the TEP prediction. The void prediction of kappa = 0 is not definitively falsified at the 2-sigma threshold. The Pearson correlation (r = +0.1485) and R-squared (-0.020) characterize the strength of the potential dependence.
+[21:42:57] [PROCESS] Generating divergence vs potential figure...
+[21:42:57] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_11_divergence_vs_potential.png
+[21:42:57] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_11_indicator_divergence_vs_potential.json
+[21:42:57] [SUCCESS] Step 11 complete
+[21:42:57] [SUCCESS] step_11 completed in 0.5s
+[21:42:57] [INFO] 
+[21:42:57] [INFO] ================================================================================
+[21:42:57] [INFO]    Starting step_12: Void prediction uniformity test: does Δμ scatter match the void's zero-prediction?
+[21:42:57] [INFO] ================================================================================
+[21:42:57] [INFO] 

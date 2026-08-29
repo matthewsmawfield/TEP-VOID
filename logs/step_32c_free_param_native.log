@@ -1,0 +1,31 @@
+[11:59:28] [INFO] ======================================================================
+[11:59:28] [INFO] Step 32c: Free-Parameter Void Family in Native mu-Space
+[11:59:28] [INFO] Full 1701x1701 STAT+SYS covariance
+[11:59:28] [INFO] ======================================================================
+[11:59:28] [PROCESS]   Loaded 1701 Pantheon+ SNe
+[11:59:28] [TEST]   Flat: chi2 = 2007.7 (dof=1700)
+[11:59:44] [TEST]   Void-Gauss: dH0=0.000, sig_z=0.2825, chi2=2007.7, DAIC=+4.0
+[12:00:06] [TEST]   Void-Exp: dH0=0.000, z_0=0.2825, chi2=2007.7, DAIC=+4.0
+[12:00:29] [TEST]   TEP: dH0=20.000, n=-0.2473, chi2=1990.1, DAIC=-13.6
+[12:00:29] [INFO] 
+[12:00:29] [TEST]   --- z >= 0.05 cut ---
+[12:00:29] [TEST]   Flat (z>=0.05): chi2 = 919.2 (dof=1052)
+[12:00:33] [TEST]   Void-Gauss (z>=0.05): dH0=0.000, sig_z=0.1750, chi2=919.2, DAIC=+4.0
+[12:00:38] [TEST]   Void-Exp (z>=0.05): dH0=0.000, z_0=0.1750, chi2=919.2, DAIC=+4.0
+[12:00:38] [INFO] 
+[12:00:38] [INFO] ======================================================================
+[12:00:38] [INFO] SUMMARY: Free-parameter void family in native mu-space
+[12:00:38] [INFO] ======================================================================
+[12:00:38] [INFO]   Full sample (N=1701):
+[12:00:38] [TEST]     Flat:          chi2 = 2007.7
+[12:00:38] [TEST]     Void-Gauss:    DAIC = +4.0  (dH0=0.00, sig=0.283)
+[12:00:38] [TEST]     Void-Exp:      DAIC = +4.0  (dH0=0.00, z0=0.283)
+[12:00:38] [TEST]     TEP:           DAIC = -13.6  (dH0=20.00, n=-0.247)
+[12:00:38] [INFO]   z >= 0.05 (N=1053):
+[12:00:38] [TEST]     Flat:          chi2 = 919.2
+[12:00:38] [TEST]     Void-Gauss:    DAIC = +4.0  (dH0=0.00, sig=0.175)
+[12:00:38] [TEST]     Void-Exp:      DAIC = +4.0  (dH0=0.00, z0=0.175)
+[12:00:38] [INFO] 
+[12:00:38] [SUCCESS] INTERPRETATION: With free amplitude and scale, the void family's best fit is flat (dH0 < 1 km/s/Mpc) in native mu-space with full covariance. This confirms the binned result: the void family degenerates to flat when granted free parameters. Combined with the frozen-prediction rejection, this is co-primary evidence.
+[12:00:38] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_32c_free_param_native.json
+[12:00:38] [SUCCESS] Step 32c complete

@@ -1,0 +1,15 @@
+[21:43:12] [INFO] 
+[21:43:12] [INFO] ================================================================================
+[21:43:12] [INFO]    Step 21: LMC Radial Stratification
+[21:43:12] [INFO] ================================================================================
+[21:43:12] [INFO] 
+[21:43:12] [PROCESS] This step addresses whether the LMC OGLE-IV Cepheid sample exhibits a radial P-L zero-point stratification between the central bar and the outer disk. Under the TEP framework, Cepheids in the deeper central potential of the LMC undergo period contraction, producing a measurable offset Delta_W. The kinematic void model predicts Delta_W = 0 for any single galaxy.
+[21:43:12] [PROCESS] Loading LMC radial stratification results...
+[21:43:12] [SUCCESS] Found alternative TEP-H0 LMC results: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-H0/results/outputs/step_14_lmc_results.csv
+[21:43:12] [PROCESS] Parsing step_14_lmc_results.csv...
+[21:43:13] [PROCESS] Compiling LMC radial stratification results...
+[21:43:13] [PROCESS] Methodology: OGLE-IV Cepheid photometry is partitioned into inner and outer radial bins using projected galactocentric radius cuts. The P-L zero-point offset Delta_W is computed as the difference in fitted intercepts. Significance is assessed via chi-squared against the void null hypothesis (Delta_W = 0).
+[21:43:13] [TEST]   Delta_W = +0.0284 +/- 0.0086 mag (3.30 sigma)
+[21:43:13] [TEST] The positive Delta_W is consistent with the TEP prediction that inner LMC Cepheids are fainter due to period contraction in the deeper central potential. The void prediction of Delta_W = 0 is rejected at 3.30 sigma.
+[21:43:13] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_21_lmc_radial_stratification.json
+[21:43:13] [SUCCESS] Step 21 complete

@@ -1,0 +1,49 @@
+{
+  "data_summary": {
+    "n_total": 1543,
+    "n_hubble_flow": 1470,
+    "n_measured_vrot": 173,
+    "n_tf_proxy": 1370
+  },
+  "full_sample": {
+    "n_high_x": 937,
+    "n_low_x": 533,
+    "step_mag": -0.01690078219996625,
+    "step_err": 0.015234898838791483,
+    "step_sigma": -1.109346532510807
+  },
+  "measured_vrot_only": {
+    "n_high_x": 97,
+    "n_low_x": 25,
+    "step_mag": 0.1446753857834883,
+    "step_err": 0.05924016494820833,
+    "step_sigma": 2.442184047089894
+  },
+  "measured_vrot_mass_corrected": {
+    "n": 122,
+    "xi_coef": 148928.7898102121,
+    "xi_err": 91778.20967326386,
+    "xi_sigma": 1.6227031486058385,
+    "mass_coef": 0.00028511839015956953,
+    "mass_err": 0.04217625885935683,
+    "step_corrected_mag": 0.038777182975960583,
+    "step_corrected_err": 0.023896658491897538,
+    "step_corrected_sigma": 1.6227031486058385
+  },
+  "full_mass_corrected": {
+    "n": 1470,
+    "xi_coef": 12667.400207925415,
+    "xi_err": 62191.83473427571,
+    "xi_sigma": 0.20368269021245078,
+    "mass_coef": -0.013967559160327157,
+    "mass_err": 0.024235648344455622,
+    "step_corrected_mag": 0.0030971801373207777,
+    "step_corrected_err": 0.015205907453845346,
+    "step_corrected_sigma": 0.20368269021245078
+  },
+  "vrot2_over_r2_test": {
+    "status": "deferred",
+    "reason": "Requires Cepheid galactocentric radii from JWST imaging",
+    "prediction": "epsilon_0 should scale as V_rot^2/r^2, not V_rot^2 alone"
+  }
+}

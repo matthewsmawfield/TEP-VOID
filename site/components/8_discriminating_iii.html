@@ -1,0 +1,822 @@
+<h2>7. Discriminating Observable III: $H_0(z)$ Redshift Profile Fits</h2>
+
+<p>
+    The third discriminating observable tests the global redshift
+    dependence of the inferred Hubble constant, $H_0(z)$. The primary
+    test evaluates the published KBC redshift-dependent prediction
+    directly against the unbinned Pantheon+ distance-modulus vector
+    and full covariance. A binned $H_0(z)$ representation is retained
+    only for visualization and secondary cross-checking. The evaluation
+    covers the full redshift range ($z = 0.01$ to $z = 2.3$), with the
+    primary statistical claim restricted to $z \ge 0.05$, the explicitly
+    stated validity domain of the Mazurenko et al. (2025) Method-3
+    predictions.
+</p>
+
+<p>
+    <em>Methodological Scope (applies throughout Sections 7--8).</em>
+    Pantheon+ uses a global $M_B = -19.253$ calibrated from Cepheid
+    anchors at $z \sim 0$. Under TEP, the Cepheid clock bias is
+    imprinted on this zero-point, and since all SNe share the same
+    $M_B$, the bias does not vary with redshift. The TEP prediction
+    for Pantheon+ $H_0(z)$ is therefore a flat $H_0(z) \approx 73$.
+    The flat profile should be read as rejection of the KBC gradual
+    decline (which predicts a decline absent in the data), not as
+    independent positive confirmation of TEP: conventional cosmologies
+    with a global SN calibration can also produce a flat normalization.
+    The spatial/environmental modulation of the TEP effect
+    (the $(1+z)^{-0.3}$ decay and host-mass dependence) must be
+    verified via per-host Cepheid analyses (TEP-H0, Paper 11), not
+    through the global $M_B$ regime of Pantheon+. Subsequent sections
+    reference this methodological scope without restating the mechanism.
+</p>
+
+<h3>7.1 The Void Model Prediction: A Gradual Decline</h3>
+
+<p>
+    The KBC/MOND model does <em>not</em> predict a sharp step
+    at $z \sim 0.07$. The published Haslbauer, Banik &amp; Kroupa (2020)
+    models use Gaussian and Exponential void density profiles, and the
+    resulting $H_0(z)$ declines <em>gradually</em>, converging to within
+    $1\sigma$ of the Planck value only at $z \gtrsim 1.8$ (Mazurenko,
+    Banik &amp; Kroupa 2025, Figure 3). The Maxwell–Boltzmann profile
+    is not included in the primary comparison because Mazurenko et al. (2025)
+    identify it as already incompatible with the observed low-redshift
+    bulk-flow curve; the Gaussian and Exponential profiles are the
+    surviving Method-3 cases for which they report reasonable agreement
+    with reconstructed $H_0(z)$. The observer is offset
+    $\sim$100–150 Mpc from the void centre, further smoothing the
+    transition. Evaluating a sharp step at $z \sim 0.07$ tests an
+    unphysical idealization, not the published model.
+</p>
+
+<p>
+    The <em>published Method-3 curves</em> are used, digitized
+    from Mazurenko, Banik &amp; Kroupa (2025, MNRAS 536, 3232–3241,
+    Figure 3). The digitized data points are stored in
+    <code>data/raw/external/mazurenko_curves/</code> and evaluated at
+    every supernova redshift in the Pantheon+ sample. The
+    Gaussian and Exponential curves are nearly identical (mean
+    $|\Delta H_0| \approx 0.13$ km/s/Mpc after objective amplitude-cut
+    cleaning of digitization artifacts), as noted in the paper.
+    Analytical surrogates ($\sigma_z \approx 0.82$, $z_0 \approx 0.74$)
+    are used only as fallback if the digitized data are unavailable:
+</p>
+
+<div class="equation">
+    \begin{equation}
+    H_0^{\rm Gauss}(z) = H_{0,{\rm CMB}} + \Delta H_0 \,
+    e^{-z^2 / (2\sigma_z^2)}, \qquad
+    H_0^{\rm Exp}(z) = H_{0,{\rm CMB}} + \Delta H_0 \,
+    e^{-z / z_0}
+        \end{equation}
+</div>
+
+<p>
+    The primary inference uses the unbinned native $\mu$-space likelihood.
+    All 1,701 Pantheon+ light curves and the corresponding
+    $1701 \times 1701$ STAT+SYS covariance matrix are retained without
+    deduplication, binning, or transformation to inferred $H_0$. The
+    published KBC Method-3 prediction is converted from $H_0(z)$ to a
+    relative modulus shape and evaluated directly against the observed
+    distance-modulus vector. A secondary binned $H_0(z)$ analysis
+    (1,543 unique SNe in 8 redshift bins with diagonal errors) is
+    provided for visualization and cross-check.
+</p>
+
+<p>
+    For each observation, the reference residual is defined as
+</p>
+
+<div class="equation">
+    \begin{equation}
+    d_i = \mu_{{\rm obs},i} - \mu_{\rm ref}(z_i),
+        \end{equation}
+</div>
+
+<p>
+    where the same reference distance-redshift relation
+    ($H_{0,\rm ref} = 73$, $\Omega_m = 0.302$) is used for every
+    competing model. The published KBC Method-3 prediction is converted
+    from $H_0(z)$ to a relative modulus shape,
+</p>
+
+<div class="equation">
+    \begin{equation}
+    s_i^{\rm KBC} = 5\log_{10}\!\left[\frac{H_{\rm ref}}{H_{\rm KBC}(z_i)}\right],
+        \end{equation}
+</div>
+
+<p>
+    This follows from Mazurenko et al.'s (2025) homogeneous-surrogate
+    definition: a simulated void universe with expansion rate
+    $H_0^{\rm sim}(z_i)$ has distance modulus
+    $\mu_{\rm sim}(z_i) = 5\log_{10}[d_L(z_i, H_0^{\rm sim})] + 25$,
+    so the offset relative to the reference modulus
+    $\mu_{\rm ref}(z_i)$ is
+    $\Delta\mu(z_i) = 5\log_{10}[H_{\rm ref}/H_0^{\rm sim}(z_i)]$
+    (the zero-point and comoving factors cancel in the ratio).
+    With $H_0^{\rm sim}(z_i) = H_{\rm KBC}(z_i)$, this gives
+    $s_i^{\rm KBC}$ above.
+</p>
+
+<p>
+    while the global-$M_B$ flat prediction corresponds to
+    $s_i^{\rm flat} = 0$. Each model is permitted the same single
+    global zero-point nuisance $\mathcal{M}$. For model $m$, the
+    goodness-of-fit is
+</p>
+
+<div class="equation">
+    \begin{equation}
+    \chi_m^2 = (\mathbf{d} - \mathbf{s}_m - \widehat{\mathcal{M}}_m\,\mathbf{1})^T
+    C^{-1}
+    (\mathbf{d} - \mathbf{s}_m - \widehat{\mathcal{M}}_m\,\mathbf{1}),
+        \end{equation}
+</div>
+
+<p>
+    where $C$ is the full STAT+SYS covariance matrix and the analytic
+    profiled zero-point is
+</p>
+
+<div class="equation">
+    \begin{equation}
+    \widehat{\mathcal{M}}_m = \frac{\mathbf{1}^T C^{-1}(\mathbf{d} - \mathbf{s}_m)}
+    {\mathbf{1}^T C^{-1}\mathbf{1}}.
+        \end{equation}
+</div>
+
+<p>
+    The Gaussian and Exponential KBC curves are frozen published
+    predictions; no void amplitude or decay scale is refitted. Both the
+    KBC and flat hypotheses therefore have $k = 1$ (the marginalized
+    zero-point only), so their AIC difference is exactly their
+    $\chi^2$ difference:
+</p>
+
+<div class="equation">
+    \begin{equation}
+    \Delta{\rm AIC} = \Delta\chi^2.
+        \end{equation}
+</div>
+
+<p>
+    The likelihood tests only the redshift-dependent shape and is
+    independent of the common absolute distance zero-point. The primary
+    evaluation restricts to $z \ge 0.05$, the stated validity domain of
+    the Method-3 predictions; the full-sample extension is reported as
+    a robustness check. The flat-model $\chi^2/{\rm dof} = 2007.7/1700
+    \approx 1.18$ is consistent with the Pantheon+ collaboration's own
+    fit quality ($\chi^2/{\rm dof} \sim 1.0$–$1.2$ with the STAT+SYS
+    covariance), reflecting residual peculiar-velocity variance and
+    intrinsic scatter not fully captured by the released covariance.
+    The $\Delta$AIC values are $\chi^2$ differences between models
+    sharing the same covariance, so any overall normalization offset
+    cancels; the rejection of the void model is based on the
+    redshift-dependent shape difference, not the absolute $\chi^2$.
+</p>
+
+<h3>7.2 The TEP Prediction: Flat for Global $M_B$</h3>
+
+<p>
+    The TEP framework predicts that the Cepheid calibration bias decays
+    smoothly with redshift as the temporal shear accumulates. The
+    physical model for the <em>per-host Cepheid calibration</em> is
+    $H_0(z) = H_{0,{\rm CMB}} + \Delta H_0 \cdot (1+z)^{-n}$,
+    where the exponent $n \approx 0.3$ is a phenomenological parameter, not derived from the scalar-tensor action; it is fixed empirically and governs the redshift scaling of the temporal shear field.
+    The host-potential dependence of this prediction is tested in
+    the companion paper TEP-H0 (Paper 11), where each host galaxy
+    has its own Cepheid calibration; the direct redshift-dependent
+    $(1+z)^{-n}$ decay test requires per-host Cepheid recalibration
+    of the Pantheon+ sample.
+</p>
+
+<p>
+    The exponent $n$ should not be confused with the MOND acceleration
+    scale $a_0$. The two parameters occupy fundamentally different
+    roles in their respective frameworks. The MOND constant $a_0
+    \approx 1.2 \times 10^{-10}\ {\rm m\,s^{-2}}$ is a globally tuned
+    fundamental acceleration scale that modifies the gravitational
+    force law itself, applied uniformly across all environments and
+    redshifts. The TEP exponent $n$, by contrast, is a localized
+    environmental parameter governing the redshift scaling of the
+    temporal shear field — it describes how the scalar field's
+    influence on acoustic clock rates evolves with the local matter
+    density along the line of sight. While $a_0$ replaces Newtonian
+    dynamics with an empirically tuned constant, $n$ parameterizes a
+    physical mechanism (temporal shear accumulation) within a
+    scalar-tensor action whose structural form is fixed. While a
+    formal derivation from $V(\phi)$ and the conformal coupling
+    function $A(\phi)$ remains an objective of the broader programme,
+    the parameter governs a specific physical mechanism — temporal
+    shear accumulation — rather than acting as an ad hoc
+    gravitational patch. As noted
+    in the methodological scope at the start of this section,
+    Pantheon+ uses a global $M_B$, so the TEP prediction for the
+    SN-inferred $H_0(z)$ is a flat $H_0(z) \approx 73$ (the constant
+    model). The $(1+z)^{-0.3}$ decay applies to the Cepheid
+    calibrators, not to the SN-inferred $H_0(z)$ when $M_B$ is global.
+</p>
+
+<h3>7.3 Observational Test with Pantheon+</h3>
+
+<p>
+    The primary statistical test is the frozen-prediction native
+    $\mu$-space likelihood of Section 7.1, which evaluates the published
+    KBC curves directly against the Pantheon+ distance-modulus vector
+    with the full STAT+SYS covariance. That test treats the KBC
+    predictions as fixed (no refitted amplitude or decay scale); both
+    the KBC and flat hypotheses have $k = 1$ (the marginalized
+    zero-point only), so $\Delta{\rm AIC} = \Delta\chi^2$ exactly.
+    The results are reported in Section 7.4.
+</p>
+
+<p>
+    As a secondary diagnostic, a binned $H_0(z)$ representation is also
+    reported. Using 1,543 supernovae from the Pantheon+ sample
+    (Scolnic et al. 2022), $H_0(z)$ is computed in redshift bins from
+    $z = 0.01$ to $z = 1.5$ by inverting the ΛCDM distance modulus for
+    each SN. The binned $H_0(z)$ values are fitted against four models,
+    each with free parameters:
+</p>
+
+<ul>
+    <li>Void-Gaussian ($k=2$):
+        $H_0(z) = H_{0,{\rm CMB}} + \Delta H_0 \, e^{-z^2/(2\sigma_z^2)}$.
+        Free: $\sigma_z$, $\Delta H_0$.</li>
+    <li>Void-Exponential ($k=2$):
+        $H_0(z) = H_{0,{\rm CMB}} + \Delta H_0 \, e^{-z/z_0}$.
+        Free: $z_0$, $\Delta H_0$.</li>
+    <li>TEP model ($k=2$):
+        $H_0(z) = H_{0,{\rm CMB}} + \Delta H_0 \cdot (1+z)^{-n}$.
+        Free: $\Delta H_0$, $n$.</li>
+    <li>Constant model ($k=1$):
+        $H_0(z) = H_{0,{\rm const}}$ [= TEP prediction for global $M_B$].
+        Free: $H_{0,{\rm const}}$.</li>
+</ul>
+
+<p>
+    In this secondary binned representation, the AIC comparison is
+    valid because all four models are fit with free parameters. The
+    constant model <em>is</em> the TEP prediction for the global $M_B$
+    regime. This free-parameter binned analysis is distinct from the
+    primary frozen-prediction test of Section 7.1; both are reported
+    below.
+</p>
+
+<h3>7.4 Result</h3>
+
+<p>
+    The observed $H_0(z)$ is flat at $\sim 73\ {\rm km\,s^{-1}\,Mpc^{-1}}$
+    across all redshifts, with no gradual decline towards the Planck
+    value. The primary statistical claim restricts the evaluation to
+    $z \ge 0.05$, the stated validity domain of the
+    Mazurenko et al. (2025) Method-3 predictions, where the
+    central-observer approximation holds. Over this domain, the
+    published KBC curves are decisively rejected by the unbinned
+    native $\mu$-space likelihood:
+    $\Delta{\rm AIC}_{\mu} = +101.5$ (Gaussian) and $+117.1$
+    (Exponential), retaining all 1,053 Pantheon+ rows in range with the
+    matched $1{,}053 \times 1{,}053$ submatrix of the native Pantheon+
+    STAT+SYS covariance and a marginalized common zero-point. Extending the calculation to the full Pantheon+ release
+    (all 1,701 rows, no redshift cut) strengthens the differences to
+    $+194.3$ and $+328.7$. A $z_{\min} = 0.01$ cut gives
+    $+154.1$/$+257.4$ ($N = 1{,}588$); the rejection is unequivocally
+    established within the model's own valid regime. This result
+    aligns with Kenworthy, Scolnic &amp; Riess (2019), who used the
+    Pantheon SN Ia sample to search for a local void signal in the
+    Hubble flow and independently ruled out a local underdensity as
+    the cause of the Hubble tension. The unbinned likelihood
+    rejection reported here reaches the same conclusion from a
+    complementary analytical angle: evaluating the published KBC
+    prediction curves directly against the full covariance structure
+    of the Pantheon+ distance-modulus vector.
+</p>
+
+<p>
+    The secondary binned comparison (1,543 unique SNe in 8 redshift
+    bins with diagonal errors) evaluates each model at its specific
+    published parameter value:
+</p>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Prediction</th>
+            <th>$\chi^2$</th>
+            <th>AIC</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>TEP (global $M_B$) = Constant</td>
+            <td>flat $H_0(z) \approx 73.2$</td>
+            <td>13.8</td>
+            <td>15.8 (best)</td>
+        </tr>
+        <tr>
+            <td>Void-Gaussian (published)</td>
+            <td>$\sigma_z = 0.82$</td>
+            <td>34.0</td>
+            <td>36.0</td>
+        </tr>
+        <tr>
+            <td>Void-Exponential (published)</td>
+            <td>$z_0 = 0.74$</td>
+            <td>93.1</td>
+            <td>95.1</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    The TEP flat model gives the best fit ($\chi^2 = 13.8$). The
+    published KBC Gaussian profile is disfavoured by
+    $\Delta{\rm AIC} = +20.2$; the Exponential profile by
+    $\Delta{\rm AIC} = +79.3$ in this secondary binned representation.
+    Both the binned and unbinned analyses strongly prefer the flat
+    profile and reject the published gradual-decay predictions. Both models have $k=1$ (the marginalized
+    zero-point only; the KBC curves are frozen published predictions
+    with no fitted amplitude), so $\Delta{\rm AIC} = \Delta\chi^2$
+    exactly. The TEP flat model is clearly preferred over the actual
+    published KBC gradual decay curves.
+</p>
+
+<p>
+    <em>Free-parameter test in native $\mu$-space.</em> The
+    frozen-prediction rejection above tests the KBC curves at their
+    published parameter values. A stronger test grants the void
+    family free amplitude ($\Delta H_0$) and decay scale
+    ($\sigma_z$ or $z_0$) and asks whether any member of the family
+    improves upon flat in native $\mu$-space with the full
+    $1701 \times 1701$ STAT+SYS covariance. The free-parameter fits
+    (step_32c) yield:
+</p>
+
+<table class="data-table">
+    <caption>Table 5: Free-parameter void family fits in native
+    $\mu$-space with full STAT+SYS covariance and marginalized
+    zero-point. The void family's best fit is $\Delta H_0 = 0$ —
+    exactly flat — for both profiles and both sample cuts. The AIC
+    penalty for two additional free parameters ($k = 3$ versus $k = 1$)
+    makes the void models <em>worse</em> than flat by $\Delta{\rm AIC}
+    = +4.0$. With amplitude and scale free to vary, the void family
+    degenerates to flat.</caption>
+    <thead>
+        <tr>
+            <th>Sample</th>
+            <th>Model</th>
+            <th>$\Delta H_0$</th>
+            <th>Scale</th>
+            <th>$\chi^2$</th>
+            <th>$\Delta{\rm AIC}$</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Full ($N=1701$)</td>
+            <td>Flat</td>
+            <td>—</td>
+            <td>—</td>
+            <td>2007.7</td>
+            <td>0 (best)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Void-Gauss</td>
+            <td>0.000</td>
+            <td>$\sigma_z = 0.283$</td>
+            <td>2007.7</td>
+            <td>+4.0</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Void-Exp</td>
+            <td>0.000</td>
+            <td>$z_0 = 0.283$</td>
+            <td>2007.7</td>
+            <td>+4.0</td>
+        </tr>
+        <tr>
+            <td>$z \ge 0.05$ ($N=1053$)</td>
+            <td>Flat</td>
+            <td>—</td>
+            <td>—</td>
+            <td>919.2</td>
+            <td>0 (best)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Void-Gauss</td>
+            <td>0.000</td>
+            <td>$\sigma_z = 0.175$</td>
+            <td>919.2</td>
+            <td>+4.0</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Void-Exp</td>
+            <td>0.000</td>
+            <td>$z_0 = 0.175$</td>
+            <td>919.2</td>
+            <td>+4.0</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    The void family's best fit is $\Delta H_0 = 0$ — exactly flat
+    — for both the Gaussian and Exponential profiles, in both the
+    full sample and the $z \ge 0.05$ validity domain. Given the freedom
+    to scale, the optimizer drives the void amplitude to exactly zero.
+    Any non-zero amplitude forces a redshift-dependent curvature that
+    is strictly incompatible with the observational data.
+    The AIC penalty for two additional free parameters ($k = 3$ versus
+    $k = 1$) makes the void models worse than flat by
+    $\Delta{\rm AIC} = +4.0$; because the decay scale is unidentified
+    at zero amplitude, this formal penalty is descriptive only, and
+    the inferential result is the maximum-likelihood collapse to
+    $\Delta H_0 = 0$. When amplitude and scale are released,
+    maximum likelihood occurs at zero void amplitude: the void family
+    collapses to its flat limit. Combined with the frozen-prediction
+    rejection ($\Delta{\rm AIC} = +101.5$ and $+117.1$ at
+    $z \ge 0.05$), the void hypothesis is excluded both in its
+    published parameters and in its best-fit parameters.
+</p>
+
+<p>
+    <em>Robustness checks:</em> The result is stable across
+    redshift frames (zCMB: $+194.3$/$+328.7$; zHEL: $+219.5$/$+383.7$;
+    zHD: $+171.4$/$+289.6$) — the Pantheon+ peculiar-velocity correction
+    does not affect the conclusion. The result is also robust to the
+    lower redshift cut: $z_{\min} = 0.01$ gives $+154.1$/$+257.4$
+    ($N = 1{,}588$); $z_{\min} = 0.023$ gives $+144.4$/$+233.4$;
+    $z_{\min} = 0.05$ (the Mazurenko et al. 2025 validity range) gives
+    $+101.5$/$+117.1$ ($N = 1{,}053$); even $z_{\min} = 0.10$ gives
+    $+72.5$/$+48.4$ ($N = 960$). The void rejection survives all
+    these cuts with $\Delta{\rm AIC} > 40$. The result is also
+    robust to the assumed matter density: the $z \ge 0.05$ rejection
+    ranges from $+91.5$/$+106.9$ at $\Omega_m = 0.315$ to
+    $+118.8$/$+134.6$ at $\Omega_m = 0.280$, a spread of only
+    $\sim 27$ units, while the canonical $\Omega_m = 0.302$ gives
+    $+101.5$/$+117.1$.
+</p>
+
+<p>
+    <em>Digitization sensitivity.</em> The digitized curves are
+    subject to graphical extraction noise. To verify that the
+    rejection is not an artifact of digitization uncertainty, the
+    native $\mu$-space $\Delta$AIC is recomputed after shifting both
+    digitized curves by $\pm 0.5$ and $\pm 1.0\ {\rm
+    km\,s^{-1}\,Mpc^{-1}}$ — a range that comfortably exceeds the
+    scatter visible in the published figure. Table~6 reports the
+    results:
+</p>
+
+<table class="data-table">
+    <caption>Table 6: Digitization sensitivity. $\Delta$AIC (native
+    $\mu$-space, full STAT+SYS covariance) after shifting the
+    digitized KBC curves by the indicated amount, evaluated at the
+    KBC-preferred reference $\Omega_m = 0.302$. The rejection
+    remains decisive under all shifts. Over the validity domain
+    ($z \ge 0.05$, $N = 1{,}053$), even the most favourable shift
+    leaves $\Delta{\rm AIC} \gtrsim 99$ for both profiles. Over the full
+    release ($N = 1{,}701$), the minimum is $\Delta{\rm AIC} > 190$.</caption>
+    <thead>
+        <tr>
+            <th>Shift (km/s/Mpc)</th>
+            <th>$\Delta$AIC Gaussian ($z \ge 0.05$)</th>
+            <th>$\Delta$AIC Exponential ($z \ge 0.05$)</th>
+            <th>$\Delta$AIC Gaussian (full)</th>
+            <th>$\Delta$AIC Exponential (full)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>$-1.0$</td><td>$+104.1$</td><td>$+120.0$</td><td>$+198.7$</td><td>$+336.1$</td></tr>
+        <tr><td>$-0.5$</td><td>$+102.8$</td><td>$+118.5$</td><td>$+196.5$</td><td>$+332.4$</td></tr>
+        <tr><td>$\phantom{-}0.0$</td><td>$+101.5$</td><td>$+117.1$</td><td>$+194.3$</td><td>$+328.7$</td></tr>
+        <tr><td>$+0.5$</td><td>$+100.2$</td><td>$+115.6$</td><td>$+192.2$</td><td>$+325.2$</td></tr>
+        <tr><td>$+1.0$</td><td>$+99.0$</td><td>$+114.2$</td><td>$+190.1$</td><td>$+321.6$</td></tr>
+    </tbody>
+</table>
+
+<p>
+    The rejection is robust to digitization uncertainty at the level
+    of the published figure. A $\pm 1.0\ {\rm km\,s^{-1}\,Mpc^{-1}}$
+    shift changes $\Delta$AIC by only $\sim 4$ units (Gaussian) and
+    $\sim 7$ units (Exponential), confirming that the digitization
+    noise is subdominant to the model-rejection signal. The digitized points
+    are released as machine-readable JSON and CSV in
+    <code>data/raw/external/mazurenko_curves/</code>.
+</p>
+
+<p>
+    <em>Forward mapping: $H_0^{\rm sim}(z) \to \mu(z)$.</em> The KBC
+    $H_0(z)$ predictions are converted to modulus space via
+    $s_i = 5\log_{10}[H_{\rm ref} / H_{\rm KBC}(z_i)]$. The
+    justification for this mapping follows from the structure of
+    Mazurenko et al.'s (2025) Method-3 construction.
+</p>
+
+<p>
+    Method-3 defines, at each redshift $z$, a homogeneous
+    Friedmann–Robertson–Walker cosmology with fixed dimensionless
+    expansion shape $E(z) = H(z)/H_0$ — determined by $\Omega_m$ and
+    $\Omega_\Lambda$ — and a local Hubble constant $H_0^{\rm sim}(z)$
+    that varies with redshift. The luminosity distance in a flat
+    FRW cosmology is
+</p>
+
+<div class="equation">
+    \begin{equation}
+    d_L(z, H_0) = (1+z)\,\frac{c}{H_0}\,\int_0^z \frac{dz'}{E(z')},
+        \end{equation}
+</div>
+
+<p>
+    where the comoving distance integral $D_C(z) = \int_0^z
+    dz'/E(z')$ depends only on the dimensionless expansion shape and
+    is independent of $H_0$. For a fixed $E(z)$, the luminosity
+    distance scales inversely with $H_0$:
+</p>
+
+<div class="equation">
+    \begin{equation}
+    d_L(z, H_0) = \frac{(1+z)\,c\,D_C(z)}{H_0} \propto H_0^{-1}.
+        \end{equation}
+</div>
+
+<p>
+    The distance modulus is $\mu = 5\log_{10}(d_L) + 25$, so the
+    modulus difference between a reference cosmology with $H_{\rm
+    ref}$ and a Method-3 cosmology with $H_0^{\rm sim}(z)$ at the
+    same redshift is
+</p>
+
+<div class="equation">
+    \begin{equation}
+    \Delta\mu(z) = 5\log_{10}\!\frac{d_L(z, H_0^{\rm sim})}{d_L(z, H_{\rm ref})}
+    = 5\log_{10}\!\frac{H_{\rm ref}}{H_0^{\rm sim}(z)} = s(z),
+        \end{equation}
+</div>
+
+<p>
+    since the $(1+z)\,c\,D_C(z)$ factors cancel identically. This
+    derivation is exact for the Method-3 construction: it requires
+    only that (i) the dimensionless expansion shape $E(z)$ is the
+    same at all redshifts (as assumed by Method-3), and (ii) the
+    luminosity distance is given by the FRW integral (the
+    definition Method-3 uses to construct the homogeneous surrogate).
+    The modulus shape $s(z)$ is therefore not an approximation or an
+    assumption — it is the exact forward prediction of the Method-3
+    construction for the supernova distance modulus.
+</p>
+
+<p>
+    The sign of the redshift gradient is preserved: if $H_0^{\rm
+    sim}(z)$ declines with $z$, then $s(z) = 5\log_{10}[H_{\rm ref}
+    / H_0^{\rm sim}(z)]$ increases with $z$, and the observed
+    flatness of the residual vector directly contradicts this
+    prediction. The directional contradiction follows from the
+    negative $dH_0/dz$, negative in all published KBC
+    predictions; the quantitative $\Delta{\rm AIC}$ rejection reflects
+    the full published amplitude and shape of the KBC profiles.
+</p>
+
+<p>
+    <em>Free-parameter comparison</em> (all models fit with free
+    parameters):
+</p>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>$k$</th>
+            <th>$\chi^2$</th>
+            <th>$\chi^2_{\rm red}$</th>
+            <th>AIC</th>
+            <th>$\Delta$AIC</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Constant = TEP expectation</td>
+            <td>1</td>
+            <td>13.8</td>
+            <td>1.98</td>
+            <td>15.8</td>
+            <td>0.0 (best)</td>
+        </tr>
+        <tr>
+            <td>TEP ($n = 0.00$, $\Delta H_0 = 5.85$)</td>
+            <td>2</td>
+            <td>13.8</td>
+            <td>2.31</td>
+            <td>17.8</td>
+            <td>+2.0</td>
+        </tr>
+        <tr>
+            <td>Void-Gaussian ($\sigma_z \to 10$, $\Delta H_0 = 5.85$)</td>
+            <td>2</td>
+            <td>13.9</td>
+            <td>2.32</td>
+            <td>17.9</td>
+            <td>+2.1</td>
+        </tr>
+        <tr>
+            <td>Void-Exponential ($z_0 \to 10$, $\Delta H_0 = 5.97$)</td>
+            <td>2</td>
+            <td>17.4</td>
+            <td>2.91</td>
+            <td>21.4</td>
+            <td>+5.6</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    In the free-parameter comparison, both void profiles push their
+    decay scales to the boundary ($\sigma_z \to 10$, $z_0 \to 10$),
+    effectively converting themselves into flat models. The TEP model
+    fits to $n \approx 0$, exactly as predicted for the global $M_B$
+    regime. The $n \approx 0$ result is not a degenerate outcome; it is
+    the expected signature of a calibration architecture in which the
+    Cepheid clock bias is encoded in a single global zero-point rather
+    than distributed across individual host calibrations.
+</p>
+
+<h3>7.5 Interpretation</h3>
+
+<p>
+    The $H_0(z)$ data rejects the published KBC/MOND gradual decay
+    curves. Within the model's own stated validity domain ($z \ge 0.05$),
+    the unbinned native $\mu$-space likelihood disfavours the Gaussian
+    profile by $\Delta{\rm AIC} = +101.5$ and the Exponential by
+    $+117.1$. The secondary binned analysis gives
+    $\Delta{\rm AIC} = +20.2$ and $+79.3$ respectively. The TEP flat
+    prediction (constant $H_0(z) \approx 73.2$ for global $M_B$) gives
+    the best fit in both representations. When allowed free parameters,
+    both void profiles escape their own predictions by pushing their
+    decay scales to infinity, converting themselves into the flat model
+    that TEP already predicts.
+</p>
+
+<p>
+    The flat $H_0(z) \approx 73$ is the expected TEP signature when the
+    Cepheid calibration bias is imprinted on the global $M_B$
+    zero-point. The TEP prediction chain is:
+</p>
+
+<ol>
+    <li>Cepheid calibrators at $z \sim 0$: the acoustic clock bias
+        is maximal, producing the full $(1+z)^{-0.3} \approx 1$
+        compression.</li>
+    <li>Global $M_B$ inherits this bias: $M_B = -19.253$ is
+        calibrated from the biased Cepheid distances, encoding the full
+        clock bias in the zero-point.</li>
+    <li>All SNe use the same $M_B$: the bias does not vary with
+        redshift — $H_0(z)$ is predicted to be flat at $\sim 73$.
+        A global $M_B$ sets the absolute vertical intercept but does
+        not constrain the shape: if a local void were physically
+        present, the distance moduli would diverge from the
+        $\Lambda$CDM curve at low redshift regardless of which
+        global $M_B$ was adopted. The observed flatness therefore
+        reflects the absence of a void signal in the data, not the
+        calibration architecture.</li>
+    <li>Per-host Cepheid calibration (TEP-H0, Paper 11): would
+        show the $(1+z)^{-0.3}$ decay, because each SN would inherit
+        the bias from its own host's Cepheid calibration, not from a
+        global zero-point.</li>
+</ol>
+
+<p>
+    The methodological scope stated at the opening of this section
+    applies here in full: a global $M_B$ sets the absolute normalization
+    of $H_0(z)$ but does not force the profile to be flat. If a local
+    void were physically present, the Pantheon+ distance moduli would
+    deviate from the $\Lambda$CDM prediction at low redshifts,
+    producing a declining $H_0(z)$ curve irrespective of the chosen
+    zero-point. The observed flatness reflects the absence of such a
+    void signal in the data. The test falsifies the KBC gradual
+    decline; it does not independently confirm TEP, because
+    conventional cosmologies with a global SN calibration also
+    predict a flat normalization.
+</p>
+
+<h3>7.6 Comparison with Jia et al. (2023): Proper Replication and Source of the Decline</h3>
+
+<p>
+    Mazurenko et al. (2025) report that their Method-3 KBC $H_0(z)$
+    curves show "reasonable agreement" with the decorrelated
+    $H_{0,z}$ reconstruction of Jia, Hu &amp; Wang (2023, A&amp;A 674,
+    A45), who find a declining $H_0(z)$ at $5.6\sigma$ using Pantheon+
+    combined with $H(z)$ and BAO data. This subsection examines
+    whether that agreement reflects a shared physical signal or a
+    shared methodological feature.
+</p>
+
+<p>
+    The methodological distinction is fundamental. Jia et al.
+    reconstruct piecewise $H_{0,z_i}$ parameters in redshift bins
+    using a cumulative piecewise $H_{\rm th}(z')$ construction
+    (their Equation 8), evaluate the luminosity-distance integral
+    through that piecewise $H_{\rm th}$ (their Equation 18), and
+    compare the decorrelated <em>derived parameters</em> with
+    theoretical predictions. The native $\mu$-space likelihood
+    (the modulus residual and AIC equations) evaluates the
+    frozen KBC distance-modulus prediction directly against the
+    underlying Pantheon+ observable. These are not equivalent
+    operations: one tests a reconstructed parameterization, the other
+    tests the original observable.
+</p>
+
+<p>
+    A proper replication of Jia et al.'s analysis was performed using
+    their public code repository (github.com/JoJo20221003/Hz-Code) as
+    reference. The replication uses Jia's actual 8-bin equal-width
+    partition ($z = [0, 0.1, 0.2, 0.3, 0.4, 0.55, 0.7, 1.0, 2.4]$ —
+    note that the code uses 8 bins, not the 10 bins stated in the
+    paper), the full $1701 \times 1701$ Pantheon+ STAT+SYS covariance
+    matrix, MCMC posterior sampling with <em>emcee</em> (32 walkers,
+    2000 steps), and PCA decorrelation per Jia et al.'s Equations
+    19–22. The $H(z)$ data (59 measurements including BAO-derived
+    $H(z)$ at $z > 2$) were taken directly from Jia et al.'s
+    repository. Two configurations were tested: (A) SN-only with full
+    covariance, and (B) SN + $H(z)$ with full covariance, matching
+    Jia et al.'s actual code.
+</p>
+
+<p>
+    The results isolate the origin of the declining trend. With
+    SN-only data (configuration A), the MCMC fit
+    yields a change of $-3.68$ km/s/Mpc from low-$z$ to high-$z$,
+    but with a significance of only $1.93\sigma$ — not statistically
+    significant. The high-redshift bins have large uncertainties
+    ($\sigma_{H_0} \sim 7$ km/s/Mpc at $z > 0.7$) because Pantheon+
+    contains few SNe at those redshifts. This is consistent with Jia
+    et al.'s own statement that the SN-only case has "poor
+    constraints" at high redshift and that they "decided to add the
+    observed Hubble parameter data and BAO data" to obtain tighter
+    constraints.
+</p>
+
+<p>
+    With SN + $H(z)$ data (configuration B), the
+    MCMC fit yields a change of $-5.92$ km/s/Mpc at $3.40\sigma$
+    (correlated) or $-5.46$ km/s/Mpc at $2.79\sigma$ after PCA
+    decorrelation. The decline is present, but its significance
+    ($2.79\sigma$ decorrelated) is lower than Jia et al.'s reported
+    $5.6\sigma$, likely due to differences in binning (8 versus 10 bins),
+    MCMC chain length, and the exact $H(z)$ dataset. The qualitative
+    conclusion is the same: the declining $H_0(z)$ is driven by the
+    $H(z)$ cosmic chronometer data, not by the Pantheon+ SN distance
+    moduli alone.
+</p>
+
+<p>
+    The origin of the Jia et al. decline is therefore identified: it
+    arises from the $H(z)$ and BAO data combined with the SN data, not
+    from the Pantheon+ SN distance moduli alone. The SN-only
+    configuration, using the full covariance and the correct piecewise
+    $H_{\rm th}$ estimator, does not produce a significant decline
+    ($1.93\sigma$). The native $\mu$-space likelihood likewise rejects
+    the KBC gradual decay curves. An independent Pantheon+ tomographic
+    analysis (Wang 2023, Eur. Phys. J. C 83, 813) found no obvious
+    evidence for evolution of $H_0$ or $\Omega_m$ at the $2\sigma$
+    level using both equal-redshift and equal-count binning, consistent
+    with the flat profile reported here.
+</p>
+
+<p>
+    This reconciliation does not dispute the Jia et al. result within
+    its own methodological framework. The apparent agreement between
+    KBC and the Jia reconstruction is dataset-dependent: the decline
+    requires the combined SN+$H(z)$+BAO dataset and does not arise
+    from the Pantheon+ SN distance moduli alone. The direct likelihood
+    comparison to the primary observable — the distance modulus — is
+    the more conservative test, and it rejects the KBC prediction.
+</p>
+
+<p>
+    The forward mapping derived above (the relative modulus shape
+    relation) establishes that the modulus shape
+    $s(z) = 5\log_{10}[H_{\rm ref}/H_0^{\rm sim}(z)]$ is the exact
+    prediction of the Method-3 construction for the supernova distance
+    modulus. Method-3 explicitly defines, at each redshift, a
+    homogeneous FRW cosmology with fixed density parameters
+    $\Omega_m$, $\Omega_\Lambda$ and a local Hubble constant
+    $H_0^{\rm sim}(z)$ that varies to reproduce the apparent scale
+    factor at the required lookback time. For such a homogeneous
+    surrogate, $d_L \propto H_0^{-1}$ at fixed $z$ and $\Omega_i$, so
+    the modulus conversion is not an assumption but a direct
+    consequence of the Method-3 definition. The $\Delta$AIC $\sim 100$
+    rejection is therefore a direct test of the published Method-3
+    homogeneous-surrogate prediction as displayed in Figure 3 of
+    Mazurenko et al. (2025). A full inhomogeneous ray-traced
+    calculation would be a separate, stronger test, but is not
+    necessary to establish what the published Figure 3 predicts for
+    the supernova distance modulus.
+</p>

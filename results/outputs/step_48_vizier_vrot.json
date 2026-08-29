@@ -1,0 +1,74 @@
+{
+  "step": 48,
+  "description": "Vizier HyperLEDA (VII/237 + VII/238) rotation velocity query for Pantheon+ hosts",
+  "catalogs_queried": [
+    "VII/237 (HyperLEDA galaxy catalog)",
+    "VII/238 (HyperLEDA HI data)"
+  ],
+  "query_radius_arcmin": 2.0,
+  "total_unique_sne": 1543,
+  "matched_to_pgc": 604,
+  "with_log_2Vm": 176,
+  "with_vmax_apparent": 176,
+  "with_inclination": 577,
+  "with_v_rot": 173,
+  "calibrators_total": 43,
+  "calibrators_with_vrot": 33,
+  "match_rate": 0.3914452365521711,
+  "vrot_rate": 0.11211924821775761,
+  "vrot_distribution": {
+    "n": 173,
+    "min": 26.5867205358719,
+    "max": 509.20319512367746,
+    "mean": 180.97004792215614,
+    "median": 172.1806599318805,
+    "std": 80.31281031750864,
+    "p25": 129.16527791989097,
+    "p75": 221.29413953074194
+  },
+  "vmax_apparent_distribution": {
+    "n": 176,
+    "min": 17.659157597703103,
+    "max": 341.95585367697015,
+    "mean": 137.9887328274955,
+    "median": 139.62755580237894,
+    "std": 60.66520252787335
+  },
+  "inclination_distribution": {
+    "n": 577,
+    "min": 0.0,
+    "max": 90.0,
+    "mean": 51.57056603213444,
+    "median": 51.20352326028178
+  },
+  "velocity_correction": {
+    "formula": "V_rot = 10^(log_2Vm) / (2 * sin(i))",
+    "log_2Vm_definition": "log10(2 * Vmax * sin(i)) \u2014 apparent max rotation velocity uncorrected for inclination",
+    "inclination_from": "logR25 (axis ratio) from VII/237, using q0=0.2 intrinsic flattening",
+    "note": "V_rot is the inclination-corrected (face-on) maximum rotation velocity"
+  },
+  "output_csv": "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/pantheon_host_vrot_vizier.csv",
+  "columns": [
+    "CID",
+    "sn_ra",
+    "sn_dec",
+    "zCMB",
+    "HOST_LOGMASS",
+    "IS_CALIBRATOR",
+    "pgc",
+    "galaxy_name",
+    "match_sep_arcsec",
+    "log_2Vm",
+    "e_log_2Vm",
+    "u_log_2Vm",
+    "vmax_apparent",
+    "VHI",
+    "e_VHI",
+    "m21",
+    "logR25",
+    "inclination_deg",
+    "v_rot",
+    "v_rot_log",
+    "mtype"
+  ]
+}

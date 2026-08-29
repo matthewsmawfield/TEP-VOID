@@ -1,0 +1,149 @@
+{
+  "step": "12_void_prediction_uniformity",
+  "description": "Quantify and test the void model prediction of indicator uniformity",
+  "delta_mu_definition": "Delta_mu = mu_Cepheid - mu_TRGB",
+  "methodology": "Formal test of the void null hypothesis Delta_mu = 0 for all hosts using four independent statistics: chi-squared (N dof), one-sample t-test, Wilcoxon signed-rank test, and inverse-variance weighted mean significance. The chi-squared significance in sigma equivalents is the primary falsification criterion at a 2-sigma threshold.",
+  "provenance": {
+    "data_sources": [
+      "step_10 per-galaxy Delta_mu results",
+      "step_10 matched_host_comparison.json summary"
+    ],
+    "pipeline_block": "Ia \u2014 Indicator Divergence"
+  },
+  "scientific_context": "Can the void model's prediction of indicator-uniform distances (Delta_mu = 0 for all hosts) survive formal statistical testing against the observed Cepheid-TRGB divergence? This step renders the falsification verdict for the void null hypothesis.",
+  "tep_prediction": "Non-zero, potential-dependent divergence (Delta_mu = kappa * sigma_v) is expected; the void null hypothesis is not a prediction of TEP and its rejection is consistent with the TEP framework.",
+  "void_prediction": "Delta_mu = 0 for all hosts: all distance indicators yield identical moduli. Any significant departure falsifies the void null hypothesis.",
+  "downstream_consumers": [],
+  "results": {
+    "n_hosts": 18,
+    "void_null_hypothesis": {
+      "prediction": "Delta_mu = 0 for all hosts",
+      "description": "Kinematic void requires all indicators yield identical distances"
+    },
+    "chi_squared_test": {
+      "chi2": 12.355078364606651,
+      "dof": 18,
+      "chi2_reduced": 0.6863932424781473,
+      "p_value": 0.8283739145135457,
+      "significance_sigma": 0.21678755050193496
+    },
+    "t_test": {
+      "t_statistic": -0.2901228173269442,
+      "p_value": 0.7752313960852724
+    },
+    "wilcoxon_test": {
+      "statistic": 81.0,
+      "p_value": 0.8650436401367188
+    },
+    "weighted_mean": {
+      "value": -0.0027035436988151773,
+      "error": 0.01767543298301842,
+      "significance_sigma": 0.1529548781867235
+    },
+    "tep_prediction": {
+      "prediction": "Delta_mu = kappa * sigma_v (non-zero, potential-dependent)",
+      "description": "TEP predicts a non-zero, potential-dependent divergence",
+      "free_parameters": 1
+    },
+    "falsification_verdict": {
+      "void_falsified": false,
+      "threshold_sigma": 2.0,
+      "verdict": "Void null hypothesis (Delta_mu = 0) is not definitively falsified at 0.22 sigma"
+    }
+  },
+  "per_galaxy": [
+    {
+      "galaxy": "NGC 1015",
+      "delta_mu": -0.0122519181936766,
+      "delta_mu_err": 0.0849070956991837
+    },
+    {
+      "galaxy": "NGC 1309",
+      "delta_mu": -0.0110363907646515,
+      "delta_mu_err": 0.0711917306954648
+    },
+    {
+      "galaxy": "NGC 1365",
+      "delta_mu": -0.0345845646957485,
+      "delta_mu_err": 0.0640806382485477
+    },
+    {
+      "galaxy": "NGC 1448",
+      "delta_mu": -0.0248865971734844,
+      "delta_mu_err": 0.0536332862148195
+    },
+    {
+      "galaxy": "NGC 1559",
+      "delta_mu": 0.0207827220436875,
+      "delta_mu_err": 0.0653146700163979
+    },
+    {
+      "galaxy": "NGC 2442",
+      "delta_mu": 0.0152294026004433,
+      "delta_mu_err": 0.074061926408601
+    },
+    {
+      "galaxy": "NGC 3021",
+      "delta_mu": -0.0284217491060729,
+      "delta_mu_err": 0.1087897598555941
+    },
+    {
+      "galaxy": "NGC 3370",
+      "delta_mu": 0.0524967943258474,
+      "delta_mu_err": 0.0606838421967683
+    },
+    {
+      "galaxy": "NGC 3972",
+      "delta_mu": 0.107206094762283,
+      "delta_mu_err": 0.0841010287177304
+    },
+    {
+      "galaxy": "NGC 4038",
+      "delta_mu": 0.0238334076629378,
+      "delta_mu_err": 0.0943919868905036
+    },
+    {
+      "galaxy": "NGC 4424",
+      "delta_mu": -0.2161136816354272,
+      "delta_mu_err": 0.1190445339815582
+    },
+    {
+      "galaxy": "NGC 4536",
+      "delta_mu": -0.1245036022215302,
+      "delta_mu_err": 0.0624633914316627
+    },
+    {
+      "galaxy": "NGC 4639",
+      "delta_mu": -0.0126149927308496,
+      "delta_mu_err": 0.0871306727950061
+    },
+    {
+      "galaxy": "NGC 5584",
+      "delta_mu": 0.0455394863604894,
+      "delta_mu_err": 0.0604892929519202
+    },
+    {
+      "galaxy": "NGC 5643",
+      "delta_mu": 0.0284086285545477,
+      "delta_mu_err": 0.0655175205324215
+    },
+    {
+      "galaxy": "NGC 5861",
+      "delta_mu": -0.0547931820806937,
+      "delta_mu_err": 0.0965431052391899
+    },
+    {
+      "galaxy": "NGC 5917",
+      "delta_mu": 0.0368954147656808,
+      "delta_mu_err": 0.0975712451379343
+    },
+    {
+      "galaxy": "NGC 7250",
+      "delta_mu": 0.0959722374604616,
+      "delta_mu_err": 0.1194724396858183
+    }
+  ],
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_12_void_prediction_uniformity.json"
+  ]
+}

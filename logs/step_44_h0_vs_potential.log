@@ -1,0 +1,13 @@
+[19:28:09] [INFO] Step 44: H0 vs Calibrator-Population Potential
+[19:28:09] [INFO] 
+[19:28:09] [TEST]   Indicator    H0        <X> (1e-7)    U_typ (km^2/s^2)
+[19:28:09] [TEST]   ------------------------------------------------------------
+[19:28:09] [TEST]   JAGB          67.80     -0.467          3200.0
+[19:28:09] [TEST]   TRGB          68.81      0.005          7200.0
+[19:28:09] [TEST]   Cepheids      73.04      1.468         20000.0
+[19:28:09] [TEST]   SBF           74.60      2.768         31250.0
+[19:28:09] [TEST]   Linear fit: H0 = 70.05 + 1.70 * <X> (1e-7)
+[19:28:09] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_44_h0_vs_potential.png
+[19:28:09] [SUCCESS]   PDF saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_44_h0_vs_potential.pdf
+[19:28:09] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_44_h0_vs_potential.json
+[19:28:09] [SUCCESS] Step 44 complete

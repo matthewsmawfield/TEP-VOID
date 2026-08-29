@@ -1,0 +1,135 @@
+<h2>6. Consequence II: Peculiar Velocity Calibration Sensitivity</h2>
+
+<p>
+    This section presents a deterministic consequence and consistency
+    check, not an independent high-significance test. It illustrates
+    how the indicator-specific distance divergence established in
+    Section 5 propagates into the peculiar velocity field. Peculiar
+    velocities are not directly observed; they are derived quantities,
+    computed as $v_{\rm pec} = cz - H_0 d$, where $d$ is the distance
+    inferred from a standard candle and $H_0$ is the assumed
+    background expansion rate used to subtract the Hubble flow. If
+    the distance
+    calibration is biased, the inferred peculiar velocity field is
+    systematically distorted.
+</p>
+
+<p>
+    The void model treats peculiar velocities as physical kinematic
+    quantities. Under this framework, the $4.8\sigma$ bulk-flow
+    anomaly in CosmicFlows-4 is independent evidence for the KBC void:
+    galaxies are physically moving outward, and this motion is
+    captured in the velocity field regardless of which distance
+    indicator is used.
+</p>
+
+<p>
+    The TEP framework predicts that the Cepheid distance compression
+    (Section 5; sign test $2.39\sigma$, Xi regression correct
+    negative sign on TEP-H0 raw data) produces a calibration-dependent
+    systematic shift in the peculiar-velocity field. The Cepheid-calibrated
+    $H_0 = 73.0$ exceeds the TRGB-calibrated $H_0 = 69.8$ by
+    $\Delta H_0 = 3.2\ {\rm km\,s^{-1}\,Mpc^{-1}}$. When this inflated
+    $H_0$ is used to compute peculiar velocities, the subtraction
+    $cz - H_0 d$ introduces a distance-dependent shift:
+</p>
+
+<div class="equation">
+    \begin{equation}
+    \Delta v_{\rm pec} = v_{\rm pec}^{\rm Cep} - v_{\rm pec}^{\rm TRGB}
+    = (H_0^{\rm TRGB} - H_0^{\rm Cep}) \times d = -3.2 \times d\ {\rm km\,s^{-1}}
+        \end{equation}
+</div>
+
+<p>
+    This shift is deterministic by construction (it is not a statistical
+    test), but it quantifies the physical link between the Cepheid
+    calibration bias and the bulk-flow anomaly. Using the full
+    38,053-entry CosmicFlows-4 group catalog, the shift reaches
+    $-640\ {\rm km\,s^{-1}}$ at 200 Mpc and $-800\ {\rm km\,s^{-1}}$ at
+    250 Mpc. The RMS shift across the catalog is
+    $839\ {\rm km\,s^{-1}}$, and 89% of galaxies have
+    calibration-induced shifts exceeding $200\ {\rm km\,s^{-1}}$ —
+    comparable to
+    the typical peculiar velocity dispersion.
+</p>
+
+<p>
+    The bulk-flow amplitude is correspondingly sensitive: the mean
+    reduction in the TRGB-calibrated bulk flow relative to the
+    Cepheid-calibrated value is 3.3% across radial bins from 50 to
+    250 Mpc. Under the void model, the bulk flow is gravitational and
+    should not depend on the $H_0$ calibration. Under TEP, the 3.3%
+    reduction is the expected consequence of the indicator divergence
+    (Section 5): the Cepheid-calibrated $H_0$ inflates the apparent bulk
+    flow, and using the TRGB calibration partially removes this
+    inflation.
+</p>
+
+<p>
+    The $4.8\sigma$ Watkins et al. (2023) bulk-flow anomaly is therefore not
+    purely kinematic evidence for a local void. The velocity catalog
+    is calibration-sensitive: switching from Cepheid-anchored to
+    TRGB-anchored $H_0$ changes the measured bulk-flow amplitude by
+    $3.3\%$. This directly bounds the level of distance-scale leakage
+    into the bulk-flow statistic. The void model does not naturally
+    predict this calibration dependence; TEP provides a natural
+    consequence of the acoustic clock bias. However, Mazurenko et al. (2024)
+    note that the properly estimated bulk-flow vector, unlike an
+    individual peculiar velocity, is largely insensitive to the
+    assumed $H_0$. The $3.3\%$ change reported here is computed from
+    a vector average of recalculated peculiar velocities, not from the
+    full Watkins/Mazurenko bulk-flow estimator. This result should
+    therefore be interpreted as a prediction of calibration
+    sensitivity, not as standalone observed evidence for TEP. The
+    primary evidential weight in this paper rests on Observable III
+    (the direct $\mu(z)$ rejection) and the calibration-independent
+    $R_H$ test.
+</p>
+
+<h3>6.1 Host-Potential-Dependent Velocity Shift: A Calibration-Sensitivity Diagnostic</h3>
+
+<p>
+    The constant $\Delta v = -3.2 \times d$ shift above uses a single
+    $\Delta H_0$ applied uniformly. The full TEP prediction is
+    sharper: the velocity shift should correlate with host
+    gravitational potential, because the Cepheid distance compression
+    $\Delta\mu_i = \kappa_{\rm Cep} \cdot X_i$ is
+    host-potential-dependent. The resulting peculiar velocity shift is
+</p>
+
+<div class="equation">
+    \begin{equation}
+    \Delta v_{{\rm pec},i} = -H_0^{\rm Cep} d_i\left(10^{\kappa_{\rm Cep} X_i/5} - 1\right)
+    \approx -H_0^{\rm Cep} d_i\,\frac{\ln 10}{5}\,\kappa_{\rm Cep} X_i
+        \end{equation}
+</div>
+
+<p>
+    where $X_i = (S_{\rm total}\,u_\phi^2 - U_{\rm ref})/c^2$ is the
+    screened TEP potential coordinate (Section 5.5). Since
+    $\Delta v_i$ is constructed proportionally to $X_i$, a
+    correlation between $\Delta v_i$ and any variable entering $X_i$
+    is partly built in by design. This is a prediction of the
+    TEP framework, not independent observed evidence. Confirming it
+    requires correlating actual velocity residuals — not
+    TEP-constructed shifts — with $X_i$. The qualitative distinction
+    from a kinematic void (which produces a distance-dependent shift
+    independent of host mass) remains valid as a prediction.
+</p>
+
+<p>
+    Using the matched calibrator sample with measured potentials,
+    the host-potential-dependent shift is of order a few tens of
+    km/s (e.g., approximately $-54$ to $+16$ km/s for the 18
+    galaxies with potential data), not hundreds or thousands of
+    km/s. Because $\Delta v_i$ is constructed proportionally to
+    $X_i$, any correlation with variables that enter $X_i$ is partly
+    built in by design. A kinematic void model predicts no
+    such host-mass dependence, so a future correlation of actual
+    velocity residuals with $X_i$ would still distinguish the two
+    frameworks; the present estimate is a calibration-sensitivity
+    diagnostic, not a discriminating observation. A rigorous test
+    requires a larger sample with homogeneous Cepheid reductions and
+    TRGB cross-checks, the subject of ongoing work.
+</p>

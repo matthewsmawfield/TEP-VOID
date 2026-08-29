@@ -1,0 +1,115 @@
+{
+  "title": "Cosmological Voids vs Temporal Shear: An Empirical Falsification of Kinematic Hubble Tension Solutions",
+  "version": "v0.1 (Valencia)",
+  "first_published": "29 August 2026",
+  "last_updated": "29 August 2026",
+  "description": "Falsification of the KBC void/MOND model and two-channel TEP calibration analysis of the Hubble tension using Pantheon+ and CosmicFlows-4 data.",
+  "sections": [
+    {
+      "id": "section-abstract",
+      "title": "Abstract",
+      "file": "1_abstract.html",
+      "order": 1
+    },
+    {
+      "id": "section-intro",
+      "title": "1. Introduction: The Hubble Tension and the Crisis of ΛCDM",
+      "file": "2_introduction.html",
+      "order": 2
+    },
+    {
+      "id": "section-distance-ladder",
+      "title": "2. The Local Distance Ladder in the JWST Era",
+      "file": "3_distance_ladder.html",
+      "order": 3
+    },
+    {
+      "id": "section-void-hypothesis",
+      "title": "3. The Kinematic Void Hypothesis: KBC, MOND, and Bulk Flows",
+      "file": "4_void_hypothesis.html",
+      "order": 4
+    },
+    {
+      "id": "section-tep-framework",
+      "title": "4. The TEP Framework: Isochrony Violation and the Acoustic Clock Bias",
+      "file": "5_tep_framework.html",
+      "order": 5
+    },
+    {
+      "id": "section-discriminating-i",
+      "title": "5. Discriminating Observable I: Indicator-Specific Distance Divergence",
+      "file": "6_discriminating_i.html",
+      "order": 6
+    },
+    {
+      "id": "section-discriminating-ii",
+      "title": "6. Consequence II: Peculiar Velocity Calibration Sensitivity",
+      "file": "7_discriminating_ii.html",
+      "order": 7
+    },
+    {
+      "id": "section-discriminating-iii",
+      "title": "7. Discriminating Observable III: $H_0(z)$ Redshift Profile Fits",
+      "file": "8_discriminating_iii.html",
+      "order": 8
+    },
+    {
+      "id": "section-boundary-test",
+      "title": "8. Observable III (continued): Calibration-Independent Relative Evolution",
+      "file": "10_riess_freedman.html",
+      "order": 9
+    },
+    {
+      "id": "section-tep-reconstruction",
+      "title": "9. TEP Correction: Two-Channel Calibration Bias",
+      "file": "9_redshift_shear.html",
+      "order": 10
+    },
+    {
+      "id": "section-falsification",
+      "title": "10. Falsification Pathways and Future Observational Tests",
+      "file": "11_falsification.html",
+      "order": 11
+    },
+    {
+      "id": "section-discussion",
+      "title": "11. Discussion: Fundamental Physics versus Kinematic Alternatives",
+      "file": "12_discussion.html",
+      "order": 12
+    },
+    {
+      "id": "section-conclusion",
+      "title": "12. Conclusions",
+      "file": "13_conclusion.html",
+      "order": 13
+    },
+    {
+      "id": "section-references",
+      "title": "References",
+      "file": "14_references.html",
+      "order": 14
+    },
+    {
+      "id": "section-reproducibility",
+      "title": "Data Availability and Reproducibility",
+      "file": "15_reproducibility.html",
+      "order": 15
+    }
+  ],
+  "icons": [
+    {
+      "src": "public/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "public/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#220126"
+}

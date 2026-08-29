@@ -1,0 +1,118 @@
+[13:37:12] [INFO] 
+[13:37:12] [INFO] ================================================================================
+[13:37:12] [INFO]    ======================================================================
+[13:37:12] [INFO] ================================================================================
+[13:37:12] [INFO] 
+[13:37:12] [INFO] 
+[13:37:12] [INFO] ================================================================================
+[13:37:12] [INFO]    Step 50: JWST Matched Cepheid/TRGB Sample — Xi Regression
+[13:37:12] [INFO] ================================================================================
+[13:37:12] [INFO] 
+[13:37:12] [INFO] 
+[13:37:12] [INFO] ================================================================================
+[13:37:12] [INFO]    ======================================================================
+[13:37:12] [INFO] ================================================================================
+[13:37:12] [INFO] 
+[13:37:12] [INFO] This step builds a matched Cepheid/TRGB sample from recent JWST programs (GO-1995, GO-1685, GO-2875) and tests the TEP acoustic clock bias prediction on pristine, co-spatial NIRCam data. Unlike the CF4 compilation (Step 36), which suffers from cross-telescope registration artifacts, the JWST sample provides Cepheid and TRGB observations through identical NIRCam optics, eliminating telescope zero-point drift. The TEP prediction is that Delta_mu = mu_Cep - mu_TRGB should be negative (Cepheid distances compressed in deeper potentials) and should correlate with the gravitational potential coordinate X_i.
+[13:37:12] [PROCESS] Loading JWST TRGB distance catalog...
+[13:37:12] [SUCCESS]   18 galaxies with JWST TRGB + R22 Cepheid distances
+[13:37:12] [PROCESS] Loading host potential catalog (V_rot)...
+[13:37:12] [SUCCESS]   41 galaxies with rotation velocities
+[13:37:12] [PROCESS] Merging JWST distances with rotation velocities...
+[13:37:12] [SUCCESS]   18/18 galaxies matched with V_rot
+[13:37:13] [SUCCESS] 
+Final sample: 18 total (17 test + 1 anchor)
+[13:37:13] [TEST] 
+--- JWST Matched Galaxy Summary ---
+[13:37:13] [TEST]   PGC  40809 [ JWST_F115W] NGC 4424     vrot=  28.6  X_i=-8.4413e-08  mu_TRGB=30.926  mu_Cep=30.856  Delta_mu=-0.0700 +/- 0.1334
+[13:37:13] [TEST]   PGC  37466 [ JWST_F115W] NGC 3972     vrot= 110.0  X_i=-7.8183e-08  mu_TRGB=31.747  mu_Cep=31.644  Delta_mu=-0.1030 +/- 0.1128
+[13:37:13] [TEST]   PGC  32694 [ JWST_F090W] NGC 3447     vrot=  46.5  X_i=-7.3223e-08  mu_TRGB=31.930  mu_Cep=31.950  Delta_mu=+0.0200 +/- 0.0781
+[13:37:13] [TEST]   PGC  21373 [ JWST_F115W] NGC 2442     vrot= 226.7  X_i=-7.1597e-08  mu_TRGB=31.646  mu_Cep=31.457  Delta_mu=-0.1890 +/- 0.1168
+[13:37:13] [TEST]   PGC  39600 [      MASER] NGC 4258     vrot= 212.9  X_i=-6.0409e-08  mu_TRGB=29.397  mu_Cep=29.385  Delta_mu=-0.0120 +/- 0.0388
+[13:37:13] [TEST]   PGC  68535 [ JWST_F115W] NGC 7250     vrot=  71.1  X_i=-5.8244e-08  mu_TRGB=31.629  mu_Cep=31.628  Delta_mu=-0.0010 +/- 0.1345
+[13:37:13] [TEST]   PGC  13179 [ JWST_F115W] NGC 1365     vrot= 198.3  X_i=-5.6257e-08  mu_TRGB=31.366  mu_Cep=31.379  Delta_mu=+0.0130 +/- 0.0895
+[13:37:13] [TEST]   PGC  22721 [ JWST_F090W] NGC 2525     vrot= 126.8  X_i=-6.9516e-09  mu_TRGB=31.870  mu_Cep=32.060  Delta_mu=+0.1900 +/- 0.1253
+[13:37:13] [TEST]   PGC  51344 [ JWST_F090W] NGC 5584     vrot= 124.7  X_i=-4.2652e-09  mu_TRGB=31.950  mu_Cep=31.770  Delta_mu=-0.1800 +/- 0.1000
+[13:37:13] [TEST]   PGC  14814 [ JWST_F090W] NGC 1559     vrot= 134.3  X_i=+5.7966e-09  mu_TRGB=31.500  mu_Cep=31.500  Delta_mu=+0.0000 +/- 0.0860
+[13:37:13] [TEST]   PGC  41823 [ JWST_F115W] NGC 4536     vrot= 155.7  X_i=+1.6628e-08  mu_TRGB=30.923  mu_Cep=30.838  Delta_mu=-0.0850 +/- 0.0728
+[13:37:13] [TEST]   PGC  32207 [ JWST_F090W] NGC 3370     vrot= 149.4  X_i=+3.1664e-08  mu_TRGB=32.190  mu_Cep=32.130  Delta_mu=-0.0600 +/- 0.0849
+[13:37:13] [TEST]   PGC  54097 [ JWST_F090W] NGC 5861     vrot= 158.5  X_i=+3.3342e-08  mu_TRGB=32.100  mu_Cep=32.230  Delta_mu=+0.1300 +/- 0.1253
+[13:37:13] [TEST]   PGC  51969 [ JWST_F115W] NGC 5643     vrot= 171.2  X_i=+3.8901e-08  mu_TRGB=30.643  mu_Cep=30.570  Delta_mu=-0.0730 +/- 0.0868
+[13:37:13] [TEST]   PGC  42741 [ JWST_F115W] NGC 4639     vrot= 165.9  X_i=+4.8506e-08  mu_TRGB=31.774  mu_Cep=31.818  Delta_mu=+0.0440 +/- 0.1120
+[13:37:13] [TEST]   PGC  13727 [ JWST_F090W] NGC 1448     vrot= 185.1  X_i=+6.3519e-08  mu_TRGB=31.340  mu_Cep=31.300  Delta_mu=-0.0400 +/- 0.0707
+[13:37:13] [TEST]   PGC  37967 [ JWST_F115W] NGC 4038     vrot= 169.1  X_i=+6.3692e-08  mu_TRGB=31.645  mu_Cep=31.615  Delta_mu=-0.0300 +/- 0.1406
+[13:37:13] [TEST]   PGC  50063 [ JWST_F115W] M101         vrot= 274.1  X_i=+2.5358e-07  mu_TRGB=29.151  mu_Cep=29.194  Delta_mu=+0.0430 +/- 0.0573
+[13:37:13] [PROCESS] 
+Methodology: Weighted linear regression Delta_mu = slope * X_i + intercept on the JWST matched sample (excluding NGC 4258 anchor), with weights = 1/delta_mu_err^2. Both screened (S_total * U_i) and unscreened (U_i) potential coordinates are evaluated.
+[13:37:13] [TEST]   [screened] N=17: slope = 2.6025e+05 +/- 2.1673e+05 (1.20sigma)
+[13:37:13] [TEST]   [screened] intercept = -0.0322 +/- 0.0237
+[13:37:13] [TEST]   [screened] Pearson r = +0.2694 (p=0.2957), Spearman rho = +0.2941 (p=0.2518)
+[13:37:13] [TEST]   [screened] R^2 = 0.0641, chi^2/dof = 0.77
+[13:37:13] [TEST]   [screened] Sign: POSITIVE (wrong for TEP)
+[13:37:13] [TEST]   [screened] Weighted mean Delta_mu = -0.0227 +/- 0.0223 (1.02sigma)
+[13:37:13] [TEST]   [screened] vs TEP (default): |slope - pred|/sigma = 2.88sigma
+[13:37:13] [TEST]   [screened] vs TEP (joint): |slope - pred|/sigma = 3.05sigma
+[13:37:13] [TEST]   [screened] vs TEP (canonical): |slope - pred|/sigma = 5.63sigma
+[13:37:13] [TEST]   [unscreened] N=17: slope = 1.2745e+05 +/- 1.8246e+05 (0.70sigma)
+[13:37:13] [TEST]   [unscreened] intercept = -0.0338 +/- 0.0273
+[13:37:13] [TEST]   [unscreened] Pearson r = -0.0157 (p=0.9522), Spearman rho = +0.0539 (p=0.8372)
+[13:37:13] [TEST]   [unscreened] R^2 = -0.0239, chi^2/dof = 0.84
+[13:37:13] [TEST]   [unscreened] Sign: POSITIVE (wrong for TEP)
+[13:37:13] [TEST]   [unscreened] Weighted mean Delta_mu = -0.0227 +/- 0.0223 (1.02sigma)
+[13:37:13] [TEST]   [unscreened] vs TEP (default): |slope - pred|/sigma = 2.70sigma
+[13:37:13] [TEST]   [unscreened] vs TEP (joint): |slope - pred|/sigma = 2.89sigma
+[13:37:13] [TEST]   [unscreened] vs TEP (canonical): |slope - pred|/sigma = 5.96sigma
+[13:37:13] [PROCESS] 
+Running regression by JWST program subset...
+[13:37:13] [TEST]   [cchp_f115w/screened] N=10: slope = 3.6429e+05 +/- 2.3421e+05 (1.56sigma)
+[13:37:13] [TEST]   [cchp_f115w/screened] intercept = -0.0516 +/- 0.0325
+[13:37:13] [TEST]   [cchp_f115w/screened] Pearson r = +0.5404 (p=0.1068), Spearman rho = +0.5758 (p=0.0816)
+[13:37:13] [TEST]   [cchp_f115w/screened] R^2 = 0.2883, chi^2/dof = 0.39
+[13:37:13] [TEST]   [cchp_f115w/screened] Sign: POSITIVE (wrong for TEP)
+[13:37:13] [TEST]   [cchp_f115w/screened] Weighted mean Delta_mu = -0.0305 +/- 0.0296 (1.03sigma)
+[13:37:13] [TEST]   [cchp_f115w/screened] vs TEP (default): |slope - pred|/sigma = 3.11sigma
+[13:37:13] [TEST]   [cchp_f115w/screened] vs TEP (joint): |slope - pred|/sigma = 3.26sigma
+[13:37:13] [TEST]   [cchp_f115w/screened] vs TEP (canonical): |slope - pred|/sigma = 5.65sigma
+[13:37:13] [TEST]   [cchp_f115w/unscreened] N=10: slope = 2.6058e+05 +/- 2.1789e+05 (1.20sigma)
+[13:37:13] [TEST]   [cchp_f115w/unscreened] intercept = -0.0654 +/- 0.0415
+[13:37:13] [TEST]   [cchp_f115w/unscreened] Pearson r = +0.1445 (p=0.6905), Spearman rho = +0.1394 (p=0.7009)
+[13:37:13] [TEST]   [cchp_f115w/unscreened] R^2 = -0.0654, chi^2/dof = 0.51
+[13:37:13] [TEST]   [cchp_f115w/unscreened] Sign: POSITIVE (wrong for TEP)
+[13:37:13] [TEST]   [cchp_f115w/unscreened] Weighted mean Delta_mu = -0.0305 +/- 0.0296 (1.03sigma)
+[13:37:13] [TEST]   [cchp_f115w/unscreened] vs TEP (default): |slope - pred|/sigma = 2.87sigma
+[13:37:13] [TEST]   [cchp_f115w/unscreened] vs TEP (joint): |slope - pred|/sigma = 3.03sigma
+[13:37:13] [TEST]   [cchp_f115w/unscreened] vs TEP (canonical): |slope - pred|/sigma = 5.60sigma
+[13:37:13] [TEST]   [anand_f090w/screened] N=7: slope = -3.5491e+05 +/- 7.3590e+05 (0.48sigma)
+[13:37:13] [TEST]   [anand_f090w/screened] intercept = -0.0094 +/- 0.0345
+[13:37:13] [TEST]   [anand_f090w/screened] Pearson r = -0.0799 (p=0.8647), Spearman rho = -0.2500 (p=0.5887)
+[13:37:13] [TEST]   [anand_f090w/screened] R^2 = -0.0282, chi^2/dof = 1.43
+[13:37:13] [TEST]   [anand_f090w/screened] Sign: NEGATIVE (correct for TEP)
+[13:37:13] [TEST]   [anand_f090w/screened] Weighted mean Delta_mu = -0.0123 +/- 0.0340 (0.36sigma)
+[13:37:13] [TEST]   [anand_f090w/screened] vs TEP (default): |slope - pred|/sigma = 0.01sigma
+[13:37:13] [TEST]   [anand_f090w/screened] vs TEP (joint): |slope - pred|/sigma = 0.06sigma
+[13:37:13] [TEST]   [anand_f090w/screened] vs TEP (canonical): |slope - pred|/sigma = 0.82sigma
+[13:37:13] [TEST]   [anand_f090w/unscreened] N=7: slope = -2.2173e+05 +/- 5.7252e+05 (0.39sigma)
+[13:37:13] [TEST]   [anand_f090w/unscreened] intercept = -0.0070 +/- 0.0367
+[13:37:13] [TEST]   [anand_f090w/unscreened] Pearson r = -0.0397 (p=0.9326), Spearman rho = -0.0357 (p=0.9394)
+[13:37:13] [TEST]   [anand_f090w/unscreened] R^2 = -0.0339, chi^2/dof = 1.44
+[13:37:13] [TEST]   [anand_f090w/unscreened] Sign: NEGATIVE (correct for TEP)
+[13:37:13] [TEST]   [anand_f090w/unscreened] Weighted mean Delta_mu = -0.0123 +/- 0.0340 (0.36sigma)
+[13:37:13] [TEST]   [anand_f090w/unscreened] vs TEP (default): |slope - pred|/sigma = 0.25sigma
+[13:37:13] [TEST]   [anand_f090w/unscreened] vs TEP (joint): |slope - pred|/sigma = 0.31sigma
+[13:37:13] [TEST]   [anand_f090w/unscreened] vs TEP (canonical): |slope - pred|/sigma = 1.29sigma
+[13:37:13] [PROCESS] 
+Running leave-one-out on regression slope...
+[13:37:13] [TEST]   LOO: Full slope = 2.6025e+05, most influential = M101 (slope -> 9.6560e+04, 0.20sigma)
+[13:37:13] [TEST]   LOO sigma range: 0.20sigma to 1.46sigma
+[13:37:13] [TEST]   LOO: Full slope = 1.2745e+05, most influential = M101 (slope -> -2.4264e+05, 0.69sigma)
+[13:37:13] [TEST]   LOO sigma range: 0.45sigma to 1.00sigma
+[13:37:13] [PROCESS] 
+Comparing with CF4 Step 36 results...
+[13:37:13] [TEST]   CF4 (Step 36, N=22): slope = 5.3556e+05 +/- 2.5438e+05
+[13:37:13] [TEST]   JWST (Step 50, N=17): slope = 2.6025e+05 +/- 2.1673e+05
+[13:37:13] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_50_jwst_matched.png
+[13:37:13] [SUCCESS] 
+Matched table saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/jwst_matched_2026.csv
+[13:37:13] [SUCCESS] 
+Results saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_50_jwst_matched.json
+[13:37:13] [SUCCESS] Step 50 complete

@@ -1,0 +1,167 @@
+{
+  "step": "11_indicator_divergence_vs_potential",
+  "description": "Test whether Cepheid-TRGB divergence scales with host gravitational potential",
+  "delta_mu_definition": "Delta_mu = mu_Cepheid - mu_TRGB",
+  "model": "Delta_mu = kappa * sigma_v + intercept",
+  "methodology": "Pearson and Spearman rank correlations plus an inverse-variance weighted linear regression of Delta_mu on host velocity dispersion sigma_v. The slope kappa and its significance (kappa / kappa_err) serve as the primary discriminant between TEP (kappa non-zero) and void (kappa = 0) predictions.",
+  "provenance": {
+    "data_sources": [
+      "step_10 per-galaxy Delta_mu results",
+      "step_00 matched_hosts.csv interim catalog",
+      "step_01 host_potential_catalog.csv interim catalog",
+      "HyperLEDA (Makarov et al. 2014) velocity dispersions"
+    ],
+    "pipeline_block": "Ia \u2014 Indicator Divergence"
+  },
+  "scientific_context": "Does the Cepheid-TRGB distance divergence scale with host gravitational potential depth? TEP predicts a non-zero coupling kappa; the void model predicts kappa = 0.",
+  "tep_prediction": "Non-zero kappa: Delta_mu scales with sigma_v, reflecting indicator-dependent clock-rate responses to the local gravitational potential.",
+  "void_prediction": "kappa = 0: no potential-dependent divergence, since distances are indicator-independent in the kinematic void model.",
+  "downstream_consumers": [
+    "step_12_void_prediction_uniformity"
+  ],
+  "results": {
+    "n_hosts": 18,
+    "pearson_r": 0.1484857530279467,
+    "pearson_p": 0.5565185705734419,
+    "spearman_rho": -0.25902992776057787,
+    "spearman_p": 0.2993048420526306,
+    "linear_fit": {
+      "kappa": -0.00011776945665955753,
+      "kappa_err": 0.0006540122186237539,
+      "kappa_significance_sigma": 0.18007225752965483,
+      "intercept": 0.010052136288552947,
+      "intercept_err": 0.07300838300655361,
+      "r_squared": -0.02018415942615226,
+      "chi2": 12.299257151913707,
+      "chi2_reduced": 0.7687035719946067,
+      "dof": 16
+    },
+    "tep_prediction": {
+      "kappa_nonzero": true,
+      "description": "TEP predicts non-zero kappa: divergence scales with potential"
+    },
+    "void_prediction": {
+      "kappa": 0.0,
+      "description": "Void predicts kappa = 0: no potential-dependent divergence"
+    }
+  },
+  "per_galaxy": [
+    {
+      "galaxy": "NGC 1015",
+      "delta_mu": -0.0122519181936766,
+      "delta_mu_err": 0.0849070956991837,
+      "sigma_v": 85.347788
+    },
+    {
+      "galaxy": "NGC 1309",
+      "delta_mu": -0.0110363907646515,
+      "delta_mu_err": 0.0711917306954648,
+      "sigma_v": 114.622009
+    },
+    {
+      "galaxy": "NGC 1365",
+      "delta_mu": -0.0345845646957485,
+      "delta_mu_err": 0.0640806382485477,
+      "sigma_v": 140.219275
+    },
+    {
+      "galaxy": "NGC 1448",
+      "delta_mu": -0.0248865971734844,
+      "delta_mu_err": 0.0536332862148195,
+      "sigma_v": 130.885465
+    },
+    {
+      "galaxy": "NGC 1559",
+      "delta_mu": 0.0207827220436875,
+      "delta_mu_err": 0.0653146700163979,
+      "sigma_v": 94.964441
+    },
+    {
+      "galaxy": "NGC 2442",
+      "delta_mu": 0.0152294026004433,
+      "delta_mu_err": 0.074061926408601,
+      "sigma_v": 160.301107
+    },
+    {
+      "galaxy": "NGC 3021",
+      "delta_mu": -0.0284217491060729,
+      "delta_mu_err": 0.1087897598555941,
+      "sigma_v": 96.661497
+    },
+    {
+      "galaxy": "NGC 3370",
+      "delta_mu": 0.0524967943258474,
+      "delta_mu_err": 0.0606838421967683,
+      "sigma_v": 105.641753
+    },
+    {
+      "galaxy": "NGC 3972",
+      "delta_mu": 0.107206094762283,
+      "delta_mu_err": 0.0841010287177304,
+      "sigma_v": 77.781746
+    },
+    {
+      "galaxy": "NGC 4038",
+      "delta_mu": 0.0238334076629378,
+      "delta_mu_err": 0.0943919868905036,
+      "sigma_v": 119.571757
+    },
+    {
+      "galaxy": "NGC 4424",
+      "delta_mu": -0.2161136816354272,
+      "delta_mu_err": 0.1190445339815582,
+      "sigma_v": 20.223254
+    },
+    {
+      "galaxy": "NGC 4536",
+      "delta_mu": -0.1245036022215302,
+      "delta_mu_err": 0.0624633914316627,
+      "sigma_v": 110.096526
+    },
+    {
+      "galaxy": "NGC 4639",
+      "delta_mu": -0.0126149927308496,
+      "delta_mu_err": 0.0871306727950061,
+      "sigma_v": 117.309015
+    },
+    {
+      "galaxy": "NGC 5584",
+      "delta_mu": 0.0455394863604894,
+      "delta_mu_err": 0.0604892929519202,
+      "sigma_v": 88.176216
+    },
+    {
+      "galaxy": "NGC 5643",
+      "delta_mu": 0.0284086285545477,
+      "delta_mu_err": 0.0655175205324215,
+      "sigma_v": 121.056681
+    },
+    {
+      "galaxy": "NGC 5861",
+      "delta_mu": -0.0547931820806937,
+      "delta_mu_err": 0.0965431052391899,
+      "sigma_v": 112.076425
+    },
+    {
+      "galaxy": "NGC 5917",
+      "delta_mu": 0.0368954147656808,
+      "delta_mu_err": 0.0975712451379343,
+      "sigma_v": 65.478088
+    },
+    {
+      "galaxy": "NGC 7250",
+      "delta_mu": 0.0959722374604616,
+      "delta_mu_err": 0.1194724396858183,
+      "sigma_v": 50.275292
+    }
+  ],
+  "interpretation": {
+    "tep": "Non-zero kappa indicates potential-dependent divergence, consistent with TEP",
+    "void": "Void model predicts kappa = 0 (no potential dependence)",
+    "falsification": "kappa detected at 0.18 sigma; void prediction of kappa = 0 is not definitively falsified at >2 sigma"
+  },
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_11_indicator_divergence_vs_potential.json",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_11_divergence_vs_potential.png"
+  ]
+}

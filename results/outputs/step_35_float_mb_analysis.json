@@ -1,0 +1,269 @@
+{
+  "step": "35_float_mb_analysis",
+  "description": "Release the global M_B constraint and analyze host-mass dependence. Quantifies SALT2 absorption of TEP signal.",
+  "mb_global": -19.253,
+  "analysis_1_data_driven_fit": {
+    "h0_73.0_massive": {
+      "n_sne": 790,
+      "mb_fit": -19.248600416821137,
+      "scatter": 0.16107541699627353,
+      "sem": 0.005730806155379534
+    },
+    "h0_73.0_low_mass": {
+      "n_sne": 710,
+      "mb_fit": -19.262032291517905,
+      "scatter": 0.17972319206118445,
+      "sem": 0.00674489120853821
+    },
+    "h0_73.0_all": {
+      "n_sne": 1500,
+      "mb_fit": -19.254958170844276,
+      "scatter": 0.17028905746892556,
+      "sem": 0.00439684455745671
+    },
+    "h0_67.4_massive": {
+      "n_sne": 790,
+      "mb_fit": -19.42191523474682,
+      "scatter": 0.16107541699627353,
+      "sem": 0.005730806155379534
+    },
+    "h0_67.4_low_mass": {
+      "n_sne": 710,
+      "mb_fit": -19.435347109443587,
+      "scatter": 0.17972319206118462,
+      "sem": 0.0067448912085382165
+    },
+    "h0_67.4_all": {
+      "n_sne": 1500,
+      "mb_fit": -19.428272988769955,
+      "scatter": 0.1702890574689253,
+      "sem": 0.004396844557456703
+    },
+    "mass_step_h0_73.0": 0.01343187469676721,
+    "mass_step_h0_67.4": 0.01343187469676721
+  },
+  "analysis_2_salt2_absorption": {
+    "residual_mass_step_mag": 0.01343187469676721,
+    "salt2_mass_step_correction_mag": 0.06,
+    "tep_predicted_delta_mb_mag": 0.1315911851489676,
+    "tep_xi_massive": 3.605237949286783e-07,
+    "tep_xi_low": 0.0,
+    "tep_delta_xi": 3.605237949286783e-07,
+    "salt2_absorbs_fraction": 0.8979272457987085
+  },
+  "analysis_3_forward_model": {
+    "h0_z_bins": [
+      {
+        "z_lo": 0.01,
+        "z_hi": 0.05,
+        "z_mid": 0.022360679774997897,
+        "massive": {
+          "n_sne": 217,
+          "h0_orig": 72.22138542217284,
+          "h0_tep": 69.03746082771927,
+          "h0_diff": -3.183924594453572
+        },
+        "low_mass": {
+          "n_sne": 201,
+          "h0_orig": 72.60323295889397,
+          "h0_tep": 71.96932651398441,
+          "h0_diff": -0.6339064449095559
+        },
+        "all": {
+          "n_sne": 418,
+          "h0_orig": 72.4050011037062,
+          "h0_tep": 70.44728140891375,
+          "h0_diff": -1.957719694792445
+        }
+      },
+      {
+        "z_lo": 0.05,
+        "z_hi": 0.1,
+        "z_mid": 0.07071067811865477,
+        "massive": {
+          "n_sne": 47,
+          "h0_orig": 72.36831669552228,
+          "h0_tep": 69.27076578540775,
+          "h0_diff": -3.097550910114535
+        },
+        "low_mass": {
+          "n_sne": 40,
+          "h0_orig": 73.93332036512024,
+          "h0_tep": 72.90280325644054,
+          "h0_diff": -1.0305171086797031
+        },
+        "all": {
+          "n_sne": 87,
+          "h0_orig": 73.08785861257881,
+          "h0_tep": 70.94066807094005,
+          "h0_diff": -2.147190541638764
+        }
+      },
+      {
+        "z_lo": 0.1,
+        "z_hi": 0.15,
+        "z_mid": 0.1224744871391589,
+        "massive": {
+          "n_sne": 41,
+          "h0_orig": 72.42938086211308,
+          "h0_tep": 69.5772795177374,
+          "h0_diff": -2.852101344375683
+        },
+        "low_mass": {
+          "n_sne": 44,
+          "h0_orig": 72.51332111193884,
+          "h0_tep": 71.41144893191243,
+          "h0_diff": -1.1018721800264046
+        },
+        "all": {
+          "n_sne": 85,
+          "h0_orig": 72.47283228555229,
+          "h0_tep": 70.52673192036917,
+          "h0_diff": -1.9461003651831135
+        }
+      },
+      {
+        "z_lo": 0.15,
+        "z_hi": 0.25,
+        "z_mid": 0.19364916731037085,
+        "massive": {
+          "n_sne": 162,
+          "h0_orig": 73.62483111262911,
+          "h0_tep": 70.16628299509131,
+          "h0_diff": -3.458548117537802
+        },
+        "low_mass": {
+          "n_sne": 99,
+          "h0_orig": 73.37498794446026,
+          "h0_tep": 72.4933204264132,
+          "h0_diff": -0.8816675180470526
+        },
+        "all": {
+          "n_sne": 261,
+          "h0_orig": 73.53006301435816,
+          "h0_tep": 71.04895236559271,
+          "h0_diff": -2.4811106487654513
+        }
+      },
+      {
+        "z_lo": 0.25,
+        "z_hi": 0.4,
+        "z_mid": 0.31622776601683794,
+        "massive": {
+          "n_sne": 173,
+          "h0_orig": 72.84174165879143,
+          "h0_tep": 69.38898619039367,
+          "h0_diff": -3.4527554683977684
+        },
+        "low_mass": {
+          "n_sne": 133,
+          "h0_orig": 73.98330455185783,
+          "h0_tep": 73.15644918432753,
+          "h0_diff": -0.8268553675302996
+        },
+        "all": {
+          "n_sne": 306,
+          "h0_orig": 73.33791115152944,
+          "h0_tep": 71.02647827599237,
+          "h0_diff": -2.311432875537065
+        }
+      },
+      {
+        "z_lo": 0.4,
+        "z_hi": 0.65,
+        "z_mid": 0.5099019513592785,
+        "massive": {
+          "n_sne": 89,
+          "h0_orig": 74.51509884663685,
+          "h0_tep": 71.05594197090586,
+          "h0_diff": -3.459156875730983
+        },
+        "low_mass": {
+          "n_sne": 126,
+          "h0_orig": 74.39284426135382,
+          "h0_tep": 73.58030822316935,
+          "h0_diff": -0.8125360381844615
+        },
+        "all": {
+          "n_sne": 215,
+          "h0_orig": 74.4434519734012,
+          "h0_tep": 72.53533800711608,
+          "h0_diff": -1.9081139662851143
+        }
+      },
+      {
+        "z_lo": 0.65,
+        "z_hi": 1.0,
+        "z_mid": 0.806225774829855,
+        "massive": {
+          "n_sne": 29,
+          "h0_orig": 74.31228621457932,
+          "h0_tep": 70.95896382731601,
+          "h0_diff": -3.3533223872633044
+        },
+        "low_mass": {
+          "n_sne": 39,
+          "h0_orig": 76.2897670605147,
+          "h0_tep": 75.70381183986828,
+          "h0_diff": -0.5859552206464258
+        },
+        "all": {
+          "n_sne": 68,
+          "h0_orig": 75.4464296409246,
+          "h0_tep": 73.68027371686804,
+          "h0_diff": -1.7661559240565623
+        }
+      },
+      {
+        "z_lo": 1.0,
+        "z_hi": 2.3,
+        "z_mid": 1.51657508881031,
+        "massive": {
+          "n_sne": 17,
+          "h0_orig": 74.27342413107083,
+          "h0_tep": 71.80878632009203,
+          "h0_diff": -2.4646378109788003
+        },
+        "low_mass": {
+          "n_sne": 8,
+          "h0_orig": 70.54394515124318,
+          "h0_tep": 69.74711232431383,
+          "h0_diff": -0.7968328269293465
+        },
+        "all": {
+          "n_sne": 25,
+          "h0_orig": 73.07999085752597,
+          "h0_tep": 71.149050641443,
+          "h0_diff": -1.9309402160829734
+        }
+      }
+    ],
+    "global_fit": {
+      "scatter_orig_all": 0.17028905746892556,
+      "scatter_tep_all": 0.17601524918973085,
+      "scatter_orig_massive": 0.1610754169962737,
+      "scatter_tep_massive": 0.16100953927607062,
+      "scatter_orig_low": 0.1797231920611846,
+      "scatter_tep_low": 0.17969815309920872,
+      "mean_residual_orig_all": -0.0019581708442748466,
+      "mean_residual_tep_all": 0.06209423586197039,
+      "mean_residual_orig_massive": 0.0043995831788618675,
+      "mean_residual_tep_massive": 0.10494848856390596,
+      "mean_residual_orig_low": -0.009032291517905838,
+      "mean_residual_tep_low": 0.014411334968267433
+    }
+  },
+  "key_finding": "The residual mass step in Pantheon+ m_b_corr is 0.0134 mag, negligible compared to the SALT2 mass step correction (0.0600 mag) and the TEP prediction (0.1316 mag). The SALT2 correction absorbs the host-mass dependence, confirming that Pantheon+ cannot test the TEP host-mass prediction. Per-host Cepheid analysis (TEP-H0, Paper 11) is the only viable test.",
+  "tep_caveat": "The forward model applies the TEP-predicted per-host M_B correction (M_B,i = M_B,global - kappa_Cep * X_i) and shows that the H0(z) split between massive and low-mass hosts emerges as predicted, while the LCDM fit quality is preserved. This is a forward-modeling demonstration, not a data-driven detection \u2014 the SALT2 correction has already absorbed the signal in the actual data.",
+  "methodology": "Three analyses: (1) data-driven M_B fit per host mass bin by minimizing Hubble residual scatter at H0=73.0 and 67.4 km/s/Mpc; (2) SALT2 absorption quantification comparing residual mass step to SALT2 correction and TEP-predicted Delta_M_B; (3) forward model applying TEP per-host M_B correction via sigmoid X_i proxy with gamma=2.0, computing H0(z) in redshift bins and comparing LCDM fit scatter.",
+  "provenance": {
+    "data_sources": [
+      "data/interim/pantheon_plus_sne.csv"
+    ],
+    "pipeline_block": "Block II \u2014 Void boundary test and float M_B"
+  },
+  "scientific_context": "Investigates whether the host-mass dependence predicted by TEP can be recovered when the global M_B constraint in Pantheon+ is released. The key discriminating observable is the residual mass step in m_b_corr after the SALT2 correction, compared to the TEP-predicted Delta_M_B from the Cepheid calibration bias difference between massive and low-mass hosts.",
+  "tep_prediction": "The TEP-predicted per-host M_B correction (M_B,i = M_B,global - kappa_Cep * X_i) produces an H0(z) split between massive and low-mass hosts. However, the SALT2 mass step correction already applied to m_b_corr absorbs this signal, so the residual mass step in Pantheon+ is expected to be negligible.",
+  "void_prediction": "The KBC void model does not predict a host-mass dependence in M_B; the Hubble tension is attributed to spatial position within the void, not to host galaxy properties. No residual mass step is predicted beyond the standard SALT2 correction.",
+  "downstream_consumers": []
+}

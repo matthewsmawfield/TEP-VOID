@@ -1,0 +1,50 @@
+{
+  "step": 51,
+  "description": "Bayesian hierarchical analysis of band-dependence test",
+  "sample": "primary (MF2023)",
+  "n_galaxies": 20,
+  "ols": {
+    "slope": 813437.4972618261,
+    "slope_err": 152124.22479976167,
+    "slope_sigma": 5.347192390512023,
+    "intercept": -0.0022245364582619684,
+    "chi2_dof": 5.191202472058839
+  },
+  "mcmc_hierarchical": {
+    "slope_median": 679770.333627466,
+    "slope_std": 597853.9704501034,
+    "slope_16th": 98855.03097823216,
+    "slope_84th": 1265824.2373431097,
+    "intercept_median": 0.0002585469458649724,
+    "intercept_std": 0.03040276021850097,
+    "sigma_int_median": 0.11918410820911887,
+    "sigma_int_std": 0.026594175980283467,
+    "sigma_int_16th": 0.09692438681478806,
+    "sigma_int_84th": 0.14655572982882192,
+    "acceptance_rate": 0.30833333333333335,
+    "p_slope_positive": 0.8744,
+    "p_slope_above_predicted": 0.8158
+  },
+  "bootstrap": {
+    "slope_median": 834746.5712739995,
+    "slope_std": 615971.435475428,
+    "slope_2_5": -408218.7952776265,
+    "slope_97_5": 1982933.746802419
+  },
+  "tep_prediction": {
+    "predicted_slope_default": 182500.0,
+    "predicted_slope_joint": 200000.0,
+    "observed_over_predicted": 3.7247689513833753
+  },
+  "loo_analysis": {
+    "most_influential_galaxy": "NGC 3982",
+    "loo_slope_without_most_influential": 811635.9366936033,
+    "loo_slope_min": 730629.9550411277,
+    "loo_slope_max": 980918.810543489
+  },
+  "outlier_analysis": {
+    "n_outliers": 0,
+    "sigma_clipped_slope": 813437.4972618261,
+    "sigma_clipped_slope_err": 152124.22479976167
+  }
+}

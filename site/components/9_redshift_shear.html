@@ -1,0 +1,444 @@
+<h2>9. TEP Correction: Two-Channel Calibration Bias</h2>
+
+<p>
+    Sections 5 through 8 have established that the published KBC/MOND
+    gradual decay curves are rejected by the observed flat $H_0(z)$
+    profile. This section quantifies the physical scale of the TEP
+    calibration bias by tracing the correction through two distinct
+    channels: the Cepheid period-transport channel (calibrator
+    hosts $\to$ $M_B$ zero-point) and the SN light-curve stretch
+    channel (SN standardization $\to$ Hubble-flow residuals). The
+    Cepheid channel is directly measured; the SN stretch channel
+    is a falsifiable prediction of the same transport mechanism.
+    The data tell a consistent story across multiple scales.
+    The strongest evidence comes from single-galaxy differential
+    tests: internal radial Period--Luminosity gradients within M31
+    ($\Delta W = +0.630 \pm 0.195$ mag, $3.24\sigma$ under HST PHAT
+    spatial matching) and the LMC ($\Delta W = +0.0284 \pm 0.0086$
+    mag, $3.30\sigma$ from OGLE-IV) independently detect the
+    predicted clock-gradient signal free from host-to-host peculiar
+    velocity systematics. At the cosmological level, the redshift-only
+    WLS regression in $H_0$ space across 33 Hubble-flow hosts yields
+    $\kappa_{\rm Cep} = (0.452 \pm 0.220) \times 10^6$ mag
+    ($2.05\sigma$ at $\sigma_v = 150$ km/s), with the joint
+    multi-block likelihood returning $1.58\sigma$ as a consistency
+    check. The supernova $X_i$-step emerges at $1.39\sigma$, also in the
+    predicted direction, placing the longstanding host-mass residual in a concrete, falsifiable timescale-bias framework. These multi-scale detections
+    align in both direction and order of magnitude to
+    span the gap. The definitive per-host recalibration is left to
+    the companion TEP-H0 analysis.
+</p>
+
+<h3>9.1 The Two-Channel Taxonomy</h3>
+
+<p>
+    The TEP framework distinguishes two classes of distance indicator
+    by the physical quantity that sets their standardization. The first
+    class — <em>acoustic clocks</em> — includes Cepheid variables,
+    whose period is the acoustic crossing time of the stellar envelope
+    (Section 4.4). The second class comprises <em>non-timescale distance
+    indicators</em>, including the TRGB, JAGB, and SBF. Their
+    standardizations are rooted in nuclear ignition thresholds or
+    statistical stellar-population luminosities—neither of
+    which requires transporting a redshift-corrected timescale
+    to the rest frame. A third category, previously unrecognized in this
+    framework, occupies an intermediate position: <em>partially
+    time-standardized indicators</em>, whose peak luminosity is nuclear
+    physics but whose empirical standardization involves a timescale.
+</p>
+
+<p>
+    Type Ia supernovae belong to this third category. The SALT2/SALT3
+    standardization relation is
+    $m_B = M + \alpha\,x_1 - \beta\,c + \Delta_{\rm host}$, where
+    $x_1$ is the light-curve stretch — the timescale of the
+    photospheric diffusion through the ejecta. The peak luminosity is
+    nuclear physics; the light-curve width by which it is standardized
+    is a clock. Under any framework in which clock rates respond to
+    environment, SN stretch inherits an environment-dependent bias
+    that propagates into the standardized magnitude through the
+    $\alpha\,x_1$ term. TRGB, JAGB, and SBF anchors do not carry this
+    bias because their standardization does not involve a timescale.
+</p>
+
+<p>
+    This taxonomy resolves a structural tension in the distance-ladder
+    literature. On common galaxy samples, all indicators converge to
+    $H_0 \approx 72$–$73$ (Section 2.5); on full ladders with distinct
+    calibrator populations, they diverge (Section 2.7). Both
+    observations are explained by the two-channel model: common-sample
+    comparisons share the SN stretch channel (all indicators converge
+    high), while full-ladder comparisons differ by the Cepheid channel
+    (acoustic clocks biased, non-timescale indicators not).
+</p>
+
+<h3>9.2 Channel 1: The Cepheid Period-Transport Chain</h3>
+
+<p>
+    The Cepheid-channel calibration bias operates through a specific
+    physical chain. The TEP correction is calculated on the
+    <em>Cepheid calibrator hosts</em> — the galaxies whose Cepheid
+    distances set the global $M_B = -19.253$ zero-point. The mean
+    correction over those calibrators determines a single shift
+    $\Delta M_B^{\rm Cep}$, which then propagates uniformly to
+    <em>all</em> Pantheon+ supernovae:
+</p>
+
+<div class="equation">
+    \begin{equation}
+    X_{\rm Cepheid\ calibrator}
+    \;\longrightarrow\;
+    \Delta\mu_{\rm Cep}
+    \;\longrightarrow\;
+    \Delta M_B^{\rm Cep}
+    \;\longrightarrow\;
+    \text{all Hubble-flow SNe}
+        \end{equation}
+</div>
+
+<p>
+    The potential of an arbitrary high-redshift SN host does not enter
+    this chain. The Cepheid channel affects only the Cepheid
+    calibrators that set $M_B$, not the SNe themselves. The SN
+    stretch channel (Section 9.5) operates independently on the
+    Hubble-flow SNe.
+</p>
+
+<h3>9.3 The Cepheid Modulus Correction</h3>
+
+<p>
+    Under TEP, the Cepheid-derived distance modulus in a calibrator
+    host with gravitational potential coordinate $X_i$ is biased by
+    the clock-rate differential. Two channel
+    coefficients are distinguished:
+</p>
+
+<div class="equation">
+    \begin{equation}
+    \Delta\log_{10}P = -\kappa_P\, X_i, \qquad
+    \kappa_{\rm Cep} = -b\,\kappa_P
+    \end{equation}
+    \begin{equation}
+    \boxed{ \delta\mu_i^{\rm raw}=-\kappa_{\rm Cep}X_i } \qquad \text{and} \qquad \boxed{ \Delta\mu_i^{\rm corr}=+\kappa_{\rm Cep}X_i }
+        \end{equation}
+</div>
+
+<p>
+    where $\kappa_P$ is the dimensionless period-response coefficient
+    (governing Cepheid period contraction for $X_i > 0$ in massive
+    hosts), $b \approx -3.26$ is the near-infrared Leavitt law slope,
+    and $\kappa_{\rm Cep}^{\rm equiv} = (0.365 \pm 0.304) \times 10^6\ {\rm mag}$ is the
+    Cepheid-channel response coefficient from the endpoint slope
+    conversion in TEP-H0 (Paper 11, Section 4). Here
+    $X_i = (U_i - U_{\rm ref}) / c^2$ is the dimensionless screened
+    potential coordinate, with $U_i = u_\phi^2$ the rotation-based
+    potential proxy and $U_{\rm ref} = (87.165\ {\rm km\,s^{-1}})^2$
+    the anchor reference potential. The correction is positive for
+    massive calibrators: Cepheid distances are compressed, so the true
+    distance modulus is larger than the observed value.
+</p>
+
+<p>
+    A note on notation. Two estimates of the Cepheid-channel
+    coefficient appear in this paper:
+    $\kappa_{\rm Cep}^{\rm equiv} = (0.365 \pm 0.304) \times 10^6$
+    (the endpoint-slope conversion from TEP-H0, used in the
+    matrix propagation) and
+    $\kappa_{\rm Cep} = (0.452 \pm 0.220) \times 10^6$
+    (the redshift-only WLS estimate in $H_0$ space at
+    $\sigma_v = 150$ km/s, used in the DHOST consistency analysis of
+    Section 4.6). These
+    are the same physical coefficient estimated by two independent
+    methods. The difference ($0.087 \times 10^6$) is $0.23\sigma$
+    relative to the combined uncertainty, confirming consistency.
+    The matrix propagation uses $\kappa_{\rm Cep}^{\rm equiv}$ because
+    it is the direct endpoint-slope conversion; the DHOST analysis
+    uses $\kappa_{\rm Cep}$ because it is the regression-optimized
+    value from the $H_0$-space WLS fit.
+</p>
+
+<h3>9.4 Channel 1 Application: Calibrator $\Delta M_B^{\rm Cep}$ Propagation</h3>
+
+<p>
+    The TEP correction is applied to the Cepheid calibrator hosts with
+    measured rotation velocities from the step_01 potential catalog.
+    The mean correction over these calibrators determines the
+    zero-point shift $\Delta M_B$:
+</p>
+
+<div class="equation">
+    \begin{equation}
+    \Delta M_B = \kappa_{\rm Cep}^{\rm equiv} \cdot \langle X_i \rangle_{\rm calibrators}
+        \end{equation}
+</div>
+
+<p>
+    This single $\Delta M_B$ is then applied uniformly to all Pantheon+
+    supernovae, shifting the Hubble residual by a constant offset.
+    The corrected distance moduli are used to recompute Hubble
+    residuals against the $\Lambda$CDM prediction at the CMB-inferred
+    $H_0 = 67.4\ {\rm km\,s^{-1}\,Mpc^{-1}}$.
+</p>
+
+<h3>9.5 Channel 1 Result: Direct Shift and the Amplitude Bound</h3>
+
+<p>
+    The TEP correction shifts the mean Hubble residual by
+    $+0.025 \pm 0.021$ mag in the direction predicted by TEP (reducing
+    the negative residual caused by Cepheid distance compression). The
+    uncertainty combines the imported $\kappa_{\rm Cep}^{\rm equiv}$
+    posterior with the variance of the mean calibrator potential
+    $\langle X_i \rangle$:
+    $\sigma_{\Delta M_B}^2 = (\sigma_{\kappa_{\rm Cep}^{\rm equiv}} \langle X_i
+    \rangle)^2 + (\kappa_{\rm Cep}^{\rm equiv} \sigma_{\langle X_i \rangle})^2$.
+    The $\kappa_{\rm Cep}^{\rm equiv}$ term dominates
+    ($\sigma_{\kappa_{\rm Cep}^{\rm equiv}}/\kappa_{\rm Cep}^{\rm equiv}
+    = 0.304/0.365 \approx 83\%$), while the $\langle X_i \rangle$
+    contribution is subdominant. The standard deviation of the
+    residuals is unchanged ($0.183$ mag), confirming that the
+    correction acts as a constant zero-point offset rather than
+    reducing scatter — exactly as expected when $M_B$ is global.
+</p>
+
+<p>
+    The direct shift of $0.025 \pm 0.021$ mag is a simple
+    calibrator-average estimator using the endpoint-slope
+    $\kappa_{\rm Cep}^{\rm equiv} = 0.365 \times 10^6$ mag. The
+    Hubble tension demands a mean calibrator correction of
+    $\Delta\mu_{\rm tension} = 5\log_{10}(73.0/67.4) \approx 0.174$
+    mag. Two propagation routes exist, yielding different results:
+</p>
+
+<p>
+    <em>(i) SH0ES design-matrix propagation.</em> Propagating the
+    endpoint-slope $\kappa_{\rm Cep}^{\rm equiv}$ through the
+    3,490-row SH0ES design matrix yields
+    $H_0 = 71.77 \pm 0.99\ {\rm km\,s^{-1}\,Mpc^{-1}}$ (Paper 11,
+    Section 3.5) — a partial reduction from 73.04, because the
+    37 unconstrained latent host moduli $\mu_i$
+    algebraically absorb host-level environmental shifts (Paper 11,
+    Section 4.2). The maximum per-host correction with
+    $\kappa_{\rm Cep}^{\rm equiv}$ is
+    $\kappa_{\rm Cep}^{\rm equiv} \cdot X_{\rm max} = 0.365 \times
+    10^6 \times 2.54 \times 10^{-7} \approx 0.093$ mag (at M101).
+    A propagation audit (step_40) confirms: the unweighted mean
+    correction is $+0.036 \pm 0.010$ mag; weighting by potential
+    depth amplifies by a factor of $\sim 2.6$ to $\sim 0.094$ mag,
+    at the bound.
+</p>
+
+<p>
+    <em>(ii) Unified host-level reconstruction (Step 04).</em>
+    Paper 11's Step 04 bypasses the matrix degeneracy by
+    correcting each host modulus in expansion-rate space and
+    re-optimizing $\kappa_{\rm Cep}$ to flatten the environmental
+    gradient ($\partial H_{0,i} / \partial u_{\phi,i} \to 0$).
+    This yields
+    $H_0 = 66.65 \pm 1.58\ {\rm km\,s^{-1}\,Mpc^{-1}}$,
+    consistent with Planck at $0.45\sigma$. The Step 04
+    reconstruction uses a larger effective $\kappa_{\rm Cep}$ than
+    the likelihood-derived value; the discrepancy between routes
+    (i) and (ii) reflects the latent-$\mu_i$ absorption degeneracy
+    documented in Paper 11, not a contradiction.
+</p>
+
+<p>
+    The Cepheid channel provides the directly measured calibration
+    bias. TEP additionally predicts an independent SN timescale
+    channel whose amplitude is constrained by the host-mass
+    phenomenology and is directly testable through $X_i$-dependent
+    Hubble residuals (Section 9.6). The SN channel is not required
+    to rescue the Cepheid reconstruction; it is a separate,
+    falsifiable prediction of the same underlying transport
+    mechanism.
+</p>
+
+<h3>9.6 Channel 2: The SN Light-Curve Stretch Bias</h3>
+
+<p>
+    The SALT2/SALT3 standardization relation
+    $m_B = M + \alpha\,x_1 - \beta\,c + \Delta_{\rm host}$ corrects
+    the observed peak magnitude using the light-curve stretch $x_1$,
+    which parameterizes the timescale of photospheric diffusion
+    through the ejecta. The stretch $x_1$ is a time-domain
+    observable derived from the light-curve width, and is therefore
+    governed by the local proper time rate: under TEP, a clock-rate
+    differential in the SN host environment produces a stretch bias
+    $\Delta x_1$ that propagates into the standardized magnitude as
+    $\Delta m_B^{\rm SN} = \alpha\,\Delta x_1$.
+</p>
+
+<p>
+    The SN channel acts wherever SN light-curve stretch is
+    standardized; its contribution to $H_0$ is set by the
+    differential environmental bias between the calibrator-SN and
+    Hubble-flow-SN host populations. It is therefore structurally
+    distinct from the Cepheid channel (which operates through the
+    period-transport calibration chain) and additive with it.
+    Non-timescale distance indicators (TRGB, JAGB, SBF) do not carry
+    this bias because their standardization does not involve a
+    timescale. The two-channel structure is:
+</p>
+
+<div class="equation">
+    \begin{equation}
+    \Delta M_B^{\rm total} = \Delta M_B^{\rm Cep}
+    + \Delta M_B^{\rm SN\ stretch}
+        \end{equation}
+</div>
+
+<p>
+    where $\Delta M_B^{\rm Cep}$ is the Cepheid calibration bias
+    (measured directly from the matched-host divergence and the
+    likelihood analysis) and $\Delta M_B^{\rm SN\ stretch} \sim
+    0.04$–$0.10$ mag is the predicted SN timescale bias, bounded
+    by the observed SN Ia host-mass step. The SN stretch channel
+    amplitude is not yet independently constrained from first
+    principles; the range shown is bounded by the observed
+    host-mass step. The falsifiable test — the $X_i$-step in
+    Pantheon+ residuals (Section 10.4) — is needed before this
+    channel counts as evidence rather than a prediction. The
+    fiducial choice $\eta_{\rm SN} \sim 1/2$, motivated by the common rank-1 transport structure (Section 4.9),
+    provides the structural motivation; the empirical confirmation
+    is the $X_i$-step.
+</p>
+
+<p>
+    The SN Ia host-mass step — a residual correlation of $\sim 0.04$–
+    $0.06$ mag between Hubble residuals and host stellar mass after
+    SALT3 standardization (Section 2.6) — is the observational
+    signature predicted by the SN stretch channel. The step has
+    persisted for approximately 15 years without a unique physical
+    explanation. Under TEP, it arises
+    naturally: more massive hosts reside in deeper gravitational
+    potentials, producing a larger disformal coupling and a
+    correspondingly larger stretch bias. The TEP prediction is
+    falsifiable: the step should correlate with the potential
+    coordinate $X_i$ (or an equivalent bulge-concentration measure)
+    rather than with stellar mass per se, and the correlation should
+    persist after the SALT3 mass correction is applied. Pantheon+
+    provides the data to test this prediction directly.
+</p>
+
+<h3>9.7 Channel Amplitudes</h3>
+
+<p>
+    The two-channel amplitudes are summarized in Table 7. The
+    Cepheid channel is directly measured; the SN stretch channel
+    is a prediction bounded by the observed host-mass step. The
+    $X_i$-step test (Section 10.4) is the falsifiable empirical
+    test of the SN channel.
+</p>
+
+<table class="data-table">
+    <caption>Table 7: Two-channel amplitude summary. Channel 1
+    (Cepheid period transport) is measured from the matched-host
+    divergence and the likelihood analysis. Channel 2 (SN
+    light-curve stretch) is a TEP prediction, bounded by the
+    observed host-mass step; its amplitude is not yet
+    independently constrained. The $X_i$-step test (Section 10.4)
+    is the falsifiable empirical test of Channel 2.</caption>
+    <thead>
+        <tr>
+            <th>Channel</th>
+            <th>Mechanism</th>
+            <th>Amplitude range</th>
+            <th>Observational constraint</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Cepheid period transport</td>
+            <td>$\kappa_{\rm Cep} \cdot X_i$</td>
+            <td>$\sim 0.02$–$0.09$ mag (per host)</td>
+            <td>Matched-host Cepheid–TRGB divergence ($\Delta\mu = -0.026 \pm 0.015$); $\kappa_{\rm Cep} = (0.452 \pm 0.220) \times 10^6$ mag (redshift-only WLS, $2.05\sigma$); M31 ($3.24\sigma$) and LMC ($3.30\sigma$) internal gradients; Step 04 reconstruction yields $H_0 = 66.65 \pm 1.58$</td>
+        </tr>
+        <tr>
+            <td>SN light-curve stretch</td>
+            <td>$\alpha \cdot \Delta x_1(X_i)$</td>
+            <td>$\sim 0.04$–$0.10$ mag (predicted)</td>
+            <td>SN Ia host-mass step ($0.057 \pm 0.018$ mag raw; $\sim 0.04$–$0.06$ mag after SALT3 host correction); $X_i$-step test pending</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    The Cepheid channel is the directly measured calibration bias.
+    The SN stretch channel is a separate, falsifiable prediction
+    of the same transport mechanism: if the $X_i$-step in
+    Pantheon+ Hubble residuals is detected at the predicted
+    amplitude, the SN channel is confirmed; if it is excluded,
+    the SN channel is falsified while the Cepheid channel stands
+    independently. The two channels are additive and both scale
+    with $X_i$, but the paper does not depend on the SN channel
+    to balance the amplitude budget — the Cepheid channel
+    reconstruction (Paper 11, Step 04) already yields
+    $H_0 = 66.65 \pm 1.58\ {\rm km\,s^{-1}\,Mpc^{-1}}$.
+</p>
+
+<p>
+    The two-channel taxonomy is qualitatively consistent with the
+    range of $H_0$ values spanned by the four indicator classes
+    (Table 1, Section 2.4): JAGB ($H_0 = 67.80$, low-mass hosts),
+    TRGB ($68.81$, mixed), Cepheids ($73.0$, massive spirals), and
+    SBF ($74.6$, massive early-types). Under the two-channel model,
+    deeper-potential calibrator populations carry larger clock biases
+    through both channels: the Cepheid channel biases the
+    period-transport calibration, and the SN stretch channel biases
+    the Hubble-flow SNe selected from those host populations. This
+    observation is reported as suggestive only and is not advanced as
+    a statistical test of the framework. A weighted linear fit of
+    $H_0$ against the mean potential coordinate $\langle X \rangle$
+    for each ladder's calibrator population yields
+    $H_0 = 70.0 + 1.7 \times 10^7 \langle X \rangle$, with the four
+    indicators spanning $\langle X \rangle \approx -0.5 \times 10^{-7}$
+    (JAGB) to $+2.8 \times 10^{-7}$ (SBF). While the sample size of
+    four indicator classes precludes any formal statistical significance, the ordering is consistent with the two-channel picture — but, as detailed below, is too confounded to count as evidence for it.
+    The two-channel model expects this ordering to persist under refinement; because the four classes are mutually confounded, however, persistence would be suggestive rather than confirmatory even with more data, unless the confounds are broken by matching hosts across indicators. The four indicator classes are moreover deeply
+    confounded with known method-specific systematics — JAGB and TRGB
+    are measured in nearby, lower-mass, mixed-morphology hosts with
+    ground- and space-based photometry distinct from the SH0ES
+    Cepheid sample, while SBF is measured exclusively in massive,
+    dust-free early-type galaxies using fluctuation statistics with
+    well-documented stellar-population-age systematics — so host
+    morphology, dust content, stellar-population age, and photometric
+    method vary jointly with potential depth across the four classes.
+    The ordering has been noted informally in the Hubble-tension
+    literature and attributed to sample selection and
+    stellar-population effects specific to each method. The figure
+    (Figure 9, step_44) is available in the reproducibility archive.
+    The two-channel model predicts that this ordering
+    will persist under refinement, a directional expectation
+    that future data with larger indicator samples can test. The
+    discriminating power of the TEP framework against the void model
+    rests on the redshift-profile falsification in Sections 7--8,
+    not on this four-point observation.
+</p>
+
+<p>
+    The discriminating power of the TEP framework against the void
+    model comes from the redshift-profile falsification in
+    Sections 7--8, evaluated through complementary absolute-shape and
+    relative-evolution statistics. The flat $H_0(z)$ profile rejects
+    the published KBC gradual decay curves (digitized from
+    Mazurenko et al. 2025) at
+    $\Delta{\rm AIC} = +20.2$ for Gaussian, $+79.3$ for Exponential
+    with diagonal errors; $+101.5$ and $+117.1$ over the valid
+    $z \geq 0.05$ domain with the unbinned native $\mu$-space
+    covariance; $+194.3$ and $+328.7$ over the full sample. The
+    calibration-independent relative evolution shows no decline.
+</p>
+
+<p>
+    The indicator-specific distance divergence (Section 5) is
+    physically suggestive ($3.30\sigma$ in the full CF4 sample) but
+    is dataset- and reduction-dependent ($0.20\sigma$ in the R22-matched
+    subset — a sample-size constraint, not a vanishing effect, as
+    the central values match the TEP-predicted $\sim 0.02$–$0.05$ mag
+    with stable sign). The two-channel structure (Table 7) shows
+    the Cepheid channel (measured) and the SN stretch channel
+    (predicted), each bounded by an independent observational
+    constraint. The falsifiable prediction — the $X_i$-step in
+    Pantheon+ Hubble residuals beyond the SALT3 mass correction — is
+    the subject of Section 10.
+</p>

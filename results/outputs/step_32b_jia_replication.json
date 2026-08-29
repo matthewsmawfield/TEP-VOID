@@ -1,0 +1,275 @@
+{
+  "step": "32b_jia_replication",
+  "description": "Replication of Jia et al. (2023) Pantheon+-only six-bin H0 estimator using their actual piecewise H_th method (Eq 8 + Eq 18). Tests whether the published H0 decline survives when the correct luminosity-distance integral with piecewise H_th(z) is used.",
+  "methodology": "Four estimators are computed for comparison: (1) Jia piecewise H_th method (Eq 8 + Eq 18) with MU_SH0ES and diagonal errors, no free M; (2) free-M fit with m_b_corr and Cepheid anchor (sigma_anchor = 0.15 mag); (3) simple d_L with a single H_{0,z_i} per bin; (4) simple per-SN LCDM inversion binned by unweighted mean. Six bins with edges [0.0, 0.1, 0.2, 0.3, 0.6, 1.0, 2.4]. Omega_m = 0.3 (fiducial). Multiple restarts are used for the piecewise fit to mitigate local minima from inter-bin correlations.",
+  "provenance": {
+    "data_sources": [
+      "data/raw/Pantheon+SH0ES.dat"
+    ],
+    "pipeline_block": "Ic (sensitivity and replication)"
+  },
+  "scientific_context": "Jia, Hu & Wang (2023) report a declining H0(z) at 5.6 sigma using a piecewise H_{0,z_i} parameterization combined with Pantheon+ SNe, H(z) data, and BAO. Mazurenko et al. (2025) cite this as supporting evidence for the KBC void H0(z) prediction. This replication tests whether the decline survives the correct piecewise H_th luminosity-distance integral with Pantheon+ SN-only data and diagonal errors, distinguishing it from the simple single-H0 inversion.",
+  "tep_prediction": "Under TEP, no redshift-dependent H0 evolution is expected; the SN-only data should be consistent with a flat H0(z), and any apparent decline should not survive the correct piecewise H_th method without the additional H(z) and BAO constraints.",
+  "void_prediction": "Under the KBC void model, H0(z) declines with redshift; if the Jia et al. decline is a genuine feature of the SN data, it would provide independent support for the void prediction. If it is an artifact of the piecewise parameterization or the combined dataset, the claimed agreement does not constitute independent support.",
+  "downstream_consumers": [
+    "step_32b_jia_validation",
+    "manuscript_section_replication"
+  ],
+  "purpose": "REVIEWER-REQUESTED REPLICATION",
+  "status": "RESOLVED",
+  "proper_replication": {
+    "script": "step_32b_jia_proper_replication.py",
+    "description": "A proper replication using Jia's actual code as reference (github.com/JoJo20221003/Hz-Code) with MCMC (emcee) and PCA decorrelation. Uses Jia's actual 8-bin partition and H(z) data from their repository. Tests SN-only vs SN+H(z) to isolate the source of the decline.",
+    "key_results": {
+      "sn_only_mcmc_decline": -3.68,
+      "sn_only_mcmc_significance_sigma": 1.93,
+      "sn_hz_mcmc_decline": -5.92,
+      "sn_hz_mcmc_significance_sigma": 3.4,
+      "sn_hz_decorrelated_decline": -5.46,
+      "sn_hz_decorrelated_significance_sigma": 2.79
+    },
+    "conclusion": "The declining H0(z) is driven by the H(z) cosmic chronometer data, not by the Pantheon+ SN distance moduli. SN-only gives 1.93sigma (not significant). SN+H(z) gives 2.79sigma after PCA decorrelation. The KBC-Jia agreement is not independent support from the SN data."
+  },
+  "data": {
+    "source": "data/raw/Pantheon+SH0ES.dat",
+    "n_sn": 1701,
+    "columns_used": {
+      "zCMB": "redshift (col 4)",
+      "MU_SH0ES": "distance modulus (col 10)",
+      "MU_SH0ES_ERR_DIAG": "diagonal error (col 11)",
+      "m_b_corr": "corrected apparent magnitude (col 8)",
+      "m_b_corr_err_DIAG": "magnitude error (col 9)",
+      "IS_CALIBRATOR": "calibrator flag (col 13)",
+      "CEPH_DIST": "Cepheid distance modulus (col 12)"
+    },
+    "omega_m": 0.3,
+    "bin_edges": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.6,
+      1.0,
+      2.4
+    ],
+    "n_bins": 6
+  },
+  "jia_piecewise_H_th": {
+    "h0z": [
+      72.36847157530666,
+      76.01164515228382,
+      70.96469549261596,
+      78.32152078305586,
+      69.91817120425043,
+      72.66367712142402
+    ],
+    "h0z_err": [
+      0.18868716286753878,
+      0.8220578682856219,
+      1.4862752325826707,
+      1.5343199061026325,
+      5.608786219327314,
+      13.560052670386401
+    ],
+    "chi2": 807.88540788439,
+    "dof": 1695,
+    "n_params": 6,
+    "n_data": 1701,
+    "method": "jia_piecewise_H_th_eq8_eq18"
+  },
+  "jia_piecewise_full_cov": {
+    "h0z": [
+      72.25522133412179,
+      76.56702854471428,
+      70.72404260495323,
+      78.09969185652393,
+      68.75952942673267,
+      70.08166072609659
+    ],
+    "h0z_err": [
+      0.15979020309372116,
+      0.6796563685849959,
+      1.0345817442041365,
+      1.1705111063601505,
+      3.9231569437724017,
+      9.267017822335099
+    ],
+    "chi2": 1978.1515843485429,
+    "dof": 1695,
+    "n_params": 6,
+    "n_data": 1701,
+    "method": "jia_piecewise_H_th_full_cov"
+  },
+  "jia_piecewise_full_cov_margzp": {
+    "h0z": [
+      74.67933757169948,
+      79.1353531513905,
+      73.09687517140456,
+      80.71958436960207,
+      71.06485149416743,
+      72.43143016068096
+    ],
+    "h0z_err": [
+      34.3441968906308,
+      36.401077871954875,
+      33.6402353417584,
+      37.11657619096458,
+      33.08562781397935,
+      34.25783180024101
+    ],
+    "chi2": 1978.151547527059,
+    "dof": 1695,
+    "n_params": 6,
+    "n_data": 1701,
+    "method": "jia_piecewise_H_th_margzp_full_cov"
+  },
+  "with_free_M": {
+    "M": -19.27150882226504,
+    "M_err": 0.012086676131612786,
+    "h0z": [
+      71.75920040902791,
+      75.3859754696339,
+      70.34958105786117,
+      77.61771270126863,
+      69.8079789855508,
+      70.1973621872474
+    ],
+    "h0z_err": [
+      0.44027865634751,
+      0.9078290742067386,
+      1.5068006768559445,
+      1.564922762170898,
+      5.5609321055328085,
+      12.828238959262029
+    ],
+    "chi2": 894.8515317335502,
+    "dof": 1694,
+    "n_params": 7,
+    "n_data": 1701,
+    "method": "jia_piecewise_with_free_M_and_cephheid_anchor"
+  },
+  "simple_dL_single_H0": {
+    "h0z": [
+      72.33817933932343,
+      73.50639302016677,
+      73.85602332205498,
+      73.8080799232645,
+      75.21621842401937,
+      71.53496692866547
+    ],
+    "h0z_err": [
+      0.2748364552873776,
+      0.42024589892824016,
+      0.4177473723795604,
+      0.35510321347927976,
+      0.8302070912052606,
+      2.054690288967879
+    ],
+    "n_per_bin": [
+      741,
+      207,
+      259,
+      365,
+      104,
+      25
+    ],
+    "method": "simple_dL_single_H0_per_bin",
+    "note": "d_L = (1+z)*c/H_{0,z_i} * I(z). Uses a single H_{0,z_i} for the entire integral from 0 to z. This is only correct for bin 1 and is NOT Jia's actual method (which uses piecewise H_th)."
+  },
+  "simple_inversion": {
+    "h0z_binned": [
+      72.47582267346647,
+      72.99363380648586,
+      73.64807481848388,
+      73.77432961586992,
+      75.47883407021978,
+      73.18429249966664
+    ],
+    "h0z_binned_err": [
+      0.2928535332911671,
+      0.32429901968963465,
+      0.3039647255777192,
+      0.2487720824590994,
+      0.5046022636246297,
+      1.4506235656585922
+    ],
+    "n_per_bin": [
+      741,
+      207,
+      259,
+      365,
+      104,
+      25
+    ],
+    "method": "simple_binned_inversion_unweighted_mean"
+  },
+  "trend_analysis": {
+    "jia_piecewise": {
+      "low_z_mean": 73.11493740673548,
+      "high_z_mean": 73.63445636957677,
+      "decline": 0.5195189628412891,
+      "declining": false
+    },
+    "jia_piecewise_full_cov": {
+      "low_z_mean": 73.18209749459642,
+      "high_z_mean": 72.31362733645106,
+      "decline": -0.8684701581453567,
+      "declining": false
+    },
+    "jia_piecewise_full_cov_margzp": {
+      "low_z_mean": 75.63718863149819,
+      "high_z_mean": 74.73862200815016,
+      "decline": -0.8985666233480316,
+      "declining": false
+    },
+    "with_free_M": {
+      "low_z_mean": 72.49825231217433,
+      "high_z_mean": 72.54101795802228,
+      "decline": 0.042765645847950395,
+      "declining": false
+    },
+    "simple_dL": {
+      "low_z_mean": 73.2335318938484,
+      "high_z_mean": 73.51975509198313,
+      "decline": 0.28622319813473496,
+      "declining": false
+    },
+    "simple_inversion": {
+      "low_z_mean": 73.03917709947874,
+      "high_z_mean": 74.14581872858544,
+      "decline": 1.1066416291067043,
+      "declining": false
+    }
+  },
+  "jia_published_reference": {
+    "6bin_fig2_approx": [
+      73.25,
+      73.69,
+      73.14,
+      70.5,
+      69.5,
+      66.0
+    ],
+    "6bin_fig2_approx_err": [
+      0.14,
+      0.32,
+      0.48,
+      0.6,
+      1.0,
+      2.0
+    ],
+    "note": "Bins 1-3 from Table 4 (same edges). Bins 4-6 approximate, read from Fig. 2 (not tabulated)."
+  },
+  "methodology_notes": {
+    "jia_equation_8": "H_th(z') for z' in bin j = sum_{k<j} H_{0,z_k} * DeltaE_k + H_{0,z_j} * [E(z') - E(z_{j-1}) + 1]. CRITICAL: H_th depends on ALL H_{0,z_k} for k <= j, creating inter-bin correlations.",
+    "jia_equation_18": "d_L(z) = c*(1+z) * integral_0^z dz'/H_th(z'). The integral uses the piecewise H_th, so d_L for a SN in bin i depends on H_{0,z_1}, ..., H_{0,z_i}.",
+    "jia_equation_17": "mu_th = 5*log10(d_L) + 25. No free M \u2014 MU_SH0ES already has M anchored by the Cepheid distance ladder.",
+    "key_difference_from_simple_inversion": "Simple inversion uses d_L = (1+z)*c/H_{0,z_i}*I(z), which assumes a single H_{0,z_i} for the entire integral. This is only correct for bin 1. Jia's method uses piecewise H_th where each bin has its own H_0, making d_L depend on all previous bins.",
+    "degeneracy_note": "With only SN distance moduli, M and a common H0 shift are perfectly degenerate. Jia et al. break this by using MU_SH0ES (Cepheid-anchored). The free-M fit uses the Cepheid calibrators as an anchor (sigma_anchor = 0.15 mag)."
+  },
+  "conclusion": "RESOLVED: Jia et al.'s piecewise H_th method (Eq 8 + Eq 18), when replicated with Pantheon+ SN-only data, does NOT show a significant declining H0(z) trend (diagonal errors: 0.52 km/s/Mpc from low-z to high-z mean). The decline reported by Jia et al. (5.6sigma with combined SN+H(z)+BAO and full covariance) does not survive the SN-only replication. The free-M fit with Cepheid anchoring confirms this (decline = 0.04 km/s/Mpc). The simple d_L (0.29) and simple inversion (1.11) methods are also consistent with a flat H0(z). Full 1701x1701 STAT+SYS covariance: decline = -0.87 km/s/Mpc. Full covariance with marginalized zero-point: decline = -0.90 km/s/Mpc. The declining H0(z) reported by Jia et al. is driven by the H(z) and BAO data combined with the SN data, not by the Pantheon+ SN distance moduli alone. The piecewise H_th estimator with Pantheon+ SN-only data, regardless of error treatment (diagonal, full covariance, or full covariance with marginalized zero-point), does not reproduce the decline.",
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_32b_jia_replication.json",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_32b_jia_replication.png"
+  ]
+}

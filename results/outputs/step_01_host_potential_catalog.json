@@ -1,0 +1,34 @@
+{
+  "step": "01_host_potential_catalog",
+  "description": "Host galaxy gravitational potential catalog from velocity dispersions",
+  "input_file": "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/velocity_dispersions_literature.csv",
+  "n_galaxies": 41,
+  "median_sigma_kms": 114.622009,
+  "mean_sigma_kms": 116.56913982926828,
+  "std_sigma_kms": 54.99214512721109,
+  "min_sigma_kms": 20.223254,
+  "max_sigma_kms": 286.378246,
+  "median_phi_proxy_kms2": 13138.204947196082,
+  "mean_phi_proxy_kms2": 16538.740970966963,
+  "potential_proxy_definition": "Phi_proxy = sigma_v^2 (velocity dispersion squared, in (km/s)^2)",
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/host_potential_catalog.csv"
+  ],
+  "methodology": "Gravitational potential depth proxy computed as Phi_proxy = sigma_v^2 from velocity dispersions, with uncertainty propagated via d(Phi) = 2 * sigma * d(sigma). The proxy is motivated by the virial theorem and requires no cosmological model assumption.",
+  "provenance": {
+    "data_sources": [
+      "velocity_dispersions_literature.csv (HyperLEDA + literature compilation)",
+      "TEP-H0 repository (fallback copy source)"
+    ],
+    "software_versions": {
+      "python": "3.13.5",
+      "pandas": "2.2.3"
+    },
+    "pipeline_block": "Block 0 \u2014 Data Ingestion"
+  },
+  "scientific_context": "Constructs the host-galaxy gravitational potential depth catalog that serves as the independent variable for testing whether potential-dependent clock-rate modulation (Temporal Equivalence Principle) can explain the Cepheid\u2013TRGB indicator divergence alternatively attributed to local void environments.",
+  "downstream_consumers": [
+    "04_delta_mu_vs_potential",
+    "05_stratified_hubble"
+  ]
+}

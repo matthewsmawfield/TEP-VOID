@@ -1,0 +1,44 @@
+{
+  "step": "43_manuscript_figures",
+  "description": "Generate 4-panel composite manuscript figure showing all discriminating observables for void vs TEP comparison",
+  "n_steps_loaded": 6,
+  "figures_generated": [
+    {
+      "name": "Composite (4 panels)",
+      "path": "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_43_manuscript_composite.png"
+    }
+  ],
+  "source_figures_available": [
+    "step_30_bulk_flow_comparison.png",
+    "step_31_peculiar_velocity_artifact.png",
+    "step_32_h0_vs_redshift.png",
+    "step_34_void_boundary_test.png",
+    "step_40_pantheon_tep_correction.png"
+  ],
+  "composite_figure_panels": [
+    "(a) Indicator-Specific Distance Divergence: Cepheid vs TRGB DM",
+    "(b) Peculiar Velocity Calibration Sensitivity: bulk-flow H0 dependence",
+    "(c) H0(z) Decay: Void sharp boundary vs TEP smooth decay",
+    "(d) Void Boundary Test: H0 in massive hosts at z > 0.3"
+  ],
+  "tep_prediction": "The composite figure should visually demonstrate that the TEP model curves are consistent with the observed data across all four panels, while the void model curves are not.",
+  "void_prediction": "The KBC void model predicts indicator-independent distances, calibration-independent bulk flow, and a sharp H0(z) boundary at the void wall redshift.",
+  "methodology": "Four-panel composite figure assembled from upstream step results. Panel (a): Cepheid vs TRGB distance modulus scatter with 1:1 reference. Panel (b): bulk-flow amplitude vs R_max for Cepheid and TRGB calibrations. Panel (c): H0(z) with void (tanh boundary) and TEP ((1+z)^{-0.3}) model overlays. Panel (d): H0(z) in massive and low-mass hosts with void and TEP model overlays. Model parameters: H0_CMB = 67.4, H0_SH0ES = 73.0 km/s/Mpc.",
+  "provenance": {
+    "data_sources": [
+      "step_30_bulk_flow_recalculation.json",
+      "step_31_peculiar_velocity_artifact.json",
+      "step_32_redshift_decay_profile.json",
+      "step_34_void_boundary_test.json",
+      "step_40_redshift_shear_reconstruction.json",
+      "step_42_falsification_summary.json"
+    ],
+    "pipeline_block": "Block III \u2014 TEP reconstruction and synthesis"
+  },
+  "scientific_context": "Visual synthesis of the Block III falsification analysis. The composite figure consolidates the four discriminating observables into a single publication-ready panel for the manuscript.",
+  "downstream_consumers": "none \u2014 terminal step",
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_43_manuscript_figures.json",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_43_manuscript_composite.png"
+  ]
+}

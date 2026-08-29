@@ -1,0 +1,180 @@
+{
+  "step": "32_digitization_sensitivity",
+  "description": "Digitization sensitivity of the H0(z) rejection of KBC void curves. Native mu-space DeltaAIC (void vs flat) recomputed under additive H0 shifts of +/-0.5 and +/-1.0 km/s/Mpc applied to both digitized Method-3 curves.",
+  "methodology": "Native mu-space DeltaAIC computed for both digitized KBC Method-3 curves (Gaussian and Exponential) under additive H0 shifts of -1.0, -0.5, 0.0, +0.5, +1.0 km/s/Mpc. All 1701 Pantheon+ rows are used without binning, with the full STAT+SYS covariance matrix and analytically marginalized zero-point. Two sample cuts are evaluated: full sample and z >= 0.05. Both flat and void models have k=1, so DeltaAIC = DeltaChi2.",
+  "provenance": {
+    "data_sources": [
+      "data/raw/Pantheon+SH0ES.dat",
+      "data/raw/Pantheon+SH0ES_STAT+SYS.cov",
+      "data/raw/external/mazurenko_curves/gaussian_method3.json",
+      "data/raw/external/mazurenko_curves/exponential_method3.json"
+    ],
+    "pipeline_block": "Ic (sensitivity and replication)"
+  },
+  "scientific_context": "The primary step_32 result rejects the KBC void H0(z) curves at large DeltaAIC in native mu-space. This sensitivity test evaluates whether digitization noise from curve-tracing of the published KBC figures could alter that rejection. Additive H0 shifts bracketing plausible digitization uncertainty are applied; persistence of the rejection across all shifts confirms robustness to curve-tracing artifacts.",
+  "tep_prediction": "Under TEP, no redshift-dependent H0 evolution is expected; the flat reference cosmology should be preferred, yielding positive DeltaAIC (void rejected) at all digitization shifts.",
+  "void_prediction": "Under the KBC void model, H0(z) declines with redshift; if the digitized curves were a faithful representation, DeltaAIC could be reduced toward zero under shifts that compensate tracing noise. The persistence of large positive DeltaAIC falsifies this expectation.",
+  "downstream_consumers": [
+    "step_32_redshift_decay_profile",
+    "manuscript_section_sensitivity"
+  ],
+  "method": "native_mu_space_full_covariance",
+  "covariance_matrix": "Pantheon+SH0ES_STAT+SYS.cov (1701x1701)",
+  "binned": false,
+  "diagonal_errors": false,
+  "zero_point_marginalized": true,
+  "h0_ref": 73.04,
+  "omega_m": 0.302,
+  "k_per_model": 1,
+  "delta_aic_definition": "AIC(void) - AIC(flat), both k=1 => DeltaAIC = DeltaChi2",
+  "conversion": "s_i = 5*log10(H_ref / H_KBC(z_i))",
+  "shift_definition": "H_KBC_shifted(z) = H_KBC(z) + shift (applied to both curves)",
+  "gaussian_denoising": "Gaussian Method-3 curve denoised via parametric fit H(z)=H_inf+A*exp(-z^2/(2*sigma^2)), identical to step_32. Exponential curve used as-is (already clean).",
+  "samples": {
+    "full": {
+      "label": "Full sample (no cut)",
+      "z_min": 0.0,
+      "n_sne": 1701,
+      "shift_results": {
+        "shift_-1.0": {
+          "h0_shift_km_s_mpc": -1.0,
+          "n_sne": 1701,
+          "chi2_flat": 2007.6643716422939,
+          "gaussian": {
+            "chi2_void": 2206.399657669329,
+            "delta_aic": 198.73528602703504
+          },
+          "exponential": {
+            "chi2_void": 2343.785723576352,
+            "delta_aic": 336.12135193405834
+          }
+        },
+        "shift_-0.5": {
+          "h0_shift_km_s_mpc": -0.5,
+          "n_sne": 1701,
+          "chi2_flat": 2007.6643716422939,
+          "gaussian": {
+            "chi2_void": 2204.168453484714,
+            "delta_aic": 196.5040818424202
+          },
+          "exponential": {
+            "chi2_void": 2340.060095852607,
+            "delta_aic": 332.3957242103131
+          }
+        },
+        "shift_+0.0": {
+          "h0_shift_km_s_mpc": 0.0,
+          "n_sne": 1701,
+          "chi2_flat": 2007.6643716422939,
+          "gaussian": {
+            "chi2_void": 2201.980404159015,
+            "delta_aic": 194.31603251672118
+          },
+          "exponential": {
+            "chi2_void": 2336.4051928457866,
+            "delta_aic": 328.7408212034927
+          }
+        },
+        "shift_+0.5": {
+          "h0_shift_km_s_mpc": 0.5,
+          "n_sne": 1701,
+          "chi2_flat": 2007.6643716422939,
+          "gaussian": {
+            "chi2_void": 2199.8343548468815,
+            "delta_aic": 192.16998320458765
+          },
+          "exponential": {
+            "chi2_void": 2332.819160604185,
+            "delta_aic": 325.1547889618912
+          }
+        },
+        "shift_+1.0": {
+          "h0_shift_km_s_mpc": 1.0,
+          "n_sne": 1701,
+          "chi2_flat": 2007.6643716422939,
+          "gaussian": {
+            "chi2_void": 2197.7291898119956,
+            "delta_aic": 190.06481816970177
+          },
+          "exponential": {
+            "chi2_void": 2329.300206629977,
+            "delta_aic": 321.635834987683
+          }
+        }
+      }
+    },
+    "z_ge_0.05": {
+      "label": "z >= 0.05",
+      "z_min": 0.05,
+      "n_sne": 1053,
+      "shift_results": {
+        "shift_-1.0": {
+          "h0_shift_km_s_mpc": -1.0,
+          "n_sne": 1053,
+          "chi2_flat": 919.1656101944635,
+          "gaussian": {
+            "chi2_void": 1023.2445499765608,
+            "delta_aic": 104.07893978209734
+          },
+          "exponential": {
+            "chi2_void": 1039.2134401601083,
+            "delta_aic": 120.04782996564484
+          }
+        },
+        "shift_-0.5": {
+          "h0_shift_km_s_mpc": -0.5,
+          "n_sne": 1053,
+          "chi2_flat": 919.1656101944635,
+          "gaussian": {
+            "chi2_void": 1021.933274328987,
+            "delta_aic": 102.76766413452344
+          },
+          "exponential": {
+            "chi2_void": 1037.7021015131763,
+            "delta_aic": 118.53649131871282
+          }
+        },
+        "shift_+0.0": {
+          "h0_shift_km_s_mpc": 0.0,
+          "n_sne": 1053,
+          "chi2_flat": 919.1656101944635,
+          "gaussian": {
+            "chi2_void": 1020.6486800879279,
+            "delta_aic": 101.4830698934644
+          },
+          "exponential": {
+            "chi2_void": 1036.2211358042468,
+            "delta_aic": 117.05552560978333
+          }
+        },
+        "shift_+0.5": {
+          "h0_shift_km_s_mpc": 0.5,
+          "n_sne": 1053,
+          "chi2_flat": 919.1656101944635,
+          "gaussian": {
+            "chi2_void": 1019.3900321470819,
+            "delta_aic": 100.2244219526184
+          },
+          "exponential": {
+            "chi2_void": 1034.7697192653907,
+            "delta_aic": 115.60410907092717
+          }
+        },
+        "shift_+1.0": {
+          "h0_shift_km_s_mpc": 1.0,
+          "n_sne": 1053,
+          "chi2_flat": 919.1656101944635,
+          "gaussian": {
+            "chi2_void": 1018.1566207789896,
+            "delta_aic": 98.99101058452607
+          },
+          "exponential": {
+            "chi2_void": 1033.3470560895337,
+            "delta_aic": 114.18144589507017
+          }
+        }
+      }
+    }
+  },
+  "note": "All values computed in native mu-space using ALL Pantheon+ rows (no binning) with the full 1701x1701 STAT+SYS covariance matrix. A common zero-point is analytically marginalized. Both flat and void models have k=1. The table label is 'native mu-space, full covariance' \u2014 NOT 'binned, diagonal errors'."
+}

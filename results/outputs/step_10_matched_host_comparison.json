@@ -1,0 +1,210 @@
+{
+  "step": "10_matched_host_comparison",
+  "description": "Cepheid vs TRGB distance modulus divergence for matched hosts",
+  "delta_mu_definition": "Delta_mu = mu_Cepheid - mu_TRGB",
+  "methodology": "Direct difference of Cepheid (Riess et al. 2022) and TRGB (Freedman et al. 2025) distance moduli for matched hosts, with Gaussian error propagation. Statistics include unweighted and inverse-variance weighted means, standard error, and a t-statistic against Delta_mu = 0.",
+  "provenance": {
+    "data_sources": [
+      "Riess et al. 2022 (SH0ES Cepheid distance moduli)",
+      "Freedman et al. 2025 (CCHP TRGB distance moduli)",
+      "HyperLEDA (Makarov et al. 2014) velocity dispersions",
+      "step_00 matched_hosts.csv interim catalog"
+    ],
+    "pipeline_block": "Ia \u2014 Indicator Divergence"
+  },
+  "scientific_context": "Do Cepheid and TRGB distance moduli agree for galaxies observed by both indicators? The void model predicts Delta_mu = 0 for all hosts; TEP predicts a non-zero, potential-dependent divergence.",
+  "tep_prediction": {
+    "delta_mu_nonzero": true,
+    "scales_with_potential": true,
+    "description": "TEP predicts non-zero, potential-dependent divergence"
+  },
+  "void_prediction": {
+    "delta_mu": 0.0,
+    "description": "Kinematic void predicts identical distances for all indicators"
+  },
+  "downstream_consumers": [
+    "step_11_indicator_divergence_vs_potential",
+    "step_12_void_prediction_uniformity"
+  ],
+  "statistics": {
+    "n_hosts": 18,
+    "mean_delta_mu": -0.005157916114764226,
+    "median_delta_mu": 0.0020965059178958967,
+    "std_delta_mu": 0.07542731375239062,
+    "sem_delta_mu": 0.017778388347000247,
+    "weighted_mean_delta_mu": -0.0027035436988151595,
+    "weighted_err_delta_mu": 0.017675432983018435,
+    "significance_sigma": 0.15295487818672238,
+    "t_statistic": -0.2901228173269442,
+    "definition": "Delta_mu = mu_Cepheid - mu_TRGB"
+  },
+  "per_galaxy": [
+    {
+      "galaxy": "NGC 1015",
+      "mu_cepheid": 32.617748081806326,
+      "mu_cepheid_err": 0.060076741756443,
+      "mu_trgb": 32.63,
+      "mu_trgb_err": 0.06,
+      "delta_mu": -0.012251918193676659,
+      "delta_mu_err": 0.08490709569918371
+    },
+    {
+      "galaxy": "NGC 1309",
+      "mu_cepheid": 32.50896360923535,
+      "mu_cepheid_err": 0.0506780279748097,
+      "mu_trgb": 32.52,
+      "mu_trgb_err": 0.05,
+      "delta_mu": -0.011036390764651571,
+      "delta_mu_err": 0.07119173069546486
+    },
+    {
+      "galaxy": "NGC 1365",
+      "mu_cepheid": 31.32541543530425,
+      "mu_cepheid_err": 0.0500632419879221,
+      "mu_trgb": 31.36,
+      "mu_trgb_err": 0.04,
+      "delta_mu": -0.034584564695748554,
+      "delta_mu_err": 0.06408063824854779
+    },
+    {
+      "galaxy": "NGC 1448",
+      "mu_cepheid": 31.295113402826516,
+      "mu_cepheid_err": 0.0357285514707881,
+      "mu_trgb": 31.32,
+      "mu_trgb_err": 0.04,
+      "delta_mu": -0.024886597173484404,
+      "delta_mu_err": 0.05363328621481957
+    },
+    {
+      "galaxy": "NGC 1559",
+      "mu_cepheid": 31.46078272204369,
+      "mu_cepheid_err": 0.0516333818314369,
+      "mu_trgb": 31.44,
+      "mu_trgb_err": 0.04,
+      "delta_mu": 0.020782722043687585,
+      "delta_mu_err": 0.06531467001639799
+    },
+    {
+      "galaxy": "NGC 2442",
+      "mu_cepheid": 31.465229402600443,
+      "mu_cepheid_err": 0.0546366996015777,
+      "mu_trgb": 31.45,
+      "mu_trgb_err": 0.05,
+      "delta_mu": 0.015229402600443365,
+      "delta_mu_err": 0.07406192640860108
+    },
+    {
+      "galaxy": "NGC 3021",
+      "mu_cepheid": 32.39157825089393,
+      "mu_cepheid_err": 0.0966189000632787,
+      "mu_trgb": 32.42,
+      "mu_trgb_err": 0.05,
+      "delta_mu": -0.02842174910607298,
+      "delta_mu_err": 0.10878975985559411
+    },
+    {
+      "galaxy": "NGC 3370",
+      "mu_cepheid": 32.14249679432585,
+      "mu_cepheid_err": 0.0456347313322023,
+      "mu_trgb": 32.09,
+      "mu_trgb_err": 0.04,
+      "delta_mu": 0.05249679432584742,
+      "delta_mu_err": 0.060683842196768374
+    },
+    {
+      "galaxy": "NGC 3972",
+      "mu_cepheid": 31.707206094762284,
+      "mu_cepheid_err": 0.0676238347875992,
+      "mu_trgb": 31.6,
+      "mu_trgb_err": 0.05,
+      "delta_mu": 0.10720609476228304,
+      "delta_mu_err": 0.0841010287177304
+    },
+    {
+      "galaxy": "NGC 4038",
+      "mu_cepheid": 31.633833407662937,
+      "mu_cepheid_err": 0.0800615212766845,
+      "mu_trgb": 31.61,
+      "mu_trgb_err": 0.05,
+      "delta_mu": 0.023833407662937844,
+      "delta_mu_err": 0.09439198689050361
+    },
+    {
+      "galaxy": "NGC 4424",
+      "mu_cepheid": 30.823886318364572,
+      "mu_cepheid_err": 0.1080351844117757,
+      "mu_trgb": 31.04,
+      "mu_trgb_err": 0.05,
+      "delta_mu": -0.2161136816354272,
+      "delta_mu_err": 0.11904453398155829
+    },
+    {
+      "galaxy": "NGC 4536",
+      "mu_cepheid": 30.83549639777847,
+      "mu_cepheid_err": 0.0479757779420524,
+      "mu_trgb": 30.96,
+      "mu_trgb_err": 0.04,
+      "delta_mu": -0.12450360222153023,
+      "delta_mu_err": 0.06246339143166277
+    },
+    {
+      "galaxy": "NGC 4639",
+      "mu_cepheid": 31.78738500726915,
+      "mu_cepheid_err": 0.0713565283748475,
+      "mu_trgb": 31.8,
+      "mu_trgb_err": 0.05,
+      "delta_mu": -0.01261499273084965,
+      "delta_mu_err": 0.08713067279500611
+    },
+    {
+      "galaxy": "NGC 5584",
+      "mu_cepheid": 31.86553948636049,
+      "mu_cepheid_err": 0.0453757045325274,
+      "mu_trgb": 31.82,
+      "mu_trgb_err": 0.04,
+      "delta_mu": 0.045539486360489434,
+      "delta_mu_err": 0.06048929295192024
+    },
+    {
+      "galaxy": "NGC 5643",
+      "mu_cepheid": 30.508408628554548,
+      "mu_cepheid_err": 0.0423384635611199,
+      "mu_trgb": 30.48,
+      "mu_trgb_err": 0.05,
+      "delta_mu": 0.028408628554547732,
+      "delta_mu_err": 0.06551752053242155
+    },
+    {
+      "galaxy": "NGC 5861",
+      "mu_cepheid": 32.205206817919304,
+      "mu_cepheid_err": 0.0756344575522645,
+      "mu_trgb": 32.26,
+      "mu_trgb_err": 0.06,
+      "delta_mu": -0.054793182080693725,
+      "delta_mu_err": 0.09654310523918992
+    },
+    {
+      "galaxy": "NGC 5917",
+      "mu_cepheid": 32.33689541476568,
+      "mu_cepheid_err": 0.0769424972155627,
+      "mu_trgb": 32.3,
+      "mu_trgb_err": 0.06,
+      "delta_mu": 0.03689541476568081,
+      "delta_mu_err": 0.09757124513793433
+    },
+    {
+      "galaxy": "NGC 7250",
+      "mu_cepheid": 31.605972237460463,
+      "mu_cepheid_err": 0.103313425286753,
+      "mu_trgb": 31.51,
+      "mu_trgb_err": 0.06,
+      "delta_mu": 0.09597223746046168,
+      "delta_mu_err": 0.1194724396858183
+    }
+  ],
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_10_matched_host_comparison.json",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_10_per_galaxy_delta_mu.csv",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_10_cepheid_trgb_divergence.png"
+  ]
+}

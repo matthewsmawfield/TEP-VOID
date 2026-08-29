@@ -1,0 +1,70 @@
+{
+  "step": "45_xi_step",
+  "description": "Tests the TEP SN stretch channel prediction: Hubble residuals should correlate with host potential X_i beyond the standard mass-step correction.",
+  "n_sne": 1470,
+  "v_rot_proxy": "Tully-Fisher: V_rot = 200 * (M*/10^10.5)^0.25 km/s",
+  "results": {
+    "mass_step": {
+      "value_mag": -0.0010076161130213436,
+      "error_mag": 0.008790917583736752,
+      "significance_sigma": 0.11462012963077246,
+      "n_high": 475,
+      "n_low": 995
+    },
+    "xi_step": {
+      "value_mag": -0.012089688880831128,
+      "error_mag": 0.008717162698985174,
+      "significance_sigma": 1.3868834732473874,
+      "direction": "TEP-predicted",
+      "n_highX": 916,
+      "n_lowX": 554
+    },
+    "xi_regression": {
+      "slope": 20754.111474765414,
+      "slope_err": 23466.390808341785,
+      "significance_sigma": 0.8844185560647777,
+      "r": 0.023076989166314378,
+      "p_value": 0.3766151361901169
+    },
+    "mass_regression": {
+      "slope_mag_per_dex": 0.0013236499400662146,
+      "slope_err": 0.003393129067368278,
+      "significance_sigma": 0.39009713859568623,
+      "r": 0.010180924766958185,
+      "p_value": 0.6965213111591404
+    },
+    "xi_step_mass_corrected": {
+      "value_mag": -0.009446728330666686,
+      "error_mag": 0.008720066076655607,
+      "significance_sigma": 1.083332195836958
+    },
+    "xi_regression_mass_corrected": {
+      "slope": 13419.562557221829,
+      "slope_err": 23468.811875625084,
+      "significance_sigma": 0.571804087413539,
+      "r": 0.014922303510366039,
+      "p_value": 0.5675422488863314
+    },
+    "joint_fit": {
+      "mass_slope": 0.0013221065141942887,
+      "mass_slope_err": 0.015169553759661517,
+      "xi_slope": 0.01626818734522984,
+      "xi_slope_err": 16.777297739732877,
+      "xi_significance": 0.00096965480362804
+    },
+    "stretch_vs_xi": {
+      "slope": -1627752.6597599024,
+      "slope_err": 141113.6581492608,
+      "significance": 11.535046862991619,
+      "r": -0.29167085357075,
+      "p_value": 1.6917244695638133e-29
+    }
+  },
+  "interpretation": "The X_i-step is in the TEP-predicted direction but not significant with the current sample. The V_rot proxy from the Tully-Fisher relation introduces substantial noise. A proper test requires measured rotation velocities for each SN host.",
+  "caveats": [
+    "V_rot estimated from stellar mass via Tully-Fisher, not measured",
+    "Only 1470 Hubble-flow SNe with mass measurements",
+    "No covariance handling (diagonal errors only)",
+    "Mass step itself is only 1.06sigma in this sample"
+  ]
+}

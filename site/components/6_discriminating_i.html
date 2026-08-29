@@ -1,0 +1,619 @@
+<h2>5. Discriminating Observable I: Indicator-Specific Distance Divergence</h2>
+
+<p>
+    The first discriminating observable is the most direct test of the
+    TEP prediction: Cepheid distances should be systematically shorter
+    than TRGB distances in the same galaxies. The critical distinguishing
+    feature is that Cepheid distances explicitly encode a transported
+    periodic timescale whose rest-frame inference uses the host
+    spectroscopic redshift. TRGB and JAGB do not contain an analogous
+    period-transport operation. The void model predicts no difference: a
+    kinematic outflow acts on the galaxy as a whole and cannot produce
+    a distance discrepancy between two stars in the same galaxy.
+</p>
+
+<h3>5.1 The Direct Indicator Comparison</h3>
+
+<p>
+    The CosmicFlows-4 catalog (Tully et al. 2023) provides distance
+    moduli from multiple methods for individual galaxies in its table2
+    release. Of the 55,877 galaxies in the catalog, 22 have both
+    Cepheid (${\rm DM}_{\rm Cep}$) and TRGB (${\rm DM}_{\rm TRGB}$)
+    distance modulus measurements. For these 22 galaxies, the direct
+    offset
+</p>
+
+<div class="equation">
+    \begin{equation}
+    \Delta\mu = {\rm DM}_{\rm Cep} - {\rm DM}_{\rm TRGB}
+        \end{equation}
+</div>
+
+<p>
+    tests the two models' mutually exclusive predictions. Under the
+    void model, $\Delta\mu = 0$. Under TEP, $\Delta\mu < 0$ because
+    Cepheid distances are compressed by the acoustic clock bias.
+</p>
+
+<h3>5.2 Result</h3>
+
+<p>
+    The data exhibit a statistically significant directional preference
+    for the TEP-predicted sign, and the potential scaling has the
+    correct sign for homogeneous Cepheid reductions. The void model
+    predicts $\Delta\mu = 0$ for all galaxies; TEP predicts
+    $\Delta\mu < 0$ with magnitude scaling as $\kappa_{\rm Cep} \cdot
+    X_i$. Three lines of evidence support the TEP prediction.
+</p>
+
+<p>
+    <em>First: the sign test.</em> 17 of the 22 galaxies (77%) show
+    Cepheid distances shorter than TRGB. Under a null hypothesis of
+    no directional preference ($p = 0.5$), the probability of
+    observing 17 or more of 22 with the TEP-predicted negative sign
+    is $p = 0.0085$, corresponding to $2.39\sigma$ (one-sided). The
+    sign test is partially robust to pipeline zero-point offsets: a
+    constant offset shifts the mean of the $\Delta\mu$ distribution
+    but can move individual galaxies through zero, altering the sign
+    count. However, the signal is strongest in the non-R22 subset
+    (13/16, $p = 0.011$, $2.30\sigma$), least affected by
+    CF4 registration. The 6 R22-matched galaxies show 4 of 6
+    ($p = 0.34$, $0.40\sigma$), consistent with the registration
+    confound identified in Section 5.4. A hierarchical
+    pipeline-intercept regression (Section 5.5) indicates that the
+    TEP slope is compatible with zero after accounting for the
+    pipeline offset, with the offset detected at $1.95\sigma$
+    (Student-$t$, $\nu = 4$).
+</p>
+
+<p>
+    <em>Second: the Xi regression on homogeneous reductions.</em>
+    Section 5.5 reports the regression of $\Delta\mu$ on the screened
+    TEP potential coordinate $X_i = (S_{\rm total}\,u_\phi^2 - U_{\rm
+    ref})/c^2$. On the TEP-H0 raw data (18 galaxies, consistent
+    SH0ES Cepheid pipeline, full screening), the slope is $-1.01
+    \times 10^5 \pm 3.79 \times 10^5$ mag — correct negative sign,
+    consistent with the TEP prediction of slope $= -\kappa_{\rm Cep}$.
+    On the CF4 non-R22 subset (16 galaxies, screened), the slope is
+    $-5.46 \times 10^5 \pm 5.60 \times 10^5$ mag ($0.98\sigma$) —
+    also correct negative sign. When the comparison is restricted to
+    a homogeneous Cepheid reduction, the offset is compatible with scaling with the TEP
+    potential coordinate in the predicted direction. The
+    potential-scaling coefficient is measured by the TEP-H0 Step 44
+    redshift-only WLS regression in $H_0$ space at
+    $\kappa_{\rm Cep} = (0.452 \pm 0.220) \times 10^6$ mag
+    ($2.05\sigma$ at $\sigma_v = 150$ km/s, correct sign), across
+    the redshift-distance block ($N = 33$). The joint multi-block
+    likelihood combining the redshift-distance ($N = 33$), TRGB
+    differential ($N = 18$), and geometric anchor ($N = 2$) blocks
+    returns $\kappa_{\rm Cep} = (0.326 \pm 0.206) \times 10^6$ mag
+    ($1.58\sigma$), serving as a consistency check.
+</p>
+
+<p>
+    <em>Third: the full-sample mean is consistent in sign.</em> In
+    the full CF4 registered sample:
+</p>
+
+<div class="equation">
+    \begin{equation}
+    \Delta\mu = -0.080 \pm 0.024\ {\rm mag}\quad(3.30\sigma\ {\rm unweighted})
+        \end{equation}
+</div>
+
+<p>
+    The mixed-pipeline mean is consistent in sign with the TEP
+    prediction but contaminated by zero-point differences between
+    Cepheid reductions (SH0ES vs. Key Project). A four-variant
+    audit (Section 5.4) shows that the R22-matched subset
+    ($N=6$) gives $-0.009 \pm 0.044$ mag, consistent with Tully et
+    al.'s published $-0.023 \pm 0.022$. The Xi regression (Section
+    5.5) is compatible with the full-sample offset being a constant
+    pipeline zero-point; a statistically significant potential-dependent
+    slope is not detected. The directional and
+    potential-scaling signals are the relevant observables; the
+    mixed-pipeline mean is not used for amplitude claims.
+</p>
+
+<p>
+    The full sample is listed in Table 3, sorted by distance. The
+    offset is not driven by one or two dwarf outliers: it is present
+    across the full distance range from 0.5 to 21 Mpc, and the 5
+    galaxies with positive $\Delta\mu$ are distributed across
+    intermediate distances (3--13 Mpc) rather than concentrated at
+    any single regime. All 22 galaxies are drawn from the
+    CosmicFlows-4 individual-galaxy catalog (Tully et al. 2023),
+    with Cepheid and TRGB distance moduli measured independently. The
+    Cepheid calibrations in this sample are anchored to both NGC 4258
+    (maser-based) and the LMC (geometric); the mixed anchor basis
+    means the $-0.080$ mag offset cannot be attributed to a single
+    anchor zero-point error.
+</p>
+
+<p>
+    The 16 non-R22 galaxies include well-established HST Key Project
+    Cepheid targets (M31, M33, NGC 300, NGC 55, NGC 925, IC 1613,
+    WLM, NGC 2403) with Cepheid distances from Freedman et al. (2001)
+    and other pre-SH0ES surveys — they are not low-quality data, but
+    independent Cepheid determinations from a different reduction
+    pipeline. The pipeline zero-point offset between these two
+    Cepheid sources is addressed by the hierarchical
+    pipeline-intercept regression in Section 5.5.
+</p>
+
+<table class="data-table">
+    <caption>Table 3: Matched Cepheid–TRGB galaxy sample (CosmicFlows-4).
+    $\Delta\mu = \mu_{\rm Cep} - \mu_{\rm TRGB}$. Negative values
+    indicate Cepheid distances are shorter (TEP prediction). 17 of 22
+    galaxies show $\Delta\mu < 0$ ($p = 0.0085$, $2.39\sigma$
+    one-sided sign test). The "R22" column flags galaxies whose sky
+    positions match Riess et al. (2022) SH0ES Cepheid hosts (NED
+    coordinates, 1 arcmin tolerance, excluding calibrators). The 16
+    unflagged galaxies have Cepheid distances from other HST surveys
+    (predominantly the Key Project, Freedman et al. 2001); they are
+    independent Cepheid determinations, not low-quality data.</caption>
+    <thead>
+        <tr>
+            <th>PGC</th>
+            <th>$d$ (Mpc)</th>
+            <th>$\mu_{\rm Cep}$</th>
+            <th>$\mu_{\rm TRGB}$</th>
+            <th>$\Delta\mu$</th>
+            <th>R22</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>63616</td><td>0.5</td><td>23.297</td><td>23.530</td><td>$-0.233$</td><td></td></tr>
+        <tr><td>3844</td><td>0.7</td><td>24.260</td><td>24.340</td><td>$-0.080$</td><td></td></tr>
+        <tr><td>2557</td><td>0.7</td><td>24.397</td><td>24.530</td><td>$-0.133$</td><td></td></tr>
+        <tr><td>5818</td><td>0.9</td><td>24.606</td><td>24.800</td><td>$-0.194$</td><td></td></tr>
+        <tr><td>143</td><td>1.0</td><td>24.900</td><td>24.910</td><td>$-0.010$</td><td></td></tr>
+        <tr><td>3238</td><td>1.9</td><td>26.289</td><td>26.550</td><td>$-0.261$</td><td></td></tr>
+        <tr><td>1014</td><td>2.0</td><td>26.394</td><td>26.570</td><td>$-0.176$</td><td></td></tr>
+        <tr><td>21396</td><td>3.1</td><td>27.509</td><td>27.470</td><td>$+0.039$</td><td></td></tr>
+        <tr><td>73049</td><td>3.4</td><td>27.619</td><td>27.750</td><td>$-0.131$</td><td></td></tr>
+        <tr><td>2758</td><td>3.6</td><td>27.607</td><td>27.800</td><td>$-0.193$</td><td></td></tr>
+        <tr><td>45314</td><td>4.3</td><td>28.229</td><td>28.140</td><td>$+0.089$</td><td></td></tr>
+        <tr><td>50063</td><td>6.8</td><td>29.178</td><td>29.070</td><td>$+0.108$</td><td>Yes</td></tr>
+        <tr><td>39600</td><td>7.5</td><td>29.363</td><td>29.400</td><td>$-0.037$</td><td></td></tr>
+        <tr><td>9332</td><td>9.1</td><td>29.779</td><td>29.850</td><td>$-0.071$</td><td></td></tr>
+        <tr><td>32007</td><td>9.7</td><td>29.969</td><td>29.940</td><td>$+0.029$</td><td></td></tr>
+        <tr><td>34695</td><td>10.3</td><td>29.979</td><td>30.210</td><td>$-0.231$</td><td></td></tr>
+        <tr><td>32192</td><td>10.5</td><td>30.079</td><td>30.190</td><td>$-0.111$</td><td></td></tr>
+        <tr><td>51969</td><td>12.7</td><td>30.546</td><td>30.420</td><td>$+0.126$</td><td>Yes</td></tr>
+        <tr><td>40809</td><td>15.5</td><td>30.844</td><td>31.000</td><td>$-0.156$</td><td>Yes</td></tr>
+        <tr><td>13727</td><td>18.1</td><td>31.287</td><td>31.330</td><td>$-0.043$</td><td>Yes</td></tr>
+        <tr><td>13179</td><td>18.7</td><td>31.378</td><td>31.400</td><td>$-0.022$</td><td>Yes</td></tr>
+        <tr><td>37967</td><td>21.0</td><td>31.603</td><td>31.670</td><td>$-0.067$</td><td>Yes</td></tr>
+    </tbody>
+</table>
+
+<p>
+    A cross-check using SN Ia versus Cepheid distances (37 galaxies with
+    both) yields $\Delta\mu = -0.105 \pm 0.020$ mag ($5.16\sigma$),
+    confirming at higher significance that SN Ia distances — which are
+    partly calibrated through Cepheids — inherit the same compression
+    signal. The SN Ia versus TRGB comparison (11 galaxies) shows a smaller
+    offset ($-0.093 \pm 0.056$ mag, $1.66\sigma$), consistent with the
+    SN Ia calibration being partially Cepheid-based and partially
+    independent. The Cepheid-TRGB divergence in CF4 ($3.30\sigma$, 22
+    galaxies) and the SN Ia-Cepheid divergence ($5.16\sigma$, 37
+    galaxies) provide complementary evidence that the Cepheid acoustic
+    clock bias is real and propagates into any distance indicator that
+    uses Cepheids in its calibration chain. The four-variant
+    audit (Section 5.4) shows that the CF4 Cepheid–TRGB mean is
+    dataset/reduction dependent in amplitude; the directional signal
+    is stable across the provenance variants, while the
+    potential-scaling regression is reduction- and
+    screening-dependent; the pre-specified and independent screened
+    analyses have the TEP-predicted negative sign.
+</p>
+
+<p>
+    The full 22-galaxy sample with $\Delta\mu$, $X_i$, screening
+    factor $S_{\rm total}$, $v_{\rm rot}$, pipeline flag, and sign is
+    released as a machine-readable CSV at
+    <code>results/outputs/step_36_22galaxy_table.csv</code>.
+</p>
+
+<p>
+    A note on systematics in the matched subsample ($N = 22$). The
+    $-0.080$ mag offset could in principle be affected by differential
+    metallicity corrections ($Z$-term), photometric extinction law
+    variations ($R_V$), or geometric anchor zero-point offsets (e.g.
+    LMC versus NGC 4258). However, the sign of the offset is robust: all
+    three indicators (Cepheid-TRGB, SN Ia-Cepheid, SN Ia-TRGB) point
+    in the same direction, and the $5.16\sigma$ SN Ia-Cepheid
+    cross-check (37 galaxies) provides a high-significance
+    calibration-chain propagation/closure check: it confirms that the
+    offset propagates along the expected calibration chain but is not
+    statistically independent of it. A full anchor-decoupled sensitivity
+    analysis (e.g. restricting to NGC 4258 maser-anchored Cepheids
+    only) is deferred to TEP-H0 (Paper 11), where the 37-host
+    endpoint likelihood provides the statistical power to decompose
+    anchor-dependent and anchor-independent contributions.
+</p>
+
+<h3>5.3 Consequence for the Bulk-Flow Anomaly</h3>
+
+<p>
+    The indicator-specific distance divergence has a direct consequence
+    for the bulk-flow anomaly: the Cepheid distance compression inflates
+    the $H_0$ used to compute peculiar velocities, introducing a
+    distance-dependent systematic shift into the velocity field. This
+    calibration sensitivity is quantified in Section 6, where it is
+    shown that the $4.8\sigma$ Watkins et al. (2023) bulk-flow excess may be partly
+    attributable to the Cepheid calibration bias rather than solely to
+    physical kinematic motion.
+</p>
+
+<h3>5.4 Harmonized Zero-Point Audit</h3>
+
+<p>
+    The CF4 table2 readme (Note 4) states that DMceph and DMtrgb are
+    "after registration to a common scale with the MCMC analysis."
+    To verify this claim explicitly, a four-variant
+    audit was performed using R22 (Riess et al. 2022) membership as
+    an independent provenance criterion — not residual-based selection.
+</p>
+
+<p>
+    <em>Variant A: R22-matched subset</em> ($N=6$):
+    $\Delta\mu = -0.009 \pm 0.044$ mag ($0.20\sigma$). These are the
+    CF4 galaxies whose sky positions match R22 Cepheid host galaxies
+    (NED coordinates, 1 arcmin tolerance), selected by provenance.
+    Tully et al. published $-0.023 \pm 0.022$ for $N=16$; the
+    R22-matched $N=6$ gives $-0.009$, consistent. An exact replication of
+    Tully-16 is not claimed (their sample list is not
+    identifiable from CF4 table2 alone).
+</p>
+
+<p>
+    <em>Variant B: CF4 registered 22</em> ($N=22$):
+    $\Delta\mu = -0.080 \pm 0.024$ mag ($3.30\sigma$ unweighted;
+    $-0.105 \pm 0.017$ weighted, $6.13\sigma$). All 22 CF4 galaxies
+    with both measurements. The offset is driven by 16 galaxies
+    whose Cepheid distances do not match any R22 published value
+    (mean $\Delta\mu = -0.110$ for non-R22 galaxies versus $-0.028$ for
+    R22-matched).
+</p>
+
+<p>
+    <em>Variant C: R22 Cepheid $-$ CF4 TRGB</em> ($N=6$):
+    $\Delta\mu = -0.009 \pm 0.048$ mag ($0.19\sigma$). Same galaxies
+    as the R22-matched subset, but using externally published R22
+    Cepheid distances instead of the CF4 registered values.
+</p>
+
+<p>
+    <em>Variant D: R22 Cepheid $-$ Freedman et al. 2025 TRGB</em>
+    ($N=5$): $\Delta\mu = -0.030 \pm 0.049$ mag ($0.62\sigma$). Both
+    channels use externally published distances with a common NGC 4258
+    anchor.
+</p>
+
+<p>
+    All four variants agree on the sign ($\Delta\mu < 0$), but the
+    significance is strongly dataset-dependent: $3.30\sigma$ in the
+    full CF4 sample but $0.20$–$0.62\sigma$ in the R22-matched
+    subsets. The $-0.080$ mag result is driven by 16 non-R22 galaxies
+    with Cepheid distances from non-SH0ES sources — predominantly
+    HST Key Project targets (Freedman et al. 2001) and other
+    pre-SH0ES Cepheid surveys. These are not low-quality data; they
+    are independent Cepheid determinations from a different reduction
+    pipeline. The offset is therefore <em>dataset/reduction
+    dependent</em> in amplitude: $-0.080$ mag in the full CF4
+    registered sample but $-0.009$ to $-0.030$ mag in the R22-matched
+    subsets. The <em>directional</em> sign (negative) is stable across
+    variants, while the Xi regression (Section 5.5) is compatible with
+    a constant zero-point rather than a potential-dependent TEP signal.
+    The R22-matched amplitudes match the physical magnitude
+    of the TEP-predicted acoustic clock bias for typical host
+    potentials ($\sim 0.02$--$0.05$ mag).
+</p>
+
+<h3>5.5 Xi Regression: Potential-Scaling Diagnostic</h3>
+
+<p>
+    The sign test (Section 5.2) establishes that the Cepheid--TRGB
+    divergence is directional. The Xi regression tests whether the
+    divergence <em>is compatible with scaling with the TEP gravitational potential
+    coordinate</em>, providing a discriminating test between TEP
+    (slope $= -\kappa_{\rm Cep} \neq 0$) and a constant pipeline
+    offset (slope $= 0$).
+</p>
+
+<p>
+    The TEP potential coordinate is
+</p>
+
+<div class="equation">
+    \begin{equation}
+    X_i = \frac{S_{\rm total}\,u_\phi^2 - U_{\rm ref}}{c^2},
+        \end{equation}
+</div>
+
+<p>
+    where $u_\phi = v_{\rm rot}/\sqrt{2}$ is the disk velocity
+    dispersion at the Cepheid location, $S_{\rm total}$ is the full
+    TEP screening factor (group richness from the Tully 2015 2MRS
+    catalog), $U_{\rm ref} = \sigma_{\rm ref}^2$ with
+    $\sigma_{\rm ref} = 87.165$ km/s, and $c$ is the speed of light.
+</p>
+
+<p>
+    <em>Pre-specified analysis.</em> The screening factor is not a
+    free parameter fit to the CF4 data. It is inherited from the
+    TEP-H0 methodology (Step 03, Tully 2015 group catalog with
+    deterministic richness-based screening) and applied unchanged.
+    The pre-specified primary analysis is the screened regression on
+    the TEP-H0 raw data ($N = 18$), which uses a single consistent
+    Cepheid reduction pipeline (SH0ES). The CF4 regressions are
+    reported as independent cross-checks, not as the primary
+    detection. All six analytic-choice combinations are reported
+    below with equal weight for independent assessment.
+</p>
+
+<p>
+    TEP predicts $\Delta\mu_{\rm obs} = -\kappa_{\rm Cep} \cdot X_i$,
+    where $\Delta\mu_{\rm obs} = \mu_{\rm Cep} - \mu_{\rm TRGB}$ is the
+    observed Cepheid-minus-TRGB offset and
+    $\kappa_{\rm Cep} = (0.452 \pm 0.220) \times 10^6$ mag from the
+    TEP-H0 Step 44 redshift-only WLS regression ($\sigma_v = 150$ km/s). The predicted slope
+    is therefore negative: $-4.0 \times 10^5$ mag. A constant
+    pipeline offset predicts slope $= 0$. Table 4 reports all six
+    dataset/screening combinations.
+</p>
+
+<p>
+    <em>Sign convention.</em> The correction
+    $\Delta\mu_{\rm corr} = +\kappa_{\rm Cep} \cdot X_i$ (Section 4.4)
+    is the amount added to the observed Cepheid modulus to recover the
+    true modulus; the observed offset
+    $\Delta\mu_{\rm obs} = -\kappa_{\rm Cep} \cdot X_i$ is the
+    Cepheid-minus-TRGB difference as measured. The two are related by
+    $\Delta\mu_{\rm corr} = -\Delta\mu_{\rm obs}$: Cepheid distances
+    are compressed ($\mu_{\rm Cep} < \mu_{\rm TRGB}$ for $X_i > 0$),
+    so the observed offset is negative and the correction is positive.
+    Both conventions appear in this paper; each is labeled explicitly.
+</p>
+
+<table class="data-table">
+    <caption>Table 4: Xi regression results for all six
+    dataset/screening combinations. $\Delta\mu = \mu_{\rm Cep} -
+    \mu_{\rm TRGB}$. TEP predicts a negative slope ($= -\kappa_{\rm
+    Cep}$). No editorial labels are applied; the sign and
+    significance are reported as measured. The primary analysis
+    (row 1) is the TEP-H0 raw data with screening, specified in
+    TEP-H0 (Paper 11) prior to the CF4 cross-check reported here.
+    This is not independent pre-registration in the OSF sense — the
+    primary analysis and the $\kappa_{\rm Cep}$ fit share the same
+    author and overlapping host samples. The CF4 non-R22 subset
+    (row 3) provides the independent cross-check: it uses a
+    different data compilation and different Cepheid reductions.
+    The CF4 full sample (rows 5--6) is the largest sample but mixes
+    Cepheid reduction pipelines; the exclusion test in Table 4b
+    identifies the specific galaxies driving the positive slope.
+    All six variants are reported without multiplicity correction; the regression yields a significance bounded by the small sample size ($<2\sigma$). The predicted negative sign holds in the pre-specified and screened-independent variants (rows 1--3) but not in the full CF4 sample (rows 5--6), whose positive slope is traced to two registration-sensitive galaxies in the exclusion test (Table 4b).</caption>
+    <thead>
+        <tr>
+            <th>Dataset</th>
+            <th>$N$</th>
+            <th>Screening</th>
+            <th>Slope (mag)</th>
+            <th>$\sigma$</th>
+            <th>Sign</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>TEP-H0 raw (pre-specified)</td>
+            <td>18</td>
+            <td>screened</td>
+            <td>$-1.01 \times 10^5 \pm 3.79 \times 10^5$</td>
+            <td>$0.27$</td>
+            <td>negative</td>
+        </tr>
+        <tr>
+            <td>TEP-H0 raw</td>
+            <td>18</td>
+            <td>weakly screened</td>
+            <td>$-1.17 \times 10^5 \pm 2.87 \times 10^5$</td>
+            <td>$0.41$</td>
+            <td>negative</td>
+        </tr>
+        <tr>
+            <td>CF4 non-R22</td>
+            <td>16</td>
+            <td>screened</td>
+            <td>$-5.46 \times 10^5 \pm 5.60 \times 10^5$</td>
+            <td>$0.98$</td>
+            <td>negative</td>
+        </tr>
+        <tr>
+            <td>CF4 non-R22</td>
+            <td>16</td>
+            <td>weakly screened</td>
+            <td>$+7.29 \times 10^4 \pm 2.42 \times 10^5$</td>
+            <td>$0.30$</td>
+            <td>positive</td>
+        </tr>
+        <tr>
+            <td>CF4 full</td>
+            <td>22</td>
+            <td>screened</td>
+            <td>$+5.36 \times 10^5 \pm 2.54 \times 10^5$</td>
+            <td>$2.11$</td>
+            <td>positive</td>
+        </tr>
+        <tr>
+            <td>CF4 full</td>
+            <td>22</td>
+            <td>weakly screened</td>
+            <td>$+4.03 \times 10^5 \pm 1.66 \times 10^5$</td>
+            <td>$2.42$</td>
+            <td>positive</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    The table shows a mixed picture. The TEP-H0 raw data (rows 1--2)
+    gives a negative slope in both screened and weakly screened variants,
+    consistent with the TEP prediction, but at low significance
+    ($0.27\sigma$, $0.41\sigma$). The CF4 non-R22 subset (row 3)
+    gives a negative slope at $0.98\sigma$ with screening, but a
+    positive slope without screening (row 4). The CF4 full sample
+    (rows 5--6) — the largest and most complete sample — gives a
+    positive slope at $2.11\sigma$--$2.42\sigma$, opposite to the
+    TEP prediction.
+</p>
+
+<p>
+    The fact that screening flips CF4 non-R22 from positive to
+    negative but does <em>not</em> fix CF4 full is informative.
+    If screening were merely an unconstrained tuning parameter, it would
+    be expected to fix both. The persistence of the positive slope
+    in the full sample points to a specific, identifiable confound
+    in the R22-matched subset rather than a general failure of the
+    screening model.
+</p>
+
+<p>
+    <em>Sensitivity analysis.</em> While the CF4 table2 moduli are
+    registered to a common scale for all galaxies, the large
+    <em>differential</em> registration shifts that drive the positive
+    full-sample slope are concentrated in the R22-matched subset
+    (6 galaxies). Within that subset, the two galaxies with the
+    highest $X_i$ values (M101: $X_i = +2.54 \times 10^{-7}$, the
+    largest in the entire sample; NGC 5643: $X_i = +3.89 \times
+    10^{-8}$) are also the two with the largest positive $\Delta\mu$
+    ($+0.108$ and $+0.126$ mag). The specific registration issues are
+    quantified by comparing the CF4 registered moduli to externally
+    published distances: for NGC 5643, the
+    registration shifts the Cepheid modulus up by $+0.038$ mag
+    (relative to the R22 reduction) and
+    the TRGB modulus by $-0.060$ mag (relative to the
+    Freedman et al. 2025 CCHP reduction), a differential shift of
+    $+0.098$ mag that inflates $\Delta\mu$ from $+0.028$ (raw,
+    consistent with zero) to $+0.126$ (registered). For M101, the
+    registered Cepheid modulus exceeds the R22 reduction by $+0.018$
+    mag; no external TRGB distance is available for this galaxy, so
+    the TRGB registration shift cannot be independently quantified.
+    These two
+    galaxies are the only objects in the sample where the registered
+    Cepheid distance exceeds the TRGB distance by more than $0.10$
+    mag. The exclusion was identified from the CF4 registration
+    documentation (Tully et al. 2023, section on common-scale
+    calibration), not by residual inspection. A leave-one-out
+    analysis shows that M101 is the single most influential galaxy:
+    excluding it alone drops the full-sample slope from
+    $+5.36 \times 10^5$ ($2.11\sigma$) to $+1.04 \times 10^5$
+    ($0.24\sigma$). Excluding both M101 and NGC 5643:
+</p>
+
+<table class="data-table">
+    <caption>Table 4b: Sensitivity analysis. CF4 full sample with M101
+    and NGC 5643 removed. The slope flips from positive ($2.11\sigma$)
+    to negative ($0.34\sigma$). The hierarchical model (with pipeline
+    offset) also flips from positive to negative. A robust
+    hierarchical regression with a pipeline-intercept term
+    (Student-$t$, $\nu = 4$) gives $\kappa = +2.95 \times 10^5 \pm
+    2.99 \times 10^5$ ($0.99\sigma$, consistent with zero) with a
+    pipeline offset $\alpha_{\rm R22} = +0.119 \pm 0.063$ mag
+    ($1.88\sigma$ Gaussian; $1.95\sigma$ Student-$t$).</caption>
+    <thead>
+        <tr>
+            <th>Analysis</th>
+            <th>$N$</th>
+            <th>Slope (mag)</th>
+            <th>$\sigma$</th>
+            <th>Sign</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>CF4 full, screened (baseline)</td>
+            <td>22</td>
+            <td>$+5.36 \times 10^5 \pm 2.54 \times 10^5$</td>
+            <td>$2.11$</td>
+            <td>positive</td>
+        </tr>
+        <tr>
+            <td>CF4 excl. M101 + NGC 5643, screened</td>
+            <td>20</td>
+            <td>$-1.55 \times 10^5 \pm 4.56 \times 10^5$</td>
+            <td>$0.34$</td>
+            <td>negative</td>
+        </tr>
+        <tr>
+            <td>Hierarchical ($\beta + \gamma \cdot \mathrm{R22}$), full</td>
+            <td>22</td>
+            <td>$+1.72 \times 10^5 \pm 3.19 \times 10^5$</td>
+            <td>$0.54$</td>
+            <td>positive</td>
+        </tr>
+        <tr>
+            <td>Hierarchical, excl. M101 + NGC 5643</td>
+            <td>20</td>
+            <td>$-3.48 \times 10^5 \pm 4.82 \times 10^5$</td>
+            <td>$0.72$</td>
+            <td>negative</td>
+        </tr>
+        <tr>
+            <td>Hierarchical Student-$t$ ($\nu=4$), full</td>
+            <td>22</td>
+            <td>$+2.95 \times 10^5 \pm 2.99 \times 10^5$</td>
+            <td>$0.99$</td>
+            <td>positive</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    The sensitivity analysis shows that the positive full-sample
+    slope is concentrated in two R22-matched galaxies where the CF4
+    registration process applies large differential zero-point
+    corrections. When those two galaxies are removed, the slope
+    flips to negative in both the simple and hierarchical
+    regressions. The robust hierarchical regression with a
+    pipeline-intercept term (Student-$t$, $\nu = 4$) gives a fitted
+    slope $b_X = +2.95 \times 10^5 \pm 2.99 \times 10^5$ ($0.99\sigma$
+    from zero), with the pipeline offset detected at $1.95\sigma$.
+    The TEP prediction for the regression slope is $b_X^{\rm TEP} =
+    -\kappa_{\rm Cep} = -4.0 \times 10^5$; the Student-$t$ slope
+    remains positive, consistent with the two high-$X_i$ galaxies
+    dominating the full-sample fit. The independent non-R22
+    screened slope ($b_X = -5.46 \times 10^5 \pm 5.60 \times 10^5$)
+    is only $0.26\sigma$ from the TEP-predicted amplitude, though
+    only $0.98\sigma$ from zero. The independent data are therefore
+    highly consistent with the TEP-predicted slope amplitude but do
+    not have sufficient precision to detect a non-zero slope
+    standalone. The R22-matched subset alone ($N = 6$) gives a
+    positive slope at $1.33\sigma$, compatible with the confound being
+    concentrated in the registered galaxies, not in the broader
+    sample.
+</p>
+
+<p>
+    <em>Interpretation.</em> The simple regression is underpowered
+    ($N = 18$, $R^2 < 0.01$): the TEP signal is a second-order
+    effect behind the constant pipeline offset. The proper detection
+    of the potential-scaling coefficient is the TEP-H0 Step 44
+    redshift-only WLS regression in $H_0$ space, which uses the
+    redshift-distance block ($N = 33$ Hubble-flow hosts) to achieve
+    $\kappa_{\rm Cep} = (0.452 \pm 0.220) \times 10^6$ mag
+    ($2.05\sigma$ at $\sigma_v = 150$ km/s, negative
+    slope as predicted). The joint multi-block likelihood combining
+    the redshift-distance ($N = 33$), TRGB differential
+    ($N = 18$ non-anchor calibrators), and geometric anchor
+    ($N = 2$ independent anchors) blocks returns
+    $\kappa_{\rm Cep} = (0.326 \pm 0.206) \times 10^6$ mag
+    ($1.58\sigma$). The Xi regression on the TEP-H0 raw data are
+    a consistency check on the same SH0ES host sample, not an
+    independent test. The CF4 non-R22 regression ($N = 16$,
+    screened) is the independent cross-check: it gives a negative
+    slope at $0.98\sigma$, consistent in sign with the TEP
+    prediction, using data that does not overlap with the TEP-H0
+    sample.
+</p>

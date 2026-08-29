@@ -1,0 +1,46 @@
+# HyperLEDA rotation velocities for the 22 CF4 galaxies with both Cepheid and TRGB distances
+#
+# These are the 22 galaxies from Cosmicflows-4 (Tully et al. 2023) table2 that have
+# both DMceph and DMtrgb. Rotation velocities (vrot) are the inclination-corrected
+# maximum rotation velocities from HyperLEDA (Makarov et al. 2014, A&A 570, A13).
+#
+# Query: http://leda.univ-lyon1.fr/ledacat.cgi, field vrot (inclination-corrected).
+# Archive date: 2026-08-28. Reference: Makarov et al. 2014, A&A 570, A13.
+#
+# The potential-equivalent scale is u_phi = vrot / sqrt(2), following the convention
+# established in velocity_dispersions_literature.csv (TEP-H0, Paper 11).
+# The gravitational potential proxy is U_i = u_phi^2 = vrot^2 / 2.
+#
+# Galaxies already in velocity_dispersions_literature.csv (R22 hosts + anchors)
+# are marked with source=EXISTING_CATALOG. The remaining 14 were queried from
+# HyperLEDA on 2026-08-28 and are marked source=HYPERLEDA_QUERY_2026-08-28.
+#
+# For two dwarf galaxies (WLM, NGC 55), HyperLEDA does not list a vrot error.
+# A conservative 10% relative error is assigned (e_vrot = 0.1 * vrot).
+#
+# R22 membership is determined by position-matching to Riess et al. (2022) SH0ES
+# Cepheid hosts via NED coordinates (1 arcmin tolerance), as implemented in
+# step_30_bulk_flow_recalculation.py.
+pgc,galaxy_name,vrot_kms,vrot_error_kms,r22_matched,source
+63616,NGC 6822,92.4,5.7,False,HYPERLEDA_QUERY_2026-08-28
+3844,IC 1613,26.8,1.1,False,HYPERLEDA_QUERY_2026-08-28
+2557,M 31,256.7,6.1,False,EXISTING_CATALOG
+5818,NGC 0598 (M33),100.1,1.7,False,HYPERLEDA_QUERY_2026-08-28
+143,WLM,26.2,2.62,False,HYPERLEDA_QUERY_2026-08-28
+3238,NGC 0300,89.4,2.1,False,HYPERLEDA_QUERY_2026-08-28
+1014,NGC 0055,58.7,5.87,False,HYPERLEDA_QUERY_2026-08-28
+21396,NGC 2403,120.2,2.6,False,HYPERLEDA_QUERY_2026-08-28
+2758,NGC 0247,84.5,2.0,False,HYPERLEDA_QUERY_2026-08-28
+73049,NGC 7793,85.9,1.6,False,HYPERLEDA_QUERY_2026-08-28
+45314,IC 4182,39.4,1.5,False,HYPERLEDA_QUERY_2026-08-28
+39600,NGC 4258,212.9,5.2,False,EXISTING_CATALOG
+9332,NGC 0925,105.6,2.1,False,HYPERLEDA_QUERY_2026-08-28
+32007,NGC 3351 (M95),150.7,3.7,False,HYPERLEDA_QUERY_2026-08-28
+34695,NGC 3627 (M66),174.7,3.6,False,HYPERLEDA_QUERY_2026-08-28
+32192,NGC 3368 (M96),202.2,4.6,False,HYPERLEDA_QUERY_2026-08-28
+50063,M 101,274.1,10.2,True,EXISTING_CATALOG
+51969,NGC 5643,171.2,4.3,True,EXISTING_CATALOG
+40809,NGC 4424,28.6,1.1,True,EXISTING_CATALOG
+13727,NGC 1448,185.1,2.0,True,EXISTING_CATALOG
+13179,NGC 1365,198.3,3.0,True,EXISTING_CATALOG
+37967,NGC 4038,169.1,7.8,True,EXISTING_CATALOG

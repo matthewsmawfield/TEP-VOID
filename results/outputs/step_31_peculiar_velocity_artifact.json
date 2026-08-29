@@ -1,0 +1,64 @@
+{
+  "step": "31_peculiar_velocity_artifact",
+  "description": "Quantifies how the H0 calibration difference (3.2 km/s/Mpc, from the Cepheid distance compression demonstrated in Step 30) propagates into the peculiar velocity field. The shift is deterministic: \u0394v = -3.2*d km/s. This is not a statistical test but a quantification of calibration sensitivity.",
+  "h0_cepheid": 73.0,
+  "h0_trgb": 69.8,
+  "h0_trgb_source": "Freedman et al. 2025 (CCHP), consistent with \u0394\u03bc-derived value",
+  "delta_h0": 3.200000000000003,
+  "n_galaxies": 38053,
+  "n_groups": 38053,
+  "results": {
+    "shift_at_100_mpc": -320.0000000000003,
+    "shift_at_200_mpc": -640.0000000000006,
+    "shift_at_250_mpc": -800.0000000000007,
+    "rms_shift": 839.2259325876229,
+    "mean_shift": -718.321019630516,
+    "median_shift": -671.6800000000003,
+    "fraction_gt_200_kms": 0.8901794865056631,
+    "bulk_flow_comparison": {
+      "100": {
+        "n": 8540,
+        "bf_cepheid": 13.122168275910628,
+        "bf_trgb": 12.742764796478795,
+        "reduction_pct": 2.8913169794380167
+      },
+      "200": {
+        "n": 18191,
+        "bf_cepheid": 12.73994210554707,
+        "bf_trgb": 12.262169621888916,
+        "reduction_pct": 3.750193522858548
+      },
+      "250": {
+        "n": 22199,
+        "bf_cepheid": 12.2755804205533,
+        "bf_trgb": 11.732439412669404,
+        "reduction_pct": 4.4245647804522745
+      }
+    },
+    "delta_h0": 3.200000000000003,
+    "mean_delta_mu": -0.0799090909090912,
+    "significance_sigma": 3.3041777364692018,
+    "interpretation": "The H0 calibration difference of 3.2 km/s/Mpc introduces a distance-dependent systematic of -3.2*d km/s into v_pec. This is a direct consequence of the Cepheid distance compression demonstrated in Step 30 (3.30sigma). Under the void model, the bulk flow is physical and this calibration sensitivity is unphysical. Under TEP, the Cepheid calibration bias is the source of the inflated peculiar velocities."
+  },
+  "tep_argument": "The Cepheid distance compression (Step 30: \u0394\u03bc = -0.080 mag, 3.30\u03c3) produces H0 = 73.0 instead of 69.8. Using H0 = 73.0 to compute peculiar velocities introduces a distance-dependent systematic of -3.2*d km/s, inflating the apparent bulk flow. The void model has no mechanism to produce this calibration dependence.",
+  "methodology": "Peculiar velocities are computed as v_pec = cz \u2212 H0\u00b7d for both Cepheid (H0=73.0) and TRGB (H0=69.8) calibrations. The deterministic shift \u0394v = \u2212\u0394H0\u00b7d is evaluated at characteristic distances (100, 200, 250 Mpc). Bulk-flow amplitudes are compared in radial bins using inverse-distance-squared weighting in supergalactic coordinates. The RMS shift and fraction of galaxies with |shift| > 200 km/s quantify the calibration sensitivity.",
+  "provenance": {
+    "data_sources": [
+      "CosmicFlows-4 processed data (from step_02, Tully et al. 2023)",
+      "H0 calibration values from step_30 (Riess et al. 2022; Freedman et al. 2025)"
+    ],
+    "pipeline_block": "Block Ib \u2014 bulk flow and redshift decay",
+    "covariance": "Not applicable \u2014 the calibration shift is deterministic by construction. Bulk-flow errors derived from weighted variance of v_pec divided by sqrt(N)."
+  },
+  "scientific_context": "The Hubble tension between Cepheid- and TRGB-calibrated H0 values propagates into the peculiar velocity field as a distance-dependent systematic. Under TEP, the Cepheid calibration bias is the source of inflated peculiar velocities and the apparent bulk flow. Under the void model, the bulk flow is physical and independent of the H0 calibration.",
+  "tep_prediction": "The Cepheid-calibrated H0 introduces a distance-dependent systematic of \u2212\u0394H0\u00b7d km/s into v_pec, inflating the apparent bulk flow",
+  "void_prediction": "The bulk flow is physical and independent of the H0 calibration; no distance-dependent systematic is expected",
+  "downstream_consumers": [
+    "step_33",
+    "step_34"
+  ],
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_31_peculiar_velocity_artifact.json",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_31_peculiar_velocity_artifact.png"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "step": "40_redshift_shear_reconstruction",
+  "description": "Reconstruct Pantheon+ distance moduli under TEP temporal shear",
+  "kappa_ceph": 451681.93636651745,
+  "kappa_ceph_units": "mag",
+  "kappa_ceph_source": "Imported from TEP-H0 (Paper 11, redshift-only WLS at sigma_v=150 km/s). kappa_Cep = (0.452 +/- 0.220) x 10^6 mag. NOT derived within TEP-VOID \u2014 fixed parameter for cross-validation.",
+  "correction_formula": "Delta_mu = kappa_Cep * X_i",
+  "xi_definition": "X_i = (U_i - U_ref) / c^2, U_ref = (87.165 km/s)^2",
+  "caveat": "Pantheon+ uses a global M_B calibration. The Cepheid bias is imprinted on M_B, not on individual SN distances. The correction is approximately a constant offset. The host-mass dependence of the TEP effect requires per-host Cepheid calibrations (TEP-H0, Paper 11). The (1+z)^{-0.3} H0(z) decay prediction from Section 7 is NOT applied as a per-SN correction.",
+  "h0_cmb": 67.4,
+  "n_sne": 1543,
+  "n_host_potentials": 41,
+  "host_potential_used": true,
+  "host_potential_note": "Host potential catalog from step_01 loaded. X_i computed from actual potentials for matched hosts; mass-based sigmoid proxy for unmatched hosts, calibrated from the 41 calibrator galaxies.",
+  "used_fallback": false,
+  "residual_analysis": {
+    "residual_before_mean": -0.17182395028409544,
+    "residual_before_std": 0.18316702804966603,
+    "residual_before_rms": 0.251101347258196,
+    "residual_after_mean": -0.14045967332206244,
+    "residual_after_std": 0.18351198938297292,
+    "residual_after_rms": 0.23104922557631977,
+    "rms_improvement": 0.020052121681876228,
+    "delta_mb_shift": 0.031364276962033,
+    "delta_mb_shift_sem": 0.0002777786926934821,
+    "delta_mb_shift_sigma": 112.91102516866636,
+    "delta_mb_shift_propagated_err": 0.026122575880706937,
+    "massive_residual_before_rms": 0.24262051158770986,
+    "massive_residual_after_rms": 0.21660974267463473,
+    "massive_rms_improvement": 0.026010768913075133
+  },
+  "tep_prediction": "TEP-corrected residuals should be reduced, especially for massive hosts",
+  "tep_confirmed": true,
+  "void_prediction": "The KBC void model predicts no indicator-specific distance compression; the Pantheon+ residual structure should show no systematic offset correctable by a potential-dependent term.",
+  "methodology": "TEP temporal shear correction Delta_mu = kappa_Cep * X_i applied to Pantheon+ distance moduli. kappa_Cep imported from TEP-H0 (Paper 11, Cepheid-channel closure). X_i computed from step_01 host potential catalog with mass-dependent sigmoid proxy for unmatched hosts. Hubble residuals computed against a LambdaCDM reference with H0 = 67.4 km/s/Mpc and Omega_m = 0.302.",
+  "provenance": {
+    "data_sources": [
+      "Pantheon+ SN Ia sample (step_03 ingestion)",
+      "Host potential catalog (step_01)",
+      "kappa_Cep from TEP-H0 (Paper 11, Cepheid-channel closure)"
+    ],
+    "pipeline_block": "Block III \u2014 TEP reconstruction and synthesis"
+  },
+  "scientific_context": "Cross-validation of the TEP shear coupling constant against the Pantheon+ Hubble diagram. The correction direction and residual reduction are checked for consistency with the TEP prediction. This is not a discriminating test between TEP and the void model.",
+  "downstream_consumers": [
+    "step_42",
+    "step_43"
+  ],
+  "output_files": [
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_40_redshift_shear_reconstruction.json",
+    "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_40_pantheon_tep_correction.png"
+  ]
+}

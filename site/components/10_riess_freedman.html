@@ -1,0 +1,188 @@
+<h2>8. Observable III (continued): Calibration-Independent Relative Evolution</h2>
+
+<p>
+    This is a complementary view of the $H_0(z)$ redshift-profile test
+    (Section 7) that cancels the common zero-point. Rather
+    than fitting the global $H_0(z)$ curve with the unbinned
+    likelihood, this test measures the <em>relative evolution</em>
+    between low-redshift and high-redshift bins. The formal statistic
+    is the ratio $R_H = H_0(z > 0.25) / H_0(0.05 \le z < 0.15)$, or equivalently
+    $\Delta \ln H_0 = \ln R_H$. A common distance-modulus zero-point
+    shift rescales all inferred $H_0$ values by the same multiplicative
+    factor ($H_0 \to a H_0$), which cancels identically in the ratio.
+    The additive difference $\Delta H_0 = H_0(z > 0.25) - H_0(0.05 \le z < 0.15)$
+    is retained as an intuitive calibrated representation, but the ratio
+    is the formally calibration-independent quantity.
+</p>
+
+<p>
+    The void model predicts $\Delta H_0 < 0$: the locally inferred
+    $H_0$ should decline from the inflated local value toward the CMB
+    value as observations extend beyond the void wall. The TEP
+    framework predicts $\Delta H_0 \approx 0$: with global $M_B$, the
+    Cepheid clock bias is encoded in the zero-point and does not vary
+    with redshift, so $H_0$ should be flat at all redshifts.
+</p>
+
+<h3>8.1 Test Design</h3>
+
+<p>
+    Using the 1,701 Pantheon+ observations (1,543 unique supernovae,
+    with duplicate survey observations retained to preserve the native
+    $1701 \times 1701$ covariance structure), $H_0(z)$ is computed in
+    redshift bins from $z = 0.01$ to $z = 2.3$, split by host galaxy
+    stellar mass at the canonical threshold
+    $\log_{10}(M_*/M_\odot) = 10.0$. The primary metric is the
+    ratio $R_H = H_0(z > 0.25) / H_0(0.05 \le z < 0.15)$,
+    evaluated on the full sample; host-mass subsets are retained as
+    secondary robustness checks. For each SN,
+    $H_0$ is inferred by inverting the ΛCDM distance modulus:
+</p>
+
+<div class="equation">
+    \begin{equation}
+    H_0 = \frac{(1+z)\,c\,\int_0^z dz'/E(z')}{10^{(\mu - 25)/5}}
+        \end{equation}
+</div>
+
+<p>
+    where $E(z) = \sqrt{\Omega_m(1+z)^3 + (1-\Omega_m)}$ and $\mu$ is
+    the observed distance modulus. The Pantheon+ distance moduli
+    ($\mu_{\rm SH0ES}$) use $M_B = -19.253$ calibrated from Cepheid
+    anchors at $z \sim 0$; therefore the absolute $H_0$ at any
+    redshift inherits the Cepheid zero-point as its absolute
+    normalization and is
+    <em>not</em> an independent measurement of SH0ES versus
+    Planck. The scientifically meaningful test is the
+    <em>relative evolution</em>: the common zero-point cancels
+    in the ratio $R_H$.
+</p>
+
+<h3>8.2 Result: $R_H \approx 1.007$ — Consistent with Flat, $\sim 8\sigma$ Rejection of KBC</h3>
+
+<p>
+    The primary metric is the calibration-independent ratio. A joint
+    generalized least-squares (GLS) fit of the two-bin intercepts using
+    the full Pantheon+ STAT+SYS
+    covariance matrix over the full sample ($N_{\rm low} = 178$,
+    $N_{\rm high} = 614$) gives $H_0^{\rm low} = 73.01\ {\rm
+    km\,s^{-1}\,Mpc^{-1}}$ and $H_0^{\rm high} = 73.49\ {\rm
+    km\,s^{-1}\,Mpc^{-1}}$, yielding
+</p>
+
+<div class="equation">
+    \begin{equation}
+    R_H = \frac{H_0(z > 0.25)}{H_0(0.05 \le z < 0.15)} = 1.0066 \pm 0.00642,
+        \end{equation}
+</div>
+
+<p>
+    consistent with flat $H_0(z)$ at $1.0\sigma$. The KBC Gaussian
+    profile predicts $R_H^{\rm KBC} = 0.9569$ (a $\sim 4.3\%$
+    decline) when evaluated through the same two-bin GLS
+    covariance-aware estimator used for the observed $R_H$ (the
+    KBC model shift $s_i = 5\log_{10}(H_{\rm ref}/H_{\rm KBC}(z_i))$
+    is fed through the identical GLS zero-point operator in each
+    bin); the Exponential predicts $R_H^{\rm KBC} = 0.9494$. The
+    frozen KBC curves are evaluated at every supernova redshift in
+    the same low ($0.05 \le z < 0.15$) and high ($z > 0.25$) bins
+    used for the observed $R_H$. The covariance-aware significance
+    of the rejection is
+</p>
+
+<div class="equation">
+    \begin{equation}
+    Z = \frac{R_{H,\rm obs} - R_{H,\rm KBC}}{\sigma_{R_H}}
+    = 7.7\sigma \quad \text{(Gaussian)},
+        \end{equation}
+</div>
+
+<p>
+    and $8.9\sigma$ for the Exponential profile. The void model
+    predicts $R_H < 1$ (decline toward CMB); the data show $R_H
+    \approx 1$ (no decline). The TEP prediction ($R_H \approx 1$ for
+    global $M_B$) is consistent with the observed near-unity ratio.
+    Because both redshift bins share the same global $M_B$
+    calibration, a common distance-modulus zero-point shift rescales
+    all inferred $H_0$ values by an identical multiplicative factor
+    ($H_0 \to a H_0$), which cancels identically in the ratio $R_H$.
+    The uncertainty $\sigma_{R_H}$ is obtained analytically from
+    the joint GLS covariance: $\sigma_{R_H} = R_H \cdot
+    \sqrt{{\rm Var}(\alpha_{\rm high} - \alpha_{\rm low})} \cdot \ln 10 / 5$,
+    where ${\rm Var}(\alpha_{\rm high} - \alpha_{\rm low}) =
+    \sigma_{\alpha_{\rm low}}^2 + \sigma_{\alpha_{\rm high}}^2 - 2\,
+    {\rm Cov}(\alpha_{\rm low}, \alpha_{\rm high})$, and the
+    cross-covariance is computed from the off-diagonal block of the
+    Pantheon+ STAT+SYS matrix. A verification script
+    (<code>scripts/verify_rh_gls_matched.py</code>) confirms that
+    the matched-GLS significance (7.7$\sigma$/8.9$\sigma$) is
+    slightly more conservative than the arithmetic-mean ratio
+    (8.4$\sigma$/9.5$\sigma$) and is the quoted value throughout.
+</p>
+
+<p>
+    The absolute $H_0$ values at high $z$ are not independent
+    measurements: Pantheon+ uses $\mu_{\rm SH0ES}$ with
+    $M_B = -19.253$ from Cepheid anchors, so the Cepheid zero-point
+    sets the absolute normalization. The decisive test is the relative
+    evolution, not the absolute value. The global model-fit comparison
+    (Gaussian and Exponential decay profiles versus flat $H_0$) is
+    presented in Section 7. A host-mass-split binned $\Delta$AIC
+    comparison (step_34 pipeline output, using the fixed KBC
+    predictions versus flat $H_0$ in each host-mass subset) gives
+    $\Delta$AIC $= +11.7$ (massive, Gaussian), $+11.5$ (low-mass,
+    Gaussian), $+40.0$ (massive, Exponential), and $+42.4$ (low-mass,
+    Exponential), confirming the same conclusion from the
+    curve-fitting angle: the KBC rejection holds in both host-mass
+    subsets independently.
+</p>
+
+<h3>8.3 Interpretation</h3>
+
+<p>
+    The calibration-independent ratio $R_H = 1.0066 \pm 0.00642$
+    falsifies the void
+    model's central prediction without relying on any absolute $H_0$
+    calibration. The void hypothesis requires the tension to be a
+    function of macroscopic position within the void: $H_0$ must
+    decline as observations extend beyond the void wall. The data show
+    no decline; if anything, $H_0$ slightly increases. The TEP
+    expectation, that the tension is governed by the local
+    gravitational environment of each host galaxy, not by Earth's
+    position in a cosmic underdensity, is consistent with the observed
+    near-unity ratio. The $+0.7\%$ fractional evolution is well within the
+    envelope of high-$z$ selection effects (Malmquist bias): the
+    Pantheon+ SALT2 bias corrections assume a fiducial cosmology, and
+    residual selection bias at $z > 0.25$ can mimic a slight luminosity
+    increase. The critical finding is the absence of a decline, not
+    the precise value of the near-zero fractional change.
+</p>
+
+<p>
+    A critical methodological distinction: the absolute $H_0 \approx 73$ at $z > 0.25$
+    is <em>not</em> an independent measurement of SH0ES versus
+    Planck. The Pantheon+ distance moduli use $\mu_{\rm SH0ES} = m_B - M_{\rm SH0ES}$,
+    where $M_{\rm SH0ES} = -19.253$ was determined from SH0ES Cepheid-host
+    distances. Therefore $H_0 = 73$ at high redshift is mathematically
+    forced by the local Cepheid calibration. The scientifically
+    meaningful test is the <em>relative</em> evolution: the KBC model
+    predicts a decline, TEP predicts flat, and the data are flat. The
+    per-host Cepheid analysis in TEP-H0 (Paper 11) is needed to test
+    the redshift-dependent $(1+z)^{-0.3}$ decay directly.
+</p>
+
+<p>
+    Consistent with the methodological scope stated at the opening
+    of Section 7, Pantheon+'s global $M_B$ calibration tests the
+    spatial persistence of the tension, not its host-mass dependence.
+    A computational proof is provided by step_35 in the TEP-VOID
+    pipeline, which releases the global $M_B$ constraint and fits
+    $M_B$ separately for massive and low-mass hosts. The residual
+    mass step is only $0.013$ mag after the existing SALT2 mass
+    correction and global-$M_B$ calibration, demonstrating that
+    little host-mass structure remains in the released Pantheon+
+    moduli. This is
+    consistent with masking of the TEP-predicted host dependence
+    ($\sim 0.13$ mag); recovering that dependence requires the
+    per-host Cepheid recalibration performed in TEP-H0 (Paper 11).
+</p>

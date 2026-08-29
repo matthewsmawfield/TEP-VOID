@@ -1,0 +1,74 @@
+{
+  "matched_sample": {
+    "n_total": 22,
+    "n_with_vrot": 22,
+    "n_nir": 6,
+    "n_optical": 16,
+    "sign_test_n_shorter": 17,
+    "sign_test_n_total": 22,
+    "sign_test_p_value": 0.01690053939819336,
+    "sign_test_sigma": 2.1224367506511066,
+    "mean_delta_mu": -0.0799090909090912,
+    "sem_delta_mu": 0.024184259226466713,
+    "mean_delta_mu_optical": -0.10650000000000048,
+    "mean_delta_mu_nir": -0.00899999999999975
+  },
+  "xi_step": {
+    "n_total": 1470,
+    "n_high_x": 916,
+    "n_low_x": 554,
+    "step_mag": -0.008647352017519983,
+    "step_err": 0.015024036676676122,
+    "step_sigma": -0.5755678186638385,
+    "step_corrected_mag": 0.0327292035546094,
+    "step_corrected_err": 0.017839026745876185,
+    "step_corrected_sigma": 1.8346967029563621,
+    "v_rot_source": "Tully-Fisher proxy (measured V_rot not available for Hubble-flow hosts)",
+    "expected_sigma_with_measured_vrot": -1.4389195466595963,
+    "improvement_factor": 2.5
+  },
+  "band_dependence": {
+    "n_optical": 16,
+    "n_nir": 6,
+    "mean_delta_mu_optical": -0.10650000000000048,
+    "sem_delta_mu_optical": 0.02665520587052372,
+    "mean_delta_mu_nir": -0.00899999999999975,
+    "sem_delta_mu_nir": 0.04404997162314602,
+    "ratio_nir_over_optical": 0.08450704225351839,
+    "predicted_ratio": 1.181159420289855,
+    "regression_by_band": {
+      "optical": {
+        "n": 16,
+        "slope": 72937.35438747442,
+        "slope_err": 242772.43132553837,
+        "slope_sigma": 0.30043507818921694
+      },
+      "NIR": {
+        "n": 6,
+        "slope": 522039.05660519825,
+        "slope_err": 376155.4274350221,
+        "slope_sigma": 1.387828058643063
+      }
+    }
+  },
+  "tracer_type": {
+    "by_type": {
+      "HI_21cm": {
+        "n": 14,
+        "mean_delta_mu": -0.09164285714285748,
+        "sem_delta_mu": 0.03141001575106178,
+        "n_shorter": 11
+      },
+      "nuclear_optical": {
+        "n": 8,
+        "mean_delta_mu": -0.05937500000000018,
+        "sem_delta_mu": 0.039040701060376826,
+        "n_shorter": 6
+      }
+    },
+    "hi_vs_nuclear_diff": 0.032267857142857306,
+    "hi_vs_nuclear_diff_err": 0.050107538642081166,
+    "hi_vs_nuclear_diff_sigma": 0.6439721051426424,
+    "prediction": "nuclear_optical should show more negative delta_mu than HI_21cm"
+  }
+}
