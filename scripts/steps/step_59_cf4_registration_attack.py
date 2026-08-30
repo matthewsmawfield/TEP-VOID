@@ -76,15 +76,15 @@ def run():
         
     # 4. Generate Diagnostic Plot
     plt.figure(figsize=(8, 6))
-    plt.scatter(x, y, color='red', alpha=0.7, label='CF4 Registration Correction ($\delta_{diff}$)')
+    plt.scatter(x, y, color='red', alpha=0.7, label=r'CF4 Registration Correction ($\delta_{diff}$)')
     
     x_line = np.linspace(min(x), max(x), 100)
     plt.plot(x_line, slope * x_line + intercept, color='black', linestyle='--', 
              label=f'Fit: slope={slope:.2e}\np={p_value:.3f}, $R^2$={r_value**2:.3f}')
              
     plt.axhline(0, color='gray', linestyle=':', alpha=0.5)
-    plt.xlabel("Gravitational Potential Coordinate $X_i$")
-    plt.ylabel("Registration Absorption $\delta_{diff}$ (mag)")
+    plt.xlabel(r"Gravitational Potential Coordinate $X_i$")
+    plt.ylabel(r"Registration Absorption $\delta_{diff}$ (mag)")
     plt.title("CF4 Registration Attack: Signal Absorption via Calibration")
     plt.legend()
     plt.grid(True, alpha=0.3)

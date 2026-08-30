@@ -1,0 +1,18 @@
+{
+  "step": "58",
+  "description": "Dual-calibration peculiar-velocity experiment (Gate F)",
+  "n_tf_galaxies": 10866,
+  "n_overlaps_cepheid": 20,
+  "n_overlaps_trgb": 20,
+  "zero_point_cepheid_mag": 0.24960000000000057,
+  "zero_point_trgb_mag": 0.3090000000000007,
+  "h0_invariant_flow_cep_kms": 290.00497332761313,
+  "h0_invariant_flow_trgb_kms": 290.019661549265,
+  "h0_invariant_delta_b_kms": 0.014688221651852018,
+  "conventional_flow_cep_kms": 302.19731946693776,
+  "conventional_flow_trgb_kms": 335.5556256310126,
+  "differential_bulk_flow_mag_kms": 50.35977062188931,
+  "differential_angle_to_cmb_deg": 73.96199921396287,
+  "differential_parallel_kms": 13.913137633084578,
+  "differential_perp_kms": 48.399701427717
+}

@@ -1,22 +1,22 @@
-[20:05:29] [INFO] 
-[20:05:29] [INFO] ================================================================================
-[20:05:29] [INFO]    Step 03: Pantheon+ Ingestion
-[20:05:29] [INFO] ================================================================================
-[20:05:29] [INFO] 
-[20:05:29] [INFO] Scientific context: This step addresses the assembly of the Type Ia supernova distance–redshift sample that forms the Hubble-flow backbone of the TEP-VOID analysis. The Pantheon+ compilation (Scolnic et al. 2022) provides corrected apparent magnitudes, distance moduli, redshifts, and host-galaxy stellar masses for ~1700 SNe Ia. When combined with the host potential catalog (Step 01) and the Cepheid–TRGB divergence (Step 00), this sample enables a stratified Hubble diagram test: if the Temporal Equivalence Principle holds, the local Hubble rate should exhibit a residual correlation with host potential depth that is distinct from the void-induced monopole invoked by the standard explanation of the Hubble tension.
-[20:05:29] [INFO] Data sources: Pantheon+SH0ES.dat (downloaded in Step 00 or fetched from the PantheonPlusSH0ES GitHub repository), containing the full Pantheon+ light-curve and Hubble-diagram sample. This step is part of Block 0 of the TEP-VOID pipeline and supplies the Hubble-flow SN Ia sample for all downstream distance-ladder and stratified-Hubble analyses.
-[20:05:29] [PROCESS] Using Pantheon+SH0ES.dat from Step 00 (565.7 KB)
-[20:05:29] [PROCESS] Methodology: The Pantheon+SH0ES.dat file is parsed as whitespace-delimited columns. Redshift is taken from zCMB (CMB frame) with fallback to zHEL or zHD. Distance moduli are taken from MU_SH0ES with fallback to m_b_corr + 19.3. Deduplication is performed by CID, preferring rows with USED_IN_SH0ES_HF=1 (Hubble-flow SNe). Host stellar masses (HOST_LOGMASS) are retained for downstream mass-stratified analyses. Rows without a valid positive redshift are dropped.
-[20:05:29] [PROCESS] Parsing Pantheon+ data from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/Pantheon+SH0ES.dat...
-[20:05:29] [PROCESS] Deduplicated 158 duplicate SN rows (1701 → 1543 unique SNe by CID)
-[20:05:29] [SUCCESS] Parsed 1543 Pantheon+ SNe with valid redshifts.
-[20:05:29] [TEST] Interpretation: 1543 unique Pantheon+ SNe Ia with valid redshifts span z = [0.00122, 2.26130], covering both the nearby calibrator regime and the Hubble flow. This sample provides the distance–redshift relation against which potential-stratified residuals are measured to distinguish TEP-predicted clock-rate modulation from void-induced Hubble-tension effects.
-[20:05:29] [SUCCESS] Processed Pantheon+ catalog saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/pantheon_plus_sne.csv
-[20:05:29] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_03_pantheon_ingestion.json
-[20:05:29] [SUCCESS] Step 03 complete
-[20:05:29] [SUCCESS] step_03 completed in 0.0s
-[20:05:29] [INFO] 
-[20:05:29] [INFO] ================================================================================
-[20:05:29] [INFO]    Starting step_10: Matched host comparison: Cepheid vs TRGB distance moduli for overlapping galaxies
-[20:05:29] [INFO] ================================================================================
-[20:05:29] [INFO] 
+[20:54:28] [INFO] 
+[20:54:28] [INFO] ================================================================================
+[20:54:28] [INFO]    Step 03: Pantheon+ Ingestion
+[20:54:28] [INFO] ================================================================================
+[20:54:28] [INFO] 
+[20:54:28] [INFO] Scientific context: This step addresses the assembly of the Type Ia supernova distance–redshift sample that forms the Hubble-flow backbone of the TEP-VOID analysis. The Pantheon+ compilation (Scolnic et al. 2022) provides corrected apparent magnitudes, distance moduli, redshifts, and host-galaxy stellar masses for ~1700 SNe Ia. When combined with the host potential catalog (Step 01) and the Cepheid–TRGB divergence (Step 00), this sample enables a stratified Hubble diagram test: if the Temporal Equivalence Principle holds, the local Hubble rate should exhibit a residual correlation with host potential depth that is distinct from the void-induced monopole invoked by the standard explanation of the Hubble tension.
+[20:54:28] [INFO] Data sources: Pantheon+SH0ES.dat (downloaded in Step 00 or fetched from the PantheonPlusSH0ES GitHub repository), containing the full Pantheon+ light-curve and Hubble-diagram sample. This step is part of Block 0 of the TEP-VOID pipeline and supplies the Hubble-flow SN Ia sample for all downstream distance-ladder and stratified-Hubble analyses.
+[20:54:28] [PROCESS] Using Pantheon+SH0ES.dat from Step 00 (565.7 KB)
+[20:54:28] [PROCESS] Methodology: The Pantheon+SH0ES.dat file is parsed as whitespace-delimited columns. Redshift is taken from zCMB (CMB frame) with fallback to zHEL or zHD. Distance moduli are taken from MU_SH0ES with fallback to m_b_corr + 19.3. Deduplication is performed by CID, preferring rows with USED_IN_SH0ES_HF=1 (Hubble-flow SNe). Host stellar masses (HOST_LOGMASS) are retained for downstream mass-stratified analyses. Rows without a valid positive redshift are dropped.
+[20:54:28] [PROCESS] Parsing Pantheon+ data from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/Pantheon+SH0ES.dat...
+[20:54:28] [PROCESS] Deduplicated 158 duplicate SN rows (1701 → 1543 unique SNe by CID)
+[20:54:28] [SUCCESS] Parsed 1543 Pantheon+ SNe with valid redshifts.
+[20:54:28] [TEST] Interpretation: 1543 unique Pantheon+ SNe Ia with valid redshifts span z = [0.00122, 2.26130], covering both the nearby calibrator regime and the Hubble flow. This sample provides the distance–redshift relation against which potential-stratified residuals are measured to distinguish TEP-predicted clock-rate modulation from void-induced Hubble-tension effects.
+[20:54:28] [SUCCESS] Processed Pantheon+ catalog saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/pantheon_plus_sne.csv
+[20:54:28] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_03_pantheon_ingestion.json
+[20:54:28] [SUCCESS] Step 03 complete
+[20:54:28] [SUCCESS] step_03 completed in 0.0s
+[20:54:28] [INFO] 
+[20:54:28] [INFO] ================================================================================
+[20:54:28] [INFO]    Starting step_10: Matched host comparison: Cepheid vs TRGB distance moduli for overlapping galaxies
+[20:54:28] [INFO] ================================================================================
+[20:54:28] [INFO] 

@@ -1,103 +1,103 @@
-[20:07:42] [INFO] 
-[20:07:42] [INFO] ================================================================================
-[20:07:42] [INFO]    Step 32: Redshift Decay Profile — Void vs TEP
-[20:07:42] [INFO] ================================================================================
-[20:07:42] [INFO] 
-[20:07:42] [INFO] This step compares the published KBC/MOND void-model H0(z) gradual decay predictions (Gaussian and Exponential density profiles from Haslbauer, Banik & Kroupa 2020, as used by Mazurenko et al. 2025) against the TEP prediction for Pantheon+ with global M_B. The TEP prediction is a flat H0(z) ≈ 73, because the Cepheid clock bias is imprinted on the global zero-point and all supernovae inherit the same bias regardless of redshift. The key discriminating observable is the redshift dependence of H0 inferred from SN Ia distance moduli: a gradual decline favours the void model, while a flat profile favours TEP.
-[20:07:42] [PROCESS] Loading Pantheon+ data from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/pantheon_plus_sne.csv...
-[20:07:42] [SUCCESS] Loaded 1543 rows from Pantheon+ data
-[20:07:42] [PROCESS] H0(z) methodology: H0 is inferred from each SN Ia distance modulus using the proper flat-LCDM luminosity-distance relation H0 = (1+z)·c·D_C(z)/d_L, where D_C(z) is the H0-independent comoving distance integral. SNe are binned in redshift (z = 0.01–1.50) and the bin-level H0 is the mean of per-SN values, with errors propagated from per-SN distance modulus uncertainties. The Pantheon+ STAT+SYS covariance matrix is used for the covariance-based chi-squared comparison.
-[20:07:42] [PROCESS] Computing H0(z) in redshift bins [all]...
-[20:07:42] [SUCCESS]   z=[0.01,0.05]: H0=72.4 +/- 0.4 km/s/Mpc (n=423)
-[20:07:42] [SUCCESS]   z=[0.05,0.10]: H0=73.1 +/- 0.8 km/s/Mpc (n=87)
-[20:07:42] [SUCCESS]   z=[0.10,0.15]: H0=72.5 +/- 0.7 km/s/Mpc (n=85)
-[20:07:42] [SUCCESS]   z=[0.15,0.20]: H0=73.3 +/- 0.6 km/s/Mpc (n=122)
-[20:07:42] [SUCCESS]   z=[0.20,0.30]: H0=73.6 +/- 0.5 km/s/Mpc (n=259)
-[20:07:42] [SUCCESS]   z=[0.30,0.50]: H0=73.3 +/- 0.4 km/s/Mpc (n=284)
-[20:07:42] [SUCCESS]   z=[0.50,0.80]: H0=75.3 +/- 0.7 km/s/Mpc (n=180)
-[20:07:42] [SUCCESS]   z=[0.80,1.50]: H0=73.0 +/- 2.7 km/s/Mpc (n=23)
-[20:07:42] [PROCESS] Model fitting methodology: four models are compared — constant (k=1, identical to the TEP global-M_B flat prediction), void-Gaussian (k=2, free σ_z and ΔH0), void-Exponential (k=2, free z_0 and ΔH0), and TEP (k=2, free ΔH0 and decay index n). Both free-parameter and fixed-prediction AIC comparisons are performed. The fixed-prediction test evaluates void curves at published HBK20/Mazurenko et al. 2025 parameters against the TEP flat H0(z) prediction. An unbinned 1701-row mu-space likelihood with analytically marginalized zero-point provides the definitive covariance-based falsification test.
-[20:07:42] [PROCESS] Fitting void (Gaussian + Exponential), TEP, and constant models to H0(z) data...
-[20:07:42] [TEST]   Constant (= TEP global M_B): H0=73.25, chi2/dof=13.8/7=1.98
-[20:07:42] [TEST]   Void-Gaussian: sigma_z=10.000, dH0=5.85, chi2/dof=13.9/6=2.32
-[20:07:42] [TEST]   Void-Exponential: z_0=10.000, dH0=5.97, chi2/dof=17.4/6=2.91
-[20:07:42] [TEST]   TEP: dH0=5.85, n=0.000, chi2/dof=13.8/6=2.31
-[20:07:42] [TEST]   AIC(Const)=15.8, AIC(Void)=17.9, AIC(TEP)=17.8
-[20:07:42] [TEST]   Best model: const
-[20:07:42] [TEST]   Delta AIC (TEP vs Void, free) = 0.1
-[20:07:42] [TEST]   Delta AIC (Void vs best) = 2.1
-[20:07:42] [TEST]   --- Fixed-prediction comparison (published parameters) ---
-[20:07:42] [TEST]   Void-Gaussian (sigma_z=0.82 fixed): dH0=6.12, chi2=34.0, AIC=36.0
-[20:07:42] [TEST]   Void-Exponential (z_0=0.74 fixed): dH0=7.17, chi2=93.1, AIC=95.1
-[20:07:42] [TEST]   TEP (flat H0, global M_B prediction): chi2=13.8, AIC=15.8 [IS the constant model]
-[20:07:42] [TEST]   TEP (n=0.3 applied to SN data — NOT the global M_B prediction): chi2=23.1 [for reference only]
-[20:07:42] [TEST]   Delta AIC (Void_Gaussian - TEP_flat) = 20.2
-[20:07:42] [TEST]   Delta AIC (Void_Exponential - TEP_flat) = 79.3
-[20:07:42] [SUCCESS]   TEP model preferred over void model (fixed predictions)
-[20:07:42] [SUCCESS]   TEP free-fit n≈0 CONFIRMS the global M_B prediction (flat H0(z))
-[20:07:42] [SUCCESS]   Void model FALSIFIED at published parameters: catastrophically worse than TEP
-[20:07:42] [PROCESS] Loading Pantheon+ covariance matrix (Pantheon+SH0ES_STAT+SYS.cov)...
-[20:07:44] [SUCCESS] Loaded 1701×1701 covariance matrix
-[20:07:44] [TEST]   --- Covariance-based chi-squared (Pantheon+ STAT+SYS) ---
-[20:07:44] [TEST]   Constant (TEP): chi2_cov=8.8, AIC=10.8
-[20:07:44] [TEST]   Void-Gaussian (published curve): chi2_cov=276.9, AIC=278.9
-[20:07:44] [TEST]   Void-Exponential (published curve): chi2_cov=145.1, AIC=147.1
-[20:07:44] [TEST]   ΔAIC (cov) Void-Gauss vs TEP = 268.1
-[20:07:44] [TEST]   ΔAIC (cov) Void-Exp vs TEP = 136.3
-[20:07:44] [PROCESS]   Loading ALL 1701 Pantheon+ rows for unbinned mu-space comparison...
-[20:07:44] [PROCESS]   Loaded 1701 rows
-[20:07:44] [PROCESS]   Valid SNe with zCMB and MU_SH0ES: 1701
-[20:07:44] [PROCESS]   Computing reference cosmology moduli...
-[20:07:44] [PROCESS]   Data residual: mean=0.0034, std=0.1903, min=-1.0713, max=1.1544
-[20:07:44] [PROCESS]   KBC Gaussian shape: mean=0.0648, std=0.0533
-[20:07:44] [PROCESS]   KBC Exponential shape: mean=0.0268, std=0.0743
-[20:07:44] [PROCESS]   Solving 1701×1701 covariance system...
-[20:07:45] [TEST]   --- Unbinned mu-space (1701 rows, marginalized zero-point) ---
-[20:07:45] [TEST]   Flat (TEP): chi2=2007.7, AIC=2009.7
-[20:07:45] [TEST]   Void-Gaussian: chi2=2202.0, AIC=2204.0, ΔAIC=+194.3
-[20:07:45] [TEST]   Void-Exponential: chi2=2336.4, AIC=2338.4, ΔAIC=+328.7
-[20:07:45] [TEST]   z>=0.010: N=1588, χ²_flat=1440.9, ΔAIC_G=+154.1, ΔAIC_E=+257.4
-[20:07:46] [TEST]   z>=0.023: N=1367, χ²_flat=1238.9, ΔAIC_G=+144.4, ΔAIC_E=+233.4
-[20:07:46] [TEST]   z>=0.050: N=1053, χ²_flat=919.2, ΔAIC_G=+101.5, ΔAIC_E=+117.1
-[20:07:46] [TEST]   z>=0.075: N=985, χ²_flat=869.8, ΔAIC_G=+85.3, ΔAIC_E=+71.8
-[20:07:46] [TEST]   z>=0.100: N=960, χ²_flat=836.3, ΔAIC_G=+72.5, ΔAIC_E=+48.4
-[20:07:47] [TEST]   zHEL: χ²_flat=2424.5, ΔAIC_G=+219.5, ΔAIC_E=+383.7
-[20:07:48] [TEST]   zHD: χ²_flat=1763.4, ΔAIC_G=+171.4, ΔAIC_E=+289.6
-[20:07:48] [PROCESS] Host-mass analysis methodology: H0(z) is computed separately for massive (logM ≥ 10.0) and low-mass (logM < 10.0) host galaxies. TEP predicts that the H0 inflation depends on host gravitational potential; the void model predicts no host-mass dependence. A Welch's t-test on the mean H0 difference provides the statistical assessment. Under the global M_B calibration used by Pantheon+, a null result is expected and does not falsify TEP.
-[20:07:48] [PROCESS] Performing host-mass-resolved H0(z) analysis...
-[20:07:48] [PROCESS] Computing H0(z) in redshift bins [massive]...
-[20:07:48] [SUCCESS]   z=[0.01,0.05]: H0=72.3 +/- 0.5 km/s/Mpc (n=222)
-[20:07:48] [SUCCESS]   z=[0.05,0.10]: H0=72.4 +/- 1.0 km/s/Mpc (n=47)
-[20:07:48] [SUCCESS]   z=[0.10,0.15]: H0=72.4 +/- 1.0 km/s/Mpc (n=41)
-[20:07:48] [SUCCESS]   z=[0.15,0.20]: H0=74.0 +/- 0.8 km/s/Mpc (n=75)
-[20:07:48] [SUCCESS]   z=[0.20,0.30]: H0=73.1 +/- 0.6 km/s/Mpc (n=153)
-[20:07:48] [SUCCESS]   z=[0.30,0.50]: H0=73.4 +/- 0.6 km/s/Mpc (n=159)
-[20:07:48] [SUCCESS]   z=[0.50,0.80]: H0=74.4 +/- 1.1 km/s/Mpc (n=64)
-[20:07:48] [SUCCESS]   z=[0.80,1.50]: H0=73.3 +/- 4.0 km/s/Mpc (n=13)
-[20:07:48] [PROCESS] Computing H0(z) in redshift bins [low-mass]...
-[20:07:48] [SUCCESS]   z=[0.01,0.05]: H0=72.6 +/- 0.6 km/s/Mpc (n=201)
-[20:07:48] [SUCCESS]   z=[0.05,0.10]: H0=73.9 +/- 1.4 km/s/Mpc (n=40)
-[20:07:48] [SUCCESS]   z=[0.10,0.15]: H0=72.5 +/- 1.1 km/s/Mpc (n=44)
-[20:07:48] [SUCCESS]   z=[0.15,0.20]: H0=72.2 +/- 1.0 km/s/Mpc (n=47)
-[20:07:48] [SUCCESS]   z=[0.20,0.30]: H0=74.4 +/- 0.7 km/s/Mpc (n=106)
-[20:07:48] [SUCCESS]   z=[0.30,0.50]: H0=73.3 +/- 0.7 km/s/Mpc (n=125)
-[20:07:48] [SUCCESS]   z=[0.50,0.80]: H0=75.7 +/- 0.9 km/s/Mpc (n=116)
-[20:07:48] [SUCCESS]   z=[0.80,1.50]: H0=72.7 +/- 3.4 km/s/Mpc (n=10)
-[20:07:48] [TEST]   Massive hosts (logM >= 10.0): N=818, mean H0=73.03
-[20:07:48] [TEST]   Low-mass hosts (logM < 10.0): N=724, mean H0=73.42
-[20:07:48] [TEST]   Delta H0 (massive - low-mass): -0.40 km/s/Mpc
-[20:07:48] [TEST]   Welch's t-test: t=-1.248, p=2.1224e-01
-[20:07:48] [TEST]   TEP prediction: massive hosts should have higher H0
-[20:07:48] [TEST]   TEP host-mass confirmed: False
-[20:07:48] [PROCESS]   NOTE: Pantheon+ uses a global M_B calibration — all SNe share the same absolute magnitude regardless of host mass. The host-mass dependence of the TEP effect requires per-host Cepheid calibrations (established in TEP-H0, Paper 11), not the global calibration used in Pantheon+. This null result is expected and does not falsify TEP.
-[20:07:48] [PROCESS] Generating H0 vs redshift figure...
-[20:07:49] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_32_h0_vs_redshift.png
-[20:07:49] [SUCCESS] The TEP flat H0(z) prediction is preferred over the published KBC void-model decay curves with ΔAIC = 20.2. The observed H0(z) shows no gradual decline, consistent with the TEP prediction that the Cepheid clock bias is imprinted on the global M_B zero-point and inherited uniformly by all supernovae. The void-model prediction of a gradual H0(z) decline is rejected.
-[20:07:49] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_32_redshift_decay_profile.json
-[20:07:49] [SUCCESS] Step 32 complete
-[20:07:49] [SUCCESS] step_32 completed in 7.0s
-[20:07:49] [INFO] 
-[20:07:49] [INFO] ================================================================================
-[20:07:49] [INFO]    Starting step_32d: Digitization sensitivity: ΔAIC under ±0.5 and ±1.0 km/s/Mpc curve shifts (Table 4)
-[20:07:49] [INFO] ================================================================================
-[20:07:49] [INFO] 
+[20:55:54] [INFO] 
+[20:55:54] [INFO] ================================================================================
+[20:55:54] [INFO]    Step 32: Redshift Decay Profile — Void vs TEP
+[20:55:54] [INFO] ================================================================================
+[20:55:54] [INFO] 
+[20:55:54] [INFO] This step compares the published KBC/MOND void-model H0(z) gradual decay predictions (Gaussian and Exponential density profiles from Haslbauer, Banik & Kroupa 2020, as used by Mazurenko et al. 2025) against the TEP prediction for Pantheon+ with global M_B. The TEP prediction is a flat H0(z) ≈ 73, because the Cepheid clock bias is imprinted on the global zero-point and all supernovae inherit the same bias regardless of redshift. The key discriminating observable is the redshift dependence of H0 inferred from SN Ia distance moduli: a gradual decline favours the void model, while a flat profile favours TEP.
+[20:55:54] [PROCESS] Loading Pantheon+ data from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/pantheon_plus_sne.csv...
+[20:55:54] [SUCCESS] Loaded 1543 rows from Pantheon+ data
+[20:55:54] [PROCESS] H0(z) methodology: H0 is inferred from each SN Ia distance modulus using the proper flat-LCDM luminosity-distance relation H0 = (1+z)·c·D_C(z)/d_L, where D_C(z) is the H0-independent comoving distance integral. SNe are binned in redshift (z = 0.01–1.50) and the bin-level H0 is the mean of per-SN values, with errors propagated from per-SN distance modulus uncertainties. The Pantheon+ STAT+SYS covariance matrix is used for the covariance-based chi-squared comparison.
+[20:55:54] [PROCESS] Computing H0(z) in redshift bins [all]...
+[20:55:54] [SUCCESS]   z=[0.01,0.05]: H0=72.4 +/- 0.4 km/s/Mpc (n=423)
+[20:55:54] [SUCCESS]   z=[0.05,0.10]: H0=73.1 +/- 0.8 km/s/Mpc (n=87)
+[20:55:54] [SUCCESS]   z=[0.10,0.15]: H0=72.5 +/- 0.7 km/s/Mpc (n=85)
+[20:55:54] [SUCCESS]   z=[0.15,0.20]: H0=73.3 +/- 0.6 km/s/Mpc (n=122)
+[20:55:54] [SUCCESS]   z=[0.20,0.30]: H0=73.6 +/- 0.5 km/s/Mpc (n=259)
+[20:55:54] [SUCCESS]   z=[0.30,0.50]: H0=73.3 +/- 0.4 km/s/Mpc (n=284)
+[20:55:54] [SUCCESS]   z=[0.50,0.80]: H0=75.3 +/- 0.7 km/s/Mpc (n=180)
+[20:55:54] [SUCCESS]   z=[0.80,1.50]: H0=73.0 +/- 2.7 km/s/Mpc (n=23)
+[20:55:54] [PROCESS] Model fitting methodology: four models are compared — constant (k=1, identical to the TEP global-M_B flat prediction), void-Gaussian (k=2, free σ_z and ΔH0), void-Exponential (k=2, free z_0 and ΔH0), and TEP (k=2, free ΔH0 and decay index n). Both free-parameter and fixed-prediction AIC comparisons are performed. The fixed-prediction test evaluates void curves at published HBK20/Mazurenko et al. 2025 parameters against the TEP flat H0(z) prediction. An unbinned 1701-row mu-space likelihood with analytically marginalized zero-point provides the definitive covariance-based falsification test.
+[20:55:54] [PROCESS] Fitting void (Gaussian + Exponential), TEP, and constant models to H0(z) data...
+[20:55:54] [TEST]   Constant (= TEP global M_B): H0=73.25, chi2/dof=13.8/7=1.98
+[20:55:54] [TEST]   Void-Gaussian: sigma_z=10.000, dH0=5.85, chi2/dof=13.9/6=2.32
+[20:55:54] [TEST]   Void-Exponential: z_0=10.000, dH0=5.97, chi2/dof=17.4/6=2.91
+[20:55:54] [TEST]   TEP: dH0=5.85, n=0.000, chi2/dof=13.8/6=2.31
+[20:55:54] [TEST]   AIC(Const)=15.8, AIC(Void)=17.9, AIC(TEP)=17.8
+[20:55:54] [TEST]   Best model: const
+[20:55:54] [TEST]   Delta AIC (TEP vs Void, free) = 0.1
+[20:55:54] [TEST]   Delta AIC (Void vs best) = 2.1
+[20:55:54] [TEST]   --- Fixed-prediction comparison (published parameters) ---
+[20:55:54] [TEST]   Void-Gaussian (sigma_z=0.82 fixed): dH0=6.12, chi2=34.0, AIC=36.0
+[20:55:54] [TEST]   Void-Exponential (z_0=0.74 fixed): dH0=7.17, chi2=93.1, AIC=95.1
+[20:55:54] [TEST]   TEP (flat H0, global M_B prediction): chi2=13.8, AIC=15.8 [IS the constant model]
+[20:55:54] [TEST]   TEP (n=0.3 applied to SN data — NOT the global M_B prediction): chi2=23.1 [for reference only]
+[20:55:54] [TEST]   Delta AIC (Void_Gaussian - TEP_flat) = 20.2
+[20:55:54] [TEST]   Delta AIC (Void_Exponential - TEP_flat) = 79.3
+[20:55:54] [SUCCESS]   TEP model preferred over void model (fixed predictions)
+[20:55:54] [SUCCESS]   TEP free-fit n≈0 CONFIRMS the global M_B prediction (flat H0(z))
+[20:55:54] [SUCCESS]   Void model FALSIFIED at published parameters: catastrophically worse than TEP
+[20:55:54] [PROCESS] Loading Pantheon+ covariance matrix (Pantheon+SH0ES_STAT+SYS.cov)...
+[20:55:54] [SUCCESS] Loaded 1701×1701 covariance matrix
+[20:55:54] [TEST]   --- Covariance-based chi-squared (Pantheon+ STAT+SYS) ---
+[20:55:54] [TEST]   Constant (TEP): chi2_cov=8.8, AIC=10.8
+[20:55:54] [TEST]   Void-Gaussian (published curve): chi2_cov=276.9, AIC=278.9
+[20:55:54] [TEST]   Void-Exponential (published curve): chi2_cov=145.1, AIC=147.1
+[20:55:54] [TEST]   ΔAIC (cov) Void-Gauss vs TEP = 268.1
+[20:55:54] [TEST]   ΔAIC (cov) Void-Exp vs TEP = 136.3
+[20:55:54] [PROCESS]   Loading ALL 1701 Pantheon+ rows for unbinned mu-space comparison...
+[20:55:54] [PROCESS]   Loaded 1701 rows
+[20:55:54] [PROCESS]   Valid SNe with zCMB and MU_SH0ES: 1701
+[20:55:54] [PROCESS]   Computing reference cosmology moduli...
+[20:55:54] [PROCESS]   Data residual: mean=0.0034, std=0.1903, min=-1.0713, max=1.1544
+[20:55:54] [PROCESS]   KBC Gaussian shape: mean=0.0648, std=0.0533
+[20:55:54] [PROCESS]   KBC Exponential shape: mean=0.0268, std=0.0743
+[20:55:54] [PROCESS]   Solving 1701×1701 covariance system...
+[20:55:54] [TEST]   --- Unbinned mu-space (1701 rows, marginalized zero-point) ---
+[20:55:54] [TEST]   Flat (TEP): chi2=2007.7, AIC=2009.7
+[20:55:54] [TEST]   Void-Gaussian: chi2=2202.0, AIC=2204.0, ΔAIC=+194.3
+[20:55:54] [TEST]   Void-Exponential: chi2=2336.4, AIC=2338.4, ΔAIC=+328.7
+[20:55:54] [TEST]   z>=0.010: N=1588, χ²_flat=1440.9, ΔAIC_G=+154.1, ΔAIC_E=+257.4
+[20:55:54] [TEST]   z>=0.023: N=1367, χ²_flat=1238.9, ΔAIC_G=+144.4, ΔAIC_E=+233.4
+[20:55:55] [TEST]   z>=0.050: N=1053, χ²_flat=919.2, ΔAIC_G=+101.5, ΔAIC_E=+117.1
+[20:55:55] [TEST]   z>=0.075: N=985, χ²_flat=869.8, ΔAIC_G=+85.3, ΔAIC_E=+71.8
+[20:55:55] [TEST]   z>=0.100: N=960, χ²_flat=836.3, ΔAIC_G=+72.5, ΔAIC_E=+48.4
+[20:55:55] [TEST]   zHEL: χ²_flat=2424.5, ΔAIC_G=+219.5, ΔAIC_E=+383.7
+[20:55:55] [TEST]   zHD: χ²_flat=1763.4, ΔAIC_G=+171.4, ΔAIC_E=+289.6
+[20:55:55] [PROCESS] Host-mass analysis methodology: H0(z) is computed separately for massive (logM ≥ 10.0) and low-mass (logM < 10.0) host galaxies. TEP predicts that the H0 inflation depends on host gravitational potential; the void model predicts no host-mass dependence. A Welch's t-test on the mean H0 difference provides the statistical assessment. Under the global M_B calibration used by Pantheon+, a null result is expected and does not falsify TEP.
+[20:55:55] [PROCESS] Performing host-mass-resolved H0(z) analysis...
+[20:55:55] [PROCESS] Computing H0(z) in redshift bins [massive]...
+[20:55:55] [SUCCESS]   z=[0.01,0.05]: H0=72.3 +/- 0.5 km/s/Mpc (n=222)
+[20:55:55] [SUCCESS]   z=[0.05,0.10]: H0=72.4 +/- 1.0 km/s/Mpc (n=47)
+[20:55:55] [SUCCESS]   z=[0.10,0.15]: H0=72.4 +/- 1.0 km/s/Mpc (n=41)
+[20:55:55] [SUCCESS]   z=[0.15,0.20]: H0=74.0 +/- 0.8 km/s/Mpc (n=75)
+[20:55:55] [SUCCESS]   z=[0.20,0.30]: H0=73.1 +/- 0.6 km/s/Mpc (n=153)
+[20:55:55] [SUCCESS]   z=[0.30,0.50]: H0=73.4 +/- 0.6 km/s/Mpc (n=159)
+[20:55:55] [SUCCESS]   z=[0.50,0.80]: H0=74.4 +/- 1.1 km/s/Mpc (n=64)
+[20:55:55] [SUCCESS]   z=[0.80,1.50]: H0=73.3 +/- 4.0 km/s/Mpc (n=13)
+[20:55:55] [PROCESS] Computing H0(z) in redshift bins [low-mass]...
+[20:55:55] [SUCCESS]   z=[0.01,0.05]: H0=72.6 +/- 0.6 km/s/Mpc (n=201)
+[20:55:55] [SUCCESS]   z=[0.05,0.10]: H0=73.9 +/- 1.4 km/s/Mpc (n=40)
+[20:55:55] [SUCCESS]   z=[0.10,0.15]: H0=72.5 +/- 1.1 km/s/Mpc (n=44)
+[20:55:55] [SUCCESS]   z=[0.15,0.20]: H0=72.2 +/- 1.0 km/s/Mpc (n=47)
+[20:55:55] [SUCCESS]   z=[0.20,0.30]: H0=74.4 +/- 0.7 km/s/Mpc (n=106)
+[20:55:55] [SUCCESS]   z=[0.30,0.50]: H0=73.3 +/- 0.7 km/s/Mpc (n=125)
+[20:55:55] [SUCCESS]   z=[0.50,0.80]: H0=75.7 +/- 0.9 km/s/Mpc (n=116)
+[20:55:55] [SUCCESS]   z=[0.80,1.50]: H0=72.7 +/- 3.4 km/s/Mpc (n=10)
+[20:55:55] [TEST]   Massive hosts (logM >= 10.0): N=818, mean H0=73.03
+[20:55:55] [TEST]   Low-mass hosts (logM < 10.0): N=724, mean H0=73.42
+[20:55:55] [TEST]   Delta H0 (massive - low-mass): -0.40 km/s/Mpc
+[20:55:55] [TEST]   Welch's t-test: t=-1.248, p=2.1224e-01
+[20:55:55] [TEST]   TEP prediction: massive hosts should have higher H0
+[20:55:55] [TEST]   TEP host-mass confirmed: False
+[20:55:55] [PROCESS]   NOTE: Pantheon+ uses a global M_B calibration — all SNe share the same absolute magnitude regardless of host mass. The host-mass dependence of the TEP effect requires per-host Cepheid calibrations (established in TEP-H0, Paper 11), not the global calibration used in Pantheon+. This null result is expected and does not falsify TEP.
+[20:55:55] [PROCESS] Generating H0 vs redshift figure...
+[20:55:55] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_32_h0_vs_redshift.png
+[20:55:55] [SUCCESS] The TEP flat H0(z) prediction is preferred over the published KBC void-model decay curves with ΔAIC = 20.2. The observed H0(z) shows no gradual decline, consistent with the TEP prediction that the Cepheid clock bias is imprinted on the global M_B zero-point and inherited uniformly by all supernovae. The void-model prediction of a gradual H0(z) decline is rejected.
+[20:55:55] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_32_redshift_decay_profile.json
+[20:55:55] [SUCCESS] Step 32 complete
+[20:55:55] [SUCCESS] step_32 completed in 1.9s
+[20:55:55] [INFO] 
+[20:55:55] [INFO] ================================================================================
+[20:55:55] [INFO]    Starting step_32d: Digitization sensitivity: ΔAIC under ±0.5 and ±1.0 km/s/Mpc curve shifts (Table 4)
+[20:55:55] [INFO] ================================================================================
+[20:55:55] [INFO] 

@@ -39,7 +39,7 @@ def test_A_void_falsification():
         cov_full = np.diag(np.ones(N) * 0.15**2)
     else:
         import pandas as pd
-        df = pd.read_csv(dat_path, delim_whitespace=True)
+        df = pd.read_csv(dat_path, sep=r"\s+")
         # Filter z > 0.05
         mask = df['zHD'] >= 0.05
         z_array = df.loc[mask, 'zHD'].values

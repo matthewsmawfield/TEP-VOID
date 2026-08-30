@@ -1,39 +1,39 @@
-[19:42:45] [INFO] ======================================================================
-[19:42:45] [INFO] Step 32c: Free-Parameter Void Family in Native mu-Space
-[19:42:45] [INFO] Full 1701x1701 STAT+SYS covariance
-[19:42:45] [INFO] ======================================================================
-[19:42:45] [PROCESS]   Loaded 1701 Pantheon+ SNe
-[19:42:46] [TEST]   Flat: chi2 = 2007.7 (dof=1700)
-[19:44:02] [TEST]   Void-Gauss: dH0=0.000, sig_z=0.2825, chi2=2007.7, DAIC=+4.0
-[19:45:28] [TEST]   Void-Exp: dH0=0.000, z_0=0.2825, chi2=2007.7, DAIC=+4.0
-[19:49:01] [TEST]   TEP (free n): dH0=10.000, n=0.0000, chi2=2007.7, DAIC=+4.0
-[19:50:16] [TEST]   TEP (fixed n=0.3): dH0=0.000, chi2=2007.7, DAIC=+2.0
-[19:50:16] [INFO] 
-[19:50:16] [TEST]   --- z >= 0.05 cut ---
-[19:50:16] [TEST]   Flat (z>=0.05): chi2 = 919.2 (dof=1052)
-[19:50:44] [TEST]   Void-Gauss (z>=0.05): dH0=0.000, sig_z=0.1750, chi2=919.2, DAIC=+4.0
-[19:51:15] [TEST]   Void-Exp (z>=0.05): dH0=0.000, z_0=0.1750, chi2=919.2, DAIC=+4.0
-[19:51:15] [INFO] 
-[19:51:15] [INFO] ======================================================================
-[19:51:15] [INFO] SUMMARY: Free-parameter void family in native mu-space
-[19:51:15] [INFO] ======================================================================
-[19:51:15] [INFO]   Full sample (N=1701):
-[19:51:15] [TEST]     Flat:          chi2 = 2007.7
-[19:51:15] [TEST]     Void-Gauss:    DAIC = +4.0  (dH0=0.00, sig=0.283)
-[19:51:15] [TEST]     Void-Exp:      DAIC = +4.0  (dH0=0.00, z0=0.283)
-[19:51:15] [TEST]     TEP (free n):  DAIC = +4.0  (dH0=10.00, n=0.000)
-[19:51:15] [TEST]     TEP (n=0.3):   DAIC = +2.0  (dH0=0.00)
-[19:51:15] [INFO]   z >= 0.05 (N=1053):
-[19:51:15] [TEST]     Flat:          chi2 = 919.2
-[19:51:15] [TEST]     Void-Gauss:    DAIC = +4.0  (dH0=0.00, sig=0.175)
-[19:51:15] [TEST]     Void-Exp:      DAIC = +4.0  (dH0=0.00, z0=0.175)
-[19:51:15] [INFO] 
-[19:51:15] [SUCCESS] INTERPRETATION: With free amplitude and scale, the void family's best fit is flat (dH0 < 1 km/s/Mpc) in native mu-space with full covariance. This confirms the binned result: the void family degenerates to flat when granted free parameters. Combined with the frozen-prediction rejection, this is co-primary evidence.
-[19:51:15] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_32c_free_param_native.json
-[19:51:15] [SUCCESS] Step 32c complete
-[19:51:15] [SUCCESS] step_32c completed in 510.9s
-[19:51:15] [INFO] 
-[19:51:15] [INFO] ================================================================================
-[19:51:15] [INFO]    Starting step_44: H0 vs calibrator-population potential depth (JAGB/TRGB/Cepheids/SBF ordering)
-[19:51:15] [INFO] ================================================================================
-[19:51:15] [INFO] 
+[20:56:07] [INFO] ======================================================================
+[20:56:07] [INFO] Step 32c: Free-Parameter Void Family in Native mu-Space
+[20:56:07] [INFO] Full 1701x1701 STAT+SYS covariance
+[20:56:07] [INFO] ======================================================================
+[20:56:07] [PROCESS]   Loaded 1701 Pantheon+ SNe
+[20:56:08] [TEST]   Flat: chi2 = 2007.7 (dof=1700)
+[20:56:41] [TEST]   Void-Gauss: dH0=0.000, sig_z=0.2825, chi2=2007.7, DAIC=+4.0
+[20:57:16] [TEST]   Void-Exp: dH0=0.000, z_0=0.2825, chi2=2007.7, DAIC=+4.0
+[20:58:16] [TEST]   TEP (free n): dH0=10.000, n=0.0000, chi2=2007.7, DAIC=+4.0
+[20:58:33] [TEST]   TEP (fixed n=0.3): dH0=0.000, chi2=2007.7, DAIC=+2.0
+[20:58:33] [INFO] 
+[20:58:33] [TEST]   --- z >= 0.05 cut ---
+[20:58:33] [TEST]   Flat (z>=0.05): chi2 = 919.2 (dof=1052)
+[20:58:41] [TEST]   Void-Gauss (z>=0.05): dH0=0.000, sig_z=0.1750, chi2=919.2, DAIC=+4.0
+[20:58:48] [TEST]   Void-Exp (z>=0.05): dH0=0.000, z_0=0.1750, chi2=919.2, DAIC=+4.0
+[20:58:48] [INFO] 
+[20:58:48] [INFO] ======================================================================
+[20:58:48] [INFO] SUMMARY: Free-parameter void family in native mu-space
+[20:58:48] [INFO] ======================================================================
+[20:58:48] [INFO]   Full sample (N=1701):
+[20:58:48] [TEST]     Flat:          chi2 = 2007.7
+[20:58:48] [TEST]     Void-Gauss:    DAIC = +4.0  (dH0=0.00, sig=0.283)
+[20:58:48] [TEST]     Void-Exp:      DAIC = +4.0  (dH0=0.00, z0=0.283)
+[20:58:48] [TEST]     TEP (free n):  DAIC = +4.0  (dH0=10.00, n=0.000)
+[20:58:48] [TEST]     TEP (n=0.3):   DAIC = +2.0  (dH0=0.00)
+[20:58:48] [INFO]   z >= 0.05 (N=1053):
+[20:58:48] [TEST]     Flat:          chi2 = 919.2
+[20:58:48] [TEST]     Void-Gauss:    DAIC = +4.0  (dH0=0.00, sig=0.175)
+[20:58:48] [TEST]     Void-Exp:      DAIC = +4.0  (dH0=0.00, z0=0.175)
+[20:58:48] [INFO] 
+[20:58:48] [SUCCESS] INTERPRETATION: With free amplitude and scale, the void family's best fit is flat (dH0 < 1 km/s/Mpc) in native mu-space with full covariance. This confirms the binned result: the void family degenerates to flat when granted free parameters. Combined with the frozen-prediction rejection, this is co-primary evidence.
+[20:58:48] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_32c_free_param_native.json
+[20:58:48] [SUCCESS] Step 32c complete
+[20:58:48] [SUCCESS] step_32c completed in 160.7s
+[20:58:48] [INFO] 
+[20:58:48] [INFO] ================================================================================
+[20:58:48] [INFO]    Starting step_44: H0 vs calibrator-population potential depth (JAGB/TRGB/Cepheids/SBF ordering)
+[20:58:48] [INFO] ================================================================================
+[20:58:48] [INFO] 

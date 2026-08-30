@@ -63,3 +63,5 @@ research
 
 # Devin working files
 .devin/
+argos-runner*
+cline-runner*

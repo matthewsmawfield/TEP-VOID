@@ -9,6 +9,7 @@ or a purely kinematic velocity shift (L_T -> 0).
 """
 
 import sys
+import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -129,6 +130,20 @@ def run_audit():
             
         best_lt = min(results, key=lambda x: x['bic'])
         log.info(f"\n--> BEST FIT (Lowest BIC) for {axis}: L_T = {best_lt['L_T']} Mpc (BIC = {best_lt['bic']:.2f})")
+
+    summary = {
+        "step": "65",
+        "description": "Finite-coherence kernel audit — grid search over L_T on Pantheon+ raw magnitude residuals",
+        "n_sne": int(len(df)),
+        "lt_grid": LT_grid
+    }
+    out_json = PROJECT_ROOT / "results" / "outputs" / "step_65_finite_coherence_audit.json"
+    out_json.parent.mkdir(parents=True, exist_ok=True)
+    with open(out_json, "w") as f:
+        json.dump(summary, f, indent=2)
+    log.info(f"Saved summary to {out_json}")
+
+run = run_audit
 
 if __name__ == '__main__':
     run_audit()

@@ -1,0 +1,24 @@
+{
+  "step": "66",
+  "description": "Cross-dataset coherence audit \u2014 continuous L_T optimization on Pantheon+ and zero-parameter CF4 cross-prediction",
+  "pantheon_best_lt_mpc": 55.610663578380176,
+  "pantheon_dt_amplitude": -0.22593122441171165,
+  "pantheon_dt_err": 0.04638024619804252,
+  "pantheon_dt_pval": 1.4946585324040673e-06,
+  "cf4_best_lt_mpc": 4999.999859355522,
+  "cf4_dt_amplitude": -1.9601190978159178,
+  "cf4_dt_err": 0.2635183280348038,
+  "cf4_dt_pval": 1.0358547482660457e-13,
+  "structure_scale_difference_mpc": 4944.389195777142,
+  "cf4_cross_prediction_chi2": {
+    "rss_frozen_pantheon": 11783.68615167902,
+    "rss_null": 11801.502722148003,
+    "rss_kinematic_1r": 11776.372363325167,
+    "rss_cf4_best": 11788.935417866072,
+    "cf4_best_LT": 4999.999859355522,
+    "N": 51904,
+    "delta_rss_frozen_vs_null": 17.816570468983628,
+    "delta_rss_frozen_vs_kin": -7.313788353852942,
+    "delta_rss_frozen_vs_cf4best": 5.249266187052854
+  }
+}

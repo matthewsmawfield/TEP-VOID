@@ -1,58 +1,64 @@
-[18:22:24] [INFO] ======================================================================
-[18:22:24] [INFO] Step 73: Pantheon+ Low-z Temporal-Kinematic Discriminator
-[18:22:24] [INFO] ======================================================================
-[18:22:24] [PROCESS] Loading Pantheon+ for low-z Gate F v2 audit...
-[18:22:24] [INFO]   Raw file: 1701 rows, 1543 unique CIDs
-[18:22:24] [SUCCESS]   After CID dedup: 1543 rows
-[18:22:24] [TEST] 
+[20:22:50] [INFO] ======================================================================
+[20:22:50] [INFO] Step 73: Pantheon+ Low-z Temporal-Kinematic Discriminator
+[20:22:50] [INFO] ======================================================================
+[20:22:50] [PROCESS] Loading Pantheon+ for low-z Gate F v2 audit...
+[20:22:50] [INFO]   Raw file: 1701 rows, 1543 unique CIDs
+[20:22:50] [SUCCESS]   After CID dedup: 1543 rows
+[20:22:50] [TEST] 
 === zCMB + CMB axis (z < 0.07, N = 497) ===
-[18:22:24] [INFO]   M0     BIC=     279.6 dBIC=  11.24 n_p=1
-[18:22:24] [INFO]   MK     BIC=     268.4 dBIC=   0.00 n_p=4
-[18:22:24] [INFO]   MT     BIC=     280.4 dBIC=  12.02 n_p=2
-[18:22:24] [INFO]   MKT    BIC=     274.5 dBIC=   6.12 n_p=5
-[18:22:24] [INFO]   MX     BIC=     284.5 dBIC=  16.13 n_p=2
-[18:22:24] [INFO]   MKX    BIC=     273.3 dBIC=   4.99 n_p=5
-[18:22:24] [INFO]   Radial bins:
-[18:22:24] [INFO]     [   2000-   5000] N=  98 V_med=    4251 B_||=  -195.2 |B|=   259.8 TEP predicts   -25.2
-[18:22:24] [INFO]     [   5000-  10000] N= 234 V_med=    7420 B_||=  -234.4 |B|=   369.4 TEP predicts   -76.8
-[18:22:24] [INFO]     [  10000-  20000] N= 143 V_med=   13089 B_||=  -117.7 |B|=   450.8 TEP predicts  -238.9
-[18:22:24] [TEST] 
+[20:22:50] [INFO]   M0     BIC=     279.6 dBIC=  11.24 n_p=1
+[20:22:50] [INFO]   MK     BIC=     268.4 dBIC=   0.00 n_p=4
+[20:22:50] [INFO]   MT     BIC=     280.4 dBIC=  12.02 n_p=2
+[20:22:50] [INFO]   MKT    BIC=     274.5 dBIC=   6.12 n_p=5
+[20:22:50] [INFO]   MX     BIC=     284.5 dBIC=  16.13 n_p=2
+[20:22:50] [INFO]   MKX    BIC=     273.3 dBIC=   4.99 n_p=5
+[20:22:50] [INFO]   Radial bins:
+[20:22:50] [INFO]     [   2000-   5000] N=  98 V_med=    4251 B_||=  -195.2 |B|=   259.8 TEP predicts   -25.2
+[20:22:50] [INFO]     [   5000-  10000] N= 234 V_med=    7420 B_||=  -234.4 |B|=   369.4 TEP predicts   -76.8
+[20:22:50] [INFO]     [  10000-  20000] N= 143 V_med=   13089 B_||=  -117.7 |B|=   450.8 TEP predicts  -238.9
+[20:22:50] [TEST] 
 === zCMB + CF4 axis (z < 0.07, N = 497) ===
-[18:22:24] [INFO]   M0     BIC=     279.6 dBIC=  11.24 n_p=1
-[18:22:24] [INFO]   MK     BIC=     268.4 dBIC=   0.00 n_p=4
-[18:22:24] [INFO]   MT     BIC=     278.1 dBIC=   9.72 n_p=2
-[18:22:24] [INFO]   MKT    BIC=     274.1 dBIC=   5.75 n_p=5
-[18:22:24] [INFO]   MX     BIC=     284.5 dBIC=  16.13 n_p=2
-[18:22:24] [INFO]   MKX    BIC=     273.3 dBIC=   4.99 n_p=5
-[18:22:24] [INFO]   Radial bins:
-[18:22:24] [INFO]     [   2000-   5000] N=  98 V_med=    4251 B_||=  -240.6 |B|=   259.8 TEP predicts   -50.2
-[18:22:24] [INFO]     [   5000-  10000] N= 234 V_med=    7420 B_||=  -325.6 |B|=   369.4 TEP predicts  -152.9
-[18:22:24] [INFO]     [  10000-  20000] N= 143 V_med=   13089 B_||=  -395.2 |B|=   450.8 TEP predicts  -475.8
-[18:22:24] [TEST] 
+[20:22:50] [INFO]   M0     BIC=     279.6 dBIC=  11.24 n_p=1
+[20:22:50] [INFO]   MK     BIC=     268.4 dBIC=   0.00 n_p=4
+[20:22:50] [INFO]   MT     BIC=     278.1 dBIC=   9.72 n_p=2
+[20:22:50] [INFO]   MKT    BIC=     274.1 dBIC=   5.75 n_p=5
+[20:22:50] [INFO]   MX     BIC=     284.5 dBIC=  16.13 n_p=2
+[20:22:50] [INFO]   MKX    BIC=     273.3 dBIC=   4.99 n_p=5
+[20:22:50] [INFO]   Radial bins:
+[20:22:50] [INFO]     [   2000-   5000] N=  98 V_med=    4251 B_||=  -240.6 |B|=   259.8 TEP predicts   -50.2
+[20:22:50] [INFO]     [   5000-  10000] N= 234 V_med=    7420 B_||=  -325.6 |B|=   369.4 TEP predicts  -152.9
+[20:22:50] [INFO]     [  10000-  20000] N= 143 V_med=   13089 B_||=  -395.2 |B|=   450.8 TEP predicts  -475.8
+[20:22:50] [TEST] 
 === zHD + CMB axis (z < 0.07, N = 497) ===
-[18:22:24] [INFO]   M0     BIC=     254.6 dBIC=   0.00 n_p=1
-[18:22:24] [INFO]   MK     BIC=     267.4 dBIC=  12.73 n_p=4
-[18:22:24] [INFO]   MT     BIC=     259.6 dBIC=   4.96 n_p=2
-[18:22:24] [INFO]   MKT    BIC=     273.5 dBIC=  18.92 n_p=5
-[18:22:24] [INFO]   MX     BIC=     260.0 dBIC=   5.42 n_p=2
-[18:22:24] [INFO]   MKX    BIC=     272.8 dBIC=  18.18 n_p=5
-[18:22:24] [INFO]   Radial bins:
-[18:22:24] [INFO]     [   2000-   5000] N=  90 V_med=    4163 B_||=  -148.5 |B|=   180.3 TEP predicts   -11.5
-[18:22:24] [INFO]     [   5000-  10000] N= 240 V_med=    7390 B_||=   -61.7 |B|=   133.8 TEP predicts   -36.3
-[18:22:24] [INFO]     [  10000-  20000] N= 145 V_med=   13098 B_||=   -58.8 |B|=   201.7 TEP predicts  -114.1
-[18:22:24] [TEST] 
+[20:22:50] [INFO]   M0     BIC=     254.6 dBIC=   0.00 n_p=1
+[20:22:50] [INFO]   MK     BIC=     267.4 dBIC=  12.73 n_p=4
+[20:22:50] [INFO]   MT     BIC=     259.6 dBIC=   4.96 n_p=2
+[20:22:50] [INFO]   MKT    BIC=     273.5 dBIC=  18.92 n_p=5
+[20:22:50] [INFO]   MX     BIC=     260.0 dBIC=   5.42 n_p=2
+[20:22:50] [INFO]   MKX    BIC=     272.8 dBIC=  18.18 n_p=5
+[20:22:50] [INFO]   Radial bins:
+[20:22:50] [INFO]     [   2000-   5000] N=  90 V_med=    4163 B_||=  -148.5 |B|=   180.3 TEP predicts   -11.5
+[20:22:50] [INFO]     [   5000-  10000] N= 240 V_med=    7390 B_||=   -61.7 |B|=   133.8 TEP predicts   -36.3
+[20:22:50] [INFO]     [  10000-  20000] N= 145 V_med=   13098 B_||=   -58.8 |B|=   201.7 TEP predicts  -114.1
+[20:22:50] [TEST] 
 === zHD + CF4 axis (z < 0.07, N = 497) ===
-[18:22:24] [INFO]   M0     BIC=     254.6 dBIC=   0.00 n_p=1
-[18:22:24] [INFO]   MK     BIC=     267.4 dBIC=  12.73 n_p=4
-[18:22:24] [INFO]   MT     BIC=     260.0 dBIC=   5.41 n_p=2
-[18:22:24] [INFO]   MKT    BIC=     273.0 dBIC=  18.36 n_p=5
-[18:22:24] [INFO]   MX     BIC=     260.0 dBIC=   5.42 n_p=2
-[18:22:24] [INFO]   MKX    BIC=     272.8 dBIC=  18.18 n_p=5
-[18:22:24] [INFO]   Radial bins:
-[18:22:24] [INFO]     [   2000-   5000] N=  90 V_med=    4163 B_||=  -156.4 |B|=   180.3 TEP predicts   -15.3
-[18:22:24] [INFO]     [   5000-  10000] N= 240 V_med=    7390 B_||=  -101.7 |B|=   133.8 TEP predicts   -48.3
-[18:22:24] [INFO]     [  10000-  20000] N= 145 V_med=   13098 B_||=  -114.3 |B|=   201.7 TEP predicts  -151.8
-[18:22:25] [SUCCESS] 
+[20:22:50] [INFO]   M0     BIC=     254.6 dBIC=   0.00 n_p=1
+[20:22:50] [INFO]   MK     BIC=     267.4 dBIC=  12.73 n_p=4
+[20:22:50] [INFO]   MT     BIC=     260.0 dBIC=   5.41 n_p=2
+[20:22:50] [INFO]   MKT    BIC=     273.0 dBIC=  18.36 n_p=5
+[20:22:50] [INFO]   MX     BIC=     260.0 dBIC=   5.42 n_p=2
+[20:22:50] [INFO]   MKX    BIC=     272.8 dBIC=  18.18 n_p=5
+[20:22:50] [INFO]   Radial bins:
+[20:22:50] [INFO]     [   2000-   5000] N=  90 V_med=    4163 B_||=  -156.4 |B|=   180.3 TEP predicts   -15.3
+[20:22:50] [INFO]     [   5000-  10000] N= 240 V_med=    7390 B_||=  -101.7 |B|=   133.8 TEP predicts   -48.3
+[20:22:50] [INFO]     [  10000-  20000] N= 145 V_med=   13098 B_||=  -114.3 |B|=   201.7 TEP predicts  -151.8
+[20:22:51] [SUCCESS] 
 Saved figure to results/figures/step_73_pantheon_radial_discriminator.png
-[18:22:25] [SUCCESS] 
+[20:22:51] [SUCCESS] 
 Saved results to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_73_pantheon_radial_discriminator.json
+[20:22:51] [SUCCESS] step_73 completed in 0.5s
+[20:22:51] [INFO] 
+[20:22:51] [INFO] ================================================================================
+[20:22:51] [INFO]    Pipeline complete: 14 succeeded, 0 failed, 404.1s total
+[20:22:51] [INFO] ================================================================================
+[20:22:51] [INFO] 

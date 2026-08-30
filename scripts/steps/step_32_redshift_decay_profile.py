@@ -592,19 +592,29 @@ class Step32RedshiftDecayProfile:
         This makes the test strictly zero-point independent.
         """
         delta = mu_obs - mu_model
-        try:
-            cov_inv = np.linalg.inv(cov_bin)
-        except np.linalg.LinAlgError:
-            cov_inv = np.linalg.pinv(cov_bin)
+        n = len(delta)
+        diag_pos = np.diag(cov_bin)[np.diag(cov_bin) > 0]
+        diag_med = np.median(diag_pos) if len(diag_pos) > 0 else 1.0
+        cov_reg = cov_bin + 1e-8 * diag_med * np.eye(n)
 
-        ones = np.ones_like(delta)
-        denom = float(ones @ cov_inv @ ones)
-        if denom == 0:
-            return float(delta @ cov_inv @ delta)
+        ones = np.ones(n)
+        with np.errstate(invalid="ignore", divide="ignore", over="ignore"):
+            try:
+                cov_inv_ones = np.linalg.solve(cov_reg, ones)
+                cov_inv_delta = np.linalg.solve(cov_reg, delta)
+                denom = float(ones @ cov_inv_ones)
+            except np.linalg.LinAlgError:
+                cov_inv = np.linalg.pinv(cov_reg)
+                cov_inv_ones = cov_inv @ ones
+                cov_inv_delta = cov_inv @ delta
+                denom = float(ones @ cov_inv_ones)
 
-        chi2_raw = float(delta @ cov_inv @ delta)
-        correction = float((delta @ cov_inv @ ones) ** 2 / denom)
-        return chi2_raw - correction
+            if denom == 0:
+                return float(delta @ cov_inv_delta)
+
+            chi2_raw = float(delta @ cov_inv_delta)
+            correction = float((delta @ cov_inv_ones) ** 2 / denom)
+            return chi2_raw - correction
 
     def _compute_mu_space_comparison(self, cov_full, n_cov):
         """

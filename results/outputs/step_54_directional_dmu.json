@@ -129,35 +129,35 @@
   "bulk_flow_by_indicator": {
     "TRGB_nuclear_candle": {
       "n": 446,
-      "v_dipole_kms": 508.49640298574326,
+      "v_dipole_kms": 508.496402985743,
       "gal_l": 271.5449376150437,
       "gal_b": 35.09982126886722,
-      "sep_from_cmb_deg": 14.286261376148007
+      "sep_from_cmb_deg": 14.286261376148001
     },
     "Cepheid_acoustic_clock": {
       "n": 69,
-      "v_dipole_kms": 663.2264785525199,
+      "v_dipole_kms": 663.2264785525197,
       "gal_l": 275.776063056762,
-      "gal_b": 29.490918290509367,
-      "sep_from_cmb_deg": 20.81910082852163
+      "gal_b": 29.490918290509335,
+      "sep_from_cmb_deg": 20.81910082852166
     },
     "TullyFisher_rotation": {
       "n": 8132,
-      "v_dipole_kms": 247.3630539057368,
-      "gal_l": 288.36305983112084,
+      "v_dipole_kms": 247.36305390573645,
+      "gal_l": 288.3630598311209,
       "gal_b": 32.001285492730986,
-      "sep_from_cmb_deg": 24.516216704423382
+      "sep_from_cmb_deg": 24.516216704423428
     },
     "FundamentalPlane_dispersion": {
       "n": 2977,
-      "v_dipole_kms": 242.89075756149862,
-      "gal_l": 30.703054014642092,
-      "gal_b": 32.16367180873751,
-      "sep_from_cmb_deg": 86.53373405866044
+      "v_dipole_kms": 242.89075756149856,
+      "gal_l": 30.703054014642003,
+      "gal_b": 32.163671808737796,
+      "sep_from_cmb_deg": 86.53373405866022
     },
     "SNeIa_diffusion": {
       "n": 407,
-      "v_dipole_kms": 262.6820020389899,
+      "v_dipole_kms": 262.68200203898994,
       "gal_l": 285.51464631286956,
       "gal_b": -5.260705701839012,
       "sep_from_cmb_deg": 56.734350379074016
@@ -165,17 +165,17 @@
     "Combined_all": {
       "n": 12020,
       "v_dipole_kms": 517.1797140754367,
-      "gal_l": 272.3018327499767,
-      "gal_b": 30.604504316797573,
+      "gal_l": 272.30183274997677,
+      "gal_b": 30.604504316797595,
       "sep_from_cmb_deg": 18.744790035832246
     },
-    "cepheid_excess_kms": 154.73007556677663
+    "cepheid_excess_kms": 154.7300755667767
   },
   "interpretation": {
     "tep_signal_detected": true,
     "significance_sigma": 2.329576227322434,
     "dipole_aligned_with_cmb": true,
-    "cepheid_bulk_flow_excess_kms": 154.73007556677663,
+    "cepheid_bulk_flow_excess_kms": 154.7300755667767,
     "discriminating_observable": "\u0394\u03bc directional signal: predicted by TEP, not by kinematic model"
   }
 }

@@ -8,6 +8,7 @@ Includes injection-recovery, stratified permutations, and survey ablation.
 """
 
 import sys
+import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -237,11 +238,33 @@ def run_audit():
         
     log.info("\n=== 4. LEAVE-ONE-SURVEY-OUT ROBUSTNESS (Raw Mag Resid, CMB Axis) ===")
     surveys = df['IDSURVEY'].unique()
+    survey_results = {}
     for s in surveys:
         s_count = len(df[df['IDSURVEY'] == s])
         if s_count < 5: continue
         res = fit_simultaneous(df, 'raw_mag_resid', 'CMB', exclude_survey=s)
         log.info(f"Exclude {s:<10} (N={s_count:>3}) -> DT = {res['DT']:>8.4f} (p={res['DT_p']:.4f}) | DK = {res['DK']:>8.4f} (p={res['DK_p']:.4f})")
+        survey_results[str(s)] = {
+            "n": int(s_count),
+            "dt": float(res['DT']),
+            "dt_p": float(res['DT_p']),
+            "dk": float(res['DK']),
+            "dk_p": float(res['DK_p'])
+        }
+
+    summary = {
+        "step": "64",
+        "description": "Mechanism-resolved audit — simultaneous decomposition of temporal and kinematic dipole channels",
+        "n_sne": int(len(df)),
+        "survey_ablation": survey_results
+    }
+    out_json = PROJECT_ROOT / "results" / "outputs" / "step_64_mechanism_resolved_audit.json"
+    out_json.parent.mkdir(parents=True, exist_ok=True)
+    with open(out_json, "w") as f:
+        json.dump(summary, f, indent=2)
+    log.info(f"Saved summary to {out_json}")
+
+run = run_audit
 
 if __name__ == '__main__':
     run_audit()

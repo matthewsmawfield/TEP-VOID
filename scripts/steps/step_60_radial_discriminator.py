@@ -210,6 +210,8 @@ def run_radial_discriminator():
     plt.grid(True, alpha=0.3)
     plt.savefig(PROJECT_ROOT / "outputs/figures/step_60_radial_flow.png", dpi=300, bbox_inches='tight')
     log.info(f"Saved radial plot to outputs/figures/step_60_radial_flow.png")
-    
+
+run = run_radial_discriminator
+
 if __name__ == '__main__':
     run_radial_discriminator()

@@ -71,12 +71,12 @@ DEFAULT_PROMPT_FALLBACK="For this thought experiment, accept the premise that TE
 # AI provider to use. Cline supports: anthropic, openai-native, openrouter,
 # gemini, deepseek, moonshot, xai, bedrock, cerebras, ollama, lmstudio, etc.
 # Leave empty to use your Cline default (last authenticated provider).
-PROVIDER="${PROVIDER:-cline-pass}"
+PROVIDER="${PROVIDER:-cline}"
 
 # AI model to use. See --list-models for all known models. Common aliases
 # are mapped automatically (e.g. "deepseek-v4" -> "deepseek/deepseek-v4-flash").
 # Leave empty to use your provider's default model.
-MODEL="${MODEL:-cline-pass/glm-5.3}"
+MODEL="${MODEL:-zai/glm-5.3}"
 
 # Reasoning effort level: none|low|medium|high|xhigh. Bare --thinking uses
 # medium. Omitted leaves the provider default. Higher = more thinking tokens.
@@ -232,6 +232,32 @@ map_model() {
   case "$input" in
     auto|adaptive)                             echo "";                   return ;;
   esac
+
+  # --- Cline usage-billing provider (same models, different IDs than cline-pass) ---
+  if [[ "$provider" == "cline" ]]; then
+    case "$input" in
+      # Guard: if someone passes a cline-pass/ model ID to the cline provider,
+      # convert it to the usage-billing equivalent
+      cline-pass/kimi-k3)                      echo "moonshotai/kimi-k3";          return ;;
+      cline-pass/glm-5.3)                      echo "zai/glm-5.3";                 return ;;
+      cline-pass/glm-5.2)                      echo "zai/glm-5.2";                 return ;;
+      cline-pass/deepseek-v4-pro)              echo "deepseek/deepseek-v4-pro";    return ;;
+      cline-pass/deepseek-v4-flash)            echo "deepseek/deepseek-v4-flash";  return ;;
+      cline-pass/kimi-k2.7-code)               echo "moonshotai/kimi-k2.7-code";   return ;;
+      cline-pass/kimi-k2.6)                    echo "moonshotai/kimi-k2.6";        return ;;
+      cline-pass/minimax-m3)                   echo "minimax/minimax-m3";          return ;;
+      # Friendly aliases for usage billing
+      kimi-k3|k3|kimi)                         echo "moonshotai/kimi-k3";          return ;;
+      glm-5.3|glm-5-3)                         echo "zai/glm-5.3";                 return ;;
+      glm-5.2|glm-5-2)                         echo "zai/glm-5.2";                 return ;;
+      deepseek-v4-pro|ds-v4-pro)               echo "deepseek/deepseek-v4-pro";    return ;;
+      deepseek-v4-flash|ds-v4-flash)           echo "deepseek/deepseek-v4-flash";  return ;;
+      sonnet-4.6|sonnet-4-6|claude-sonnet-4-6) echo "claude-sonnet-4-6";           return ;;
+      opus-4.6|opus-4-6|claude-opus-4-6)       echo "claude-opus-4-6";             return ;;
+      # Pass through provider/model format (e.g. zai/glm-5.3, moonshotai/kimi-k3)
+      */*)                                     echo "$input";                      return ;;
+    esac
+  fi
 
   # --- ClinePass subscription models ($9.99/month, 2-5x usage) ---
   if [[ "$provider" == "cline-pass" ]]; then

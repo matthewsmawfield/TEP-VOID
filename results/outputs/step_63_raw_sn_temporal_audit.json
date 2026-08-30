@@ -1,0 +1,47 @@
+{
+  "step": "63",
+  "description": "Gate G: raw SN temporal audit \u2014 pre-standardization magnitude residuals vs SALT3-standardized residuals",
+  "n_sne": 513,
+  "targets": {
+    "x1": {
+      "name": "1. Raw Stretch (x1)",
+      "coef": 0.06224057118365693,
+      "err": 0.07546012108814262,
+      "tval": 0.8248140910210793,
+      "pval_stat": 0.40987443203453267,
+      "pval_perm": 0.61
+    },
+    "raw_mag_resid": {
+      "name": "2. Raw Mag Residual",
+      "coef": -0.06984744389599962,
+      "err": 0.019209085025945274,
+      "tval": -3.6361671470378867,
+      "pval_stat": 0.00030571174022278434,
+      "pval_perm": 0.0
+    },
+    "salt_correction": {
+      "name": "3. SALT Correction (mB-corr)",
+      "coef": -0.03199593197423017,
+      "err": 0.017083704879840927,
+      "tval": -1.8728918697246948,
+      "pval_stat": 0.0616724808943228,
+      "pval_perm": 0.05
+    },
+    "std_mag_resid": {
+      "name": "4. Std Mag Residual",
+      "coef": -0.021048131139761894,
+      "err": 0.007958225757915492,
+      "tval": -2.644827098405293,
+      "pval_stat": 0.008432961276200163,
+      "pval_perm": 0.014
+    },
+    "pv_correction": {
+      "name": "5. PV Correction (v_pec, km/s)",
+      "coef": 52.355791865257146,
+      "err": 8.202318784110156,
+      "tval": 6.38304767752782,
+      "pval_stat": 3.997821984075707e-10,
+      "pval_perm": 0.0
+    }
+  }
+}

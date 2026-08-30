@@ -8,6 +8,7 @@ as it passes through the SALT standardization pipeline.
 """
 
 import sys
+import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -129,10 +130,33 @@ def run_audit():
         log.info(f"{t['name']:<32} : D = {coef:>8.4f} +/- {err:>6.4f} (p = {pval:.3f})")
     
     log.info("\n=== STATISTICAL SIGNIFICANCE (WLS + Permutation) ===")
+    results = {}
     for t in targets:
         coef, err, tval, pval = fit_target(df, t['col'], use_weights=True, err_col=t['err'])
         p_perm = run_permutation(df, t['col'], use_weights=True, err_col=t['err'], n_perms=500)
         log.info(f"{t['name']:<32} : D = {coef:>8.4f} +/- {err:>6.4f} (p_stat = {pval:.3f}, p_perm = {p_perm:.3f})")
+        results[t['col']] = {
+            "name": t['name'],
+            "coef": float(coef),
+            "err": float(err),
+            "tval": float(tval),
+            "pval_stat": float(pval),
+            "pval_perm": float(p_perm)
+        }
+
+    summary = {
+        "step": "63",
+        "description": "Gate G: raw SN temporal audit — pre-standardization magnitude residuals vs SALT3-standardized residuals",
+        "n_sne": int(len(df)),
+        "targets": results
+    }
+    out_json = PROJECT_ROOT / "results" / "outputs" / "step_63_raw_sn_temporal_audit.json"
+    out_json.parent.mkdir(parents=True, exist_ok=True)
+    with open(out_json, "w") as f:
+        json.dump(summary, f, indent=2)
+    log.info(f"Saved summary to {out_json}")
+
+run = run_audit
 
 if __name__ == '__main__':
     run_audit()

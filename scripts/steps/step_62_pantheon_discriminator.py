@@ -161,5 +161,7 @@ def run_pantheon_discriminator():
             
             log.info(f"Bin [{vmin:5d}-{vmax:5d}] (N={len(df_bin):3d}): V={v_center:.0f}, B_|| = {b_dot_cmb:6.1f} | |B| = {b_mag:6.1f} ({angle:3.0f} deg) | TEP Pred: {b_app_expected:6.1f}")
 
+run = run_pantheon_discriminator
+
 if __name__ == '__main__':
     run_pantheon_discriminator()

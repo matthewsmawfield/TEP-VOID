@@ -77,7 +77,7 @@ DEFAULT_PROMPT_FALLBACK="Deep scan and fix all issues; keep investigating for bu
 #   "sonnet" / "claude-sonnet" -> "claude-sonnet-5-high"
 #   "swe-1.7" / "swe"          -> "swe-1-7-medium"
 # Leave empty to use your Argos default.
-MODEL="${MODEL:-gemini-3.7}"
+MODEL="${MODEL:-glm-5-2}"
 
 # Permission mode for non-interactive runs. ACP accepts:
 #   "bypass"       - auto-approves ALL tool calls (reads, writes, shell)

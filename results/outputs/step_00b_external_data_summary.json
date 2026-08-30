@@ -1,7 +1,7 @@
 {
   "step": "00b",
   "description": "External data download with full provenance tracking",
-  "timestamp": "2026-08-30T19:05:23.075475+00:00",
+  "timestamp": "2026-08-30T19:54:26.532622+00:00",
   "datasets": {
     "pantheon_plus": "Pantheon+SH0ES data + STAT+SYS and STATONLY covariance",
     "cosmicflows4": "CF4 table2 (55,877 galaxies) + table4 (38,053 groups)",

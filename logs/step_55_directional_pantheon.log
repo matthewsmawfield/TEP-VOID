@@ -1,50 +1,81 @@
-[19:55:53] [INFO] 
-[19:55:53] [INFO] ================================================================================
-[19:55:53] [INFO]    Step 55: Directional Pantheon+ Hemisphere Split
-[19:55:53] [INFO] ================================================================================
-[19:55:53] [INFO] 
-[19:55:53] [PROCESS] Testing for CMB-dipole-aligned Hubble residual pattern
-[19:55:53] [PROCESS] Loading Pantheon+ sample...
-[19:55:53] [SUCCESS]   1053 Hubble-flow SNe (z >= 0.05)
-[19:55:53] [SUCCESS]   CMB dipole projection computed for 1053 SNe
-[19:55:53] [INFO]   Mean cmb_dot = -0.359
-[19:55:53] [INFO]   Toward CMB: 296, Away: 757
-[19:55:53] [PROCESS] 
+[20:18:04] [INFO] 
+[20:18:04] [INFO] ================================================================================
+[20:18:04] [INFO]    Step 55: Directional Pantheon+ Hemisphere Split
+[20:18:04] [INFO] ================================================================================
+[20:18:04] [INFO] 
+[20:18:04] [PROCESS] Testing for CMB-dipole-aligned Hubble residual pattern
+[20:18:04] [PROCESS] Loading Pantheon+ sample...
+[20:18:04] [SUCCESS]   1053 Hubble-flow SNe (z >= 0.05)
+[20:18:04] [SUCCESS]   CMB dipole projection computed for 1053 SNe
+[20:18:04] [INFO]   Mean cmb_dot = -0.359
+[20:18:04] [INFO]   Toward CMB: 296, Away: 757
+[20:18:04] [PROCESS] 
 --- Analysis 1: Hemisphere split ---
-[19:56:12] [TEST]   Toward CMB (N=296): HR = -0.0000 ± 0.0113
-[19:56:12] [TEST]   Away from CMB (N=757): HR = -0.0000 ± 0.0071
-[19:56:12] [TEST]   Difference: -0.0000 ± 0.0134 (0.00σ, p=0.6167)
-[19:56:12] [TEST]   Equivalent ΔH0: 0.00 km/s/Mpc
-[19:56:12] [PROCESS] 
+[20:18:14] [TEST]   Toward CMB (N=296): HR = -0.0000 ± 0.0113
+[20:18:14] [TEST]   Away from CMB (N=757): HR = -0.0000 ± 0.0071
+[20:18:14] [TEST]   Difference: -0.0000 ± 0.0134 (0.00σ, p=0.6167)
+[20:18:14] [TEST]   Equivalent ΔH0: 0.00 km/s/Mpc
+[20:18:14] [PROCESS] 
 --- Analysis 2: Directional correlation ---
-[19:59:39] [TEST]   r(HR, cmb_dot) = +0.0024 (p=0.9385)
-[19:59:39] [TEST]   Weighted r = +0.0013
-[19:59:39] [TEST]   Permutation: p_two=0.9581, p_one=0.3475
-[19:59:39] [PROCESS] 
+[20:19:18] [TEST]   r(HR, cmb_dot) = +0.0024 (p=0.9385)
+[20:19:18] [TEST]   Weighted r = +0.0013
+[20:19:18] [TEST]   Permutation: p_two=0.9581, p_one=0.3475
+[20:19:18] [PROCESS] 
 --- Analysis 3: 3-D vector dipole fit ---
-[19:59:55] [TEST]   Dipole amplitude: 0.0000 mag (0 km/s equiv)
-[19:59:55] [TEST]   Direction: l=278.2°, b=-16.1°
-[19:59:55] [TEST]   Angular separation from CMB: 65.5°
-[19:59:55] [TEST]   Permutation: p=0.7921 (-0.74σ)
-[19:59:55] [PROCESS] 
+[20:19:18] [TEST]   Dipole amplitude: 0.0000 mag (0 km/s equiv)
+[20:19:18] [TEST]   Direction: l=278.2°, b=-16.1°
+[20:19:18] [TEST]   Angular separation from CMB: 65.5°
+[20:19:18] [TEST]   Permutation: p=0.7921 (-0.74σ)
+[20:19:18] [PROCESS] 
 --- Analysis 4: H0 by hemisphere ---
-[19:59:55] [TEST]   toward (N=296): HR = -0.00000 ± 0.01130, H0 = 73.04 ± 0.38 km/s/Mpc
-[19:59:55] [TEST]   away (N=757): HR = -0.00000 ± 0.00712, H0 = 73.04 ± 0.24 km/s/Mpc
-[19:59:55] [TEST]   all (N=1053): HR = -0.00000 ± 0.00602, H0 = 73.04 ± 0.20 km/s/Mpc
-[19:59:55] [TEST]   ΔH0 (toward - away) = +0.000 ± 0.449 km/s/Mpc (0.00σ)
-[19:59:55] [PROCESS] 
+[20:19:18] [TEST]   toward (N=296): HR = -0.00000 ± 0.01130, H0 = 73.04 ± 0.38 km/s/Mpc
+[20:19:18] [TEST]   away (N=757): HR = -0.00000 ± 0.00712, H0 = 73.04 ± 0.24 km/s/Mpc
+[20:19:18] [TEST]   all (N=1053): HR = -0.00000 ± 0.00602, H0 = 73.04 ± 0.20 km/s/Mpc
+[20:19:18] [TEST]   ΔH0 (toward - away) = +0.000 ± 0.449 km/s/Mpc (0.00σ)
+[20:19:18] [PROCESS] 
 --- Analysis 5: Joint model with F-test ---
-[19:59:55] [TEST]   Full model (direction + z): R² = 0.0002, b = +0.0000
-[19:59:55] [TEST]   Reduced model (z only): R² = 0.0002
-[19:59:55] [TEST]   F-test: F=0.00, p=0.9980, ΔR²=0.0000
-[19:59:55] [PROCESS] 
+[20:19:18] [TEST]   Full model (direction + z): R² = 0.0002, b = +0.0000
+[20:19:18] [TEST]   Reduced model (z only): R² = 0.0002
+[20:19:18] [TEST]   F-test: F=0.00, p=0.9980, ΔR²=0.0000
+[20:19:18] [PROCESS] 
 --- Generating sky figure ---
-[19:59:57] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_55_directional_pantheon.png
-[19:59:57] [SUCCESS] 
+[20:19:20] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_55_directional_pantheon.png
+[20:19:20] [SUCCESS] 
 Results saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_55_directional_pantheon.json
-[19:59:57] [SUCCESS] step_55 completed in 243.9s
-[19:59:57] [INFO] 
-[19:59:57] [INFO] ================================================================================
-[19:59:57] [INFO]    Starting step_56: 2D geometric prediction: V_rot^4/R^2 vs V_rot^2 for Cepheid distance offset
-[19:59:57] [INFO] ================================================================================
-[19:59:57] [INFO] 
+[20:19:20] [SUCCESS] step_55 completed in 115.0s
+[20:19:20] [INFO] 
+[20:19:20] [INFO] ================================================================================
+[20:19:20] [INFO]    Starting step_56: 2D geometric prediction: V_rot^4/R^2 vs V_rot^2 for Cepheid distance offset
+[20:19:20] [INFO] ================================================================================
+[20:19:20] [INFO] 
+[20:19:40] [TEST]   r(HR, cmb_dot) = +0.0024 (p=0.9385)
+[20:19:40] [TEST]   Weighted r = +0.0013
+[20:19:40] [TEST]   Permutation: p_two=0.9581, p_one=0.3475
+[20:19:40] [PROCESS] 
+--- Analysis 3: 3-D vector dipole fit ---
+[20:19:41] [TEST]   Dipole amplitude: 0.0000 mag (0 km/s equiv)
+[20:19:41] [TEST]   Direction: l=278.2°, b=-16.1°
+[20:19:41] [TEST]   Angular separation from CMB: 65.5°
+[20:19:41] [TEST]   Permutation: p=0.7921 (-0.74σ)
+[20:19:41] [PROCESS] 
+--- Analysis 4: H0 by hemisphere ---
+[20:19:41] [TEST]   toward (N=296): HR = -0.00000 ± 0.01130, H0 = 73.04 ± 0.38 km/s/Mpc
+[20:19:41] [TEST]   away (N=757): HR = -0.00000 ± 0.00712, H0 = 73.04 ± 0.24 km/s/Mpc
+[20:19:41] [TEST]   all (N=1053): HR = -0.00000 ± 0.00602, H0 = 73.04 ± 0.20 km/s/Mpc
+[20:19:41] [TEST]   ΔH0 (toward - away) = +0.000 ± 0.449 km/s/Mpc (0.00σ)
+[20:19:41] [PROCESS] 
+--- Analysis 5: Joint model with F-test ---
+[20:19:41] [TEST]   Full model (direction + z): R² = 0.0002, b = +0.0000
+[20:19:41] [TEST]   Reduced model (z only): R² = 0.0002
+[20:19:41] [TEST]   F-test: F=0.00, p=0.9980, ΔR²=0.0000
+[20:19:41] [PROCESS] 
+--- Generating sky figure ---
+[20:19:42] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_55_directional_pantheon.png
+[20:19:42] [SUCCESS] 
+Results saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_55_directional_pantheon.json
+[20:19:42] [SUCCESS] step_55 completed in 97.9s
+[20:19:42] [INFO] 
+[20:19:42] [INFO] ================================================================================
+[20:19:42] [INFO]    Starting step_56: 2D geometric prediction: V_rot^4/R^2 vs V_rot^2 for Cepheid distance offset
+[20:19:42] [INFO] ================================================================================
+[20:19:42] [INFO] 

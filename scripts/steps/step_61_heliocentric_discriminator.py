@@ -197,6 +197,8 @@ def run_heliocentric_discriminator():
     plt.grid(True, alpha=0.3)
     plt.savefig(PROJECT_ROOT / "outputs/figures/step_61_helio_radial_flow.png", dpi=300, bbox_inches='tight')
     log.info(f"Saved radial plot to outputs/figures/step_61_helio_radial_flow.png")
-    
+
+run = run_heliocentric_discriminator
+
 if __name__ == '__main__':
     run_heliocentric_discriminator()

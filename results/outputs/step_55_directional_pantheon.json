@@ -28,15 +28,15 @@
   },
   "dipole_fit_3d": {
     "n": 1053,
-    "dipole_amplitude_mag": 1.8507533639382467e-07,
-    "dipole_ra_deg": 123.61482198140297,
-    "dipole_dec_deg": -64.58317953883703,
+    "dipole_amplitude_mag": 1.8507533639382478e-07,
+    "dipole_ra_deg": 123.61482198140304,
+    "dipole_dec_deg": -64.583179538837,
     "dipole_gal_l": 278.2471532650245,
-    "dipole_gal_b": -16.050369662994296,
-    "angular_separation_deg": 65.54472262974903,
-    "equivalent_velocity_kms": 0.02555141376400993,
+    "dipole_gal_b": -16.05036966299426,
+    "angular_separation_deg": 65.54472262974899,
+    "equivalent_velocity_kms": 0.025551413764009948,
     "permutation_p": 0.7921,
-    "permutation_sigma": -0.7378805214188624
+    "permutation_sigma": -0.7378805214188617
   },
   "h0_by_hemisphere": {
     "toward": {

@@ -9,6 +9,7 @@ Step 66: Cross-Dataset Finite Coherence Audit (Gate G v4)
 """
 
 import sys
+import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -62,18 +63,41 @@ def load_pantheon():
     return df
 
 def load_cf4():
-    df = pd.read_csv(PROJECT_ROOT / 'data/interim/cosmicflows4_processed.csv')
+    path = PROJECT_ROOT / 'data/raw/external/cf4_table2.dat'
+    colspecs = [
+        (0, 7), (22, 27), (28, 34), (35, 40),
+        (41, 47), (48, 52), (53, 59), (60, 64),
+        (65, 71), (72, 76), (77, 83), (84, 89),
+        (90, 96), (97, 101), (102, 107), (108, 112),
+        (113, 119), (120, 125), (126, 131), (132, 136),
+        (137, 145), (146, 154), (155, 163), (164, 172),
+        (173, 181), (182, 190),
+    ]
+    names = ["PGC", "Vcmb", "DM", "e_DM",
+             "DMsnIa", "e_DMsnIa", "DMtf", "e_DMtf",
+             "DMfp", "e_DMfp", "DMsbf", "e_DMsbf",
+             "DMsnII", "e_DMsnII", "DMtrgb", "e_DMtrgb",
+             "DMceph", "e_DMceph", "DMmas", "e_DMmas",
+             "RAdeg", "DEdeg", "GLON", "GLAT", "SGL", "SGB"]
+    df = pd.read_fwf(path, colspecs=colspecs, names=names, header=None)
+    for c in df.columns:
+        df[c] = pd.to_numeric(df[c], errors="coerce")
+    
+    df['z'] = df['Vcmb'] / C_KMS
     df = df[df['z'] > 0.01]
-    df = df.dropna(subset=['dm', 'z', 'RAdeg', 'DEdeg'])  # Exclude ultra-local to match Pantheon
-    # Exclude SN to keep it independent (only keep TF, FP, etc if identifiable, but for now we just load all non-SN if possible)
-    # The 'galaxy' name or other columns might distinguish, but we don't have that easily. 
-    # Let's just use the whole CF4 as CF4 contains mainly TF and FP.
+    
+    # Exclude SNe to keep it independent
+    df = df[df['DMsnIa'].isna()]
+    
+    df = df.dropna(subset=['DM', 'z', 'RAdeg', 'DEdeg'])
     
     df = setup_axes(df, 'RAdeg', 'DEdeg')
     df['mu_bg'] = cosmo.distmod(df['z']).value
-    df['D_Mpc'] = cosmo.comoving_distance(df['z']).value
-    # CF4 provides the distance modulus 'dm'
-    df['raw_mag_resid'] = df['dm'] - df['mu_bg']
+    
+    # Independent distance coordinate
+    df['D_Mpc'] = 10 ** ((df['DM'] - 25) / 5)
+    
+    df['raw_mag_resid'] = df['DM'] - df['mu_bg']
     return df
 
 def get_kernel(D, cos_t, L_T):
@@ -282,6 +306,28 @@ def run_audit():
     log.info("Generating radial profile plot comparing CF4 raw data against Pantheon+ prediction...")
     plot_cross_prediction(df_pan, df_cf4, pan_LT, pan_DT)
     log.info("Plot saved to results/figures/step_66_cross_prediction.png")
+
+    summary = {
+        "step": "66",
+        "description": "Cross-dataset coherence audit — continuous L_T optimization on Pantheon+ and zero-parameter CF4 cross-prediction",
+        "pantheon_best_lt_mpc": float(pan_LT),
+        "pantheon_dt_amplitude": float(pan_DT),
+        "pantheon_dt_err": float(pan_res.bse['P_kernel']),
+        "pantheon_dt_pval": float(pan_res.pvalues['P_kernel']),
+        "cf4_best_lt_mpc": float(cf4_LT),
+        "cf4_dt_amplitude": float(cf4_res.params['P_kernel']),
+        "cf4_dt_err": float(cf4_res.bse['P_kernel']),
+        "cf4_dt_pval": float(cf4_res.pvalues['P_kernel']),
+        "structure_scale_difference_mpc": float(abs(pan_LT - cf4_LT)),
+        "cf4_cross_prediction_chi2": chi2_results,
+    }
+    out_json = PROJECT_ROOT / "results" / "outputs" / "step_66_cross_dataset_coherence_audit.json"
+    out_json.parent.mkdir(parents=True, exist_ok=True)
+    with open(out_json, "w") as f:
+        json.dump(summary, f, indent=2)
+    log.info(f"Saved summary to {out_json}")
+
+run = run_audit
 
 if __name__ == '__main__':
     run_audit()

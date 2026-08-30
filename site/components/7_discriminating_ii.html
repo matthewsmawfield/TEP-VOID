@@ -142,15 +142,19 @@
 <p>
     The indicator-specific bulk-flow excess (Section 6) motivates a
     sharper discriminating test. If the "bulk flow" is a macroscopic
-    temporal topology gradient rather than kinetic motion, then the 
-    observable signature must match the topological structure of the local universe. 
-    Standard cosmology assumes that any macroscopic directional signal is a pure 
-    kinematic bulk flow, decaying as $1/r$ in velocity space. In contrast, 
-    TEP predicts that the macroscopic temporal signal is an extended topological feature 
-    with a finite coherence scale $L_T$. When a finite-coherence temporal field is 
-    integrated along the line of sight using the kernel $P(D, L_T) = \frac{1 - e^{-D/L_T}}{D} \cos\theta$, 
-    it naturally saturates. This saturation perfectly mimics a $1/r$ kinematic velocity flow 
+    temporal topology gradient rather than kinetic motion, then the
+    observable signature must match the topological structure of the local universe.
+    Standard cosmology assumes that any macroscopic directional signal is a pure
+    kinematic bulk flow, decaying as $1/r$ in velocity space. In contrast,
+    TEP predicts that the macroscopic temporal signal is an extended topological feature
+    with a finite coherence scale $L_T$. When a finite-coherence temporal field is
+    integrated along the line of sight using the kernel $P(D, L_T) = \frac{1 - e^{-D/L_T}}{D} \cos\theta$,
+    it naturally saturates. This saturation mimics a $1/r$ kinematic velocity flow
     at large distances, which is why standard kinematic estimators misclassify it.
+    The finite-coherence mode identified below is distinct from the Cepheid–TRGB
+    calibration differential above: the latter describes how an indicator bias
+    propagates into a conventional velocity estimator, whereas the former probes
+    an independent directional component of the redshift-distance field.
 </p>
 
 <p>
@@ -163,12 +167,9 @@
 </p>
 
 <p>
-    The raw Pantheon+ magnitude residuals strictly reject both the
-    pure kinematic limit ($L_T \to 0$) and an infinite linear
-    temporal gradient ($L_T \to \infty$). Instead, the optimization
-    cleanly locks onto a local macroscopic structure scale:
-    $L_T = 55.61$ Mpc, with a highly significant amplitude
-    ($p < 0.001$). This exact minimization of the log-likelihood
+    The likelihood has an interior optimum at $L_T = 55.61$ Mpc rather than either
+    limiting profile (the $L_T \to 0$ pure kinematic limit or the $L_T \to \infty$ long-coherence/unsaturated limit),
+    with the associated directional amplitude detected at $p < 0.001$. This exact minimization of the log-likelihood
     demonstrates that the structural binding scale of the
     macroscopic temporal field is precisely 55.6 Mpc — placing
     the characteristic structure on a tens-of-Mpc
@@ -192,19 +193,20 @@
     $D_T = -0.2259$ mag) derived exclusively from the Pantheon+
     optimization is projected directly onto the CF4 magnitude
     residuals as a pure theoretical prediction, with no refitting
-    of either parameter. The quantitative comparison yields a
-    residual sum of squares $\mathrm{RSS}_{\rm frozen} = 7512.8$
-    for the frozen Pantheon+ model, against $\mathrm{RSS}_{\rm null}
-    = 7533.8$ for the no-dipole null. The frozen model therefore
-    improves over the null by $\Delta\mathrm{RSS} = 20.9$ across
-    $N = 35{,}978$ CF4 galaxies, confirming that the Pantheon+ signal
-    carries directional predictive power in the independent dataset.
-    However, the CF4 independent optimization converges to
-    $L_T^{\rm CF4} = 6.7$ Mpc (effectively the $1/r$ kinematic
-    limit), with $\mathrm{RSS}_{1/r} = 7511.0$ — slightly lower
-    than the frozen model ($\Delta\mathrm{RSS} = -1.8$). The CF4
-    sample, dominated by galaxies at $D \ll L_T$, does not
-    independently recover the 55.6 Mpc scale; at small distances
+    of either parameter. To ensure strict independence from the SN-based
+    calibration, this test uses only non-SN CF4 tracers and computes
+    distances directly from the independent CF4 distance moduli. The
+    quantitative comparison yields a residual sum of squares
+    $\mathrm{RSS}_{\rm frozen} = 11783.7$ for the frozen Pantheon+
+    model, against $\mathrm{RSS}_{\rm null} = 11801.5$ for the
+    no-dipole null. The frozen model therefore improves over the null
+    by $\Delta\mathrm{RSS} = 17.8$ across $N = 51{,}904$ CF4 galaxies,
+    confirming that the Pantheon+ signal carries directional predictive
+    power in the completely independent dataset. However, the pure $1/r$
+    kinematic limit still yields a slightly better fit to the CF4 data
+    ($\mathrm{RSS}_{1/r} = 11776.4$, or $\Delta\mathrm{RSS} = -7.3$ vs the
+    frozen model). The CF4 sample, dominated by galaxies at $D \ll L_T$,
+    does not independently recover the 55.6 Mpc scale; at small distances
     the finite-coherence kernel degenerates toward a constant
     amplitude, and the CF4 distance window lacks the leverage to
     distinguish the 55.6 Mpc coherence scale from the pure $1/r$

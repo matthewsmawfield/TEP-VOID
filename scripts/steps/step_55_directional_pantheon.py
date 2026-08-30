@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""
+r"""
 Step 55: Directional Pantheon+ Hemisphere Split
 =================================================
 Test whether Pantheon+ Hubble residuals exhibit a directional pattern
@@ -57,8 +57,8 @@ C_KMS = 299792.458
 
 
 def ra_dec_to_unit_vectors(ra_deg, dec_deg):
-    ra_rad = np.radians(ra_deg)
-    dec_rad = np.radians(dec_deg)
+    ra_rad = np.radians(np.asarray(ra_deg, dtype=float))
+    dec_rad = np.radians(np.asarray(dec_deg, dtype=float))
     return np.column_stack([
         np.cos(dec_rad) * np.cos(ra_rad),
         np.cos(dec_rad) * np.sin(ra_rad),
@@ -73,7 +73,7 @@ def cmb_dipole_unit_vector():
         np.cos(np.radians(c.dec.deg)) * np.cos(np.radians(c.ra.deg)),
         np.cos(np.radians(c.dec.deg)) * np.sin(np.radians(c.ra.deg)),
         np.sin(np.radians(c.dec.deg)),
-    ])
+    ], dtype=float)
 
 
 class Step55DirectionalPantheon:
@@ -289,16 +289,17 @@ class Step55DirectionalPantheon:
         """Fit a 3-D vector dipole to Hubble residuals."""
         print_status("\n--- Analysis 3: 3-D vector dipole fit ---", "PROCESS")
 
-        hr = df["HR"].values
+        hr = np.asarray(df["HR"].values, dtype=float)
         g3d = ra_dec_to_unit_vectors(df["ra"].values, df["dec"].values)
         n = len(hr)
 
         # Weighted fit
-        w = 1.0 / df["HR_err"].values ** 2
-        W = np.diag(w)
+        w = 1.0 / (np.asarray(df["HR_err"].values, dtype=float) ** 2)
         X = np.column_stack([g3d, np.ones(n)])
+        XtW = X.T * w[None, :]
+        XtWX = XtW @ X
         try:
-            beta = lstsq(X.T @ W @ X, X.T @ W @ hr, rcond=None)[0]
+            beta = lstsq(XtWX, XtW @ hr, rcond=None)[0]
         except Exception:
             beta = lstsq(X, hr, rcond=None)[0]
 
@@ -320,7 +321,7 @@ class Step55DirectionalPantheon:
         for _ in range(10000):
             idx = np.random.choice(n, n, replace=False)
             try:
-                beta_null = lstsq(X.T @ W @ X, X.T @ W @ hr[idx], rcond=None)[0]
+                beta_null = lstsq(XtWX, XtW @ hr[idx], rcond=None)[0]
             except Exception:
                 beta_null = lstsq(X, hr[idx], rcond=None)[0]
             null_mags.append(np.linalg.norm(beta_null[:3]))
@@ -408,20 +409,22 @@ class Step55DirectionalPantheon:
         """Fit HR = a + b·cos θ + c·z and F-test the directional term."""
         print_status("\n--- Analysis 5: Joint model with F-test ---", "PROCESS")
 
-        hr = df["HR"].values
-        cmb_dot = df["cmb_dot"].values
-        z = df["zcmb"].values
+        hr = np.asarray(df["HR"].values, dtype=float)
+        cmb_dot = np.asarray(df["cmb_dot"].values, dtype=float)
+        z = np.asarray(df["zcmb"].values, dtype=float)
         n = len(hr)
 
         # Full model: HR = a + b·cos θ + c·z
         X_full = np.column_stack([cmb_dot, z, np.ones(n)])
         beta_full = lstsq(X_full, hr, rcond=None)[0]
-        r2_full = 1 - np.sum((hr - X_full @ beta_full) ** 2) / np.sum((hr - hr.mean()) ** 2)
+        ss_tot = np.sum((hr - hr.mean()) ** 2)
+        ss_tot = max(ss_tot, 1e-12)
+        r2_full = 1.0 - np.sum((hr - X_full @ beta_full) ** 2) / ss_tot
 
         # Reduced model: HR = a + c·z
         X_red = np.column_stack([z, np.ones(n)])
         beta_red = lstsq(X_red, hr, rcond=None)[0]
-        r2_red = 1 - np.sum((hr - X_red @ beta_red) ** 2) / np.sum((hr - hr.mean()) ** 2)
+        r2_red = 1.0 - np.sum((hr - X_red @ beta_red) ** 2) / ss_tot
 
         # F-test
         f_stat = ((r2_full - r2_red) / 1) / ((1 - r2_full) / (n - 3))

@@ -569,7 +569,7 @@
             <td>II</td>
             <td>Bulk-flow estimator calibration sensitivity</td>
             <td>No calibration dependence; bulk flow is physical</td>
-            <td>Conventional $v_{\rm pec} = cz - H_0 d$ gives a $155\ {\rm km\,s^{-1}}$ Cepheid excess; the $H_0$-invariant log-distance estimator gives $\Delta B = 0.0$ km/s (step_58); the macroscopic temporal signal is a finite-coherence topological feature with $L_T = 55.6$ Mpc ($p < 0.001$, step_66), cross-predicted onto the independent CF4 radial dipole profile</td>
+            <td>Conventional $v_{\rm pec} = cz - H_0 d$ gives a $155\ {\rm km\,s^{-1}}$ Cepheid excess; the $H_0$-invariant log-distance estimator gives $\Delta B = 0.0$ km/s (step_58); the macroscopic temporal signal is a finite-coherence topological feature with $L_T = 55.6$ Mpc ($p \lt 0.001$, step_66), carrying directional predictive power in the independent CF4 dataset</td>
             <td>Completed (step_53/54/58/66); the bulk-flow dipole is an estimator artifact; the temporal topology is finite-coherence at the supercluster scale</td>
         </tr>
         <tr>
@@ -625,7 +625,7 @@
             <td>VII</td>
             <td>2D geometric prediction: $V_{\rm rot}^4/R^2$ vs $V_{\rm rot}^2$</td>
             <td>No correlation with either</td>
-            <td>DHOST derivation predicts $\bar\epsilon_0 \propto V_{\rm rot}^4/r^2$; SPARC cross-match ($N=6$): $r(\Delta\mu, V^4/R^2) = +0.615$ vs $r(\Delta\mu, V^2) = +0.162$; partial $r(V^4/R^2 \mid V^2) = +0.778$ ($p = 0.069$); $\Delta{\rm AIC} = -2.69$ (2D preferred)</td>
+            <td>DHOST derivation predicts $\epsilon_{\rm env} \propto V_{\rm rot}^4/r^2$; SPARC cross-match ($N=6$): $r(\Delta\mu, V^4/R^2) = +0.615$ vs $r(\Delta\mu, V^2) = +0.162$; partial $r(V^4/R^2 \mid V^2) = +0.778$ ($p = 0.069$); $\Delta{\rm AIC} = -2.69$ (2D preferred)</td>
             <td>Preliminary ($N=6$); needs Cepheid galactocentric radii from JWST imaging for rigorous test</td>
         </tr>
     </tbody>
@@ -757,9 +757,10 @@
         in the opposite hemisphere. The monopole test can partially
         evade an anisotropic void signal if the void axis is
         misaligned with the Pantheon+ sky coverage. A hemispheric
-        asymmetry test (splitting Pantheon+ by angular distance from
-        the proposed KBC void center) would close this loophole and
-        is deferred to future work. The published KBC predictions
+        asymmetry test (Section 6, step 55) directly evaluates this by
+        splitting Pantheon+ by CMB dipole and bulk-flow alignment; the
+        null dipolar residual ($\Delta H_0 = 0.00 \pm 0.45$ km/s/Mpc)
+        confirms the monopole rejection. The published KBC predictions
         tested here are monopole curves; the test is therefore
         commensurate with the predictions being tested.</li>
     <li>Covariance model: The likelihood is conditional on the

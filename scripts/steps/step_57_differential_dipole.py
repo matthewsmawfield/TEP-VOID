@@ -36,7 +36,7 @@ def nll_m_x(params, df, nu=4.0):
     """
     samples = df['sample'].unique()
     kappa = params[0]
-    log_scale = params[-1]
+    log_scale = np.clip(params[-1], -20.0, 10.0)
     scale = np.exp(log_scale)
     
     mu = np.zeros(len(df))
@@ -57,7 +57,7 @@ def nll_m_cmb(params, df, nu=4.0):
     samples = df['sample'].unique()
     kappa = params[0]
     D = params[1]
-    log_scale = params[-1]
+    log_scale = np.clip(params[-1], -20.0, 10.0)
     scale = np.exp(log_scale)
     
     mu = np.zeros(len(df))
@@ -85,7 +85,7 @@ def nll_m_3d(params, df, nu=4.0):
     samples = df['sample'].unique()
     kappa = params[0]
     dx, dy, dz = params[1:4]
-    log_scale = params[-1]
+    log_scale = np.clip(params[-1], -20.0, 10.0)
     scale = np.exp(log_scale)
     
     mu = np.zeros(len(df))

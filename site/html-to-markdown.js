@@ -275,10 +275,10 @@ class HTMLToMarkdownConverter {
         const version = versionMatch ? versionMatch[1]
             .replace(/<[^>]+>/g, '')
             .replace(/^Version:\s*/i, '')
-            .trim() : 'v0.1 (Valencia)';
+            .trim() : 'v0.2 (Valencia)';
         
         const dateMatch = html.match(/<div[^>]*class=["'][^"']*date[^"']*["'][^>]*>(.*?)<\/div>/i);
-        const date = dateMatch ? dateMatch[1].replace(/<[^>]+>/g, '').trim() : 'First published: 29 August 2026 · Last updated: 29 August 2026';
+        const date = dateMatch ? dateMatch[1].replace(/<[^>]+>/g, '').trim() : 'First published: 29 August 2026 · Last updated: 30 August 2026';
         
         const doiMatch = html.match(/DOI:\s*<a[^>]*href=["']([^"']*)["'][^>]*>\s*([^<]*?)\s*<\/a>/i);
         const doi = doiMatch ? doiMatch[2] : '[DOI]';
@@ -347,8 +347,13 @@ class HTMLToMarkdownConverter {
             // Build the complete markdown document
             const markdown = this.buildMarkdownDocument(metadata, markdownContent);
             
-            // Write to file
-            const outputPath = path.join(__dirname, '..', '31-TEP-VOID-v0.2-Valencia.md');
+            // Write to file — use version from metadata for filename
+            const versionSlug = metadata.version
+                .replace(/\s*\([^)]*\)/g, '')  // strip "(Valencia)"
+                .trim()
+                .replace(/\s+/g, '-');
+            const outputName = `31-TEP-VOID-${versionSlug}-Valencia.md`;
+            const outputPath = path.join(__dirname, '..', outputName);
             fs.writeFileSync(outputPath, markdown, 'utf8');
             
             console.log('✅ Markdown conversion complete!');

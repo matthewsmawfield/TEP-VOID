@@ -1,41 +1,41 @@
-[19:51:54] [INFO] 
-[19:51:54] [INFO] ================================================================================
-[19:51:54] [INFO]    Step 53: Directional Cepheid-TRGB Sample Compilation
-[19:51:54] [INFO] ================================================================================
-[19:51:54] [INFO] 
-[19:51:54] [PROCESS] Loading CosmicFlows-4 table2...
-[19:51:56] [SUCCESS]   22 CF4 galaxies with both Cepheid and TRGB
-[19:51:56] [PROCESS] Loading JWST matched Cepheid/TRGB catalog...
-[19:51:56] [SUCCESS]   18 JWST matched galaxies
-[19:51:56] [PROCESS] Loading R22 Cepheid distances...
-[19:51:56] [SUCCESS]   36 R22 Cepheid galaxies with PGC
-[19:51:56] [PROCESS] Downloading Jacobs et al. (2009) TRGB catalog from Vizier...
-[19:51:56] [SUCCESS]   Using cached Jacobs catalog: 50 galaxies
-[19:51:56] [PROCESS] Loading Key Project Cepheid distances...
-[19:51:56] [SUCCESS]   8 Key Project Cepheid galaxies with PGC
-[19:51:56] [PROCESS] Compiling unified directional Cepheid-TRGB sample...
-[19:51:57] [SUCCESS]   Compiled 33 unique galaxies with both Cepheid and TRGB
-[19:51:57] [PROCESS]   Filling coordinates for 11 galaxies...
-[19:51:57] [SUCCESS]   33/33 galaxies with coordinates
-[19:51:57] [PROCESS] Computing TEP potential coordinate X_i...
-[19:52:00] [SUCCESS]   33/33 galaxies with X_i
-[19:52:00] [PROCESS] Computing CMB dipole directional projection...
-[19:52:00] [SUCCESS]   33/33 galaxies with CMB dipole projection
-[19:52:00] [SUCCESS] Saved 33 galaxies to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/directional_ceph_trgb_sample.csv
-[19:52:00] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_53_directional_sample.json
-[19:52:00] [INFO] 
+[20:58:57] [INFO] 
+[20:58:57] [INFO] ================================================================================
+[20:58:57] [INFO]    Step 53: Directional Cepheid-TRGB Sample Compilation
+[20:58:57] [INFO] ================================================================================
+[20:58:57] [INFO] 
+[20:58:57] [PROCESS] Loading CosmicFlows-4 table2...
+[20:58:57] [SUCCESS]   22 CF4 galaxies with both Cepheid and TRGB
+[20:58:57] [PROCESS] Loading JWST matched Cepheid/TRGB catalog...
+[20:58:57] [SUCCESS]   18 JWST matched galaxies
+[20:58:57] [PROCESS] Loading R22 Cepheid distances...
+[20:58:57] [SUCCESS]   36 R22 Cepheid galaxies with PGC
+[20:58:57] [PROCESS] Downloading Jacobs et al. (2009) TRGB catalog from Vizier...
+[20:58:57] [SUCCESS]   Using cached Jacobs catalog: 50 galaxies
+[20:58:57] [PROCESS] Loading Key Project Cepheid distances...
+[20:58:57] [SUCCESS]   8 Key Project Cepheid galaxies with PGC
+[20:58:57] [PROCESS] Compiling unified directional Cepheid-TRGB sample...
+[20:58:57] [SUCCESS]   Compiled 33 unique galaxies with both Cepheid and TRGB
+[20:58:57] [PROCESS]   Filling coordinates for 11 galaxies...
+[20:58:57] [SUCCESS]   33/33 galaxies with coordinates
+[20:58:58] [PROCESS] Computing TEP potential coordinate X_i...
+[20:58:58] [SUCCESS]   33/33 galaxies with X_i
+[20:58:58] [PROCESS] Computing CMB dipole directional projection...
+[20:58:58] [SUCCESS]   33/33 galaxies with CMB dipole projection
+[20:58:58] [SUCCESS] Saved 33 galaxies to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/directional_ceph_trgb_sample.csv
+[20:58:58] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_53_directional_sample.json
+[20:58:58] [INFO] 
 Sample summary:
-[19:52:00] [INFO]   Total galaxies: 33
-[19:52:00] [INFO]   With coordinates: 33
-[19:52:00] [INFO]   With X_i: 33
-[19:52:00] [INFO]   With CMB dipole projection: 33
-[19:52:00] [INFO]   With all coordinates: 33
-[19:52:00] [INFO]   Toward CMB dipole: 20, Away: 13
-[19:52:00] [INFO]   Mean Δμ = -0.060 ± 0.020 mag
-[19:52:00] [INFO]   Mean cmb_dot = 0.137
-[19:52:00] [SUCCESS] step_53 completed in 7.6s
-[19:52:00] [INFO] 
-[19:52:00] [INFO] ================================================================================
-[19:52:00] [INFO]    Starting step_54: Directional Δμ analysis: CMB correlation absorbed by X_i and R22 provenance
-[19:52:00] [INFO] ================================================================================
-[19:52:00] [INFO] 
+[20:58:58] [INFO]   Total galaxies: 33
+[20:58:58] [INFO]   With coordinates: 33
+[20:58:58] [INFO]   With X_i: 33
+[20:58:58] [INFO]   With CMB dipole projection: 33
+[20:58:58] [INFO]   With all coordinates: 33
+[20:58:58] [INFO]   Toward CMB dipole: 20, Away: 13
+[20:58:58] [INFO]   Mean Δμ = -0.060 ± 0.020 mag
+[20:58:58] [INFO]   Mean cmb_dot = 0.137
+[20:58:58] [SUCCESS] step_53 completed in 1.5s
+[20:58:58] [INFO] 
+[20:58:58] [INFO] ================================================================================
+[20:58:58] [INFO]    Starting step_54: Directional Δμ analysis: CMB correlation absorbed by X_i and R22 provenance
+[20:58:58] [INFO] ================================================================================
+[20:58:58] [INFO] 

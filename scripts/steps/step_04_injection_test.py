@@ -125,5 +125,7 @@ def run_injection_test():
     else:
         print_status("CONCLUSION: The Exact Production Estimator exhibits bias.", "WARNING")
 
+run = run_injection_test
+
 if __name__ == "__main__":
     run_injection_test()

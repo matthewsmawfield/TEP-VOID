@@ -9,6 +9,7 @@ calibration differential, not a true kinematic flow.
 """
 
 import sys
+import json
 import gzip
 from pathlib import Path
 import numpy as np
@@ -205,6 +206,30 @@ def run():
         print_status("CONCLUSION: The differential flow is strongly aligned with the CMB axis, confirming the TEP topological clock signature.", "SUCCESS")
     else:
         print_status("CONCLUSION: The differential flow is not dominated by the CMB axis.", "WARNING")
+
+    summary = {
+        "step": "58",
+        "description": "Dual-calibration peculiar-velocity experiment (Gate F)",
+        "n_tf_galaxies": int(len(df_tf_flow)),
+        "n_overlaps_cepheid": int(len(df_cep_match)),
+        "n_overlaps_trgb": int(len(df_trgb_match)),
+        "zero_point_cepheid_mag": float(delta_z_cep),
+        "zero_point_trgb_mag": float(delta_z_trgb),
+        "h0_invariant_flow_cep_kms": float(mag_cep_inv),
+        "h0_invariant_flow_trgb_kms": float(mag_trgb_inv),
+        "h0_invariant_delta_b_kms": float(abs(mag_cep_inv - mag_trgb_inv)),
+        "conventional_flow_cep_kms": float(mag_cep),
+        "conventional_flow_trgb_kms": float(mag_trgb),
+        "differential_bulk_flow_mag_kms": float(delta_B_mag),
+        "differential_angle_to_cmb_deg": float(theta_cmb),
+        "differential_parallel_kms": float(delta_B_para),
+        "differential_perp_kms": float(delta_B_perp),
+    }
+    out_json = PROJECT_ROOT / "results" / "outputs" / "step_58_dual_calibration_tf.json"
+    out_json.parent.mkdir(parents=True, exist_ok=True)
+    with open(out_json, "w") as f:
+        json.dump(summary, f, indent=2)
+    print_status(f"Saved summary to {out_json}", "SUCCESS")
 
 if __name__ == "__main__":
     run()

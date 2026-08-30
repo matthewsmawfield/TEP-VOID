@@ -67,7 +67,7 @@ RUN_TIMEOUT="${RUN_TIMEOUT:-1800}"
 # By default, read from .devin/argos-prompt.txt (Argos can edit this file to
 # change its own prompt). Override with --prompt or the PROMPT env var.
 # (Actual loading happens after SCRIPT_DIR is resolved below.)
-DEFAULT_PROMPT_FALLBACK="deep scan and fix all issues with TEP-VOID manuscript and pipeline; ensure theoretical consistency with wider corpus @manuscripts."
+DEFAULT_PROMPT_FALLBACK="deep scan for inconsistencies across the project; ensure theoretical consistency with wider corpus @manuscripts."
 
 # AI model to use. The ACP client accepts model IDs like "glm-5-2", "claude-opus-5-high",
 # "swe-1-7-medium", etc. Common aliases are mapped automatically:
@@ -77,7 +77,7 @@ DEFAULT_PROMPT_FALLBACK="deep scan and fix all issues with TEP-VOID manuscript a
 #   "sonnet" / "claude-sonnet" -> "claude-sonnet-5-high"
 #   "swe-1.7" / "swe"          -> "swe-1-7-medium"
 # Leave empty to use your Argos default.
-MODEL="${MODEL:-gemini-3.7}"
+MODEL="${MODEL:-glm-5-2}"
 
 # Permission mode for non-interactive runs. ACP accepts:
 #   "bypass"       - auto-approves ALL tool calls (reads, writes, shell)

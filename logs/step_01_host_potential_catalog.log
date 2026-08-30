@@ -1,23 +1,23 @@
-[20:05:23] [INFO] 
-[20:05:23] [INFO] ================================================================================
-[20:05:23] [INFO]    Step 01: Host Potential Catalog
-[20:05:23] [INFO] ================================================================================
-[20:05:23] [INFO] 
-[20:05:23] [INFO] Scientific context: This step addresses the question of how to quantify the gravitational potential depth of each SN Ia host galaxy in a manner that is physically motivated and observationally available. The velocity dispersion sigma_v is adopted as a proxy for the depth of the host potential well, since the virial theorem relates sigma_v^2 to the gravitational potential. This catalog is the independent variable against which the Cepheid–TRGB divergence (delta_mu) is regressed in subsequent blocks, enabling a direct test of whether clock-rate modulation by gravitational potential — as predicted by the Temporal Equivalence Principle — can account for the indicator divergence that is otherwise attributed to void environments.
-[20:05:23] [INFO] Data sources: Velocity dispersions are sourced from the velocity_dispersions_literature.csv catalog (HyperLEDA and literature compilation), copied from the TEP-H0 repository if not present locally. This step is part of Block 0 of the TEP-VOID pipeline and supplies the potential-depth stratification variable for all downstream divergence-versus-potential analyses.
-[20:05:23] [PROCESS] Velocity dispersions file already exists (10.0 KB)
-[20:05:23] [PROCESS] Parsing velocity dispersions from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/velocity_dispersions_literature.csv...
-[20:05:23] [SUCCESS] Parsed 41 galaxies with valid velocity dispersions.
-[20:05:23] [PROCESS] Methodology: The gravitational potential depth proxy is computed as Phi_proxy = sigma_v^2 (velocity dispersion squared, in (km/s)^2), motivated by the virial theorem (2K + U = 0 implies sigma^2 ~ |Phi|). Uncertainty is propagated via d(Phi) = 2 * sigma * d(sigma). No cosmological model is assumed; the proxy is purely observational and dimensionally consistent with a specific gravitational energy scale.
-[20:05:23] [PROCESS] Computing gravitational potential depth proxy...
-[20:05:23] [SUCCESS] Computed Phi_proxy for 41 galaxies. Median Phi_proxy = 13138.2 (km/s)^2
-[20:05:23] [TEST] Interpretation: The host potential catalog contains 41 galaxies with Phi_proxy ranging over [409.0, 82012.5] (km/s)^2 (median 13138.2). This dynamic range in potential depth is what permits the downstream stratified regression to detect any potential-dependent component in the indicator divergence.
-[20:05:23] [SUCCESS] Host potential catalog saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/host_potential_catalog.csv
-[20:05:23] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_01_host_potential_catalog.json
-[20:05:23] [SUCCESS] Step 01 complete
-[20:05:23] [SUCCESS] step_01 completed in 0.0s
-[20:05:23] [INFO] 
-[20:05:23] [INFO] ================================================================================
-[20:05:23] [INFO]    Starting step_02: CosmicFlows-4 peculiar velocity catalog
-[20:05:23] [INFO] ================================================================================
-[20:05:23] [INFO] 
+[20:54:26] [INFO] 
+[20:54:26] [INFO] ================================================================================
+[20:54:26] [INFO]    Step 01: Host Potential Catalog
+[20:54:26] [INFO] ================================================================================
+[20:54:26] [INFO] 
+[20:54:26] [INFO] Scientific context: This step addresses the question of how to quantify the gravitational potential depth of each SN Ia host galaxy in a manner that is physically motivated and observationally available. The velocity dispersion sigma_v is adopted as a proxy for the depth of the host potential well, since the virial theorem relates sigma_v^2 to the gravitational potential. This catalog is the independent variable against which the Cepheid–TRGB divergence (delta_mu) is regressed in subsequent blocks, enabling a direct test of whether clock-rate modulation by gravitational potential — as predicted by the Temporal Equivalence Principle — can account for the indicator divergence that is otherwise attributed to void environments.
+[20:54:26] [INFO] Data sources: Velocity dispersions are sourced from the velocity_dispersions_literature.csv catalog (HyperLEDA and literature compilation), copied from the TEP-H0 repository if not present locally. This step is part of Block 0 of the TEP-VOID pipeline and supplies the potential-depth stratification variable for all downstream divergence-versus-potential analyses.
+[20:54:26] [PROCESS] Velocity dispersions file already exists (10.0 KB)
+[20:54:26] [PROCESS] Parsing velocity dispersions from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/velocity_dispersions_literature.csv...
+[20:54:26] [SUCCESS] Parsed 41 galaxies with valid velocity dispersions.
+[20:54:26] [PROCESS] Methodology: The gravitational potential depth proxy is computed as Phi_proxy = sigma_v^2 (velocity dispersion squared, in (km/s)^2), motivated by the virial theorem (2K + U = 0 implies sigma^2 ~ |Phi|). Uncertainty is propagated via d(Phi) = 2 * sigma * d(sigma). No cosmological model is assumed; the proxy is purely observational and dimensionally consistent with a specific gravitational energy scale.
+[20:54:26] [PROCESS] Computing gravitational potential depth proxy...
+[20:54:26] [SUCCESS] Computed Phi_proxy for 41 galaxies. Median Phi_proxy = 13138.2 (km/s)^2
+[20:54:26] [TEST] Interpretation: The host potential catalog contains 41 galaxies with Phi_proxy ranging over [409.0, 82012.5] (km/s)^2 (median 13138.2). This dynamic range in potential depth is what permits the downstream stratified regression to detect any potential-dependent component in the indicator divergence.
+[20:54:26] [SUCCESS] Host potential catalog saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/host_potential_catalog.csv
+[20:54:26] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_01_host_potential_catalog.json
+[20:54:26] [SUCCESS] Step 01 complete
+[20:54:26] [SUCCESS] step_01 completed in 0.0s
+[20:54:26] [INFO] 
+[20:54:26] [INFO] ================================================================================
+[20:54:26] [INFO]    Starting step_02: CosmicFlows-4 peculiar velocity catalog
+[20:54:26] [INFO] ================================================================================
+[20:54:26] [INFO] 

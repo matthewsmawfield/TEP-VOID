@@ -42,7 +42,7 @@ def load_citation_metadata():
         if yaml:
             with open(citation_file, 'r') as f:
                 data = yaml.safe_load(f)
-            version_str = data.get('version', 'v0.2')
+            version_str = str(data.get('version', 'v0.2'))
         else:
             # Parse manually if yaml not available
             with open(citation_file, 'r') as f:

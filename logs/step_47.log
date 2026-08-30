@@ -1,63 +1,63 @@
-[19:51:25] [INFO] ============================================================
-[19:51:25] [INFO] Step 47: Measured V_rot Analysis and Tracer Classification
-[19:51:25] [INFO] ============================================================
-[19:51:25] [PROCESS] Loading data sources...
-[19:51:25] [INFO]   Pantheon+: 1543 unique SNe
-[19:51:25] [INFO]   Host catalog: 41 galaxies with measured V_rot
-[19:51:25] [INFO]   CF4 matched V_rot: 22 galaxies
-[19:51:27] [INFO]   CF4 table2: 55877 entries, 22 with both Cepheid+TRGB
-[19:51:27] [PROCESS] 
+[20:58:50] [INFO] ============================================================
+[20:58:50] [INFO] Step 47: Measured V_rot Analysis and Tracer Classification
+[20:58:50] [INFO] ============================================================
+[20:58:50] [PROCESS] Loading data sources...
+[20:58:50] [INFO]   Pantheon+: 1543 unique SNe
+[20:58:50] [INFO]   Host catalog: 41 galaxies with measured V_rot
+[20:58:50] [INFO]   CF4 matched V_rot: 22 galaxies
+[20:58:50] [INFO]   CF4 table2: 55877 entries, 22 with both Cepheid+TRGB
+[20:58:50] [PROCESS] 
 Building matched Cepheid/TRGB sample...
-[19:51:27] [INFO]   Galaxies with both Cepheid+TRGB: 22
-[19:51:30] [INFO]   Matched sample: 22 galaxies
-[19:51:30] [INFO]   With V_rot: 22
-[19:51:30] [INFO]   R22 (NIR): 6
-[19:51:30] [INFO]   Non-R22 (optical): 16
-[19:51:30] [TEST]   Sign test: 17/22 Cepheid shorter, p=0.0085, 2.39sigma
-[19:51:30] [TEST]   Mean delta_mu = -0.0799 +/- 0.0242 mag
-[19:51:30] [TEST]   optical: N=16, mean delta_mu = -0.1065 +/- 0.0267
-[19:51:30] [TEST]   NIR: N=6, mean delta_mu = -0.0090 +/- 0.0440
-[19:51:30] [TEST]   HI_21cm: N=14, mean delta_mu = -0.0916 +/- 0.0314
-[19:51:30] [TEST]   nuclear_optical: N=8, mean delta_mu = -0.0594 +/- 0.0390
-[19:51:30] [PROCESS] 
+[20:58:50] [INFO]   Galaxies with both Cepheid+TRGB: 22
+[20:58:51] [INFO]   Matched sample: 22 galaxies
+[20:58:51] [INFO]   With V_rot: 22
+[20:58:51] [INFO]   R22 (NIR): 6
+[20:58:51] [INFO]   Non-R22 (optical): 16
+[20:58:51] [TEST]   Sign test: 17/22 Cepheid shorter, p=0.0085, 2.39sigma
+[20:58:51] [TEST]   Mean delta_mu = -0.0799 +/- 0.0242 mag
+[20:58:51] [TEST]   optical: N=16, mean delta_mu = -0.1065 +/- 0.0267
+[20:58:51] [TEST]   NIR: N=6, mean delta_mu = -0.0090 +/- 0.0440
+[20:58:51] [TEST]   HI_21cm: N=14, mean delta_mu = -0.0916 +/- 0.0314
+[20:58:51] [TEST]   nuclear_optical: N=8, mean delta_mu = -0.0594 +/- 0.0390
+[20:58:51] [PROCESS] 
 Running improved X_i-step test...
-[19:51:30] [INFO]   Hubble-flow SNe (z > 0.01): 1470
-[19:51:32] [INFO]   Tully-Fisher V_rot range: 1.5 - 355.7 km/s
-[19:51:32] [INFO]   Measured V_rot (calibrators): 41 galaxies, X_i range: -1.02e-08 to 5.98e-07
-[19:51:32] [INFO]   Hubble residual: MU_SH0ES - mu_ref(zHD) [LCDM, H0=73.04, Omega_m=0.334]
-[19:51:32] [TEST]   X_i-step (Tully-Fisher proxy):
-[19:51:32] [TEST]     N(X>0)=1337, N(X<=0)=133
-[19:51:32] [TEST]     Step = 3.9 +/- 14.3 mmag (0.27sigma)
-[19:51:32] [TEST]     After mass correction: 15.8 +/- 8.3 mmag (1.90sigma)
-[19:51:32] [TEST]     Mass step: -21.7 +/- 15.6 mmag
-[19:51:32] [PROCESS] 
+[20:58:51] [INFO]   Hubble-flow SNe (z > 0.01): 1470
+[20:58:52] [INFO]   Tully-Fisher V_rot range: 1.5 - 355.7 km/s
+[20:58:52] [INFO]   Measured V_rot (calibrators): 41 galaxies, X_i range: -1.02e-08 to 5.98e-07
+[20:58:52] [INFO]   Hubble residual: MU_SH0ES - mu_ref(zHD) [LCDM, H0=73.04, Omega_m=0.334]
+[20:58:52] [TEST]   X_i-step (Tully-Fisher proxy):
+[20:58:52] [TEST]     N(X>0)=1337, N(X<=0)=133
+[20:58:52] [TEST]     Step = 3.9 +/- 14.3 mmag (0.27sigma)
+[20:58:52] [TEST]     After mass correction: 15.8 +/- 8.3 mmag (1.90sigma)
+[20:58:52] [TEST]     Mass step: -21.7 +/- 15.6 mmag
+[20:58:52] [PROCESS] 
 Running band-dependence test...
-[19:51:32] [INFO]   Optical (Key Project): N=16
-[19:51:32] [INFO]   NIR (SH0ES/R22): N=6
-[19:51:32] [TEST]   Optical: delta_mu = -0.1065 +/- 0.0267
-[19:51:32] [TEST]   NIR: delta_mu = -0.0090 +/- 0.0440
-[19:51:32] [TEST]   Ratio NIR/optical = 0.085
-[19:51:32] [TEST]   Predicted ratio (b_H/b_V) = 1.181
-[19:51:32] [TEST]   optical Xi regression: slope = -5.465e+05 +/- 5.604e+05 (0.98sigma)
-[19:51:32] [TEST]   NIR Xi regression: slope = 5.176e+05 +/- 3.886e+05 (1.33sigma)
-[19:51:32] [PROCESS] 
+[20:58:52] [INFO]   Optical (Key Project): N=16
+[20:58:52] [INFO]   NIR (SH0ES/R22): N=6
+[20:58:52] [TEST]   Optical: delta_mu = -0.1065 +/- 0.0267
+[20:58:52] [TEST]   NIR: delta_mu = -0.0090 +/- 0.0440
+[20:58:52] [TEST]   Ratio NIR/optical = 0.085
+[20:58:52] [TEST]   Predicted ratio (b_H/b_V) = 1.181
+[20:58:52] [TEST]   optical Xi regression: slope = -5.465e+05 +/- 5.604e+05 (0.98sigma)
+[20:58:52] [TEST]   NIR Xi regression: slope = 5.176e+05 +/- 3.886e+05 (1.33sigma)
+[20:58:52] [PROCESS] 
 Running tracer-type test...
-[19:51:32] [TEST]   HI_21cm: N=14, mean delta_mu = -0.0916 +/- 0.0314, 11/14 shorter
-[19:51:32] [TEST]   nuclear_optical: N=8, mean delta_mu = -0.0594 +/- 0.0390, 6/8 shorter
-[19:51:32] [TEST] 
+[20:58:52] [TEST]   HI_21cm: N=14, mean delta_mu = -0.0916 +/- 0.0314, 11/14 shorter
+[20:58:52] [TEST]   nuclear_optical: N=8, mean delta_mu = -0.0594 +/- 0.0390, 6/8 shorter
+[20:58:52] [TEST] 
   H I vs Nuclear optical:
-[19:51:32] [TEST]     delta_mu(nuclear) - delta_mu(HI) = 0.0323 +/- 0.0501 (0.64sigma)
-[19:51:32] [INFO]     Prediction: nuclear should be MORE negative (larger |bias|)
-[19:51:32] [INFO] 
+[20:58:52] [TEST]     delta_mu(nuclear) - delta_mu(HI) = 0.0323 +/- 0.0501 (0.64sigma)
+[20:58:52] [INFO]     Prediction: nuclear should be MORE negative (larger |bias|)
+[20:58:52] [INFO] 
 Saved matched sample to data/processed/matched_sample_primary.csv
-[19:51:32] [INFO] Saved results to results/outputs/step_47_measured_vrot_analysis.json
-[19:51:32] [INFO] 
+[20:58:52] [INFO] Saved results to results/outputs/step_47_measured_vrot_analysis.json
+[20:58:52] [INFO] 
 ============================================================
-[19:51:32] [INFO] Step 47 complete
-[19:51:32] [INFO] ============================================================
-[19:51:32] [SUCCESS] step_47 completed in 6.7s
-[19:51:32] [INFO] 
-[19:51:32] [INFO] ================================================================================
-[19:51:32] [INFO]    Starting step_48: X_i-step with measured V_rot from HyperLEDA (full sample + measured subsample)
-[19:51:32] [INFO] ================================================================================
-[19:51:32] [INFO] 
+[20:58:52] [INFO] Step 47 complete
+[20:58:52] [INFO] ============================================================
+[20:58:52] [SUCCESS] step_47 completed in 1.9s
+[20:58:52] [INFO] 
+[20:58:52] [INFO] ================================================================================
+[20:58:52] [INFO]    Starting step_48: X_i-step with measured V_rot from HyperLEDA (full sample + measured subsample)
+[20:58:52] [INFO] ================================================================================
+[20:58:52] [INFO] 

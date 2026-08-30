@@ -1,39 +1,39 @@
-[19:42:37] [INFO] 
-[19:42:37] [INFO] ================================================================================
-[19:42:37] [INFO]    Step 40: Redshift Shear Reconstruction — Pantheon+ TEP
-[19:42:37] [INFO] ================================================================================
-[19:42:37] [INFO] 
-[19:42:37] [INFO] This step addresses whether the TEP temporal shear correction, calibrated independently in TEP-H0 (Paper 11) from the host-level Cepheid analysis, is consistent with the observed Pantheon+ Hubble diagram residual structure. The shear coupling constant kappa_Cep is imported as a fixed parameter and applied to Pantheon+ distance moduli via Delta_mu = kappa_Cep * X_i, where X_i is the dimensionless screened potential coordinate. This serves as a cross-validation of the TEP correction against an independent supernova dataset rather than a discriminating test between TEP and the KBC void model.
-[19:42:37] [PROCESS] Methodology: kappa_Cep is imported from TEP-H0 (Paper 11) as the redshift-only WLS value (0.452 +/- 0.220) x 10^6 mag (sigma_v = 150 km/s), loaded from the TEP-H0 companion results. The anchor reference potential U_ref = (30.507 km/s)^2 (screened) and the screened potential coordinate X_i = (S_total * U_i - U_ref) / c^2 are defined per the TEP framework. No (1+z)^{-0.3} redshift factor is applied to avoid circularity with the Section 7 H0(z) prediction.
-[19:42:37] [PROCESS] Loading kappa_Cep from TEP-H0 (Paper 11)...
-[19:42:37] [SUCCESS] Loaded kappa_Cep = 4.5168e+05 +/- 2.2005e+05 mag from TEP-H0/step_42_tep_native_ladder.json
-[19:42:37] [PROCESS] Loading host potential catalog from step_01...
-[19:42:37] [SUCCESS] Loaded 41 host potentials from step_01
-[19:42:37] [PROCESS] Loading Pantheon+ data from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/pantheon_plus_sne.csv...
-[19:42:37] [SUCCESS] Loaded 1543 rows from Pantheon+ data
-[19:42:37] [PROCESS] Methodology: the TEP correction Delta_mu = kappa_Cep * X_i is added to observed distance moduli to undo the Cepheid distance compression in massive hosts. Host potentials are taken from the step_01 catalog where available; a mass-dependent sigmoid proxy calibrated from the 41 calibrator galaxies is used for unmatched hosts.
-[19:42:37] [PROCESS] Applying TEP temporal shear correction...
-[19:42:38] [SUCCESS]   Applied correction with kappa_Cep = 4.5168e+05 mag
-[19:42:38] [TEST]   Mean |Delta_mu| = 0.0389 mag
-[19:42:38] [TEST]   Max |Delta_mu| = 0.0547 mag
-[19:42:38] [WARNING]   NOTE: Pantheon+ uses global M_B — correction is approximately a constant offset. Host-mass dependence requires per-host Cepheid calibrations (TEP-H0, Paper 11).
-[19:42:38] [PROCESS] Computing Hubble diagram residuals...
-[19:42:38] [TEST]   Before TEP correction: RMS = 0.2511 mag
-[19:42:38] [TEST]   After TEP correction:  RMS = 0.2265 mag
-[19:42:38] [TEST]   RMS improvement: 0.0246 mag
-[19:42:38] [TEST]   ΔM_B shift: +0.0389 mag
-[19:42:38] [TEST]   Propagated err (κ_Cep = 451682 ± 220046): ± 0.0190 mag (2.05σ)
-[19:42:38] [INFO]   [Paired SEM 0.0003 mag is not physically meaningful — correction is near-constant offset]
-[19:42:38] [TEST]   ΔM_B (equiv closure, κ^equiv = 365000 ± 304000, calibrator <X_i> = 9.6360e-08): +0.0352 ± 0.0298 mag  [manuscript Section 9.5]
-[19:42:38] [TEST]   Massive hosts RMS: 0.2426 -> 0.2127
-[19:42:38] [TEST] Interpretation: the TEP correction yields an RMS residual improvement of 0.0246 mag. Because Pantheon+ uses a global M_B calibration, the correction acts approximately as a constant offset; the host-mass dependence is untestable without per-host Cepheid calibrations. Consistency of the correction direction with the observed residual structure supports the TEP framework as a cross-validation.
-[19:42:38] [PROCESS] Generating TEP correction figure...
-[19:42:39] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_40_pantheon_tep_correction.png
-[19:42:39] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_40_redshift_shear_reconstruction.json
-[19:42:39] [SUCCESS] Step 40 complete
-[19:42:39] [SUCCESS] step_40 completed in 5.0s
-[19:42:39] [INFO] 
-[19:42:39] [INFO] ================================================================================
-[19:42:39] [INFO]    Starting step_42: Head-to-head falsification summary: void vs TEP
-[19:42:39] [INFO] ================================================================================
-[19:42:39] [INFO] 
+[20:56:06] [INFO] 
+[20:56:06] [INFO] ================================================================================
+[20:56:06] [INFO]    Step 40: Redshift Shear Reconstruction — Pantheon+ TEP
+[20:56:06] [INFO] ================================================================================
+[20:56:06] [INFO] 
+[20:56:06] [INFO] This step addresses whether the TEP temporal shear correction, calibrated independently in TEP-H0 (Paper 11) from the host-level Cepheid analysis, is consistent with the observed Pantheon+ Hubble diagram residual structure. The shear coupling constant kappa_Cep is imported as a fixed parameter and applied to Pantheon+ distance moduli via Delta_mu = kappa_Cep * X_i, where X_i is the dimensionless screened potential coordinate. This serves as a cross-validation of the TEP correction against an independent supernova dataset rather than a discriminating test between TEP and the KBC void model.
+[20:56:06] [PROCESS] Methodology: kappa_Cep is imported from TEP-H0 (Paper 11) as the redshift-only WLS value (0.452 +/- 0.220) x 10^6 mag (sigma_v = 150 km/s), loaded from the TEP-H0 companion results. The anchor reference potential U_ref = (30.507 km/s)^2 (screened) and the screened potential coordinate X_i = (S_total * U_i - U_ref) / c^2 are defined per the TEP framework. No (1+z)^{-0.3} redshift factor is applied to avoid circularity with the Section 7 H0(z) prediction.
+[20:56:06] [PROCESS] Loading kappa_Cep from TEP-H0 (Paper 11)...
+[20:56:06] [SUCCESS] Loaded kappa_Cep = 4.5168e+05 +/- 2.2005e+05 mag from TEP-H0/step_42_tep_native_ladder.json
+[20:56:06] [PROCESS] Loading host potential catalog from step_01...
+[20:56:06] [SUCCESS] Loaded 41 host potentials from step_01
+[20:56:06] [PROCESS] Loading Pantheon+ data from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/pantheon_plus_sne.csv...
+[20:56:06] [SUCCESS] Loaded 1543 rows from Pantheon+ data
+[20:56:06] [PROCESS] Methodology: the TEP correction Delta_mu = kappa_Cep * X_i is added to observed distance moduli to undo the Cepheid distance compression in massive hosts. Host potentials are taken from the step_01 catalog where available; a mass-dependent sigmoid proxy calibrated from the 41 calibrator galaxies is used for unmatched hosts.
+[20:56:06] [PROCESS] Applying TEP temporal shear correction...
+[20:56:06] [SUCCESS]   Applied correction with kappa_Cep = 4.5168e+05 mag
+[20:56:06] [TEST]   Mean |Delta_mu| = 0.0389 mag
+[20:56:06] [TEST]   Max |Delta_mu| = 0.0547 mag
+[20:56:06] [WARNING]   NOTE: Pantheon+ uses global M_B — correction is approximately a constant offset. Host-mass dependence requires per-host Cepheid calibrations (TEP-H0, Paper 11).
+[20:56:06] [PROCESS] Computing Hubble diagram residuals...
+[20:56:06] [TEST]   Before TEP correction: RMS = 0.2511 mag
+[20:56:06] [TEST]   After TEP correction:  RMS = 0.2265 mag
+[20:56:06] [TEST]   RMS improvement: 0.0246 mag
+[20:56:06] [TEST]   ΔM_B shift: +0.0389 mag
+[20:56:06] [TEST]   Propagated err (κ_Cep = 451682 ± 220046): ± 0.0190 mag (2.05σ)
+[20:56:06] [INFO]   [Paired SEM 0.0003 mag is not physically meaningful — correction is near-constant offset]
+[20:56:06] [TEST]   ΔM_B (equiv closure, κ^equiv = 365000 ± 304000, calibrator <X_i> = 9.6360e-08): +0.0352 ± 0.0298 mag  [manuscript Section 9.5]
+[20:56:06] [TEST]   Massive hosts RMS: 0.2426 -> 0.2127
+[20:56:06] [TEST] Interpretation: the TEP correction yields an RMS residual improvement of 0.0246 mag. Because Pantheon+ uses a global M_B calibration, the correction acts approximately as a constant offset; the host-mass dependence is untestable without per-host Cepheid calibrations. Consistency of the correction direction with the observed residual structure supports the TEP framework as a cross-validation.
+[20:56:06] [PROCESS] Generating TEP correction figure...
+[20:56:07] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_40_pantheon_tep_correction.png
+[20:56:07] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_40_redshift_shear_reconstruction.json
+[20:56:07] [SUCCESS] Step 40 complete
+[20:56:07] [SUCCESS] step_40 completed in 1.1s
+[20:56:07] [INFO] 
+[20:56:07] [INFO] ================================================================================
+[20:56:07] [INFO]    Starting step_42: Head-to-head falsification summary: void vs TEP
+[20:56:07] [INFO] ================================================================================
+[20:56:07] [INFO] 

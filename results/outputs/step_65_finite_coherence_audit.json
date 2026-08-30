@@ -1,0 +1,22 @@
+{
+  "step": "65",
+  "description": "Finite-coherence kernel audit \u2014 grid search over L_T on Pantheon+ raw magnitude residuals",
+  "n_sne": 513,
+  "lt_grid": [
+    0.0,
+    5.0,
+    10.0,
+    20.0,
+    30.0,
+    40.0,
+    50.0,
+    75.0,
+    100.0,
+    150.0,
+    200.0,
+    300.0,
+    500.0,
+    1000.0,
+    5000.0
+  ]
+}

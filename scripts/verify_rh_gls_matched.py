@@ -95,15 +95,23 @@ def gls_h0(d_shift, mask, indices, cov_full):
     """Apply the GLS zero-point estimator to a model shift vector."""
     idx_sub = indices[mask]
     cov_sub = cov_full[np.ix_(idx_sub, idx_sub)]
-    try:
-        cov_inv_sub = np.linalg.inv(cov_sub)
-    except np.linalg.LinAlgError:
-        cov_inv_sub = np.linalg.pinv(cov_sub)
     n_sub = int(mask.sum())
+    diag_pos = np.diag(cov_sub)[np.diag(cov_sub) > 0]
+    diag_med = np.median(diag_pos) if len(diag_pos) > 0 else 1.0
+    cov_sub_reg = cov_sub + 1e-8 * diag_med * np.eye(n_sub)
+
     ones_sub = np.ones(n_sub)
-    denom = float(ones_sub @ cov_inv_sub @ ones_sub)
     s_sub = d_shift[mask]
-    a_hat = float(ones_sub @ cov_inv_sub @ s_sub) / denom
+    try:
+        cov_inv_ones = np.linalg.solve(cov_sub_reg, ones_sub)
+        denom = float(ones_sub @ cov_inv_ones)
+        cov_inv_s = np.linalg.solve(cov_sub_reg, s_sub)
+        a_hat = float(ones_sub @ cov_inv_s) / denom
+    except np.linalg.LinAlgError:
+        cov_inv_sub = np.linalg.pinv(cov_sub_reg)
+        denom = float(ones_sub @ cov_inv_sub @ ones_sub)
+        a_hat = float(ones_sub @ cov_inv_sub @ s_sub) / denom
+
     sigma_a = 1.0 / np.sqrt(denom)
     h0 = H0_REF * (10.0 ** (-a_hat / 5.0))
     sigma_h0 = h0 * (np.log(10.0) / 5.0) * sigma_a
@@ -150,21 +158,28 @@ def main():
     cov_ll = cov_full[np.ix_(idx_low, idx_low)]
     cov_hh = cov_full[np.ix_(idx_high, idx_high)]
     cov_lh = cov_full[np.ix_(idx_low, idx_high)]
-    try:
-        cov_inv_ll = np.linalg.inv(cov_ll)
-    except np.linalg.LinAlgError:
-        cov_inv_ll = np.linalg.pinv(cov_ll)
-    try:
-        cov_inv_hh = np.linalg.inv(cov_hh)
-    except np.linalg.LinAlgError:
-        cov_inv_hh = np.linalg.pinv(cov_hh)
-    denom_l = float(ones_l @ cov_inv_ll @ ones_l)
-    denom_h = float(ones_h @ cov_inv_hh @ ones_h)
-    sigma_a_l = 1.0 / np.sqrt(denom_l)
-    sigma_a_h = 1.0 / np.sqrt(denom_h)
+    diag_l = np.diag(cov_ll)[np.diag(cov_ll) > 0]
+    diag_h = np.diag(cov_hh)[np.diag(cov_hh) > 0]
+    cov_ll_reg = cov_ll + 1e-6 * np.median(diag_l) * np.eye(n_l)
+    cov_hh_reg = cov_hh + 1e-6 * np.median(diag_h) * np.eye(n_h)
+
     with np.errstate(invalid="ignore", divide="ignore", over="ignore"):
-        cross_product = ones_l @ cov_inv_ll @ cov_lh @ cov_inv_hh @ ones_h
-    cov_a_lh = float(cross_product) / (denom_l * denom_h)
+        try:
+            inv_ones_l = np.linalg.solve(cov_ll_reg, ones_l)
+            denom_l = float(ones_l @ inv_ones_l)
+            inv_ones_h = np.linalg.solve(cov_hh_reg, ones_h)
+            denom_h = float(ones_h @ inv_ones_h)
+            cross_product = float(inv_ones_l @ cov_lh @ inv_ones_h)
+        except np.linalg.LinAlgError:
+            cov_inv_ll = np.linalg.pinv(cov_ll_reg)
+            cov_inv_hh = np.linalg.pinv(cov_hh_reg)
+            denom_l = float(ones_l @ cov_inv_ll @ ones_l)
+            denom_h = float(ones_h @ cov_inv_hh @ ones_h)
+            cross_product = float(ones_l @ cov_inv_ll @ cov_lh @ cov_inv_hh @ ones_h)
+
+        sigma_a_l = 1.0 / np.sqrt(denom_l)
+        sigma_a_h = 1.0 / np.sqrt(denom_h)
+        cov_a_lh = cross_product / (denom_l * denom_h)
     var_diff = sigma_a_h ** 2 + sigma_a_l ** 2 - 2.0 * cov_a_lh
     sigma_diff = np.sqrt(max(var_diff, 0.0))
     sigma_r_h = r_h_obs * sigma_diff * np.log(10.0) / 5.0

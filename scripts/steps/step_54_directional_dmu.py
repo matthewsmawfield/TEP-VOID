@@ -530,10 +530,10 @@ class Step54DirectionalDmu:
 
             g3d = ra_dec_to_unit_vectors(ra, dec)
             w = 1.0 / np.maximum(D, 1.0) ** 2
-            W = np.diag(w)
             X = np.column_stack([g3d, np.ones(len(g3d))])
             try:
-                beta = lstsq(X.T @ W @ X, X.T @ W @ V_pec, rcond=None)[0]
+                XtW = X.T * w[None, :]
+                beta = lstsq(XtW @ X, XtW @ V_pec, rcond=None)[0]
                 D_vec = beta[:3]
                 D_mag = np.linalg.norm(D_vec)
                 D_ra = np.degrees(np.arctan2(D_vec[1], D_vec[0])) % 360

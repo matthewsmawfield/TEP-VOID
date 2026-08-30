@@ -1,30 +1,30 @@
-[20:05:30] [INFO] 
-[20:05:30] [INFO] ================================================================================
-[20:05:30] [INFO]    Step 10: Matched Host Comparison — Cepheid vs TRGB
-[20:05:30] [INFO] ================================================================================
-[20:05:30] [INFO] 
-[20:05:30] [PROCESS] Scientific question: do Cepheid and TRGB distance moduli agree for galaxies observed by both indicators? The kinematic void model predicts that all distance indicators yield identical moduli (Delta_mu = 0), because distances are purely geometric and indicator-independent. The TEP framework predicts a non-zero, potential-dependent divergence, since each indicator's clock rate responds differently to the local gravitational potential. This step quantifies the per-galaxy divergence Delta_mu = mu_Cepheid - mu_TRGB and establishes the observational baseline for the void-vs-TEP comparison in Block Ia.
-[20:05:30] [PROCESS] Loading matched host catalog...
-[20:05:30] [SUCCESS] Loaded 18 matched hosts from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/matched_hosts.csv
-[20:05:30] [SUCCESS]   18 hosts with both Cepheid and TRGB moduli
-[20:05:30] [SUCCESS]   18 hosts with velocity dispersions
-[20:05:30] [PROCESS] Methodology: the matched-host sample is restricted to galaxies with both Cepheid (Riess et al. 2022) and TRGB (Freedman et al. 2025) distance moduli. For each host, Delta_mu is computed as the direct difference of the two moduli, with Gaussian error propagation from the published per-indicator uncertainties. Sample statistics include unweighted and inverse-variance weighted means, standard error, and a t-statistic against the null hypothesis Delta_mu = 0.
-[20:05:30] [PROCESS] Computing Delta_mu = mu_Cepheid - mu_TRGB...
-[20:05:30] [INFO]   N matched hosts: 18
-[20:05:30] [INFO]   Mean Delta_mu:   -0.0052 mag
-[20:05:30] [INFO]   Median Delta_mu: +0.0021 mag
-[20:05:30] [INFO]   Std Delta_mu:    0.0754 mag
-[20:05:30] [INFO]   Weighted mean:   -0.0027 +/- 0.0177 mag
-[20:05:30] [TEST]   Significance:    0.15 sigma
-[20:05:30] [TEST] Interpretation: the weighted mean divergence is -0.0027 +/- 0.0177 mag (0.15 sigma). A non-zero weighted mean is inconsistent with the void prediction of Delta_mu = 0 and is consistent with the TEP prediction of indicator-dependent distance moduli. The per-galaxy scatter (0.0754 mag) provides the input for the potential-scaling test in step_11.
-[20:05:30] [PROCESS] Generating divergence figure...
-[20:05:31] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_10_cepheid_trgb_divergence.png
-[20:05:31] [SUCCESS] Per-galaxy results saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_10_per_galaxy_delta_mu.csv
-[20:05:31] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_10_matched_host_comparison.json
-[20:05:31] [SUCCESS] Step 10 complete
-[20:05:31] [SUCCESS] step_10 completed in 2.0s
-[20:05:31] [INFO] 
-[20:05:31] [INFO] ================================================================================
-[20:05:31] [INFO]    Starting step_11: Indicator divergence vs gravitational potential: test TEP potential-scaling prediction
-[20:05:31] [INFO] ================================================================================
-[20:05:31] [INFO] 
+[20:54:29] [INFO] 
+[20:54:29] [INFO] ================================================================================
+[20:54:29] [INFO]    Step 10: Matched Host Comparison — Cepheid vs TRGB
+[20:54:29] [INFO] ================================================================================
+[20:54:29] [INFO] 
+[20:54:29] [PROCESS] Scientific question: do Cepheid and TRGB distance moduli agree for galaxies observed by both indicators? The kinematic void model predicts that all distance indicators yield identical moduli (Delta_mu = 0), because distances are purely geometric and indicator-independent. The TEP framework predicts a non-zero, potential-dependent divergence, since each indicator's clock rate responds differently to the local gravitational potential. This step quantifies the per-galaxy divergence Delta_mu = mu_Cepheid - mu_TRGB and establishes the observational baseline for the void-vs-TEP comparison in Block Ia.
+[20:54:29] [PROCESS] Loading matched host catalog...
+[20:54:29] [SUCCESS] Loaded 18 matched hosts from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/matched_hosts.csv
+[20:54:29] [SUCCESS]   18 hosts with both Cepheid and TRGB moduli
+[20:54:29] [SUCCESS]   18 hosts with velocity dispersions
+[20:54:29] [PROCESS] Methodology: the matched-host sample is restricted to galaxies with both Cepheid (Riess et al. 2022) and TRGB (Freedman et al. 2025) distance moduli. For each host, Delta_mu is computed as the direct difference of the two moduli, with Gaussian error propagation from the published per-indicator uncertainties. Sample statistics include unweighted and inverse-variance weighted means, standard error, and a t-statistic against the null hypothesis Delta_mu = 0.
+[20:54:29] [PROCESS] Computing Delta_mu = mu_Cepheid - mu_TRGB...
+[20:54:29] [INFO]   N matched hosts: 18
+[20:54:29] [INFO]   Mean Delta_mu:   -0.0052 mag
+[20:54:29] [INFO]   Median Delta_mu: +0.0021 mag
+[20:54:29] [INFO]   Std Delta_mu:    0.0754 mag
+[20:54:29] [INFO]   Weighted mean:   -0.0027 +/- 0.0177 mag
+[20:54:29] [TEST]   Significance:    0.15 sigma
+[20:54:29] [TEST] Interpretation: the weighted mean divergence is -0.0027 +/- 0.0177 mag (0.15 sigma). A non-zero weighted mean is inconsistent with the void prediction of Delta_mu = 0 and is consistent with the TEP prediction of indicator-dependent distance moduli. The per-galaxy scatter (0.0754 mag) provides the input for the potential-scaling test in step_11.
+[20:54:29] [PROCESS] Generating divergence figure...
+[20:54:29] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_10_cepheid_trgb_divergence.png
+[20:54:29] [SUCCESS] Per-galaxy results saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_10_per_galaxy_delta_mu.csv
+[20:54:29] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_10_matched_host_comparison.json
+[20:54:29] [SUCCESS] Step 10 complete
+[20:54:29] [SUCCESS] step_10 completed in 0.8s
+[20:54:29] [INFO] 
+[20:54:29] [INFO] ================================================================================
+[20:54:29] [INFO]    Starting step_11: Indicator divergence vs gravitational potential: test TEP potential-scaling prediction
+[20:54:29] [INFO] ================================================================================
+[20:54:29] [INFO] 

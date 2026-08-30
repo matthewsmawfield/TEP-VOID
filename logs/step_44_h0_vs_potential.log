@@ -1,19 +1,19 @@
-[19:51:16] [INFO] Step 44: H0 vs Calibrator-Population Potential
-[19:51:16] [INFO] 
-[19:51:16] [TEST]   Indicator    H0        <X> (1e-7)    U_typ (km^2/s^2)
-[19:51:16] [TEST]   ------------------------------------------------------------
-[19:51:16] [TEST]   JAGB          67.80      0.275          3200.0
-[19:51:16] [TEST]   TRGB          68.81      0.747          7200.0
-[19:51:16] [TEST]   Cepheids      73.04      2.209         20000.0
-[19:51:16] [TEST]   SBF           74.60      3.510         31250.0
-[19:51:16] [TEST]   Linear fit: H0 = 68.79 + 1.70 * <X> (1e-7)
-[19:51:17] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_44_h0_vs_potential.png
-[19:51:18] [SUCCESS]   PDF saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_44_h0_vs_potential.pdf
-[19:51:18] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_44_h0_vs_potential.json
-[19:51:18] [SUCCESS] Step 44 complete
-[19:51:18] [SUCCESS] step_44 completed in 3.7s
-[19:51:18] [INFO] 
-[19:51:18] [INFO] ================================================================================
-[19:51:18] [INFO]    Starting step_45: X_i-step in Pantheon+ Hubble residuals (TF + measured V_rot, screened)
-[19:51:18] [INFO] ================================================================================
-[19:51:18] [INFO] 
+[20:58:48] [INFO] Step 44: H0 vs Calibrator-Population Potential
+[20:58:48] [INFO] 
+[20:58:48] [TEST]   Indicator    H0        <X> (1e-7)    U_typ (km^2/s^2)
+[20:58:48] [TEST]   ------------------------------------------------------------
+[20:58:48] [TEST]   JAGB          67.80      0.275          3200.0
+[20:58:48] [TEST]   TRGB          68.81      0.747          7200.0
+[20:58:48] [TEST]   Cepheids      73.04      2.209         20000.0
+[20:58:48] [TEST]   SBF           74.60      3.510         31250.0
+[20:58:48] [TEST]   Linear fit: H0 = 68.79 + 1.70 * <X> (1e-7)
+[20:58:48] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_44_h0_vs_potential.png
+[20:58:48] [SUCCESS]   PDF saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_44_h0_vs_potential.pdf
+[20:58:48] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_44_h0_vs_potential.json
+[20:58:48] [SUCCESS] Step 44 complete
+[20:58:48] [SUCCESS] step_44 completed in 0.5s
+[20:58:48] [INFO] 
+[20:58:48] [INFO] ================================================================================
+[20:58:48] [INFO]    Starting step_45: X_i-step in Pantheon+ Hubble residuals (TF + measured V_rot, screened)
+[20:58:48] [INFO] ================================================================================
+[20:58:48] [INFO] 
