@@ -13,11 +13,13 @@ TEP Prediction:
 
         Delta_mu_band = mu_NIR - mu_optical
 
-    should correlate with X_i.  The predicted slope is
+    should anti-correlate with X_i (NIR has steeper |b|, so NIR distances
+    are more compressed at high X_i, giving mu_NIR < mu_optical).  The
+    predicted slope is
 
-        (|b_H| - |b_V|) * kappa_P ~ 0.50 * kappa_P
+        -(|b_H| - |b_V|) * kappa_P ~ -0.50 * kappa_P
 
-    where kappa_P is the period-bias coupling constant.
+    where kappa_P is the period-bias coupling constant (kappa_P = kappa_Cep / |b|).
 
 Data Sources:
     1. Madore & Freedman (2023, arXiv:2309.10859) Table 2 — same-team
@@ -51,17 +53,27 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from scipy import stats as sp_stats
+from scipy.optimize import minimize
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.screening import (
+    U_REF_SCREENED,
+    U_REF_UNSCREENED,
+    compute_screening_by_name,
+)
 
 
 # ── TEP constants ──────────────────────────────────────────────────────
-SIGMA_REF = 87.165          # km/s  — anchor reference potential scale
-U_REF = SIGMA_REF ** 2      # (km/s)^2
-C_KMS = 299792.458           # km/s
+# The primary coordinate is the screened X_i matching TEP-H0:
+#   X_i = (S_total * U_i - U_ref_screened) / c^2
+# The unscreened variant is kept for diagnostic / sensitivity checks.
+U_REF = U_REF_SCREENED          # primary: screened anchor reference
+U_REF_UNSCR = U_REF_UNSCREENED  # diagnostic: unscreened anchor reference
+C_KMS = 299792.458               # km/s
 
 # Leavitt law slopes (Madore & Freedman 2023, Riess et al. 2022)
 B_V = -2.76                  # optical V-band PL slope
@@ -69,10 +81,25 @@ B_H = -3.26                  # NIR H-band PL slope
 ABS_B_V = abs(B_V)
 ABS_B_H = abs(B_H)
 DELTA_B = ABS_B_H - ABS_B_V  # 0.50
+print_status("Observable definition:\\n  delta_mu_band = mu_NIR - mu_optical", "INFO")
+print_status("TEP prediction:\\n  d(delta_mu_band)/dX_i < 0", "INFO")
+EXPECTED_TEP_SIGN = -1
+assert EXPECTED_TEP_SIGN == -1, "TEP predicts a negative slope because NIR is more compressed than optical."
 
-# kappa_P candidates from TEP-H0 (Paper 11)
-KAPPA_P_DEFAULT = 0.365e6    # mag
-KAPPA_P_JOINT = 0.400e6      # mag
+
+# kappa_Cep from TEP-H0 (Paper 11) — these are the full Cepheid coupling constants
+# kappa_Cep = |b| * kappa_P, where kappa_P = eta_P * epsilon_0 / ln(10)
+# (manuscript Section 4.9: "kappa_Cep = |b| * kappa_P, with b ≈ -3.26")
+KAPPA_CEP_EQUIV = 0.365e6    # mag (Cepheid-channel closure, beta_X = 0)
+KAPPA_CEP_JOINT = 0.400e6    # mag (joint multi-block)
+KAPPA_CEP_WLS = 0.452e6      # mag (redshift-only WLS, sigma_v=150)
+
+# Derive kappa_P = kappa_Cep / |b_H| (using NIR slope as reference)
+KAPPA_P_EQUIV = KAPPA_CEP_EQUIV / ABS_B_H   # ~111963
+KAPPA_P_JOINT = KAPPA_CEP_JOINT / ABS_B_H   # ~122699
+KAPPA_P_WLS = KAPPA_CEP_WLS / ABS_B_H       # ~138650
+
+# Covariance between optical and NIR Cepheid distances (same galaxy, same stars)
 
 
 def normalize_galaxy_name(name: str) -> str:
@@ -166,6 +193,16 @@ R22_ALIAS = {
 }
 
 
+
+def student_t_nll(params, x, y, yerr, nu=4.0):
+    slope, intercept, log_scale = params
+    scale = np.exp(log_scale)
+    mu = slope * x + intercept
+    total_err = np.sqrt(yerr**2 + scale**2)
+    z = (y - mu) / total_err
+    nll = np.sum(0.5 * (nu + 1) * np.log1p(z**2 / nu) + np.log(total_err))
+    return nll
+
 class Step49BandDependence:
     """Step 49: TEP band-dependence test — optical vs NIR Cepheid distances."""
 
@@ -189,7 +226,7 @@ class Step49BandDependence:
     # ------------------------------------------------------------------
     # Data loading
     # ------------------------------------------------------------------
-    def load_madore_freedman2023(self):
+    def load_madore_freedman2023(self, rho=0.8):
         """Load Madore & Freedman (2023) Table 2 — VIH and VI distances."""
         print_status("Loading Madore & Freedman (2023) Table 2...", "PROCESS")
         path = self.data_raw / "madore_freedman2023_vih_vi.csv"
@@ -200,7 +237,7 @@ class Step49BandDependence:
         df["canonical"] = df["galaxy"].apply(canonical_name)
         df["delta_mu_band"] = df["mu_vih"] - df["mu_vi"]
         df["delta_mu_band_err"] = np.sqrt(
-            df["mu_vih_err"] ** 2 + df["mu_vi_err"] ** 2
+            df["mu_vih_err"] ** 2 + df["mu_vi_err"] ** 2 - 2 * rho * df["mu_vih_err"] * df["mu_vi_err"]
         )
         print_status(
             f"  {len(df)} galaxies with VIH (NIR) and VI (optical) distances",
@@ -235,7 +272,7 @@ class Step49BandDependence:
         return df
 
     def load_host_potential(self):
-        """Load host potential catalog with V_rot from HyperLEDA."""
+        """Load host potential catalog with V_rot from HyperLEDA and compute screened X_i."""
         print_status("Loading host potential catalog...", "PROCESS")
         path = self.data_proc / "host_potential_catalog.csv"
         if not path.exists():
@@ -243,13 +280,24 @@ class Step49BandDependence:
             return pd.DataFrame()
         df = pd.read_csv(path)
         df["canonical"] = df["galaxy"].apply(canonical_name)
-        # Compute X_i = (V_rot^2/2 - U_ref) / c^2
-        df["U_i"] = df["sigma_kms"] ** 2 / 2.0
-        df["X_i"] = (df["U_i"] - U_REF) / C_KMS ** 2
+        # sigma_kms in the host_potential_catalog is already u_phi = V_rot/sqrt(2),
+        # so U_i = sigma_kms^2 = (V_rot/sqrt(2))^2 = V_rot^2/2.
+        df["U_i"] = df["sigma_kms"] ** 2
+
+        # Compute TEP screening factors S_total by galaxy name
+        S_total = compute_screening_by_name(df["galaxy"].values, PROJECT_ROOT)
+        df["S_total"] = S_total
+        n_screened = int((S_total < 1.0).sum())
+        print_status(f"  Screening: {n_screened}/{len(df)} galaxies with S_total < 1", "INFO")
+
+        # Primary: screened X_i = (S_total * U_i - U_ref_screened) / c^2
+        df["X_i"] = (S_total * df["U_i"].values - U_REF) / C_KMS ** 2
         df["X_i_err"] = (
-            df["sigma_kms"] * df["error_kms"] / C_KMS ** 2
+            2.0 * S_total * df["sigma_kms"].values * df["error_kms"].values / C_KMS ** 2
         )
-        print_status(f"  {len(df)} galaxies with V_rot and X_i", "SUCCESS")
+        # Diagnostic: unscreened X_i
+        df["X_i_unscreened"] = (df["U_i"].values - U_REF_UNSCR) / C_KMS ** 2
+        print_status(f"  {len(df)} galaxies with V_rot and screened X_i", "SUCCESS")
         return df
 
     # ------------------------------------------------------------------
@@ -263,7 +311,7 @@ class Step49BandDependence:
         )
         merged = mf_df.merge(
             host_df[["canonical", "galaxy", "sigma_kms", "error_kms",
-                      "U_i", "X_i", "X_i_err"]],
+                      "U_i", "S_total", "X_i", "X_i_err", "X_i_unscreened"]],
             on="canonical",
             how="inner",
             suffixes=("", "_host"),
@@ -277,7 +325,7 @@ class Step49BandDependence:
                      "SUCCESS")
         return merged
 
-    def merge_secondary(self, kp_df, r22_df, host_df):
+    def merge_secondary(self, kp_df, r22_df, host_df, rho=0.8):
         """Merge Key Project optical with R22 NIR and host potential catalog."""
         print_status(
             "\nMerging Key Project + R22 + host potential catalog...",
@@ -294,7 +342,7 @@ class Step49BandDependence:
         # Match with host potential catalog
         merged = kp_r22.merge(
             host_df[["canonical", "galaxy", "sigma_kms", "error_kms",
-                      "U_i", "X_i", "X_i_err"]],
+                      "U_i", "S_total", "X_i", "X_i_err", "X_i_unscreened"]],
             on="canonical",
             how="inner",
         )
@@ -307,7 +355,7 @@ class Step49BandDependence:
         })
         merged["delta_mu_band"] = merged["mu_nir"] - merged["mu_opt"]
         merged["delta_mu_band_err"] = np.sqrt(
-            merged["mu_nir_err"] ** 2 + merged["mu_opt_err"] ** 2
+            merged["mu_nir_err"] ** 2 + merged["mu_opt_err"] ** 2 - 2 * rho * merged["mu_nir_err"] * merged["mu_opt_err"]
         )
         print_status(f"  {len(merged)} galaxies matched (secondary sample)",
                      "SUCCESS")
@@ -348,11 +396,36 @@ class Step49BandDependence:
         pearson_r, pearson_p = sp_stats.pearsonr(x, y)
         spearman_rho, spearman_p = sp_stats.spearmanr(x, y)
 
+        # Cook's distance and DFBETAs
+        X = np.column_stack([x, np.ones(n)])
+        W = np.diag(w)
+        beta = np.linalg.lstsq(X.T @ W @ X, X.T @ W @ y, rcond=None)[0]
+        y_pred = X @ beta
+        e = y - y_pred
+        MSE = np.sum(w * e**2) / (n - 2)
+        H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+        
+        cooks_d = [(e[i]**2 * w[i]) / (2 * MSE) * (H[i, i] / (1 - H[i, i])**2) for i in range(n)]
+        
+        # Student-t regression
+        res = minimize(student_t_nll, [slope, intercept, -2.0], args=(x, y, yerr), method='BFGS')
+        student_t_slope = res.x[0]
+        cov_t = res.hess_inv if hasattr(res, 'hess_inv') else np.eye(3) * 1e-4
+        # approximate student-t error from hess_inv
+        student_t_slope_err = np.sqrt(cov_t[0, 0])
+
         return {
             "n": n,
+            "student_t_slope": float(student_t_slope),
+            "student_t_slope_err": float(student_t_slope_err),
+            "max_cooks_d": float(np.max(cooks_d)),
             "slope": float(slope),
             "slope_err": float(slope_err),
             "slope_significance_sigma": float(slope_sigma),
+            "slope_err_chi2_scaled": float(slope_err * np.sqrt(max(chi2_red, 1.0))),
+            "slope_significance_chi2_scaled": float(
+                abs(slope) / (slope_err * np.sqrt(max(chi2_red, 1.0)))
+            ),
             "intercept": float(intercept),
             "intercept_err": float(intercept_err),
             "r_squared": float(r2),
@@ -380,12 +453,20 @@ class Step49BandDependence:
             return None
 
         # TEP predicted slope
-        tep_slope_default = DELTA_B * KAPPA_P_DEFAULT
-        tep_slope_joint = DELTA_B * KAPPA_P_JOINT
+        # delta_mu_band = mu_NIR - mu_opt = -(kappa_Cep_NIR - kappa_Cep_opt) * X_i
+        #               = -(|b_H| - |b_V|) * kappa_P * X_i
+        #               = -DELTA_B * kappa_P * X_i
+        # NIR has steeper |b| → NIR more compressed → mu_NIR < mu_opt at high X_i → NEGATIVE slope
+        tep_slope_default = -DELTA_B * KAPPA_P_EQUIV
+        tep_slope_joint = -DELTA_B * KAPPA_P_JOINT
 
         print_status(
             f"  N={n}, slope = {res['slope']:.4e} ± {res['slope_err']:.4e} "
             f"({res['slope_significance_sigma']:.2f}σ)",
+            "TEST",
+        )
+        print_status(
+            f"  Student-t (nu=4) robust slope: {res['student_t_slope']:.4e} ± {res['student_t_slope_err']:.4e} (Max Cook's D: {res['max_cooks_d']:.2f})",
             "TEST",
         )
         print_status(
@@ -416,9 +497,9 @@ class Step49BandDependence:
         )
 
         # Consistency with TEP prediction
-        for kname, kval in [("default", KAPPA_P_DEFAULT),
+        for kname, kval in [("default", KAPPA_P_EQUIV),
                             ("joint", KAPPA_P_JOINT)]:
-            pred = DELTA_B * kval
+            pred = -DELTA_B * kval
             diff = abs(res["slope"] - pred)
             cons = diff / res["slope_err"] if res["slope_err"] > 0 else 99
             print_status(
@@ -457,15 +538,15 @@ class Step49BandDependence:
             ax.plot(x_line, slope * x_line + intercept, "k--", lw=1.5,
                     label=f"Fit: slope = {slope:.2e} ± {slope_err:.2e}")
 
-            # TEP predicted line
-            tep_slope = DELTA_B * KAPPA_P_DEFAULT
+            # TEP predicted line (NEGATIVE slope: NIR more compressed at high X_i)
+            tep_slope = -DELTA_B * KAPPA_P_EQUIV
             ax.plot(x_line, tep_slope * x_line, "g-", lw=1.5, alpha=0.6,
-                    label=f"TEP pred (κ_P = {KAPPA_P_DEFAULT:.3g})")
+                    label=f"TEP pred (κ_P = {KAPPA_P_EQUIV:.3g})")
 
         ax.axhline(0, color="gray", lw=0.5)
         ax.axvline(0, color="gray", lw=0.5)
         ax.set_xlabel(
-            r"$X_i = (V_{\rm rot}^2/2 - U_{\rm ref}) / c^2$", fontsize=12
+            r"$X_i = (S_{\rm tot}\,V_{\rm rot}^2/2 - U_{\rm ref}^{\rm scr}) / c^2$", fontsize=12
         )
         ax.set_ylabel(
             r"$\Delta\mu_{\rm band} = \mu_{\rm NIR} - \mu_{\rm opt}$ (mag)",
@@ -496,9 +577,9 @@ class Step49BandDependence:
                 ax.plot(x_line, slope2 * x_line + intercept2, "k--", lw=1.5,
                         label=f"Fit: slope = {slope2:.2e} ± {slope_err2:.2e}")
 
-                tep_slope = DELTA_B * KAPPA_P_DEFAULT
+                tep_slope = -DELTA_B * KAPPA_P_EQUIV
                 ax.plot(x_line, tep_slope * x_line, "g-", lw=1.5, alpha=0.6,
-                        label=f"TEP pred (κ_P = {KAPPA_P_DEFAULT:.3g})")
+                        label=f"TEP pred (κ_P = {KAPPA_P_EQUIV:.3g})")
 
             ax.set_title(
                 f"Key Project vs R22  (N={len(df_secondary)})\n"
@@ -511,7 +592,7 @@ class Step49BandDependence:
         ax.axhline(0, color="gray", lw=0.5)
         ax.axvline(0, color="gray", lw=0.5)
         ax.set_xlabel(
-            r"$X_i = (V_{\rm rot}^2/2 - U_{\rm ref}) / c^2$", fontsize=12
+            r"$X_i = (S_{\rm tot}\,V_{\rm rot}^2/2 - U_{\rm ref}^{\rm scr}) / c^2$", fontsize=12
         )
         ax.set_ylabel(
             r"$\Delta\mu_{\rm band} = \mu_{\rm NIR} - \mu_{\rm opt}$ (mag)",
@@ -548,6 +629,8 @@ class Step49BandDependence:
                 "delta_mu_band": r["delta_mu_band"],
                 "delta_mu_band_err": r["delta_mu_band_err"],
                 "X_i": r["X_i"],
+                "X_i_unscreened": r.get("X_i_unscreened", np.nan),
+                "S_total": r.get("S_total", 1.0),
                 "V_rot": r["V_rot"],
                 "sample": "primary_MF2023",
             })
@@ -562,6 +645,8 @@ class Step49BandDependence:
                     "delta_mu_band": r["delta_mu_band"],
                     "delta_mu_band_err": r["delta_mu_band_err"],
                     "X_i": r["X_i"],
+                    "X_i_unscreened": r.get("X_i_unscreened", np.nan),
+                    "S_total": r.get("S_total", 1.0),
                     "V_rot": r["V_rot"],
                     "sample": "secondary_KP_R22",
                 })
@@ -578,9 +663,9 @@ class Step49BandDependence:
         print_status("Step 49: Band-Dependence Test", "TITLE")
         print_status(
             "Test the TEP prediction that the optical-to-NIR Cepheid distance "
-            "differential scales with the gravitational potential coordinate "
-            "X_i, with a predicted slope of (|b_H| - |b_V|) * kappa_P "
-            f"= {DELTA_B:.2f} * kappa_P.",
+            "differential anti-correlates with the gravitational potential "
+            "coordinate X_i (NIR more compressed), with a predicted slope of "
+            f"-(|b_H| - |b_V|) * kappa_P = -{DELTA_B:.2f} * kappa_P.",
             "PROCESS",
         )
         print_status(
@@ -590,27 +675,71 @@ class Step49BandDependence:
             "PROCESS",
         )
 
-        # Load data
-        mf_df = self.load_madore_freedman2023()
         kp_df = self.load_key_project()
         r22_df = self.load_r22()
         host_df = self.load_host_potential()
 
-        # Merge
-        df_primary = self.merge_primary(mf_df, host_df)
-        df_secondary = self.merge_secondary(kp_df, r22_df, host_df)
-
-        # Regressions
+        print_status("\nRunning rho sensitivity audit...", "PROCESS")
+        rho_results = []
+        df_primary = None
+        df_secondary = None
         res_primary = None
         res_secondary = None
-        if len(df_primary) >= 3:
-            res_primary = self.run_regression(
-                df_primary, "Primary: MF2023 VIH vs VI"
+        res_primary_no_m101 = None
+
+        for test_rho in [0.0, 0.2, 0.4, 0.6, 0.8, 0.9]:
+            print_status(f"\n--- Testing rho = {test_rho:.1f} ---", "PROCESS")
+            mf_df = self.load_madore_freedman2023(rho=test_rho)
+            if len(mf_df) == 0:
+                print_status("Cannot run without Madore & Freedman 2023 data", "WARNING")
+                return
+
+            _df_primary = self.merge_primary(mf_df, host_df)
+            _df_secondary = self.merge_secondary(kp_df, r22_df, host_df, rho=test_rho)
+
+            _res_primary = None
+            if len(_df_primary) >= 3:
+                _res_primary = self.run_regression(
+                    _df_primary, f"Primary: MF2023 VIH vs VI (rho={test_rho:.1f})"
+                )
+                rho_results.append({
+                    "rho": test_rho,
+                    "slope": _res_primary["slope"],
+                    "student_t_slope": _res_primary["student_t_slope"],
+                    "student_t_slope_err": _res_primary["student_t_slope_err"],
+                    "slope_err": _res_primary["slope_err"],
+                    "sigma": _res_primary["slope_significance_sigma"]
+                })
+
+            if test_rho == 0.8:
+                df_primary = _df_primary
+                df_secondary = _df_secondary
+                res_primary = _res_primary
+                if len(df_secondary) >= 3:
+                    res_secondary = self.run_regression(
+                        df_secondary, "Secondary: Key Project vs R22 (rho=0.8)"
+                    )
+
+        print_status("\nRho Sensitivity Summary (Primary Sample, incl M101):", "TEST")
+        for r in rho_results:
+            print_status(f"  rho={r['rho']:.1f} | WLS slope={r['slope']:.4e} ± {r['slope_err']:.4e} ({r['sigma']:.2f}σ) | Student-t slope={r['student_t_slope']:.4e} ± {r['student_t_slope_err']:.4e}", "TEST")
+
+        if df_primary is not None and len(df_primary) >= 4:
+            m101_mask = df_primary["galaxy"].str.upper().isin(
+                ["M101", "M 101", "NGC 5457", "NGC5457"]
             )
-        if len(df_secondary) >= 3:
-            res_secondary = self.run_regression(
-                df_secondary, "Secondary: Key Project vs R22"
-            )
+            df_no_m101 = df_primary[~m101_mask].copy()
+            if len(df_no_m101) >= 3 and len(df_no_m101) < len(df_primary):
+                res_primary_no_m101 = self.run_regression(
+                    df_no_m101, "Primary (M101 excluded): MF2023 VIH vs VI"
+                )
+                print_status(
+                    f"  M101-excluded: N={len(df_no_m101)}, "
+                    f"slope={res_primary_no_m101['slope']:.3e} "
+                    f"± {res_primary_no_m101['slope_err']:.3e} "
+                    f"({res_primary_no_m101['slope_significance_sigma']:.2f}sigma)",
+                    "TEST",
+                )
 
         # Save matched catalog
         matched = self.save_matched_catalog(df_primary, df_secondary)
@@ -635,9 +764,15 @@ class Step49BandDependence:
                 "abs_b_H": ABS_B_H,
                 "delta_b": DELTA_B,
                 "nir_excess_percent": (ABS_B_H / ABS_B_V - 1) * 100,
-                "predicted_slope_default": DELTA_B * KAPPA_P_DEFAULT,
-                "predicted_slope_joint": DELTA_B * KAPPA_P_JOINT,
-                "formula": "Delta_mu_band = (|b_H| - |b_V|) * kappa_P * X_i",
+                "kappa_cep_equiv": KAPPA_CEP_EQUIV,
+                "kappa_cep_wls": KAPPA_CEP_WLS,
+                "kappa_p_equiv": KAPPA_P_EQUIV,
+                "kappa_p_wls": KAPPA_P_WLS,
+                "predicted_slope_default": -DELTA_B * KAPPA_P_EQUIV,
+                "predicted_slope_joint": -DELTA_B * KAPPA_P_JOINT,
+                "predicted_slope_wls": -DELTA_B * KAPPA_P_WLS,
+                "formula": "Delta_mu_band = -(kappa_Cep_NIR - kappa_Cep_opt) * X_i = -(|b_H| - |b_V|) * kappa_P * X_i",
+                "sign": "negative (NIR has steeper |b|, so NIR distances are more compressed at high X_i, giving mu_NIR < mu_opt and a negative slope)",
             },
             "primary_analysis": {
                 "label": "Madore & Freedman (2023) VIH vs VI — same-team",
@@ -649,6 +784,7 @@ class Step49BandDependence:
                     "identical methodology."
                 ),
                 "regression": res_primary,
+                "m101_exclusion": res_primary_no_m101,
             },
             "secondary_analysis": {
                 "label": "Key Project (Freedman 2001) vs R22 (Riess 2022)",
@@ -662,11 +798,18 @@ class Step49BandDependence:
                 "regression": res_secondary,
             },
             "constants": {
-                "sigma_ref_kms": SIGMA_REF,
-                "u_ref_kms2": U_REF,
+                "sigma_ref_screened_kms": 30.507,
+                "u_ref_screened_kms2": U_REF,
+                "sigma_ref_unscreened_kms": 87.165,
+                "u_ref_unscreened_kms2": U_REF_UNSCR,
+                "coordinate": "screened",
                 "c_kms": C_KMS,
-                "kappa_p_default_mag": KAPPA_P_DEFAULT,
+                "kappa_cep_equiv_mag": KAPPA_CEP_EQUIV,
+                "kappa_cep_joint_mag": KAPPA_CEP_JOINT,
+                "kappa_cep_wls_mag": KAPPA_CEP_WLS,
+                "kappa_p_equiv_mag": KAPPA_P_EQUIV,
                 "kappa_p_joint_mag": KAPPA_P_JOINT,
+                "kappa_p_wls_mag": KAPPA_P_WLS,
             },
             "matched_catalog": {
                 "n_total": len(matched),
@@ -682,15 +825,18 @@ class Step49BandDependence:
             "methodology": (
                 "Weighted linear regression Delta_mu_band = slope * X_i + "
                 "intercept, where Delta_mu_band = mu_NIR - mu_optical and "
-                "X_i = (V_rot^2/2 - U_ref) / c^2. Two samples are analysed: "
+                "X_i = (S_total * V_rot^2/2 - U_ref_screened) / c^2 is the "
+                "screened TEP-H0 environmental coordinate. Two samples are analysed: "
                 "(1) Primary — Madore & Freedman (2023) Table 2 with "
                 "same-team VIH (NIR) and VI (optical) Cepheid distances for "
                 "20 galaxies; (2) Secondary — Key Project (Freedman et al. "
                 "2001) optical distances matched to SH0ES R22 (Riess et al. "
                 "2022) NIR distances for the overlap subsample. The TEP "
-                "predicted slope is (|b_H| - |b_V|) * kappa_P = 0.50 * "
-                "kappa_P, positive if NIR distances are more compressed in "
-                "deeper potentials."
+                "predicted slope is -(|b_H| - |b_V|) * kappa_P = -0.50 * "
+                "kappa_P, negative because NIR distances are more compressed "
+                "in deeper potentials (steeper |b_H| gives larger kappa_Cep "
+                "response), so Delta_mu_band = mu_NIR - mu_optical < 0 at "
+                "high X_i."
             ),
             "provenance": {
                 "data_sources": [
@@ -709,12 +855,13 @@ class Step49BandDependence:
                 "compression is ~18% larger in NIR than in optical at the "
                 "same potential depth. The inter-band differential "
                 "Delta_mu_band = mu_NIR - mu_optical should therefore "
-                "correlate with X_i, with a predicted slope of "
-                "(|b_H| - |b_V|) * kappa_P ~ 0.50 * kappa_P."
+                "anti-correlate with X_i (NIR more compressed => mu_NIR < "
+                "mu_opt at high X_i), with a predicted slope of "
+                "-(|b_H| - |b_V|) * kappa_P ~ -0.50 * kappa_P."
             ),
             "tep_prediction_text": (
-                "Delta_mu_band = (|b_H| - |b_V|) * kappa_P * X_i, with a "
-                "positive slope indicating that NIR Cepheid distances are "
+                "Delta_mu_band = -(|b_H| - |b_V|) * kappa_P * X_i, with a "
+                "negative slope indicating that NIR Cepheid distances are "
                 "more compressed in deeper gravitational potentials."
             ),
             "void_prediction": (
@@ -732,10 +879,11 @@ class Step49BandDependence:
             s_err = res_primary["slope_err"]
             sig = res_primary["slope_significance_sigma"]
             sign = "positive" if s > 0 else "negative"
+            tep_sign = "positive" if (-DELTA_B * KAPPA_P_EQUIV) > 0 else "negative"
             summary["key_finding"] = (
                 f"Primary sample (N={res_primary['n']}): slope = "
                 f"{s:.4e} ± {s_err:.4e} ({sig:.2f}σ, {sign}). "
-                f"TEP predicted slope = {DELTA_B * KAPPA_P_DEFAULT:.4e}."
+                f"TEP predicted slope = {-DELTA_B * KAPPA_P_EQUIV:.4e} ({tep_sign})."
             )
         else:
             summary["key_finding"] = "Insufficient data for regression."

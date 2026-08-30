@@ -204,24 +204,24 @@ def derive_eta_p():
     # Consistency check with the fitted kappa_Cep.
     # The relationship is:
     #   Delta mu = kappa_Cep * X_i
-    #            = |b| * epsilon_0 * eta_P * X_i / (2 * ln 10)
-    # so kappa_Cep = |b| * epsilon_0 * eta_P / (2 * ln 10).
+    #            = |b| * epsilon_0 * eta_P * X_i / ln 10
+    # so kappa_Cep = |b| * epsilon_0 * eta_P / ln 10.
     # With the fitted kappa_Cep and the geometric fiducial eta_P = 1/2,
     # this fixes epsilon_0 (and hence epsilon_env = epsilon_0 * X_i at
     # typical Cepheid locations). Only the product eta_P * epsilon_0 is
     # fixed by the fit; the individual values are conditional on the
     # fiducial eta_P choice.
 
-    kappa_ceph_fitted = 0.400e6  # mag (from TEP-H0 step_44/step_50 joint fit)
+    kappa_ceph_fitted = 0.452e6  # mag (redshift-only WLS, sigma_v=150, from TEP-H0 step_44)
     b_nir = 3.26
     ln10 = 2.302585
 
-    # From kappa_Cep = |b| * epsilon_0 * eta_P / (2 * ln 10):
-    epsilon_0_eta_P = kappa_ceph_fitted * 2 * ln10 / b_nir
+    # From kappa_Cep = |b| * epsilon_0 * eta_P / ln 10:
+    epsilon_0_eta_P = kappa_ceph_fitted * ln10 / b_nir
     print_status(f"\nConsistency check:", "PROCESS")
     print_status(f"  kappa_Cep (fitted) = {kappa_ceph_fitted:.3e} mag", "INFO")
     print_status(f"  |b_H| = {b_nir}", "INFO")
-    print_status(f"  epsilon_0 * eta_P = kappa_Cep * 2*ln(10) / |b|", "INFO")
+    print_status(f"  epsilon_0 * eta_P = kappa_Cep * ln(10) / |b|", "INFO")
     print_status(f"  epsilon_0 * eta_P = {epsilon_0_eta_P:.3e}", "TEST")
 
     # With eta_P = 1/2 (geometric fiducial, as adopted in the manuscript):
@@ -265,7 +265,7 @@ def derive_eta_p():
             'epsilon_0': float(epsilon_0),
             'epsilon_env_typical': float(epsilon_env),
             'X_i_typical': float(X_i_typical),
-            'note': 'With the geometric fiducial eta_P = 1/2, the fitted kappa_Cep implies epsilon_0 ~ 5.65e5 and epsilon_env ~ 0.075 at typical Cepheid locations. The disformal coupling is a spatial distortion (not a frequency shift), so the relevant constraint is on stellar dynamics, not spectroscopic line shifts.',
+            'note': 'With the geometric fiducial eta_P = 1/2, the fitted kappa_Cep = 0.452e6 (redshift-only WLS) implies bar_epsilon_0 ~ 6.38e5 and epsilon_env ~ 0.064 (6.4%) at typical Cepheid locations (X_i ~ 1e-7), matching the manuscript value. The disformal coupling is a spatial distortion (not a frequency shift), so the relevant constraint is on stellar dynamics, not spectroscopic line shifts.',
         },
     }
 
@@ -280,6 +280,13 @@ def derive_eta_p():
     print_status("=" * 60, "INFO")
 
     return results
+
+
+class Step52EtaP:
+    """Pipeline-compatible wrapper for Step 52."""
+
+    def run(self):
+        derive_eta_p()
 
 
 if __name__ == '__main__':

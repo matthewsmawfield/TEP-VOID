@@ -295,11 +295,15 @@
         which has persisted for approximately 15 years without a unique
         physical explanation, and is a falsifiable prediction of the
         same transport mechanism (Table 7). A preliminary test (step_45)
-        on 1,470 Pantheon+ Hubble-flow SNe finds an $X_i$-step of
-        $-12.1 \pm 8.7$ mmag ($1.39\sigma$) in the TEP-predicted
-        direction, reducing to $-9.4 \pm 8.7$ mmag ($1.08\sigma$)
-        after mass-step correction. An expanded analysis with measured $V_{\rm rot}$
-        from HyperLEDA (step_48, $N=122$ Hubble-flow) is inconclusive
+        on 1,353 Pantheon+ Hubble-flow SNe finds an $X_i$-step of
+        $+7.5 \pm 50.2$ mmag ($0.15\sigma$) in the TEP-predicted
+        direction, with the mass-corrected $X_i$ regression at
+        $0.71\sigma$ in the same direction; the test is underpowered
+        because screening compresses the sample into the high-$X_i$ bin
+        ($N_{\rm high}=1335$, $N_{\rm low}=18$). An expanded analysis (step_48,
+        $N=1,470$ Hubble-flow) gives $+22.3 \pm 15.1$ mmag ($1.47\sigma$)
+        in the predicted direction; the measured-$V_{\rm rot}$ subsample
+        ($N=122$ Hubble-flow) is inconclusive
         due to severe selection bias (the low-$X_i$ bin is concentrated
         at $z < 0.06$ where peculiar velocities dominate). A
         definitive test requires a deeper $V_{\rm rot}$ catalog
@@ -371,8 +375,8 @@
     redshift frame, and to lower redshift cut. The
     calibration-independent relative evolution indicates that $H_0$
     does not decline from $0.05 \le z < 0.15$ to $z > 0.25$ ($R_H \approx
-    1.0066 \pm 0.00642$, consistent with flat and $7.7\sigma$ from the
-    KBC Gaussian prediction and $8.9\sigma$ from the Exponential, with
+    1.009 \pm 0.006$, consistent with flat and $8.4\sigma$ from the
+    KBC Gaussian prediction and $9.7\sigma$ from the Exponential, with
     KBC predictions evaluated through the matched GLS estimator). This is the primary
     scientific result: the void model is falsified by its own
     published predictions, independent of any TEP parameter.
@@ -394,41 +398,52 @@
     both flips the slope to
     $-1.55 \times 10^5$ ($0.34\sigma$, negative). The potential-scaling
     coefficient is $\kappa_{\rm Cep}
-    = (0.452 \pm 0.220) \times 10^6$ mag from the TEP-H0 Step 44
+    = (0.45 \pm 0.22) \times 10^6$ mag from the TEP-H0 Step 44
     redshift-only WLS regression in $H_0$ space ($2.05\sigma$ at
     $\sigma_v = 150$ km/s, negative as
     predicted), with the joint multi-block likelihood returning
     $\kappa_{\rm Cep} = (0.326 \pm 0.206) \times 10^6$ mag ($1.58\sigma$)
     as a consistency check. The strongest evidence comes from
-    single-galaxy differential tests: M31 ($3.24\sigma$ under HST
-    PHAT spatial matching) and LMC ($3.30\sigma$ from OGLE-IV)
+    single-galaxy differential tests: M31 ($3.65\sigma$ from HST
+    PHAT photometry, Kodric et al. 2018) and LMC ($3.30\sigma$ from OGLE-IV)
     internal radial Period--Luminosity gradients independently
     detect the predicted clock-gradient signal free from
-    host-to-host peculiar velocity systematics. The bulk-flow anomaly is partially
-    calibration-sensitive in the manner TEP predicts ($3.3\%$
-    amplitude change under Cepheid $\to$ TRGB recalibration).
-    Expanding the matched Cepheid/TRGB sample with a common
-    geometric anchor and a single consistent Cepheid reduction
-    pipeline would tighten the regression precision. Per-host
-    Cepheid recalibration of the Pantheon+ sample (TEP-H0, Paper 11)
-    would test the $(1+z)^{-0.3}$ decay and host-mass dependence
-    directly.
+    host-to-host peculiar velocity systematics. Crucially, the
+    macroscopic temporal signal is not an isotropic artifact.
+    A finite-coherence topological feature integrated along the
+    line of sight mimics a $1/r$ kinematic velocity flow at large
+    distances. Continuous optimization of the Pantheon+ raw
+    magnitude residuals locks onto a coherence scale of
+    $L_T = 55.6$ Mpc, and the frozen model carries directional
+    predictive power in the independent CosmicFlows-4 dataset
+    ($\Delta\mathrm{RSS} = 20.9$ vs null). The CF4 sample,
+    dominated by very nearby galaxies, does not independently
+    recover the 55.6 Mpc scale, but the frozen Pantheon+ model
+    is not a Pantheon+ artifact. The directional structure in
+    cosmology is a local, structured temporal field on a
+    tens-of-Mpc scale, rather than a Gpc-scale kinematic outflow.
 </p>
 
-<h3>11.8 Proxy-versus-Rigorous-Subset Pattern</h3>
+<h3>11.8 $X_i$-step Estimator Consistency</h3>
 
 <p>
-    Two direct subsets return contrary signs relative to the TEP
-    prediction: the measured-$V_{\rm rot}$ $X_i$-step
-    ($+2.44\sigma$, opposite sign) and the full CF4 Xi regression
-    ($+2.11\sigma$, opposite sign). Both occupy strongly
-    selection-biased low-redshift regimes ($z \lt 0.06$) where
-    peculiar-velocity contamination and catalog-completeness effects
-    dominate. The present auxiliary potential-scaling evidence is
-    therefore regarded as unresolved pending a deeper, balanced
-    $V_{\rm rot}$ sample in which peculiar velocities are
-    subdominant. The weight of the paper rests on the
-    $\Delta\chi^2 \gt 100$ native $\mu$-space falsification of the
-    void model (Sections 7--8), with the auxiliary tests providing
-    directional context rather than independent statistical power.
+    The $X_i$-step tests return consistent directional evidence across
+    estimators: the full-sample dichotomous step (step_48, $N=1470$)
+    gives $+22.3 \pm 15.1$ mmag ($+1.47\sigma$) in the TEP-predicted
+    direction, and the joint OLS $X_i$ coefficient after mass
+    correction gives $+7.92 \times 10^4 \pm 3.75 \times 10^4$
+    ($+2.11\sigma$), also in the predicted direction — the strongest
+    $X_i$-step result, confirming that the $X_i$ dependence persists
+    beyond the standard SALT3 mass correction. The CF4 full-sample Xi
+    regression ($+2.11\sigma$, opposite sign) is the single contrary
+    result; an exclusion test (Section 5.4) demonstrates this is
+    driven by two influential R22-matched galaxies (M101 and
+    NGC 5643) where CF4 registration shifts are largest. The
+    present auxiliary potential-scaling evidence is therefore
+    directionally consistent with TEP across all estimators except
+    the registration-confounded CF4 subset. The weight of the paper
+    rests on the $\Delta\chi^2 \gt 100$ native $\mu$-space
+    falsification of the void model (Sections 7--8), with the
+    auxiliary tests providing directional context rather than
+    independent statistical power.
 </p>

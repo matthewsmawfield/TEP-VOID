@@ -247,6 +247,8 @@
     "h0_massive_z_gt_03_err": 0.38496626014185864,
     "h0_massive_z_gt_03_bins": 4,
     "tension_massive_high_z": 9.73451081833089,
+    "tension_massive_high_z_independent": false,
+    "tension_massive_high_z_caveat": "NOT calibration-independent: Pantheon+ M_B is calibrated from Cepheid anchors at z ~ 0, so the absolute H0 normalization inherits the SH0ES zero-point. Retained for reference only; the calibration-independent test is the R_H ratio (step_32).",
     "h0_lowmass_z_gt_03": 74.3559815650251,
     "h0_massive_z_lt_015": 72.32108138899454,
     "void_falsified": true,

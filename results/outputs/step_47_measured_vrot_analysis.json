@@ -6,8 +6,8 @@
     "n_optical": 16,
     "sign_test_n_shorter": 17,
     "sign_test_n_total": 22,
-    "sign_test_p_value": 0.01690053939819336,
-    "sign_test_sigma": 2.1224367506511066,
+    "sign_test_p_value": 0.00845026969909668,
+    "sign_test_sigma": 2.3888643884007608,
     "mean_delta_mu": -0.0799090909090912,
     "sem_delta_mu": 0.024184259226466713,
     "mean_delta_mu_optical": -0.10650000000000048,
@@ -15,17 +15,15 @@
   },
   "xi_step": {
     "n_total": 1470,
-    "n_high_x": 916,
-    "n_low_x": 554,
-    "step_mag": -0.008647352017519983,
-    "step_err": 0.015024036676676122,
-    "step_sigma": -0.5755678186638385,
-    "step_corrected_mag": 0.0327292035546094,
-    "step_corrected_err": 0.017839026745876185,
-    "step_corrected_sigma": 1.8346967029563621,
-    "v_rot_source": "Tully-Fisher proxy (measured V_rot not available for Hubble-flow hosts)",
-    "expected_sigma_with_measured_vrot": -1.4389195466595963,
-    "improvement_factor": 2.5
+    "n_high_x": 1337,
+    "n_low_x": 133,
+    "step_mag": 0.003862459443336957,
+    "step_err": 0.014323590327020687,
+    "step_sigma": 0.2696572126927307,
+    "step_corrected_mag": 0.015791936933333903,
+    "step_corrected_err": 0.008328789628036475,
+    "step_corrected_sigma": 1.8960662519527314,
+    "v_rot_source": "Tully-Fisher proxy (measured V_rot not available for Hubble-flow hosts)"
   },
   "band_dependence": {
     "n_optical": 16,
@@ -39,15 +37,15 @@
     "regression_by_band": {
       "optical": {
         "n": 16,
-        "slope": 72937.35438747442,
-        "slope_err": 242772.43132553837,
-        "slope_sigma": 0.30043507818921694
+        "slope": -546498.5765842414,
+        "slope_err": 560429.6236326848,
+        "slope_sigma": 0.9751422008027647
       },
       "NIR": {
         "n": 6,
-        "slope": 522039.05660519825,
-        "slope_err": 376155.4274350221,
-        "slope_sigma": 1.387828058643063
+        "slope": 517638.9212398453,
+        "slope_err": 388564.9221433659,
+        "slope_sigma": 1.332181295173258
       }
     }
   },

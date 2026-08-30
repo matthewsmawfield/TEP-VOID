@@ -1,0 +1,61 @@
+[19:52:02] [INFO] 
+[19:52:02] [INFO] ================================================================================
+[19:52:02] [INFO]    Step 54: Directional Δμ Analysis
+[19:52:02] [INFO] ================================================================================
+[19:52:02] [INFO] 
+[19:52:02] [PROCESS] Bulk flow as temporal topology gradient vs kinetic motion
+[19:52:02] [PROCESS] Loading directional Cepheid-TRGB sample...
+[19:52:02] [SUCCESS]   33 galaxies loaded
+[19:52:02] [PROCESS] Loading CF4 table2 for bulk flow comparison...
+[19:52:04] [SUCCESS]   55877 CF4 galaxies
+[19:52:04] [PROCESS] 
+--- Analysis 1: Primary directional correlation ---
+[19:55:48] [TEST]   N=33: r(Δμ, cmb_dot) = +0.3290 (p=0.0616)
+[19:55:48] [TEST]   Permutation: p_two=0.0615, p_one=0.0302
+[19:55:48] [TEST]   Toward CMB (N=20): Δμ = -0.022 ± 0.026
+[19:55:48] [TEST]   Away from CMB (N=13): Δμ = -0.119 ± 0.023
+[19:55:48] [TEST]   Difference: 0.097 mag (2.33σ, p=0.0086)
+[19:55:48] [PROCESS] 
+--- Analysis 2: 3-D vector dipole fit ---
+[19:55:49] [TEST]   Dipole amplitude: 0.0612 mag (8446 km/s equiv)
+[19:55:49] [TEST]   Direction: l=214.9°, b=+50.6°
+[19:55:49] [TEST]   CMB dipole: l=264.0°, b=+48.3°
+[19:55:49] [TEST]   Angular separation: 31.5°
+[19:55:49] [TEST]   Permutation: p=0.5368 (-0.20σ)
+[19:55:49] [PROCESS] 
+--- Analysis 3: Partial correlations ---
+[19:55:49] [TEST]   r(Δμ, cmb_dot) = +0.3290 (p=0.0616)
+[19:55:49] [TEST]   r(Δμ, X_i)     = +0.2864 (p=0.1061)
+[19:55:49] [TEST]   r(X_i, cmb_dot)= +0.2439 (p=0.1713)
+[19:55:49] [TEST]   Partial r(Δμ, cmb_dot | X_i)     = +0.2789 (p=0.1161)
+[19:55:49] [TEST]   Partial r(Δμ, cmb_dot | R22)     = +0.2668 (p=0.1333)
+[19:55:49] [TEST]   Partial r(Δμ, cmb_dot | X_i,R22) = +0.1993 (p=0.2661)
+[19:55:49] [TEST]   Partial r(Δμ, X_i | cmb_dot)     = +0.2252 (p=0.2078)
+[19:55:49] [PROCESS] 
+--- Analysis 4: Joint model with F-test ---
+[19:55:49] [TEST]   TEP model (X_i + direction): R² = 0.153
+[19:55:49] [TEST]     κ = +3.73e+05, D = +0.046 mag
+[19:55:49] [TEST]   Kinematic model (X_i only):  R² = 0.082
+[19:55:49] [TEST]   Direction only:              R² = 0.108
+[19:55:49] [TEST]   F-test for direction: F=2.53, p=0.122
+[19:55:49] [TEST]   ΔR² from direction = 0.071
+[19:55:49] [PROCESS] 
+--- Analysis 5: Subsample analysis ---
+[19:55:49] [TEST]   CF4 (N=22): r=+0.360 (p=0.100), mean Δμ=-0.080
+[19:55:49] [TEST]   JWST (N=11): r=+0.019 (p=0.955), mean Δμ=-0.021
+[19:55:49] [TEST]   R22 (N=11): r(Δμ,cmb)=+0.019 (p=0.955), r(Δμ,X_i)=+0.346
+[19:55:49] [TEST]   non-R22 (N=22): r(Δμ,cmb)=+0.360 (p=0.100), r(Δμ,X_i)=+0.303
+[19:55:49] [PROCESS] 
+--- Analysis 6: Indicator-specific bulk flow ---
+[19:55:51] [TEST]   Cepheid excess: 155 km/s (Cepheid 663 vs TRGB 508)
+[19:55:51] [PROCESS] 
+--- Generating sky-coverage figure ---
+[19:55:53] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_54_directional_dmu.png
+[19:55:53] [SUCCESS] 
+Results saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_54_directional_dmu.json
+[19:55:53] [SUCCESS] step_54 completed in 233.4s
+[19:55:53] [INFO] 
+[19:55:53] [INFO] ================================================================================
+[19:55:53] [INFO]    Starting step_55: Directional Pantheon+ hemisphere split: CMB-dipole-aligned Hubble residuals
+[19:55:53] [INFO] ================================================================================
+[19:55:53] [INFO] 

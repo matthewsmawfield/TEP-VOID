@@ -3,16 +3,16 @@
 TEP-VOID Analysis Pipeline Master Script
 ========================================
 Orchestrates the analysis pipeline for Paper 31: "Cosmological Voids vs
-Isochrony Violation: Differentiating Kinematic Outflows from Proper-Time
-Bias in the Local Distance Ladder".
+Temporal Shear: An Empirical Falsification of Kinematic Hubble Tension
+Solutions".
 
 This paper's unique contribution is a head-to-head falsification of the
-KBC void/MOND model against the TEP isochrony-violation framework.  The
+KBC void/MOND model against the TEP temporal-shear framework.  The
 pipeline tests four discriminating observables where the two models make
 mutually exclusive predictions, plus a forward-looking survey design.
-Three of the four are independent direct falsification tests; the fourth
-quantifies how the indicator divergence propagates into the peculiar
-velocity field.
+The primary falsification is the H0(z) redshift-profile test against
+Pantheon+; the auxiliary channels (indicator divergence, host-potential
+scaling, single-galaxy radial gradients) are supporting diagnostics.
 
 Pipeline Blocks:
   Block 0 (Steps 00-03): Data Ingestion
@@ -45,6 +45,19 @@ Pipeline Blocks:
     - Head-to-head falsification summary: void vs TEP
     - Manuscript figure generation
 
+  Block IV (Steps 32c, 44-52): Auxiliary TEP Supporting Tests
+    - Free-parameter void fits, H0 vs potential, X_i-step, band dependence
+    - JWST matched sample, Bayesian band analysis, eta_P derivation
+
+  Block V (Steps 53-58, 70-73): Bulk-Flow Estimator Audit & Radial Discriminators
+    - Directional Δμ sample and analysis (CMB correlation is a confound)
+    - Gate D: Cartesian dipole rebuild with Freedman-Lane permutations
+    - Gate F: dual-calibration TF — H0-invariant estimator gives ΔB = 0.0
+    - Mount Wilson Equivalence Theorem (step 70)
+    - X_i disformal channel (step 71)
+    - H0(z) falsification with full Pantheon+ covariance (step 72)
+    - Low-z radial discriminator audit (step 73)
+
 Note: Single-galaxy radial gradients (M31, LMC) and the full distance-ladder
 H0 unification are published in the companion paper TEP-H0 (Paper 11,
 DOI: 10.5281/zenodo.18209702) and are not duplicated here.
@@ -75,6 +88,8 @@ PIPELINE = [
     # Block 0: Data Ingestion
     ("0", 0, "scripts.steps.step_00_data_ingestion", "Step00DataIngestion",
      "Data ingestion: SH0ES Cepheid + CCHP TRGB host samples"),
+    ("0", "00b", "scripts.steps.step_00b_external_data", "Step00bExternalData",
+     "External data download: all datasets with SHA-256 checksums + provenance manifest"),
     ("0", 1, "scripts.steps.step_01_host_potential_catalog", "Step01HostPotentialCatalog",
      "Host galaxy gravitational potential catalog"),
     ("0", 2, "scripts.steps.step_02_cosmicflows_ingestion", "Step02CosmicflowsIngestion",
@@ -121,6 +136,60 @@ PIPELINE = [
      "Head-to-head falsification summary: void vs TEP"),
     ("III", 43, "scripts.steps.step_43_manuscript_figures", "Step43ManuscriptFigures",
      "Manuscript figure generation from all results"),
+
+    # Block IV: Auxiliary TEP Supporting Tests (steps 32c, 44-52)
+    # These steps are cited in the manuscript (Sections 5, 9, 10) and are
+    # registered here so the full pipeline reproduces every cited number.
+    ("IV", "32c", "scripts.steps.step_32c_free_param_native", "Step32cFreeParamNative",
+     "Free-parameter void family fits in native mu-space (Table 5): void collapses to flat"),
+    ("IV", 44, "scripts.steps.step_44_h0_vs_potential", "Step44H0VsPotential",
+     "H0 vs calibrator-population potential depth (JAGB/TRGB/Cepheids/SBF ordering)"),
+    ("IV", 45, "scripts.steps.step_45_xi_step", "Step45XiStep",
+     "X_i-step in Pantheon+ Hubble residuals (TF + measured V_rot, screened)"),
+    ("IV", 46, "scripts.steps.step_46_anchor_sensitivity", "Step46AnchorSensitivity",
+     "Anchor sensitivity: Cepheid channel bound under anchor variations"),
+    ("IV", 47, "scripts.steps.step_47_measured_vrot_analysis", "MeasuredVrotAnalysis",
+     "Measured V_rot analysis: Vizier/HyperLEDA rotation velocities for Pantheon+ hosts"),
+    ("IV", 48, "scripts.steps.step_48_xi_step_measured_vrot", "MeasuredVrotXiStep",
+     "X_i-step with measured V_rot from HyperLEDA (full sample + measured subsample)"),
+    ("IV", 49, "scripts.steps.step_49_band_dependence", "Step49BandDependence",
+     "Band-dependence: optical vs NIR Cepheid offset vs X_i (MF2023 + KP/R22 cross-team)"),
+    ("IV", 50, "scripts.steps.step_50_jwst_matched", "Step50JWSTMatched",
+     "JWST matched Cepheid/TRGB sample (GO-1995, GO-1685, GO-2875)"),
+    ("IV", 51, "scripts.steps.step_51_band_bayesian", "Step51BandBayesian",
+     "Bayesian hierarchical analysis of band-dependence (MCMC + bootstrap)"),
+    ("IV", 52, "scripts.steps.step_52_eta_p_derivation", "Step52EtaP",
+     "Derivation of stellar-pulsation response coefficient eta_P"),
+
+    # Block V: Bulk-Flow Estimator Audit & Radial Discriminators
+    ("V", 53, "scripts.steps.step_53_directional_sample", "Step53DirectionalSample",
+     "Directional Cepheid-TRGB sample compilation (download + cross-match + X_i + cmb_dot)"),
+    ("V", 54, "scripts.steps.step_54_directional_dmu", "Step54DirectionalDmu",
+     "Directional Δμ analysis: CMB correlation absorbed by X_i and R22 provenance"),
+    ("V", 55, "scripts.steps.step_55_directional_pantheon", "Step55DirectionalPantheon",
+     "Directional Pantheon+ hemisphere split: CMB-dipole-aligned Hubble residuals"),
+    ("V", 56, "scripts.steps.step_56_vrot4_r2", "Step56Vrot4R2",
+     "2D geometric prediction: V_rot^4/R^2 vs V_rot^2 for Cepheid distance offset"),
+    ("V", 57, "scripts.steps.step_57_differential_dipole", None,
+     "Gate D: Cartesian dipole rebuild with Freedman-Lane permutations (directional signal not robust)"),
+    ("V", 58, "scripts.steps.step_58_dual_calibration_tf", None,
+     "Gate F: dual-calibration TF experiment — H0-invariant log-distance estimator gives ΔB = 0.0 km/s"),
+    ("V", 63, "scripts.steps.step_63_raw_sn_temporal_audit", None,
+     "Gate G: raw SN temporal audit — pre-standardization magnitude residuals vs SALT3-standardized residuals"),
+    ("V", 64, "scripts.steps.step_64_mechanism_resolved_audit", None,
+     "Mechanism-resolved audit — simultaneous decomposition of temporal and kinematic dipole channels"),
+    ("V", 65, "scripts.steps.step_65_finite_coherence_audit", None,
+     "Finite-coherence kernel audit — grid search over L_T on Pantheon+ raw magnitude residuals"),
+    ("V", 66, "scripts.steps.step_66_cross_dataset_coherence_audit", None,
+     "Cross-dataset coherence audit — continuous L_T optimization on Pantheon+ and zero-parameter CF4 cross-prediction"),
+    ("V", 70, "scripts.steps.step_70_pantheon_full_discriminator", "Step70PantheonFullDiscriminator",
+     "Mount Wilson Equivalence Theorem: global temporal dipole is indistinguishable from kinematic bulk flow in SNe"),
+    ("V", 71, "scripts.steps.step_71_xi_disformal_channel", "Step71XiDisformalChannel",
+     "X_i disformal channel: local TEP signal in Pantheon+ SN stretch and Hubble residuals"),
+    ("V", 72, "scripts.steps.step_72_h0z_falsification", "Step72H0zFalsification",
+     "H0(z) falsification: KBC/MOND gradual decay vs TEP flat profile with full Pantheon+ likelihood"),
+    ("V", 73, "scripts.steps.step_73_pantheon_radial_discriminator", "Step73PantheonRadialDiscriminator",
+     "Pantheon+ low-z radial discriminator audit: zCMB/zHD × CMB/CF4 axis sensitivity test"),
 ]
 
 
@@ -144,9 +213,14 @@ def run_step(block, step_num, module_name, class_name, description, master_logge
         # Dynamically import the step module
         import importlib
         module = importlib.import_module(module_name)
-        step_class = getattr(module, class_name)
-        step_instance = step_class()
-        step_instance.run()
+        if class_name and hasattr(module, class_name):
+            step_class = getattr(module, class_name)
+            step_instance = step_class()
+            step_instance.run()
+        elif hasattr(module, "run"):
+            module.run()
+        else:
+            raise AttributeError(f"Module {module_name} has neither class '{class_name}' nor function 'run'")
 
         elapsed = time.time() - start_time
         print_status(f"{step_id} completed in {elapsed:.1f}s", "SUCCESS")
@@ -174,7 +248,7 @@ def main():
     )
     parser.add_argument(
         "--block",
-        choices=["0", "I", "II", "III"],
+        choices=["0", "I", "II", "III", "IV", "V"],
         help="Run only a specific block",
     )
     parser.add_argument(

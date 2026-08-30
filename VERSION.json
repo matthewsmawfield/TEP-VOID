@@ -1,11 +1,11 @@
 {
-  "version": "0.1",
+  "version": "0.2",
   "codename": "Valencia",
   "first_published": "2026-08-29",
-  "last_updated": "2026-08-29",
-  "doi": "10.5281/zenodo.22150140",
+  "last_updated": "2026-08-30",
+  "doi": "10.5281/zenodo.22150139",
   "status": "Preprint (Draft)",
   "description": "Paper 31: Cosmological Voids vs Temporal Shear — falsification of the KBC void/MOND model and two-channel TEP calibration analysis using Pantheon+ (1,701 SNe, full 1701x1701 STAT+SYS covariance), CosmicFlows-4 (38,053 galaxy groups), and the matched Cepheid-TRGB host sample.",
-  "previous_version": "",
+  "previous_version": "0.1",
   "paper": "31"
 }

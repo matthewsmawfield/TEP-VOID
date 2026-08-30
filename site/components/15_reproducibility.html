@@ -22,10 +22,11 @@
         each manuscript section. These are the only files that should
         be edited; all other formats are auto-generated.</li>
     <li><em>scripts/steps/</em>—Reproducible analysis pipeline
-        with 21 active step scripts organized into four blocks
+        with 46 registered step scripts organized into six blocks
         (data ingestion, indicator divergence and void
-        falsification, void boundary test, and TEP reconstruction
-        / synthesis).</li>
+        falsification, void boundary test, TEP reconstruction
+        / synthesis, auxiliary TEP supporting tests, and bulk-flow
+        estimator audit / radial discriminators).</li>
     <li><em>core/</em>—Shared TEP framework Python
         modules (scalar field, conformal scaling, screening,
         cosmology, constants).</li>
@@ -46,7 +47,7 @@
 python3 scripts/run_pipeline.py</code></pre>
 
 <p>
-    This executes all 21 active step scripts in sequence, populating
+    This executes all 46 registered step scripts in sequence, populating
     <code>results/figures/</code> and <code>results/outputs/</code>
     with fresh data. Individual blocks or steps can be run
     selectively:
@@ -56,9 +57,9 @@ python3 scripts/run_pipeline.py</code></pre>
 python3 scripts/run_pipeline.py --step 40       # Single step only</code></pre>
 
 <p>
-    The pipeline is fully implemented and all 21 steps run successfully
-    against real published data. The pipeline structure, data sources,
-    and analysis methodology are documented in
+    The pipeline is fully implemented and all 46 registered steps run
+    successfully against real published data. The pipeline structure,
+    data sources, and analysis methodology are documented in
     <code>scripts/README.md</code>.
 </p>
 
@@ -75,7 +76,7 @@ npm run build</code></pre>
 <p>
     This generates the static site in <code>site/dist/</code> and the
     markdown version at the repository root
-    (<code>31-TEP-VOID-v0.1-Valencia.md</code>). A PDF can be
+    (<code>31-TEP-VOID-v0.2-Valencia.md</code>). A PDF can be
     generated from the built site:
 </p>
 
@@ -156,9 +157,9 @@ npm run build</code></pre>
                   Hubble Tension Solutions},
   author       = {Smawfield, Matthew Lukin},
   year         = {2026},
-  doi          = {10.5281/zenodo.22150140},
-  url          = {https://doi.org/10.5281/zenodo.22150140},
-  note         = {Preprint, Version v0.1 (Valencia)}
+  doi          = {10.5281/zenodo.22150139},
+  url          = {https://doi.org/10.5281/zenodo.22150139},
+  note         = {Preprint, Version v0.2 (Valencia)}
 }</code></pre>
 
 <h3>Contact</h3>

@@ -174,7 +174,7 @@ async function buildStaticSite() {
         
         console.log('✅ Static site built successfully!');
         console.log(`📁 Output: ${outputPath}`);
-        console.log('📄 Markdown: 31-TEP-VOID-v0.1-Valencia.md (in root)');
+        console.log('📄 Markdown: 31-TEP-VOID-v0.2-Valencia.md (in root)');
         console.log(`📊 Generated ${manifest.sections.length} sections (TEP-VOID)`);
         console.log('🚀 TEP-VOID ready for deployment');
         

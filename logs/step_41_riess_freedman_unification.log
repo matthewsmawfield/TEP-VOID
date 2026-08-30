@@ -1,26 +1,26 @@
-[10:02:55] [INFO] 
-[10:02:55] [INFO] ================================================================================
-[10:02:55] [INFO]    Step 41: Riess–Freedman Unification Under TEP
-[10:02:55] [INFO] ================================================================================
-[10:02:55] [INFO] 
-[10:02:55] [PROCESS] This step addresses whether the Hubble tension between the SH0ES Cepheid, CCHP TRGB/JAGB, and Planck CMB H0 measurements can be resolved under the TEP framework. The TEP temporal shear effect compresses Cepheid distances in massive host potentials, inflating the Cepheid-based H0. After applying the TEP correction, the Cepheid H0 is expected to converge to both the TRGB and CMB values, unifying all three distance scales.
-[10:02:55] [PROCESS] Computing tension statistics...
-[10:02:55] [PROCESS] Methodology: Published H0 values from SH0ES (Cepheid), CCHP (TRGB and JAGB), and Planck (CMB) are compared before and after applying the TEP magnitude correction to the Cepheid distance scale. Tension is quantified as the difference in H0 divided by the quadrature-combined uncertainty, expressed in sigma units.
-[10:02:55] [TEST]   Before TEP: Cepheid vs CMB = 5.64 km/s/Mpc (4.9sigma)
-[10:02:55] [TEST]   Before TEP: Cepheid vs TRGB = 4.23 km/s/Mpc (2.6sigma)
-[10:02:55] [TEST]   Before TEP: TRGB vs CMB = 1.41 km/s/Mpc (1.0sigma)
-[10:02:55] [TEST]   After TEP: Corrected Cepheid vs CMB = -0.75 km/s/Mpc (-0.5sigma)
-[10:02:55] [TEST]   After TEP: Corrected Cepheid vs TRGB = -2.16 km/s/Mpc (-1.1sigma)
-[10:02:55] [SUCCESS]   Tension reduction (vs CMB): 5.3sigma -> -0.5sigma
-[10:02:55] [SUCCESS]   Tension reduction (vs TRGB): 3.6sigma -> -1.1sigma
-[10:02:55] [SUCCESS] After TEP correction, the Cepheid vs CMB tension is reduced from 4.9 to -0.5 sigma, and the Cepheid vs TRGB tension from 2.6 to -1.1 sigma. This indicates that the TEP temporal shear correction accounts for the bulk of the Hubble tension.
-[10:02:55] [PROCESS] Computing three-way unification significance...
-[10:02:55] [PROCESS] Methodology: An inverse-variance weighted mean of the TEP-corrected Cepheid, TRGB, and CMB H0 values is computed. A chi-squared consistency test (dof = 2) quantifies whether the three measurements are statistically compatible after TEP correction. The same test is repeated on the uncorrected values for comparison.
-[10:02:55] [TEST]   Weighted mean H0 (unified) = 67.51 +/- 0.45 km/s/Mpc
-[10:02:55] [TEST]   Chi2/dof = 1.39/2 (p = 0.498)
-[10:02:55] [TEST]   Before TEP: Chi2/dof = 23.96/2 (p = 0.0000)
-[10:02:55] [SUCCESS] After TEP correction, the three-way chi-squared drops from 23.96 to 1.39 (dof=2), with p = 0.498. The corrected Cepheid, TRGB, and CMB H0 values are statistically consistent, confirming the TEP unification prediction.
-[10:02:55] [PROCESS] Generating H0 unification figure...
-[10:02:56] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_41_h0_unification.png
-[10:02:56] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_41_riess_freedman_unification.json
-[10:02:56] [SUCCESS] Step 41 complete
+[19:57:11] [INFO] 
+[19:57:11] [INFO] ================================================================================
+[19:57:11] [INFO]    Step 41: Riess–Freedman Unification Under TEP
+[19:57:11] [INFO] ================================================================================
+[19:57:11] [INFO] 
+[19:57:11] [PROCESS] This step addresses whether the Hubble tension between the SH0ES Cepheid, CCHP TRGB/JAGB, and Planck CMB H0 measurements can be resolved under the TEP framework. The TEP temporal shear effect compresses Cepheid distances in massive host potentials, inflating the Cepheid-based H0. After applying the TEP correction, the Cepheid H0 is expected to converge to both the TRGB and CMB values, unifying all three distance scales.
+[19:57:11] [PROCESS] Computing tension statistics...
+[19:57:11] [PROCESS] Methodology: Published H0 values from SH0ES (Cepheid), CCHP (TRGB and JAGB), and Planck (CMB) are compared before and after applying the TEP magnitude correction to the Cepheid distance scale. Tension is quantified as the difference in H0 divided by the quadrature-combined uncertainty, expressed in sigma units.
+[19:57:11] [TEST]   Before TEP: Cepheid vs CMB = 5.64 km/s/Mpc (4.9sigma)
+[19:57:11] [TEST]   Before TEP: Cepheid vs TRGB = 4.23 km/s/Mpc (2.0sigma)
+[19:57:11] [TEST]   Before TEP: TRGB vs CMB = 1.41 km/s/Mpc (0.8sigma)
+[19:57:11] [TEST]   After TEP: Corrected Cepheid vs CMB = -0.75 km/s/Mpc (-0.5sigma)
+[19:57:11] [TEST]   After TEP: Corrected Cepheid vs TRGB = -2.16 km/s/Mpc (-0.9sigma)
+[19:57:11] [SUCCESS]   Tension reduction (vs CMB): 4.9sigma -> -0.5sigma (reduction 5.3sigma)
+[19:57:11] [SUCCESS]   Tension reduction (vs TRGB): 2.0sigma -> -0.9sigma (reduction 2.9sigma)
+[19:57:11] [SUCCESS] After TEP correction, the Cepheid vs CMB tension is reduced from 4.9 to -0.5 sigma, and the Cepheid vs TRGB tension from 2.0 to -0.9 sigma. This indicates that the TEP temporal shear correction accounts for the bulk of the Hubble tension.
+[19:57:11] [PROCESS] Computing three-way unification significance...
+[19:57:11] [PROCESS] Methodology: An inverse-variance weighted mean of the TEP-corrected Cepheid, TRGB, and CMB H0 values is computed. A chi-squared consistency test (dof = 2) quantifies whether the three measurements are statistically compatible after TEP correction. The same test is repeated on the uncorrected values for comparison.
+[19:57:11] [TEST]   Weighted mean H0 (unified) = 67.43 +/- 0.46 km/s/Mpc
+[19:57:11] [TEST]   Chi2/dof = 0.84/2 (p = 0.656)
+[19:57:11] [TEST]   Before TEP: Chi2/dof = 23.92/2 (p = 0.0000)
+[19:57:11] [SUCCESS] After TEP correction, the three-way chi-squared drops from 23.92 to 0.84 (dof=2), with p = 0.656. The corrected Cepheid, TRGB, and CMB H0 values are statistically consistent, confirming the TEP unification prediction.
+[19:57:11] [PROCESS] Generating H0 unification figure...
+[19:57:12] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_41_h0_unification.png
+[19:57:12] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_41_riess_freedman_unification.json
+[19:57:12] [SUCCESS] Step 41 complete

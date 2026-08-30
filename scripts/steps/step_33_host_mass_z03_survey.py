@@ -40,7 +40,7 @@ class Step33HostMassZ03Survey:
     """Step 33: Survey design for SNe Ia in massive ellipticals at z > 0.3."""
 
     # TEP parameters
-    KAPPA_CEP = 0.040  # TEP shear coupling constant
+    KAPPA_SHEAR = 0.040  # dimensionless TEP shear coupling (not kappa_Cep in mag)
     H0_CMB = 67.4  # km/s/Mpc
     OMEGA_M = 0.302
     C_KMS = 299792.458
@@ -113,17 +113,17 @@ class Step33HostMassZ03Survey:
         massive_factor = 1.0
 
         # Distance modulus shift: Delta_mu = 5/ln(10) * kappa * <X_i>(z) * massive_factor
-        delta_mu = (5.0 / np.log(10.0)) * self.KAPPA_CEP * x_i * massive_factor
+        delta_mu = (5.0 / np.log(10.0)) * self.KAPPA_SHEAR * x_i * massive_factor
 
         # At z = 0.3
         z_03 = 0.30
         x_i_03 = 1.0 / (1.0 + z_03) ** 0.3
-        delta_mu_03 = (5.0 / np.log(10.0)) * self.KAPPA_CEP * x_i_03 * massive_factor
+        delta_mu_03 = (5.0 / np.log(10.0)) * self.KAPPA_SHEAR * x_i_03 * massive_factor
 
         # At z = 0.4 (typical survey center)
         z_04 = 0.40
         x_i_04 = 1.0 / (1.0 + z_04) ** 0.3
-        delta_mu_04 = (5.0 / np.log(10.0)) * self.KAPPA_CEP * x_i_04 * massive_factor
+        delta_mu_04 = (5.0 / np.log(10.0)) * self.KAPPA_SHEAR * x_i_04 * massive_factor
 
         print_status(f"  Delta_mu at z=0.30: {delta_mu_03:.4f} mag", "TEST")
         print_status(f"  Delta_mu at z=0.40: {delta_mu_04:.4f} mag", "TEST")
@@ -261,7 +261,7 @@ class Step33HostMassZ03Survey:
         # Compute expected Delta_mu
         print_status(
             "Methodology: Delta_mu is computed as (5/ln10) * kappa_CEP * "
-            f"<X_i>(z) * massive_factor with kappa_CEP = {self.KAPPA_CEP} "
+            f"<X_i>(z) * massive_factor with kappa_shear = {self.KAPPA_SHEAR} "
             f"and <X_i>(z) = (1+z)^-0.3, evaluated over z = {self.Z_MIN} "
             f"to {self.Z_MAX}. A massive_factor of 1.0 is applied for "
             "elliptical hosts with deep gravitational potentials, "
@@ -318,7 +318,7 @@ class Step33HostMassZ03Survey:
             "step": "33_host_mass_z03_survey",
             "description": "Forward-looking survey design for SNe Ia in massive ellipticals at z > 0.3",
             "tep_parameters": {
-                "kappa_ceph": self.KAPPA_CEP,
+                "kappa_shear": self.KAPPA_SHEAR,
                 "h0_cmb": self.H0_CMB,
             },
             "expected_delta_mu": delta_mu_info,

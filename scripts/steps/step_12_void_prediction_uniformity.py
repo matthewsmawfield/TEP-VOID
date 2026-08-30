@@ -139,10 +139,10 @@ class Step12VoidUniformity:
         print_status(f"  Weighted signif: {weighted_sigma:.2f} sigma", "TEST")
 
         # --- TEP model comparison ---
-        # Under TEP, Delta_mu = kappa * sigma_v.  The TEP model has 1 free
-        # parameter (kappa), so the chi-squared under TEP would be lower.
-        # We report the void chi-squared and the improvement that any
-        # non-zero model would provide.
+        # Under TEP, Delta_mu = kappa_Cep * X_i, where X_i = (sigma_v^2 - U_ref) / c^2.
+        # The TEP model has 1 free parameter (kappa_Cep), so the chi-squared
+        # under TEP would be lower. We report the void chi-squared and the
+        # improvement that any non-zero model would provide.
 
         results = {
             "n_hosts": n,
@@ -171,7 +171,7 @@ class Step12VoidUniformity:
                 "significance_sigma": weighted_sigma,
             },
             "tep_prediction": {
-                "prediction": "Delta_mu = kappa * sigma_v (non-zero, potential-dependent)",
+                "prediction": "Delta_mu = kappa_Cep * X_i (non-zero, potential-dependent)",
                 "description": "TEP predicts a non-zero, potential-dependent divergence",
                 "free_parameters": 1,
             },
@@ -271,7 +271,7 @@ class Step12VoidUniformity:
                 "falsification verdict for the void null hypothesis."
             ),
             "tep_prediction": (
-                "Non-zero, potential-dependent divergence (Delta_mu = kappa * sigma_v) "
+                "Non-zero, potential-dependent divergence (Delta_mu = kappa_Cep * X_i) "
                 "is expected; the void null hypothesis is not a prediction of TEP and "
                 "its rejection is consistent with the TEP framework."
             ),

@@ -2,43 +2,66 @@
   "step": "11_indicator_divergence_vs_potential",
   "description": "Test whether Cepheid-TRGB divergence scales with host gravitational potential",
   "delta_mu_definition": "Delta_mu = mu_Cepheid - mu_TRGB",
-  "model": "Delta_mu = kappa * sigma_v + intercept",
-  "methodology": "Pearson and Spearman rank correlations plus an inverse-variance weighted linear regression of Delta_mu on host velocity dispersion sigma_v. The slope kappa and its significance (kappa / kappa_err) serve as the primary discriminant between TEP (kappa non-zero) and void (kappa = 0) predictions.",
+  "model": "Delta_mu = -kappa * X_i + intercept, where X_i = (sigma_v^2 - U_ref) / c^2",
+  "methodology": "Pearson and Spearman rank correlations plus an inverse-variance weighted linear regression of Delta_mu on the TEP potential coordinate X_i = (sigma_v^2 - U_ref) / c^2. The slope kappa and its significance (kappa / kappa_err) serve as the primary discriminant between TEP (kappa non-zero, negative) and void (kappa = 0) predictions. A legacy fit on sigma_v (linear) is retained for comparison.",
   "provenance": {
     "data_sources": [
       "step_10 per-galaxy Delta_mu results",
       "step_00 matched_hosts.csv interim catalog",
       "step_01 host_potential_catalog.csv interim catalog",
-      "HyperLEDA (Makarov et al. 2014) velocity dispersions"
+      "HyperLEDA (Makarov et al. 2014) velocity dispersions",
+      "TEP-H0 Step 03 screening factors (Tully 2015 group catalog)"
     ],
     "pipeline_block": "Ia \u2014 Indicator Divergence"
   },
-  "scientific_context": "Does the Cepheid-TRGB distance divergence scale with host gravitational potential depth? TEP predicts a non-zero coupling kappa; the void model predicts kappa = 0.",
-  "tep_prediction": "Non-zero kappa: Delta_mu scales with sigma_v, reflecting indicator-dependent clock-rate responses to the local gravitational potential.",
+  "scientific_context": "Does the Cepheid-TRGB distance divergence scale with host gravitational potential depth? TEP predicts a non-zero negative coupling kappa (Delta_mu = -kappa_Cep * X_i); the void model predicts kappa = 0.",
+  "tep_prediction": "Non-zero negative kappa: Delta_mu scales with X_i, reflecting indicator-dependent clock-rate responses to the local gravitational potential. Deeper potentials (higher X_i) yield more negative Delta_mu.",
   "void_prediction": "kappa = 0: no potential-dependent divergence, since distances are indicator-independent in the kinematic void model.",
   "downstream_consumers": [
     "step_12_void_prediction_uniformity"
   ],
   "results": {
     "n_hosts": 18,
-    "pearson_r": 0.1484857530279467,
-    "pearson_p": 0.5565185705734419,
-    "spearman_rho": -0.25902992776057787,
-    "spearman_p": 0.2993048420526306,
+    "pearson_r": 0.018747361327993234,
+    "pearson_p": 0.941142383467314,
+    "spearman_rho": -0.08152734778121776,
+    "spearman_p": 0.7477594697936525,
+    "unscreened_pearson_r": 0.037224741479134765,
+    "unscreened_pearson_p": 0.8834137491121741,
     "linear_fit": {
+      "kappa": -101366.00387997508,
+      "kappa_err": 378690.3579003118,
+      "kappa_significance_sigma": 0.26767516459095886,
+      "intercept": 0.00535648834181521,
+      "intercept_err": 0.0349157258540892,
+      "r_squared": -0.00931193520830531,
+      "chi2": 12.260033176106738,
+      "chi2_reduced": 0.7662520735066711,
+      "dof": 16,
+      "coordinate": "screened",
+      "description": "Primary fit on screened X_i = (S_total * sigma_v^2 - U_ref_screened) / c^2"
+    },
+    "unscreened_fit": {
+      "kappa": -117173.11014740726,
+      "kappa_err": 287454.7162274981,
+      "kappa_significance_sigma": 0.40762284816601807,
+      "intercept": 0.003637601268814315,
+      "intercept_err": 0.023546179737130794,
+      "description": "Diagnostic fit on unscreened X_i = (sigma_v^2 - U_ref_unscreened) / c^2"
+    },
+    "legacy_sigma_v_fit": {
       "kappa": -0.00011776945665955753,
       "kappa_err": 0.0006540122186237539,
       "kappa_significance_sigma": 0.18007225752965483,
       "intercept": 0.010052136288552947,
       "intercept_err": 0.07300838300655361,
-      "r_squared": -0.02018415942615226,
-      "chi2": 12.299257151913707,
-      "chi2_reduced": 0.7687035719946067,
-      "dof": 16
+      "note": "Legacy fit on sigma_v (linear), not the correct TEP coordinate X_i (quadratic in sigma_v). Kept for comparison only."
     },
     "tep_prediction": {
       "kappa_nonzero": true,
-      "description": "TEP predicts non-zero kappa: divergence scales with potential"
+      "kappa_default": -365000.0,
+      "kappa_wls": -452000.0,
+      "description": "TEP predicts delta_mu = -kappa_Cep * X_i with negative slope"
     },
     "void_prediction": {
       "kappa": 0.0,
@@ -50,115 +73,169 @@
       "galaxy": "NGC 1015",
       "delta_mu": -0.0122519181936766,
       "delta_mu_err": 0.0849070956991837,
-      "sigma_v": 85.347788
+      "sigma_v": 85.347788,
+      "X_i": -3.4880723463275607e-09,
+      "X_i_screened": 6.579810635021692e-08,
+      "S_total": 0.939605410141616
     },
     {
       "galaxy": "NGC 1309",
       "delta_mu": -0.0110363907646515,
       "delta_mu_err": 0.0711917306954648,
-      "sigma_v": 114.622009
+      "sigma_v": 114.622009,
+      "X_i": 6.164601721664734e-08,
+      "X_i_screened": 1.2657471319890033e-07,
+      "S_total": 0.9367067264459408
     },
     {
       "galaxy": "NGC 1365",
       "delta_mu": -0.0345845646957485,
       "delta_mu_err": 0.0640806382485477,
-      "sigma_v": 140.219275
+      "sigma_v": 140.219275,
+      "X_i": 1.3422685222777719e-07,
+      "X_i_screened": 1.7924541334293046e-08,
+      "S_total": 0.1292709906890823
     },
     {
       "galaxy": "NGC 1448",
       "delta_mu": -0.0248865971734844,
       "delta_mu_err": 0.0536332862148195,
-      "sigma_v": 130.885465
+      "sigma_v": 130.885465,
+      "X_i": 1.0607190866666322e-07,
+      "X_i_screened": 1.3770043333643149e-07,
+      "S_total": 0.7767538942827101
     },
     {
       "galaxy": "NGC 1559",
       "delta_mu": 0.0207827220436875,
       "delta_mu_err": 0.0653146700163979,
-      "sigma_v": 94.964441
+      "sigma_v": 94.964441,
+      "X_i": 1.5805281160537776e-08,
+      "X_i_screened": 7.997763647347987e-08,
+      "S_total": 0.9002537074957508
     },
     {
       "galaxy": "NGC 2442",
       "delta_mu": 0.0152294026004433,
       "delta_mu_err": 0.074061926408601,
-      "sigma_v": 160.301107
+      "sigma_v": 160.301107,
+      "X_i": 2.0137528115123435e-07,
+      "X_i_screened": 2.5838069387071523e-09,
+      "S_total": 0.0452552109827608
     },
     {
       "galaxy": "NGC 3021",
       "delta_mu": -0.0284217491060729,
       "delta_mu_err": 0.1087897598555941,
-      "sigma_v": 96.661497
+      "sigma_v": 96.661497,
+      "X_i": 1.9423618562449517e-08,
+      "X_i_screened": 6.163692930739101e-08,
+      "S_total": 0.6924991787360747
     },
     {
       "galaxy": "NGC 3370",
       "delta_mu": 0.0524967943258474,
       "delta_mu_err": 0.0606838421967683,
-      "sigma_v": 105.641753
+      "sigma_v": 105.641753,
+      "X_i": 3.9637521276038155e-08,
+      "X_i_screened": 1.0584463240876651e-07,
+      "S_total": 0.9357840305883782
     },
     {
       "galaxy": "NGC 3972",
       "delta_mu": 0.107206094762283,
       "delta_mu_err": 0.0841010287177304,
-      "sigma_v": 77.781746
+      "sigma_v": 77.781746,
+      "X_i": -1.722089898126427e-08,
+      "X_i_screened": -4.002130479197233e-09,
+      "S_total": 0.0943774377791773
     },
     {
       "galaxy": "NGC 4038",
       "delta_mu": 0.0238334076629378,
       "delta_mu_err": 0.0943919868905036,
-      "sigma_v": 119.571757
+      "sigma_v": 119.571757,
+      "X_i": 7.454385805579778e-08,
+      "X_i_screened": 1.3787329480355312e-07,
+      "S_total": 0.9317852262889048
     },
     {
       "galaxy": "NGC 4424",
       "delta_mu": -0.2161136816354272,
       "delta_mu_err": 0.1190445339815582,
-      "sigma_v": 20.223254
+      "sigma_v": 20.223254,
+      "X_i": -7.998571126739031e-08,
+      "X_i_screened": -1.02321765522974e-08,
+      "S_total": 0.0270303739152203
     },
     {
       "galaxy": "NGC 4536",
       "delta_mu": -0.1245036022215302,
       "delta_mu_err": 0.0624633914316627,
-      "sigma_v": 110.096526
+      "sigma_v": 110.096526,
+      "X_i": 5.033081220879724e-08,
+      "X_i_screened": 9.080902213475338e-08,
+      "S_total": 0.7501032206681933
     },
     {
       "galaxy": "NGC 4639",
       "delta_mu": -0.0126149927308496,
       "delta_mu_err": 0.0871306727950061,
-      "sigma_v": 117.309015
+      "sigma_v": 117.309015,
+      "X_i": 6.8580052956503e-08,
+      "X_i_screened": 1.2268727116976102e-07,
+      "S_total": 0.8688981307981486
     },
     {
       "galaxy": "NGC 5584",
       "delta_mu": 0.0455394863604894,
       "delta_mu_err": 0.0604892929519202,
-      "sigma_v": 88.176216
+      "sigma_v": 88.176216,
+      "X_i": 1.972815815402112e-09,
+      "X_i_screened": 6.991585729309334e-08,
+      "S_total": 0.9278918472664228
     },
     {
       "galaxy": "NGC 5643",
       "delta_mu": 0.0284086285545477,
       "delta_mu_err": 0.0655175205324215,
-      "sigma_v": 121.056681
+      "sigma_v": 121.056681,
+      "X_i": 7.851952296568914e-08,
+      "X_i_screened": 1.1308232237483205e-07,
+      "S_total": 0.7570263589915945
     },
     {
       "galaxy": "NGC 5861",
       "delta_mu": -0.0547931820806937,
       "delta_mu_err": 0.0965431052391899,
-      "sigma_v": 112.076425
+      "sigma_v": 112.076425,
+      "X_i": 5.52251373144416e-08,
+      "X_i_screened": 1.0752303262787909e-07,
+      "S_total": 0.8434248728027163
     },
     {
       "galaxy": "NGC 5917",
       "delta_mu": 0.0368954147656808,
       "delta_mu_err": 0.0975712451379343,
-      "sigma_v": 65.478088
+      "sigma_v": 65.478088,
+      "X_i": -3.683269142901516e-08,
+      "X_i_screened": 3.120950873089523e-08,
+      "S_total": 0.8713125035997802
     },
     {
       "galaxy": "NGC 7250",
       "delta_mu": 0.0959722374604616,
       "delta_mu_err": 0.1194724396858183,
-      "sigma_v": 50.275292
+      "sigma_v": 50.275292,
+      "X_i": -5.6412829202728004e-08,
+      "X_i_screened": 1.5937050188455403e-08,
+      "S_total": 0.9348880467671816
     }
   ],
   "interpretation": {
-    "tep": "Non-zero kappa indicates potential-dependent divergence, consistent with TEP",
+    "tep": "Non-zero negative kappa indicates potential-dependent divergence, consistent with TEP",
     "void": "Void model predicts kappa = 0 (no potential dependence)",
-    "falsification": "kappa detected at 0.18 sigma; void prediction of kappa = 0 is not definitively falsified at >2 sigma"
+    "falsification": "kappa detected at 0.27 sigma; void prediction of kappa = 0 is not definitively falsified at >2 sigma"
   },
   "output_files": [
     "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_11_indicator_divergence_vs_potential.json",

@@ -83,11 +83,20 @@ class Step20M31RadialGradient:
         # baseline Pan-STARRS delta_W (0.356) used in the manuscript;
         # step_11_m31_radial_suppression.json contains the step-model
         # delta_a (0.312) which is a related but distinct quantity.
+        # The HST PHAT baseline (ΔW = 0.681 ± 0.187, 3.65σ) from
+        # step_26_m31_phat_robustness_summary.json uses the actual HST
+        # J/H photometry of Kodric et al. 2018 with inner/outer cuts
+        # at 5/15 kpc. This is the primary HST PHAT result and is
+        # preferred over the Pan-STARRS footprint-restricted value
+        # (0.630, 3.24σ) because it uses the actual HST photometry
+        # rather than ground-based data restricted to the PHAT
+        # footprint. Both values are retained for cross-validation.
         alternatives = [
             ("step_10_m31_robustness_summary.json", self._parse_m31_robustness_json, "panstarrs"),
             ("step_11_m31_radial_suppression.json", self._parse_m31_radial_suppression, "panstarrs"),
             ("step_10_m31_results.csv", self._parse_m31_results_csv, "panstarrs"),
             ("step_26_m31_phat_robustness_summary.json", self._parse_m31_phat_json, "phat"),
+            ("step_10_m31_robustness_summary.csv", self._parse_m31_phat_footprint_csv, "phat"),
         ]
 
         for filename, parser, key in alternatives:
@@ -283,6 +292,61 @@ class Step20M31RadialGradient:
         return {
             "panstarrs": panstarrs,
             "phat": {},
+            "source_file": path.name,
+            "source_project": "TEP-H0",
+        }
+
+    def _parse_m31_phat_footprint_csv(self, path):
+        """Parse the `phat_footprint_restriction` row from
+        step_10_m31_robustness_summary.csv.
+
+        This is the PHAT spatial-matching value quoted in both the
+        TEP-H0 and TEP-VOID manuscripts (ΔW = 0.630 ± 0.195, 3.24σ).
+        It restricts the Pan-STARRS inner/outer comparison to the PHAT
+        spatial footprint, providing a crowding-controlled measurement
+        that is distinct from the step_26 PHAT-only baseline
+        (0.681 ± 0.187, 3.65σ) which uses a different inner/outer cut.
+        """
+        print_status(f"Parsing {path.name} (phat_footprint_restriction row)...", "PROCESS")
+        import pandas as pd
+        df = pd.read_csv(path)
+        row = df[df["test"].str.lower() == "phat_footprint_restriction"]
+        if row.empty:
+            raise ValueError(
+                f"{path.name} does not contain a 'phat_footprint_restriction' "
+                "row. Cannot extract the PHAT spatial-matching gradient."
+            )
+        row = row.iloc[0]
+        delta_w = float(row["delta_mean"])
+        delta_w_err = float(row["delta_std"])
+        sig = abs(delta_w) / delta_w_err if delta_w_err > 0 else 0.0
+        n_inner = int(row["n_inner"]) if pd.notna(row.get("n_inner")) else None
+        n_outer = int(row["n_outer"]) if pd.notna(row.get("n_outer")) else None
+
+        phat = {
+            "delta_W": delta_w,
+            "delta_W_err": delta_w_err,
+            "significance_sigma": float(sig),
+            "dataset": (
+                "M31 Pan-STARRS restricted to HST PHAT spatial footprint "
+                "(TEP-H0 step_10 robustness, phat_footprint_restriction)"
+            ),
+            "n_inner": n_inner,
+            "n_outer": n_outer,
+            "inner_cut_kpc": None,
+            "outer_cut_kpc": None,
+            "interpretation": "Inner fainter (PHAT footprint restriction)",
+            "conclusion": (
+                "Spatial-matching control: restricting the Pan-STARRS "
+                "inner/outer comparison to the PHAT footprint recovers "
+                "the internal offset at 3.24sigma, matching the value "
+                "quoted in TEP-H0 and TEP-VOID."
+            ),
+        }
+
+        return {
+            "panstarrs": {},
+            "phat": phat,
             "source_file": path.name,
             "source_project": "TEP-H0",
         }

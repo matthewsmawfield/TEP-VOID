@@ -1,0 +1,53 @@
+[19:51:32] [INFO] ============================================================
+[19:51:32] [INFO] Step 48: X_i-step with Measured V_rot
+[19:51:32] [INFO] ============================================================
+[19:51:32] [PROCESS] Loading data...
+[19:51:32] [INFO]   Pantheon+: 1543 unique SNe
+[19:51:34] [INFO]   V_rot catalog (Deep): 174 SNe with measured V_rot
+[19:51:34] [PROCESS] 
+Computing X_i with measured V_rot...
+[19:51:34] [INFO]   SNe with measured V_rot: 174
+[19:51:34] [INFO]   SNe with TF proxy: 1369
+[19:51:34] [INFO]   Hubble-flow SNe (z > 0.01): 1470
+[19:51:34] [INFO]   Hubble-flow with measured V_rot: 123
+[19:51:34] [PROCESS] 
+Running X_i-step test...
+[19:51:34] [INFO]   Hubble residual: MU_SH0ES - mu_ref(zHD) [LCDM, H0=73.04, Omega_m=0.334]
+[19:51:34] [INFO]   HR range: -0.740 to 0.743 mag
+[19:51:34] [TEST]   Full sample:
+[19:51:34] [TEST]     N(X>0)=1349, N(X<=0)=121
+[19:51:34] [TEST]     Step = 22.3 +/- 15.1 mmag (1.47sigma)
+[19:51:34] [TEST]     Direction: TEP-predicted (high-X -> positive HR)
+[19:51:34] [INFO]   WARNING: measured V_rot sample is selection-biased: N_high=117 vs N_low=6 (ratio 19.5:1), median z=0.0203. Results should not be interpreted as a clean TEP test.
+[19:51:34] [INFO]   Measured V_rot only: insufficient data (N_high=117, N_low=6)
+[19:51:34] [TEST]   Measured V_rot (mass-corrected):
+[19:51:34] [TEST]     [Residualized] Step = 164.9 +/- 139.3 mmag (1.18sigma)
+[19:51:34] [TEST]     [Residualized] Mass slope = -7.4 mmag/dex
+[19:51:34] [TEST]     [Joint OLS] X_i coef = 1.315e+05 +/- 1.148e+05 (1.15sigma)
+[19:51:34] [TEST]     [Joint OLS] Condition number = 7083410.5 (COLLINEAR)
+[19:51:34] [INFO]     Note: uncorrected step is primary TEP estimate;
+[19:51:34] [INFO]     mass residualization removes shared TEP signal.
+[19:51:34] [TEST]   Full sample (mass-corrected):
+[19:51:34] [TEST]     [Residualized] Step = 15.2 +/- 15.2 mmag (1.00sigma)
+[19:51:34] [TEST]     [Residualized] Mass slope = 2.4 mmag/dex
+[19:51:34] [TEST]     [Joint OLS] X_i coef = 8.092e+04 +/- 3.751e+04 (2.16sigma)
+[19:51:34] [TEST]     [Joint OLS] Condition number = 9909587.1 (COLLINEAR)
+[19:51:34] [INFO]     Note: uncorrected step is primary TEP estimate;
+[19:51:34] [INFO]     mass residualization removes shared TEP signal.
+[19:51:34] [PROCESS] 
+V_rot^2/r^2 scaling test (DHOST prediction)...
+[19:51:34] [INFO]   Requires Cepheid galactocentric radii — not available
+[19:51:34] [INFO]   in current data. Deferred to future work with JWST
+[19:51:34] [INFO]   Cepheid positions (GO-1995, GO-1685).
+[19:51:34] [INFO] 
+Saved results to results/outputs/step_48_xi_step_measured_vrot.json
+[19:51:34] [INFO] 
+============================================================
+[19:51:34] [INFO] Step 48 complete
+[19:51:34] [INFO] ============================================================
+[19:51:34] [SUCCESS] step_48 completed in 2.2s
+[19:51:34] [INFO] 
+[19:51:34] [INFO] ================================================================================
+[19:51:34] [INFO]    Starting step_49: Band-dependence: optical vs NIR Cepheid offset vs X_i (MF2023 + KP/R22 cross-team)
+[19:51:34] [INFO] ================================================================================
+[19:51:34] [INFO] 

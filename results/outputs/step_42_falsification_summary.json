@@ -20,11 +20,11 @@
       "observable": "Bulk-Flow Calibration Sensitivity",
       "tep_prediction": "Cepheid H0 inflates bulk flow; \u0394v = -3.2\u00b7d km/s from indicator divergence (Observable 1)",
       "void_prediction": "No calibration dependence (bulk flow is gravitational)",
-      "tep_result": "Mean BF reduction: 3.3%, RMS shift: 839 km/s, 89% of galaxies |shift|>200 km/s (N=38053)",
+      "tep_result": "Mean BF reduction: 1.9%, RMS shift: 839 km/s, 89% of galaxies |shift|>200 km/s (N=38053)",
       "void_result": "Void predicts no calibration dependence",
       "tep_favored": true,
       "tep_confirmed": true,
-      "significance": "3.3% BF reduction, 839 km/s RMS",
+      "significance": "1.9% BF reduction, 839 km/s RMS",
       "step": "30+31",
       "test_type": "calibration_sensitivity",
       "note": "This is a quantification of how the indicator divergence (Observable 1) propagates into the peculiar velocity field, not an independent falsification test."

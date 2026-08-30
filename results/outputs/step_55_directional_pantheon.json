@@ -1,0 +1,95 @@
+{
+  "step": "55_directional_pantheon",
+  "description": "Directional Pantheon+ hemisphere split: CMB-dipole-aligned Hubble residuals",
+  "tep_prediction": "If disformal shear is tied to cosmic rest frame, H0 residuals show dipole along CMB axis",
+  "kinematic_prediction": "No directional HR pattern (luminosity distances are direction-independent; void produces monopole)",
+  "n_sne": 1053,
+  "hemisphere_split": {
+    "n_toward": 296,
+    "n_away": 757,
+    "mean_hr_toward": -9.496676172529295e-08,
+    "sem_hr_toward": 0.01129916553368789,
+    "mean_hr_away": -3.165634654200494e-08,
+    "sem_hr_away": 0.007117274615304295,
+    "difference": -6.3310415183288e-08,
+    "difference_err": 0.013353903538191941,
+    "sigma": 4.740966939159121e-06,
+    "permutation_p": 0.61667,
+    "equivalent_dH0_fraction": 1.3747681980552914e-07,
+    "equivalent_dH0_kms": 1.0035807845803627e-05
+  },
+  "directional_correlation": {
+    "n": 1053,
+    "pearson_r": 0.002378832672313113,
+    "pearson_p": 0.9385428371715878,
+    "weighted_r": 0.0013170971735407665,
+    "permutation_p_two_sided": 0.95814,
+    "permutation_p_one_sided": 0.34748
+  },
+  "dipole_fit_3d": {
+    "n": 1053,
+    "dipole_amplitude_mag": 1.8507533639382467e-07,
+    "dipole_ra_deg": 123.61482198140297,
+    "dipole_dec_deg": -64.58317953883703,
+    "dipole_gal_l": 278.2471532650245,
+    "dipole_gal_b": -16.050369662994296,
+    "angular_separation_deg": 65.54472262974903,
+    "equivalent_velocity_kms": 0.02555141376400993,
+    "permutation_p": 0.7921,
+    "permutation_sigma": -0.7378805214188624
+  },
+  "h0_by_hemisphere": {
+    "toward": {
+      "n": 296,
+      "mean_hr": -9.496676172529295e-08,
+      "sem_hr": 0.01129916553368789,
+      "H0": 73.04000319431748,
+      "H0_err": 0.3800605740896402
+    },
+    "away": {
+      "n": 757,
+      "mean_hr": -3.165634654200494e-08,
+      "sem_hr": 0.007117274615304295,
+      "H0": 73.04000106479805,
+      "H0_err": 0.23939780934984678
+    },
+    "all": {
+      "n": 1053,
+      "mean_hr": -4.964034009683383e-08,
+      "sem_hr": 0.0060221540313692016,
+      "H0": 73.04000166971059,
+      "H0_err": 0.2025621548418357
+    },
+    "difference": {
+      "dH0": 2.1295194301274023e-06,
+      "dH0_err": 0.44917407661045233,
+      "sigma": 4.7409669012894414e-06
+    }
+  },
+  "joint_model": {
+    "n": 1053,
+    "full_model": {
+      "b_directional": 3.9646572471032384e-10,
+      "c_redshift": 1.731361749431923e-07,
+      "const": -5.9277516537547584e-08,
+      "r_squared": 0.00019356353502697488
+    },
+    "reduced_model": {
+      "c_redshift": 1.7329903532234293e-07,
+      "const": -5.947557055259684e-08,
+      "r_squared": 0.0001935574620642866
+    },
+    "f_test": {
+      "f_stat": 6.377845340990414e-06,
+      "p_value": 0.9979854725709936,
+      "delta_r_squared": 6.072962688286054e-09
+    }
+  },
+  "interpretation": {
+    "directional_signal_detected": false,
+    "hemisphere_split_significant": false,
+    "dipole_aligned_with_cmb": false,
+    "h0_hemisphere_difference_kms": 2.1295194301274023e-06,
+    "h0_hemisphere_difference_sigma": 4.7409669012894414e-06
+  }
+}

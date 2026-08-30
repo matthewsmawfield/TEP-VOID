@@ -7,7 +7,7 @@ The remaining evidence is consistent with the Temporal Equivalence Principle (TE
 Website: https://mlsmawfield.com/tep/void
 Repository: https://github.com/matthewsmawfield/TEP-VOID
 
-DOI: 10.5281/zenodo.22150140
+DOI: 10.5281/zenodo.22150139
 
 Keywords: Hubble tension – Temporal Equivalence Principle – isochrony violation – Cepheid variables – TRGB – KBC void – MOND – bulk flow – CosmicFlows-4 – JWST – Pantheon+ – scalar-tensor theory – distance ladder – cosmology
 

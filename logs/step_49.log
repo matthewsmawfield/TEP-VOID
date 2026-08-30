@@ -1,0 +1,2 @@
+[19:51:34] [INFO] Observable definition:\n  delta_mu_band = mu_NIR - mu_optical
+[19:51:34] [INFO] TEP prediction:\n  d(delta_mu_band)/dX_i < 0

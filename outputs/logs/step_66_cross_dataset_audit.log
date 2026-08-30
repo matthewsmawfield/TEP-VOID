@@ -1,0 +1,26 @@
+[19:31:57] [INFO] Loaded 513 Pantheon+ SNe Ia.
+[19:31:57] [INFO] Loaded 35978 CF4 galaxies.
+[19:31:57] [INFO] 
+=== 1. CONTINUOUS OPTIMIZATION (Pantheon+) ===
+[19:31:58] [INFO] Pantheon+ Best Fit L_T = 55.61 Mpc
+[19:31:58] [INFO] Pantheon+ D_T Amplitude = -0.2259 +/- 0.0464 (p=0.0000)
+[19:31:58] [INFO] 
+=== 2. INDEPENDENT CONFIRMATION (CF4) ===
+[19:31:58] [INFO] CF4 Best Fit L_T       = 6.74 Mpc
+[19:31:58] [INFO] CF4 D_T Amplitude      = -0.0656 +/- 0.0063 (p=0.0000)
+[19:31:58] [INFO] 
+--> Structure Scale Convergence: 48.9 Mpc difference between independent catalogs.
+[19:31:58] [INFO] 
+=== 3. ZERO-PARAMETER CROSS-PREDICTION (QUANTITATIVE) ===
+[19:31:59] [INFO] CF4 N = 35978
+[19:31:59] [INFO] RSS (frozen Pantheon+ L_T=55.6, D_T=-0.2259): 7512.81
+[19:31:59] [INFO] RSS (null, no dipole):                    7533.75
+[19:31:59] [INFO] RSS (1/r kinematic):                      7511.04
+[19:31:59] [INFO] RSS (CF4 best-fit L_T=6.7):        7511.04
+[19:31:59] [INFO] Delta RSS (frozen vs null):               20.94
+[19:31:59] [INFO] Delta RSS (frozen vs 1/r kinematic):      -1.77
+[19:31:59] [INFO] Delta RSS (frozen vs CF4 best):           -1.77
+[19:31:59] [INFO] 
+=== 4. ZERO-PARAMETER CROSS-PREDICTION (VISUAL) ===
+[19:31:59] [INFO] Generating radial profile plot comparing CF4 raw data against Pantheon+ prediction...
+[19:31:59] [INFO] Plot saved to results/figures/step_66_cross_prediction.png

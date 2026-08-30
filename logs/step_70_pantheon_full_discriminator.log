@@ -1,0 +1,75 @@
+[16:28:25] [INFO] ======================================================================
+[16:28:25] [INFO] Step 70: Full Pantheon+ Radial Discriminator
+[16:28:25] [INFO] ======================================================================
+[16:28:25] [PROCESS] Loading Pantheon+ full sample...
+[16:28:25] [SUCCESS]   Loaded 1701 SNe
+[16:28:25] [INFO]   z range: 0.00122 - 2.26130
+[16:28:25] [INFO]   1624 SNe after cuts
+[16:28:25] [TEST] 
+--- Redshift cut: z010 (N=664) ---
+[16:28:25] [INFO]   CORR (z010) BIC summary:
+[16:28:25] [INFO]     M0              BIC=    346.8  dBIC=  13.81
+[16:28:25] [INFO]     MK_cmb          BIC=    336.1  dBIC=   3.13 Bpar=-170.1
+[16:28:25] [INFO]     MT_cmb          BIC=    349.5  dBIC=  16.58 T=-0.0191
+[16:28:25] [INFO]     MK_free         BIC=    332.9  dBIC=   0.00 Bpar=-194.4
+[16:28:25] [INFO]     MT_free         BIC=    354.9  dBIC=  21.92 T=0.0507
+[16:28:25] [INFO]     MKT_cmb_b       BIC=    339.1  dBIC=   6.15 Bpar=-211.9
+[16:28:25] [INFO]     MKT_free        BIC=    348.7  dBIC=  15.75 T=0.0351 Bpar=-224.2
+[16:28:25] [INFO]   RAW (z010) BIC summary:
+[16:28:25] [INFO]     M0              BIC=    382.6  dBIC=  14.25 ax1=-0.1445 bc=2.7022
+[16:28:25] [INFO]     MK_cmb          BIC=    371.5  dBIC=   3.20 Bpar=-172.0 ax1=-0.1425 bc=2.6575
+[16:28:25] [INFO]     MT_cmb          BIC=    386.3  dBIC=  17.96 T=-0.0165 ax1=-0.1441 bc=2.6785
+[16:28:25] [INFO]     MK_free         BIC=    368.3  dBIC=   0.00 Bpar=-198.6 ax1=-0.1405 bc=2.6361
+[16:28:25] [INFO]     MT_free         BIC=    392.1  dBIC=  23.82 T=0.0467 ax1=-0.1442 bc=2.6736
+[16:28:25] [INFO]     MKT_cmb_b       BIC=    374.0  dBIC=   5.70 Bpar=-224.5 ax1=-0.1405 bc=2.6453
+[16:28:25] [INFO]     MKT_free        BIC=    382.6  dBIC=  14.32 T=0.0413 Bpar=-241.3 ax1=-0.1396 bc=2.6411
+[16:28:25] [INFO]     MT_cmb_x1tep    BIC=    392.3  dBIC=  23.95 T=-0.0153 ax1=-0.1434 bc=2.6830
+[16:28:25] [TEST] 
+--- Redshift cut: z050 (N=1414) ---
+[16:28:25] [INFO]   CORR (z050) BIC summary:
+[16:28:25] [INFO]     M0              BIC=    680.9  dBIC=  14.29
+[16:28:25] [INFO]     MK_cmb          BIC=    672.6  dBIC=   6.01 Bpar=-160.4
+[16:28:25] [INFO]     MT_cmb          BIC=    685.8  dBIC=  19.19 T=0.0020
+[16:28:25] [INFO]     MK_free         BIC=    666.6  dBIC=   0.00 Bpar=-191.0
+[16:28:25] [INFO]     MT_free         BIC=    699.3  dBIC=  32.65 T=0.0021
+[16:28:25] [INFO]     MKT_cmb_b       BIC=    671.0  dBIC=   4.42 Bpar=-201.1
+[16:28:25] [INFO]     MKT_free        BIC=    685.1  dBIC=  18.48 T=0.0022 Bpar=-199.5
+[16:28:25] [INFO]   RAW (z050) BIC summary:
+[16:28:25] [INFO]     M0              BIC=    762.5  dBIC=  18.79 ax1=-0.1422 bc=2.6389
+[16:28:25] [INFO]     MK_cmb          BIC=    753.7  dBIC=  10.02 Bpar=-162.3 ax1=-0.1414 bc=2.6179
+[16:28:25] [INFO]     MT_cmb          BIC=    764.6  dBIC=  20.89 T=0.0029 ax1=-0.1415 bc=2.6394
+[16:28:25] [INFO]     MK_free         BIC=    743.7  dBIC=   0.00 Bpar=-198.3 ax1=-0.1389 bc=2.5972
+[16:28:25] [INFO]     MT_free         BIC=    776.3  dBIC=  32.62 T=0.0053 ax1=-0.1409 bc=2.6313
+[16:28:25] [INFO]     MKT_cmb_b       BIC=    745.0  dBIC=   1.31 Bpar=-213.2 ax1=-0.1383 bc=2.5967
+[16:28:25] [INFO]     MKT_free        BIC=    756.6  dBIC=  12.93 T=0.0060 Bpar=-213.8 ax1=-0.1375 bc=2.5897
+[16:28:25] [INFO]     MT_cmb_x1tep    BIC=    771.8  dBIC=  28.09 T=0.0028 ax1=-0.1411 bc=2.6405
+[16:28:25] [TEST] 
+--- Redshift cut: zfull (N=1578) ---
+[16:28:25] [INFO]   CORR (zfull) BIC summary:
+[16:28:25] [INFO]     M0              BIC=    713.6  dBIC=   9.16
+[16:28:25] [INFO]     MK_cmb          BIC=    704.5  dBIC=   0.00 Bpar=-180.7
+[16:28:25] [INFO]     MT_cmb          BIC=    719.4  dBIC=  14.88 T=0.0012
+[16:28:25] [INFO]     MK_free         BIC=    708.0  dBIC=   3.55 Bpar=-191.8
+[16:28:25] [INFO]     MT_free         BIC=    733.6  dBIC=  29.06 T=0.0019
+[16:28:25] [INFO]     MKT_cmb_b       BIC=    713.2  dBIC=   8.69 Bpar=-199.6
+[16:28:25] [INFO]     MKT_free        BIC=    727.4  dBIC=  22.89 T=0.0022 Bpar=-199.6
+[16:28:25] [INFO]   RAW (zfull) BIC summary:
+[16:28:25] [INFO]     M0              BIC=    824.6  dBIC=  10.12 ax1=-0.1406 bc=2.5441
+[16:28:25] [INFO]     MK_cmb          BIC=    815.2  dBIC=   0.68 Bpar=-181.4 ax1=-0.1394 bc=2.5268
+[16:28:25] [INFO]     MT_cmb          BIC=    829.2  dBIC=  14.65 T=0.0016 ax1=-0.1403 bc=2.5409
+[16:28:25] [INFO]     MK_free         BIC=    814.5  dBIC=   0.00 Bpar=-199.4 ax1=-0.1373 bc=2.5114
+[16:28:25] [INFO]     MT_free         BIC=    839.2  dBIC=  24.68 T=0.0047 ax1=-0.1395 bc=2.5367
+[16:28:25] [INFO]     MKT_cmb_b       BIC=    818.4  dBIC=   3.85 Bpar=-209.7 ax1=-0.1369 bc=2.5078
+[16:28:25] [INFO]     MKT_free        BIC=    828.0  dBIC=  13.45 T=0.0050 Bpar=-212.1 ax1=-0.1361 bc=2.5045
+[16:28:25] [INFO]     MT_cmb_x1tep    BIC=    836.4  dBIC=  21.91 T=0.0015 ax1=-0.1398 bc=2.5415
+[16:28:25] [SUCCESS] 
+Saved results to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_70_pantheon_full_discriminator.json
+[16:28:25] [SUCCESS] Saved figure /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_70_pantheon_full_discriminator_z010.png
+[16:28:25] [SUCCESS] Saved figure /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_70_pantheon_full_discriminator_z050.png
+[16:28:26] [SUCCESS] Saved figure /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_70_pantheon_full_discriminator_zfull.png
+[16:28:26] [SUCCESS] step_70 completed in 1.6s
+[16:28:26] [INFO] 
+[16:28:26] [INFO] ================================================================================
+[16:28:26] [INFO]    Pipeline complete: 1 succeeded, 0 failed, 1.6s total
+[16:28:26] [INFO] ================================================================================
+[16:28:26] [INFO] 

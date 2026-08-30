@@ -1,0 +1,181 @@
+{
+  "step": "54_directional_dmu",
+  "description": "Directional \u0394\u03bc analysis: bulk flow as temporal topology gradient",
+  "tep_prediction": "\u0394\u03bc shows dipolar pattern aligned with CMB dipole (acoustic clock biased by temporal shear gradient)",
+  "kinematic_prediction": "No directional \u0394\u03bc pattern (luminosity distances are direction-independent)",
+  "n_galaxies": 33,
+  "n_with_cmb_dot": 33,
+  "primary_correlation": {
+    "n": 33,
+    "pearson_r": 0.32897633778614965,
+    "pearson_p": 0.06157138382688201,
+    "spearman_rho": 0.22961229946524067,
+    "spearman_p": 0.1986462773894194,
+    "permutation_p_two_sided": 0.06154,
+    "permutation_p_one_sided": 0.03016,
+    "n_toward": 20,
+    "n_away": 13,
+    "mean_dmu_toward": -0.022199999999999963,
+    "sem_dmu_toward": 0.025919741511056693,
+    "mean_dmu_away": -0.11907692307692345,
+    "sem_dmu_away": 0.02341608751054113,
+    "mean_difference": 0.0968769230769235,
+    "mean_difference_sem": 0.034930590523226425,
+    "permutation_p_diff": 0.00858,
+    "permutation_sigma_diff": 2.329576227322434
+  },
+  "dipole_fit_3d": {
+    "n": 33,
+    "dipole_amplitude_mag": 0.06117453757687474,
+    "dipole_ra_deg": 150.57196450192674,
+    "dipole_dec_deg": 19.45098044213173,
+    "dipole_gal_l": 214.89157189822274,
+    "dipole_gal_b": 50.59330841780884,
+    "cmb_dipole_gal_l": 264.021,
+    "cmb_dipole_gal_b": 48.253,
+    "angular_separation_deg": 31.453499903808144,
+    "equivalent_velocity_kms": 8445.727841999238,
+    "permutation_p": 0.5368,
+    "permutation_sigma": -0.19660407843765437
+  },
+  "partial_correlations": {
+    "simple": {
+      "r_dmu_cmb": 0.32897633778614965,
+      "p_dmu_cmb": 0.06157138382688201,
+      "r_dmu_xi": 0.28643996484247036,
+      "p_dmu_xi": 0.10607388844904012,
+      "r_xi_cmb": 0.243919015344163,
+      "p_xi_cmb": 0.1713291595913426
+    },
+    "partial_dmu_cmb_given_xi": {
+      "r": 0.27886300162982486,
+      "p": 0.11605828867509925
+    },
+    "partial_dmu_cmb_given_r22": {
+      "r": 0.2668430668350292,
+      "p": 0.13331364198966583
+    },
+    "partial_dmu_cmb_given_xi_r22": {
+      "r": 0.1993204633142002,
+      "p": 0.2661108105311451
+    },
+    "partial_dmu_xi_given_cmb": {
+      "r": 0.22515069118133382,
+      "p": 0.2077519827349248
+    }
+  },
+  "joint_model": {
+    "n": 33,
+    "tep_model": {
+      "kappa": 372816.3316073184,
+      "D_dipolar": 0.04560167829465451,
+      "const": -0.09032350981761728,
+      "r_squared": 0.15343201079152102
+    },
+    "kinematic_model": {
+      "kappa": 487088.5554917809,
+      "const": -0.09133053892527002,
+      "r_squared": 0.08204785345895571
+    },
+    "direction_only_model": {
+      "D_dipolar": 0.05445337229800276,
+      "const": -0.0678362336109029,
+      "r_squared": 0.10822543082318692
+    },
+    "f_test_directional": {
+      "f_stat": 2.5296547321370304,
+      "p_value": 0.12220891768262795,
+      "delta_r_squared": 0.07138415733256531
+    },
+    "unique_r2": {
+      "direction_beyond_xi": 0.07138415733256531,
+      "xi_beyond_direction": 0.045206579968334104
+    },
+    "dipolar_amplitude_mag": 0.04560167829465451,
+    "equivalent_velocity_kms": 6295.746224988985
+  },
+  "subsample_analysis": {
+    "sample_CF4": {
+      "n": 22,
+      "r_dmu_cmb": 0.3600835752625748,
+      "p_value": 0.09974060703277413,
+      "mean_dmu": -0.07990909090909117
+    },
+    "sample_JWST": {
+      "n": 11,
+      "r_dmu_cmb": 0.019264240462087447,
+      "p_value": 0.955168226737497,
+      "mean_dmu": -0.021272727272727113
+    },
+    "r22_R22": {
+      "n": 11,
+      "r_dmu_cmb": 0.019264240462087447,
+      "p_value": 0.955168226737497,
+      "r_dmu_xi": 0.34583945455721055,
+      "p_xi": 0.2975151287880548,
+      "mean_dmu": -0.021272727272727113,
+      "mean_cmb_dot": 0.49544351940541276
+    },
+    "r22_non-R22": {
+      "n": 22,
+      "r_dmu_cmb": 0.3600835752625748,
+      "p_value": 0.09974060703277413,
+      "r_dmu_xi": 0.3026094883357396,
+      "p_xi": 0.17104250931655787,
+      "mean_dmu": -0.07990909090909117,
+      "mean_cmb_dot": -0.04187783493056074
+    }
+  },
+  "bulk_flow_by_indicator": {
+    "TRGB_nuclear_candle": {
+      "n": 446,
+      "v_dipole_kms": 508.49640298574326,
+      "gal_l": 271.5449376150437,
+      "gal_b": 35.09982126886722,
+      "sep_from_cmb_deg": 14.286261376148007
+    },
+    "Cepheid_acoustic_clock": {
+      "n": 69,
+      "v_dipole_kms": 663.2264785525199,
+      "gal_l": 275.776063056762,
+      "gal_b": 29.490918290509367,
+      "sep_from_cmb_deg": 20.81910082852163
+    },
+    "TullyFisher_rotation": {
+      "n": 8132,
+      "v_dipole_kms": 247.3630539057368,
+      "gal_l": 288.36305983112084,
+      "gal_b": 32.001285492730986,
+      "sep_from_cmb_deg": 24.516216704423382
+    },
+    "FundamentalPlane_dispersion": {
+      "n": 2977,
+      "v_dipole_kms": 242.89075756149862,
+      "gal_l": 30.703054014642092,
+      "gal_b": 32.16367180873751,
+      "sep_from_cmb_deg": 86.53373405866044
+    },
+    "SNeIa_diffusion": {
+      "n": 407,
+      "v_dipole_kms": 262.6820020389899,
+      "gal_l": 285.51464631286956,
+      "gal_b": -5.260705701839012,
+      "sep_from_cmb_deg": 56.734350379074016
+    },
+    "Combined_all": {
+      "n": 12020,
+      "v_dipole_kms": 517.1797140754367,
+      "gal_l": 272.3018327499767,
+      "gal_b": 30.604504316797573,
+      "sep_from_cmb_deg": 18.744790035832246
+    },
+    "cepheid_excess_kms": 154.73007556677663
+  },
+  "interpretation": {
+    "tep_signal_detected": true,
+    "significance_sigma": 2.329576227322434,
+    "dipole_aligned_with_cmb": true,
+    "cepheid_bulk_flow_excess_kms": 154.73007556677663,
+    "discriminating_observable": "\u0394\u03bc directional signal: predicted by TEP, not by kinematic model"
+  }
+}

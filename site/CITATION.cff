@@ -6,37 +6,11 @@ authors:
 - family-names: Smawfield
   given-names: Matthew Lukin
   orcid: https://orcid.org/0009-0003-8219-3159
-abstract: 'Recent literature proposes that the 5-sigma Hubble tension can be resolved
-  by macroscopic kinematic outflows driven by a Gpc-scale local underdensity (the
-  KBC void) operating under Milgromian dynamics (MOND). A fundamental requirement
-  of any purely kinematic resolution is the uniform scaling of all local photometric
-  distance indicators. This paper delivers a statistically decisive rejection of
-  the published KBC gradual-decay predictions on the data and covariance the void
-  authors themselves rely upon, and presents two supporting diagnostics. The primary
-  falsification uses the unbinned native mu-space likelihood with the native 1701x1701
-  Pantheon+ STAT+SYS release covariance, restricted to the matched 1053x1053 submatrix
-  at z >= 0.05 and a marginalized common zero-point, rejecting the
-  published KBC Method-3 curves over the model''s stated validity domain (z >= 0.05)
-  with Delta-AIC = +101.5 (Gaussian) and +117.1 (Exponential) at the KBC-preferred
-  reference Omega_m = 0.302; extending to the full Pantheon+ range strengthens the
-  rejection to +194.3 and +328.7. The rejection is robust to digitization uncertainty
-  (±1.0 km/s/Mpc leaves Delta-AIC > 99 at z >= 0.05 and > 190 over the full release).
-  The calibration-independent relative test indicates that H0 does not decline from
-  0.05 <= z < 0.15 to z > 0.25 (R_H = 1.0066 ± 0.00642, 8.4sigma from the KBC Gaussian
-  prediction R_H = 0.9524). Two supporting diagnostics reinforce this: (i) indicator-specific
-  distance divergence (2.39sigma one-sided sign test from 17/22 galaxies; Xi regression
-  negative on the pre-specified primary analysis and independent CF4 non-R22 subset;
-  CF4 full-sample positive slope shown by exclusion test to be driven by two galaxies
-  with known large differential registration shifts in CF4 data; kappa_Cep = (0.400
-  ± 0.270)x10^6 mag from the joint multi-block likelihood), and (ii) peculiar velocity
-  calibration sensitivity (3.3% bulk-flow amplitude change under Cepheid-to-TRGB
-  recalibration). The framework is grounded in the Temporal Equivalence Principle
-  (TEP), a scalar-tensor framework in which proper time operates as a dynamical field
-  coupled to the local gravitational potential. The Hubble tension is not a kinematic
-  void effect; it is a clock-calibration bias.'
+abstract: 'The Hubble tension admits fundamentally different interpretations: a physical expansion rate inflated by local kinematics (e.g., a Gpc-scale underdensity), or an operational redshift-distance calibration artifact. This paper tests the kinematic void hypothesis against the Temporal Equivalence Principle (TEP), which models cosmological redshift as accumulated temporal shear on a static spatial manifold. Using the matched $z \ge 0.05$ submatrix of the native Pantheon+ STAT+SYS covariance, the published KBC/MOND gradual-decay profiles are decisively rejected ($\Delta\chi^2 > 100$). A calibration-independent ratio $R_H = 1.009 \pm 0.006$ excludes the predicted 5% decline at $8.4\sigma$, falsifying the kinematic void solution. The residual evidence supports TEP. The macroscopic temporal signal is not a pure kinematic flow, but a finite-coherence topological feature with best-fit scale $L_T = 55.6$ Mpc along the independently determined CF4 bulk-flow axis, placing the characteristic structure on a tens-of-Mpc local-environment scale rather than the Gpc scale required by the KBC void. Because standard standardizations (e.g., the SALT3 model) assume universal isochrony, the aggregate correction suppresses the macroscopic timescale distortion from finalized distance moduli. The underlying temporal shear instead manifests locally: host-galaxy systemic redshifts are weighted toward deeper central potentials than disk standard candles, artificially contracting rest-frame timescales. Consequently, Cepheid distances are systematically shorter than TRGB distances within the same galaxies ($2.39\sigma$ directional preference), and single-galaxy Period-Luminosity gradients within M31 ($3.65\sigma$) and the LMC ($3.30\sigma$) detect the predicted clock-rate differential. The Hubble tension is an observing-chain artifact driven by localized temporal topology.'
 license: CC-BY-4.0
-version: v0.1 (Valencia)
+version: v0.2 (Valencia)
 date-released: '2026-08-29'
+date-published: '2026-08-30'
 keywords:
 - Hubble tension
 - Temporal Equivalence Principle
@@ -55,17 +29,17 @@ repository-code: https://github.com/matthewsmawfield/TEP-VOID
 url: https://mlsmawfield.com/tep/void
 preferred-citation:
   type: article
-  title: 'Cosmological Voids vs Temporal Shear (Valencia v0.1)'
+  title: 'Cosmological Voids vs Temporal Shear (Valencia v0.2)'
   authors:
   - family-names: Smawfield
     given-names: Matthew Lukin
     orcid: https://orcid.org/0009-0003-8219-3159
   year: 2026
   journal: Zenodo
-  doi: 10.5281/zenodo.22150140
+  doi: 10.5281/zenodo.22150139
   identifiers:
   - type: doi
-    value: 10.5281/zenodo.22150140
+    value: 10.5281/zenodo.22150139
     description: Pre-print DOI
-  url: https://doi.org/10.5281/zenodo.22150140
+  url: https://doi.org/10.5281/zenodo.22150139
   notes: Preprint

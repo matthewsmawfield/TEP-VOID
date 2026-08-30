@@ -1,0 +1,55 @@
+[19:51:41] [INFO] ============================================================
+[19:51:41] [INFO] Step 51: Bayesian Hierarchical Band-Dependence Analysis
+[19:51:41] [INFO] ============================================================
+[19:51:41] [INFO] Loaded 29 galaxies from band-dependence catalog
+[19:51:41] [INFO] 
+Primary sample (MF2023): 20 galaxies
+[19:51:41] [INFO] Valid galaxies: 20
+[19:51:41] [INFO] X_i range: -1.02e-08 to 3.28e-07
+[19:51:41] [INFO] delta_mu_band range: -0.2940 to 0.1910
+[19:51:41] [PROCESS] 
+--- OLS Regression (baseline) ---
+[19:51:41] [TEST] OLS: slope = 3.514e+05 ± 4.239e+04 (8.29sigma)
+[19:51:41] [TEST] OLS: intercept = -0.0476
+[19:51:41] [TEST] OLS: chi^2/dof = 22.71
+[19:51:41] [PROCESS] 
+--- MCMC Hierarchical (with intrinsic scatter) ---
+[19:51:41] [INFO] Running MCMC (4 chains, 5000 burn-in + 10000 samples each)...
+[19:51:44] [INFO] Acceptance rate: 0.30
+[19:51:44] [INFO] Gelman-Rubin R-hat: slope=1.001, intercept=1.001, sigma_int=1.001
+[19:51:44] [INFO] Convergence: CONVERGED (R-hat < 1.1)
+[19:51:44] [TEST] MCMC: slope = -2.718e+05 (+4.108e+05 / 4.353e+05)
+[19:51:44] [TEST] MCMC: slope sigma = -0.62sigma
+[19:51:44] [TEST] MCMC: intercept = 0.0107 ± 0.0431
+[19:51:44] [TEST] MCMC: sigma_int = 0.1461 (+0.0298 / 0.0229)
+[19:51:44] [PROCESS] 
+--- TEP Prediction Comparison ---
+[19:51:44] [INFO] TEP predicted slope (equiv kappa_P): -5.598e+04
+[19:51:44] [INFO] TEP predicted slope (joint kappa_P): -6.135e+04
+[19:51:44] [INFO] TEP predicts NEGATIVE slope (NIR more compressed at high X_i)
+[19:51:44] [TEST] Observed/predicted ratio: 4.86
+[19:51:44] [TEST] P(slope < 0) [TEP direction] = 0.7495
+[19:51:44] [TEST] P(slope < predicted) = 0.7061
+[19:51:44] [PROCESS] 
+--- Bootstrap Regression (10,000 resamples) ---
+[19:51:49] [TEST] Bootstrap: slope = 3.756e+05 ± 4.340e+05
+[19:51:49] [TEST] Bootstrap: 95% CI = [-5.256e+05, 1.128e+06]
+[19:51:49] [PROCESS] 
+--- Leave-One-Out Influence Analysis ---
+[19:51:49] [TEST] Most influential: NGC 4424 (slope -> 3.519e+05)
+[19:51:49] [TEST] LOO slope range: -1.147e+06 to 4.322e+05
+[19:51:49] [PROCESS] 
+--- Outlier Analysis ---
+[19:51:49] [TEST] Outliers (|sigma| > 3): 0
+[19:51:49] [INFO] 
+Saved results to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_51_band_bayesian.json
+[19:51:49] [INFO] 
+============================================================
+[19:51:49] [INFO] Step 51 complete
+[19:51:49] [INFO] ============================================================
+[19:51:49] [SUCCESS] step_51 completed in 8.1s
+[19:51:49] [INFO] 
+[19:51:49] [INFO] ================================================================================
+[19:51:49] [INFO]    Starting step_52: Derivation of stellar-pulsation response coefficient eta_P
+[19:51:49] [INFO] ================================================================================
+[19:51:49] [INFO] 

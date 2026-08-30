@@ -2,10 +2,12 @@
 """
 Step 51: Bayesian hierarchical analysis of the band-dependence test
 
-The step_49 OLS regression found a slope of +8.1e5 ± 1.5e5 (5.35sigma)
-for the Madore & Freedman (2023) band-dependence test — correct TEP
-sign but ~4.5x steeper than predicted, with chi^2/dof = 5.19 indicating
-substantial intrinsic scatter.
+The step_49 OLS regression found a slope of +2.27e5 +/- 8.6e4 (2.62sigma)
+for the Madore & Freedman (2023) same-team band-dependence test — the
+WRONG sign for TEP (which predicts a negative slope), with chi^2/dof =
+6.40 indicating substantial intrinsic scatter.  The cross-team sample
+(KP vs R22, N=9) gives the predicted negative sign at 0.16sigma with
+chi^2/dof = 0.90.
 
 This script performs a Bayesian hierarchical analysis that:
 1. Models intrinsic scatter (sigma_int) as a free parameter
@@ -34,16 +36,28 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.screening import U_REF_SCREENED
 
 # TEP constants
 C_KMS = 299792.458
-U_REF = (87.165) ** 2
+U_REF = U_REF_SCREENED  # screened anchor reference (matches TEP-H0)
 B_V = -2.76
 B_H = -3.26
-KAPPA_P_DEFAULT = 0.365e6
-KAPPA_P_JOINT = 0.400e6
-PREDICTED_SLOPE_DEFAULT = (abs(B_H) - abs(B_V)) * KAPPA_P_DEFAULT  # 0.50 * 0.365e6
-PREDICTED_SLOPE_JOINT = (abs(B_H) - abs(B_V)) * KAPPA_P_JOINT
+ABS_B_V = abs(B_V)
+ABS_B_H = abs(B_H)
+DELTA_B = ABS_B_H - ABS_B_V  # 0.50
+
+# kappa_Cep from TEP-H0 (Paper 11) — full Cepheid coupling constants
+# kappa_Cep = |b| * kappa_P, so kappa_P = kappa_Cep / |b_H|
+KAPPA_CEP_EQUIV = 0.365e6
+KAPPA_CEP_JOINT = 0.400e6
+KAPPA_P_EQUIV = KAPPA_CEP_EQUIV / ABS_B_H  # ~111963
+KAPPA_P_JOINT = KAPPA_CEP_JOINT / ABS_B_H  # ~122699
+
+# TEP predicted slope: delta_mu_band = -DELTA_B * kappa_P * X_i (NEGATIVE)
+# NIR has steeper |b| → NIR more compressed → mu_NIR < mu_opt at high X_i
+PREDICTED_SLOPE_DEFAULT = -DELTA_B * KAPPA_P_EQUIV  # ~-55982
+PREDICTED_SLOPE_JOINT = -DELTA_B * KAPPA_P_JOINT     # ~-61350
 
 
 def load_data():
@@ -62,14 +76,11 @@ def mcmc_hierarchical(x, y, yerr, n_burn=5000, n_sample=10000, seed=42):
 
     Model: y_i ~ Normal(a*x_i + b, sqrt(yerr_i^2 + sigma_int^2))
     Priors: a ~ Uniform(-1e7, 1e7), b ~ Normal(0, 0.1), sigma_int ~ HalfCauchy(0, 0.1)
+
+    Uses multiple chains for Gelman-Rubin R-hat convergence diagnostic.
     """
     rng = np.random.default_rng(seed)
     n = len(x)
-
-    # Initialize
-    a = 5e5  # start near OLS estimate
-    b = 0.0
-    sigma_int = 0.05
 
     # Log posterior
     def log_post(a, b, sigma_int):
@@ -80,49 +91,90 @@ def mcmc_hierarchical(x, y, yerr, n_burn=5000, n_sample=10000, seed=42):
         # Priors
         log_prior_a = 0.0  # uniform
         log_prior_b = -0.5 * (b / 0.1)**2  # normal(0, 0.1)
-        log_prior_sigma = -np.log(sigma_int) - (sigma_int / 0.1)  # half-cauchy
+        # Half-Cauchy(0, beta=0.1): log p(s) = log(2/(pi*beta)) - log(1 + (s/beta)^2)
+        beta = 0.1
+        log_prior_sigma = np.log(2.0 / (np.pi * beta)) - np.log(1.0 + (sigma_int / beta)**2)
         return log_lik + log_prior_a + log_prior_b + log_prior_sigma
 
-    # Metropolis-Hastings
-    samples = np.zeros((n_sample, 3))
-    current_lp = log_post(a, b, sigma_int)
-    n_accept = 0
+    def run_chain(seed_offset, init_a, init_b, init_s):
+        """Run a single MCMC chain."""
+        c_rng = np.random.default_rng(seed + seed_offset)
+        a, b, sigma_int = init_a, init_b, init_s
 
-    # Proposal scales (tuned during burn-in)
-    prop_a = 1e5
-    prop_b = 0.01
-    prop_s = 0.01
+        # Proposal scales
+        prop_a = 1e5
+        prop_b = 0.01
+        prop_s = 0.01
 
-    for i in range(n_burn + n_sample):
-        # Propose
-        a_new = a + rng.normal(0, prop_a)
-        b_new = b + rng.normal(0, prop_b)
-        s_new = sigma_int + rng.normal(0, prop_s)
+        samples = np.zeros((n_sample, 3))
+        current_lp = log_post(a, b, sigma_int)
+        n_accept = 0
 
-        new_lp = log_post(a_new, b_new, s_new)
+        for i in range(n_burn + n_sample):
+            a_new = a + c_rng.normal(0, prop_a)
+            b_new = b + c_rng.normal(0, prop_b)
+            s_new = sigma_int + c_rng.normal(0, prop_s)
 
-        if np.log(rng.uniform()) < new_lp - current_lp:
-            a, b, sigma_int = a_new, b_new, s_new
-            current_lp = new_lp
-            n_accept += 1
+            new_lp = log_post(a_new, b_new, s_new)
 
-        # Adapt proposal scales during burn-in
-        if i < n_burn and (i + 1) % 500 == 0:
-            recent_rate = n_accept / (i + 1)
-            if recent_rate < 0.2:
-                prop_a *= 0.8
-                prop_b *= 0.8
-                prop_s *= 0.8
-            elif recent_rate > 0.5:
-                prop_a *= 1.2
-                prop_b *= 1.2
-                prop_s *= 1.2
+            if np.log(c_rng.uniform()) < new_lp - current_lp:
+                a, b, sigma_int = a_new, b_new, s_new
+                current_lp = new_lp
+                n_accept += 1
 
-        if i >= n_burn:
-            samples[i - n_burn] = [a, b, sigma_int]
+            # Adapt proposal scales during burn-in
+            if i < n_burn and (i + 1) % 500 == 0:
+                recent_rate = n_accept / (i + 1)
+                if recent_rate < 0.2:
+                    prop_a *= 0.8
+                    prop_b *= 0.8
+                    prop_s *= 0.8
+                elif recent_rate > 0.5:
+                    prop_a *= 1.2
+                    prop_b *= 1.2
+                    prop_s *= 1.2
 
-    accept_rate = n_accept / (n_burn + n_sample)
-    return samples, accept_rate
+            if i >= n_burn:
+                samples[i - n_burn] = [a, b, sigma_int]
+
+        accept_rate = n_accept / (n_burn + n_sample)
+        return samples, accept_rate
+
+    # Run 4 chains with different starting points for Gelman-Rubin diagnostic
+    n_chains = 4
+    inits = [
+        (5e5, 0.0, 0.05),    # near OLS
+        (-5e5, 0.0, 0.05),   # opposite sign
+        (0.0, 0.0, 0.01),    # zero slope
+        (1e6, 0.05, 0.1),    # large slope
+    ]
+
+    all_samples = []
+    accept_rates = []
+    for ci, (ia, ib, is_) in enumerate(inits):
+        s, ar = run_chain(ci, ia, ib, is_)
+        all_samples.append(s)
+        accept_rates.append(ar)
+
+    # Gelman-Rubin R-hat for each parameter
+    r_hats = []
+    for pi in range(3):
+        chain_means = np.array([c[:, pi].mean() for c in all_samples])
+        chain_vars = np.array([c[:, pi].var(ddof=1) for c in all_samples])
+        W = chain_vars.mean()  # within-chain variance
+        B = n_sample * chain_means.var(ddof=1)  # between-chain variance
+        if W > 0:
+            var_hat = (1 - 1/n_sample) * W + B / n_sample
+            r_hat = np.sqrt(var_hat / W)
+        else:
+            r_hat = np.nan
+        r_hats.append(r_hat)
+
+    # Concatenate all chains
+    samples = np.vstack(all_samples)
+    accept_rate = np.mean(accept_rates)
+
+    return samples, accept_rate, r_hats
 
 
 def bootstrap_regression(x, y, yerr, n_boot=10000, seed=42):
@@ -207,9 +259,12 @@ def run_analysis():
 
     # 2. MCMC hierarchical
     print_status("\n--- MCMC Hierarchical (with intrinsic scatter) ---", "PROCESS")
-    print_status("Running MCMC (5000 burn-in + 10000 samples)...", "INFO")
-    samples, accept_rate = mcmc_hierarchical(x, y, yerr, n_burn=5000, n_sample=10000)
+    print_status("Running MCMC (4 chains, 5000 burn-in + 10000 samples each)...", "INFO")
+    samples, accept_rate, r_hats = mcmc_hierarchical(x, y, yerr, n_burn=5000, n_sample=10000)
     print_status(f"Acceptance rate: {accept_rate:.2f}", "INFO")
+    print_status(f"Gelman-Rubin R-hat: slope={r_hats[0]:.3f}, intercept={r_hats[1]:.3f}, sigma_int={r_hats[2]:.3f}", "INFO")
+    converged = all(r < 1.1 for r in r_hats if not np.isnan(r))
+    print_status(f"Convergence: {'CONVERGED (R-hat < 1.1)' if converged else 'NOT CONVERGED'}", "INFO")
 
     slope_mcmc = np.median(samples[:, 0])
     slope_err_mcmc = np.std(samples[:, 0])
@@ -231,18 +286,19 @@ def run_analysis():
 
     # Compare to TEP prediction
     print_status(f"\n--- TEP Prediction Comparison ---", "PROCESS")
-    print_status(f"TEP predicted slope (default kappa_P): {PREDICTED_SLOPE_DEFAULT:.3e}", "INFO")
+    print_status(f"TEP predicted slope (equiv kappa_P): {PREDICTED_SLOPE_DEFAULT:.3e}", "INFO")
     print_status(f"TEP predicted slope (joint kappa_P): {PREDICTED_SLOPE_JOINT:.3e}", "INFO")
+    print_status(f"TEP predicts NEGATIVE slope (NIR more compressed at high X_i)", "INFO")
     ratio = slope_mcmc / PREDICTED_SLOPE_DEFAULT
     print_status(f"Observed/predicted ratio: {ratio:.2f}", "TEST")
 
-    # Probability that slope > 0 (TEP direction)
-    p_positive = np.mean(samples[:, 0] > 0)
-    print_status(f"P(slope > 0) = {p_positive:.4f}", "TEST")
+    # Probability that slope < 0 (TEP-predicted direction: negative)
+    p_positive = np.mean(samples[:, 0] < 0)
+    print_status(f"P(slope < 0) [TEP direction] = {p_positive:.4f}", "TEST")
 
-    # Probability that slope > predicted
-    p_above_pred = np.mean(samples[:, 0] > PREDICTED_SLOPE_DEFAULT)
-    print_status(f"P(slope > predicted) = {p_above_pred:.4f}", "TEST")
+    # Probability that slope is more negative than predicted
+    p_above_pred = np.mean(samples[:, 0] < PREDICTED_SLOPE_DEFAULT)
+    print_status(f"P(slope < predicted) = {p_above_pred:.4f}", "TEST")
 
     # 3. Bootstrap regression
     print_status("\n--- Bootstrap Regression (10,000 resamples) ---", "PROCESS")
@@ -336,8 +392,15 @@ def run_analysis():
             'sigma_int_16th': float(sigma_int_lo),
             'sigma_int_84th': float(sigma_int_hi),
             'acceptance_rate': float(accept_rate),
-            'p_slope_positive': float(p_positive),
-            'p_slope_above_predicted': float(p_above_pred),
+            'gelman_rubin_rhat_slope': float(r_hats[0]),
+            'gelman_rubin_rhat_intercept': float(r_hats[1]),
+            'gelman_rubin_rhat_sigma_int': float(r_hats[2]),
+            'converged': bool(converged),
+            'n_chains': 4,
+            'n_burn': 5000,
+            'n_sample_per_chain': 10000,
+            'p_slope_negative': float(p_positive),
+            'p_slope_below_predicted': float(p_above_pred),
         },
         'bootstrap': {
             'slope_median': float(slope_boot),
@@ -349,6 +412,8 @@ def run_analysis():
             'predicted_slope_default': float(PREDICTED_SLOPE_DEFAULT),
             'predicted_slope_joint': float(PREDICTED_SLOPE_JOINT),
             'observed_over_predicted': float(ratio),
+            'sign': 'negative (NIR more compressed at high X_i)',
+            'note': 'TEP predicts a NEGATIVE slope for delta_mu_band = mu_NIR - mu_opt vs X_i, because NIR has steeper |b| and thus more distance compression.',
         },
         'loo_analysis': {
             'most_influential_galaxy': loo_galaxies[most_influential_idx],
@@ -374,6 +439,13 @@ def run_analysis():
     print_status("=" * 60, "INFO")
 
     return results
+
+
+class Step51BandBayesian:
+    """Pipeline-compatible wrapper for Step 51."""
+
+    def run(self):
+        run_analysis()
 
 
 if __name__ == '__main__':

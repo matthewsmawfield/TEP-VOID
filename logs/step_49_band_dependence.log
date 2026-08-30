@@ -1,46 +1,189 @@
-[13:37:10] [INFO] 
-[13:37:10] [INFO] ================================================================================
-[13:37:10] [INFO]    Step 49: Band-Dependence Test
-[13:37:10] [INFO] ================================================================================
-[13:37:10] [INFO] 
-[13:37:10] [PROCESS] Test the TEP prediction that the optical-to-NIR Cepheid distance differential scales with the gravitational potential coordinate X_i, with a predicted slope of (|b_H| - |b_V|) * kappa_P = 0.50 * kappa_P.
-[13:37:10] [PROCESS] Leavitt law slopes: b_V = -2.76, b_H = -3.26, |b_H|/|b_V| = 1.181 (18.1% larger in NIR)
-[13:37:10] [PROCESS] Loading Madore & Freedman (2023) Table 2...
-[13:37:10] [SUCCESS]   20 galaxies with VIH (NIR) and VI (optical) distances
-[13:37:10] [PROCESS] Loading Key Project (Freedman et al. 2001) distances...
-[13:37:10] [SUCCESS]   31 Key Project galaxies loaded
-[13:37:10] [PROCESS] Loading SH0ES R22 NIR Cepheid distances...
-[13:37:10] [SUCCESS]   40 R22 galaxies loaded
-[13:37:10] [PROCESS] Loading host potential catalog...
-[13:37:10] [SUCCESS]   41 galaxies with V_rot and X_i
-[13:37:10] [PROCESS] 
+[19:51:34] [INFO] 
+[19:51:34] [INFO] ================================================================================
+[19:51:34] [INFO]    Step 49: Band-Dependence Test
+[19:51:34] [INFO] ================================================================================
+[19:51:34] [INFO] 
+[19:51:34] [PROCESS] Test the TEP prediction that the optical-to-NIR Cepheid distance differential anti-correlates with the gravitational potential coordinate X_i (NIR more compressed), with a predicted slope of -(|b_H| - |b_V|) * kappa_P = -0.50 * kappa_P.
+[19:51:34] [PROCESS] Leavitt law slopes: b_V = -2.76, b_H = -3.26, |b_H|/|b_V| = 1.181 (18.1% larger in NIR)
+[19:51:34] [PROCESS] Loading Key Project (Freedman et al. 2001) distances...
+[19:51:34] [SUCCESS]   31 Key Project galaxies loaded
+[19:51:34] [PROCESS] Loading SH0ES R22 NIR Cepheid distances...
+[19:51:34] [SUCCESS]   40 R22 galaxies loaded
+[19:51:34] [PROCESS] Loading host potential catalog...
+[19:51:36] [INFO]   Screening: 40/41 galaxies with S_total < 1
+[19:51:36] [SUCCESS]   41 galaxies with V_rot and screened X_i
+[19:51:36] [PROCESS] 
+Running rho sensitivity audit...
+[19:51:36] [PROCESS] 
+--- Testing rho = 0.0 ---
+[19:51:36] [PROCESS] Loading Madore & Freedman (2023) Table 2...
+[19:51:36] [SUCCESS]   20 galaxies with VIH (NIR) and VI (optical) distances
+[19:51:36] [PROCESS] 
 Merging Madore & Freedman (2023) with host potential catalog...
-[13:37:10] [SUCCESS]   20 galaxies matched (primary sample)
-[13:37:10] [PROCESS] 
+[19:51:36] [SUCCESS]   20 galaxies matched (primary sample)
+[19:51:36] [PROCESS] 
 Merging Key Project + R22 + host potential catalog...
-[13:37:10] [TEST]   9 Key Project ↔ R22 matches
-[13:37:10] [SUCCESS]   9 galaxies matched (secondary sample)
-[13:37:10] [PROCESS] 
-Regression: Primary: MF2023 VIH vs VI
-[13:37:10] [TEST]   N=20, slope = 8.1344e+05 ± 1.5212e+05 (5.35σ)
-[13:37:10] [TEST]   intercept = -0.0022 ± 0.0112
-[13:37:10] [TEST]   Pearson r = +0.1907 (p = 0.4207)
-[13:37:10] [TEST]   Spearman ρ = +0.1504 (p = 0.5269)
-[13:37:10] [TEST]   R² = 0.0201, χ²/dof = 5.19
-[13:37:10] [TEST]   TEP predicted slope: 1.8250e+05 (default κ_P), 2.0000e+05 (joint κ_P)
-[13:37:10] [TEST]   vs TEP (default): |slope - pred|/σ = 4.15σ
-[13:37:10] [TEST]   vs TEP (joint): |slope - pred|/σ = 4.03σ
-[13:37:10] [PROCESS] 
-Regression: Secondary: Key Project vs R22
-[13:37:10] [TEST]   N=9, slope = -5.6681e+05 ± 7.3516e+05 (0.77σ)
-[13:37:10] [TEST]   intercept = +0.0665 ± 0.0311
-[13:37:10] [TEST]   Pearson r = -0.3605 (p = 0.3406)
-[13:37:10] [TEST]   Spearman ρ = -0.4500 (p = 0.2242)
-[13:37:10] [TEST]   R² = 0.1265, χ²/dof = 0.82
-[13:37:10] [TEST]   TEP predicted slope: 1.8250e+05 (default κ_P), 2.0000e+05 (joint κ_P)
-[13:37:10] [TEST]   vs TEP (default): |slope - pred|/σ = 1.02σ
-[13:37:10] [TEST]   vs TEP (joint): |slope - pred|/σ = 1.04σ
-[13:37:10] [SUCCESS] Matched catalog saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/band_dependence_matched.csv
-[13:37:11] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_49_band_dependence.png
-[13:37:11] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_49_band_dependence.json
-[13:37:11] [SUCCESS] Step 49 complete
+[19:51:36] [TEST]   9 Key Project ↔ R22 matches
+[19:51:36] [SUCCESS]   9 galaxies matched (secondary sample)
+[19:51:36] [PROCESS] 
+Regression: Primary: MF2023 VIH vs VI (rho=0.0)
+[19:51:36] [TEST]   N=20, slope = 2.2676e+05 ± 8.6477e+04 (2.62σ)
+[19:51:36] [TEST]   Student-t (nu=4) robust slope: 2.2676e+05 ± 1.0000e+00 (Max Cook's D: 29.79)
+[19:51:36] [TEST]   intercept = -0.0168 ± 0.0156
+[19:51:36] [TEST]   Pearson r = -0.1966 (p = 0.4061)
+[19:51:36] [TEST]   Spearman ρ = -0.2887 (p = 0.2170)
+[19:51:36] [TEST]   R² = -0.0641, χ²/dof = 6.40
+[19:51:36] [TEST]   TEP predicted slope: -5.5982e+04 (default κ_P), -6.1350e+04 (joint κ_P)
+[19:51:36] [TEST]   vs TEP (default): |slope - pred|/σ = 3.27σ
+[19:51:36] [TEST]   vs TEP (joint): |slope - pred|/σ = 3.33σ
+[19:51:36] [PROCESS] 
+--- Testing rho = 0.2 ---
+[19:51:36] [PROCESS] Loading Madore & Freedman (2023) Table 2...
+[19:51:36] [SUCCESS]   20 galaxies with VIH (NIR) and VI (optical) distances
+[19:51:36] [PROCESS] 
+Merging Madore & Freedman (2023) with host potential catalog...
+[19:51:36] [SUCCESS]   20 galaxies matched (primary sample)
+[19:51:36] [PROCESS] 
+Merging Key Project + R22 + host potential catalog...
+[19:51:36] [TEST]   9 Key Project ↔ R22 matches
+[19:51:36] [SUCCESS]   9 galaxies matched (secondary sample)
+[19:51:36] [PROCESS] 
+Regression: Primary: MF2023 VIH vs VI (rho=0.2)
+[19:51:36] [TEST]   N=20, slope = 2.4183e+05 ± 7.8063e+04 (3.10σ)
+[19:51:36] [TEST]   Student-t (nu=4) robust slope: 2.4183e+05 ± 1.0001e+00 (Max Cook's D: 31.06)
+[19:51:36] [TEST]   intercept = -0.0207 ± 0.0143
+[19:51:36] [TEST]   Pearson r = -0.1966 (p = 0.4061)
+[19:51:36] [TEST]   Spearman ρ = -0.2887 (p = 0.2170)
+[19:51:36] [TEST]   R² = -0.0693, χ²/dof = 7.73
+[19:51:36] [TEST]   TEP predicted slope: -5.5982e+04 (default κ_P), -6.1350e+04 (joint κ_P)
+[19:51:36] [TEST]   vs TEP (default): |slope - pred|/σ = 3.81σ
+[19:51:36] [TEST]   vs TEP (joint): |slope - pred|/σ = 3.88σ
+[19:51:36] [PROCESS] 
+--- Testing rho = 0.4 ---
+[19:51:36] [PROCESS] Loading Madore & Freedman (2023) Table 2...
+[19:51:36] [SUCCESS]   20 galaxies with VIH (NIR) and VI (optical) distances
+[19:51:36] [PROCESS] 
+Merging Madore & Freedman (2023) with host potential catalog...
+[19:51:36] [SUCCESS]   20 galaxies matched (primary sample)
+[19:51:36] [PROCESS] 
+Merging Key Project + R22 + host potential catalog...
+[19:51:36] [TEST]   9 Key Project ↔ R22 matches
+[19:51:36] [SUCCESS]   9 galaxies matched (secondary sample)
+[19:51:36] [PROCESS] 
+Regression: Primary: MF2023 VIH vs VI (rho=0.4)
+[19:51:36] [TEST]   N=20, slope = 2.6234e+05 ± 6.8502e+04 (3.83σ)
+[19:51:36] [TEST]   Student-t (nu=4) robust slope: 2.6234e+05 ± 1.0000e+00 (Max Cook's D: 32.94)
+[19:51:36] [TEST]   intercept = -0.0260 ± 0.0128
+[19:51:36] [TEST]   Pearson r = -0.1966 (p = 0.4061)
+[19:51:36] [TEST]   Spearman ρ = -0.2887 (p = 0.2170)
+[19:51:36] [TEST]   R² = -0.0779, χ²/dof = 9.81
+[19:51:36] [TEST]   TEP predicted slope: -5.5982e+04 (default κ_P), -6.1350e+04 (joint κ_P)
+[19:51:36] [TEST]   vs TEP (default): |slope - pred|/σ = 4.65σ
+[19:51:36] [TEST]   vs TEP (joint): |slope - pred|/σ = 4.73σ
+[19:51:36] [PROCESS] 
+--- Testing rho = 0.6 ---
+[19:51:36] [PROCESS] Loading Madore & Freedman (2023) Table 2...
+[19:51:36] [SUCCESS]   20 galaxies with VIH (NIR) and VI (optical) distances
+[19:51:36] [PROCESS] 
+Merging Madore & Freedman (2023) with host potential catalog...
+[19:51:36] [SUCCESS]   20 galaxies matched (primary sample)
+[19:51:36] [PROCESS] 
+Merging Key Project + R22 + host potential catalog...
+[19:51:36] [TEST]   9 Key Project ↔ R22 matches
+[19:51:37] [SUCCESS]   9 galaxies matched (secondary sample)
+[19:51:37] [PROCESS] 
+Regression: Primary: MF2023 VIH vs VI (rho=0.6)
+[19:51:37] [TEST]   N=20, slope = 2.9338e+05 ± 5.7156e+04 (5.13σ)
+[19:51:37] [TEST]   Student-t (nu=4) robust slope: 2.9338e+05 ± 1.0001e+00 (Max Cook's D: 36.18)
+[19:51:37] [TEST]   intercept = -0.0337 ± 0.0111
+[19:51:37] [TEST]   Pearson r = -0.1966 (p = 0.4061)
+[19:51:37] [TEST]   Spearman ρ = -0.2887 (p = 0.2170)
+[19:51:37] [TEST]   R² = -0.0940, χ²/dof = 13.55
+[19:51:37] [TEST]   TEP predicted slope: -5.5982e+04 (default κ_P), -6.1350e+04 (joint κ_P)
+[19:51:37] [TEST]   vs TEP (default): |slope - pred|/σ = 6.11σ
+[19:51:37] [TEST]   vs TEP (joint): |slope - pred|/σ = 6.21σ
+[19:51:37] [PROCESS] 
+--- Testing rho = 0.8 ---
+[19:51:37] [PROCESS] Loading Madore & Freedman (2023) Table 2...
+[19:51:37] [SUCCESS]   20 galaxies with VIH (NIR) and VI (optical) distances
+[19:51:37] [PROCESS] 
+Merging Madore & Freedman (2023) with host potential catalog...
+[19:51:37] [SUCCESS]   20 galaxies matched (primary sample)
+[19:51:37] [PROCESS] 
+Merging Key Project + R22 + host potential catalog...
+[19:51:37] [TEST]   9 Key Project ↔ R22 matches
+[19:51:37] [SUCCESS]   9 galaxies matched (secondary sample)
+[19:51:37] [PROCESS] 
+Regression: Primary: MF2023 VIH vs VI (rho=0.8)
+[19:51:37] [TEST]   N=20, slope = 3.5140e+05 ± 4.2386e+04 (8.29σ)
+[19:51:37] [TEST]   Student-t (nu=4) robust slope: 3.5140e+05 ± 1.0000e+00 (Max Cook's D: 44.23)
+[19:51:37] [TEST]   intercept = -0.0476 ± 0.0087
+[19:51:37] [TEST]   Pearson r = -0.1966 (p = 0.4061)
+[19:51:37] [TEST]   Spearman ρ = -0.2887 (p = 0.2170)
+[19:51:37] [TEST]   R² = -0.1330, χ²/dof = 22.71
+[19:51:37] [TEST]   TEP predicted slope: -5.5982e+04 (default κ_P), -6.1350e+04 (joint κ_P)
+[19:51:37] [TEST]   vs TEP (default): |slope - pred|/σ = 9.61σ
+[19:51:37] [TEST]   vs TEP (joint): |slope - pred|/σ = 9.74σ
+[19:51:37] [PROCESS] 
+Regression: Secondary: Key Project vs R22 (rho=0.8)
+[19:51:37] [TEST]   N=9, slope = -2.1677e+05 ± 2.4067e+05 (0.90σ)
+[19:51:37] [TEST]   Student-t (nu=4) robust slope: -2.1677e+05 ± 1.0001e+00 (Max Cook's D: 0.69)
+[19:51:37] [TEST]   intercept = +0.0959 ± 0.0240
+[19:51:37] [TEST]   Pearson r = -0.2149 (p = 0.5787)
+[19:51:37] [TEST]   Spearman ρ = -0.2000 (p = 0.6059)
+[19:51:37] [TEST]   R² = 0.0352, χ²/dof = 2.82
+[19:51:37] [TEST]   TEP predicted slope: -5.5982e+04 (default κ_P), -6.1350e+04 (joint κ_P)
+[19:51:37] [TEST]   vs TEP (default): |slope - pred|/σ = 0.67σ
+[19:51:37] [TEST]   vs TEP (joint): |slope - pred|/σ = 0.65σ
+[19:51:37] [PROCESS] 
+--- Testing rho = 0.9 ---
+[19:51:37] [PROCESS] Loading Madore & Freedman (2023) Table 2...
+[19:51:37] [SUCCESS]   20 galaxies with VIH (NIR) and VI (optical) distances
+[19:51:37] [PROCESS] 
+Merging Madore & Freedman (2023) with host potential catalog...
+[19:51:37] [SUCCESS]   20 galaxies matched (primary sample)
+[19:51:37] [PROCESS] 
+Merging Key Project + R22 + host potential catalog...
+[19:51:37] [TEST]   9 Key Project ↔ R22 matches
+[19:51:37] [SUCCESS]   9 galaxies matched (secondary sample)
+[19:51:37] [PROCESS] 
+Regression: Primary: MF2023 VIH vs VI (rho=0.9)
+[19:51:37] [TEST]   N=20, slope = 4.1130e+05 ± 3.1962e+04 (12.87σ)
+[19:51:37] [TEST]   Student-t (nu=4) robust slope: 4.1130e+05 ± 1.0000e+00 (Max Cook's D: 57.94)
+[19:51:37] [TEST]   intercept = -0.0617 ± 0.0070
+[19:51:37] [TEST]   Pearson r = -0.1966 (p = 0.4061)
+[19:51:37] [TEST]   Spearman ρ = -0.2887 (p = 0.2170)
+[19:51:37] [TEST]   R² = -0.1846, χ²/dof = 36.06
+[19:51:37] [TEST]   TEP predicted slope: -5.5982e+04 (default κ_P), -6.1350e+04 (joint κ_P)
+[19:51:37] [TEST]   vs TEP (default): |slope - pred|/σ = 14.62σ
+[19:51:37] [TEST]   vs TEP (joint): |slope - pred|/σ = 14.79σ
+[19:51:37] [TEST] 
+Rho Sensitivity Summary (Primary Sample, incl M101):
+[19:51:37] [TEST]   rho=0.0 | WLS slope=2.2676e+05 ± 8.6477e+04 (2.62σ) | Student-t slope=2.2676e+05 ± 1.0000e+00
+[19:51:37] [TEST]   rho=0.2 | WLS slope=2.4183e+05 ± 7.8063e+04 (3.10σ) | Student-t slope=2.4183e+05 ± 1.0001e+00
+[19:51:37] [TEST]   rho=0.4 | WLS slope=2.6234e+05 ± 6.8502e+04 (3.83σ) | Student-t slope=2.6234e+05 ± 1.0000e+00
+[19:51:37] [TEST]   rho=0.6 | WLS slope=2.9338e+05 ± 5.7156e+04 (5.13σ) | Student-t slope=2.9338e+05 ± 1.0001e+00
+[19:51:37] [TEST]   rho=0.8 | WLS slope=3.5140e+05 ± 4.2386e+04 (8.29σ) | Student-t slope=3.5140e+05 ± 1.0000e+00
+[19:51:37] [TEST]   rho=0.9 | WLS slope=4.1130e+05 ± 3.1962e+04 (12.87σ) | Student-t slope=4.1130e+05 ± 1.0000e+00
+[19:51:37] [PROCESS] 
+Regression: Primary (M101 excluded): MF2023 VIH vs VI
+[19:51:37] [TEST]   N=19, slope = -1.1469e+06 ± 1.3184e+05 (8.70σ)
+[19:51:37] [TEST]   Student-t (nu=4) robust slope: -1.1469e+06 ± 1.0000e+00 (Max Cook's D: 0.42)
+[19:51:37] [TEST]   intercept = +0.0328 ± 0.0110
+[19:51:37] [TEST]   Pearson r = -0.5073 (p = 0.0266)
+[19:51:37] [TEST]   Spearman ρ = -0.3737 (p = 0.1150)
+[19:51:37] [TEST]   R² = 0.2283, χ²/dof = 15.57
+[19:51:37] [TEST]   TEP predicted slope: -5.5982e+04 (default κ_P), -6.1350e+04 (joint κ_P)
+[19:51:37] [TEST]   vs TEP (default): |slope - pred|/σ = 8.27σ
+[19:51:37] [TEST]   vs TEP (joint): |slope - pred|/σ = 8.23σ
+[19:51:37] [TEST]   M101-excluded: N=19, slope=-1.147e+06 ± 1.318e+05 (8.70sigma)
+[19:51:37] [SUCCESS] Matched catalog saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/band_dependence_matched.csv
+[19:51:38] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_49_band_dependence.png
+[19:51:38] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_49_band_dependence.json
+[19:51:38] [SUCCESS] Step 49 complete
+[19:51:38] [SUCCESS] step_49 completed in 3.4s
+[19:51:38] [INFO] 
+[19:51:38] [INFO] ================================================================================
+[19:51:38] [INFO]    Starting step_50: JWST matched Cepheid/TRGB sample (GO-1995, GO-1685, GO-2875)
+[19:51:38] [INFO] ================================================================================
+[19:51:38] [INFO] 

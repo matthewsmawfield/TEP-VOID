@@ -1,57 +1,57 @@
-[21:43:03] [INFO] 
-[21:43:03] [INFO] ================================================================================
-[21:43:03] [INFO]    ============================================================
-[21:43:03] [INFO] ================================================================================
-[21:43:03] [INFO] 
-[21:43:03] [INFO] 
-[21:43:03] [INFO] ================================================================================
-[21:43:03] [INFO]    Step 34: Void Boundary Test
-[21:43:03] [INFO] ================================================================================
-[21:43:03] [INFO] 
-[21:43:03] [INFO] 
-[21:43:03] [INFO] ================================================================================
-[21:43:03] [INFO]    Does the Hubble tension persist at z > 0.25?
-[21:43:03] [INFO] ================================================================================
-[21:43:03] [INFO] 
-[21:43:03] [INFO] 
-[21:43:03] [INFO] ================================================================================
-[21:43:03] [INFO]    ============================================================
-[21:43:03] [INFO] ================================================================================
-[21:43:03] [INFO] 
-[21:43:03] [INFO] This step addresses whether the KBC void model's predicted gradual H0(z) decline towards the Planck value can account for the Hubble tension, or whether the TEP flat H0(z) prediction for global M_B better describes the Pantheon+ sample. The two models compared are the KBC/MOND gradual decay (Gaussian and Exponential profiles from HBK20/Mazurenko et al. 2024, calibrated to 1-sigma Planck convergence at z~1.8) and the TEP prediction of flat H0(z)~73.0 when M_B is global. The key discriminating observable is the relative evolution of H0 from z < 0.15 to z > 0.25 in massive hosts, which is calibration-independent.
-[21:43:03] [SUCCESS] Loaded 1543 rows from Pantheon+ data
-[21:43:03] [PROCESS] H0(z) is inferred per SN by inverting the LCDM distance modulus relation in redshift bins defined by Z_BINS, split by host stellar mass at log10(M*/Msun)=10.0. Per-SN H0 errors propagate from mu_err where available; otherwise the sample standard error of the mean is used. Bins with fewer than 3 SNe are excluded.
-[21:43:03] [PROCESS] Computing H0(z) by host mass category...
-[21:43:03] [TEST]   z=[0.01,0.05) massive: H0=72.3 +/- 0.5 (N=222)
-[21:43:03] [TEST]   z=[0.05,0.10) massive: H0=72.4 +/- 1.0 (N=47)
-[21:43:03] [TEST]   z=[0.10,0.15) massive: H0=72.4 +/- 1.0 (N=41)
-[21:43:03] [TEST]   z=[0.15,0.25) massive: H0=73.6 +/- 0.5 (N=162)
-[21:43:03] [TEST]   z=[0.25,0.40) massive: H0=72.8 +/- 0.6 (N=173)
-[21:43:03] [TEST]   z=[0.40,0.65) massive: H0=74.5 +/- 0.9 (N=89)
-[21:43:03] [TEST]   z=[0.65,1.00) massive: H0=74.3 +/- 1.6 (N=29)
-[21:43:03] [TEST]   z=[1.00,2.30) massive: H0=74.3 +/- 3.5 (N=17)
-[21:43:03] [PROCESS] The boundary test computes a sample-size-weighted mean H0 for massive hosts at z > 0.25 and compares it to the low-z (z < 0.15) value. The calibration-independent relative change delta_H0 = H0(high-z) - H0(low-z) is the primary diagnostic: the KBC gradual decay predicts a decline, while TEP predicts a flat or increasing profile. The absolute H0 at high z is not an independent measurement because Pantheon+ MU_SH0ES inherits the Cepheid zero-point by construction.
-[21:43:03] [PROCESS] Testing void boundary prediction...
-[21:43:03] [TEST]   Massive hosts at z > 0.25: H0 = 73.5 +/- 0.38 km/s/Mpc (4 bins)
-[21:43:03] [TEST]   Tension with CMB: 9.7 sigma (H0 - H0_CMB = 6.1)
-[21:43:03] [TEST]   Low-mass hosts at z > 0.25: H0 = 74.4 km/s/Mpc
-[21:43:03] [TEST]   Massive hosts at z < 0.15: H0 = 72.3 km/s/Mpc
-[21:43:03] [TEST]   Verdict: KBC gradual decay NOT observed: H0 changes from 72.3 at z < 0.15 to 73.5 at z > 0.25 (Δ = +1.2 km/s/Mpc). The published KBC/MOND model (HBK20/Mazurenko et al. 2024) predicts a gradual decline towards the Planck value (67.4), but the observed H0 does not decline — it is flat or increases. NOTE: The absolute H0 = 73.5 at z > 0.25 is NOT an independent measurement; Pantheon+ MU_SH0ES uses M_B = -19.253 calibrated from Cepheid anchors, so the Cepheid zero-point is inherited by construction. The calibration-independent test is the relative evolution, which rejects the KBC gradual decline. The TEP prediction (flat H0(z) for global M_B) is consistent with the observed flat profile. The host-mass dependence of the TEP effect is established in TEP-H0 (Paper 11) using per-host Cepheid distances, not the global M_B used here.
-[21:43:03] [TEST] Boundary test verdict: void_falsified=True, tep_supported=True. The calibration-independent relative evolution determines whether the KBC gradual decline is observed or whether the TEP flat prediction is favoured.
-[21:43:03] [PROCESS] Model comparison uses AIC with both fitted (k=2) and fixed-prediction (k=1) parameterizations. Void models (Gaussian sigma_z and Exponential z_0) are fit with free dH0 and shape parameter; the TEP model is fit with free dH0 and decay index n. Fixed-prediction comparisons use published void parameters (sigma_z=0.82, z_0=0.74) against the TEP flat H0(z) prediction for global M_B. Delta AIC > 10 is considered decisive preference for TEP.
-[21:43:03] [PROCESS] Computing model chi-squared for void (gradual) vs TEP (flat)...
-[21:43:03] [TEST]   massive: chi2_void_gauss=7.7 (sigma_z=10.000), chi2_void_exp=9.6 (z_0=10.000), chi2_tep=7.7 (n=0.00), Delta AIC=0.1
-[21:43:03] [TEST]   massive fixed: chi2_void_gauss=19.4, chi2_void_exp=47.7, chi2_tep(flat, global M_B)=7.7, ΔAIC(Void_Gauss-TEP)=11.7, ΔAIC(Void_Exp-TEP)=40.0
-[21:43:03] [TEST]   low_mass: chi2_void_gauss=8.2 (sigma_z=10.000), chi2_void_exp=10.0 (z_0=10.000), chi2_tep=8.2 (n=0.00), Delta AIC=0.0
-[21:43:03] [TEST]   low_mass fixed: chi2_void_gauss=19.7, chi2_void_exp=50.6, chi2_tep(flat, global M_B)=8.2, ΔAIC(Void_Gauss-TEP)=11.5, ΔAIC(Void_Exp-TEP)=42.4
-[21:43:03] [SUCCESS] Model comparison complete. Massive hosts: Delta AIC (void-TEP) = 0.1, TEP preferred = True. Low-mass hosts: Delta AIC = 0.0, TEP preferred = True. Positive Delta AIC indicates the void model is disfavoured relative to TEP. The fixed-prediction comparison tests the published KBC curves against the TEP flat H0(z) prediction without free shape parameters.
-[21:43:03] [PROCESS] Generating void boundary test figure...
-[21:43:03] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_34_void_boundary_test.png
-[21:43:03] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_34_void_boundary_test.json
-[21:43:03] [SUCCESS] Step 34 complete
-[21:43:03] [SUCCESS] step_34 completed in 0.1s
-[21:43:03] [INFO] 
-[21:43:03] [INFO] ================================================================================
-[21:43:03] [INFO]    Starting step_35: Floating M_B analysis: release global M_B constraint, quantify SALT2 absorption
-[21:43:03] [INFO] ================================================================================
-[21:43:03] [INFO] 
+[19:42:29] [INFO] 
+[19:42:29] [INFO] ================================================================================
+[19:42:29] [INFO]    ============================================================
+[19:42:29] [INFO] ================================================================================
+[19:42:29] [INFO] 
+[19:42:29] [INFO] 
+[19:42:29] [INFO] ================================================================================
+[19:42:29] [INFO]    Step 34: Void Boundary Test
+[19:42:29] [INFO] ================================================================================
+[19:42:29] [INFO] 
+[19:42:29] [INFO] 
+[19:42:29] [INFO] ================================================================================
+[19:42:29] [INFO]    Does the Hubble tension persist at z > 0.25?
+[19:42:29] [INFO] ================================================================================
+[19:42:29] [INFO] 
+[19:42:29] [INFO] 
+[19:42:29] [INFO] ================================================================================
+[19:42:29] [INFO]    ============================================================
+[19:42:29] [INFO] ================================================================================
+[19:42:29] [INFO] 
+[19:42:29] [INFO] This step addresses whether the KBC void model's predicted gradual H0(z) decline towards the Planck value can account for the Hubble tension, or whether the TEP flat H0(z) prediction for global M_B better describes the Pantheon+ sample. The two models compared are the KBC/MOND gradual decay (Gaussian and Exponential profiles from HBK20/Mazurenko et al. 2024, calibrated to 1-sigma Planck convergence at z~1.8) and the TEP prediction of flat H0(z)~73.0 when M_B is global. The key discriminating observable is the relative evolution of H0 from z < 0.15 to z > 0.25 in massive hosts, which is calibration-independent.
+[19:42:29] [SUCCESS] Loaded 1543 rows from Pantheon+ data
+[19:42:29] [PROCESS] H0(z) is inferred per SN by inverting the LCDM distance modulus relation in redshift bins defined by Z_BINS, split by host stellar mass at log10(M*/Msun)=10.0. Per-SN H0 errors propagate from mu_err where available; otherwise the sample standard error of the mean is used. Bins with fewer than 3 SNe are excluded.
+[19:42:29] [PROCESS] Computing H0(z) by host mass category...
+[19:42:29] [TEST]   z=[0.01,0.05) massive: H0=72.3 +/- 0.5 (N=222)
+[19:42:29] [TEST]   z=[0.05,0.10) massive: H0=72.4 +/- 1.0 (N=47)
+[19:42:29] [TEST]   z=[0.10,0.15) massive: H0=72.4 +/- 1.0 (N=41)
+[19:42:29] [TEST]   z=[0.15,0.25) massive: H0=73.6 +/- 0.5 (N=162)
+[19:42:29] [TEST]   z=[0.25,0.40) massive: H0=72.8 +/- 0.6 (N=173)
+[19:42:29] [TEST]   z=[0.40,0.65) massive: H0=74.5 +/- 0.9 (N=89)
+[19:42:29] [TEST]   z=[0.65,1.00) massive: H0=74.3 +/- 1.6 (N=29)
+[19:42:29] [TEST]   z=[1.00,2.30) massive: H0=74.3 +/- 3.5 (N=17)
+[19:42:29] [PROCESS] The boundary test computes a sample-size-weighted mean H0 for massive hosts at z > 0.25 and compares it to the low-z (z < 0.15) value. The calibration-independent relative change delta_H0 = H0(high-z) - H0(low-z) is the primary diagnostic: the KBC gradual decay predicts a decline, while TEP predicts a flat or increasing profile. The absolute H0 at high z is not an independent measurement because Pantheon+ MU_SH0ES inherits the Cepheid zero-point by construction.
+[19:42:29] [PROCESS] Testing void boundary prediction...
+[19:42:29] [TEST]   Massive hosts at z > 0.25: H0 = 73.5 +/- 0.38 km/s/Mpc (4 bins)
+[19:42:29] [TEST]   Tension with CMB: 9.7 sigma (H0 - H0_CMB = 6.1) [NOT calibration-independent]
+[19:42:29] [TEST]   Low-mass hosts at z > 0.25: H0 = 74.4 km/s/Mpc
+[19:42:29] [TEST]   Massive hosts at z < 0.15: H0 = 72.3 km/s/Mpc
+[19:42:29] [TEST]   Verdict: KBC gradual decay NOT observed: H0 changes from 72.3 at z < 0.15 to 73.5 at z > 0.25 (Δ = +1.2 km/s/Mpc). The published KBC/MOND model (HBK20/Mazurenko et al. 2024) predicts a gradual decline towards the Planck value (67.4), but the observed H0 does not decline — it is flat or increases. NOTE: The absolute H0 = 73.5 at z > 0.25 is NOT an independent measurement; Pantheon+ MU_SH0ES uses M_B = -19.253 calibrated from Cepheid anchors, so the Cepheid zero-point is inherited by construction. The calibration-independent test is the relative evolution, which rejects the KBC gradual decline. The TEP prediction (flat H0(z) for global M_B) is consistent with the observed flat profile. The host-mass dependence of the TEP effect is established in TEP-H0 (Paper 11) using per-host Cepheid distances, not the global M_B used here.
+[19:42:29] [TEST] Boundary test verdict: void_falsified=True, tep_supported=True. The calibration-independent relative evolution determines whether the KBC gradual decline is observed or whether the TEP flat prediction is favoured.
+[19:42:29] [PROCESS] Model comparison uses AIC with both fitted (k=2) and fixed-prediction (k=1) parameterizations. Void models (Gaussian sigma_z and Exponential z_0) are fit with free dH0 and shape parameter; the TEP model is fit with free dH0 and decay index n. Fixed-prediction comparisons use published void parameters (sigma_z=0.82, z_0=0.74) against the TEP flat H0(z) prediction for global M_B. Delta AIC > 10 is considered decisive preference for TEP.
+[19:42:29] [PROCESS] Computing model chi-squared for void (gradual) vs TEP (flat)...
+[19:42:29] [TEST]   massive: chi2_void_gauss=7.7 (sigma_z=10.000), chi2_void_exp=9.6 (z_0=10.000), chi2_tep=7.7 (n=0.00), Delta AIC=0.1
+[19:42:29] [TEST]   massive fixed: chi2_void_gauss=19.4, chi2_void_exp=47.7, chi2_tep(flat, global M_B)=7.7, ΔAIC(Void_Gauss-TEP)=11.7, ΔAIC(Void_Exp-TEP)=40.0
+[19:42:29] [TEST]   low_mass: chi2_void_gauss=8.2 (sigma_z=10.000), chi2_void_exp=10.0 (z_0=10.000), chi2_tep=8.2 (n=0.00), Delta AIC=0.0
+[19:42:29] [TEST]   low_mass fixed: chi2_void_gauss=19.7, chi2_void_exp=50.6, chi2_tep(flat, global M_B)=8.2, ΔAIC(Void_Gauss-TEP)=11.5, ΔAIC(Void_Exp-TEP)=42.4
+[19:42:29] [SUCCESS] Model comparison complete. Massive hosts: Delta AIC (void-TEP) = 0.1, TEP preferred = True. Low-mass hosts: Delta AIC = 0.0, TEP preferred = True. Positive Delta AIC indicates the void model is disfavoured relative to TEP. The fixed-prediction comparison tests the published KBC curves against the TEP flat H0(z) prediction without free shape parameters.
+[19:42:29] [PROCESS] Generating void boundary test figure...
+[19:42:29] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_34_void_boundary_test.png
+[19:42:29] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_34_void_boundary_test.json
+[19:42:29] [SUCCESS] Step 34 complete
+[19:42:29] [SUCCESS] step_34 completed in 2.6s
+[19:42:29] [INFO] 
+[19:42:29] [INFO] ================================================================================
+[19:42:29] [INFO]    Starting step_35: Floating M_B analysis: release global M_B constraint, quantify SALT2 absorption
+[19:42:29] [INFO] ================================================================================
+[19:42:29] [INFO] 

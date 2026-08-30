@@ -1,0 +1,26 @@
+[13:19:21] [INFO] ================================================================================
+[13:19:21] [INFO]    Step 57: Differential Dipole Test (Gate D - Validation Pass)
+[13:19:21] [INFO] ================================================================================
+[13:19:21] [SUCCESS] Loaded 33 galaxies for directional test.
+[13:19:21] [TEST] Base Model (D=0) NLL: -54.40
+[13:19:21] [PROCESS] 
+--- Fixed-Axis Directional Tests (Student-t) ---
+[13:19:21] [TEST] Axis: CMB Dipole           | NLL = -57.63 | ΔNLL = +3.23 | Amplitude(D) = +0.0769
+[13:19:21] [TEST] Axis: Shapley Supercluster | NLL = -55.66 | ΔNLL = +1.25 | Amplitude(D) = +0.0551
+[13:19:21] [TEST] Axis: Dipole Repeller      | NLL = -54.96 | ΔNLL = +0.56 | Amplitude(D) = -0.0611
+[13:19:21] [TEST] Axis: Ecliptic Pole        | NLL = -55.61 | ΔNLL = +1.21 | Amplitude(D) = +0.0712
+[13:19:21] [PROCESS] 
+--- Stratified Permutations (CMB Axis) ---
+[13:19:49] [TEST] Stratified Permutation p-value (10000 iters): p = 0.0353
+[13:19:49] [TEST] CMB Dipole Amplitude: D_CMB = +0.0769 ± 0.0319
+[13:19:49] [PROCESS] 
+--- All-Sky Dipole Grid Search ---
+[13:19:52] [TEST] Freely Preferred Axis: (l=20°, b=-40°) | NLL = -59.37
+[13:19:52] [TEST] Angular distance to CMB axis: 134.6°
+[13:19:52] [PROCESS] 
+--- Nested Joint Model (X_i + D_CMB) ---
+[13:19:52] [TEST] Model X_i only NLL: -55.91 (ΔNLL=+1.51)
+[13:19:52] [TEST] Joint Model (X_i + D_CMB) NLL: -58.42
+[13:19:52] [TEST] Likelihood Ratio vs X_i only: 2*ΔNLL = 5.01
+[13:19:52] [TEST] Likelihood Ratio vs D_CMB only: 2*ΔNLL = 1.58
+[13:19:52] [TEST] Joint Parameters: kappa = -3.8891e+05, D_CMB = +0.0717

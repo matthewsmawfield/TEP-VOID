@@ -1,36 +1,28 @@
-[21:42:55] [INFO] 
-[21:42:55] [INFO] ================================================================================
-[21:42:55] [INFO]    TEP-VOID Analysis Pipeline (Paper 31)
-[21:42:55] [INFO] ================================================================================
-[21:42:55] [INFO] 
-[21:42:55] [PROCESS] Cosmological Voids vs Isochrony Violation
-[21:42:55] [INFO] Project root: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID
-[21:42:55] [INFO] Results: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results
-[21:42:55] [INFO] Logs: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/logs
-[21:42:55] [PROCESS] Running 21 step(s)
-[21:42:55] [INFO] 
-[21:42:55] [INFO] ================================================================================
-[21:42:55] [INFO]    Starting step_00: Data ingestion: SH0ES Cepheid + CCHP TRGB host samples
-[21:42:55] [INFO] ================================================================================
-[21:42:55] [INFO] 
-[21:42:55] [INFO]   step_00: OK (0.3s)
-[21:42:55] [INFO]   step_01: OK (0.0s)
-[21:42:56] [INFO]   step_02: OK (0.9s)
-[21:42:56] [INFO]   step_03: OK (0.0s)
-[21:42:56] [INFO]   step_10: OK (0.4s)
-[21:42:57] [INFO]   step_11: OK (0.5s)
-[21:42:57] [INFO]   step_12: OK (0.0s)
-[21:42:58] [INFO]   step_30: OK (0.8s)
-[21:42:58] [INFO]   step_31: OK (0.2s)
-[21:42:59] [INFO]   step_32: OK (0.9s)
-[21:42:59] [INFO]   step_32d: OK (0.4s)
-[21:42:59] [INFO]   step_32m: OK (0.3s)
-[21:43:02] [INFO]   step_32r: OK (2.8s)
-[21:43:02] [INFO]   step_32b: OK (0.2s)
-[21:43:02] [INFO]   step_33: OK (0.0s)
-[21:43:03] [INFO]   step_36: OK (0.4s)
-[21:43:03] [INFO]   step_34: OK (0.1s)
-[21:43:03] [INFO]   step_35: OK (0.6s)
-[21:43:04] [INFO]   step_40: OK (0.4s)
-[21:43:04] [INFO]   step_42: OK (0.0s)
-[21:43:05] [INFO]   step_43: OK (0.8s)
+[20:05:18] [INFO] 
+[20:05:18] [INFO] ================================================================================
+[20:05:18] [INFO]    TEP-VOID Analysis Pipeline (Paper 31)
+[20:05:18] [INFO] ================================================================================
+[20:05:18] [INFO] 
+[20:05:18] [PROCESS] Cosmological Voids vs Isochrony Violation
+[20:05:18] [INFO] Project root: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID
+[20:05:18] [INFO] Results: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results
+[20:05:18] [INFO] Logs: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/logs
+[20:05:18] [PROCESS] Running 46 step(s)
+[20:05:18] [INFO] 
+[20:05:18] [INFO] ================================================================================
+[20:05:18] [INFO]    Starting step_00: Data ingestion: SH0ES Cepheid + CCHP TRGB host samples
+[20:05:18] [INFO] ================================================================================
+[20:05:18] [INFO] 
+[20:05:20] [INFO]   step_00: OK (1.4s)
+[20:05:23] [INFO]   step_00b: OK (2.7s)
+[20:05:23] [INFO]   step_01: OK (0.0s)
+[20:05:29] [INFO]   step_02: OK (6.8s)
+[20:05:29] [INFO]   step_03: OK (0.0s)
+[20:05:31] [INFO]   step_10: OK (2.0s)
+[20:05:34] [INFO]   step_11: OK (2.4s)
+[20:05:34] [INFO]   step_12: OK (0.0s)
+[20:07:40] [INFO]   step_30: OK (328.1s)
+[20:07:42] [INFO]   step_31: OK (2.0s)
+[20:07:49] [INFO]   step_32: OK (7.0s)
+[20:07:52] [INFO]   step_32d: OK (2.6s)
+[20:07:55] [INFO]   step_32m: OK (3.0s)

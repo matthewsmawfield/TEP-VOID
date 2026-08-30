@@ -1,25 +1,25 @@
-[21:43:04] [INFO] 
-[21:43:04] [INFO] ================================================================================
-[21:43:04] [INFO]    Step 43: Manuscript Figures — Void vs TEP Composite
-[21:43:04] [INFO] ================================================================================
-[21:43:04] [INFO] 
-[21:43:04] [INFO] This step generates the composite manuscript figure displaying all four discriminating observables that distinguish the KBC void model from the TEP framework. The figure serves as the visual synthesis of the Block III falsification analysis, consolidating the indicator divergence, calibration sensitivity, H0(z) decay profile, and void boundary test into a single publication-ready panel.
-[21:43:04] [PROCESS] Loading step results for figure generation...
-[21:43:04] [SUCCESS]   Loaded step_30_bulk_flow_recalculation.json
-[21:43:04] [SUCCESS]   Loaded step_31_peculiar_velocity_artifact.json
-[21:43:04] [SUCCESS]   Loaded step_32_redshift_decay_profile.json
-[21:43:04] [SUCCESS]   Loaded step_34_void_boundary_test.json
-[21:43:04] [SUCCESS]   Loaded step_40_redshift_shear_reconstruction.json
-[21:43:04] [SUCCESS]   Loaded step_42_falsification_summary.json
-[21:43:04] [PROCESS] Methodology: a four-panel composite figure is assembled from upstream step results (steps 30, 31, 32, 34, 40, 42). Panel (a) plots Cepheid vs TRGB distance moduli; panel (b) shows bulk-flow calibration sensitivity; panel (c) displays the H0(z) decay profile with void and TEP model overlays; panel (d) presents the void boundary test in massive and low-mass hosts. Model curves use H0_CMB = 67.4 and H0_SH0ES = 73.0 km/s/Mpc.
-[21:43:04] [PROCESS] Generating composite manuscript figure...
-[21:43:05] [SUCCESS] Composite figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_43_manuscript_composite.png
-[21:43:05] [SUCCESS] Interpretation: the composite figure consolidates the four discriminating observables into a single visual synthesis. 6 upstream step results were loaded for panel generation. The figure is saved as a publication-ready PNG at 200 DPI.
-[21:43:05] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_43_manuscript_figures.json
-[21:43:05] [SUCCESS] Step 43 complete
-[21:43:05] [SUCCESS] step_43 completed in 0.8s
-[21:43:05] [INFO] 
-[21:43:05] [INFO] ================================================================================
-[21:43:05] [INFO]    Pipeline complete: 21 succeeded, 0 failed, 10.0s total
-[21:43:05] [INFO] ================================================================================
-[21:43:05] [INFO] 
+[19:42:39] [INFO] 
+[19:42:39] [INFO] ================================================================================
+[19:42:39] [INFO]    Step 43: Manuscript Figures — Void vs TEP Composite
+[19:42:39] [INFO] ================================================================================
+[19:42:39] [INFO] 
+[19:42:39] [INFO] This step generates the composite manuscript figure displaying all four discriminating observables that distinguish the KBC void model from the TEP framework. The figure serves as the visual synthesis of the Block III falsification analysis, consolidating the indicator divergence, calibration sensitivity, H0(z) decay profile, and void boundary test into a single publication-ready panel.
+[19:42:39] [PROCESS] Loading step results for figure generation...
+[19:42:39] [SUCCESS]   Loaded step_30_bulk_flow_recalculation.json
+[19:42:39] [SUCCESS]   Loaded step_31_peculiar_velocity_artifact.json
+[19:42:39] [SUCCESS]   Loaded step_32_redshift_decay_profile.json
+[19:42:39] [SUCCESS]   Loaded step_34_void_boundary_test.json
+[19:42:39] [SUCCESS]   Loaded step_40_redshift_shear_reconstruction.json
+[19:42:39] [SUCCESS]   Loaded step_42_falsification_summary.json
+[19:42:39] [PROCESS] Methodology: a four-panel composite figure is assembled from upstream step results (steps 30, 31, 32, 34, 40, 42). Panel (a) plots Cepheid vs TRGB distance moduli; panel (b) shows bulk-flow calibration sensitivity; panel (c) displays the H0(z) decay profile with void and TEP model overlays; panel (d) presents the void boundary test in massive and low-mass hosts. Model curves use H0_CMB = 67.4 and H0_SH0ES = 73.0 km/s/Mpc.
+[19:42:39] [PROCESS] Generating composite manuscript figure...
+[19:42:41] [SUCCESS] Composite figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_43_manuscript_composite.png
+[19:42:41] [SUCCESS] Interpretation: the composite figure consolidates the four discriminating observables into a single visual synthesis. 6 upstream step results were loaded for panel generation. The figure is saved as a publication-ready PNG at 200 DPI.
+[19:42:41] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_43_manuscript_figures.json
+[19:42:41] [SUCCESS] Step 43 complete
+[19:42:41] [SUCCESS] step_43 completed in 1.4s
+[19:42:41] [INFO] 
+[19:42:41] [INFO] ================================================================================
+[19:42:41] [INFO]    Pipeline complete: 3 succeeded, 0 failed, 6.4s total
+[19:42:41] [INFO] ================================================================================
+[19:42:41] [INFO] 

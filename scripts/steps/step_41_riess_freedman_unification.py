@@ -49,9 +49,9 @@ class Step41RiessFreedmanUnification:
     H0_CEPHEID = 73.04  # km/s/Mpc (Riess et al. 2022, SH0ES)
     H0_CEPHEID_ERR = 1.04
     H0_TRGB = 68.81  # km/s/Mpc (Freedman et al. 2025, CCHP TRGB)
-    H0_TRGB_ERR = 1.27
+    H0_TRGB_ERR = 1.79  # stat (Freedman et al. 2025; sys 1.32, see step_44)
     H0_JAGB = 67.80  # km/s/Mpc (Freedman et al. 2025, CCHP JAGB)
-    H0_JAGB_ERR = 2.17
+    H0_JAGB_ERR = 2.17  # stat (Freedman et al. 2025; sys 1.64)
     H0_CMB = 67.4  # km/s/Mpc (Planck 2018)
     H0_CMB_ERR = 0.5
 
@@ -152,8 +152,8 @@ class Step41RiessFreedmanUnification:
         # Tension reduction
         tension_reduction_cmb = sigma_ceph_cmb - sigma_tep_cmb
         tension_reduction_trgb = sigma_ceph_trgb - sigma_tep_trgb
-        print_status(f"  Tension reduction (vs CMB): {tension_reduction_cmb:.1f}sigma -> {sigma_tep_cmb:.1f}sigma", "SUCCESS")
-        print_status(f"  Tension reduction (vs TRGB): {tension_reduction_trgb:.1f}sigma -> {sigma_tep_trgb:.1f}sigma", "SUCCESS")
+        print_status(f"  Tension reduction (vs CMB): {sigma_ceph_cmb:.1f}sigma -> {sigma_tep_cmb:.1f}sigma (reduction {tension_reduction_cmb:.1f}sigma)", "SUCCESS")
+        print_status(f"  Tension reduction (vs TRGB): {sigma_ceph_trgb:.1f}sigma -> {sigma_tep_trgb:.1f}sigma (reduction {tension_reduction_trgb:.1f}sigma)", "SUCCESS")
 
         print_status(
             f"After TEP correction, the Cepheid vs CMB tension is reduced from "

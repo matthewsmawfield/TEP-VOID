@@ -1,37 +1,37 @@
-[21:43:02] [INFO] ============================================================
-[21:43:02] [INFO] Step 32b: Jia et al. H_0(z) Reconstruction Validation
-[21:43:02] [INFO] VALIDATION ONLY — not part of primary TEP-vs-KBC likelihood
-[21:43:02] [INFO] ============================================================
-[21:43:02] [PROCESS] Scientific context: Mazurenko et al. (2025) report reasonable agreement between their Method-3 KBC H0(z) curves and the decorrelated H_{0,z} reconstruction of Jia, Hu & Wang (2023). This validation step addresses two distinct questions. Level A verifies that the digitized KBC curves reproduce the qualitative agreement with Jia et al.'s published bin values. Level B tests whether the direct binned H0(z) from Pantheon+ SN-only data shows the same declining trend reported by Jia et al., or whether that trend arises from the piecewise parameterization combined with H(z) and BAO data. This distinction matters for the falsification because the TEP-VOID native-mu likelihood (step_32) evaluates the frozen KBC prediction against the underlying observable, not against a reconstructed parameterization. If the direct observable is flat while the reconstructed parameterization declines, the apparent KBC-Jia agreement does not constitute independent support for the void model.
-[21:43:02] [TEST]   --- Level A: KBC curve vs Jia et al. published values ---
-[21:43:02] [TEST]   KBC Gaussian vs Jia: RMS=1.91 km/s/Mpc, chi2=120.1
-[21:43:02] [TEST]   KBC Exponential vs Jia: RMS=1.89 km/s/Mpc, chi2=209.5
-[21:43:02] [SUCCESS]   Level A: PASS — qualitative agreement reproduced
-[21:43:02] [TEST]   --- Level B: Binned H_0(z) in Jia et al. bins ---
-[21:43:02] [PROCESS] Methodology: Per-SN H0 is computed via standard LCDM inversion H0 = (1+z)*c*integral_0^z dz'/E(z') / d_L, where d_L = 10^((mu-25)/5) and E(z) = sqrt(Omega_m*(1+z)^3 + (1-Omega_m)) with Omega_m = 0.302. SNe are then binned into Jia et al.'s 10 equal-width bins (Table 4 edges) and the unweighted mean and standard error of the mean are computed per bin. This direct binned estimator is compared with Jia et al.'s published H_{0,z_i} values to assess whether the declining trend is present in the underlying observable or only in the reconstructed parameterization.
-[21:43:02] [PROCESS]   Loaded 1701 Pantheon+ SNe
-[21:43:02] [TEST]   Binned H_0(z) in Jia et al. bins (simple inversion):
-[21:43:02] [TEST]   z=[0.0,0.1]: H0=72.47±0.29 (n=741, Jia: 73.25±0.14)
-[21:43:02] [TEST]   z=[0.1,0.2]: H0=72.98±0.32 (n=207, Jia: 73.69±0.32)
-[21:43:02] [TEST]   z=[0.2,0.3]: H0=73.62±0.30 (n=259, Jia: 73.14±0.48)
-[21:43:02] [TEST]   z=[0.3,0.4]: H0=73.22±0.33 (n=186, Jia: 70.95±0.69)
-[21:43:02] [TEST]   z=[0.4,0.6]: H0=74.26±0.37 (n=179, Jia: 71.49±0.75)
-[21:43:02] [TEST]   z=[0.6,0.8]: H0=75.30±0.50 (n=99, Jia: 69.02±1.17)
-[21:43:02] [TEST]   z=[0.8,1.1]: H0=72.32±2.59 (n=10, Jia: 69.00±2.39)
-[21:43:02] [TEST]   z=[1.1,1.5]: H0=73.60±2.12 (n=13, Jia: 69.21±2.07)
-[21:43:02] [TEST]   z=[1.5,2.0]: H0=76.89±1.82 (n=6, Jia: 64.84±3.50)
-[21:43:02] [TEST]   z=[2.0,2.4]: H0=73.17±0.00 (n=1, Jia: 65.78±4.50)
-[21:43:02] [TEST]   Low-z mean H0: 73.02
-[21:43:02] [TEST]   High-z mean H0: 74.55
-[21:43:02] [TEST]   Decline: 1.53 km/s/Mpc
-[21:43:02] [SUCCESS]   Level B: PASS — simple binned H_0(z) is flat, not declining
-[21:43:02] [SUCCESS] Interpretation: The direct binned H0(z) from Pantheon+ SN-only data does not reproduce the declining trend reported by Jia et al. (decline = 1.53 km/s/Mpc). This confirms that the published decline arises from the piecewise H_{0,z_i} parameterization combined with H(z) and BAO data, not from the underlying SN observable. The TEP-VOID native-mu likelihood therefore tests the original observable, not the reconstructed parameterization, and the apparent KBC-Jia agreement does not constitute independent support for the void model.
-[21:43:02] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_32b_jia_validation.png
-[21:43:02] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_32b_jia_validation.json
-[21:43:02] [SUCCESS] Step 32b complete
-[21:43:02] [SUCCESS] step_32b completed in 0.2s
-[21:43:02] [INFO] 
-[21:43:02] [INFO] ================================================================================
-[21:43:02] [INFO]    Starting step_33: Host-mass survey design for SNe Ia at z > 0.3
-[21:43:02] [INFO] ================================================================================
-[21:43:02] [INFO] 
+[19:42:20] [INFO] ============================================================
+[19:42:20] [INFO] Step 32b: Jia et al. H_0(z) Reconstruction Validation
+[19:42:20] [INFO] VALIDATION ONLY — not part of primary TEP-vs-KBC likelihood
+[19:42:20] [INFO] ============================================================
+[19:42:20] [PROCESS] Scientific context: Mazurenko et al. (2025) report reasonable agreement between their Method-3 KBC H0(z) curves and the decorrelated H_{0,z} reconstruction of Jia, Hu & Wang (2023). This validation step addresses two distinct questions. Level A verifies that the digitized KBC curves reproduce the qualitative agreement with Jia et al.'s published bin values. Level B tests whether the direct binned H0(z) from Pantheon+ SN-only data shows the same declining trend reported by Jia et al., or whether that trend arises from the piecewise parameterization combined with H(z) and BAO data. This distinction matters for the falsification because the TEP-VOID native-mu likelihood (step_32) evaluates the frozen KBC prediction against the underlying observable, not against a reconstructed parameterization. If the direct observable is flat while the reconstructed parameterization declines, the apparent KBC-Jia agreement does not constitute independent support for the void model.
+[19:42:20] [TEST]   --- Level A: KBC curve vs Jia et al. published values ---
+[19:42:20] [TEST]   KBC Gaussian vs Jia: RMS=1.91 km/s/Mpc, chi2=120.1
+[19:42:20] [TEST]   KBC Exponential vs Jia: RMS=1.89 km/s/Mpc, chi2=209.5
+[19:42:20] [SUCCESS]   Level A: PASS — qualitative agreement reproduced
+[19:42:20] [TEST]   --- Level B: Binned H_0(z) in Jia et al. bins ---
+[19:42:20] [PROCESS] Methodology: Per-SN H0 is computed via standard LCDM inversion H0 = (1+z)*c*integral_0^z dz'/E(z') / d_L, where d_L = 10^((mu-25)/5) and E(z) = sqrt(Omega_m*(1+z)^3 + (1-Omega_m)) with Omega_m = 0.302. SNe are then binned into Jia et al.'s 10 equal-width bins (Table 4 edges) and the unweighted mean and standard error of the mean are computed per bin. This direct binned estimator is compared with Jia et al.'s published H_{0,z_i} values to assess whether the declining trend is present in the underlying observable or only in the reconstructed parameterization.
+[19:42:20] [PROCESS]   Loaded 1701 Pantheon+ SNe
+[19:42:20] [TEST]   Binned H_0(z) in Jia et al. bins (simple inversion):
+[19:42:20] [TEST]   z=[0.0,0.1]: H0=72.47±0.29 (n=741, Jia: 73.25±0.14)
+[19:42:20] [TEST]   z=[0.1,0.2]: H0=72.98±0.32 (n=207, Jia: 73.69±0.32)
+[19:42:20] [TEST]   z=[0.2,0.3]: H0=73.62±0.30 (n=259, Jia: 73.14±0.48)
+[19:42:20] [TEST]   z=[0.3,0.4]: H0=73.22±0.33 (n=186, Jia: 70.95±0.69)
+[19:42:20] [TEST]   z=[0.4,0.6]: H0=74.26±0.37 (n=179, Jia: 71.49±0.75)
+[19:42:20] [TEST]   z=[0.6,0.8]: H0=75.30±0.50 (n=99, Jia: 69.02±1.17)
+[19:42:20] [TEST]   z=[0.8,1.1]: H0=72.32±2.59 (n=10, Jia: 69.00±2.39)
+[19:42:20] [TEST]   z=[1.1,1.5]: H0=73.60±2.12 (n=13, Jia: 69.21±2.07)
+[19:42:20] [TEST]   z=[1.5,2.0]: H0=76.89±1.82 (n=6, Jia: 64.84±3.50)
+[19:42:20] [TEST]   z=[2.0,2.4]: H0=73.17±0.00 (n=1, Jia: 65.78±4.50)
+[19:42:20] [TEST]   Low-z mean H0: 73.02
+[19:42:20] [TEST]   High-z mean H0: 74.55
+[19:42:20] [TEST]   Decline: 1.53 km/s/Mpc
+[19:42:20] [SUCCESS]   Level B: PASS — simple binned H_0(z) is flat, not declining
+[19:42:20] [SUCCESS] Interpretation: The direct binned H0(z) from Pantheon+ SN-only data does not reproduce the declining trend reported by Jia et al. (decline = 1.53 km/s/Mpc). This confirms that the published decline arises from the piecewise H_{0,z_i} parameterization combined with H(z) and BAO data, not from the underlying SN observable. The TEP-VOID native-mu likelihood therefore tests the original observable, not the reconstructed parameterization, and the apparent KBC-Jia agreement does not constitute independent support for the void model.
+[19:42:20] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_32b_jia_validation.png
+[19:42:20] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_32b_jia_validation.json
+[19:42:20] [SUCCESS] Step 32b complete
+[19:42:20] [SUCCESS] step_32b completed in 0.7s
+[19:42:20] [INFO] 
+[19:42:20] [INFO] ================================================================================
+[19:42:20] [INFO]    Starting step_33: Host-mass survey design for SNe Ia at z > 0.3
+[19:42:20] [INFO] ================================================================================
+[19:42:20] [INFO] 

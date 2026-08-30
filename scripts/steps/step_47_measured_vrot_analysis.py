@@ -21,13 +21,30 @@ import sys
 import numpy as np
 import pandas as pd
 from scipy import stats as sps
+from scipy.integrate import cumulative_trapezoid
 
 # Add parent to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.screening import U_REF_SCREENED, compute_screening, compute_screening_by_name
 
 C_KMS = 299792.458
-U_REF = (87.165) ** 2  # (km/s)^2
+U_REF = U_REF_SCREENED  # screened anchor reference (matches TEP-H0)
+H0_REF = 73.04  # km/s/Mpc — SH0ES reference (matches MU_SH0ES)
+OMEGA_M = 0.334  # Planck/SH0ES compromise
+
+
+def _mu_ref(z):
+    """Reference LCDM distance modulus at H0_REF, OMEGA_M.
+
+    mu = 5 * log10((1+z) * d_c * c / H0) + 25
+    where d_c is the comoving distance (integral of dz/E(z)).
+    """
+    z_fine = np.linspace(0, max(np.max(z) + 0.01, 2.5), 5000)
+    E_fine = np.sqrt(OMEGA_M * (1 + z_fine) ** 3 + (1 - OMEGA_M))
+    d_c_fine = cumulative_trapezoid(1.0 / E_fine, z_fine, initial=0)
+    d_c = np.interp(z, z_fine, d_c_fine)
+    return 5 * np.log10((1 + z) * d_c * C_KMS / H0_REF) + 25
 
 
 class MeasuredVrotAnalysis:
@@ -154,9 +171,11 @@ class MeasuredVrotAnalysis:
         merged['delta_mu'] = merged['dm_ceph'] - merged['dm_trgb']
         merged['delta_mu_err'] = np.sqrt(merged['e_dm_ceph']**2 + merged['e_dm_trgb']**2)
 
-        # Compute X_i for each galaxy
+        # Compute X_i for each galaxy with TEP screening
         merged['U_i'] = (merged['vrot_kms'] / np.sqrt(2))**2
-        merged['X_i'] = (merged['U_i'] - U_REF) / C_KMS**2
+        S_matched = compute_screening(merged['pgc'].fillna(0).astype(int).values)
+        merged['S_total'] = S_matched
+        merged['X_i'] = (S_matched * merged['U_i'].values - U_REF) / C_KMS**2
 
         # Classify tracer type
         # H I 21cm redshifts are available for most spiral galaxies
@@ -176,10 +195,10 @@ class MeasuredVrotAnalysis:
         print_status(f"  R22 (NIR): {merged['r22_matched'].sum()}", "INFO")
         print_status(f"  Non-R22 (optical): {(~merged['r22_matched']).sum()}", "INFO")
 
-        # Sign test
+        # Sign test (one-sided: TEP predicts Cepheid shorter, i.e. n_shorter > n/2)
         n_shorter = (merged['delta_mu'] < 0).sum()  # Cepheid shorter
         n_total = len(merged)
-        p_value = sps.binomtest(n_shorter, n_total, 0.5).pvalue
+        p_value = sps.binomtest(n_shorter, n_total, 0.5, alternative="greater").pvalue
         sigma = sps.norm.ppf(1 - p_value) if p_value < 0.5 else 0
 
         print_status(f"  Sign test: {n_shorter}/{n_total} Cepheid shorter, "
@@ -297,12 +316,14 @@ class MeasuredVrotAnalysis:
         M_star = 10.0 ** hf['HOST_LOGMASS'].values
         V_rot_tf = 200.0 * (M_star / 10.0**10.5) ** 0.25
         U_tf = (V_rot_tf / np.sqrt(2))**2
+        # TF proxy hosts are uncatalogued → S_total = 1.0
         X_i_tf = (U_tf - U_REF) / C_KMS**2
 
         # Also compute X_i from the calibrator host catalog (measured V_rot)
-        # for comparison
+        # for comparison, with TEP screening by galaxy name
         host_U = self.host_cat['phi_proxy_kms2'].values
-        host_X = (host_U - U_REF) / C_KMS**2
+        S_host = compute_screening_by_name(self.host_cat['galaxy'].values)
+        host_X = (S_host * host_U - U_REF) / C_KMS**2
 
         print_status(f"  Tully-Fisher V_rot range: {V_rot_tf.min():.1f} - {V_rot_tf.max():.1f} km/s", "INFO")
         print_status(f"  Measured V_rot (calibrators): {len(host_X)} galaxies, "
@@ -333,29 +354,30 @@ class MeasuredVrotAnalysis:
         high_x = hf[hf['X_i'] > 0]
         low_x = hf[hf['X_i'] <= 0]
 
-        # Use m_b_corr as the standardized magnitude
-        # The Hubble residual relative to the best-fit Hubble law
-        # is approximately m_b_corr - 5*log10(c*z/H0) - 25 - M_B
-        # But for a step test, we can just compare the standardized
-        # magnitudes after removing the Hubble law trend
-
-        # Compute Hubble residual: m_b_corr - 5*log10(z) - const
-        # (the const absorbs M_B and H0)
-        from scipy.optimize import curve_fit
-
-        def hubble_model(z, a):
-            return 5.0 * np.log10(z * C_KMS / 70.0) + 25.0 + a
-
+        # Compute Hubble residual using the proper LCDM distance modulus.
+        # The previous implementation fitted m_b_corr to a simple Hubble law
+        # 5*log10(z*c/70) + 25 + a, which is invalid at z > 0.01 (ignores
+        # deceleration) and falls back to m_b_corr - median(m_b_corr), which
+        # is contaminated by distance modulus variation across redshift.
+        # The correct approach (matching step_45/step_48) is HR = MU_SH0ES - mu_ref(z),
+        # where mu_ref is the LCDM distance modulus at H0_REF, OMEGA_M.
         z_valid = hf['zCMB'].values > 0.001
         hf_valid = hf[z_valid].copy()
 
-        try:
-            popt, _ = curve_fit(hubble_model, hf_valid['zCMB'].values,
-                               hf_valid['m_b_corr'].values, p0=[-19.3])
-            hf_valid['hubble_residual'] = hf_valid['m_b_corr'] - hubble_model(hf_valid['zCMB'], *popt)
-        except:
-            # Fallback: just use m_b_corr - median
-            hf_valid['hubble_residual'] = hf_valid['m_b_corr'] - hf_valid['m_b_corr'].median()
+        if 'MU_SH0ES' in hf_valid.columns:
+            mu_obs = hf_valid['MU_SH0ES'].values
+            z_for_mu = hf_valid['zHD'].values if 'zHD' in hf_valid.columns else hf_valid['zCMB'].values
+            mu_ref_vals = _mu_ref(z_for_mu)
+            hf_valid['hubble_residual'] = mu_obs - mu_ref_vals
+            z_label = 'zHD' if 'zHD' in hf_valid.columns else 'zCMB'
+            print_status(f"  Hubble residual: MU_SH0ES - mu_ref({z_label}) [LCDM, H0={H0_REF}, Omega_m={OMEGA_M}]", "INFO")
+        else:
+            # Fallback: fit m_b_corr to proper LCDM distance modulus
+            print_status("  MU_SH0ES not found, fitting m_b_corr to LCDM distance modulus", "WARN")
+            z_for_mu = hf_valid['zHD'].values if 'zHD' in hf_valid.columns else hf_valid['zCMB'].values
+            mu_ref_vals = _mu_ref(z_for_mu)
+            M_B = np.median(hf_valid['m_b_corr'].values - mu_ref_vals)
+            hf_valid['hubble_residual'] = hf_valid['m_b_corr'].values - (mu_ref_vals + M_B)
 
         # X_i-step test
         high_x = hf_valid[hf_valid['X_i'] > 0]
@@ -372,11 +394,12 @@ class MeasuredVrotAnalysis:
 
         # Mass-step correction
         # Standard mass step at log(M) = 10.5
+        # Convention: massive - low (matching step_45/step_48)
         massive_mask = hf_valid['HOST_LOGMASS'] >= 10.5
         low_mass_mask = hf_valid['HOST_LOGMASS'] < 10.5
 
-        mass_step = hf_valid.loc[low_mass_mask, 'hubble_residual'].mean() - \
-                    hf_valid.loc[massive_mask, 'hubble_residual'].mean()
+        mass_step = hf_valid.loc[massive_mask, 'hubble_residual'].mean() - \
+                    hf_valid.loc[low_mass_mask, 'hubble_residual'].mean()
 
         # Remove mass-step component from X_i-step
         # Fit: residual = a*X_i + b*mass_flag + const
@@ -408,7 +431,7 @@ class MeasuredVrotAnalysis:
                         f"{step_corrected_err*1000:.1f} mmag ({step_corrected_sigma:.2f}sigma)", "TEST")
             print_status(f"    Mass step: {mass_coef*1000:.1f} +/- "
                         f"{np.sqrt(cov[1,1])*1000:.1f} mmag", "TEST")
-        except:
+        except Exception:
             step_corrected = step
             step_corrected_err = step_err
             step_corrected_sigma = step_sigma
@@ -486,7 +509,7 @@ class MeasuredVrotAnalysis:
                                           sigma=yerr, absolute_sigma=True, p0=[-1e5, 0])
                     slope = popt[0]
                     slope_err = np.sqrt(pcov[0, 0])
-                    slope_sigma = slope / slope_err if slope_err > 0 else 0
+                    slope_sigma = abs(slope / slope_err) if slope_err > 0 else 0
 
                     print_status(f"  {band_name} Xi regression: slope = {slope:.3e} "
                                  f"+/- {slope_err:.3e} ({slope_sigma:.2f}sigma)", "TEST")
@@ -497,7 +520,7 @@ class MeasuredVrotAnalysis:
                         'slope_err': float(slope_err),
                         'slope_sigma': float(slope_sigma),
                     }
-                except:
+                except Exception:
                     results_by_band[band_name] = None
 
             self.results['band_dependence'] = {

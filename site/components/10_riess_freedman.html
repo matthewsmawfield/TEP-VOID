@@ -58,26 +58,26 @@
     in the ratio $R_H$.
 </p>
 
-<h3>8.2 Result: $R_H \approx 1.007$ — Consistent with Flat, $\sim 8\sigma$ Rejection of KBC</h3>
+<h3>8.2 Result: $R_H \approx 1.009$ — Consistent with Flat, $\sim 8\sigma$ Rejection of KBC</h3>
 
 <p>
     The primary metric is the calibration-independent ratio. A joint
     generalized least-squares (GLS) fit of the two-bin intercepts using
     the full Pantheon+ STAT+SYS
     covariance matrix over the full sample ($N_{\rm low} = 178$,
-    $N_{\rm high} = 614$) gives $H_0^{\rm low} = 73.01\ {\rm
-    km\,s^{-1}\,Mpc^{-1}}$ and $H_0^{\rm high} = 73.49\ {\rm
+    $N_{\rm high} = 614$) gives $H_0^{\rm low} = 73.08\ {\rm
+    km\,s^{-1}\,Mpc^{-1}}$ and $H_0^{\rm high} = 73.75\ {\rm
     km\,s^{-1}\,Mpc^{-1}}$, yielding
 </p>
 
 <div class="equation">
     \begin{equation}
-    R_H = \frac{H_0(z > 0.25)}{H_0(0.05 \le z < 0.15)} = 1.0066 \pm 0.00642,
+    R_H = \frac{H_0(z > 0.25)}{H_0(0.05 \le z < 0.15)} = 1.009 \pm 0.006,
         \end{equation}
 </div>
 
 <p>
-    consistent with flat $H_0(z)$ at $1.0\sigma$. The KBC Gaussian
+    consistent with flat $H_0(z)$ at $1.5\sigma$. The KBC Gaussian
     profile predicts $R_H^{\rm KBC} = 0.9569$ (a $\sim 4.3\%$
     decline) when evaluated through the same two-bin GLS
     covariance-aware estimator used for the observed $R_H$ (the
@@ -93,12 +93,12 @@
 <div class="equation">
     \begin{equation}
     Z = \frac{R_{H,\rm obs} - R_{H,\rm KBC}}{\sigma_{R_H}}
-    = 7.7\sigma \quad \text{(Gaussian)},
+    = 8.4\sigma \quad \text{(Gaussian)},
         \end{equation}
 </div>
 
 <p>
-    and $8.9\sigma$ for the Exponential profile. The void model
+    and $9.7\sigma$ for the Exponential profile. The void model
     predicts $R_H < 1$ (decline toward CMB); the data show $R_H
     \approx 1$ (no decline). The TEP prediction ($R_H \approx 1$ for
     global $M_B$) is consistent with the observed near-unity ratio.
@@ -115,9 +115,9 @@
     cross-covariance is computed from the off-diagonal block of the
     Pantheon+ STAT+SYS matrix. A verification script
     (<code>scripts/verify_rh_gls_matched.py</code>) confirms that
-    the matched-GLS significance (7.7$\sigma$/8.9$\sigma$) is
+    the matched-GLS significance (8.4$\sigma$/9.7$\sigma$) is
     slightly more conservative than the arithmetic-mean ratio
-    (8.4$\sigma$/9.5$\sigma$) and is the quoted value throughout.
+    (9.2$\sigma$/10.2$\sigma$) and is the quoted value throughout.
 </p>
 
 <p>
@@ -140,7 +140,7 @@
 <h3>8.3 Interpretation</h3>
 
 <p>
-    The calibration-independent ratio $R_H = 1.0066 \pm 0.00642$
+    The calibration-independent ratio $R_H = 1.009 \pm 0.006$
     falsifies the void
     model's central prediction without relying on any absolute $H_0$
     calibration. The void hypothesis requires the tension to be a
@@ -150,7 +150,7 @@
     expectation, that the tension is governed by the local
     gravitational environment of each host galaxy, not by Earth's
     position in a cosmic underdensity, is consistent with the observed
-    near-unity ratio. The $+0.7\%$ fractional evolution is well within the
+    near-unity ratio. The $+0.9\%$ fractional evolution is well within the
     envelope of high-$z$ selection effects (Malmquist bias): the
     Pantheon+ SALT2 bias corrections assume a fiducial cosmology, and
     residual selection bias at $z > 0.25$ can mimic a slight luminosity
@@ -183,6 +183,6 @@
     little host-mass structure remains in the released Pantheon+
     moduli. This is
     consistent with masking of the TEP-predicted host dependence
-    ($\sim 0.13$ mag); recovering that dependence requires the
+    ($\sim 0.05$ mag); recovering that dependence requires the
     per-host Cepheid recalibration performed in TEP-H0 (Paper 11).
 </p>

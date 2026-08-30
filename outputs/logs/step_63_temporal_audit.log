@@ -1,0 +1,16 @@
+[19:24:38] [INFO] Loaded 513 SNe Ia (Hubble flow).
+[19:24:38] [INFO] 
+=== ACCOUNTING IDENTITY (Unweighted OLS) ===
+[19:24:38] [INFO] Unweighted OLS ensures exact algebraic summation across targets.
+[19:24:38] [INFO] 1. Raw Stretch (x1)              : D =   0.0610 +/- 0.0609 (p = 0.317)
+[19:24:38] [INFO] 2. Raw Mag Residual              : D =  -0.0539 +/- 0.0202 (p = 0.008)
+[19:24:38] [INFO] 3. SALT Correction (mB-corr)     : D =  -0.0320 +/- 0.0171 (p = 0.062)
+[19:24:38] [INFO] 4. Std Mag Residual              : D =  -0.0219 +/- 0.0098 (p = 0.025)
+[19:24:38] [INFO] 5. PV Correction (v_pec, km/s)   : D =  52.3558 +/- 8.2023 (p = 0.000)
+[19:24:38] [INFO] 
+=== STATISTICAL SIGNIFICANCE (WLS + Permutation) ===
+[19:24:45] [INFO] 1. Raw Stretch (x1)              : D =   0.0622 +/- 0.0755 (p_stat = 0.410, p_perm = 0.610)
+[19:24:53] [INFO] 2. Raw Mag Residual              : D =  -0.0698 +/- 0.0192 (p_stat = 0.000, p_perm = 0.000)
+[19:25:01] [INFO] 3. SALT Correction (mB-corr)     : D =  -0.0320 +/- 0.0171 (p_stat = 0.062, p_perm = 0.050)
+[19:25:09] [INFO] 4. Std Mag Residual              : D =  -0.0210 +/- 0.0080 (p_stat = 0.008, p_perm = 0.014)
+[19:25:16] [INFO] 5. PV Correction (v_pec, km/s)   : D =  52.3558 +/- 8.2023 (p_stat = 0.000, p_perm = 0.000)

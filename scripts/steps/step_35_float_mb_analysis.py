@@ -24,7 +24,7 @@ This step performs three analyses:
    massive and low-mass hosts.
 
 3. FORWARD MODEL: Apply the TEP-predicted per-host M_B correction
-   (M_B,i = M_B,global - kappa_Cep * X_i) and show that:
+   (M_B,i = M_B,global + kappa_Cep * X_i) and show that:
    (a) the H0(z) split between massive and low-mass hosts emerges,
    (b) the LambdaCDM cosmological fits are not degraded.
 
@@ -56,6 +56,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.screening import U_REF_SCREENED
 
 
 class Step35FloatMBAnalysis:
@@ -75,7 +76,7 @@ class Step35FloatMBAnalysis:
 
     # TEP parameters (from TEP-H0, Paper 11)
     KAPPA_CEP = 0.365e6  # mag (Cepheid-channel coupling constant)
-    U_REF = (87.165) ** 2  # (km/s)^2, anchor reference potential
+    U_REF = U_REF_SCREENED  # ≈ 930.7 (km/s)^2, screened anchor reference
     C_KMS_SQUARED = C_KMS ** 2  # (km/s)^2
 
     # SALT2 mass step correction (typical value from literature)
@@ -226,13 +227,13 @@ class Step35FloatMBAnalysis:
 
         # TEP prediction for the Cepheid calibration bias difference
         # Delta_M_B,TEP = kappa_Cep * (<X_i>_massive - <X_i>_low)
-        # X_i = (U_i - U_ref) / c^2
-        # For typical massive host: v_rot ~ 200 km/s => U_i = 40000
-        # For typical low-mass host: v_rot ~ 87 km/s => U_i ~ U_ref
-        # <X_i>_massive ~ (40000 - 7597) / (3e5)^2 ~ 3.34e-7 / 9e10 ~ 3.6e-7
-        # Wait, let me compute this properly
-        u_massive = 200.0 ** 2  # (km/s)^2, typical massive host
-        u_low = 87.165 ** 2  # (km/s)^2, anchor reference
+        # X_i = (S_total * U_i - U_ref_screened) / c^2
+        # For typical massive host: V_rot ~ 200 km/s => u_phi = 200/sqrt(2)
+        # => U_i = 200^2/2 = 20000, S_total ~ 1.0 (isolated massive spiral)
+        # For typical low-mass host: U_i ~ U_ref_screened (anchor reference)
+        u_massive = (200.0 / np.sqrt(2)) ** 2  # = 20000 (km/s)^2
+        u_low = self.U_REF  # = U_ref_screened ≈ 930.7
+        # S_total = 1.0 for prototypical isolated hosts
         xi_massive = (u_massive - self.U_REF) / self.C_KMS_SQUARED
         xi_low = (u_low - self.U_REF) / self.C_KMS_SQUARED  # ~0 by construction
 
@@ -299,9 +300,13 @@ class Step35FloatMBAnalysis:
 
         # Compute X_i for each SN based on host mass
         # Use sigmoid proxy: X_i = X_low + (X_massive - X_low) * sigmoid(gamma * (logM - 10))
+        # U_i = (V_rot / sqrt(2))^2 — the TEP potential proxy
+        # Massive host: V_rot ~ 200 km/s => u_phi = 200/sqrt(2) => U_i = 20000
+        # Low-mass host: U_i = U_ref_screened ≈ 930.7 (anchor reference)
+        # S_total = 1.0 for uncatalogued Pantheon+ hosts
         gamma = 2.0
-        u_massive = 200.0 ** 2
-        u_low = 87.165 ** 2
+        u_massive = (200.0 / np.sqrt(2)) ** 2  # = 20000 (km/s)^2
+        u_low = self.U_REF  # = U_ref_screened ≈ 930.7 (anchor)
         xi_massive_mean = (u_massive - self.U_REF) / self.C_KMS_SQUARED
         xi_low_mean = (u_low - self.U_REF) / self.C_KMS_SQUARED
 
@@ -309,9 +314,19 @@ class Step35FloatMBAnalysis:
         sigmoid = 1.0 / (1.0 + np.exp(-gamma * (log_mass - 10.0)))
         xi_pred = xi_low_mean + (xi_massive_mean - xi_low_mean) * sigmoid
 
-        # TEP-corrected M_B: M_B,i = M_B,global - kappa_Cep * X_i
-        # (More negative M_B for massive hosts => larger distances => lower H0)
-        mb_tep = self.MB_GLOBAL - self.KAPPA_CEP * xi_pred
+        # TEP-corrected M_B: M_B,i = M_B,global + kappa_Cep * (X_i - <X_i>)
+        # Cepheid distances are compressed in deeper potentials:
+        #   mu_Cep = mu_true - kappa_Cep * X_i
+        # So the Cepheid-calibrated M_B is:
+        #   M_B = m_b - mu_Cep = m_b - (mu_true - kappa_Cep * X_i)
+        #       = M_B,true + kappa_Cep * X_i
+        # The global M_B already includes the mean Cepheid calibration bias
+        # kappa_Cep * <X_i> from the Cepheid calibrators, so the TEP
+        # correction is the DEVIATION from the mean: kappa_Cep * (X_i - <X_i>).
+        # This prevents double-counting the mean bias while preserving the
+        # differential (massive vs low-mass) signal.
+        xi_mean = float(np.mean(xi_pred))
+        mb_tep = self.MB_GLOBAL + self.KAPPA_CEP * (xi_pred - xi_mean)
 
         # Corrected distance moduli
         mu_tep = df["m_b_corr"].values - mb_tep
@@ -597,7 +612,7 @@ class Step35FloatMBAnalysis:
 
         print_status(
             "Analysis 3 applies the TEP-predicted per-host M_B correction "
-            "(M_B,i = M_B,global - kappa_Cep * X_i) using a sigmoid proxy for X_i based "
+            "(M_B,i = M_B,global + kappa_Cep * X_i) using a sigmoid proxy for X_i based "
             "on host stellar mass. H0(z) is computed in redshift bins for massive and "
             "low-mass hosts with both original and TEP-corrected M_B. Global LCDM fit "
             "quality is compared via Hubble residual scatter to verify that the TEP "
@@ -648,7 +663,7 @@ class Step35FloatMBAnalysis:
             ),
             "tep_caveat": (
                 "The forward model applies the TEP-predicted per-host M_B "
-                "correction (M_B,i = M_B,global - kappa_Cep * X_i) and shows "
+                "correction (M_B,i = M_B,global + kappa_Cep * X_i) and shows "
                 "that the H0(z) split between massive and low-mass hosts "
                 "emerges as predicted, while the LCDM fit quality is "
                 "preserved. This is a forward-modeling demonstration, not a "
@@ -679,7 +694,7 @@ class Step35FloatMBAnalysis:
                 "low-mass hosts."
             ),
             "tep_prediction": (
-                "The TEP-predicted per-host M_B correction (M_B,i = M_B,global - "
+                "The TEP-predicted per-host M_B correction (M_B,i = M_B,global + "
                 "kappa_Cep * X_i) produces an H0(z) split between massive and low-mass "
                 "hosts. However, the SALT2 mass step correction already applied to "
                 "m_b_corr absorbs this signal, so the residual mass step in Pantheon+ "

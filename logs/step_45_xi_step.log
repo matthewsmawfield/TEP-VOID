@@ -1,54 +1,68 @@
-[14:37:17] [INFO] ======================================================================
-[14:37:17] [INFO] Step 45: X_i-Step Test in Pantheon+ Hubble Residuals
-[14:37:17] [INFO] ======================================================================
-[14:37:18] [PROCESS]   Loaded 1701 Pantheon+ rows
-[14:37:18] [PROCESS]   1543 unique SNe
-[14:37:18] [PROCESS]   1470 Hubble-flow SNe with mass (z > 0.01)
-[14:37:18] [PROCESS]   1306 Hubble-flow SNe with mass (z > 0.023)
-[14:37:18] [TEST]   V_rot range: 1.5 - 355.7 km/s
-[14:37:18] [TEST]   X range: -0.845 - 6.192 x 1e-7
-[14:37:18] [TEST]   HR range: -0.811 - 0.729 mag
-[14:37:18] [INFO] 
-[14:37:18] [TEST]   --- Test 1: Standard mass step (logM = 10.5) ---
-[14:37:18] [TEST]   N_high = 475, N_low = 995
-[14:37:18] [TEST]   HR_high = -0.0019 +/- 0.0072
-[14:37:18] [TEST]   HR_low = -0.0029 +/- 0.0050
-[14:37:18] [TEST]   Mass step = -1.0 +/- 8.8 mmag (0.11 sigma)
-[14:37:18] [INFO] 
-[14:37:18] [TEST]   --- Test 2: X_i step (X = 0) ---
-[14:37:18] [TEST]   N_highX = 916, N_lowX = 554
-[14:37:18] [TEST]   HR_highX = 0.0019 +/- 0.0050
-[14:37:18] [TEST]   HR_lowX = -0.0101 +/- 0.0071
-[14:37:18] [TEST]   X step = -12.1 +/- 8.7 mmag (1.39 sigma)
-[14:37:18] [TEST]   Direction: TEP-predicted (high-X -> positive HR)
-[14:37:18] [INFO] 
-[14:37:18] [TEST]   --- Test 3: Continuous regression HR vs X ---
-[14:37:18] [TEST]   slope = 2.08e+04 +/- 2.35e+04 mag per unit X
-[14:37:18] [TEST]   R = 0.0231, p = 0.3766, significance = 0.88 sigma
-[14:37:18] [INFO] 
-[14:37:18] [TEST]   --- Test 4: Continuous regression HR vs logM ---
-[14:37:18] [TEST]   slope = 0.0013 +/- 0.0034 mag/dex
-[14:37:18] [TEST]   R = 0.0102, p = 0.6965, significance = 0.39 sigma
-[14:37:18] [INFO] 
-[14:37:18] [TEST]   --- Test 5: X_i step after mass-step correction ---
-[14:37:18] [TEST]   X step (mass-corrected) = -9.4 +/- 8.7 mmag (1.08 sigma)
-[14:37:18] [TEST]   slope (mass-corrected) = 1.34e+04 +/- 2.35e+04
-[14:37:18] [TEST]   R = 0.0149, p = 0.5675, significance = 0.57 sigma
-[14:37:18] [INFO] 
-[14:37:18] [TEST]   --- Test 6: Joint fit HR = a + b*logM + c*X ---
-[14:37:18] [TEST]   b (mass slope) = 0.0013 +/- 0.0152 mag/dex (0.09 sigma)
-[14:37:18] [TEST]   c (X slope) = 1.63e-02 +/- 1.68e+01 (0.00 sigma)
-[14:37:18] [TEST]   Direction of c: TEP-predicted
-[14:37:18] [INFO] 
-[14:37:18] [TEST]   --- Test 7: SN stretch (x1) vs X ---
-[14:37:18] [TEST]   x1 vs X: slope = -1.63e+06 +/- 1.41e+05 (11.54 sigma)
-[14:37:18] [TEST]   R = -0.2917, p = 0.0000
-[14:37:18] [TEST]   Direction: TEP-predicted (high-X -> negative x1)
-[14:37:20] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_45_xi_step.png
-[14:37:20] [INFO] 
-[14:37:20] [INFO] ======================================================================
-[14:37:20] [INFO] INTERPRETATION
-[14:37:20] [INFO] ======================================================================
-[14:37:20] [TEST] SUGGESTIVE: The X_i-step is in the TEP-predicted direction at 1.08sigma after mass correction. The signal is not significant with the current sample (1470 SNe) and rough V_rot proxy, but the direction is consistent with the prediction.
-[14:37:20] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_45_xi_step.json
-[14:37:20] [SUCCESS] Step 45 complete
+[19:51:19] [INFO] ======================================================================
+[19:51:19] [INFO] Step 45: X_i-Step Test in Pantheon+ Hubble Residuals
+[19:51:19] [INFO] ======================================================================
+[19:51:19] [PROCESS]   Loaded 1701 Pantheon+ rows
+[19:51:19] [PROCESS]   1543 unique SNe
+[19:51:19] [PROCESS]   1353 Hubble-flow SNe with mass (z > 0.01, logM > 7)
+[19:51:19] [PROCESS]   1214 Hubble-flow SNe with mass (z > 0.023)
+[19:51:22] [INFO]   V_rot: 107 measured, 1246 TF proxy
+[19:51:22] [TEST]   V_rot range: 26.6 - 509.2 km/s
+[19:51:22] [TEST]   X range: -0.064 - 7.479 x 1e-7
+[19:51:22] [TEST]   HR range: -0.740 - 0.743 mag
+[19:51:22] [INFO] 
+[19:51:22] [TEST]   --- Test 1: Standard mass step (logM = 10.5) ---
+[19:51:22] [TEST]   N_high = 475, N_low = 878
+[19:51:22] [TEST]   HR_high = 0.0055 +/- 0.0070
+[19:51:22] [TEST]   HR_low = 0.0037 +/- 0.0052
+[19:51:22] [TEST]   Mass step = 1.8 +/- 8.7 mmag (0.21 sigma)
+[19:51:22] [INFO] 
+[19:51:22] [TEST]   --- Test 2: X_i step (X = 0) ---
+[19:51:22] [TEST]   N_highX = 1335, N_lowX = 18
+[19:51:22] [TEST]   HR_highX = 0.0044 +/- 0.0042
+[19:51:22] [TEST]   HR_lowX = -0.0030 +/- 0.0500
+[19:51:22] [TEST]   X step = 7.5 +/- 50.2 mmag (0.15 sigma)
+[19:51:22] [TEST]   Direction: TEP-predicted (high-X -> positive HR)
+[19:51:22] [INFO] 
+[19:51:22] [TEST]   --- Test 3: Continuous regression HR vs X ---
+[19:51:22] [TEST]   slope = 3.01e+04 +/- 2.38e+04 mag per unit X
+[19:51:22] [TEST]   R = 0.0343, p = 0.2074, significance = 1.26 sigma
+[19:51:22] [INFO] 
+[19:51:22] [TEST]   --- Test 4: Continuous regression HR vs logM ---
+[19:51:22] [TEST]   slope = 0.0032 +/- 0.0047 mag/dex
+[19:51:22] [TEST]   R = 0.0182, p = 0.5040, significance = 0.67 sigma
+[19:51:22] [INFO] 
+[19:51:22] [TEST]   --- Test 5: X_i step after mass-step correction ---
+[19:51:22] [TEST]   X step (mass-corrected) = 0.8 +/- 50.5 mmag (0.02 sigma)
+[19:51:22] [TEST]   slope (mass-corrected) = 1.68e+04 +/- 2.39e+04
+[19:51:22] [TEST]   R = 0.0192, p = 0.4801, significance = 0.71 sigma
+[19:51:22] [INFO] 
+[19:51:22] [TEST]   --- Test 6: Joint fit HR = a + b*logM + c*X ---
+[19:51:22] [WARNING]   Joint fit degenerate (cond=1.07e+16); X_i collinear with logM.
+[19:51:22] [INFO]   Joint X_i and mass coefficients are unidentifiable; see Test 5 (mass-residualized regression) for the well-posed result.
+[19:51:22] [TEST]   b (mass slope) = -0.0057 +/- nan mag/dex (n/a sigma)
+[19:51:22] [TEST]   c (X slope) = 5.41e+04 +/- nan (n/a sigma)
+[19:51:22] [TEST]   Direction of c: TEP-predicted
+[19:51:22] [INFO] 
+[19:51:22] [TEST]   --- Test 7: SN stretch (x1) vs X ---
+[19:51:22] [INFO]   NOTE: X_i is derived from mass via Tully-Fisher;
+[19:51:22] [INFO]         stretch-X_i is NOT independent of mass-stretch.
+[19:51:22] [TEST]   x1 vs X: slope = -1.65e+06 +/- 1.47e+05 (11.19 sigma)
+[19:51:22] [TEST]   R = -0.2947, p = 0.0000
+[19:51:22] [TEST]   Direction: TEP-predicted (high-X -> negative x1)
+[19:51:22] [TEST]   x1 vs logM: slope = -0.3261 +/- 0.0290 (11.23 sigma)
+[19:51:22] [TEST]   R(x1,logM) = -0.2957, R(x1,X) = -0.2947
+[19:51:22] [TEST]   Partial corr(x1, X | logM): r = -0.092929, p = 0.0007
+[19:51:24] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_45_xi_step.png
+[19:51:24] [INFO] 
+[19:51:24] [INFO] ======================================================================
+[19:51:24] [INFO] INTERPRETATION
+[19:51:24] [INFO] ======================================================================
+[19:51:24] [WARNING] NULL: The X_i-step is not detected (0.71sigma) after mass correction. The SN stretch channel prediction is not confirmed with the current sample and V_rot proxy. A proper test requires measured rotation velocities for each SN host (from HyperLEDA or SPARC).
+[19:51:24] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_45_xi_step.json
+[19:51:24] [SUCCESS] Step 45 complete
+[19:51:24] [SUCCESS] step_45 completed in 6.1s
+[19:51:24] [INFO] 
+[19:51:24] [INFO] ================================================================================
+[19:51:24] [INFO]    Starting step_46: Anchor sensitivity: Cepheid channel bound under anchor variations
+[19:51:24] [INFO] ================================================================================
+[19:51:24] [INFO] 

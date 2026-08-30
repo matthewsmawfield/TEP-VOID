@@ -23,12 +23,20 @@ frozen-prediction DeltaAIC test.
 
 import json
 import sys
+import warnings
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from scipy import optimize
 from scipy.integrate import cumulative_trapezoid
+
+# Apple's Accelerate BLAS on ARM64 produces spurious "divide by zero"
+# RuntimeWarnings in matmul when intermediate values hit denormals.
+# The results are correct; suppress the noise.
+warnings.filterwarnings("ignore", message="divide by zero encountered in matmul")
+warnings.filterwarnings("ignore", message="overflow encountered in matmul")
+warnings.filterwarnings("ignore", message="invalid value encountered in matmul")
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -81,6 +89,11 @@ class Step32cFreeParamNative:
     def _tep_shape(self, z, dH0, n):
         """TEP: H0(z) = H_CMB + dH0 * (1+z)^(-n)."""
         h0 = self.H0_CMB + dH0 * (1 + z) ** (-n)
+        return 5 * np.log10(self.H0_REF / np.maximum(h0, 1e-10))
+
+    def _tep_shape_fixed_n(self, z, dH0):
+        """TEP with a priori index n=0.3: H0(z) = H_CMB + dH0 * (1+z)^(-0.3)."""
+        h0 = self.H0_CMB + dH0 * (1 + z) ** (-0.3)
         return 5 * np.log10(self.H0_REF / np.maximum(h0, 1e-10))
 
     def run(self):
@@ -179,15 +192,21 @@ class Step32cFreeParamNative:
                      f"chi2={chi2_exp:.1f}, DAIC={delta_aic_exp:+.1f}", "TEST")
 
         # TEP (k=3: dH0, n, zero-point)
+        # Physical bounds: n >= 0 (TEP predicts decay, not growth; n < 0
+        # would make H0 increase with redshift, which is unphysical and not
+        # a TEP prediction). dH0 <= 10 is generous (the Hubble tension is
+        # 5.6 km/s/Mpc; dH0 > 10 gives H0 > 77.4 at z=0, far beyond any
+        # observed value). With n >= 0 the free fit collapses to n=0
+        # (flat), consistent with the TEP global-M_B prediction.
         def tep_chi2(params):
             dH0, n = params
-            if dH0 < 0 or dH0 > 20 or n < -2 or n > 5:
+            if dH0 < 0 or dH0 > 10 or n < 0 or n > 5:
                 return 1e10
             s = self._tep_shape(z, dH0, n)
             return chi2_marg(d - s)
 
         best_tep = None
-        for p0 in [[5.6, 0.3], [5.6, 0.1], [5.6, 0.5], [3.0, 0.3], [8.0, 0.3]]:
+        for p0 in [[5.6, 0.3], [5.6, 0.1], [5.6, 0.5], [3.0, 0.3], [8.0, 0.3], [1.0, 0.0], [9.0, 2.0]]:
             res = optimize.minimize(tep_chi2, p0, method="Nelder-Mead",
                                     options={"xatol": 1e-6, "fatol": 1e-6})
             if best_tep is None or res.fun < best_tep.fun:
@@ -197,8 +216,36 @@ class Step32cFreeParamNative:
         chi2_tep = float(best_tep.fun)
         aic_tep = chi2_tep + 2 * 3
         delta_aic_tep = aic_tep - aic_flat
-        print_status(f"  TEP: dH0={dH0_t:.3f}, n={n_t:.4f}, "
+        print_status(f"  TEP (free n): dH0={dH0_t:.3f}, n={n_t:.4f}, "
                      f"chi2={chi2_tep:.1f}, DAIC={delta_aic_tep:+.1f}", "TEST")
+
+        # TEP with a priori fixed n=0.3 (k=2: dH0 + zero-point)
+        # This is the actual TEP prediction, not an extended family test.
+        # The free-n fit above can collapse to n=0 (flat); the fixed-n=0.3
+        # fit tests the specific TEP-predicted redshift shape.
+        # Physical constraint: dH0 >= 0 (TEP predicts H0 elevated at low z,
+        # i.e. H0(z) = H_CMB + dH0*(1+z)^(-n) with dH0 > 0).  A negative
+        # dH0 would mean H0 is BELOW CMB at low z — the opposite of the
+        # TEP prediction — and must not be reported as TEP support.
+        def tep_fixed_chi2(dH0):
+            if dH0 < 0 or dH0 > 20:
+                return 1e10
+            s = self._tep_shape_fixed_n(z, dH0)
+            return chi2_marg(d - s)
+
+        best_tep_fixed = None
+        for p0 in [5.6, 3.0, 8.0, 1.0, 10.0, 0.5, 0.1]:
+            res = optimize.minimize(tep_fixed_chi2, [p0], method="Nelder-Mead",
+                                    options={"xatol": 1e-6, "fatol": 1e-6})
+            if best_tep_fixed is None or res.fun < best_tep_fixed.fun:
+                best_tep_fixed = res
+
+        dH0_tf = float(best_tep_fixed.x[0])
+        chi2_tep_fixed = float(best_tep_fixed.fun)
+        aic_tep_fixed = chi2_tep_fixed + 2 * 2
+        delta_aic_tep_fixed = aic_tep_fixed - aic_flat
+        print_status(f"  TEP (fixed n=0.3): dH0={dH0_tf:.3f}, "
+                     f"chi2={chi2_tep_fixed:.1f}, DAIC={delta_aic_tep_fixed:+.1f}", "TEST")
 
         # Also run with z >= 0.05 cut
         print_status("")
@@ -273,7 +320,8 @@ class Step32cFreeParamNative:
         print_status(f"    Flat:          chi2 = {chi2_flat:.1f}", "TEST")
         print_status(f"    Void-Gauss:    DAIC = {delta_aic_gauss:+.1f}  (dH0={dH0_g:.2f}, sig={sig_g:.3f})", "TEST")
         print_status(f"    Void-Exp:      DAIC = {delta_aic_exp:+.1f}  (dH0={dH0_e:.2f}, z0={z0_e:.3f})", "TEST")
-        print_status(f"    TEP:           DAIC = {delta_aic_tep:+.1f}  (dH0={dH0_t:.2f}, n={n_t:.3f})", "TEST")
+        print_status(f"    TEP (free n):  DAIC = {delta_aic_tep:+.1f}  (dH0={dH0_t:.2f}, n={n_t:.3f})", "TEST")
+        print_status(f"    TEP (n=0.3):   DAIC = {delta_aic_tep_fixed:+.1f}  (dH0={dH0_tf:.2f})", "TEST")
         print_status(f"  z >= 0.05 (N={n_cut}):", "INFO")
         print_status(f"    Flat:          chi2 = {chi2_flat_cut:.1f}", "TEST")
         print_status(f"    Void-Gauss:    DAIC = {daic_gauss_cut:+.1f}  (dH0={dH0_gc:.2f}, sig={sig_gc:.3f})", "TEST")
@@ -336,6 +384,13 @@ class Step32cFreeParamNative:
                         "dH0": float(dH0_t), "n": float(n_t),
                         "chi2": float(chi2_tep), "k": 3,
                         "delta_aic": float(delta_aic_tep),
+                        "note": "Free-n extended TEP-family test; can collapse to n=0 (flat)",
+                    },
+                    "tep_fixed_n": {
+                        "dH0": float(dH0_tf), "n": 0.3,
+                        "chi2": float(chi2_tep_fixed), "k": 2,
+                        "delta_aic": float(delta_aic_tep_fixed),
+                        "note": "A priori TEP prediction with fixed n=0.3",
                     },
                 },
                 "z_ge_0.05": {

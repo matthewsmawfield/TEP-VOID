@@ -124,6 +124,49 @@ class Step32bJiaReplication:
         set_step_logger(self.logger)
 
     # ------------------------------------------------------------------
+    # Load proper replication results from step_32b_jia_proper_replication.json
+    # ------------------------------------------------------------------
+    def _load_proper_replication_results(self):
+        """Load key results from the proper replication output JSON."""
+        import json as _json
+        path = self.results / "step_32b_jia_proper_replication.json"
+        if not path.exists():
+            print_status(f"  Proper replication output not found at {path}", "WARN")
+            return {}
+        with open(path) as f:
+            d = _json.load(f)
+        sig = d.get("significance", {})
+        res = d.get("results", {})
+        return {
+            "sn_only_mcmc_decline": float(res.get("sn_only_mcmc", {}).get("decline", 0)),
+            "sn_only_mcmc_significance_sigma": float(
+                sig.get("sn_only_correlated", {}).get("significance_sigma", 0)
+            ),
+            "sn_hz_mcmc_decline": float(res.get("sn_hz_mcmc", {}).get("decline", 0)),
+            "sn_hz_mcmc_significance_sigma": float(
+                sig.get("sn_hz_correlated", {}).get("significance_sigma", 0)
+            ),
+            "sn_hz_decorrelated_decline": float(res.get("sn_hz_decorrelated", {}).get("decline", 0)),
+            "sn_hz_decorrelated_significance_sigma": float(
+                sig.get("sn_hz_decorrelated", {}).get("significance_sigma", 0)
+            ),
+        }
+
+    def _load_proper_replication_conclusion(self):
+        """Build conclusion string from the proper replication output."""
+        kr = self._load_proper_replication_results()
+        sn_sig = kr.get("sn_only_mcmc_significance_sigma", 0)
+        decor_sig = kr.get("sn_hz_decorrelated_significance_sigma", 0)
+        return (
+            "The declining H0(z) is driven by the H(z) cosmic "
+            "chronometer data, not by the Pantheon+ SN distance "
+            f"moduli. SN-only gives {sn_sig:.2f}sigma (not significant). "
+            f"SN+H(z) gives {decor_sig:.2f}sigma after PCA decorrelation. "
+            "The KBC-Jia agreement is not independent support "
+            "from the SN data."
+        )
+
+    # ------------------------------------------------------------------
     # Cosmographic functions
     # ------------------------------------------------------------------
     def _E(self, z):
@@ -1096,22 +1139,8 @@ class Step32bJiaReplication:
                     "repository. Tests SN-only vs SN+H(z) to isolate "
                     "the source of the decline."
                 ),
-                "key_results": {
-                    "sn_only_mcmc_decline": -3.68,
-                    "sn_only_mcmc_significance_sigma": 1.93,
-                    "sn_hz_mcmc_decline": -5.92,
-                    "sn_hz_mcmc_significance_sigma": 3.40,
-                    "sn_hz_decorrelated_decline": -5.46,
-                    "sn_hz_decorrelated_significance_sigma": 2.79,
-                },
-                "conclusion": (
-                    "The declining H0(z) is driven by the H(z) cosmic "
-                    "chronometer data, not by the Pantheon+ SN distance "
-                    "moduli. SN-only gives 1.93sigma (not significant). "
-                    "SN+H(z) gives 2.79sigma after PCA decorrelation. "
-                    "The KBC-Jia agreement is not independent support "
-                    "from the SN data."
-                ),
+                "key_results": self._load_proper_replication_results(),
+                "conclusion": self._load_proper_replication_conclusion(),
             },
             "data": {
                 "source": "data/raw/Pantheon+SH0ES.dat",

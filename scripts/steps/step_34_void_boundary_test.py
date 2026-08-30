@@ -60,7 +60,7 @@ class Step34VoidBoundaryTest:
     VOID_EXPONENTIAL_Z0 = 0.74   # Exponential decay scale (calibrated to z≈1.8 convergence)
 
     # TEP parameters
-    KAPPA_CEP = 0.040
+    KAPPA_SHEAR = 0.040  # dimensionless TEP shear coupling (not kappa_Cep in mag)
 
     # Redshift bins for H0(z) analysis
     Z_BINS = [0.01, 0.05, 0.10, 0.15, 0.25, 0.40, 0.65, 1.00, 2.30]
@@ -144,6 +144,10 @@ class Step34VoidBoundaryTest:
                 curve_data = json.load(f)
             z_curve = np.array([p["z"] for p in curve_data])
             h0_curve = np.array([p["H0"] for p in curve_data])
+            # Sort by z to ensure np.interp receives a monotonic abscissa
+            sort_idx = np.argsort(z_curve)
+            z_curve = z_curve[sort_idx]
+            h0_curve = h0_curve[sort_idx]
             log_z = np.log10(np.clip(z_array, z_curve.min(), z_curve.max()))
             log_z_curve = np.log10(z_curve)
             h0_void = np.interp(log_z, log_z_curve, h0_curve)
@@ -169,8 +173,7 @@ class Step34VoidBoundaryTest:
         The TEP prediction is therefore a flat H0(z), not a (1+z)^-0.3 decay.
         The (1+z)^-0.3 decay applies to per-host Cepheid calibration (TEP-H0).
         """
-        delta_h0 = self.H0_SH0ES - self.H0_CMB
-        return self.H0_CMB + delta_h0 * (1.0 / (1.0 + z_array) ** 0.3)
+        return np.full_like(z_array, self.H0_SH0ES, dtype=float)
 
     # ------------------------------------------------------------------
     # Data loading
@@ -375,7 +378,20 @@ class Step34VoidBoundaryTest:
             test_results["h0_massive_z_gt_03"] = float(mean_h0_massive_highz)
             test_results["h0_massive_z_gt_03_err"] = float(h0_err)
             test_results["h0_massive_z_gt_03_bins"] = len(h0_massive_high_z)
+            # NOTE: This tension is NOT calibration-independent. Pantheon+ M_B
+            # is calibrated from Cepheid anchors at z ~ 0, so the absolute H0
+            # normalization inherits the SH0ES zero-point. This diagnostic is
+            # retained for reference only and should not be cited as an
+            # independent measurement. The calibration-independent test is
+            # the R_H ratio (step_32), which cancels the common zero-point.
             test_results["tension_massive_high_z"] = float(tension)
+            test_results["tension_massive_high_z_independent"] = False
+            test_results["tension_massive_high_z_caveat"] = (
+                "NOT calibration-independent: Pantheon+ M_B is calibrated from "
+                "Cepheid anchors at z ~ 0, so the absolute H0 normalization "
+                "inherits the SH0ES zero-point. Retained for reference only; "
+                "the calibration-independent test is the R_H ratio (step_32)."
+            )
             print_status(
                 f"  Massive hosts at z > 0.25: H0 = {mean_h0_massive_highz:.1f} "
                 f"+/- {h0_err:.2f} km/s/Mpc ({len(h0_arr)} bins)",
@@ -383,7 +399,8 @@ class Step34VoidBoundaryTest:
             )
             print_status(
                 f"  Tension with CMB: {tension:.1f} sigma "
-                f"(H0 - H0_CMB = {mean_h0_massive_highz - self.H0_CMB:.1f})",
+                f"(H0 - H0_CMB = {mean_h0_massive_highz - self.H0_CMB:.1f}) "
+                f"[NOT calibration-independent]",
                 "TEST",
             )
 

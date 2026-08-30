@@ -1,0 +1,88 @@
+{
+  "step": "56_vrot4_r2",
+  "description": "2D geometric prediction: V_rot^4/R^2 vs V_rot^2 for Cepheid distance offset",
+  "tep_prediction": "V_rot^4/R^2 should correlate more strongly with \u0394\u03bc than V_rot^2 alone",
+  "n_sparc_galaxies": 175,
+  "n_matched": 6,
+  "result": {
+    "n": 6,
+    "galaxies": [
+      {
+        "galaxy_name": "PGC 143",
+        "sparc_name": "UGCA444",
+        "vflat": 37.0,
+        "rdisk_kpc": 0.83,
+        "delta_mu": -0.0100000000000015,
+        "delta_mu_err": 0.0787146746166177
+      },
+      {
+        "galaxy_name": "PGC 1014",
+        "sparc_name": "NGC0055",
+        "vflat": 85.6,
+        "rdisk_kpc": 6.11,
+        "delta_mu": -0.1760000000000019,
+        "delta_mu_err": 0.0431393092202459
+      },
+      {
+        "galaxy_name": "PGC 2758",
+        "sparc_name": "NGC0247",
+        "vflat": 104.9,
+        "rdisk_kpc": 3.74,
+        "delta_mu": -0.1930000000000014,
+        "delta_mu_err": 0.0420594816896261
+      },
+      {
+        "galaxy_name": "PGC 3238",
+        "sparc_name": "NGC0300",
+        "vflat": 93.3,
+        "rdisk_kpc": 1.75,
+        "delta_mu": -0.2609999999999992,
+        "delta_mu_err": 0.0921954445729288
+      },
+      {
+        "galaxy_name": "PGC 21396",
+        "sparc_name": "NGC2403",
+        "vflat": 131.2,
+        "rdisk_kpc": 1.39,
+        "delta_mu": 0.0390000000000014,
+        "delta_mu_err": 0.1118033988749895
+      },
+      {
+        "galaxy_name": "NGC 3972",
+        "sparc_name": "NGC3972",
+        "vflat": 132.7,
+        "rdisk_kpc": 2.18,
+        "delta_mu": -0.1030000000000015,
+        "delta_mu_err": 0.1128007092176286
+      }
+    ],
+    "correlation_1d_vrot2": {
+      "pearson_r": 0.16197584442429389,
+      "pearson_p": 0.7591610465969474,
+      "spearman_rho": 0.14285714285714288,
+      "spearman_p": 0.7871720116618075
+    },
+    "correlation_2d_vrot4_r2": {
+      "pearson_r": 0.6147027501453853,
+      "pearson_p": 0.1940815027891692,
+      "spearman_rho": 0.3142857142857143,
+      "spearman_p": 0.5440932944606414
+    },
+    "partial_correlation_2d_given_1d": {
+      "r": 0.7778524129721489,
+      "p": 0.06854288385983376
+    },
+    "model_comparison": {
+      "1d_aic": -23.22110366958517,
+      "1d_bic": -23.63758473112906,
+      "2d_aic": -25.90912045511476,
+      "2d_bic": -26.32560151665865,
+      "joint_aic": -26.79514678105418,
+      "joint_bic": -27.419868373370015,
+      "delta_aic_2d_vs_1d": -2.688016785529591,
+      "delta_bic_2d_vs_1d": -2.688016785529591,
+      "joint_r_squared": 0.6154162385386697
+    }
+  },
+  "note": "The DHOST scalar-tensor derivation (Section 4.6) predicts that the disformal transport coupling scales as V_rot^4/r^2. The current test uses R_disk (disk scale length from SPARC) as a proxy for the galactocentric radius. A rigorous test requires the actual Cepheid galactocentric radii from JWST imaging."
+}

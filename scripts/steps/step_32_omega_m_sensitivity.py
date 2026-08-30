@@ -567,7 +567,7 @@ def main():
         n_sub = int(mask.sum())
         ones_sub = np.ones(n_sub)
         denom = float(ones_sub @ cov_inv_sub @ ones_sub)
-        d_sub = d[mask]
+        d_sub = d_rh[mask]
         a_hat = float(ones_sub @ cov_inv_sub @ d_sub) / denom
         sigma_a = 1.0 / np.sqrt(denom)
         h0 = H0_REF * (10.0 ** (-a_hat / 5.0))
@@ -581,11 +581,62 @@ def main():
     h0_low, sigma_h0_low, n_low = _gls_h0(low_mask)
     h0_high, sigma_h0_high, n_high = _gls_h0(high_mask)
 
+    # --- Joint 2-bin GLS with full cross-covariance ---
+    # The ratio R_H = H0_high / H0_low = 10^(-(a_high - a_low)/5).
+    # Var(a_high - a_low) = Var(a_high) + Var(a_low) - 2*Cov(a_high, a_low).
+    # The cross-covariance is computed from the off-diagonal block of the
+    # full Pantheon+ STAT+SYS covariance matrix, which contains systematic
+    # correlations (e.g. calibration, dust, SALT2 nuisance) between SNe in
+    # different redshift bins.
+    idx_low = indices[low_mask]
+    idx_high = indices[high_mask]
+    n_l, n_h = int(low_mask.sum()), int(high_mask.sum())
+    ones_l, ones_h = np.ones(n_l), np.ones(n_h)
+
+    # Sub-covariance blocks
+    cov_ll = cov_full[np.ix_(idx_low, idx_low)]
+    cov_hh = cov_full[np.ix_(idx_high, idx_high)]
+    cov_lh = cov_full[np.ix_(idx_low, idx_high)]  # cross block
+
+    # Invert the diagonal blocks
+    try:
+        cov_inv_ll = np.linalg.inv(cov_ll)
+    except np.linalg.LinAlgError:
+        cov_inv_ll = np.linalg.pinv(cov_ll)
+    try:
+        cov_inv_hh = np.linalg.inv(cov_hh)
+    except np.linalg.LinAlgError:
+        cov_inv_hh = np.linalg.pinv(cov_hh)
+
+    denom_l = float(ones_l @ cov_inv_ll @ ones_l)
+    denom_h = float(ones_h @ cov_inv_hh @ ones_h)
+    sigma_a_l = 1.0 / np.sqrt(denom_l)
+    sigma_a_h = 1.0 / np.sqrt(denom_h)
+
+    # Cross-covariance of the two zero-point estimators:
+    # Cov(a_low, a_high) = (1_l^T C_ll^{-1} C_lh C_hh^{-1} 1_h) / (denom_l * denom_h)
+    with np.errstate(invalid="ignore", divide="ignore", over="ignore"):
+        cross_term = float(
+            ones_l @ cov_inv_ll @ cov_lh @ cov_inv_hh @ ones_h
+        ) / (denom_l * denom_h)
+    cov_a_lh = cross_term
+
+    # Variance of the difference a_high - a_low
+    var_diff = sigma_a_h ** 2 + sigma_a_l ** 2 - 2.0 * cov_a_lh
+    sigma_diff = np.sqrt(max(var_diff, 0.0))
+
+    # R_H = 10^(-(a_high - a_low)/5)
+    # ln(R_H) = -(a_high - a_low) * ln(10)/5
+    # sigma_ln(R_H) = sigma_diff * ln(10)/5
     r_h = h0_high / h0_low
-    sigma_r_h = r_h * np.sqrt(
+    sigma_ln_r_h = sigma_diff * np.log(10.0) / 5.0
+    sigma_r_h = r_h * sigma_ln_r_h
+
+    # Also compute the naive (no cross-covariance) sigma for comparison
+    sigma_r_h_naive = r_h * np.sqrt(
         (sigma_h0_low / h0_low) ** 2 + (sigma_h0_high / h0_high) ** 2
     )
-    sigma_ln_r_h = sigma_r_h / r_h
+    cross_cov_ratio = float(cov_a_lh / (sigma_a_l * sigma_a_h))
 
     # KBC predicted R_H = <H0_KBC(z>0.25)> / <H0_KBC(0.05<=z<0.15)>
     rh_kbc_g = float(np.mean(h0_g_eval[high_mask]) / np.mean(h0_g_eval[low_mask]))
@@ -613,7 +664,10 @@ def main():
             "matrix at Omega_m = 0.302. H0 is then inferred per SN via LCDM distance "
             "modulus inversion, and the ratio R_H = <H0(z > 0.25)> / <H0(0.05 <= z < 0.15)> "
             "is formed. The common zero-point cancels identically in the ratio, making "
-            "R_H calibration-independent. Significance is assessed against the flat "
+            "R_H calibration-independent. The uncertainty on R_H includes the full "
+            "cross-covariance between the two redshift bins via the off-diagonal block "
+            "of the Pantheon+ covariance matrix: Var(a_high - a_low) = Var(a_high) + "
+            "Var(a_low) - 2*Cov(a_high, a_low). Significance is assessed against the flat "
             "prediction R_H = 1 and the KBC Gaussian (R_H ~ 0.9524) and Exponential "
             "(R_H ~ 0.9458) predictions."
         ),
@@ -648,6 +702,9 @@ def main():
             "R_H": float(r_h),
             "sigma_R_H": float(sigma_r_h),
             "sigma_ln_R_H": float(sigma_ln_r_h),
+            "sigma_R_H_naive_no_cross_cov": float(sigma_r_h_naive),
+            "cross_covariance_alpha_low_high": float(cov_a_lh),
+            "cross_covariance_correlation": float(cross_cov_ratio),
             "Z_vs_flat": float(z_flat),
             "R_H_kbc_gaussian": float(rh_kbc_g),
             "Z_vs_kbc_gaussian": float(z_kbc_g),

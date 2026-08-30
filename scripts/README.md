@@ -16,7 +16,7 @@ python3 scripts/run_pipeline.py --continue-on-error # Don't stop on failures
 
 ## Pipeline Structure
 
-The pipeline consists of 21 active steps in 4 blocks:
+The pipeline consists of 46 registered steps in 6 blocks:
 
 ### Block 0: Data Ingestion (Steps 00-03)
 - `step_00_data_ingestion.py` — SH0ES Cepheid + CCHP TRGB host samples
@@ -48,6 +48,36 @@ The pipeline consists of 21 active steps in 4 blocks:
 - `step_43_manuscript_figures.py` — Manuscript figure generation
 
 Note: Single-galaxy radial gradients (M31, LMC) and the full distance-ladder H0 unification are published in the companion paper TEP-H0 (Paper 11, DOI: 10.5281/zenodo.18209702) and are not duplicated here. Steps 20-22 and step 41 exist on disk as bridge scripts with fallback to manuscript values but are intentionally excluded from the active pipeline.
+
+### Block IV: Auxiliary TEP Supporting Tests (Steps 32c, 44-52)
+- `step_32c_free_param_native.py` — Free-parameter void family fits in native mu-space with full STAT+SYS covariance (Table 5): void collapses to flat; TEP fixed-n=0.3 with dH0>=0 also collapses to flat
+- `step_44_h0_vs_potential.py` — H0 vs calibrator-population potential depth (JAGB < TRGB < Cepheids < SBF ordering)
+- `step_45_xi_step.py` — X_i-step in Pantheon+ Hubble residuals (TF + measured V_rot, screened); underpowered due to screening compression
+- `step_46_anchor_sensitivity.py` — Anchor sensitivity: NGC 4258 sigma audit; Cepheid channel bound preserved under anchor variations
+- `step_47_measured_vrot_analysis.py` — Measured V_rot from Vizier/HyperLEDA; tracer-type classification; band-dependence by indicator
+- `step_48_xi_step_measured_vrot.py` — X_i-step with measured V_rot (full sample N=1470 + measured subsample N=122)
+- `step_49_band_dependence.py` — Band-dependence: optical vs NIR Cepheid offset vs X_i (MF2023 same-team + KP/R22 cross-team)
+- `step_50_jwst_matched.py` — JWST matched Cepheid/TRGB sample (GO-1995, GO-1685, GO-2875); filter-corrected analysis
+- `step_51_band_bayesian.py` — Bayesian hierarchical MCMC analysis of band-dependence (intrinsic scatter, leave-one-out)
+- `step_52_eta_p_derivation.py` — Derivation of stellar-pulsation response coefficient eta_P (geometric fiducial + radiative range)
+
+### Block V: Bulk-Flow Estimator Audit & Radial Discriminators (Steps 53-58, 70-73)
+- `step_53_directional_sample.py` — Directional Cepheid-TRGB sample compilation (download + cross-match + X_i + cmb_dot)
+- `step_54_directional_dmu.py` — Directional Δμ analysis: CMB correlation absorbed by X_i and R22 provenance
+- `step_55_directional_pantheon.py` — Directional Pantheon+ hemisphere split: CMB-dipole-aligned Hubble residuals
+- `step_56_vrot4_r2.py` — 2D geometric prediction: V_rot^4/R^2 vs V_rot^2 for Cepheid distance offset
+- `step_57_differential_dipole.py` — Gate D: Cartesian dipole rebuild with Freedman-Lane permutations; directional signal not robust (bootstrap p = 0.262)
+- `step_58_dual_calibration_tf.py` — Gate F: dual-calibration TF experiment; H0-invariant log-distance estimator gives ΔB = 0.0 km/s between Cepheid and TRGB calibrations
+- `step_63_raw_sn_temporal_audit.py` — Gate G: raw SN temporal audit; pre-standardization magnitude residuals vs SALT3-standardized residuals
+- `step_64_mechanism_resolved_audit.py` — Mechanism-resolved audit; simultaneous decomposition of temporal and kinematic dipole channels
+- `step_65_finite_coherence_audit.py` — Finite-coherence kernel audit; grid search over L_T on Pantheon+ raw magnitude residuals
+- `step_66_cross_dataset_coherence_audit.py` — Cross-dataset coherence audit; continuous L_T optimization on Pantheon+ and zero-parameter CF4 cross-prediction
+- `step_70_pantheon_full_discriminator.py` — Mount Wilson Equivalence Theorem: global temporal dipole indistinguishable from kinematic bulk flow in SNe
+- `step_71_xi_disformal_channel.py` — X_i disformal channel: local TEP signal in Pantheon+ SN stretch and Hubble residuals
+- `step_72_h0z_falsification.py` — H0(z) falsification: KBC/MOND gradual decay vs TEP flat profile with full Pantheon+ likelihood
+- `step_73_pantheon_radial_discriminator.py` — Pantheon+ low-z radial discriminator audit: zCMB/zHD × CMB/CF4 axis sensitivity test
+
+Note: Steps 59-62 (CF4 registration attack, radial/heliocentric/Pantheon discriminators) exist on disk as earlier iterations superseded by step_73. They are not registered in the pipeline and not cited in the manuscript. Step_58b (M101 forensics) is also unregistered; it is a validation pass for the V_rot^4/R^2 predictor analysis in step_56.
 
 ## Output Structure
 
@@ -86,7 +116,7 @@ python3 scripts/generate_site_pdf.py
 python3 scripts/generate_site_pdf.py --quality high --wait-time 10
 ```
 
-Generates `31-TEP-VOID-v0.1-Valencia.pdf` from the built static site.
+Generates `31-TEP-VOID-v0.2-Valencia.pdf` from the built static site.
 Requires the site to be built first (`cd site && npm run build`).
 
 ## Utilities

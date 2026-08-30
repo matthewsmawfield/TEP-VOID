@@ -11,9 +11,9 @@ where:
   - kappa_Cep is the TEP shear coupling constant (in mag), imported from
     the companion paper TEP-H0 (Paper 11), where it is determined from
     the host-level Cepheid analysis.
-  - X_i = (U_i - U_ref) / c^2 is the dimensionless screened potential
+  - X_i = (S_total * U_i - U_ref) / c^2 is the dimensionless screened potential
     coordinate, with U_i = u_phi^2 the rotation-based potential proxy
-    (from step_01) and U_ref = (87.165 km/s)^2 the anchor reference.
+    (from step_01) and U_ref = (30.507 km/s)^2 the screened anchor reference.
 
 IMPORTANT CAVEAT:
   - Pantheon+ uses a single global M_B calibration for all SNe. The
@@ -60,6 +60,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.screening import U_REF_SCREENED, compute_screening_by_name
 
 # Path to the companion TEP-H0 project (sibling directory)
 TEP_H0_ROOT = PROJECT_ROOT.parent / "TEP-H0"
@@ -74,19 +75,22 @@ class Step40RedshiftShearReconstruction:
     # from the host-level Cepheid analysis in TEP-H0 (Section 4, Step 42).
     # The Cepheid-channel closure (beta_X = 0) yields:
     #   kappa_Cep^equiv = (0.365 +/- 0.304) x 10^6 mag
-    # The joint multi-block likelihood (Step 44) yields:
-    #   kappa_Cep = (0.400 +/- 0.270) x 10^6 mag
+    # The redshift-only WLS (Step 44, sigma_v=150) yields:
+    #   kappa_Cep = (0.452 +/- 0.220) x 10^6 mag
     # The canonical reference scaling is:
     #   kappa_canonical = 0.960 x 10^6 mag
-    # We use the equiv value as the primary estimate.
+    # We use the redshift-only WLS value as the primary estimate for the
+    # TEP correction, with the equiv value recorded for the manuscript's
+    # calibrator-average estimator (+0.025 +/- 0.021 mag).
     # These are imported as fixed parameters from the companion paper; they
     # are NOT derived within the TEP-VOID pipeline. The load_kappa_ceph
     # method reads the value from the TEP-H0 results directory.
 
     # Anchor reference potential (from TEP-H0)
-    # U_ref = sigma_ref^2 = (87.165 km/s)^2
-    SIGMA_REF = 87.165  # km/s
-    U_REF = SIGMA_REF ** 2  # (km/s)^2
+    # U_ref_screened = sigma_ref_screened^2 = (30.507 km/s)^2
+    # This is the screened anchor reference matching TEP-H0's canonical coordinate.
+    SIGMA_REF = 30.507  # km/s — screened
+    U_REF = U_REF_SCREENED  # ≈ 930.7 (km/s)^2
 
     H0_CMB = 67.4  # km/s/Mpc
     H0_SH0ES = 73.0  # km/s/Mpc
@@ -146,7 +150,11 @@ class Step40RedshiftShearReconstruction:
           - kappa_Cep = (0.452 +/- 0.220) x 10^6 mag         (redshift-only WLS, sigma_v=150)
           - kappa_canonical = 0.960 x 10^6 mag                (reference scaling)
 
-        The equiv value is used as the primary estimate for the TEP correction.
+        The redshift-only WLS value (0.452 +/- 0.220) x 10^6 is loaded as the
+        primary estimate for the TEP correction, with its uncertainty propagated
+        into the ΔM_B shift error. The equiv value (0.365 +/- 0.304) x 10^6 is
+        also recorded for the manuscript's calibrator-average estimator
+        (+0.025 +/- 0.021 mag), which uses the endpoint-slope closure value.
         """
         print_status("Loading kappa_Cep from TEP-H0 (Paper 11)...", "PROCESS")
 
@@ -164,11 +172,25 @@ class Step40RedshiftShearReconstruction:
                 try:
                     with open(step_path, "r") as f:
                         data = json.load(f)
-                    kappa = extractor(data)
+                    kappa, kappa_err = extractor(data)
                     if kappa is not None:
+                        # Store both for downstream use
+                        self.kappa_ceph = float(kappa)
+                        self.kappa_ceph_err = float(kappa_err) if kappa_err is not None else 220046.0
+                        # Equiv value (Cepheid-channel closure) for the
+                        # manuscript calibrator-average estimator
+                        self.kappa_ceph_equiv = 365000.0
+                        self.kappa_ceph_equiv_err = 304000.0
                         print_status(
-                            f"Loaded kappa_Cep = {kappa:.4e} mag from TEP-H0/{fname}",
+                            f"Loaded kappa_Cep = {kappa:.4e} +/- {self.kappa_ceph_err:.4e} mag "
+                            f"from TEP-H0/{fname}",
                             "SUCCESS",
+                        )
+                        print_status(
+                            f"  (equiv closure value kappa_Cep^equiv = "
+                            f"{self.kappa_ceph_equiv:.4e} +/- {self.kappa_ceph_equiv_err:.4e} mag "
+                            f"recorded for the manuscript calibrator-average estimator)",
+                            "DEBUG",
                         )
                         return float(kappa)
                 except Exception as e:
@@ -186,8 +208,10 @@ class Step40RedshiftShearReconstruction:
     def _extract_kappa_from_step42(data):
         """Extract kappa_Cep from step_42_tep_native_ladder.json (kappa_B field)."""
         if isinstance(data, list) and len(data) > 0:
-            return data[0].get("kappa_B")
-        return None
+            kappa = data[0].get("kappa_B")
+            kappa_err = data[0].get("kappa_B_err")
+            return kappa, kappa_err
+        return None, None
 
     @staticmethod
     def _extract_kappa_from_step44(data):
@@ -196,8 +220,10 @@ class Step40RedshiftShearReconstruction:
         # Use the first entry (sigma_v=150 km/s) as the primary estimate
         wls = data.get("redshift_only_wls", [])
         if isinstance(wls, list) and len(wls) > 0:
-            return wls[0].get("kappa_Cep")
-        return None
+            kappa = wls[0].get("kappa_Cep")
+            kappa_err = wls[0].get("kappa_Cep_err")
+            return kappa, kappa_err
+        return None, None
 
     def load_host_potential(self):
         """Load host potential catalog from step_01."""
@@ -249,14 +275,15 @@ class Step40RedshiftShearReconstruction:
     def _compute_xi_for_hosts(self, df, host_potential_df):
         """Compute the screened potential coordinate X_i for each SN host.
 
-        X_i = (U_i - U_ref) / c^2
+        X_i = (S_total * U_i - U_ref_screened) / c^2
 
         where U_i = u_phi^2 is the rotation-based potential proxy and
-        U_ref = (87.165 km/s)^2 is the anchor reference potential.
+        U_ref_screened = (30.507 km/s)^2 is the screened anchor reference.
 
         For hosts with measured potentials (matched to step_01 catalog),
-        the actual X_i is used. For hosts without, a mass-dependent sigmoid
-        proxy is calibrated from the 41 calibrator hosts.
+        the actual X_i with TEP screening is used. For hosts without, a
+        mass-dependent sigmoid proxy is calibrated from the 41 calibrator
+        hosts (with S_total = 1.0 for uncatalogued hosts).
         """
         c2 = self.C_KMS ** 2
 
@@ -275,8 +302,14 @@ class Step40RedshiftShearReconstruction:
             merged = merged[merged["host_logmass"].notna()]
 
             if len(merged) > 5:
-                # Compute X_i for calibrator hosts
-                xi_cal = (merged["phi_proxy_kms2"] - self.U_REF) / c2
+                # Compute screened X_i for calibrator hosts
+                S_cal = compute_screening_by_name(merged["galaxy"].values, PROJECT_ROOT)
+                xi_cal = (S_cal * merged["phi_proxy_kms2"].values - self.U_REF) / c2
+                # Calibrator-only mean X_i (used for the manuscript's
+                # calibrator-average estimator in Section 9.5)
+                self.xi_cal_mean = float(xi_cal.mean())
+                self.xi_cal_std = float(xi_cal.std(ddof=1)) if len(xi_cal) > 1 else 0.0
+                self.n_calibrators = int(len(xi_cal))
                 # Mean X_i for massive hosts (logmass > 10)
                 massive_mask = merged["host_logmass"] > self.MASSIVE_THRESHOLD
                 xi_mean_massive = float(xi_cal[massive_mask].mean()) if massive_mask.any() else 8e-8
@@ -286,9 +319,15 @@ class Step40RedshiftShearReconstruction:
                     f"X_mean_low = {xi_mean_low:.4e} (from {len(merged)} calibrators)",
                     "DEBUG",
                 )
+                print_status(
+                    f"  Calibrator-only <X_i> = {self.xi_cal_mean:.4e} "
+                    f"(N={self.n_calibrators}, std={self.xi_cal_std:.4e})",
+                    "DEBUG",
+                )
             else:
                 xi_mean_massive = 8e-8
                 xi_mean_low = -4e-8
+                self.xi_cal_mean = None
         else:
             xi_mean_massive = 8e-8
             xi_mean_low = -4e-8
@@ -474,22 +513,96 @@ class Step40RedshiftShearReconstruction:
                 results["delta_mb_shift_sigma"] = float(
                     abs(delta_mb) / delta_mb_sem if delta_mb_sem > 0 else 0
                 )
-                # Propagated uncertainty from kappa_Cep posterior
-                # σ_ΔM_B = σ_κ · <X_i>  (kappa term dominates)
-                kappa_val = self.kappa_ceph if hasattr(self, 'kappa_ceph') else 365000.0
-                sigma_kappa = 304000.0  # from TEP-H0 Paper 11
+                # Propagated uncertainty from kappa_Cep posterior.
+                # σ_ΔM_B^2 = (σ_κ · <X_i>)^2 + (κ · σ_<X_i>)^2
+                # The κ term dominates (σ_κ/κ ~ 49% for the redshift-only WLS
+                # value 0.452 +/- 0.220). Use the κ and σ_κ actually loaded
+                # (redshift-only WLS), NOT the equiv value's error.
+                kappa_val = self.kappa_ceph if hasattr(self, 'kappa_ceph') else 451682.0
+                sigma_kappa = (
+                    self.kappa_ceph_err if hasattr(self, 'kappa_ceph_err')
+                    else 220046.0  # redshift-only WLS uncertainty
+                )
                 xi_mean = delta_mb / kappa_val if kappa_val != 0 else 0
-                delta_mb_propagated_err = float(sigma_kappa * abs(xi_mean))
+                # σ_<X_i> is subdominant; estimate from the SEM of delta_mb
+                # divided by κ (propagates the calibrator-potential variance).
+                sigma_xi_mean = delta_mb_sem / kappa_val if kappa_val != 0 else 0
+                delta_mb_propagated_err = float(np.sqrt(
+                    (sigma_kappa * abs(xi_mean)) ** 2 +
+                    (kappa_val * sigma_xi_mean) ** 2
+                ))
                 results["delta_mb_shift_propagated_err"] = delta_mb_propagated_err
+                results["kappa_ceph_used"] = float(kappa_val)
+                results["kappa_ceph_err_used"] = float(sigma_kappa)
+                # Primary significance uses propagated uncertainty (from κ_Cep
+                # posterior), not the paired SEM. The paired SEM is tiny because
+                # the TEP correction is nearly a constant offset, so the paired
+                # sigma is spurious (it tests whether the mean shift is nonzero,
+                # not whether the TEP model is correct). The propagated error
+                # captures the dominant uncertainty: the κ_Cep calibration.
+                results["delta_mb_shift_sigma_primary"] = float(
+                    abs(delta_mb) / delta_mb_propagated_err
+                    if delta_mb_propagated_err > 0 else 0
+                )
                 print_status(
-                    f"  ΔM_B shift: {delta_mb:+.4f} ± {delta_mb_sem:.4f} mag "
-                    f"({results['delta_mb_shift_sigma']:.2f}σ, paired)",
+                    f"  ΔM_B shift: {delta_mb:+.4f} mag",
                     "TEST",
                 )
                 print_status(
-                    f"  ΔM_B propagated (κ_Cep): ± {delta_mb_propagated_err:.4f} mag",
+                    f"  Propagated err (κ_Cep = {kappa_val:.0f} ± {sigma_kappa:.0f}): "
+                    f"± {delta_mb_propagated_err:.4f} mag "
+                    f"({results['delta_mb_shift_sigma_primary']:.2f}σ)",
                     "TEST",
                 )
+                print_status(
+                    f"  [Paired SEM {delta_mb_sem:.4f} mag is not physically "
+                    f"meaningful — correction is near-constant offset]",
+                    "INFO",
+                )
+
+                # Manuscript calibrator-average estimator using the equiv
+                # (Cepheid-channel closure) value κ_Cep^equiv = 0.365 ± 0.304.
+                # This uses the CALIBRATOR-ONLY mean <X_i> (the 41 SH0ES
+                # Cepheid calibrator hosts), not the all-Pantheon+ host mean,
+                # because ΔM_B is a zero-point shift imprinted by the
+                # calibrator population that sets M_B.
+                if hasattr(self, 'kappa_ceph_equiv'):
+                    kappa_equiv = self.kappa_ceph_equiv
+                    sigma_kappa_equiv = self.kappa_ceph_equiv_err
+                    # Calibrator-only <X_i> if available; otherwise fall back
+                    # to the all-host mean derived from the WLS shift.
+                    if hasattr(self, 'xi_cal_mean') and self.xi_cal_mean is not None:
+                        xi_mean_cal = self.xi_cal_mean
+                        sigma_xi_mean_cal = (
+                            self.xi_cal_std / np.sqrt(self.n_calibrators)
+                            if self.n_calibrators > 1 else 0.0
+                        )
+                    else:
+                        xi_mean_cal = xi_mean
+                        sigma_xi_mean_cal = sigma_xi_mean
+                    delta_mb_equiv = float(kappa_equiv * xi_mean_cal)
+                    delta_mb_equiv_err = float(np.sqrt(
+                        (sigma_kappa_equiv * abs(xi_mean_cal)) ** 2 +
+                        (kappa_equiv * sigma_xi_mean_cal) ** 2
+                    ))
+                    results["delta_mb_shift_equiv"] = delta_mb_equiv
+                    results["delta_mb_shift_equiv_err"] = delta_mb_equiv_err
+                    results["kappa_ceph_equiv"] = float(kappa_equiv)
+                    results["kappa_ceph_equiv_err"] = float(sigma_kappa_equiv)
+                    results["xi_cal_mean"] = float(xi_mean_cal)
+                    results["xi_cal_std"] = float(
+                        self.xi_cal_std if hasattr(self, 'xi_cal_std') else 0.0
+                    )
+                    results["n_calibrators"] = int(
+                        self.n_calibrators if hasattr(self, 'n_calibrators') else 0
+                    )
+                    print_status(
+                        f"  ΔM_B (equiv closure, κ^equiv = {kappa_equiv:.0f} ± "
+                        f"{sigma_kappa_equiv:.0f}, calibrator <X_i> = {xi_mean_cal:.4e}): "
+                        f"{delta_mb_equiv:+.4f} ± "
+                        f"{delta_mb_equiv_err:.4f} mag  [manuscript Section 9.5]",
+                        "TEST",
+                    )
 
             # For massive hosts specifically
             if "is_massive_host" in df.columns:
@@ -638,8 +751,8 @@ class Step40RedshiftShearReconstruction:
             "Methodology: kappa_Cep is imported from TEP-H0 (Paper 11) as the "
             "redshift-only WLS value (0.452 +/- 0.220) x 10^6 mag (sigma_v = 150 km/s), "
             "loaded from the TEP-H0 companion results. The "
-            "anchor reference potential U_ref = (87.165 km/s)^2 and the screened "
-            "potential coordinate X_i = (U_i - U_ref) / c^2 are defined per the "
+            "anchor reference potential U_ref = (30.507 km/s)^2 (screened) and the screened "
+            "potential coordinate X_i = (S_total * U_i - U_ref) / c^2 are defined per the "
             "TEP framework. No (1+z)^{-0.3} redshift factor is applied to avoid "
             "circularity with the Section 7 H0(z) prediction.",
             "PROCESS",
@@ -697,7 +810,7 @@ class Step40RedshiftShearReconstruction:
                 "NOT derived within TEP-VOID — fixed parameter for cross-validation."
             ),
             "correction_formula": "Delta_mu = kappa_Cep * X_i",
-            "xi_definition": "X_i = (U_i - U_ref) / c^2, U_ref = (87.165 km/s)^2",
+            "xi_definition": "X_i = (S_total * U_i - U_ref) / c^2, U_ref = (30.507 km/s)^2 (screened)",
             "caveat": (
                 "Pantheon+ uses a global M_B calibration. The Cepheid bias is "
                 "imprinted on M_B, not on individual SN distances. The correction "

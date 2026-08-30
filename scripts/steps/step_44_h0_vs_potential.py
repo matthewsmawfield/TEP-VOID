@@ -32,6 +32,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.screening import U_REF_SCREENED
 
 
 def main():
@@ -88,10 +89,11 @@ def main():
     ]
 
     # Compute <X> for each population
-    # X_i = (U_i - U_ref) / c^2, where U_i = (V_rot/sqrt(2))^2
-    # U_ref = (87.165 km/s)^2
+    # X_i = (S_total * U_i - U_ref_screened) / c^2, where U_i = (V_rot/sqrt(2))^2
+    # U_ref_screened = (30.507 km/s)^2 ≈ 930.7
+    # S_total = 1.0 for representative isolated calibrator populations
     C_KMS = 299792.458
-    U_ref = (87.165) ** 2  # km^2/s^2
+    U_ref = U_REF_SCREENED  # ≈ 930.7 (km/s)^2
 
     for ind in indicators:
         V_rot = ind["V_rot_typical"]
@@ -141,7 +143,6 @@ def main():
     H0_vals = np.array([ind["H0"] for ind in indicators])
     H0_errs = np.array([ind["H0_err"] for ind in indicators])
     # Weighted linear fit
-    from numpy.polynomial import polynomial as P
     weights = 1.0 / H0_errs ** 2
     coeffs = np.polyfit(X_vals, H0_vals, 1, w=weights)
     slope, intercept = coeffs
@@ -242,6 +243,13 @@ def main():
         json.dump(summary, f, indent=2)
     print_status(f"  Summary saved to {summary_path}", "SUCCESS")
     print_status("Step 44 complete", "SUCCESS")
+
+
+class Step44H0VsPotential:
+    """Pipeline-compatible wrapper for Step 44."""
+
+    def run(self):
+        main()
 
 
 if __name__ == "__main__":

@@ -1,0 +1,21 @@
+[13:21:19] [INFO] ================================================================================
+[13:21:19] [INFO]    Step 58: M101 Predictor Integrity Out-of-Sample Audit (Gate B)
+[13:21:19] [INFO] ================================================================================
+[13:21:19] [PROCESS] 
+--- M101 Deprojection ---
+[13:21:19] [TEST] Average Galactocentric Radius: 5.24 kpc
+[13:21:19] [TEST] Average Local V_rot: 217.03 km/s
+[13:21:19] [TEST] Mean Localized V^2/c^2 Predictor (M101): 5.28e-07
+[13:21:19] [TEST] Mean Localized V^4/R^2 Predictor (M101): 2.54e-06
+[13:21:19] [PROCESS] 
+--- Out-of-Sample Regression Test ---
+[13:21:19] [TEST] Training Model 1 (V^2) NLL: -30.71 (excluding M101)
+[13:21:19] [TEST] Training Model 2 (V^4/R^2) NLL: -31.37 (excluding M101)
+[13:21:19] [TEST] 
+M101 True Delta_mu: 0.0970 ± 0.0095
+[13:21:19] [TEST] M1 Prediction (V^2): -0.8686 (Residual: +0.9656)
+[13:21:19] [TEST] M2 Prediction (V^4/R^2): -3.8067 (Residual: +3.9037)
+[13:21:19] [TEST] 
+M101 Predictive Log-Likelihood (V^2): -6.20
+[13:21:19] [TEST] M101 Predictive Log-Likelihood (V^4/R^2): -13.11
+[13:21:19] [TEST] Delta Predictive LL: -6.91

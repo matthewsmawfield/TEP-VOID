@@ -2,44 +2,42 @@
   "data_summary": {
     "n_total": 1543,
     "n_hubble_flow": 1470,
-    "n_measured_vrot": 173,
-    "n_tf_proxy": 1370
+    "n_measured_vrot": 174,
+    "n_tf_proxy": 1369
   },
   "full_sample": {
-    "n_high_x": 937,
-    "n_low_x": 533,
-    "step_mag": -0.01690078219996625,
-    "step_err": 0.015234898838791483,
-    "step_sigma": -1.109346532510807
-  },
-  "measured_vrot_only": {
-    "n_high_x": 97,
-    "n_low_x": 25,
-    "step_mag": 0.1446753857834883,
-    "step_err": 0.05924016494820833,
-    "step_sigma": 2.442184047089894
+    "n_high_x": 1349,
+    "n_low_x": 121,
+    "step_mag": 0.02225457783734574,
+    "step_err": 0.0151339306415056,
+    "step_sigma": 1.470508776901051,
+    "tep_direction": true
   },
   "measured_vrot_mass_corrected": {
-    "n": 122,
-    "xi_coef": 148928.7898102121,
-    "xi_err": 91778.20967326386,
-    "xi_sigma": 1.6227031486058385,
-    "mass_coef": 0.00028511839015956953,
-    "mass_err": 0.04217625885935683,
-    "step_corrected_mag": 0.038777182975960583,
-    "step_corrected_err": 0.023896658491897538,
-    "step_corrected_sigma": 1.6227031486058385
+    "n": 123,
+    "step_corrected_mag": 0.16488423102939037,
+    "step_corrected_err": 0.139333178431074,
+    "step_corrected_sigma": 1.183380964146713,
+    "mass_slope": -0.007395376833887815,
+    "xi_coef": 131532.7769748309,
+    "xi_err": 114834.849220315,
+    "xi_sigma": 1.145408191571535,
+    "mass_coef": 0.026913072433435957,
+    "mass_err": 0.03814949615197982,
+    "condition_number": 7083410.480784488
   },
   "full_mass_corrected": {
     "n": 1470,
-    "xi_coef": 12667.400207925415,
-    "xi_err": 62191.83473427571,
-    "xi_sigma": 0.20368269021245078,
-    "mass_coef": -0.013967559160327157,
-    "mass_err": 0.024235648344455622,
-    "step_corrected_mag": 0.0030971801373207777,
-    "step_corrected_err": 0.015205907453845346,
-    "step_corrected_sigma": 0.20368269021245078
+    "step_corrected_mag": 0.01518933716594375,
+    "step_corrected_err": 0.015163946066842144,
+    "step_corrected_sigma": 1.0016744387634777,
+    "mass_slope": 0.00236722028452199,
+    "xi_coef": 80922.7536931148,
+    "xi_err": 37509.68005813297,
+    "xi_sigma": 2.157383202621289,
+    "mass_coef": -0.021343581814966168,
+    "mass_err": 0.014148146693701487,
+    "condition_number": 9909587.075686116
   },
   "vrot2_over_r2_test": {
     "status": "deferred",

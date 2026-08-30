@@ -1,0 +1,16 @@
+[19:59:59] [INFO] ================================================================================
+[19:59:59] [INFO]    Step 57: Differential Dipole Test (Nested Model Hierarchy)
+[19:59:59] [INFO] ================================================================================
+[19:59:59] [SUCCESS] Loaded 33 galaxies.
+[20:00:00] [TEST] M_X (Base) NLL: -56.80, kappa: -5.50e+05, sigma_t: 0.038
+[20:00:00] [TEST] M_CMB NLL: -58.26 (Delta NLL = 1.46), D = 0.062
+[20:00:01] [TEST] M_3D NLL: -59.86 (Delta NLL vs M_X = 3.06)
+[20:00:01] [SUCCESS] Freely Preferred Dipole: D = 0.0982 at (l=198.7, b=24.2)
+[20:00:01] [SUCCESS] Angular distance to CMB (264.0, 48.0): 55.9 degrees
+[20:00:01] [PROCESS] 
+--- Likelihood Ratio Tests ---
+[20:00:01] [TEST] M_CMB vs M_X: 2*dNLL=2.92, p-value=0.0874
+[20:00:01] [TEST] M_3D vs M_X:  2*dNLL=6.12, p-value=0.1059
+[20:00:01] [TEST] M_3D vs M_CMB: 2*dNLL=3.20, p-value=0.2020
+[20:00:01] [PROCESS] 
+--- Parametric Bootstrap (Null Model M_X) ---

@@ -2,7 +2,7 @@
   "step": "33_host_mass_z03_survey",
   "description": "Forward-looking survey design for SNe Ia in massive ellipticals at z > 0.3",
   "tep_parameters": {
-    "kappa_ceph": 0.04,
+    "kappa_shear": 0.04,
     "h0_cmb": 67.4
   },
   "expected_delta_mu": {

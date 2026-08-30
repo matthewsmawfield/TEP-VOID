@@ -184,8 +184,14 @@ class Step46AnchorSensitivity:
         )
         U_ref_disk = sigma_ref_disk**2
         X_i_disk = (host_cat["phi_proxy_kms2"].values - U_ref_disk) / self.C_KMS**2
-        kappa_disk = 0.400e6 * (U_ref_current / U_ref_disk)
+        # Rescale kappa using the same formula as the sensitivity table:
+        # kappa_new = kappa_old * <X_old> / <X_new>  (preserves Delta_mu = kappa * X)
+        X_i_current_all = (host_cat["phi_proxy_kms2"].values - U_ref_current) / self.C_KMS**2
+        mean_X_current_pos = X_i_current_all[X_i_current_all > 0].mean()
+        mean_X_disk_pos = X_i_disk[X_i_disk > 0].mean()
+        kappa_disk = 0.400e6 * (mean_X_current_pos / mean_X_disk_pos) if mean_X_disk_pos > 0 else np.inf
         delta_max_disk = kappa_disk * X_i_disk.max()
+        delta_max_current = 0.400e6 * X_i_current_all.max()
 
         print_status(
             f"  1. N4258 sigma = 115 km/s contributes "
@@ -202,13 +208,13 @@ class Step46AnchorSensitivity:
             "INFO",
         )
         print_status(
-            f"  4. kappa_Cep decreases by ~{(1 - kappa_disk/0.400e6)*100:.1f}% "
+            f"  4. kappa_Cep decreases by {abs((1 - kappa_disk/0.400e6)*100):.1f}% "
             f"(from {0.400e6:.3e} to {kappa_disk:.3e})",
             "INFO",
         )
         print_status(
             f"  5. Maximum per-host correction changes from "
-            f"{0.400e6 * (host_cat['phi_proxy_kms2'].max() - U_ref_current)/self.C_KMS**2:.4f} to "
+            f"{delta_max_current:.4f} to "
             f"{delta_max_disk:.4f} mag",
             "INFO",
         )
@@ -306,12 +312,12 @@ class Step46AnchorSensitivity:
                 for r in results
             ],
             "key_findings": [
-                "N4258 sigma = 115 km/s contributes 95.7% of U_ref",
-                "Using disk sigma = 80 km/s reduces U_ref by 49.4%",
-                "All X_i increase by ~20% on average",
-                "kappa_Cep decreases by ~16.6% (from 0.400e6 to 0.334e6)",
-                "Maximum per-host correction changes from 0.093 to 0.092 mag",
-                "Significance of kappa_Cep (1.48 sigma) is UNCHANGED",
+                f"N4258 sigma = 115 km/s contributes {self.W_N4258 * self.SIGMA_N4258_CURRENT**2 / U_ref_current * 100:.1f}% of U_ref",
+                f"Using disk sigma = 80 km/s reduces U_ref by {(1 - U_ref_disk/U_ref_current) * 100:.1f}%",
+                f"All X_i increase by ~{(X_i_disk.mean() / X_i_current_all.mean() - 1)*100:.1f}% on average",
+                f"kappa_Cep decreases by {abs((1 - kappa_disk/0.400e6)*100):.1f}% (from {0.400e6:.3e} to {kappa_disk:.3e})",
+                f"Maximum per-host correction changes from {delta_max_current:.4f} to {delta_max_disk:.4f} mag",
+                "Significance of kappa_Cep (1.48 sigma) is UNCHANGED (signal and noise scale identically)",
                 "The amplitude ledger is NOT materially affected",
             ],
             "recommendation": (

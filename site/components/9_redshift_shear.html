@@ -13,17 +13,17 @@
     The data tell a consistent story across multiple scales.
     The strongest evidence comes from single-galaxy differential
     tests: internal radial Period--Luminosity gradients within M31
-    ($\Delta W = +0.630 \pm 0.195$ mag, $3.24\sigma$ under HST PHAT
-    spatial matching) and the LMC ($\Delta W = +0.0284 \pm 0.0086$
+    ($\Delta W = +0.681 \pm 0.187$ mag, $3.65\sigma$ from HST PHAT
+    photometry, Kodric et al. 2018) and the LMC ($\Delta W = +0.0284 \pm 0.0086$
     mag, $3.30\sigma$ from OGLE-IV) independently detect the
     predicted clock-gradient signal free from host-to-host peculiar
     velocity systematics. At the cosmological level, the redshift-only
     WLS regression in $H_0$ space across 33 Hubble-flow hosts yields
-    $\kappa_{\rm Cep} = (0.452 \pm 0.220) \times 10^6$ mag
+    $\kappa_{\rm Cep} = (0.45 \pm 0.22) \times 10^6$ mag
     ($2.05\sigma$ at $\sigma_v = 150$ km/s), with the joint
     multi-block likelihood returning $1.58\sigma$ as a consistency
-    check. The supernova $X_i$-step emerges at $1.39\sigma$, also in the
-    predicted direction, placing the longstanding host-mass residual in a concrete, falsifiable timescale-bias framework. These multi-scale detections
+    check. The supernova $X_i$-step emerges at $1.47\sigma$ in the
+    TEP-predicted direction (step_48, $N=1470$ Hubble-flow), placing the longstanding host-mass residual in a concrete, falsifiable timescale-bias framework. These multi-scale detections
     align in both direction and order of magnitude to
     span the gap. The definitive per-host recalibration is left to
     the companion TEP-H0 analysis.
@@ -130,12 +130,15 @@
     and $\kappa_{\rm Cep}^{\rm equiv} = (0.365 \pm 0.304) \times 10^6\ {\rm mag}$ is the
     Cepheid-channel response coefficient from the endpoint slope
     conversion in TEP-H0 (Paper 11, Section 4). Here
-    $X_i = (U_i - U_{\rm ref}) / c^2$ is the dimensionless screened
-    potential coordinate, with $U_i = u_\phi^2$ the rotation-based
-    potential proxy and $U_{\rm ref} = (87.165\ {\rm km\,s^{-1}})^2$
-    the anchor reference potential. The correction is positive for
-    massive calibrators: Cepheid distances are compressed, so the true
-    distance modulus is larger than the observed value.
+    $X_i = (S_{\rm total}\, U_i - U_{\rm ref}^{\rm scr}) / c^2$ is the
+    dimensionless screened potential coordinate, with $U_i = u_\phi^2$
+    the rotation-based potential proxy, $S_{\rm total} \le 1$ the
+    screening factor that attenuates the potential for extended
+    sources, and $U_{\rm ref}^{\rm scr} = (30.507\ {\rm km\,s^{-1}})^2$
+    the screened anchor reference potential. The correction is
+    positive for massive calibrators: Cepheid distances are
+    compressed, so the true distance modulus is larger than the
+    observed value.
 </p>
 
 <p>
@@ -144,7 +147,7 @@
     $\kappa_{\rm Cep}^{\rm equiv} = (0.365 \pm 0.304) \times 10^6$
     (the endpoint-slope conversion from TEP-H0, used in the
     matrix propagation) and
-    $\kappa_{\rm Cep} = (0.452 \pm 0.220) \times 10^6$
+    $\kappa_{\rm Cep} = (0.45 \pm 0.22) \times 10^6$
     (the redshift-only WLS estimate in $H_0$ space at
     $\sigma_v = 150$ km/s, used in the DHOST consistency analysis of
     Section 4.6). These
@@ -184,7 +187,9 @@
 
 <p>
     The TEP correction shifts the mean Hubble residual by
-    $+0.025 \pm 0.021$ mag in the direction predicted by TEP (reducing
+    $+0.035 \pm 0.030$ mag (equiv closure, $\kappa_{\rm Cep}^{\rm equiv}
+    = 0.365 \times 10^6$ mag, calibrator-only $\langle X_i \rangle$) in
+    the direction predicted by TEP (reducing
     the negative residual caused by Cepheid distance compression). The
     uncertainty combines the imported $\kappa_{\rm Cep}^{\rm equiv}$
     posterior with the variance of the mean calibrator potential
@@ -201,9 +206,11 @@
 </p>
 
 <p>
-    The direct shift of $0.025 \pm 0.021$ mag is a simple
+    The direct shift of $+0.035 \pm 0.030$ mag is a simple
     calibrator-average estimator using the endpoint-slope
-    $\kappa_{\rm Cep}^{\rm equiv} = 0.365 \times 10^6$ mag. The
+    $\kappa_{\rm Cep}^{\rm equiv} = 0.365 \times 10^6$ mag applied to
+    the screened calibrator-only $\langle X_i \rangle$ (step_40
+    cross-validation). The
     Hubble tension demands a mean calibrator correction of
     $\Delta\mu_{\rm tension} = 5\log_{10}(73.0/67.4) \approx 0.174$
     mag. Two propagation routes exist, yielding different results:
@@ -220,11 +227,12 @@
     Section 4.2). The maximum per-host correction with
     $\kappa_{\rm Cep}^{\rm equiv}$ is
     $\kappa_{\rm Cep}^{\rm equiv} \cdot X_{\rm max} = 0.365 \times
-    10^6 \times 2.54 \times 10^{-7} \approx 0.093$ mag (at M101).
-    A propagation audit (step_40) confirms: the unweighted mean
-    correction is $+0.036 \pm 0.010$ mag; weighting by potential
-    depth amplifies by a factor of $\sim 2.6$ to $\sim 0.094$ mag,
-    at the bound.
+    10^6 \times 3.28 \times 10^{-7} \approx 0.120$ mag (at M101).
+    A propagation audit (step_40) confirms: the mean calibrator
+    correction is $+0.039 \pm 0.019$ mag (using the redshift-only WLS
+    $\kappa_{\rm Cep} = 0.45 \times 10^6$), or $+0.035 \pm 0.030$
+    mag using the endpoint-closure $\kappa_{\rm Cep}^{\rm equiv}$,
+    consistent with the maximum per-host bound.
 </p>
 
 <p>
@@ -351,7 +359,7 @@
             <td>Cepheid period transport</td>
             <td>$\kappa_{\rm Cep} \cdot X_i$</td>
             <td>$\sim 0.02$–$0.09$ mag (per host)</td>
-            <td>Matched-host Cepheid–TRGB divergence ($\Delta\mu = -0.026 \pm 0.015$); $\kappa_{\rm Cep} = (0.452 \pm 0.220) \times 10^6$ mag (redshift-only WLS, $2.05\sigma$); M31 ($3.24\sigma$) and LMC ($3.30\sigma$) internal gradients; Step 04 reconstruction yields $H_0 = 66.65 \pm 1.58$</td>
+            <td>Matched-host Cepheid–TRGB divergence (JWST $N=17$: $\Delta\mu = -0.023 \pm 0.022$, $1.02\sigma$; filter-corrected $-0.042 \pm 0.024$, $1.77\sigma$); $\kappa_{\rm Cep} = (0.45 \pm 0.22) \times 10^6$ mag (redshift-only WLS, $2.05\sigma$); M31 ($3.65\sigma$) and LMC ($3.30\sigma$) internal gradients; Step 04 reconstruction yields $H_0 = 66.65 \pm 1.58$</td>
         </tr>
         <tr>
             <td>SN light-curve stretch</td>
@@ -390,9 +398,9 @@
     a statistical test of the framework. A weighted linear fit of
     $H_0$ against the mean potential coordinate $\langle X \rangle$
     for each ladder's calibrator population yields
-    $H_0 = 70.0 + 1.7 \times 10^7 \langle X \rangle$, with the four
-    indicators spanning $\langle X \rangle \approx -0.5 \times 10^{-7}$
-    (JAGB) to $+2.8 \times 10^{-7}$ (SBF). While the sample size of
+    $H_0 = 68.8 + 1.7 \times 10^7 \langle X \rangle$, with the four
+    indicators spanning $\langle X \rangle \approx +0.3 \times 10^{-7}$
+    (JAGB) to $+3.5 \times 10^{-7}$ (SBF). While the sample size of
     four indicator classes precludes any formal statistical significance, the ordering is consistent with the two-channel picture — but, as detailed below, is too confounded to count as evidence for it.
     The two-channel model expects this ordering to persist under refinement; because the four classes are mutually confounded, however, persistence would be suggestive rather than confirmatory even with more data, unless the confounds are broken by matching hosts across indicators. The four indicator classes are moreover deeply
     confounded with known method-specific systematics — JAGB and TRGB
@@ -441,4 +449,47 @@
     constraint. The falsifiable prediction — the $X_i$-step in
     Pantheon+ Hubble residuals beyond the SALT3 mass correction — is
     the subject of Section 10.
+</p>
+
+<h3>9.8 Standardization Suppression of the Temporal-Gradient Observable</h3>
+
+<p>
+    An audit of the standard SN Ia data reduction pipeline reveals a
+    critical mechanism that suppresses the macroscopic temporal signal:
+    the SALT standardization process itself acts as a scrubber.
+</p>
+
+<p>
+    The SALT3 model standardizes supernova luminosities under the
+    strict assumption of the Isochrony Axiom — that clocks tick at
+    the same fundamental rate everywhere. Because the macroscopic
+    temporal field (the 55.6 Mpc finite-coherence structure) is an
+    accumulated temporal shear that alters the local clock rate
+    directionally across the sky, it modifies the observed timescales
+    of all local events. For a supernova, this manifests as an
+    apparent broadening or narrowing of the light-curve width
+    depending on its alignment with the dipole.
+</p>
+
+<p>
+    Standard cosmology interprets any macroscopic temporal distortion
+    not as a topological feature of spacetime, but as an intrinsic
+    artifact of the supernova explosion. The aggregate SALT3
+    standardization — combining the stretch correction $\alpha x_1$,
+    the color correction $\beta c$, and the host-mass step — absorbs
+    part of the macroscopic temporal signal into the standardized
+    magnitude $m_{B,\rm corr}$. The theoretically predicted timescale
+    channel operates through $x_1$ (Section 4.9), but the Gate G audit
+    (step_63) shows that the raw stretch coefficient itself is not
+    significantly directional ($D_{x_1} = +0.061 \pm 0.061$,
+    $p = 0.32$); the suppression is instead observed in the aggregate
+    correction, where the pre-standardization magnitude dipole
+    ($D = -0.070 \pm 0.019$, $p_{\rm perm} < 10^{-3}$) is reduced to
+    $D = -0.021 \pm 0.010$ ($p_{\rm perm} = 0.014$) after the full
+    SALT3 correction is applied. The standardization therefore
+    suppresses approximately 70% of the pre-standardization
+    directional signal, with the residual remaining significant in
+    the standardized residuals. Complete calibration of the $x_1$
+    channel requires the disformal coupling $\gamma_x$ to be
+    constrained independently (Section 4.9).
 </p>

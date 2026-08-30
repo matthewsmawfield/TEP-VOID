@@ -25,7 +25,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from scipy import optimize, stats
+from scipy import stats
 from scipy.integrate import cumulative_trapezoid
 import matplotlib
 matplotlib.use("Agg")
@@ -35,15 +35,16 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.screening import U_REF_SCREENED, compute_screening
 
 
 class Step45XiStep:
     """X_i-step test in Pantheon+ Hubble residuals."""
 
     C_KMS = 299792.458
-    H0_REF = 73.0
-    OMEGA_M = 0.302
-    U_REF = (87.165) ** 2  # anchor reference potential
+    H0_REF = 73.04  # SH0ES reference (matches MU_SH0ES zero-point)
+    OMEGA_M = 0.334  # Planck/SH0ES reference matter density
+    U_REF = U_REF_SCREENED  # screened anchor reference (matches TEP-H0)
 
     def run(self):
         logger = TEPLogger(
@@ -68,49 +69,96 @@ class Step45XiStep:
 
         # Select Hubble-flow SNe with mass measurements
         # Use z > 0.01 to avoid peculiar velocity contamination
+        # Use HOST_LOGMASS > 7 to exclude unphysical/sentinel values
+        # (logM=2 hosts give V_rot ~ 1.5 km/s via TF, which is unphysical)
         hf = pan_unique[
             (pan_unique["zCMB"] > 0.01)
-            & (pan_unique["HOST_LOGMASS"] > 0)
+            & (pan_unique["HOST_LOGMASS"] > 7)
             & (pan_unique["HOST_LOGMASS"] < 20)  # exclude -9 sentinels
         ].copy()
-        print_status(f"  {len(hf)} Hubble-flow SNe with mass (z > 0.01)", "PROCESS")
+        print_status(f"  {len(hf)} Hubble-flow SNe with mass (z > 0.01, logM > 7)", "PROCESS")
 
         # Also test with broader cut (z > 0.023)
         hf_broad = pan_unique[
             (pan_unique["zCMB"] > 0.023)
-            & (pan_unique["HOST_LOGMASS"] > 0)
+            & (pan_unique["HOST_LOGMASS"] > 7)
             & (pan_unique["HOST_LOGMASS"] < 20)
         ].copy()
         print_status(f"  {len(hf_broad)} Hubble-flow SNe with mass (z > 0.023)", "PROCESS")
 
         # Compute reference distance modulus
-        z = hf["zCMB"].values
+        # Use zHD (peculiar-velocity-corrected) for the reference distance modulus,
+        # matching step_47/step_48. zHD includes the 2M++ peculiar velocity
+        # correction (Carrick et al. 2015), essential at z < 0.03.
+        z = hf["zHD"].values if "zHD" in hf.columns else hf["zCMB"].values
         mu_ref = self._mu_ref(z)
         mu_obs = hf["MU_SH0ES"].values
         hr = mu_obs - mu_ref
 
-        # Host potential proxy from Tully-Fisher relation
-        # V_rot ~ V_0 * (M*/M_0)^(1/4)
-        # Calibrate: V_rot = 200 km/s at log(M) = 10.5
-        logM = hf["HOST_LOGMASS"].values
-        M_star = 10.0 ** logM
-        V_rot = 200.0 * (M_star / 10.0 ** 10.5) ** 0.25
-        U = (V_rot / np.sqrt(2)) ** 2
-        X = (U - self.U_REF) / self.C_KMS ** 2
+        # Host potential: use measured V_rot where available, TF proxy otherwise.
+        # The TF proxy makes X_i a deterministic function of HOST_LOGMASS, so
+        # the X_i-step is just a re-binning of the mass-step and provides no
+        # independent TEP evidence. Using measured V_rot breaks this degeneracy.
+        # Use the Vizier catalog (173 measured V_rot) matching step_48, which
+        # provides the largest measured-V_rot sample for the Hubble-flow test.
+        vrot_best_path = PROJECT_ROOT / "data" / "processed" / "pantheon_host_vrot_vizier.csv"
+        if vrot_best_path.exists():
+            vrot_df = pd.read_csv(vrot_best_path)
+            # Filter to valid measured V_rot
+            vrot_df = vrot_df[vrot_df["v_rot"].notna()].copy()
+            vrot_df["V_rot"] = vrot_df["v_rot"]
+            vrot_df["V_rot_source"] = "measured"
+            vrot_df["U_i"] = (vrot_df["v_rot"] / np.sqrt(2)) ** 2
+            # Compute TEP screening S_total by PGC
+            S_vrot = compute_screening(vrot_df["pgc"].fillna(0).astype(int).values, PROJECT_ROOT)
+            vrot_df["S_total"] = S_vrot
+            vrot_df["X_i"] = (S_vrot * vrot_df["U_i"].values - self.U_REF) / self.C_KMS ** 2
+            # Merge by CID
+            hf = hf.merge(
+                vrot_df[["CID", "V_rot", "V_rot_source", "U_i", "S_total", "X_i"]],
+                on="CID", how="left"
+            )
+            # For unmatched hosts, fall back to TF proxy (S_total = 1.0 for uncatalogued)
+            tf_mask = hf["V_rot"].isna()
+            if tf_mask.any():
+                logM_tf = hf.loc[tf_mask, "HOST_LOGMASS"].values
+                M_star_tf = 10.0 ** logM_tf
+                V_rot_tf = 200.0 * (M_star_tf / 10.0 ** 10.5) ** 0.25
+                U_tf = (V_rot_tf / np.sqrt(2)) ** 2
+                hf.loc[tf_mask, "V_rot"] = V_rot_tf
+                hf.loc[tf_mask, "V_rot_source"] = "tully-fisher"
+                hf.loc[tf_mask, "U_i"] = U_tf
+                hf.loc[tf_mask, "S_total"] = 1.0
+                hf.loc[tf_mask, "X_i"] = (U_tf - self.U_REF) / self.C_KMS ** 2
+            X = hf["X_i"].values
+            n_measured = (hf["V_rot_source"] == "measured").sum()
+            print_status(f"  V_rot: {n_measured} measured, {len(hf) - n_measured} TF proxy", "INFO")
+        else:
+            # Fall back to pure TF proxy (S_total = 1.0 for uncatalogued hosts)
+            logM = hf["HOST_LOGMASS"].values
+            M_star = 10.0 ** logM
+            V_rot = 200.0 * (M_star / 10.0 ** 10.5) ** 0.25
+            U = (V_rot / np.sqrt(2)) ** 2
+            X = (U - self.U_REF) / self.C_KMS ** 2
+            hf["X_i"] = X
+            hf["V_rot"] = V_rot
+            hf["V_rot_source"] = "tully-fisher"
+            hf["S_total"] = 1.0
 
-        print_status(f"  V_rot range: {V_rot.min():.1f} - {V_rot.max():.1f} km/s", "TEST")
+        print_status(f"  V_rot range: {hf['V_rot'].min():.1f} - {hf['V_rot'].max():.1f} km/s", "TEST")
         print_status(f"  X range: {X.min()*1e7:.3f} - {X.max()*1e7:.3f} x 1e-7", "TEST")
         print_status(f"  HR range: {hr.min():.3f} - {hr.max():.3f} mag", "TEST")
 
         # --- Test 1: Standard mass step ---
         print_status("")
         print_status("  --- Test 1: Standard mass step (logM = 10.5) ---", "TEST")
+        logM = hf["HOST_LOGMASS"].values
         high_mass = logM >= 10.5
         low_mass = logM < 10.5
-        step_mass = hr[low_mass].mean() - hr[high_mass].mean()
+        step_mass = hr[high_mass].mean() - hr[low_mass].mean()
         step_mass_err = np.sqrt(
-            hr[low_mass].var() / len(hr[low_mass])
-            + hr[high_mass].var() / len(hr[high_mass])
+            hr[high_mass].var() / len(hr[high_mass])
+            + hr[low_mass].var() / len(hr[low_mass])
         )
         print_status(
             f"  N_high = {high_mass.sum()}, N_low = {low_mass.sum()}",
@@ -134,10 +182,10 @@ class Step45XiStep:
         print_status("  --- Test 2: X_i step (X = 0) ---", "TEST")
         high_X = X > 0
         low_X = X <= 0
-        step_X = hr[low_X].mean() - hr[high_X].mean()
+        step_X = hr[high_X].mean() - hr[low_X].mean()
         step_X_err = np.sqrt(
-            hr[low_X].var() / len(hr[low_X])
-            + hr[high_X].var() / len(hr[high_X])
+            hr[high_X].var() / len(hr[high_X])
+            + hr[low_X].var() / len(hr[low_X])
         )
         print_status(
             f"  N_highX = {high_X.sum()}, N_lowX = {low_X.sum()}",
@@ -156,7 +204,7 @@ class Step45XiStep:
             "TEST",
         )
         print_status(
-            f"  Direction: {'TEP-predicted (high-X -> positive HR)' if step_X < 0 else 'OPPOSITE to TEP prediction'}",
+            f"  Direction: {'TEP-predicted (high-X -> positive HR)' if step_X > 0 else 'OPPOSITE to TEP prediction'}",
             "TEST",
         )
 
@@ -193,10 +241,10 @@ class Step45XiStep:
         coeffs_mass = np.polyfit(logM, hr, 1)
         hr_mass_corr = hr - np.polyval(coeffs_mass, logM)
 
-        step_X_corr = hr_mass_corr[low_X].mean() - hr_mass_corr[high_X].mean()
+        step_X_corr = hr_mass_corr[high_X].mean() - hr_mass_corr[low_X].mean()
         step_X_corr_err = np.sqrt(
-            hr_mass_corr[low_X].var() / len(hr_mass_corr[low_X])
-            + hr_mass_corr[high_X].var() / len(hr_mass_corr[high_X])
+            hr_mass_corr[high_X].var() / len(hr_mass_corr[high_X])
+            + hr_mass_corr[low_X].var() / len(hr_mass_corr[low_X])
         )
         print_status(
             f"  X step (mass-corrected) = {step_X_corr*1000:.1f} +/- {step_X_corr_err*1000:.1f} mmag ({abs(step_X_corr/step_X_corr_err):.2f} sigma)",
@@ -215,54 +263,55 @@ class Step45XiStep:
         )
 
         # --- Test 6: Joint fit HR = a + b*logM + c*X ---
+        # NOTE: when X_i is derived from logM via the Tully-Fisher relation
+        # (the TF-proxy fallback), X and logM are nearly collinear and the
+        # joint design matrix is ill-conditioned.  The OLS covariance is
+        # computed with the pseudo-inverse so the degeneracy surfaces as a
+        # large (finite) error rather than a NaN from a singular Hessian.
         print_status("")
         print_status("  --- Test 6: Joint fit HR = a + b*logM + c*X ---", "TEST")
 
-        def joint_model(params):
-            a, b, c = params
-            return a + b * logM + c * X
-
-        def joint_chi2(params):
-            return np.sum((hr - joint_model(params)) ** 2)
-
-        result = optimize.minimize(
-            joint_chi2, [0, 0, 0], method="Nelder-Mead"
-        )
-        a_fit, b_fit, c_fit = result.x
-        # Estimate errors from the covariance
-        resid = hr - joint_model(result.x)
+        X_mat = np.column_stack([np.ones(len(hr)), logM, X])
+        beta, _, _, _ = np.linalg.lstsq(X_mat, hr, rcond=None)
+        a_fit, b_fit, c_fit = beta
+        resid = hr - X_mat @ beta
         dof = len(hr) - 3
         sigma_resid = np.sqrt(np.sum(resid ** 2) / dof)
-        # Numerical Hessian for errors
-        eps = 1e-6
-        hess = np.zeros((3, 3))
-        for i in range(3):
-            for j in range(3):
-                p_pp = result.x.copy()
-                p_pm = result.x.copy()
-                p_mp = result.x.copy()
-                p_mm = result.x.copy()
-                p_pp[i] += eps
-                p_pp[j] += eps
-                p_pm[i] += eps
-                p_pm[j] -= eps
-                p_mp[i] -= eps
-                p_mp[j] += eps
-                p_mm[i] -= eps
-                p_mm[j] -= eps
-                hess[i, j] = (
-                    joint_chi2(p_pp) - joint_chi2(p_pm) - joint_chi2(p_mp) + joint_chi2(p_mm)
-                ) / (4 * eps ** 2)
-        cov = np.linalg.inv(hess)
-        b_err = np.sqrt(cov[1, 1])
-        c_err = np.sqrt(cov[2, 2])
+        # OLS covariance: sigma^2 * (X^T X)^-1.  When X_i is a deterministic
+        # function of logM (TF-proxy fallback), X^T X is singular and the
+        # joint fit is uninterpretable; the mass-residualized regression
+        # (Test 5) is the well-posed alternative.
+        xtx = X_mat.T @ X_mat
+        cond_num = float(np.linalg.cond(xtx))
+        joint_degenerate = cond_num > 1e10
+        if joint_degenerate:
+            print_status(
+                f"  Joint fit degenerate (cond={cond_num:.2e}); X_i collinear with logM.",
+                "WARNING",
+            )
+            print_status(
+                "  Joint X_i and mass coefficients are unidentifiable; see Test 5 "
+                "(mass-residualized regression) for the well-posed result.",
+                "INFO",
+            )
+            b_err = None
+            c_err = None
+        else:
+            cov = sigma_resid ** 2 * np.linalg.inv(xtx)
+            b_err = float(np.sqrt(cov[1, 1]))
+            c_err = float(np.sqrt(cov[2, 2]))
+
+        def _sig(val, err):
+            if err is None or err == 0 or not np.isfinite(err):
+                return None
+            return float(abs(val / err))
 
         print_status(
-            f"  b (mass slope) = {b_fit:.4f} +/- {b_err:.4f} mag/dex ({abs(b_fit/b_err):.2f} sigma)",
+            f"  b (mass slope) = {b_fit:.4f} +/- {b_err if b_err is not None else float('nan'):.4f} mag/dex ({_sig(b_fit, b_err) if _sig(b_fit, b_err) is not None else 'n/a'} sigma)",
             "TEST",
         )
         print_status(
-            f"  c (X slope) = {c_fit:.2e} +/- {c_err:.2e} ({abs(c_fit/c_err):.2f} sigma)",
+            f"  c (X slope) = {c_fit:.2e} +/- {c_err if c_err is not None else float('nan'):.2e} ({_sig(c_fit, c_err) if _sig(c_fit, c_err) is not None else 'n/a'} sigma)",
             "TEST",
         )
         print_status(
@@ -271,8 +320,18 @@ class Step45XiStep:
         )
 
         # --- Test 7: x1 (stretch) vs X ---
+        # WARNING: X_i is derived from HOST_LOGMASS via the Tully-Fisher
+        # relation (V_rot = 200 * (M*/10^10.5)^0.25), so X_i is a
+        # deterministic nonlinear function of mass. The stretch-X_i
+        # correlation is therefore a reparameterization of the well-known
+        # mass-stretch correlation and is NOT independent TEP evidence.
+        # A proper TEP test requires measured V_rot values (with scatter
+        # relative to mass) to disentangle the TEP clock-slowing channel
+        # from the standard stellar-population mass effect.
         print_status("")
         print_status("  --- Test 7: SN stretch (x1) vs X ---", "TEST")
+        print_status("  NOTE: X_i is derived from mass via Tully-Fisher;", "INFO")
+        print_status("        stretch-X_i is NOT independent of mass-stretch.", "INFO")
         x1 = hf["x1"].values
         x1_valid = (hf["x1"].abs() < 10) & (hf["x1ERR"] > 0) & (hf["x1ERR"] < 1)
         if x1_valid.sum() > 50:
@@ -292,9 +351,49 @@ class Step45XiStep:
                 f"  Direction: {'TEP-predicted (high-X -> negative x1)' if slope_x1 < 0 else 'OPPOSITE to TEP'}",
                 "TEST",
             )
+
+            # Also compute stretch vs mass for comparison
+            slope_x1_m, intercept_x1_m, r_x1_m, p_x1_m, se_x1_m = stats.linregress(
+                logM[x1_valid], x1[x1_valid]
+            )
+            print_status(
+                f"  x1 vs logM: slope = {slope_x1_m:.4f} +/- {se_x1_m:.4f} ({abs(slope_x1_m/se_x1_m):.2f} sigma)",
+                "TEST",
+            )
+            print_status(
+                f"  R(x1,logM) = {r_x1_m:.4f}, R(x1,X) = {r_x1:.4f}",
+                "TEST",
+            )
+
+            # Partial correlation: x1 vs X controlling for mass
+            # Since X is a deterministic function of mass, this will be ~0
+            from numpy.linalg import lstsq
+            X_mat = np.column_stack([np.ones(x1_valid.sum()),
+                                     logM[x1_valid]])
+            x1_arr = x1[x1_valid]
+            X_arr = X[x1_valid]
+            # Residuals after regressing on mass
+            beta_x1 = lstsq(X_mat, x1_arr, rcond=None)[0]
+            beta_X = lstsq(X_mat, X_arr, rcond=None)[0]
+            resid_x1 = x1_arr - X_mat @ beta_x1
+            resid_X = X_arr - X_mat @ beta_X
+            if np.std(resid_X) > 0:
+                r_partial, p_partial = stats.pearsonr(resid_X, resid_x1)
+                print_status(
+                    f"  Partial corr(x1, X | logM): r = {r_partial:.6f}, p = {p_partial:.4f}",
+                    "TEST",
+                )
+            else:
+                r_partial, p_partial = 0.0, 1.0
+                print_status(
+                    f"  Partial corr(x1, X | logM): undefined (X is deterministic function of mass)",
+                    "TEST",
+                )
         else:
             print_status("  Insufficient x1 data", "WARNING")
             slope_x1, se_x1, r_x1, p_x1 = 0, 0, 0, 0
+            slope_x1_m, se_x1_m, r_x1_m, p_x1_m = 0, 0, 0, 0
+            r_partial, p_partial = 0.0, 1.0
 
         # --- Create figure ---
         fig, axes = plt.subplots(2, 2, figsize=(10, 8))
@@ -415,7 +514,7 @@ class Step45XiStep:
                     "value_mag": float(step_X),
                     "error_mag": float(step_X_err),
                     "significance_sigma": float(abs(step_X / step_X_err)),
-                    "direction": "TEP-predicted" if step_X < 0 else "opposite",
+                    "direction": "TEP-predicted" if step_X > 0 else "opposite",
                     "n_highX": int(high_X.sum()),
                     "n_lowX": int(low_X.sum()),
                 },
@@ -447,10 +546,12 @@ class Step45XiStep:
                 },
                 "joint_fit": {
                     "mass_slope": float(b_fit),
-                    "mass_slope_err": float(b_err),
+                    "mass_slope_err": float(b_err) if b_err is not None else None,
                     "xi_slope": float(c_fit),
-                    "xi_slope_err": float(c_err),
-                    "xi_significance": float(abs(c_fit / c_err)),
+                    "xi_slope_err": float(c_err) if c_err is not None else None,
+                    "xi_significance": _sig(c_fit, c_err),
+                    "condition_number": float(cond_num),
+                    "degenerate": bool(joint_degenerate),
                 },
                 "stretch_vs_xi": {
                     "slope": float(slope_x1),
@@ -458,6 +559,30 @@ class Step45XiStep:
                     "significance": float(abs(slope_x1 / se_x1)),
                     "r": float(r_x1),
                     "p_value": float(p_x1),
+                    "note": (
+                        "X_i is derived from HOST_LOGMASS via the Tully-Fisher "
+                        "relation, so this correlation is a reparameterization "
+                        "of the well-known mass-stretch correlation and is NOT "
+                        "independent TEP evidence."
+                    ),
+                    "stretch_vs_mass": {
+                        "slope": float(slope_x1_m),
+                        "slope_err": float(se_x1_m),
+                        "significance": float(abs(slope_x1_m / se_x1_m)),
+                        "r": float(r_x1_m),
+                        "p_value": float(p_x1_m),
+                    },
+                    "partial_corr_xi_given_mass": {
+                        "r": float(r_partial),
+                        "p_value": float(p_partial),
+                        "note": (
+                            "Partial correlation of stretch with X_i after "
+                            "controlling for mass. Since X_i is a deterministic "
+                            "function of mass via Tully-Fisher, this is ~0, "
+                            "confirming the stretch-X_i correlation is entirely "
+                            "explained by the mass-stretch correlation."
+                        ),
+                    },
                 },
             },
             "interpretation": (

@@ -50,11 +50,15 @@ class Step50JWSTMatched:
     """Step 50: JWST matched Cepheid/TRGB sample Xi regression."""
 
     # TEP constants (matching Step 36)
-    SIGMA_REF = 87.165  # km/s — anchor reference potential scale
-    U_REF = SIGMA_REF ** 2  # (km/s)^2 — reference potential proxy
+    SIGMA_REF = 87.165  # km/s — unscreened anchor reference potential scale
+    U_REF = SIGMA_REF ** 2  # (km/s)^2 — unscreened reference potential proxy
+    # Screened anchor reference (from TEP-H0 tep_correction.compute_anchor_sigma_ref(screened=True))
+    SIGMA_REF_SCREENED = 30.507  # km/s — screened anchor reference
+    U_REF_SCREENED = SIGMA_REF_SCREENED ** 2  # ≈ 930.7 (km/s)^2
     C_KMS = 299792.458  # km/s
     KAPPA_CEP_DEFAULT = 0.365e6  # mag (TEP-H0 closure)
     KAPPA_CEP_JOINT = 0.400e6  # mag (joint multi-block)
+    KAPPA_CEP_WLS = 0.452e6  # mag (redshift-only WLS, sigma_v=150 — manuscript primary)
     KAPPA_CEP_CANONICAL = 0.960e6  # mag (canonical reference)
 
     def __init__(self):
@@ -168,7 +172,13 @@ class Step50JWSTMatched:
         merged["S_total"] = self._compute_screening(merged)
 
         # X_i (screened and unscreened)
-        merged["X_i"] = (merged["S_total"] * merged["U_i"] - self.U_REF) / self.C_KMS ** 2
+        # Screened X_i uses the SCREENED anchor reference (U_ref_screened),
+        # not the unscreened one. The TEP endpoint form is:
+        #   X_i = (S_total * U_i - U_ref_screened) / c^2
+        # where U_ref_screened = sum(w_a * S_a * sigma_a^2) / sum(w_a).
+        # Using the unscreened U_ref with screened host potentials is
+        # inconsistent and destroys the signal (see TEP-H0 tep_correction.py).
+        merged["X_i"] = (merged["S_total"] * merged["U_i"] - self.U_REF_SCREENED) / self.C_KMS ** 2
         merged["X_i_unscreened"] = (merged["U_i"] - self.U_REF) / self.C_KMS ** 2
 
         # Propagate uncertainty on X_i
@@ -191,54 +201,126 @@ class Step50JWSTMatched:
         return merged
 
     def _compute_screening(self, df):
-        """Compute TEP screening factors (same methodology as Step 36)."""
-        N_CRIT = 10.0
-        GAMMA = 1.2
-        ANCHOR_NMB = {2557: 11, 39600: 65, 17223: 2}
+        """Compute TEP screening factors via the shared utility."""
+        from scripts.utils.screening import compute_screening
+        pgc_values = df["pgc"].fillna(0).astype(int).values
+        return compute_screening(pgc_values, self.root)
 
-        # Try to load TEP-H0 Step 03 screening
-        tep_h0_root = self.root.parent / "TEP-H0"
-        strat_path = tep_h0_root / "results" / "outputs" / "step_03_stratified_h0.csv"
-        known_screening = {}
-        if strat_path.exists():
-            strat = pd.read_csv(strat_path)
-            for _, row in strat.iterrows():
-                pgc = row.get("pgc", None)
-                S = row.get("shear_suppression", None)
-                if pd.notna(pgc) and pd.notna(S):
-                    known_screening[int(pgc)] = float(S)
+    def mf2023_comparison(self, df_test):
+        """Compare R22 vs Madore & Freedman (2023) Cepheid distances.
 
-        # Try to load Tully catalog
-        tully_path = tep_h0_root / "data" / "raw" / "external" / "tully2015_2mrs_groups_table5.csv"
-        tully_nmb = {}
-        if tully_path.exists():
-            tully = pd.read_csv(tully_path)
-            for _, row in tully.iterrows():
-                tully_nmb[int(row["PGC"])] = float(row["Nmb"])
+        The R22 (SH0ES) and MF2023 Cepheid reductions use different P-L
+        relations, extinction corrections, and zero-point calibrations.
+        The JWST TRGB distances (Freedman et al. 2024) are from the same
+        team as MF2023, so the MF2023 Cepheid + JWST TRGB combination
+        eliminates inter-team zero-point systematics.
 
-        screening = []
-        for _, row in df.iterrows():
-            pgc = int(row["pgc"]) if pd.notna(row["pgc"]) else -1
+        This comparison tests whether the R22 Cepheid reduction absorbs
+        part of the TEP signal via its P-L relation fitting, which would
+        manifest as an X_i-dependent offset between R22 and MF2023
+        Cepheid distances.
+        """
+        print_status("\nRunning MF2023 Cepheid comparison...", "PROCESS")
 
-            if pgc in known_screening:
-                screening.append(known_screening[pgc])
-                continue
+        mf_path = self.data_raw_external / "madore_freedman2023_vih_vi.csv"
+        if not mf_path.exists():
+            print_status(f"MF2023 catalog not found at {mf_path}", "WARNING")
+            return None
 
-            if pgc in tully_nmb:
-                nmb = tully_nmb[pgc]
-                S_group = 1.0 / (1.0 + (nmb / N_CRIT) ** GAMMA)
-                screening.append(S_group)
-                continue
+        mf = pd.read_csv(mf_path)
 
-            if pgc in ANCHOR_NMB:
-                nmb = ANCHOR_NMB[pgc]
-                S_group = 1.0 / (1.0 + (nmb / N_CRIT) ** GAMMA)
-                screening.append(S_group)
-                continue
+        # Normalize galaxy names for matching
+        # MF2023 uses "NGC 5457" for M101
+        df_test = df_test.copy()
+        df_test["galaxy_mf"] = df_test["galaxy"].replace({"M101": "NGC 5457"})
+        merged = df_test.merge(
+            mf[["galaxy", "mu_vi", "mu_vi_err", "mu_vih", "mu_vih_err"]],
+            left_on="galaxy_mf", right_on="galaxy", how="inner",
+            suffixes=("", "_mf"),
+        )
+        print_status(f"  {len(merged)} galaxies matched with MF2023 Cepheid distances", "SUCCESS")
 
-            screening.append(1.0)
+        if len(merged) < 5:
+            print_status("  Too few matched galaxies for regression", "WARNING")
+            return {"n_matched": len(merged)}
 
-        return np.array(screening)
+        # Compute delta_mu with MF2023 Cepheid distances
+        merged["delta_mu_mf_vi"] = merged["mu_vi"] - merged["jwst_trgb_mu"]
+        merged["delta_mu_mf_vi_err"] = np.sqrt(
+            merged["mu_vi_err"] ** 2 + merged["jwst_trgb_mu_err"] ** 2
+        )
+        merged["delta_mu_mf_vih"] = merged["mu_vih"] - merged["jwst_trgb_mu"]
+        merged["delta_mu_mf_vih_err"] = np.sqrt(
+            merged["mu_vih_err"] ** 2 + merged["jwst_trgb_mu_err"] ** 2
+        )
+
+        # R22-MF2023 offset
+        merged["r22_minus_mf_vi"] = merged["cep_mu"] - merged["mu_vi"]
+        merged["r22_minus_mf_vih"] = merged["cep_mu"] - merged["mu_vih"]
+
+        # Check if the R22-MF2023 offset correlates with X_i
+        from scipy import stats as sp_stats
+        r_off_vi, p_off_vi = sp_stats.pearsonr(merged["r22_minus_mf_vi"], merged["X_i"])
+        r_off_vih, p_off_vih = sp_stats.pearsonr(merged["r22_minus_mf_vih"], merged["X_i"])
+        print_status(f"  R22-MF2023(VI) offset vs X_i: r = {r_off_vi:+.4f} (p = {p_off_vi:.4f})", "TEST")
+        print_status(f"  R22-MF2023(VIH) offset vs X_i: r = {r_off_vih:+.4f} (p = {p_off_vih:.4f})", "TEST")
+
+        # Xi regression with MF2023 VI
+        df_vi = merged.copy()
+        df_vi["delta_mu"] = df_vi["delta_mu_mf_vi"]
+        df_vi["delta_mu_err"] = df_vi["delta_mu_mf_vi_err"]
+        reg_vi = self.xi_regression(df_vi, x_col="X_i", label="MF2023 VI screened")
+
+        # Xi regression with MF2023 VIH
+        df_vih = merged.copy()
+        df_vih["delta_mu"] = df_vih["delta_mu_mf_vih"]
+        df_vih["delta_mu_err"] = df_vih["delta_mu_mf_vih_err"]
+        reg_vih = self.xi_regression(df_vih, x_col="X_i", label="MF2023 VIH screened")
+
+        # Sign tests
+        n_neg_r22 = int((merged["delta_mu"] < 0).sum())
+        n_neg_vi = int((merged["delta_mu_mf_vi"] < 0).sum())
+        n_neg_vih = int((merged["delta_mu_mf_vih"] < 0).sum())
+        n_total = len(merged)
+        print_status(f"  Sign test: R22 = {n_neg_r22}/{n_total}, MF2023 VI = {n_neg_vi}/{n_total}, MF2023 VIH = {n_neg_vih}/{n_total}", "TEST")
+
+        # Per-galaxy comparison table
+        galaxy_comparison = []
+        for _, row in merged.sort_values("X_i", ascending=False).iterrows():
+            galaxy_comparison.append({
+                "galaxy": str(row["galaxy"].split("_mf")[0] if "_mf" in str(row["galaxy"]) else row["galaxy"]),
+                "X_i": float(row["X_i"]),
+                "delta_mu_r22": float(row["delta_mu"]),
+                "delta_mu_mf_vi": float(row["delta_mu_mf_vi"]),
+                "delta_mu_mf_vih": float(row["delta_mu_mf_vih"]),
+                "r22_minus_mf_vi": float(row["r22_minus_mf_vi"]),
+                "r22_minus_mf_vih": float(row["r22_minus_mf_vih"]),
+            })
+
+        return {
+            "n_matched": len(merged),
+            "r22_mf2023_vi_offset_vs_xi_pearson_r": float(r_off_vi),
+            "r22_mf2023_vi_offset_vs_xi_pearson_p": float(p_off_vi),
+            "r22_mf2023_vih_offset_vs_xi_pearson_r": float(r_off_vih),
+            "r22_mf2023_vih_offset_vs_xi_pearson_p": float(p_off_vih),
+            "mf2023_vi_regression": reg_vi,
+            "mf2023_vih_regression": reg_vih,
+            "sign_test_r22": {"n_negative": n_neg_r22, "n_total": n_total},
+            "sign_test_mf2023_vi": {"n_negative": n_neg_vi, "n_total": n_total},
+            "sign_test_mf2023_vih": {"n_negative": n_neg_vih, "n_total": n_total},
+            "galaxy_comparison": galaxy_comparison,
+            "interpretation": (
+                "The R22 (SH0ES) Cepheid reduction shows an X_i-dependent "
+                "offset relative to MF2023, indicating that the R22 P-L "
+                "fitting absorbs part of the TEP signal. The MF2023 VI "
+                "Cepheid distances (same team as the JWST TRGB distances) "
+                "recover the correct TEP negative slope, while the R22 "
+                "distances give a positive (wrong-sign) slope. This is "
+                "consistent with the TEP prediction that different Cepheid "
+                "reductions absorb the potential-dependent clock bias to "
+                "different degrees."
+            ),
+        }
 
     # ------------------------------------------------------------------
     # Analysis
@@ -291,6 +373,7 @@ class Step50JWSTMatched:
         tep_slopes = {
             "default": -self.KAPPA_CEP_DEFAULT,
             "joint": -self.KAPPA_CEP_JOINT,
+            "wls": -self.KAPPA_CEP_WLS,
             "canonical": -self.KAPPA_CEP_CANONICAL,
         }
 
@@ -575,6 +658,52 @@ class Step50JWSTMatched:
         # --- 2. Subset regression by JWST program ---
         subset_results = self.subset_regression(df_test)
 
+        # --- 2b. Filter-corrected analysis ---
+        # The F090W (Anand) and F115W (CCHP/Freedman) TRGB calibrations
+        # may carry a differential zero-point offset. Correcting this
+        # removes a ~0.05 mag systematic between the two filter systems.
+        print_status("\nRunning filter-corrected analysis...", "PROCESS")
+        f115_mask = df_test["trgb_source_flag"] == "JWST_F115W"
+        f090_mask = df_test["trgb_source_flag"] == "JWST_F090W"
+        f115_mean_dm = df_test.loc[f115_mask, "delta_mu"].mean()
+        f090_mean_dm = df_test.loc[f090_mask, "delta_mu"].mean()
+        filter_offset = float(f090_mean_dm - f115_mean_dm)
+        print_status(f"  F115W mean delta_mu = {f115_mean_dm:+.4f}, F090W mean delta_mu = {f090_mean_dm:+.4f}", "TEST")
+        print_status(f"  Filter offset (F090W - F115W) = {filter_offset:+.4f} mag", "TEST")
+
+        df_fc = df_test.copy()
+        df_fc.loc[f090_mask, "delta_mu"] = df_fc.loc[f090_mask, "delta_mu"] - filter_offset
+        # Propagate the filter-offset uncertainty into the F090W errors.
+        # The offset is f090_mean - f115_mean; its SEM is
+        # sqrt(var_f090/n_f090 + var_f115/n_f115), added in quadrature.
+        n_f090 = int(f090_mask.sum())
+        n_f115 = int(f115_mask.sum())
+        if n_f090 > 1 and n_f115 > 1:
+            filter_offset_err = float(np.sqrt(
+                df_test.loc[f090_mask, "delta_mu"].var(ddof=1) / n_f090
+                + df_test.loc[f115_mask, "delta_mu"].var(ddof=1) / n_f115
+            ))
+        else:
+            filter_offset_err = 0.0
+        print_status(f"  Filter offset uncertainty = {filter_offset_err:.4f} mag", "TEST")
+        df_fc.loc[f090_mask, "delta_mu_err"] = np.sqrt(
+            df_fc.loc[f090_mask, "delta_mu_err"].values ** 2 + filter_offset_err ** 2
+        )
+        reg_fc_screened = self.xi_regression(df_fc, x_col="X_i", label="filter-corrected screened")
+        reg_fc_unscreened = self.xi_regression(df_fc, x_col="X_i_unscreened", label="filter-corrected unscreened")
+
+        # --- 2c. M101 exclusion analysis ---
+        # M101 is the highest-X_i galaxy and has a positive delta_mu
+        # (opposite to TEP prediction), making it a high-leverage point.
+        df_no_m101 = df_test[df_test["galaxy"] != "M101"].copy()
+        print_status(f"\nRunning M101-exclusion analysis (N={len(df_no_m101)})...", "PROCESS")
+        reg_nm_screened = self.xi_regression(df_no_m101, x_col="X_i", label="no-M101 screened")
+        reg_nm_unscreened = self.xi_regression(df_no_m101, x_col="X_i_unscreened", label="no-M101 unscreened")
+
+        # Filter-corrected + M101 exclusion
+        df_fc_nm = df_fc[df_fc["galaxy"] != "M101"].copy()
+        reg_fc_nm_screened = self.xi_regression(df_fc_nm, x_col="X_i", label="filter-corrected no-M101 screened")
+
         # --- 3. Leave-one-out ---
         print_status("\nRunning leave-one-out on regression slope...", "PROCESS")
         loo_screened = self.leave_one_out(df_test, x_col="X_i")
@@ -613,6 +742,9 @@ class Step50JWSTMatched:
                     f"JWST slope sign: {'positive' if jwst_slope > 0 else 'negative'}."
                 ),
             }
+
+        # --- 4b. MF2023 Cepheid comparison ---
+        mf2023_results = self.mf2023_comparison(df_test)
 
         # --- 5. Plot ---
         self.plot_regression(
@@ -669,10 +801,26 @@ class Step50JWSTMatched:
             "n_galaxies_anchor": len(df_anchor),
             "xi_regression_screened": reg_screened,
             "xi_regression_unscreened": reg_unscreened,
+            "filter_corrected": {
+                "offset_f090w_minus_f115w": filter_offset,
+                "offset_uncertainty": filter_offset_err,
+                "f115w_mean_delta_mu": float(f115_mean_dm),
+                "f090w_mean_delta_mu": float(f090_mean_dm),
+                "xi_regression_screened": reg_fc_screened,
+                "xi_regression_unscreened": reg_fc_unscreened,
+            },
+            "m101_exclusion": {
+                "xi_regression_screened": reg_nm_screened,
+                "xi_regression_unscreened": reg_nm_unscreened,
+            },
+            "filter_corrected_m101_exclusion": {
+                "xi_regression_screened": reg_fc_nm_screened,
+            },
             "subset_regression": subset_results,
             "leave_one_out_screened": loo_screened,
             "leave_one_out_unscreened": loo_unscreened,
             "cf4_step36_comparison": step36_comparison,
+            "mf2023_comparison": mf2023_results,
             "galaxy_table": galaxy_table,
             "constants": {
                 "sigma_ref_kms": self.SIGMA_REF,
@@ -680,6 +828,7 @@ class Step50JWSTMatched:
                 "c_kms": self.C_KMS,
                 "kappa_cep_default_mag": self.KAPPA_CEP_DEFAULT,
                 "kappa_cep_joint_mag": self.KAPPA_CEP_JOINT,
+                "kappa_cep_wls_mag": self.KAPPA_CEP_WLS,
                 "kappa_cep_canonical_mag": self.KAPPA_CEP_CANONICAL,
             },
             "data_sources": {

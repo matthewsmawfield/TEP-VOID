@@ -1,0 +1,31 @@
+[19:59:57] [INFO] 
+[19:59:57] [INFO] ================================================================================
+[19:59:57] [INFO]    Step 56: 2D Geometric Prediction — V_rot^4/r^2 Test
+[19:59:57] [INFO] ================================================================================
+[19:59:57] [INFO] 
+[19:59:57] [PROCESS] DHOST scalar-tensor derivation: ε_0 ∝ V_rot^4/r^2
+[19:59:57] [PROCESS] Loading SPARC catalog...
+[19:59:57] [SUCCESS]   175 SPARC galaxies
+[19:59:57] [PROCESS] Loading directional sample...
+[19:59:57] [SUCCESS]   33 galaxies
+[19:59:57] [PROCESS] Cross-matching SPARC with directional sample...
+[19:59:57] [SUCCESS]   6 matched galaxies with V_flat > 0
+[19:59:57] [PROCESS] 
+--- 2D geometric prediction test ---
+[19:59:57] [TEST]   N=6 matched galaxies
+[19:59:57] [TEST]   1D: r(Δμ, V²) = +0.1620 (p=0.7592)
+[19:59:57] [TEST]   2D: r(Δμ, V⁴/R²) = +0.6147 (p=0.1941)
+[19:59:57] [TEST]   Partial r(Δμ, V⁴/R² | V²) = +0.7779 (p=0.0685)
+[19:59:57] [TEST]   AIC: 1D=-23.22, 2D=-25.91, ΔAIC=-2.69
+[19:59:57] [TEST]   BIC: 1D=-23.64, 2D=-26.33, ΔBIC=-2.69
+[19:59:57] [PROCESS] 
+--- Generating figure ---
+[19:59:59] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_56_vrot4_r2.png
+[19:59:59] [SUCCESS] 
+Results saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_56_vrot4_r2.json
+[19:59:59] [SUCCESS] step_56 completed in 1.8s
+[19:59:59] [INFO] 
+[19:59:59] [INFO] ================================================================================
+[19:59:59] [INFO]    Starting step_57: Gate D: Cartesian dipole rebuild with Freedman-Lane permutations (directional signal not robust)
+[19:59:59] [INFO] ================================================================================
+[19:59:59] [INFO] 

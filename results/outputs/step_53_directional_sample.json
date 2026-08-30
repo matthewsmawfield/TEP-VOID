@@ -1,0 +1,41 @@
+{
+  "step": "53_directional_sample",
+  "description": "Compiled Cepheid-TRGB matched sample for directional \u0394\u03bc test",
+  "n_total": 33,
+  "n_with_coordinates": 33,
+  "n_with_xi": 33,
+  "n_with_cmb_dot": 33,
+  "n_with_all_coords": 33,
+  "n_toward_cmb": 20,
+  "n_away_from_cmb": 13,
+  "mean_cmb_dot": 0.13722928318143043,
+  "by_sample": {
+    "CF4": 22,
+    "JWST": 11
+  },
+  "by_cep_source": {
+    "CF4_registered": 22,
+    "R22_HST": 11
+  },
+  "by_trgb_source": {
+    "Anand F090W (Anand et al. 2024 ApJ 976 177 Table 2 s=0.10)": 6,
+    "CCHP F115W (Freedman et al. 2024 arXiv:2408.06153v3 Table 2)": 5,
+    "CF4_registered": 22
+  },
+  "mean_delta_mu": -0.0603636363636365,
+  "median_delta_mu": -0.06700000000000017,
+  "std_delta_mu": 0.1166380132562434,
+  "sem_delta_mu": 0.020304071942976464,
+  "data_sources": {
+    "cf4_both": 22,
+    "jwst_matched": 18,
+    "r22_cepheid": 36,
+    "jacobs_trgb": 50,
+    "key_project": 8
+  },
+  "output_file": "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/directional_ceph_trgb_sample.csv",
+  "cmb_dipole": {
+    "galactic_l": 264.021,
+    "galactic_b": 48.253
+  }
+}

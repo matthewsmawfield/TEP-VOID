@@ -1,36 +1,36 @@
-[21:43:02] [INFO] 
-[21:43:02] [INFO] ================================================================================
-[21:43:02] [INFO]    Step 33: Host-Mass z > 0.3 Survey Design
-[21:43:02] [INFO] ================================================================================
-[21:43:02] [INFO] 
-[21:43:02] [INFO] This step addresses whether the TEP-predicted H0 inflation signal persists for SNe Ia in massive elliptical hosts at z > 0.3, where the temporal shear expectation <X_i>(z) = (1+z)^-0.3 is reduced relative to the local universe. The discriminating observable is the distance modulus offset Delta_mu = (5/ln10) * kappa * <X_i>(z), which TEP predicts to be non-zero and decreasing with redshift, while the LambdaCDM null hypothesis predicts zero offset at all redshifts. The survey design quantifies the sample size, comoving volume, and observing time required for a statistically significant detection of this signal.
-[21:43:02] [PROCESS] Methodology: Delta_mu is computed as (5/ln10) * kappa_CEP * <X_i>(z) * massive_factor with kappa_CEP = 0.04 and <X_i>(z) = (1+z)^-0.3, evaluated over z = 0.3 to 0.6. A massive_factor of 1.0 is applied for elliptical hosts with deep gravitational potentials, representing the full TEP shear coupling.
-[21:43:02] [PROCESS] Computing expected Delta_mu for massive hosts at z > 0.3...
-[21:43:02] [TEST]   Delta_mu at z=0.30: 0.0803 mag
-[21:43:02] [TEST]   Delta_mu at z=0.40: 0.0785 mag
-[21:43:02] [TEST]   Delta_mu at z=0.60: 0.0754 mag
-[21:43:02] [PROCESS] Methodology: Required sample size N is computed from N = (n_sigma * sigma / Delta_mu)^2, where sigma combines intrinsic SN Ia scatter (0.12 mag) and photometric error (0.05 mag) in quadrature. Both 3-sigma and 5-sigma thresholds are evaluated, with a reduced-scatter scenario for improved host matching.
-[21:43:02] [PROCESS] Computing required sample size for 3-sigma detection...
-[21:43:02] [PROCESS]   Per-SN error: sigma = 0.130 mag
-[21:43:02] [TEST]   Required N for 3-sigma: 26 SNe
-[21:43:02] [TEST]   Required N for 5-sigma: 70 SNe
-[21:43:02] [TEST]   Required N (reduced scatter) for 3-sigma: 15 SNe
-[21:43:02] [PROCESS] Methodology: Survey volume is computed from the proper LCDM comoving distance integral between z = 0.3 and z = 0.6, with a massive elliptical fraction of 15%. The SN Ia rate in massive hosts (0.04 per 10^4 Mpc^3 per yr) yields the expected event count, scaled by an LSST detection multiplier of 10x.
-[21:43:02] [PROCESS] Estimating survey parameters...
-[21:43:02] [PROCESS]   Survey volume (z=0.3-0.6): 4.23e+10 Mpc^3
-[21:43:02] [PROCESS]   Expected SNe/yr in massive hosts: 25376.3
-[21:43:02] [TEST]   Estimated survey duration: 1 years
-[21:43:02] [TEST]   With LSST: ~253763 SNe/yr, ~1 years
-[21:43:02] [PROCESS] Assessing survey feasibility...
-[21:43:02] [TEST]   LSST 10-year survey feasible: True
-[21:43:02] [PROCESS]   Required photometric precision: 0.026 mag
-[21:43:02] [TEST]   Precision achievable with current instruments: False
-[21:43:02] [SUCCESS] Interpretation: The expected mean Delta_mu of 0.0778 mag requires approximately 26 SNe in massive hosts for a 3-sigma detection. Under TEP, this signal arises from the temporal shear coupling and should be detectable with LSST in approximately 1 years. Under the LambdaCDM null hypothesis, no redshift-dependent offset is predicted, and the measured Delta_mu would be consistent with zero within uncertainty.
-[21:43:02] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_33_host_mass_z03_survey.json
-[21:43:02] [SUCCESS] Step 33 complete
-[21:43:02] [SUCCESS] step_33 completed in 0.0s
-[21:43:02] [INFO] 
-[21:43:02] [INFO] ================================================================================
-[21:43:02] [INFO]    Starting step_36: Xi regression: Δμ vs gravitational potential coordinate across 22-galaxy CF4 sample (Tables 2–3)
-[21:43:02] [INFO] ================================================================================
-[21:43:02] [INFO] 
+[19:42:20] [INFO] 
+[19:42:20] [INFO] ================================================================================
+[19:42:20] [INFO]    Step 33: Host-Mass z > 0.3 Survey Design
+[19:42:20] [INFO] ================================================================================
+[19:42:20] [INFO] 
+[19:42:20] [INFO] This step addresses whether the TEP-predicted H0 inflation signal persists for SNe Ia in massive elliptical hosts at z > 0.3, where the temporal shear expectation <X_i>(z) = (1+z)^-0.3 is reduced relative to the local universe. The discriminating observable is the distance modulus offset Delta_mu = (5/ln10) * kappa * <X_i>(z), which TEP predicts to be non-zero and decreasing with redshift, while the LambdaCDM null hypothesis predicts zero offset at all redshifts. The survey design quantifies the sample size, comoving volume, and observing time required for a statistically significant detection of this signal.
+[19:42:20] [PROCESS] Methodology: Delta_mu is computed as (5/ln10) * kappa_CEP * <X_i>(z) * massive_factor with kappa_shear = 0.04 and <X_i>(z) = (1+z)^-0.3, evaluated over z = 0.3 to 0.6. A massive_factor of 1.0 is applied for elliptical hosts with deep gravitational potentials, representing the full TEP shear coupling.
+[19:42:20] [PROCESS] Computing expected Delta_mu for massive hosts at z > 0.3...
+[19:42:20] [TEST]   Delta_mu at z=0.30: 0.0803 mag
+[19:42:20] [TEST]   Delta_mu at z=0.40: 0.0785 mag
+[19:42:20] [TEST]   Delta_mu at z=0.60: 0.0754 mag
+[19:42:20] [PROCESS] Methodology: Required sample size N is computed from N = (n_sigma * sigma / Delta_mu)^2, where sigma combines intrinsic SN Ia scatter (0.12 mag) and photometric error (0.05 mag) in quadrature. Both 3-sigma and 5-sigma thresholds are evaluated, with a reduced-scatter scenario for improved host matching.
+[19:42:20] [PROCESS] Computing required sample size for 3-sigma detection...
+[19:42:20] [PROCESS]   Per-SN error: sigma = 0.130 mag
+[19:42:20] [TEST]   Required N for 3-sigma: 26 SNe
+[19:42:20] [TEST]   Required N for 5-sigma: 70 SNe
+[19:42:20] [TEST]   Required N (reduced scatter) for 3-sigma: 15 SNe
+[19:42:20] [PROCESS] Methodology: Survey volume is computed from the proper LCDM comoving distance integral between z = 0.3 and z = 0.6, with a massive elliptical fraction of 15%. The SN Ia rate in massive hosts (0.04 per 10^4 Mpc^3 per yr) yields the expected event count, scaled by an LSST detection multiplier of 10x.
+[19:42:20] [PROCESS] Estimating survey parameters...
+[19:42:20] [PROCESS]   Survey volume (z=0.3-0.6): 4.23e+10 Mpc^3
+[19:42:20] [PROCESS]   Expected SNe/yr in massive hosts: 25376.3
+[19:42:20] [TEST]   Estimated survey duration: 1 years
+[19:42:20] [TEST]   With LSST: ~253763 SNe/yr, ~1 years
+[19:42:20] [PROCESS] Assessing survey feasibility...
+[19:42:20] [TEST]   LSST 10-year survey feasible: True
+[19:42:20] [PROCESS]   Required photometric precision: 0.026 mag
+[19:42:20] [TEST]   Precision achievable with current instruments: False
+[19:42:20] [SUCCESS] Interpretation: The expected mean Delta_mu of 0.0778 mag requires approximately 26 SNe in massive hosts for a 3-sigma detection. Under TEP, this signal arises from the temporal shear coupling and should be detectable with LSST in approximately 1 years. Under the LambdaCDM null hypothesis, no redshift-dependent offset is predicted, and the measured Delta_mu would be consistent with zero within uncertainty.
+[19:42:20] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_33_host_mass_z03_survey.json
+[19:42:20] [SUCCESS] Step 33 complete
+[19:42:20] [SUCCESS] step_33 completed in 0.0s
+[19:42:20] [INFO] 
+[19:42:20] [INFO] ================================================================================
+[19:42:20] [INFO]    Starting step_36: Xi regression: Δμ vs gravitational potential coordinate across 22-galaxy CF4 sample (Tables 2–3)
+[19:42:20] [INFO] ================================================================================
+[19:42:20] [INFO] 

@@ -1,0 +1,277 @@
+{
+  "files": {
+    "data/raw/Pantheon+SH0ES.dat": {
+      "sha256": "1cb0fc379ef066afdc2ffd1857681cc478024570d8a3eba284fb645775198cf8",
+      "size_bytes": 579283,
+      "url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon%2BSH0ES.dat",
+      "source": "Pantheon+SH0ES (Scolnic et al. 2022, Riess et al. 2022)",
+      "status": "skip_exists",
+      "downloaded_at": "2026-08-30T19:05:20.401180+00:00",
+      "notes": ""
+    },
+    "data/raw/Pantheon+SH0ES_STAT+SYS.cov": {
+      "sha256": "abf806d966485e64afdb359c87bffc0ecc00d05eff0a31ced66f247385df0fdc",
+      "size_bytes": 33284960,
+      "url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon%2BSH0ES_STAT%2BSYS.cov",
+      "source": "Pantheon+SH0ES (Scolnic et al. 2022)",
+      "status": "skip_exists",
+      "downloaded_at": "2026-08-30T19:05:20.429970+00:00",
+      "notes": ""
+    },
+    "data/raw/Pantheon+SH0ES_STATONLY.cov": {
+      "sha256": "9f177129a332735d3637affd20054080d5260815f3ca0809120c05b2c902297f",
+      "size_bytes": 31827416,
+      "url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon%2BSH0ES_STATONLY.cov",
+      "source": "Pantheon+SH0ES (Scolnic et al. 2022)",
+      "status": "skip_exists",
+      "downloaded_at": "2026-08-30T19:05:20.459413+00:00",
+      "notes": ""
+    },
+    "data/raw/external/cf4_table2.dat.gz": {
+      "sha256": "01da4042b02c737ffdda39aeb97c8ccc7e2e992fc5f7821c0891f9e4e4c8ad79",
+      "size_bytes": 2485646,
+      "url": "http://cdsarc.u-strasbg.fr/ftp/J/ApJ/944/94/table2.dat.gz",
+      "source": "CosmicFlows-4 (Tully et al. 2023, ApJ 944 94)",
+      "status": "skip_exists",
+      "downloaded_at": "2026-08-30T19:05:20.464030+00:00",
+      "notes": ""
+    },
+    "data/raw/external/cf4_table4.dat.gz": {
+      "sha256": "be91d4fae6fa01552ab3bc85db695411fca3249eeae08b566a712e6ea790bd99",
+      "size_bytes": 2528953,
+      "url": "http://cdsarc.u-strasbg.fr/ftp/J/ApJ/944/94/table4.dat.gz",
+      "source": "CosmicFlows-4 (Tully et al. 2023, ApJ 944 94)",
+      "status": "skip_exists",
+      "downloaded_at": "2026-08-30T19:05:20.467447+00:00",
+      "notes": ""
+    },
+    "data/raw/external/cf4_readme.txt": {
+      "sha256": "2cfed1418147d5a626dee1fa37c47252124477c9828490508d9bbe511d34edb4",
+      "size_bytes": 19918,
+      "url": "http://cdsarc.u-strasbg.fr/ftp/J/ApJ/944/94/ReadMe",
+      "source": "CDS ReadMe for J/ApJ/944/94",
+      "status": "skip_exists",
+      "downloaded_at": "2026-08-30T19:05:20.468233+00:00",
+      "notes": ""
+    },
+    "data/raw/external/2mtf_catalog.vot": {
+      "sha256": "3c2c96ee413a6bd3a432bfa3085d3792b1dfc995cd77fd8e5a0b9261a2301aee",
+      "size_bytes": 1221888,
+      "url": "http://vizier.u-strasbg.fr/viz-bin/votable?-source=J/MNRAS/487/2061&-out.all=1&-out.max=999999",
+      "source": "2MTF (Hong et al. 2019, MNRAS 487 2061)",
+      "status": "skip_exists",
+      "downloaded_at": "2026-08-30T19:05:20.471408+00:00",
+      "notes": ""
+    },
+    "data/raw/external/sfipp_catalog.vot": {
+      "sha256": "",
+      "size_bytes": 0,
+      "url": "http://vizier.u-strasbg.fr/viz-bin/votable?-source=J/ApJS/182/474&-out.all=1&-out.max=999999",
+      "source": "SFI++ (Springob et al. 2007, ApJS 182 474)",
+      "status": "skip_failure_cooldown",
+      "downloaded_at": "2026-08-30T19:05:20.471492+00:00",
+      "notes": "Skipped due to recent failure"
+    },
+    "data/raw/external/alfalfa_a40.vot": {
+      "sha256": "",
+      "size_bytes": 0,
+      "url": "http://vizier.u-strasbg.fr/viz-bin/votable?-source=J/AJ/154/78/table2&-out.all=1&-out.max=999999",
+      "source": "ALFALFA A40 (Haynes et al. 2018, AJ 154 78)",
+      "status": "skip_failure_cooldown",
+      "downloaded_at": "2026-08-30T19:05:20.471539+00:00",
+      "notes": "Skipped due to recent failure"
+    },
+    "data/raw/external/6dfgs_pecvel.vot": {
+      "sha256": "e7360f810defa2d9659b96e1dbab2a5fc54156a7877b41b16078f58ed4400f6c",
+      "size_bytes": 1812435,
+      "url": "http://vizier.u-strasbg.fr/viz-bin/votable?-source=J/MNRAS/445/2677/table1&-out.all=1&-out.max=999999",
+      "source": "6dFGS (Springob et al. 2014, MNRAS 445 2677)",
+      "status": "skip_exists",
+      "downloaded_at": "2026-08-30T19:05:20.476813+00:00",
+      "notes": ""
+    },
+    "data/raw/external/jia_hz_data.txt": {
+      "sha256": "9173073ede25e169bd04ee0497b336b2ad26bf20c8f11b32d5e4dbe7d0c0d791",
+      "size_bytes": 828,
+      "url": "https://raw.githubusercontent.com/JoJo20221003/Hz-Code/main/Data/Hz%20data.txt",
+      "source": "Jia et al. 2023, A&A 674 A45",
+      "status": "skip_exists",
+      "downloaded_at": "2026-08-30T19:05:20.477394+00:00",
+      "notes": ""
+    },
+    "data/raw/external/hyperleda_vii237.vot": {
+      "sha256": "2000b3c0d03a998b1a5ec48616e69a295e2ea75edd01ef07f654d91778dab6fc",
+      "size_bytes": 229125155,
+      "url": "http://vizier.u-strasbg.fr/viz-bin/votable?-source=VII/237&-out.all=1&-out.max=999999",
+      "source": "HyperLEDA VII/237",
+      "status": "skip_exists",
+      "downloaded_at": "2026-08-30T19:05:23.061447+00:00",
+      "notes": ""
+    },
+    "data/raw/external/hyperleda_vii238.vot": {
+      "sha256": "17c4414947f34b85ae4abe96adc80e05c2d2d6a59ba53bebad3a24b02d05791b",
+      "size_bytes": 4044546,
+      "url": "http://vizier.u-strasbg.fr/viz-bin/votable?-source=VII/238&-out.all=1&-out.max=999999",
+      "source": "HyperLEDA VII/238",
+      "status": "skip_exists",
+      "downloaded_at": "2026-08-30T19:05:23.070125+00:00",
+      "notes": ""
+    },
+    "data/raw/external/r22_cepheid_distances.csv": {
+      "sha256": "8ea7ece40a3d2863012116212ad0938c331fd4a0b646697f6ac13fb9f97db905",
+      "size_bytes": 2157,
+      "url": "curated_from_publication",
+      "source": "Riess et al. 2022, ApJ 934 L7 (Table 3 / SH0ES DataRelease)",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.070764+00:00",
+      "notes": "R22 Cepheid distance moduli for 37 calibrator hosts"
+    },
+    "data/raw/external/trgb_distances_freedman2024.csv": {
+      "sha256": "061187461684f1a4ef8727027dc169dd9585ecfbec51e2235858ad8a56024c84",
+      "size_bytes": 1201,
+      "url": "curated_from_publication",
+      "source": "Freedman et al. 2024/2025, CCHP (arXiv:2408.06153)",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.070915+00:00",
+      "notes": "CCHP TRGB distance moduli for SN Ia hosts"
+    },
+    "data/raw/external/jwst_trgb_distances.csv": {
+      "sha256": "66469203d0adf18ad994ad5d7aa66617d1d6305ec133ff29e32ddbd31d4a12b0",
+      "size_bytes": 3689,
+      "url": "curated_from_publication",
+      "source": "Anand et al. 2024 (ApJ 976 177) + Freedman et al. 2025 (CCHP)",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.071295+00:00",
+      "notes": "JWST TRGB distances (F090W + F115W) for Cepheid/TRGB overlap"
+    },
+    "data/raw/external/key_project_cepheid_distances.csv": {
+      "sha256": "bb7e9abadaf265e17061799638c878c9903fac968d5e34d084071ee334c40383",
+      "size_bytes": 2118,
+      "url": "curated_from_publication",
+      "source": "Freedman et al. 2001 (ApJ 553 47, Table 3)",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.071720+00:00",
+      "notes": "Key Project Cepheid distances (V/I band)"
+    },
+    "data/raw/external/madore_freedman2023_vih_vi.csv": {
+      "sha256": "834ae7755b14504bd13b7d0384669335cd39f5e1e9da8324d53502e49e9638b6",
+      "size_bytes": 1748,
+      "url": "curated_from_publication",
+      "source": "Madore & Freedman 2023 (arXiv:2309.10859, Table 2)",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.072127+00:00",
+      "notes": "MF2023 VIH and VI Cepheid distance moduli"
+    },
+    "data/raw/external/velocity_dispersions_literature.csv": {
+      "sha256": "25713de07c0d8891e7e86dfce78b955b3617e11f2f715a7683b392549af5f5f8",
+      "size_bytes": 10275,
+      "url": "curated_from_publication",
+      "source": "HyperLEDA (Makarov et al. 2014) curated for SH0ES hosts",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.072333+00:00",
+      "notes": "V_rot-derived potential proxy for 37+ R22 hosts"
+    },
+    "data/raw/external/hosts_properties.csv": {
+      "sha256": "162a845958ab02c07b95bdd8d69e16d524e6459a454ce1552ddf12cbd023bcd2",
+      "size_bytes": 3381,
+      "url": "curated_from_publication",
+      "source": "Pantheon+SH0ES.dat host galaxy metadata",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.072633+00:00",
+      "notes": "Host galaxy RA/DEC/mass/Pantheon+ ID mapping"
+    },
+    "data/raw/external/cf4_matched_galaxies_vrot.csv": {
+      "sha256": "ed98de3d75bcccfb94ecd13523b141d5a3b2a5000ab97ff84662319dc00ed9c0",
+      "size_bytes": 2559,
+      "url": "curated_from_publication",
+      "source": "HyperLEDA query for 22 CF4 Cepheid+TRGB galaxies",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.072857+00:00",
+      "notes": "V_rot for 22 CF4 galaxies with both Cepheid and TRGB"
+    },
+    "data/raw/external/cosmicflows4_catalog.csv": {
+      "sha256": "677e2f52634e6b199afe9a09a2e64534832ac8bdce5463020c5dcd24e32d4b00",
+      "size_bytes": 711,
+      "url": "curated_from_publication",
+      "source": "CosmicFlows-4 (Tully et al. 2023) processed catalog",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.073110+00:00",
+      "notes": "Processed CF4 catalog with Cepheid/TRGB overlaps"
+    },
+    "data/raw/external/mazurenko_curves/maxwell_boltzmann_method3.json": {
+      "sha256": "3c3b0938d6c2bc4a39aff9b74a1c7595bdae239b3003c283e9097eb2dc67c68e",
+      "size_bytes": 4422,
+      "url": "digitized_from_figure",
+      "source": "Mazurenko et al. 2025, MNRAS 536 3232, Fig 3",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.073598+00:00",
+      "notes": "Digitized void H(z) curve points"
+    },
+    "data/raw/external/mazurenko_curves/mazurenko_curves_all.csv": {
+      "sha256": "b070a46debe4ad03a7c84a4cf100559cb8b471e64ccaba3664aca10513ac1284",
+      "size_bytes": 23307,
+      "url": "digitized_from_figure",
+      "source": "Mazurenko et al. 2025, MNRAS 536 3232, Fig 3",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.073999+00:00",
+      "notes": "Digitized void H(z) curve points"
+    },
+    "data/raw/external/mazurenko_curves/gaussian_method3.json": {
+      "sha256": "f8554371230c1d48654540f4f6c348e490c5d811a65383cb2247d14d88350857",
+      "size_bytes": 6175,
+      "url": "digitized_from_figure",
+      "source": "Mazurenko et al. 2025, MNRAS 536 3232, Fig 3",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.074193+00:00",
+      "notes": "Digitized void H(z) curve points"
+    },
+    "data/raw/external/mazurenko_curves/gaussian_method3_cleaned.json": {
+      "sha256": "f8e70418aa14bc8428c2cecde41f35ea5b0bf0a668199bab1e5037194ead2107",
+      "size_bytes": 5184,
+      "url": "digitized_from_figure",
+      "source": "Mazurenko et al. 2025, MNRAS 536 3232, Fig 3",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.074408+00:00",
+      "notes": "Digitized void H(z) curve points"
+    },
+    "data/raw/external/mazurenko_curves/cleaning_log.json": {
+      "sha256": "ebb15a039e801acbbf6d6ae744ac9f84d91f3d3de658e71e7e9fb642251dd2c2",
+      "size_bytes": 1296,
+      "url": "digitized_from_figure",
+      "source": "Mazurenko et al. 2025, MNRAS 536 3232, Fig 3",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.074613+00:00",
+      "notes": "Digitized void H(z) curve points"
+    },
+    "data/raw/external/mazurenko_curves/gaussian_method3_fitted.json": {
+      "sha256": "78cced3f71136bc645a314ce601b37beb3c289b9fd164a2b730076898de3ddc6",
+      "size_bytes": 6176,
+      "url": "digitized_from_figure",
+      "source": "Mazurenko et al. 2025, MNRAS 536 3232, Fig 3",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.074826+00:00",
+      "notes": "Digitized void H(z) curve points"
+    },
+    "data/raw/external/mazurenko_curves/exponential_method3.json": {
+      "sha256": "643c2291fbbb98f8c2b505cbba50ba0ee96ead3ba24ca0e488d1181a748c37cb",
+      "size_bytes": 3561,
+      "url": "digitized_from_figure",
+      "source": "Mazurenko et al. 2025, MNRAS 536 3232, Fig 3",
+      "status": "curated",
+      "downloaded_at": "2026-08-30T19:05:23.075014+00:00",
+      "notes": "Digitized void H(z) curve points"
+    }
+  },
+  "failures": {
+    "http://vizier.u-strasbg.fr/viz-bin/votable?-source=J/ApJS/182/474&-out.all=1&-out.max=999999": {
+      "error": "VizieR returned an error response for J/ApJS/182/474",
+      "failed_at": "2026-08-30T19:00:17.198321+00:00"
+    },
+    "http://vizier.u-strasbg.fr/viz-bin/votable?-source=J/AJ/154/78/table2&-out.all=1&-out.max=999999": {
+      "error": "VizieR returned an error response for J/AJ/154/78/table2",
+      "failed_at": "2026-08-30T19:00:34.291360+00:00"
+    }
+  },
+  "generated": "2026-08-30T19:05:23.075030+00:00",
+  "pipeline": "TEP-VOID"
+}

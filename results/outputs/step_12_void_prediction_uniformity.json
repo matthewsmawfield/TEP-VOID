@@ -11,7 +11,7 @@
     "pipeline_block": "Ia \u2014 Indicator Divergence"
   },
   "scientific_context": "Can the void model's prediction of indicator-uniform distances (Delta_mu = 0 for all hosts) survive formal statistical testing against the observed Cepheid-TRGB divergence? This step renders the falsification verdict for the void null hypothesis.",
-  "tep_prediction": "Non-zero, potential-dependent divergence (Delta_mu = kappa * sigma_v) is expected; the void null hypothesis is not a prediction of TEP and its rejection is consistent with the TEP framework.",
+  "tep_prediction": "Non-zero, potential-dependent divergence (Delta_mu = kappa_Cep * X_i) is expected; the void null hypothesis is not a prediction of TEP and its rejection is consistent with the TEP framework.",
   "void_prediction": "Delta_mu = 0 for all hosts: all distance indicators yield identical moduli. Any significant departure falsifies the void null hypothesis.",
   "downstream_consumers": [],
   "results": {
@@ -41,7 +41,7 @@
       "significance_sigma": 0.1529548781867235
     },
     "tep_prediction": {
-      "prediction": "Delta_mu = kappa * sigma_v (non-zero, potential-dependent)",
+      "prediction": "Delta_mu = kappa_Cep * X_i (non-zero, potential-dependent)",
       "description": "TEP predicts a non-zero, potential-dependent divergence",
       "free_parameters": 1
     },

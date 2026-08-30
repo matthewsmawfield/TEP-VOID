@@ -126,6 +126,24 @@ and `step_32b_jia_validation.py`.
 
 ---
 
+## 8. Jia et al. (2023) H(z) Data
+
+**Source:** Jia et al. 2023, A&A 674, A45
+**Reference:** "Cosmological constraints from the Hubble diagram of
+Type Ia supernovae and the H(z) data"
+**Data Repository:** https://github.com/JoJo20221003/Hz-Code
+
+**Files Used:**
+- `data/raw/external/jia_hz_data.txt` — 60 H(z) measurements (cosmic
+  chronographs + BAO-derived) used in Jia et al.'s piecewise H_th
+  analysis. Copied from Jia's public repository for reproducibility.
+
+**Ingestion:** Read by `steps/step_32b_jia_proper_replication.py` as
+the secondary data source (after `/tmp/Hz-Code/Data/Hz data.txt`) for
+the H(z)+SNe Ia joint fit replication.
+
+---
+
 ## Reproducibility
 
 All data is downloaded automatically by the pipeline. To regenerate from

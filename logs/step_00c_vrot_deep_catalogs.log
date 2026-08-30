@@ -1,0 +1,28 @@
+[12:08:53] [INFO] 
+[12:08:53] [INFO] ================================================================================
+[12:08:53] [INFO]    ======================================================================
+[12:08:53] [INFO] ================================================================================
+[12:08:53] [INFO] 
+[12:08:53] [INFO] 
+[12:08:53] [INFO] ================================================================================
+[12:08:53] [INFO]    Step 00c: Deep V_rot Catalogs Cross-Match
+[12:08:53] [INFO] ================================================================================
+[12:08:53] [INFO] 
+[12:08:53] [INFO] 
+[12:08:53] [INFO] ================================================================================
+[12:08:53] [INFO]    ======================================================================
+[12:08:53] [INFO] ================================================================================
+[12:08:53] [INFO] 
+[12:08:53] [INFO] Loaded 1543 unique Pantheon+ SNe
+[12:08:53] [PROCESS] Querying ALFALFA 100% (J/ApJ/861/49) from VizieR...
+[12:08:59] [SUCCESS] Matched 5 SNe to ALFALFA
+[12:08:59] [PROCESS] Querying SPARC (J/AJ/152/157) from VizieR...
+[12:09:00] [SUCCESS] Matched 1 SNe to SPARC
+[12:09:00] [PROCESS] Merging deep V_rot sources...
+[12:09:00] [SUCCESS] Unified catalog V_rot sources:
+[12:09:00] [INFO]   SPARC:     1
+[12:09:00] [INFO]   ALFALFA:   3
+[12:09:00] [INFO]   HyperLEDA: 170
+[12:09:00] [INFO]   Total measured: 174
+[12:09:00] [SUCCESS] Saved deep V_rot catalog to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/pantheon_host_vrot_deep.csv
+[12:09:00] [SUCCESS] Step 00c complete

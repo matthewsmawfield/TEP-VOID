@@ -6,7 +6,7 @@ The existing step_32 computes the KBC predicted R_H as the ratio of
 arithmetic means of the KBC H0(z) curve in each bin, while the observed
 R_H uses a covariance-aware GLS estimator.  This script runs the KBC
 model vectors through the SAME two-bin GLS operator and reports whether
-the 8.4/9.5sigma exclusion survives under the matched estimator.
+the 8.4/9.7sigma exclusion survives under the matched estimator.
 
 Method:
   - For each SN, the KBC model predicts H0_KBC(z_i), giving a model
@@ -38,7 +38,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 H0_REF = 73.04
 C_KMS = 299792.458
-OMEGA_M = 0.315
+OMEGA_M = 0.302  # matches the value used in step_32_omega_m_sensitivity.py
 
 
 def comoving_distance_integral(z, omega_m):
@@ -141,9 +141,33 @@ def main():
     h0_low_obs, sigma_h0_low, n_low = gls_h0(d_obs, low_mask, indices, cov_full)
     h0_high_obs, sigma_h0_high, n_high = gls_h0(d_obs, high_mask, indices, cov_full)
     r_h_obs = h0_high_obs / h0_low_obs
-    sigma_r_h = r_h_obs * np.sqrt(
-        (sigma_h0_low / h0_low_obs) ** 2 + (sigma_h0_high / h0_high_obs) ** 2
-    )
+
+    # Cross-covariance between the two bins (from the full Pantheon+ covariance)
+    idx_low = indices[low_mask]
+    idx_high = indices[high_mask]
+    n_l, n_h = int(low_mask.sum()), int(high_mask.sum())
+    ones_l, ones_h = np.ones(n_l), np.ones(n_h)
+    cov_ll = cov_full[np.ix_(idx_low, idx_low)]
+    cov_hh = cov_full[np.ix_(idx_high, idx_high)]
+    cov_lh = cov_full[np.ix_(idx_low, idx_high)]
+    try:
+        cov_inv_ll = np.linalg.inv(cov_ll)
+    except np.linalg.LinAlgError:
+        cov_inv_ll = np.linalg.pinv(cov_ll)
+    try:
+        cov_inv_hh = np.linalg.inv(cov_hh)
+    except np.linalg.LinAlgError:
+        cov_inv_hh = np.linalg.pinv(cov_hh)
+    denom_l = float(ones_l @ cov_inv_ll @ ones_l)
+    denom_h = float(ones_h @ cov_inv_hh @ ones_h)
+    sigma_a_l = 1.0 / np.sqrt(denom_l)
+    sigma_a_h = 1.0 / np.sqrt(denom_h)
+    with np.errstate(invalid="ignore", divide="ignore", over="ignore"):
+        cross_product = ones_l @ cov_inv_ll @ cov_lh @ cov_inv_hh @ ones_h
+    cov_a_lh = float(cross_product) / (denom_l * denom_h)
+    var_diff = sigma_a_h ** 2 + sigma_a_l ** 2 - 2.0 * cov_a_lh
+    sigma_diff = np.sqrt(max(var_diff, 0.0))
+    sigma_r_h = r_h_obs * sigma_diff * np.log(10.0) / 5.0
 
     # Load KBC curves
     curves_dir = data_raw / "external" / "mazurenko_curves"

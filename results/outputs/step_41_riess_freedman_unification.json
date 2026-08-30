@@ -9,12 +9,12 @@
     },
     "trgb": {
       "h0": 68.81,
-      "err": 1.27,
+      "err": 1.79,
       "source": "Freedman et al. 2025"
     },
     "jagb": {
-      "h0": 68.85,
-      "err": 1.35,
+      "h0": 67.8,
+      "err": 2.17,
       "source": "Freedman et al. 2025"
     },
     "cmb": {
@@ -37,13 +37,13 @@
       },
       "cepheid_vs_trgb": {
         "delta_h0": 4.230000000000004,
-        "sigma_tension": 2.5769220010398692,
-        "p_value": 0.009968444185797202
+        "sigma_tension": 2.043287526694762,
+        "p_value": 0.041023983624045676
       },
       "trgb_vs_cmb": {
         "delta_h0": 1.4099999999999966,
-        "sigma_tension": 1.0330571343264383,
-        "p_value": 0.30157716188902106
+        "sigma_tension": 0.7586678131429897,
+        "p_value": 0.44805129567304813
       }
     },
     "after_tep": {
@@ -54,33 +54,33 @@
       },
       "corrected_cepheid_vs_trgb": {
         "delta_h0": -2.1599999999999966,
-        "sigma_tension": -1.0655401704151977,
-        "p_value": 0.28663155738919266
+        "sigma_tension": -0.9046847636238804,
+        "p_value": 0.3656324152041246
       }
     },
     "tension_reduction": {
       "cepheid_vs_cmb_sigma_before": 4.887561225309663,
       "cepheid_vs_cmb_sigma_after": -0.4525633371511782,
-      "cepheid_vs_trgb_sigma_before": 2.5769220010398692,
-      "cepheid_vs_trgb_sigma_after": -1.0655401704151977,
+      "cepheid_vs_trgb_sigma_before": 2.043287526694762,
+      "cepheid_vs_trgb_sigma_after": -0.9046847636238804,
       "reduction_cmb": 5.340124562460842,
-      "reduction_trgb": 3.642462171455067
+      "reduction_trgb": 2.947972290318642
     }
   },
   "unification": {
-    "h0_unified_mean": 67.51428347838709,
-    "h0_unified_err": 0.44629614713242494,
-    "chi2_after_tep": 1.3923766010369047,
-    "chi2_before_tep": 23.956145771751856,
+    "h0_unified_mean": 67.42962828771385,
+    "h0_unified_err": 0.4606447912788269,
+    "chi2_after_tep": 0.8416737644100778,
+    "chi2_before_tep": 23.924439571422717,
     "dof": 2,
-    "p_value_after_tep": 0.49848174978138393,
-    "p_value_before_tep": 6.280425117688028e-06,
+    "p_value_after_tep": 0.6564971790480443,
+    "p_value_before_tep": 6.380782713846555e-06,
     "unified": true,
-    "chi2_reduction": 22.563769170714952
+    "chi2_reduction": 23.08276580701264
   },
   "tep_prediction": "The TEP-corrected Cepheid H0 converges to the TRGB and CMB values, resolving the Hubble tension by accounting for temporal shear in massive Cepheid host potentials.",
   "tep_confirmed": true,
-  "key_finding": "H0 unified = 67.51 +/- 0.45 km/s/Mpc",
+  "key_finding": "H0 unified = 67.43 +/- 0.46 km/s/Mpc",
   "methodology": "Published H0 values from SH0ES (Cepheid), CCHP (TRGB and JAGB), and Planck (CMB) are compared before and after applying the TEP magnitude correction to the Cepheid distance scale. Tension is quantified in sigma units. An inverse-variance weighted mean and chi-squared consistency test (dof = 2) assess three-way unification after TEP correction.",
   "provenance": {
     "data_sources": [

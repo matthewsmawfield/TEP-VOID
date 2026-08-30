@@ -4,7 +4,7 @@
   "definition": "R_H = H0(z > 0.25) / H0(0.05 <= z < 0.15), Omega_m = 0.302",
   "omega_m": 0.302,
   "h0_ref": 73.04,
-  "methodology": "A generalized least-squares zero-point offset is fit to the native Pantheon+ distance moduli using the full 1701x1701 STAT+SYS covariance matrix at Omega_m = 0.302. H0 is then inferred per SN via LCDM distance modulus inversion, and the ratio R_H = <H0(z > 0.25)> / <H0(0.05 <= z < 0.15)> is formed. The common zero-point cancels identically in the ratio, making R_H calibration-independent. Significance is assessed against the flat prediction R_H = 1 and the KBC Gaussian (R_H ~ 0.9524) and Exponential (R_H ~ 0.9458) predictions.",
+  "methodology": "A generalized least-squares zero-point offset is fit to the native Pantheon+ distance moduli using the full 1701x1701 STAT+SYS covariance matrix at Omega_m = 0.302. H0 is then inferred per SN via LCDM distance modulus inversion, and the ratio R_H = <H0(z > 0.25)> / <H0(0.05 <= z < 0.15)> is formed. The common zero-point cancels identically in the ratio, making R_H calibration-independent. The uncertainty on R_H includes the full cross-covariance between the two redshift bins via the off-diagonal block of the Pantheon+ covariance matrix: Var(a_high - a_low) = Var(a_high) + Var(a_low) - 2*Cov(a_high, a_low). Significance is assessed against the flat prediction R_H = 1 and the KBC Gaussian (R_H ~ 0.9524) and Exponential (R_H ~ 0.9458) predictions.",
   "provenance": {
     "data_sources": [
       "Pantheon+SH0ES.dat (1701 rows, native mu-space)",
@@ -26,17 +26,20 @@
     "label": "Full sample (PRIMARY)",
     "n_low": 178,
     "n_high": 614,
-    "H0_low": 73.00755330695986,
-    "sigma_H0_low": 0.3626032318792263,
-    "H0_high": 73.4912340956131,
-    "sigma_H0_high": 0.294230240539967,
-    "R_H": 1.006625078731506,
-    "sigma_R_H": 0.006421648038329234,
-    "sigma_ln_R_H": 0.006379384116300226,
-    "Z_vs_flat": 1.0316788917677553,
+    "H0_low": 73.076292885037,
+    "sigma_H0_low": 0.3629446375563072,
+    "H0_high": 73.75428756608521,
+    "sigma_H0_high": 0.29528340404775605,
+    "R_H": 1.0092779019608291,
+    "sigma_R_H": 0.0062057538237247556,
+    "sigma_ln_R_H": 0.006148706725539311,
+    "sigma_R_H_naive_no_cross_cov": 0.006438571416701728,
+    "cross_covariance_alpha_low_high": 6.813473322176153e-06,
+    "cross_covariance_correlation": 0.07266818038846398,
+    "Z_vs_flat": 1.4950483413247009,
     "R_H_kbc_gaussian": 0.9523956656086616,
-    "Z_vs_kbc_gaussian": 8.44478127719901,
+    "Z_vs_kbc_gaussian": 9.166047827212426,
     "R_H_kbc_exponential": 0.9458355889532554,
-    "Z_vs_kbc_exponential": 9.466337833436718
+    "Z_vs_kbc_exponential": 10.223143684016623
   }
 }

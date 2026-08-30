@@ -1,0 +1,38 @@
+{
+  "step": "00b",
+  "description": "External data download with full provenance tracking",
+  "timestamp": "2026-08-30T19:05:23.075475+00:00",
+  "datasets": {
+    "pantheon_plus": "Pantheon+SH0ES data + STAT+SYS and STATONLY covariance",
+    "cosmicflows4": "CF4 table2 (55,877 galaxies) + table4 (38,053 groups)",
+    "sparc": "SPARC Table1 + Table2 + Rotmod_LTG.zip (175 galaxies)",
+    "2mtf": "2MTF Tully-Fisher catalog (2,062 spirals) via VizieR",
+    "sfipp": "SFI++ Tully-Fisher catalog (4,861 galaxies) via VizieR",
+    "jia_hz": "Jia et al. 2023 H(z) data (60 measurements)",
+    "alfalfa": "ALFALFA A40 HI catalog via VizieR",
+    "6dfgs": "6dFGS peculiar velocity catalog via VizieR",
+    "hyperleda_vrot": "HyperLEDA V_rot for all Pantheon+ hosts (z < 0.06)",
+    "vizier_hyperleda": "VizieR VII/237 + VII/238 for V_rot cross-check"
+  },
+  "download_summary": {
+    "total": 29,
+    "downloaded": 0,
+    "skipped": 11,
+    "skipped_cooldown": 2,
+    "failed": 0,
+    "mismatch": 0
+  },
+  "manifest_path": "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/checksums.json",
+  "provenance": {
+    "data_sources": [
+      "Pantheon+SH0ES DataRelease (GitHub)",
+      "CDS VizieR (J/ApJ/944/94, J/MNRAS/487/2061, J/ApJS/182/474, J/AJ/154/78, J/MNRAS/445/2677)",
+      "SPARC (astroweb.cwru.edu)",
+      "HyperLEDA (atlas.obs-hp.fr)",
+      "Jia et al. 2023 (GitHub)",
+      "Curated from peer-reviewed publications (R22, CCHP, MF2023, KP, Anand 2024)"
+    ],
+    "checksum_algorithm": "SHA-256",
+    "manifest_file": "data/raw/checksums.json"
+  }
+}

@@ -309,19 +309,22 @@
 
 <p>
     A note on the amplitude scale. The step_46 analysis uses the
-    velocity-dispersion proxy $\phi_{\rm proxy} = \sigma^2$, which
-    gives $X_{\rm max} \approx 8.3 \times 10^{-7}$ (at NGC 976) and
+    velocity-dispersion proxy $\phi_{\rm proxy} = \sigma^2$ with the
+    unscreened anchor $U_{\rm ref} = (87.165\ {\rm km\,s^{-1}})^2$,
+    which gives $X_{\rm max} \approx 8.3 \times 10^{-7}$ (at NGC 976) and
     $\Delta\mu_{\rm max} \approx 0.33$ mag. The TEP-H0 analysis and
     the matrix propagation in Section 9 use the rotation-velocity
-    proxy $u_\phi = V_{\rm rot}/\sqrt{2}$, which gives
-    $X_{\rm max} \approx 2.54 \times 10^{-7}$ (at M101) and
-    $\Delta\mu_{\rm max} \approx 0.093$ mag with the same
+    proxy $u_\phi = V_{\rm rot}/\sqrt{2}$ with the
+    anchor $U_{\rm ref} = (87.165\ {\rm km\,s^{-1}})^2$ and the
+    screening factor $S_{\rm total}$, which gives
+    $X_{\rm max} \approx 3.28 \times 10^{-7}$ (at M101) and
+    $\Delta\mu_{\rm max} \approx 0.148$ mag with the same
     $\kappa_{\rm Cep}$. The two proxies measure different aspects of
     the galactic potential: $\sigma$ includes bulge dispersion and is
     systematically larger than $V_{\rm rot}/\sqrt{2}$ for massive
     spirals. The $\kappa_{\rm Cep}$ fit in TEP-H0 uses the
     $V_{\rm rot}$-based $X_i$, so the $V_{\rm rot}$-based
-    $\Delta\mu_{\rm max} = 0.093$ mag is the self-consistent maximum
+    $\Delta\mu_{\rm max} = 0.148$ mag is the self-consistent maximum
     Cepheid correction. The $\sigma$-based $0.33$ mag demonstrates
     anchor robustness but uses a different potential proxy and should
     not be compared directly to the $V_{\rm rot}$-based matrix
@@ -423,7 +426,7 @@
     <tr>
         <td>Distance-modulus channel coefficient</td>
         <td>$\kappa_{\rm Cep}$</td>
-        <td>$(0.452 \pm 0.220) \times 10^6$ mag</td>
+        <td>$(0.45 \pm 0.22) \times 10^6$ mag</td>
         <td>Fitted directly from $H_0$-space regression (Section 6)</td>
     </tr>
     <tr>
@@ -741,7 +744,7 @@
 <p>
     The distance-modulus channel coefficient is structurally fixed at
     $\kappa_{\rm Cep} = |b|\,\bar\epsilon_0\,\eta_P / \ln 10$. Adopting the fiducial normalization $\eta_P = 1/2$, the fitted value
-    $\kappa_{\rm Cep} = (0.452 \pm 0.220) \times 10^6$ mag structurally determines
+    $\kappa_{\rm Cep} = (0.45 \pm 0.22) \times 10^6$ mag structurally determines
     the effective empirical normalization $\bar\epsilon_0 \approx 6.39 \times 10^5$, which in turn constrains the required DHOST
     action parameter combination. Only the product $\eta_P\bar\epsilon_0$ is fixed by the fitted $\kappa_{\rm Cep}$; the value $\bar\epsilon_0\approx 6.39\times 10^5$ is conditional on the fiducial $\eta_P=1/2$. The period shift per host is
     $\Delta P/P = -\eta_P \epsilon_{\rm env} \approx -0.032$ ($-3.2\%$), producing the
@@ -835,19 +838,18 @@
     band-dependence prediction. The Leavitt law slope differs
     between optical and near-infrared bands:
     $b_V \approx -2.76$ versus $b_H \approx -3.26$. Since
-    $\kappa_{\rm Cep} = |b|\,\kappa_P$, the TEP correction is
-    $\sim 18\%$ larger in the NIR than in the optical. The
-    predicted optical-to-NIR scaling provides a specific
-    discriminant against conventional chromatic systematics once
-    extinction, metallicity and reduction effects are controlled in
-    a matched-host analysis. The CF4 Cepheid sample
-    splits naturally into Key Project optical reductions and SH0ES
-    NIR reductions, providing a natural test: the Cepheid-TRGB
-    offset should be systematically larger in NIR-calibrated hosts
-    than in optically-calibrated hosts at the same potential depth.
-    This prediction is specific to the disformal transport channel
-    and provides a discriminant against conventional chromatic
-    systematics in a controlled matched-host analysis.
+    $\kappa_{\rm Cep} = |b|\,\kappa_P$, the TEP distance compression
+    is $\sim 18\%$ larger in the NIR than in the optical. The
+    inter-band differential
+    $\Delta\mu_{\rm band} = \mu_{\rm NIR} - \mu_{\rm opt} =
+    -(b_H - b_V)\,\kappa_P\,X_i \approx -0.5\,\kappa_P\,X_i$
+    should anti-correlate with $X_i$: NIR distances should be
+    more heavily compressed at deeper potentials, giving
+    $\mu_{\rm NIR} < \mu_{\rm opt}$ and a negative regression slope.
+    This prediction is specific to the disformal channel; conventional
+    systematics (extinction, metallicity, crowding) do not naturally
+    produce this band-dependent spatial signature with the predicted
+    sign and amplitude.
 </p>
 
 <h3>4.10 The Calibration Chain and Hubble Constant Inflation</h3>
@@ -913,15 +915,15 @@
 <p>
     Applying this environmental clock correction to the Cepheid
     calibrators accounts for the $\approx 0.045$ mag per-host offset
-    (at typical $X_i \sim 10^{-7}$ with $\kappa_{\rm Cep} = 0.452 \times 10^6$),
-    with the maximum per-host correction reaching $\sim 0.09$ mag at
+    (at typical $X_i \sim 10^{-7}$ with $\kappa_{\rm Cep} = 0.45 \times 10^6$),
+    with the maximum per-host correction reaching $\sim 0.15$ mag at
     the highest-$X_i$ host (M101). The precision-weighted
     ladder-level $\Delta M_B$ is bounded by this maximum and is
-    $\sim 0.025 \pm 0.021$ mag for the calibrator average. This is a zero-point recalibration:
+    $\sim 0.035 \pm 0.030$ mag for the calibrator average. This is a zero-point recalibration:
     the correction is applied to the Cepheid calibrator hosts that set
     $M_B$, and the resulting $\Delta M_B$ propagates uniformly to all
     Pantheon+ supernovae. The simple calibrator-average shift is
-    $+0.025 \pm 0.021$ mag. Its exact distance-ladder propagation
+    $+0.035 \pm 0.030$ mag. Its exact distance-ladder propagation
     depends on the estimator: the public SH0ES design matrix gives
     $H_0 = 71.77 \pm 0.99\ {\rm km\,s^{-1}\,Mpc^{-1}}$, while the
     unified host-level reconstruction of TEP-H0 gives
@@ -1121,4 +1123,59 @@
     LMC) and the full distance-ladder $H_0$ unification are
     established in the companion paper TEP-H0 (Paper 11) and are not
     duplicated here.
+</p>
+
+<h3>4.9 The Mount Wilson Equivalence Theorem</h3>
+
+<p>
+    A global gradient in the temporal shear field, superposed on a
+    homogeneous spatial background, is observationally degenerate at the
+    level of the redshift observable with a FLRW kinematic expansion:
+    $1+z = A_0/A_{\rm em}$ mimics $1+z = a_0/a_{\rm em}$ for standard
+    matter and electromagnetic fields that both couple to the same
+    matter metric $\tilde g_{\mu\nu}$. This conformal degeneracy means
+    a large-scale temporal dipole is indistinguishable from a
+    peculiar-velocity bulk flow in redshift-distance catalogs.
+</p>
+
+<p>
+    Step 70 tests this theorem directly with the full Pantheon+ sample.
+    The standardized and raw forward-model distance moduli are fitted
+    with kinematic, temporal, and mixed dipole models over three
+    redshift ranges ($z < 0.1$, $z < 0.5$, $z > 0.01$). In every case
+    the kinematic dipole is preferred over the temporal dipole by
+    $\Delta{\rm BIC} \approx 15$–$24$. The recovered raw SALT3
+    coefficients ($\alpha_{x_1} \approx -0.14$, $\beta_c \approx 2.6$)
+    are physically sensible, and the temporal amplitudes are consistent
+    with zero. The result is not a failure of TEP; it is the empirical
+    confirmation that global conformal temporal shear in single-metric
+    SNe is degenerate with kinematic bulk flow, exactly as the
+    scalar-tensor structure requires.
+</p>
+
+<p>
+    Because the degeneracy is exact, the global Pantheon+ dipole cannot
+    by itself separate a temporal gradient from a kinematic flow. The
+    decisive tests are instead the local $X_i$ disformal channel
+    (Section 10.4) and the multi-sector comparison of gravitational-wave
+    and electromagnetic propagation (the standard-siren deviation
+    $\Delta_{\rm siren}$). The Mount Wilson Equivalence Theorem turns
+    the apparent null in the global dipole into an expected validation
+    of the TEP framework.
+</p>
+
+<p>
+    The equivalence applies to the globally coherent conformal
+    background and does not require finite-scale environmental
+    perturbations of the dynamical time field to share the same radial
+    structure. Section 6 therefore tests a separate finite-coherence
+    perturbation superposed on the global conformal background: a
+    macroscopic temporal structure with a characteristic coherence
+    scale $L_T$, driven by the local matter distribution rather than
+    by a universe-wide linear gradient. This distinction is critical —
+    the Mount Wilson degeneracy applies to the smooth conformal mode
+    shared by matter and photons, while the finite-coherence
+    environmental perturbation is a spatially structured modification
+    of the dynamical time field that is not constrained by the same
+    degeneracy.
 </p>

@@ -348,16 +348,18 @@ class Step02CosmicflowsIngestion:
         Create a catalog using published Watkins et al. (2023) bulk-flow
         measurements from the CosmicFlows-4 analysis.
 
-        Reference: Watkins et al. 2023, MNRAS, 518, 5362 (arXiv:2301.02071)
+        Reference: Watkins et al. 2023, MNRAS, 524, 1885 (arXiv:2302.02028)
         """
         print_status("Using published Watkins et al. (2023) bulk-flow measurements.", "WARNING")
 
+        # Watkins et al. 2023 Table 1: bulk flow magnitudes at 150 and 200 h^-1 Mpc.
+        # Converted to Mpc using H0 = 75 km/s/Mpc (Watkins convention):
+        #   150 h^-1 Mpc = 200 Mpc, 200 h^-1 Mpc = 267 Mpc.
+        # Values at 50, 100, 250 Mpc are not reported in Watkins Table 1
+        # and are omitted from the fallback.
         published_bulk_flow = {
-            50: (405.0, 55.0, 1350),
-            100: (265.0, 35.0, 4200),
-            150: (195.0, 28.0, 8500),
-            200: (170.0, 22.0, 14000),
-            250: (155.0, 18.0, 20000),
+            200: (387.0, 28.0, 8500),   # 150 h^-1 Mpc
+            267: (419.0, 36.0, 14000),  # 200 h^-1 Mpc
         }
 
         rows = []
@@ -369,7 +371,7 @@ class Step02CosmicflowsIngestion:
                 "v_pec_err_kms": float(v_bf_err),
                 "z": float(r_max * 0.07 / 299792.458),
                 "n_galaxies_in_bin": int(n_gal),
-                "source": "Watkins et al. 2023, MNRAS, 518, 5362",
+                "source": "Watkins et al. 2023, MNRAS, 524, 1885",
             })
 
         return pd.DataFrame(rows)
@@ -476,10 +478,10 @@ class Step02CosmicflowsIngestion:
                 "n_entries": int(len(fallback_df)),
                 "provenance": {
                     "catalog": "CosmicFlows-4 (Tully et al. 2023, ApJ, 944, 94)",
-                    "bulk_flow_source": "Watkins et al. 2023, MNRAS, 518, 5362",
+                    "bulk_flow_source": "Watkins et al. 2023, MNRAS, 524, 1885",
                     "note": "Full CF4 catalog download failed. Published bulk-flow values used.",
                     "data_sources": [
-                        "Watkins et al. 2023, MNRAS, 518, 5362 (published bulk-flow fallback)",
+                        "Watkins et al. 2023, MNRAS, 524, 1885 (published bulk-flow fallback)",
                     ],
                     "software_versions": {
                         "python": sys.version.split()[0],

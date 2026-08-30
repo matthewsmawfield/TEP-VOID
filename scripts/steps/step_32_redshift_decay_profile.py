@@ -89,7 +89,7 @@ class Step32RedshiftDecayProfile:
     VOID_EXPONENTIAL_Z0 = 0.74   # Exponential decay scale (calibrated to z≈1.8 convergence)
 
     # TEP parameters
-    KAPPA_CEP = 0.040  # TEP shear coupling for Cepheid scale
+    KAPPA_SHEAR = 0.040  # dimensionless TEP shear coupling (not kappa_Cep in mag)
     TEP_DECAY_INDEX = 0.3  # <X_i>(z) = (1+z)^-0.3
 
     # Host mass threshold for massive/low-mass split
@@ -405,6 +405,8 @@ class Step32RedshiftDecayProfile:
 
             # --- Digitization noise mitigation for the Gaussian curve ---
             # Detect non-monotonic behavior (digitization artifacts).
+            # Always sort by z to ensure np.interp receives a monotonic
+            # abscissa (required for correct interpolation).
             sort_idx = np.argsort(z_curve)
             z_s = z_curve[sort_idx]
             h0_s = h0_curve[sort_idx]
@@ -427,6 +429,10 @@ class Step32RedshiftDecayProfile:
                 # Replace the noisy curve with the smooth parametric fit
                 h0_curve = _gaussian_decline(z_s, *popt)
                 z_curve = z_s
+            else:
+                # Ensure the curve is sorted by z for both profiles
+                z_curve = z_s
+                h0_curve = h0_s
 
             # Cache the processed curve
             setattr(self, cache_key, (z_curve, h0_curve))
@@ -1667,7 +1673,7 @@ class Step32RedshiftDecayProfile:
             "void_gaussian_sigma_z": self.VOID_GAUSSIAN_SIGMA_Z,
             "void_exponential_z0": self.VOID_EXPONENTIAL_Z0,
             "void_curve_source": "HBK20 best-fitting profiles; convergence calibrated to Mazurenko et al. 2025 Fig. 3 (1σ Planck at z≈1.8)",
-            "kappa_ceph": self.KAPPA_CEP,
+            "kappa_ceph": self.KAPPA_SHEAR,
             "tep_decay_index_prediction": self.TEP_DECAY_INDEX,
             "h0_method": "LCDM proper: H0 = (1+z) * c * D_C(z) / d_L",
             "h0_z_data": {str(k): v for k, v in h0_data.items()},

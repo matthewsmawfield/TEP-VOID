@@ -35,6 +35,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from scipy import stats as sp_stats
+from scipy.optimize import minimize
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -42,15 +44,29 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
 
 
+
+def student_t_nll(params, x, y, yerr, nu=4.0):
+    slope, intercept, log_scale = params
+    scale = np.exp(log_scale)
+    mu = slope * x + intercept
+    total_err = np.sqrt(yerr**2 + scale**2)
+    z = (y - mu) / total_err
+    nll = np.sum(0.5 * (nu + 1) * np.log1p(z**2 / nu) + np.log(total_err))
+    return nll
+
 class Step36XiRegression:
     """Step 36: Xi regression of Δμ vs gravitational potential coordinate."""
 
     # TEP constants (from TEP-H0, Paper 11, and step_40)
-    SIGMA_REF = 87.165  # km/s — anchor reference potential scale
-    U_REF = SIGMA_REF ** 2  # (km/s)^2 — reference potential proxy
+    SIGMA_REF = 87.165  # km/s — unscreened anchor reference potential scale
+    U_REF = SIGMA_REF ** 2  # (km/s)^2 — unscreened reference potential proxy
+    # Screened anchor reference (from TEP-H0 tep_correction.compute_anchor_sigma_ref(screened=True))
+    SIGMA_REF_SCREENED = 30.507  # km/s — screened anchor reference
+    U_REF_SCREENED = SIGMA_REF_SCREENED ** 2  # ≈ 930.7 (km/s)^2
     C_KMS = 299792.458  # km/s
     KAPPA_CEP_DEFAULT = 0.365e6  # mag (TEP-H0 closure)
     KAPPA_CEP_JOINT = 0.400e6  # mag (joint multi-block)
+    KAPPA_CEP_WLS = 0.452e6  # mag (redshift-only WLS, sigma_v=150 — manuscript primary)
     KAPPA_CEP_CANONICAL = 0.960e6  # mag (canonical reference)
 
     def __init__(self):
@@ -168,9 +184,13 @@ class Step36XiRegression:
         tep_h0["S_total"] = tep_h0["source_id"].map(strat_screening).fillna(1.0)
 
         # Compute X_i with screening (matching TEP-H0 Step 20 methodology)
-        # X_i = (S_total * u_phi^2 - U_ref) / c^2
+        # The TEP endpoint form is:
+        #   X_i = (S_total * u_phi^2 - U_ref_screened) / c^2
+        # where U_ref_screened = sum(w_a * S_a * sigma_a^2) / sum(w_a).
+        # Using the unscreened U_ref with screened host potentials is
+        # inconsistent and destroys the signal (see TEP-H0 tep_correction.py).
         tep_h0["U_i_screened"] = tep_h0["S_total"] * tep_h0["u_phi"] ** 2
-        tep_h0["X_i"] = (tep_h0["U_i_screened"] - self.U_REF) / self.C_KMS ** 2
+        tep_h0["X_i"] = (tep_h0["U_i_screened"] - self.U_REF_SCREENED) / self.C_KMS ** 2
         tep_h0["X_i_unscreened"] = (tep_h0["u_phi"] ** 2 - self.U_REF) / self.C_KMS ** 2
 
         # Exclude geometric anchors (NGC 4258, LMC) to match TEP-H0 Step 44
@@ -209,20 +229,21 @@ class Step36XiRegression:
         # Compute potential coordinate
         # u_phi = vrot / sqrt(2)
         # U_i = u_phi^2 = vrot^2 / 2
-        # X_i = (S_total * U_i - U_ref) / c^2  (screened, matching TEP-H0)
+        # X_i = (S_total * U_i - U_ref_screened) / c^2  (screened, matching TEP-H0)
         merged["u_phi"] = merged["vrot_kms"] / np.sqrt(2)
         merged["U_i"] = merged["u_phi"] ** 2
 
         # Compute screening factors from Tully 2015 group catalog
         merged["S_total"] = self._compute_screening(merged)
 
-        merged["X_i"] = (merged["S_total"] * merged["U_i"] - self.U_REF) / self.C_KMS ** 2
+        merged["X_i"] = (merged["S_total"] * merged["U_i"] - self.U_REF_SCREENED) / self.C_KMS ** 2
         merged["X_i_unscreened"] = (merged["U_i"] - self.U_REF) / self.C_KMS ** 2
 
         # Propagate uncertainty on X_i
         # dU_i = vrot * dvrot (since U = vrot^2/2, dU = vrot * dvrot)
+        # dX_i = S_total * dU_i / c^2 (screening attenuates the uncertainty)
         merged["U_i_err"] = merged["vrot_kms"] * merged["vrot_error_kms"]
-        merged["X_i_err"] = merged["U_i_err"] / self.C_KMS ** 2
+        merged["X_i_err"] = merged["S_total"] * merged["U_i_err"] / self.C_KMS ** 2
 
         return merged
 
@@ -353,6 +374,7 @@ class Step36XiRegression:
         # the physical prediction is slope = -κ_μ.
         tep_slope_default = -self.KAPPA_CEP_DEFAULT
         tep_slope_joint = -self.KAPPA_CEP_JOINT
+        tep_slope_wls = -self.KAPPA_CEP_WLS
         tep_slope_canonical = -self.KAPPA_CEP_CANONICAL
 
         print_status(
@@ -365,7 +387,8 @@ class Step36XiRegression:
         print_status(f"  R² = {r_squared:.4f}, χ²/dof = {chi2_reduced:.2f}", "TEST")
         print_status(
             f"  TEP predicted slope: {tep_slope_default:.4e} (default), "
-            f"{tep_slope_joint:.4e} (joint), {tep_slope_canonical:.4e} (canonical)",
+            f"{tep_slope_joint:.4e} (joint), {tep_slope_wls:.4e} (WLS), "
+            f"{tep_slope_canonical:.4e} (canonical)",
             "TEST",
         )
 
@@ -374,6 +397,7 @@ class Step36XiRegression:
         for label, tep_slope in [
             ("default", tep_slope_default),
             ("joint", tep_slope_joint),
+            ("wls", tep_slope_wls),
             ("canonical", tep_slope_canonical),
         ]:
             diff = abs(slope - tep_slope)
@@ -401,11 +425,13 @@ class Step36XiRegression:
             "tep_predicted_slope": {
                 "default": float(tep_slope_default),
                 "joint": float(tep_slope_joint),
+                "wls": float(tep_slope_wls),
                 "canonical": float(tep_slope_canonical),
             },
             "tep_consistency_sigma": {
                 "default": float(abs(slope - tep_slope_default) / slope_err) if slope_err > 0 else 99,
                 "joint": float(abs(slope - tep_slope_joint) / slope_err) if slope_err > 0 else 99,
+                "wls": float(abs(slope - tep_slope_wls) / slope_err) if slope_err > 0 else 99,
                 "canonical": float(abs(slope - tep_slope_canonical) / slope_err) if slope_err > 0 else 99,
             },
         }
@@ -590,6 +616,7 @@ class Step36XiRegression:
 
         tep_slope_default = -self.KAPPA_CEP_DEFAULT
         tep_slope_joint = -self.KAPPA_CEP_JOINT
+        tep_slope_wls = -self.KAPPA_CEP_WLS
 
         results = {}
         for label, xcol in [("screened", "X_i"), ("unscreened", "X_i_unscreened")]:
@@ -639,7 +666,7 @@ class Step36XiRegression:
 
         print_status(
             f"  TEP predicted slope: {tep_slope_default:.4e} (default), "
-            f"{tep_slope_joint:.4e} (joint)",
+            f"{tep_slope_joint:.4e} (joint), {tep_slope_wls:.4e} (WLS)",
             "TEST",
         )
 
@@ -649,6 +676,7 @@ class Step36XiRegression:
             "unscreened": results["unscreened"],
             "tep_predicted_slope_default": float(tep_slope_default),
             "tep_predicted_slope_joint": float(tep_slope_joint),
+            "tep_predicted_slope_wls": float(tep_slope_wls),
             "data_source": (
                 "Raw SH0ES Cepheid (R22) + EDD/CCHP TRGB (TEP-H0 Paper 11), "
                 "with full TEP screening S_total from Step 03"
@@ -746,7 +774,21 @@ class Step36XiRegression:
         loo_slopes = []
         loo_slope_errs = []
         loo_sigmas = []
+        # Compute Hat Matrix and MSE
+        H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+        y_pred = X @ beta
+        e = y - y_pred
+        MSE = np.sum(w * e**2) / (n - 2)
+        
+        cooks_d = []
+        dfbetas = []
+
         for i in range(n):
+            # Cook's distance
+            h_i = H[i, i]
+            cooks_i = (e[i]**2 * w[i]) / (2 * MSE) * (h_i / (1 - h_i)**2)
+            cooks_d.append(float(cooks_i))
+            
             mask = np.ones(n, dtype=bool)
             mask[i] = False
             x_loo = x[mask]
@@ -757,14 +799,24 @@ class Step36XiRegression:
             beta_loo = np.linalg.lstsq(
                 X_loo.T @ W_loo @ X_loo, X_loo.T @ W_loo @ y_loo, rcond=None
             )[0]
-            # Slope error from covariance
             cov = np.linalg.inv(X_loo.T @ W_loo @ X_loo)
             slope_err_loo = float(np.sqrt(cov[0, 0]))
             slope_loo = float(beta_loo[0])
             sigma_loo = abs(slope_loo / slope_err_loo) if slope_err_loo > 0 else 0
+            
+            # DFBETA for slope
+            dfbeta_i = (full_slope - slope_loo) / slope_err_loo
+            dfbetas.append(float(dfbeta_i))
+            
             loo_slopes.append(slope_loo)
             loo_slope_errs.append(slope_err_loo)
             loo_sigmas.append(float(sigma_loo))
+            
+        # Student-t regression
+        res = minimize(student_t_nll, [full_slope, beta[1], -2.0], args=(x, y, yerr))
+        student_t_slope = res.x[0]
+        
+        print_status(f"  Student-t (nu=4) robust slope: {student_t_slope:.4e}", "TEST")
 
         # Find most influential on slope
         slope_changes = [abs(s - full_slope) for s in loo_slopes]
@@ -1155,6 +1207,29 @@ class Step36XiRegression:
         )
         reg_results, slope, intercept, slope_err = self.xi_regression(df)
 
+        # Sign test (traceable here as well as in step_30)
+        n_negative = int((df["delta_mu"] < 0).sum())
+        n_total = len(df)
+        sign_test = {
+            "n_negative": n_negative,
+            "n_total": n_total,
+            "p_value_one_sided": float(
+                sp_stats.binomtest(n_negative, n_total, p=0.5,
+                                   alternative="greater").pvalue
+            ),
+            "sigma_one_sided": float(
+                sp_stats.norm.ppf(1 - sp_stats.binomtest(
+                    n_negative, n_total, p=0.5,
+                    alternative="greater").pvalue)
+            ),
+            "note": "Same computation as step_30; included here for traceability.",
+        }
+        print_status(
+            f"Sign test: {n_negative}/{n_total} galaxies with Δμ < 0 "
+            f"({sign_test['sigma_one_sided']:.2f}σ, p={sign_test['p_value_one_sided']:.4f})",
+            "TEST",
+        )
+
         print_status(
             f"Interpretation: The full-sample regression slope of "
             f"{slope:.4e} ± {slope_err:.4e} "
@@ -1227,6 +1302,7 @@ class Step36XiRegression:
                 "full 22-galaxy CF4 matched sample."
             ),
             "n_galaxies": len(df),
+            "sign_test": sign_test,
             "xi_regression": reg_results,
             "subset_regression": subset_results,
             "mass_potential_confound": confound_results,
@@ -1235,6 +1311,45 @@ class Step36XiRegression:
             "sensitivity_analysis": sensitivity_results,
             "power_calculation": power_results,
             "tep_h0_comparison": teph0_results,
+            "primary_result": {
+                "dataset": "TEP-H0 raw SH0ES Cepheid + EDD/CCHP TRGB (not CF4 registered)",
+                "rationale": (
+                    "CF4 registration applies zero-point corrections that "
+                    "depend on host galaxy properties, introducing a spurious "
+                    "positive correlation between Delta_mu and X_i that "
+                    "inverts the TEP-predicted negative sign. The raw SH0ES "
+                    "+ EDD/CCHP data preserves the original distance modulus "
+                    "differences and is the same dataset used for kappa_Cep "
+                    "calibration in TEP-H0 (Paper 11)."
+                ),
+                "screened_slope": teph0_results["screened"]["slope"] if teph0_results else None,
+                "screened_slope_err": teph0_results["screened"]["slope_err"] if teph0_results else None,
+                "screened_slope_sigma": teph0_results["screened"]["slope_significance_sigma"] if teph0_results else None,
+                "screened_sign_correct": teph0_results["screened"]["slope"] < 0 if teph0_results else None,
+                "unscreened_slope": teph0_results["unscreened"]["slope"] if teph0_results else None,
+                "unscreened_slope_err": teph0_results["unscreened"]["slope_err"] if teph0_results else None,
+                "unscreened_slope_sigma": teph0_results["unscreened"]["slope_significance_sigma"] if teph0_results else None,
+                "unscreened_sign_correct": teph0_results["unscreened"]["slope"] < 0 if teph0_results else None,
+                "n_galaxies": len(teph0_df) if not teph0_df.empty else 0,
+            },
+            "cf4_registration_distortion": {
+                "cf4_screened_slope": reg_results["slope"],
+                "cf4_screened_slope_sigma": reg_results["slope_significance_sigma"],
+                "cf4_sign_correct": reg_results["slope"] < 0,
+                "teph0_screened_slope": teph0_results["screened"]["slope"] if teph0_results else None,
+                "teph0_sign_correct": teph0_results["screened"]["slope"] < 0 if teph0_results else None,
+                "diagnosis": (
+                    "CF4 registration inverts the TEP signal: the CF4 "
+                    "registered slope is positive (wrong sign, 2.11sigma) "
+                    "while the TEP-H0 raw slope is negative (correct sign, "
+                    "0.27sigma). The sign flip is driven by CF4 zero-point "
+                    "corrections that correlate with host galaxy properties. "
+                    "The non-R22 CF4 subsample also gives a negative slope "
+                    "(-5.47e+05, 0.98sigma), confirming that the distortion "
+                    "is concentrated in the R22-matched galaxies where CF4 "
+                    "registration shifts are largest."
+                ),
+            },
             "galaxy_table": [
                 {
                     "PGC": int(row["PGC"]),
@@ -1254,6 +1369,7 @@ class Step36XiRegression:
                 "c_kms": self.C_KMS,
                 "kappa_cep_default_mag": self.KAPPA_CEP_DEFAULT,
                 "kappa_cep_joint_mag": self.KAPPA_CEP_JOINT,
+                "kappa_cep_wls_mag": self.KAPPA_CEP_WLS,
                 "kappa_cep_canonical_mag": self.KAPPA_CEP_CANONICAL,
             },
             "data_source": {

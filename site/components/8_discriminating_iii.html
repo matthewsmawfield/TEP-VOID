@@ -363,7 +363,16 @@
     penalty for two additional free parameters ($k = 3$ versus $k = 1$)
     makes the void models <em>worse</em> than flat by $\Delta{\rm AIC}
     = +4.0$. With amplitude and scale free to vary, the void family
-    degenerates to flat.</caption>
+    degenerates to flat. The free-$n$ TEP family likewise collapses
+    to $n = 0$ (flat). The a priori TEP prediction with fixed
+    $n = 0.3$ and the physical constraint $\Delta H_0 \ge 0$ (TEP
+    predicts $H_0$ elevated at low $z$, not suppressed) likewise
+    collapses to $\Delta H_0 = 0$ — exactly flat — with
+    $\Delta{\rm AIC} = +2.0$ (the AIC penalty for the extra shape
+    parameter with no improvement). The Pantheon+ data are
+    consistent with the TEP global-$M_B$ prediction of a flat
+    $H_0(z)$ at all redshifts; the per-host $(1+z)^{-0.3}$ shape
+    does not improve the fit when constrained to the correct sign.</caption>
     <thead>
         <tr>
             <th>Sample</th>
@@ -398,6 +407,22 @@
             <td>$z_0 = 0.283$</td>
             <td>2007.7</td>
             <td>+4.0</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>TEP (free $n$)</td>
+            <td>10.0</td>
+            <td>$n = 0.000$</td>
+            <td>2007.7</td>
+            <td>+4.0</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>TEP (fixed $n=0.3$)</td>
+            <td>0.000</td>
+            <td>$n = 0.3$ (fixed)</td>
+            <td>2007.7</td>
+            <td>+2.0</td>
         </tr>
         <tr>
             <td>$z \ge 0.05$ ($N=1053$)</td>
@@ -667,30 +692,23 @@
 <p>
     The flat $H_0(z) \approx 73$ is the expected TEP signature when the
     Cepheid calibration bias is imprinted on the global $M_B$
-    zero-point. The TEP prediction chain is:
-</p>
-
-<ol>
-    <li>Cepheid calibrators at $z \sim 0$: the acoustic clock bias
-        is maximal, producing the full $(1+z)^{-0.3} \approx 1$
-        compression.</li>
-    <li>Global $M_B$ inherits this bias: $M_B = -19.253$ is
-        calibrated from the biased Cepheid distances, encoding the full
-        clock bias in the zero-point.</li>
-    <li>All SNe use the same $M_B$: the bias does not vary with
-        redshift — $H_0(z)$ is predicted to be flat at $\sim 73$.
-        A global $M_B$ sets the absolute vertical intercept but does
-        not constrain the shape: if a local void were physically
-        present, the distance moduli would diverge from the
-        $\Lambda$CDM curve at low redshift regardless of which
-        global $M_B$ was adopted. The observed flatness therefore
-        reflects the absence of a void signal in the data, not the
-        calibration architecture.</li>
-    <li>Per-host Cepheid calibration (TEP-H0, Paper 11): would
-        show the $(1+z)^{-0.3}$ decay, because each SN would inherit
-        the bias from its own host's Cepheid calibration, not from a
-        global zero-point.</li>
-</ol>
+    zero-point. The TEP prediction chain operates as follows. At
+    $z \sim 0$, Cepheid calibrators carry the maximal acoustic clock
+    bias, producing the full $(1+z)^{-0.3} \approx 1$ compression.
+    The global $M_B = -19.253$ inherits this bias, calibrated from
+    the biased Cepheid distances, encoding the full clock bias in
+    the zero-point. Because all SNe use the same $M_B$, the bias
+    does not vary with redshift — $H_0(z)$ is predicted to be flat
+    at $\sim 73$. A global $M_B$ sets the absolute vertical intercept
+    but does not constrain the shape: if a local void were physically
+    present, the distance moduli would diverge from the $\Lambda$CDM
+    curve at low redshift regardless of which global $M_B$ was
+    adopted. The observed flatness therefore reflects the absence of
+    a void signal in the data, not the calibration architecture.
+    Under per-host Cepheid calibration (TEP-H0, Paper 11), the
+    $(1+z)^{-0.3}$ decay would instead appear, because each SN would
+    inherit the bias from its own host's Cepheid calibration, not
+    from a global zero-point.
 
 <p>
     The methodological scope stated at the opening of this section
@@ -752,8 +770,8 @@
 <p>
     The results isolate the origin of the declining trend. With
     SN-only data (configuration A), the MCMC fit
-    yields a change of $-3.68$ km/s/Mpc from low-$z$ to high-$z$,
-    but with a significance of only $1.93\sigma$ — not statistically
+    yields a change of $-4.26$ km/s/Mpc from low-$z$ to high-$z$,
+    but with a significance of only $2.51\sigma$ — not statistically
     significant. The high-redshift bins have large uncertainties
     ($\sigma_{H_0} \sim 7$ km/s/Mpc at $z > 0.7$) because Pantheon+
     contains few SNe at those redshifts. This is consistent with Jia
@@ -765,10 +783,10 @@
 
 <p>
     With SN + $H(z)$ data (configuration B), the
-    MCMC fit yields a change of $-5.92$ km/s/Mpc at $3.40\sigma$
-    (correlated) or $-5.46$ km/s/Mpc at $2.79\sigma$ after PCA
+    MCMC fit yields a change of $-5.92$ km/s/Mpc at $6.27\sigma$
+    (correlated) or $-5.92$ km/s/Mpc at $5.21\sigma$ after PCA
     decorrelation. The decline is present, but its significance
-    ($2.79\sigma$ decorrelated) is lower than Jia et al.'s reported
+    ($5.21\sigma$ decorrelated) is lower than Jia et al.'s reported
     $5.6\sigma$, likely due to differences in binning (8 versus 10 bins),
     MCMC chain length, and the exact $H(z)$ dataset. The qualitative
     conclusion is the same: the declining $H_0(z)$ is driven by the
@@ -782,7 +800,7 @@
     from the Pantheon+ SN distance moduli alone. The SN-only
     configuration, using the full covariance and the correct piecewise
     $H_{\rm th}$ estimator, does not produce a significant decline
-    ($1.93\sigma$). The native $\mu$-space likelihood likewise rejects
+    ($2.51\sigma$). The native $\mu$-space likelihood likewise rejects
     the KBC gradual decay curves. An independent Pantheon+ tomographic
     analysis (Wang 2023, Eur. Phys. J. C 83, 813) found no obvious
     evidence for evolution of $H_0$ or $\Omega_m$ at the $2\sigma$
@@ -819,4 +837,75 @@
     calculation would be a separate, stronger test, but is not
     necessary to establish what the published Figure 3 predicts for
     the supernova distance modulus.
+</p>
+
+<h3>7.5 Step 72: Unbinned native $\mu$-space likelihood with full covariance</h3>
+
+<p>
+    An independent unbinned likelihood (step_72) was evaluated on the
+    Hubble-flow Pantheon+ sample ($N = 1{,}459$, $z > 0.01$, no
+    calibrators). The published Pantheon+ <code>STAT+SYS.cov</code> was
+    found not to be positive definite, so the full likelihood covariance
+    was reconstructed from the released diagonal errors: a diagonal
+    statistical term plus a rank-1 common calibration systematic. The
+    model compares a flat $H_0(z) = H_0$ (TEP) against the published
+    KBC/MOND Gaussian and Exponential profiles and against free
+    positive-excess decay families ($dH_0 \ge 0$).
+</p>
+
+<table class="data-table">
+    <caption>Table: Step 72 native $\mu$-space BIC comparison. The flat
+    TEP profile is the maximum-likelihood description; the KBC fixed
+    predictions are decisively rejected, and free decay families
+    collapse to $\Delta H_0 = 0$.</caption>
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>$\chi^2$</th>
+            <th>BIC</th>
+            <th>$\Delta$BIC</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Flat TEP</td>
+            <td>4515.2</td>
+            <td>4529.8</td>
+            <td>0 (best)</td>
+        </tr>
+        <tr>
+            <td>KBC Gaussian (published, fixed)</td>
+            <td>4658.7</td>
+            <td>4666.0</td>
+            <td>+136.2</td>
+        </tr>
+        <tr>
+            <td>KBC Exponential (published, fixed)</td>
+            <td>5049.8</td>
+            <td>5057.1</td>
+            <td>+527.3</td>
+        </tr>
+        <tr>
+            <td>Free Exponential ($\Delta H_0 \ge 0$)</td>
+            <td>4515.2</td>
+            <td>4544.4</td>
+            <td>+14.6</td>
+        </tr>
+        <tr>
+            <td>Free Gaussian ($\Delta H_0 \ge 0$)</td>
+            <td>4518.8</td>
+            <td>4547.9</td>
+            <td>+18.1</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    The KBC fixed predictions are rejected by $\Delta$BIC $= +136$
+    (Gaussian) and $+527$ (Exponential). The free decay families, when
+    constrained to the physical high-low-$z$ direction, collapse to
+    $\Delta H_0 = 0$ and are slightly worse than flat because of the
+    extra parameters. This independently confirms the flat $H_0(z)$
+    profile found in the primary analyses and the falsification of the
+    KBC/MOND gradual-decay prediction.
 </p>

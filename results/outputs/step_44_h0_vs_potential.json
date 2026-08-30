@@ -6,15 +6,15 @@
       "name": "JAGB",
       "H0": 67.8,
       "H0_err": 2.17,
-      "X_mean": -4.6728770562116654e-08,
-      "X_std": 1.8140266213416007e-10,
+      "X_mean": 2.7452278223275843e-08,
+      "X_std": 1.814026621341601e-10,
       "V_rot_typical": 80.0
     },
     {
       "name": "TRGB",
       "H0": 68.81,
       "H0_err": 1.79,
-      "X_mean": 5.302964829327844e-10,
+      "X_mean": 7.471134526832527e-08,
       "X_std": 4.081612284002121e-10,
       "V_rot_typical": 120.0
     },
@@ -22,7 +22,7 @@
       "name": "Cepheids",
       "H0": 73.04,
       "H0_err": 1.04,
-      "X_mean": 1.4676574571576053e-07,
+      "X_mean": 2.2094679450115302e-07,
       "X_std": 9.020194805647428e-10,
       "V_rot_typical": 200.0
     },
@@ -30,14 +30,14 @@
       "name": "SBF",
       "H0": 74.6,
       "H0_err": 0.9,
-      "X_mean": 2.7677734682689874e-07,
+      "X_mean": 3.509583956122912e-07,
       "X_std": 1.4053779115084387e-09,
       "V_rot_typical": 250.0
     }
   ],
   "linear_fit": {
-    "slope": 1.6987881180119688,
-    "intercept": 70.05231646648744,
+    "slope": 1.6987881180119657,
+    "intercept": 68.79213762390454,
     "description": "H0 = intercept + slope * <X> (in units of 1e-7)"
   },
   "interpretation": "The monotonic ordering of H0 by calibrator-population potential depth is predicted by the two-channel TEP model: deeper-potential calibrator populations carry larger clock biases through both the Cepheid period-transport channel and the SN light-curve stretch channel."

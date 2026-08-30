@@ -1,61 +1,61 @@
-[21:42:59] [TEST] ========================================================================
-[21:42:59] [TEST] Digitization Sensitivity: H0(z) Rejection of KBC Void Curves
-[21:42:59] [TEST] Native mu-space, full 1701x1701 STAT+SYS covariance
-[21:42:59] [TEST] ========================================================================
-[21:42:59] [PROCESS] Scientific context: The primary step_32 result rejects the KBC void H0(z) curves at large DeltaAIC in native mu-space. This sensitivity test addresses whether digitization noise introduced during curve-tracing of the published KBC figures could materially alter that rejection. Additive H0 shifts of +/-0.5 and +/-1.0 km/s/Mpc are applied to both the Gaussian and Exponential Method-3 curves, bracketing plausible digitization uncertainty. If the rejection persists across all shifts, the falsification is robust to curve-tracing artifacts.
-[21:42:59] [PROCESS] Loaded 1701 rows from Pantheon+SH0ES.dat
-[21:42:59] [PROCESS] Loading covariance matrix from Pantheon+SH0ES_STAT+SYS.cov...
-[21:42:59] [SUCCESS] Loaded 1701x1701 covariance matrix
-[21:42:59] [PROCESS] Valid SNe with zCMB and MU_SH0ES: 1701
-[21:42:59] [PROCESS] Computing reference cosmology moduli...
-[21:42:59] [PROCESS] Data residual: mean=0.0045, std=0.1903, min=-1.0701, max=1.1556
-[21:42:59] [PROCESS] Loading digitized KBC curves...
-[21:42:59] [PROCESS] Methodology: Both digitized Method-3 curves (Gaussian and Exponential) are loaded and denoised identically to step_32. The Gaussian curve undergoes parametric Gaussian-decline denoising; the Exponential curve is used as-is. For each curve, additive H0 shifts in {-1.0, -0.5, 0.0, +0.5, +1.0} km/s/Mpc are applied, and DeltaAIC is recomputed in native mu-space with the full 1701x1701 STAT+SYS covariance and analytically marginalized zero-point. Two sample cuts are evaluated: full sample and z >= 0.05.
-[21:42:59] [PROCESS] Inverting 1701x1701 covariance matrix...
-[21:42:59] [TEST] 
+[20:07:49] [TEST] ========================================================================
+[20:07:49] [TEST] Digitization Sensitivity: H0(z) Rejection of KBC Void Curves
+[20:07:49] [TEST] Native mu-space, full 1701x1701 STAT+SYS covariance
+[20:07:49] [TEST] ========================================================================
+[20:07:49] [PROCESS] Scientific context: The primary step_32 result rejects the KBC void H0(z) curves at large DeltaAIC in native mu-space. This sensitivity test addresses whether digitization noise introduced during curve-tracing of the published KBC figures could materially alter that rejection. Additive H0 shifts of +/-0.5 and +/-1.0 km/s/Mpc are applied to both the Gaussian and Exponential Method-3 curves, bracketing plausible digitization uncertainty. If the rejection persists across all shifts, the falsification is robust to curve-tracing artifacts.
+[20:07:49] [PROCESS] Loaded 1701 rows from Pantheon+SH0ES.dat
+[20:07:49] [PROCESS] Loading covariance matrix from Pantheon+SH0ES_STAT+SYS.cov...
+[20:07:50] [SUCCESS] Loaded 1701x1701 covariance matrix
+[20:07:50] [PROCESS] Valid SNe with zCMB and MU_SH0ES: 1701
+[20:07:50] [PROCESS] Computing reference cosmology moduli...
+[20:07:50] [PROCESS] Data residual: mean=0.0045, std=0.1903, min=-1.0701, max=1.1556
+[20:07:50] [PROCESS] Loading digitized KBC curves...
+[20:07:50] [PROCESS] Methodology: Both digitized Method-3 curves (Gaussian and Exponential) are loaded and denoised identically to step_32. The Gaussian curve undergoes parametric Gaussian-decline denoising; the Exponential curve is used as-is. For each curve, additive H0 shifts in {-1.0, -0.5, 0.0, +0.5, +1.0} km/s/Mpc are applied, and DeltaAIC is recomputed in native mu-space with the full 1701x1701 STAT+SYS covariance and analytically marginalized zero-point. Two sample cuts are evaluated: full sample and z >= 0.05.
+[20:07:50] [PROCESS] Inverting 1701x1701 covariance matrix...
+[20:07:51] [TEST] 
 --- Full sample (no cut) (N=1701) ---
-[21:42:59] [TEST]   shift=-1.0: DeltaAIC_G=+198.7, DeltaAIC_E=+336.1  [chi2_flat=2007.7]
-[21:42:59] [TEST]   shift=-0.5: DeltaAIC_G=+196.5, DeltaAIC_E=+332.4  [chi2_flat=2007.7]
-[21:42:59] [TEST]   shift=+0.0: DeltaAIC_G=+194.3, DeltaAIC_E=+328.7  [chi2_flat=2007.7]
-[21:42:59] [TEST]   shift=+0.5: DeltaAIC_G=+192.2, DeltaAIC_E=+325.2  [chi2_flat=2007.7]
-[21:42:59] [TEST]   shift=+1.0: DeltaAIC_G=+190.1, DeltaAIC_E=+321.6  [chi2_flat=2007.7]
-[21:42:59] [TEST] 
+[20:07:52] [TEST]   shift=-1.0: DeltaAIC_G=+198.7, DeltaAIC_E=+336.1  [chi2_flat=2007.7]
+[20:07:52] [TEST]   shift=-0.5: DeltaAIC_G=+196.5, DeltaAIC_E=+332.4  [chi2_flat=2007.7]
+[20:07:52] [TEST]   shift=+0.0: DeltaAIC_G=+194.3, DeltaAIC_E=+328.7  [chi2_flat=2007.7]
+[20:07:52] [TEST]   shift=+0.5: DeltaAIC_G=+192.2, DeltaAIC_E=+325.2  [chi2_flat=2007.7]
+[20:07:52] [TEST]   shift=+1.0: DeltaAIC_G=+190.1, DeltaAIC_E=+321.6  [chi2_flat=2007.7]
+[20:07:52] [TEST] 
 --- z >= 0.05 (N=1053) ---
-[21:42:59] [TEST]   shift=-1.0: DeltaAIC_G=+104.1, DeltaAIC_E=+120.0  [chi2_flat=919.2]
-[21:42:59] [TEST]   shift=-0.5: DeltaAIC_G=+102.8, DeltaAIC_E=+118.5  [chi2_flat=919.2]
-[21:42:59] [TEST]   shift=+0.0: DeltaAIC_G=+101.5, DeltaAIC_E=+117.1  [chi2_flat=919.2]
-[21:42:59] [TEST]   shift=+0.5: DeltaAIC_G=+100.2, DeltaAIC_E=+115.6  [chi2_flat=919.2]
-[21:42:59] [TEST]   shift=+1.0: DeltaAIC_G=+99.0, DeltaAIC_E=+114.2  [chi2_flat=919.2]
-[21:42:59] [SUCCESS] 
+[20:07:52] [TEST]   shift=-1.0: DeltaAIC_G=+104.1, DeltaAIC_E=+120.0  [chi2_flat=919.2]
+[20:07:52] [TEST]   shift=-0.5: DeltaAIC_G=+102.8, DeltaAIC_E=+118.5  [chi2_flat=919.2]
+[20:07:52] [TEST]   shift=+0.0: DeltaAIC_G=+101.5, DeltaAIC_E=+117.1  [chi2_flat=919.2]
+[20:07:52] [TEST]   shift=+0.5: DeltaAIC_G=+100.2, DeltaAIC_E=+115.6  [chi2_flat=919.2]
+[20:07:52] [TEST]   shift=+1.0: DeltaAIC_G=+99.0, DeltaAIC_E=+114.2  [chi2_flat=919.2]
+[20:07:52] [SUCCESS] 
 Results saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_32_digitization_sensitivity.json
-[21:42:59] [TEST] 
+[20:07:52] [TEST] 
 ========================================================================
-[21:42:59] [TEST] SUMMARY: Digitization Sensitivity Table
-[21:42:59] [TEST] Label: native mu-space, full covariance
-[21:42:59] [TEST] ========================================================================
-[21:42:59] [TEST] Sample                  Shift      N   dAIC_Gauss     dAIC_Exp
-[21:42:59] [TEST] --------------------------------------------------------------
-[21:42:59] [TEST] Full sample (no cut)     -1.0   1701       +198.7       +336.1
-[21:42:59] [TEST] Full sample (no cut)     -0.5   1701       +196.5       +332.4
-[21:42:59] [TEST] Full sample (no cut)     +0.0   1701       +194.3       +328.7
-[21:42:59] [TEST] Full sample (no cut)     +0.5   1701       +192.2       +325.2
-[21:42:59] [TEST] Full sample (no cut)     +1.0   1701       +190.1       +321.6
-[21:42:59] [TEST] z >= 0.05                -1.0   1053       +104.1       +120.0
-[21:42:59] [TEST] z >= 0.05                -0.5   1053       +102.8       +118.5
-[21:42:59] [TEST] z >= 0.05                +0.0   1053       +101.5       +117.1
-[21:42:59] [TEST] z >= 0.05                +0.5   1053       +100.2       +115.6
-[21:42:59] [TEST] z >= 0.05                +1.0   1053        +99.0       +114.2
-[21:42:59] [TEST] 
+[20:07:52] [TEST] SUMMARY: Digitization Sensitivity Table
+[20:07:52] [TEST] Label: native mu-space, full covariance
+[20:07:52] [TEST] ========================================================================
+[20:07:52] [TEST] Sample                  Shift      N   dAIC_Gauss     dAIC_Exp
+[20:07:52] [TEST] --------------------------------------------------------------
+[20:07:52] [TEST] Full sample (no cut)     -1.0   1701       +198.7       +336.1
+[20:07:52] [TEST] Full sample (no cut)     -0.5   1701       +196.5       +332.4
+[20:07:52] [TEST] Full sample (no cut)     +0.0   1701       +194.3       +328.7
+[20:07:52] [TEST] Full sample (no cut)     +0.5   1701       +192.2       +325.2
+[20:07:52] [TEST] Full sample (no cut)     +1.0   1701       +190.1       +321.6
+[20:07:52] [TEST] z >= 0.05                -1.0   1053       +104.1       +120.0
+[20:07:52] [TEST] z >= 0.05                -0.5   1053       +102.8       +118.5
+[20:07:52] [TEST] z >= 0.05                +0.0   1053       +101.5       +117.1
+[20:07:52] [TEST] z >= 0.05                +0.5   1053       +100.2       +115.6
+[20:07:52] [TEST] z >= 0.05                +1.0   1053        +99.0       +114.2
+[20:07:52] [TEST] 
 ========================================================================
-[21:42:59] [TEST] VERIFICATION (zero shift vs published step_32 values, Omega_m = 0.302)
-[21:42:59] [TEST] ========================================================================
-[21:42:59] [TEST]   full: Gaussian 194.3 (expected 194.3, OK), Exponential 328.7 (expected 328.7, OK)
-[21:42:59] [TEST]   z_ge_0.05: Gaussian 101.5 (expected 101.5, OK), Exponential 117.1 (expected 117.1, OK)
-[21:42:59] [SUCCESS] All zero-shift values match published results.
-[21:42:59] [SUCCESS] Interpretation: DeltaAIC remains strongly positive for all shifts and both curves across both sample cuts. The KBC void H0(z) prediction is rejected at every digitization shift tested, confirming that the falsification is robust to plausible curve-tracing noise.
-[21:42:59] [SUCCESS] step_32d completed in 0.4s
-[21:42:59] [INFO] 
-[21:42:59] [INFO] ================================================================================
-[21:42:59] [INFO]    Starting step_32m: Omega_m sensitivity: ΔAIC and R_H as functions of Omega_m (robustness of void rejection)
-[21:42:59] [INFO] ================================================================================
-[21:42:59] [INFO] 
+[20:07:52] [TEST] VERIFICATION (zero shift vs published step_32 values, Omega_m = 0.302)
+[20:07:52] [TEST] ========================================================================
+[20:07:52] [TEST]   full: Gaussian 194.3 (expected 194.3, OK), Exponential 328.7 (expected 328.7, OK)
+[20:07:52] [TEST]   z_ge_0.05: Gaussian 101.5 (expected 101.5, OK), Exponential 117.1 (expected 117.1, OK)
+[20:07:52] [SUCCESS] All zero-shift values match published results.
+[20:07:52] [SUCCESS] Interpretation: DeltaAIC remains strongly positive for all shifts and both curves across both sample cuts. The KBC void H0(z) prediction is rejected at every digitization shift tested, confirming that the falsification is robust to plausible curve-tracing noise.
+[20:07:52] [SUCCESS] step_32d completed in 2.6s
+[20:07:52] [INFO] 
+[20:07:52] [INFO] ================================================================================
+[20:07:52] [INFO]    Starting step_32m: Omega_m sensitivity: ΔAIC and R_H as functions of Omega_m (robustness of void rejection)
+[20:07:52] [INFO] ================================================================================
+[20:07:52] [INFO] 

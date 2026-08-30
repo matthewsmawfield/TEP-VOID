@@ -348,7 +348,7 @@ class HTMLToMarkdownConverter {
             const markdown = this.buildMarkdownDocument(metadata, markdownContent);
             
             // Write to file
-            const outputPath = path.join(__dirname, '..', '31-TEP-VOID-v0.1-Valencia.md');
+            const outputPath = path.join(__dirname, '..', '31-TEP-VOID-v0.2-Valencia.md');
             fs.writeFileSync(outputPath, markdown, 'utf8');
             
             console.log('✅ Markdown conversion complete!');

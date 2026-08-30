@@ -1,0 +1,23 @@
+[17:12:58] [INFO] ======================================================================
+[17:12:58] [INFO] Step 71: X_i Disformal Channel
+[17:12:58] [INFO] ======================================================================
+[17:12:58] [PROCESS] Loading Pantheon+ and measured V_rot (deep) catalog...
+[17:13:00] [SUCCESS]   171 SNe with measured V_rot and mass
+[17:13:00] [INFO]   V_rot source: {'HyperLEDA': 167, 'ALFALFA': 4}
+[17:13:00] [INFO]   X_i range: -6.98e-09 - 7.48e-07
+[17:13:00] [TEST] 
+x1 models:
+[17:13:00] [INFO]   M0         BIC=39135.0 dBIC=2575.73
+[17:13:00] [INFO]   Mz         BIC=37759.0 dBIC=1199.70
+[17:13:00] [INFO]   MX         BIC=36559.3 dBIC=0.00 d_x1/dX=1.66e+06
+[17:13:00] [TEST] 
+Hubble residual models:
+[17:13:00] [INFO]   M0         BIC=92.3 dBIC=0.00
+[17:13:00] [INFO]   Mzlogm     BIC=101.5 dBIC=9.21
+[17:13:00] [INFO]   Mmass      BIC=105.7 dBIC=13.47
+[17:13:00] [INFO]   MX         BIC=102.0 dBIC=9.73 dHR/dX=2.69e+05
+[17:13:00] [INFO]   MmassX     BIC=106.7 dBIC=14.47 dHR/dX=2.57e+05
+[17:13:00] [INFO]   MmassXx1   BIC=111.8 dBIC=19.58 dHR/dX=2.55e+05
+[17:13:00] [SUCCESS] 
+Saved results to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_71_xi_disformal_channel.json
+[17:13:02] [SUCCESS] Saved figure /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_71_xi_disformal_channel.png

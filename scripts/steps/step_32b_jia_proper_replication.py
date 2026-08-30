@@ -277,9 +277,10 @@ class Step32bJiaProperReplication:
                 return -np.inf
             return lp + lnlike(theta)
 
-        # Initialize walkers
+        # Initialize walkers (seeded for reproducibility)
+        rng_mcmc = np.random.default_rng(42)
         p0_mean = np.full(ndim, 70.0)
-        p0 = [p0_mean + 1e-4 * np.random.randn(ndim) for _ in range(n_walkers)]
+        p0 = [p0_mean + 1e-4 * rng_mcmc.standard_normal(ndim) for _ in range(n_walkers)]
 
         t1 = time.time()
         sampler = emcee.EnsembleSampler(n_walkers, ndim, lnprob)
@@ -337,38 +338,34 @@ class Step32bJiaProperReplication:
 
         Returns decorrelated H0 values and their errors.
         """
-        print_status("  Applying PCA decorrelation (Jia Eq. 19-22)...", "PROCESS")
+        print_status("  Applying PCA decorrelation...", "PROCESS")
 
-        # Step 1: covariance matrix
+        # Step 1: center the samples and compute covariance
         h0_samples = np.array(chain)
-        h0_cov = np.cov(h0_samples.T)
+        h0_mean = np.mean(h0_samples, axis=0)
+        h0_centered = h0_samples - h0_mean
+
+        # Step 2: covariance matrix (symmetric → use eigh for numerical stability)
+        h0_cov = np.cov(h0_centered.T)
         print_status(f"    Covariance matrix shape: {h0_cov.shape}", "DEBUG")
 
-        # Step 2: Fisher matrix
-        h0_inv = np.linalg.inv(h0_cov)
+        # Step 3: eigendecomposition of the covariance matrix
+        # Standard PCA: project onto orthonormal eigenvectors of the covariance
+        lam, matO = np.linalg.eigh(h0_cov)
 
-        # Step 3: diagonalize
-        lam, matO = np.linalg.eig(h0_inv)
-
-        # Sort by eigenvalue (largest first = best constrained)
+        # Sort by eigenvalue (largest first = most variance)
         idx = np.argsort(lam)[::-1]
         lam = lam[idx]
         matO = matO[:, idx]
 
-        # Step 4: transformation matrix T = O^T Lambda^{1/2} O
-        lam_sqrt = np.sqrt(np.real(lam))
-        data_lam = np.diag(lam_sqrt)
-        matO_T = np.transpose(matO)
-        data = np.dot(matO, data_lam)
-        transM = np.dot(data, matO_T)
+        # Step 4: compute PC scores (uncorrelated by construction)
+        # scores = centered_data @ eigenvectors
+        h0_new = np.dot(h0_centered, matO)
 
-        # Step 5: normalize rows to sum to 1
-        row_sums = transM.sum(axis=1)
-        for i in range(len(row_sums)):
-            transM[i] = transM[i] / row_sums[i]
-
-        # Step 6: apply transformation
-        h0_new = np.dot(transM, h0_samples.T).T
+        # Add back the mean to get decorrelated H0 values in each PC axis
+        # The PC scores are uncorrelated; adding the mean recovers the
+        # original scale for reporting per-bin H0 values.
+        h0_new = h0_new + h0_mean
 
         # Compute decorrelated values
         h0_decor = np.median(h0_new, axis=0)
@@ -429,13 +426,21 @@ class Step32bJiaProperReplication:
                     "mock_slope_std": 1.0}
         data_slope = (w_sum * w_xy - w_x * w_y) / delta
 
-        # Generate mock slopes
-        h0_ref = 73.04
-        h0_ref_err = 1.04
+        # Generate mock slopes under the null (constant H0)
+        # Anchor the null to the fitted low-redshift mean of the actual data,
+        # not an external SH0ES value, so the test measures the data's own
+        # trend significance rather than a comparison to SH0ES.
+        low_z_mask = np.arange(self.N_BINS) < 3
+        w_low = 1.0 / np.array(h0_errors)[low_z_mask] ** 2
+        w_low = np.where(np.isfinite(w_low), w_low, 0.0)
+        h0_null = np.average(np.array(h0_values)[low_z_mask], weights=w_low)
+        h0_null_err = 1.0 / np.sqrt(np.sum(w_low))
+        print_status(f"    Null anchored to low-z mean: H0 = {h0_null:.2f} +/- {h0_null_err:.2f}", "DEBUG")
+
         mock_slopes = []
         for _ in range(n_mock):
-            # Generate mock H0 values
-            mock_h0 = rng.normal(h0_ref, h0_ref_err, size=self.N_BINS)
+            # Generate mock H0 values under constant-H0 null
+            mock_h0 = rng.normal(h0_null, h0_null_err, size=self.N_BINS)
             # Add measurement uncertainty
             mock_h0 += rng.normal(0, np.array(h0_errors))
 

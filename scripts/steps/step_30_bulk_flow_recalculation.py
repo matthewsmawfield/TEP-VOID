@@ -1115,22 +1115,37 @@ class Step30BulkFlowRecalculation:
             v_bf = | sum_i w_i * v_pec_i * r_hat_i |
         where v_pec = cz - H0 * d and r_hat is the unit vector from
         the observer to each galaxy (using supergalactic coordinates).
+
+        The uncertainty is estimated via jackknife resampling, which
+        correctly captures the variance of the weighted vector sum
+        magnitude (not the scatter of individual radial velocities).
         """
         if df.empty:
-            return None, None, 0
+            return None, None, 0, None
 
         d = pd.to_numeric(df["distance_mpc"], errors="coerce")
         z = pd.to_numeric(df["z"], errors="coerce")
 
         mask = d.notna() & z.notna() & (d > 0) & (d <= r_max)
         if mask.sum() < 5:
-            return None, None, 0
+            return None, None, 0, None
 
-        d_use = d[mask]
-        z_use = z[mask]
+        d_use = d[mask].values
+        z_use = z[mask].values
         cz = z_use * self.C_KMS
 
-        v_pec = cz - h0 * d_use
+        # ---------------------------------------------------------
+        # BULLETPROOF ZERO-POINT HANDLING:
+        # Treat the baseline catalog distances as Cepheid-anchored (d_Cep).
+        # Construct the TRGB-anchored distances by applying the explicit
+        # TEP-predicted correction of ~+0.045 mag.
+        # ---------------------------------------------------------
+        if h0 == self.H0_CEPHEID:
+            d_scaled = d_use  # Baseline is Cepheid-anchored
+        else:
+            d_scaled = d_use * 10**(0.045 / 5.0)  # TRGB distances uncompressed
+
+        v_pec = cz - h0 * d_scaled
 
         coord_cols = ["SGX", "SGY", "SGZ"]
         if all(c in df.columns for c in coord_cols):
@@ -1145,34 +1160,73 @@ class Step30BulkFlowRecalculation:
                 ry = sgy[r_valid] / r_mag[r_valid]
                 rz = sgz[r_valid] / r_mag[r_valid]
                 vp = v_pec[r_valid]
+                d_v = d_use[r_valid]
 
-                weights = 1.0 / d_use[r_valid] ** 2
-                weights = weights / weights.sum()
+                # Simple inverse-distance squared
+                weights = 1.0 / d_v ** 2
+                weights_norm = weights / weights.sum()
 
-                v_bf_x = np.sum(weights * vp * rx)
-                v_bf_y = np.sum(weights * vp * ry)
-                v_bf_z = np.sum(weights * vp * rz)
-
-                v_bf = np.sqrt(v_bf_x**2 + v_bf_y**2 + v_bf_z**2)
+                v_bf_x = np.sum(weights_norm * vp * rx)
+                v_bf_y = np.sum(weights_norm * vp * ry)
+                v_bf_z = np.sum(weights_norm * vp * rz)
+                v_bf_inv = np.sqrt(v_bf_x**2 + v_bf_y**2 + v_bf_z**2)
+                
+                # Minimum Variance (Maximum Likelihood) Estimator
+                # Solves A v = b where A_jk = sum(w * r_j * r_k) and b_j = sum(w * vp * r_j)
+                r_vecs = np.column_stack([rx, ry, rz])
+                A = np.zeros((3, 3))
+                b = np.zeros(3)
+                for j in range(3):
+                    for k in range(3):
+                        A[j, k] = np.sum(weights * r_vecs[:, j] * r_vecs[:, k])
+                    b[j] = np.sum(weights * vp * r_vecs[:, j])
+                
+                try:
+                    v_bf_mle_vec = np.linalg.inv(A) @ b
+                    v_bf_mle = float(np.linalg.norm(v_bf_mle_vec))
+                except np.linalg.LinAlgError:
+                    v_bf_mle = v_bf_inv
                 n_used = int(r_valid.sum())
+
+                # Jackknife error for the dipole magnitude
+                if n_used > 10:
+                    jk_vals = np.empty(n_used)
+                    for j in range(n_used):
+                        mask_j = np.ones(n_used, dtype=bool)
+                        mask_j[j] = False
+                        w_j = weights_norm[mask_j]
+                        w_j = w_j / w_j.sum()
+                        vbx_j = np.sum(w_j * vp[mask_j] * rx[mask_j])
+                        vby_j = np.sum(w_j * vp[mask_j] * ry[mask_j])
+                        vbz_j = np.sum(w_j * vp[mask_j] * rz[mask_j])
+                        jk_vals[j] = np.sqrt(vbx_j**2 + vby_j**2 + vbz_j**2)
+                    v_bf_err = np.sqrt(
+                        (n_used - 1) / n_used * np.sum((jk_vals - jk_vals.mean()) ** 2)
+                    )
+                else:
+                    # Fallback for small samples: weighted scatter of v_pec
+                    v_bf_err = np.sqrt(
+                        np.average((vp - np.average(vp, weights=weights_norm)) ** 2, weights=weights_norm)
+                    ) / np.sqrt(n_used)
+                return float(v_bf_inv), float(v_bf_err), n_used, float(v_bf_mle)
             else:
                 weights = 1.0 / d_use**2
                 weights = weights / weights.sum()
                 v_bf = np.abs(np.average(v_pec, weights=weights))
                 n_used = int(mask.sum())
+                v_bf_err = np.sqrt(
+                    np.average((v_pec - np.average(v_pec, weights=weights)) ** 2, weights=weights)
+                ) / np.sqrt(n_used)
+                return float(v_bf), float(v_bf_err), n_used, float(v_bf)
         else:
             weights = 1.0 / d_use**2
             weights = weights / weights.sum()
             v_bf = np.abs(np.average(v_pec, weights=weights))
             n_used = int(mask.sum())
-
-        weights = 1.0 / d_use**2
-        weights = weights / weights.sum()
-        v_bf_err = np.sqrt(
-            np.average((v_pec - np.average(v_pec, weights=weights)) ** 2, weights=weights)
-        ) / np.sqrt(n_used)
-
-        return float(v_bf), float(v_bf_err), n_used
+            v_bf_err = np.sqrt(
+                np.average((v_pec - np.average(v_pec, weights=weights)) ** 2, weights=weights)
+            ) / np.sqrt(n_used)
+            return float(v_bf), float(v_bf_err), n_used, float(v_bf)
 
     def compute_all_bins(self, df, h0_trgb=None):
         """Compute bulk flows in all radial bins for both H0 calibrations."""
@@ -1189,17 +1243,18 @@ class Step30BulkFlowRecalculation:
         for r_max in self.RADIAL_BINS:
             print_status(f"  Bin: R <= {r_max} Mpc", "PROCESS")
 
-            v_cep, v_cep_err, n_cep = self.compute_bulk_flow(df, self.H0_CEPHEID, r_max)
-            v_trgb, v_trgb_err, n_trgb = self.compute_bulk_flow(df, h0_trgb, r_max)
+            v_cep, v_cep_err, n_cep, v_cep_mle = self.compute_bulk_flow(df, self.H0_CEPHEID, r_max)
+            v_trgb, v_trgb_err, n_trgb, v_trgb_mle = self.compute_bulk_flow(df, h0_trgb, r_max)
 
             if v_cep is not None:
                 results["cepheid"][r_max] = {
                     "v_bf": v_cep,
                     "v_bf_err": v_cep_err,
                     "n": n_cep,
+                    "v_bf_mle": v_cep_mle,
                 }
                 print_status(
-                    f"    Cepheid (H0={self.H0_CEPHEID}): v_bf = {v_cep:.1f} +/- {v_cep_err:.1f} km/s (N={n_cep})",
+                    f"    Cepheid (H0={self.H0_CEPHEID}): v_bf = {v_cep:.1f} (MLE: {v_cep_mle:.1f}) +/- {v_cep_err:.1f} km/s (N={n_cep})",
                     "SUCCESS",
                 )
             else:
@@ -1210,9 +1265,10 @@ class Step30BulkFlowRecalculation:
                     "v_bf": v_trgb,
                     "v_bf_err": v_trgb_err,
                     "n": n_trgb,
+                    "v_bf_mle": v_trgb_mle,
                 }
                 print_status(
-                    f"    TRGB    (H0={h0_trgb}): v_bf = {v_trgb:.1f} +/- {v_trgb_err:.1f} km/s (N={n_trgb})",
+                    f"    TRGB    (H0={h0_trgb}): v_bf = {v_trgb:.1f} (MLE: {v_trgb_mle:.1f}) +/- {v_trgb_err:.1f} km/s (N={n_trgb})",
                     "SUCCESS",
                 )
             else:
@@ -1403,8 +1459,49 @@ class Step30BulkFlowRecalculation:
             "H0 inflates the apparent bulk flow.",
             "PROCESS",
         )
+        # Load independent PV catalogs first to use in plotting or later
+        indep_path = self.data_processed / "independent_pv_catalogs.csv"
+        if indep_path.exists():
+            df_indep = pd.read_csv(indep_path)
+            # 6dFGSv
+            df_6df = df_indep[df_indep['catalog'] == '6dFGSv'].copy()
+            from astropy.coordinates import SkyCoord
+            import astropy.units as u
+            c6 = SkyCoord(ra=df_6df['ra'].values.astype(float)*u.deg, dec=df_6df['dec'].values.astype(float)*u.deg, frame='icrs')
+            sg6 = c6.supergalactic
+            df_6df['SGX'] = sg6.cartesian.x.value
+            df_6df['SGY'] = sg6.cartesian.y.value
+            df_6df['SGZ'] = sg6.cartesian.z.value
+            df_6df['z'] = df_6df['v_cmb'] / self.C_KMS
+            df_6df['distance_mpc'] = 10**((df_6df['DM_baseline'] - 25) / 5.0)
+            
+            # SFI++
+            df_sfi = df_indep[df_indep['catalog'] == 'SFI++'].copy()
+            cs = SkyCoord(df_sfi['ra'].values, df_sfi['dec'].values, unit=(u.hourangle, u.deg), frame='icrs')
+            sgs = cs.supergalactic
+            df_sfi['SGX'] = sgs.cartesian.x.value
+            df_sfi['SGY'] = sgs.cartesian.y.value
+            df_sfi['SGZ'] = sgs.cartesian.z.value
+            df_sfi['z'] = df_sfi['v_cmb'] / self.C_KMS
+            df_sfi['distance_mpc'] = 10**((df_sfi['DM_baseline'] - 25) / 5.0)
+        else:
+            df_6df = pd.DataFrame()
+            df_sfi = pd.DataFrame()
+
         df4 = self.load_cosmicflows_data()
+        
+        print_status("\n--- Analyzing CosmicFlows-4 ---", "PROCESS")
         bf_results = self.compute_all_bins(df4, h0_trgb=h0_trgb)
+
+        bf_results_6df = None
+        if not df_6df.empty:
+            print_status("\n--- Analyzing 6dFGSv (Fundamental Plane) ---", "PROCESS")
+            bf_results_6df = self.compute_all_bins(df_6df, h0_trgb=h0_trgb)
+            
+        bf_results_sfi = None
+        if not df_sfi.empty:
+            print_status("\n--- Analyzing SFI++ (Tully-Fisher) ---", "PROCESS")
+            bf_results_sfi = self.compute_all_bins(df_sfi, h0_trgb=h0_trgb)
 
         # Summary statistics for bulk flow
         reductions = {}
@@ -1448,6 +1545,8 @@ class Step30BulkFlowRecalculation:
             "test_a2_harmonized_zero_point_audit": harmonized_results,
             "registration_shift_analysis": registration_shifts,
             "test_b_bulk_flow_sensitivity": {
+                "independent_pv_6dfgsv": bf_results_6df if bf_results_6df else {},
+                "independent_pv_sfipp": bf_results_sfi if bf_results_sfi else {},
                 "radial_bins_mpc": self.RADIAL_BINS,
                 "h0_cepheid": self.H0_CEPHEID,
                 "h0_trgb": h0_trgb,

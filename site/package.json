@@ -1,8 +1,8 @@
 {
   "name": "tep-void-site",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Cosmological Voids vs Temporal Shear: An Empirical Falsification of Kinematic Hubble Tension Solutions",
-  "comment": "Package version matches manuscript version v0.1 (Valencia)",
+  "comment": "Package version matches manuscript version v0.2 (Valencia)",
   "main": "index.html",
   "scripts": {
     "dev": "node dev-server.js",
