@@ -1,29 +1,25 @@
-[20:22:49] [INFO] ======================================================================
-[20:22:49] [INFO] Step 71: X_i Disformal Channel
-[20:22:49] [INFO] ======================================================================
-[20:22:49] [PROCESS] Loading Pantheon+ and measured V_rot (deep) catalog...
-[20:22:50] [SUCCESS]   171 SNe with measured V_rot and mass
-[20:22:50] [INFO]   V_rot source: {'HyperLEDA': 167, 'ALFALFA': 4}
-[20:22:50] [INFO]   X_i range: -6.98e-09 - 7.48e-07
-[20:22:50] [TEST] 
+[23:48:46] [INFO] ======================================================================
+[23:48:46] [INFO] Step 71: X_i Disformal Channel
+[23:48:46] [INFO] ======================================================================
+[23:48:46] [PROCESS] Loading Pantheon+ and measured V_rot (deep) catalog...
+[23:48:46] [INFO]   Deduplicated: 176 -> 126 unique SNe
+[23:48:46] [SUCCESS]   126 SNe with measured V_rot and mass
+[23:48:46] [INFO]   V_rot source: {'HyperLEDA': 102, '2MTF': 21, 'ALFALFA': 3}
+[23:48:46] [INFO]   X_i range: -6.98e-09 - 7.48e-07
+[23:48:46] [TEST] 
 x1 models:
-[20:22:50] [INFO]   M0         BIC=39135.0 dBIC=2575.73
-[20:22:50] [INFO]   Mz         BIC=37759.0 dBIC=1199.70
-[20:22:50] [INFO]   MX         BIC=36559.3 dBIC=0.00 d_x1/dX=1.66e+06
-[20:22:50] [TEST] 
+[23:48:46] [INFO]   M0         BIC=32961.3 dBIC=2214.97
+[23:48:46] [INFO]   Mz         BIC=31942.2 dBIC=1195.83
+[23:48:46] [INFO]   MX         BIC=30746.4 dBIC=0.00 d_x1/dX=1.74e+06
+[23:48:46] [TEST] 
 Hubble residual models:
-[20:22:50] [INFO]   M0         BIC=92.3 dBIC=0.00
-[20:22:50] [INFO]   Mzlogm     BIC=101.5 dBIC=9.21
-[20:22:50] [INFO]   Mmass      BIC=105.7 dBIC=13.47
-[20:22:50] [INFO]   MX         BIC=102.0 dBIC=9.73 dHR/dX=2.69e+05
-[20:22:50] [INFO]   MmassX     BIC=106.7 dBIC=14.47 dHR/dX=2.57e+05
-[20:22:50] [INFO]   MmassXx1   BIC=111.8 dBIC=19.58 dHR/dX=2.55e+05
-[20:22:50] [SUCCESS] 
+[23:48:46] [INFO]   M0         BIC=78.7 dBIC=0.00
+[23:48:46] [INFO]   Mzlogm     BIC=87.3 dBIC=8.69
+[23:48:46] [INFO]   Mmass      BIC=91.5 dBIC=12.87
+[23:48:46] [INFO]   MX         BIC=88.2 dBIC=9.59 dHR/dX=2.74e+05
+[23:48:46] [INFO]   MmassX     BIC=92.8 dBIC=14.17 dHR/dX=2.63e+05
+[23:48:46] [INFO]   MmassXx1   BIC=97.4 dBIC=18.73 dHR/dX=2.55e+05
+[23:48:46] [SUCCESS] 
 Saved results to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_71_xi_disformal_channel.json
-[20:22:50] [SUCCESS] Saved figure /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_71_xi_disformal_channel.png
-[20:22:50] [SUCCESS] step_71 completed in 0.7s
-[20:22:50] [INFO] 
-[20:22:50] [INFO] ================================================================================
-[20:22:50] [INFO]    Starting step_72: H0(z) falsification: KBC/MOND gradual decay vs TEP flat profile with full Pantheon+ likelihood
-[20:22:50] [INFO] ================================================================================
-[20:22:50] [INFO] 
+[23:48:46] [SUCCESS] Saved figure /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_71_xi_disformal_channel.png
+[23:48:46] [SUCCESS] step_71 completed in 0.5s

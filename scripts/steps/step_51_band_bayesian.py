@@ -208,6 +208,8 @@ def bootstrap_regression(x, y, yerr, n_boot=10000, seed=42):
 
 def run_analysis():
     """Run the full Bayesian hierarchical analysis."""
+    logger = TEPLogger("step_51", log_file_path=PROJECT_ROOT / "logs" / "step_51_band_bayesian.log")
+    set_step_logger(logger)
     print_status("=" * 60, "INFO")
     print_status("Step 51: Bayesian Hierarchical Band-Dependence Analysis", "INFO")
     print_status("=" * 60, "INFO")

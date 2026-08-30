@@ -25,6 +25,8 @@ from scipy.integrate import cumulative_trapezoid
 
 # Add parent to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from pathlib import Path
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
 from scripts.utils.screening import U_REF_SCREENED, compute_screening, compute_screening_by_name
 
@@ -52,6 +54,8 @@ class MeasuredVrotAnalysis:
 
     def __init__(self):
         self.results = {}
+        self.logger = TEPLogger("step_47", log_file_path=PROJECT_ROOT / "logs" / "step_47_measured_vrot_analysis.log")
+        set_step_logger(self.logger)
 
     def load_data(self):
         """Load all available data sources."""

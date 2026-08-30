@@ -44,6 +44,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 
 class Step30BulkFlowRecalculation:
@@ -1287,6 +1288,7 @@ class Step30BulkFlowRecalculation:
     # ------------------------------------------------------------------
     def plot_results(self, indicator_results, bf_results, h0_trgb=None):
         """Generate a 2-panel figure: indicator comparison + bulk-flow sensitivity."""
+        colors = apply_tep_style()
         print_status("Generating comparison figure...", "PROCESS")
         if h0_trgb is None:
             h0_trgb = self.H0_TRGB_PUBLISHED
@@ -1304,8 +1306,8 @@ class Step30BulkFlowRecalculation:
                     both["DMceph"],
                     s=60,
                     alpha=0.7,
-                    color="#2ca02c",
-                    edgecolors="black",
+                    color=colors['green'],
+                    edgecolors=colors['dark'],
                     linewidth=0.5,
                 )
                 # 1:1 line
@@ -1313,31 +1315,31 @@ class Step30BulkFlowRecalculation:
                     min(both["DMtrgb"].min(), both["DMceph"].min()) - 0.5,
                     max(both["DMtrgb"].max(), both["DMceph"].max()) + 0.5,
                 ]
-                ax1.plot(lims, lims, "k--", alpha=0.5, label="1:1 (void prediction)")
+                ax1.plot(lims, lims, color=colors['dark'], linestyle="--", alpha=0.5, label="1:1 (void prediction)")
                 # TEP prediction line (offset by mean delta)
                 mean_delta = indicator_results["mean_delta_mu"]
                 ax1.plot(
                     lims,
                     [l + mean_delta for l in lims],
-                    "r--",
+                    color=colors['red'],
+                    linestyle="--",
                     alpha=0.7,
                     label=f"TEP: Δμ = {mean_delta:.3f} mag",
                 )
-                ax1.set_xlabel("TRGB Distance Modulus $\\mu_{TRGB}$ (mag)", fontsize=12)
-                ax1.set_ylabel("Cepheid Distance Modulus $\\mu_{Cep}$ (mag)", fontsize=12)
+                ax1.set_xlabel("TRGB Distance Modulus $\\mu_{TRGB}$ (mag)")
+                ax1.set_ylabel("Cepheid Distance Modulus $\\mu_{Cep}$ (mag)")
                 ax1.set_title(
                     f"Direct Indicator Comparison (N={indicator_results['n_overlap']})\n"
                     f"Δμ = {mean_delta:.3f} ± {indicator_results['sem_delta_mu']:.3f} mag "
                     f"({indicator_results['significance_sigma']:.2f}σ)",
-                    fontsize=11,
                 )
-                ax1.legend(fontsize=10)
+                ax1.legend()
                 ax1.set_aspect("equal")
-                ax1.grid(True, alpha=0.3)
+                ax1.grid(True)
         else:
             ax1.text(0.5, 0.5, "Indicator comparison\nnot available",
                      ha="center", va="center", transform=ax1.transAxes, fontsize=14)
-            ax1.set_title("Direct Indicator Comparison", fontsize=11)
+            ax1.set_title("Direct Indicator Comparison")
 
         # Panel 2: Bulk-flow comparison
         bins = self.RADIAL_BINS
@@ -1353,22 +1355,22 @@ class Step30BulkFlowRecalculation:
             bx, bv, be = zip(*cep_valid)
             ax2.errorbar(
                 list(bx), list(bv), yerr=list(be),
-                fmt="o-", color="#d62728",
+                fmt="o-", color=colors['red'],
                 label=f"Cepheid ($H_0={self.H0_CEPHEID}$)", capsize=5, markersize=8,
             )
         if trgb_valid:
             bx, bv, be = zip(*trgb_valid)
             ax2.errorbar(
                 list(bx), list(bv), yerr=list(be),
-                fmt="s-", color="#2ca02c",
+                fmt="s-", color=colors['green'],
                 label=f"TRGB ($H_0={h0_trgb}$)", capsize=5, markersize=8,
             )
 
-        ax2.set_xlabel("Radial Bin $R_{max}$ (Mpc)", fontsize=12)
-        ax2.set_ylabel("Bulk-Flow $|v_{bf}|$ (km/s)", fontsize=12)
-        ax2.set_title("Bulk-Flow Calibration Sensitivity", fontsize=11)
-        ax2.legend(fontsize=10)
-        ax2.grid(True, alpha=0.3)
+        ax2.set_xlabel("Radial Bin $R_{max}$ (Mpc)")
+        ax2.set_ylabel("Bulk-Flow $|v_{bf}|$ (km/s)")
+        ax2.set_title("Bulk-Flow Calibration Sensitivity")
+        ax2.legend()
+        ax2.grid(True)
         ax2.set_xlim(25, 275)
 
         fig.suptitle(

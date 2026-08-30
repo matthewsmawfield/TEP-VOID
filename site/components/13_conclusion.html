@@ -35,14 +35,13 @@
     $155\ {\rm km\,s^{-1}}$ Cepheid excess and a $2.33\sigma$
     directional split; the $H_0$-invariant log-distance estimator
     gives $\Delta B = 0.0$ km/s, showing that the standard estimator
-    is calibration-sensitive. The macroscopic temporal signal is
-    not a rigid kinematic flow: continuous optimization of the
-    Pantheon+ raw magnitude residuals locks onto a finite-coherence
-    scale $L_T = 55.6$ Mpc, and the extracted model carries
-    directional predictive power in the independent CosmicFlows-4
-    dataset ($\Delta\mathrm{RSS} = 17.8$ vs null, $N = 51{,}904$),
-    though the CF4 distance window does not independently recover
-    the specific coherence scale.
+    is calibration-sensitive. The candidate macroscopic temporal component is
+    the finite-coherence feature: continuous optimization of the
+    pre-standardization Pantheon+ residuals locks onto a finite-coherence
+    scale $L_T = 55.6$ Mpc. A frozen projection gives a small out-of-sample 
+    improvement over the CF4 null ($\Delta\mathrm{RSS} = 17.8$ vs null, $N = 51{,}904$),
+    but CF4 does not discriminate the finite-coherence profile from its 
+    $1/r$ asymptote.
     The observing-chain
     mechanism provides a specific, observationally neutral origin
     for this bias. 17 of 22 galaxies with both Cepheid and TRGB
@@ -65,18 +64,16 @@
     light-curve stretch channel that provides a mechanism for the host-mass step,
     which has persisted for $\sim$15 years without a unique physical explanation, and is consistent with
     the Jensen et al. (2025) TRGB-anchored SBF result. A preliminary
-    $X_i$-step test (step_45) on 1,353 Pantheon+ Hubble-flow SNe finds
+    $X_i$-step test on 1,353 Pantheon+ Hubble-flow SNe finds
     $+7.5 \pm 50.2$ mmag ($0.15\sigma$) in the predicted direction with
     measured $V_{\rm rot}$ where available and the Tully-Fisher proxy
     otherwise (underpowered: screening leaves only $N_{\rm low}=18$
-    low-$X_i$ hosts); an expanded analysis (step_48, $N=1,470$ Hubble-flow)
+    low-$X_i$ hosts); an expanded analysis ($N=1,470$ Hubble-flow)
     gives $+22.3 \pm 15.1$ mmag ($1.47\sigma$) in the predicted direction,
     with the joint OLS $X_i$ coefficient after mass correction at
-    $+7.92 \times 10^4 \pm 3.75 \times 10^4$ ($2.11\sigma$) — confirming
-    that the $X_i$ dependence persists beyond the standard SALT3 mass
-    correction — while the measured-$V_{\rm rot}$ subsample ($N=122$ Hubble-flow) is
-    inconclusive due to severe selection bias (unbalanced
-    $N_{\rm high}=116$, $N_{\rm low}=6$). The quantitative development of the two channels
+    $+7.92 \times 10^4 \pm 3.75 \times 10^4$ ($2.11\sigma$). The joint coefficient retains the TEP-predicted sign at $2.11\sigma$ after inclusion of host mass, although interpretation is limited by severe $X_i$–mass multicollinearity; the measured-$V_{\rm rot}$ sample remains the decisive test. The aggressively expanded measured-$V_{\rm rot}$ subsample ($N=128$ Hubble-flow) currently remains
+    structurally inconclusive due to fundamental Pantheon+ selection bias against distant low-mass HI hosts (unbalanced
+    $N_{\rm high}=121$, $N_{\rm low}=7$). The quantitative development of the two channels
     and the definitive radial-gradient tests are given in the
     companion TEP-H0 paper.
 </p>
@@ -155,13 +152,12 @@
     estimator. A proper $H_0$-invariant log-distance estimator
     removes this artifact, giving identical bulk-flow amplitudes
     ($B = 290.0$ km/s) under the two calibrations and a differential
-    flow consistent with zero. The macroscopic temporal signal is
-    a finite-coherence topological feature: continuous optimization
-    on the Pantheon+ raw magnitude residuals yields
-    $L_T = 55.6$ Mpc ($p < 0.001$), and the extracted model carries
-    directional predictive power in the independent CosmicFlows-4
-    dataset, though the CF4 distance window does not independently
-    recover the specific coherence scale. The host-potential-dependent extension (Section 6.1)
+    flow consistent with zero. The candidate macroscopic temporal component is
+    the finite-coherence feature: continuous optimization
+    on the pre-standardization Pantheon+ residuals yields
+    $L_T = 55.6$ Mpc ($p < 0.001$). A frozen projection gives a small 
+    out-of-sample improvement over the CF4 null, but CF4 does not 
+    discriminate the finite-coherence profile from its $1/r$ asymptote. The host-potential-dependent extension (Section 6.1)
     predicts that the velocity shift correlates with $v_{\rm rot}$
     and anti-correlates with group richness — a signature no pure
     kinematic void can produce.
@@ -193,7 +189,7 @@
 <p>
     Channel 2 (SN light-curve stretch) operates on the Hubble-flow SNe
     themselves through the SALT2/SALT3 standardization relation
-    $m_B = M + \alpha\,x_1 - \beta\,c + \Delta_{\rm host}$. The
+    $\mu = m_B - M_B + \alpha\,x_1 - \beta\,c + \Delta_{\rm host}$. The
     light-curve stretch $x_1$ is a diffusion timescale — a clock
     — and inherits an environment-dependent bias under TEP. The
     observed SN Ia host-mass step ($\sim 0.04$–$0.06$ mag) is the
@@ -201,27 +197,27 @@
     is a falsifiable prediction of the same transport mechanism, not
     a post hoc adjustment: the Cepheid channel reconstruction already yields
     $H_0 = 66.65 \pm 1.58$. A preliminary test of the $X_i$-step
-    prediction (step_45) on 1,353 Pantheon+ Hubble-flow SNe finds
+    prediction on 1,353 Pantheon+ Hubble-flow SNe finds
     a step of $+7.5 \pm 50.2$ mmag ($0.15\sigma$) in the TEP-predicted
     direction (high-$X_i$ hosts have more positive Hubble residuals),
     underpowered because screening compresses the sample into the
     high-$X_i$ bin ($N_{\rm high}=1335$, $N_{\rm low}=18$); the
     mass-corrected $X_i$ regression gives $0.71\sigma$ in the same
-    direction. An expanded analysis (step_48) uses measured $V_{\rm rot}$
+    direction. An expanded analysis uses measured $V_{\rm rot}$
     from HyperLEDA (Vizier VII/237, VII/238) for 173 Pantheon+ hosts
     (33 calibrators, 140 Hubble-flow), with the Tully-Fisher proxy
     retained for the remaining hosts. The full sample ($N=1,470$ Hubble-flow) shows
-    $+22.3 \pm 15.1$ mmag ($+1.47\sigma$), the TEP-predicted sign. The
-    measured-$V_{\rm rot}$-only subsample ($N=122$ Hubble-flow) is too
-    unbalanced ($N_{\rm high}=116$, $N_{\rm low}=6$) for a standalone
-    step; its mass-residualized step is $+165.6 \pm 139.3$ mmag
-    ($+1.19\sigma$), in the TEP-predicted direction, with a larger
+    $+22.3 \pm 15.1$ mmag ($+1.47\sigma$), the TEP-predicted sign. The aggressively
+    expanded measured-$V_{\rm rot}$-only subsample ($N=128$ Hubble-flow) remains too
+    structurally unbalanced ($N_{\rm high}=121$, $N_{\rm low}=7$) for a standalone
+    step; its mass-residualized step is $+131.1 \pm 123.6$ mmag
+    ($+1.06\sigma$), in the TEP-predicted direction, with a larger
     amplitude consistent with the deeper potential leverage of the
     measured-$V_{\rm rot}$ sample. The low-$X_i$ bin
     is concentrated at very low redshift (median $z = 0.020$, maximum $z = 0.064$) and is
-    contaminated by peculiar velocities. HyperLEDA is preferentially
-    complete for nearby massive spirals, introducing a selection bias
-    that correlates with $X_i$. The Hubble-flow $X_i$-step with
+    contaminated by peculiar velocities. Deep 21-cm HI surveys rarely 
+    intersect with the distant, low-mass hosts selected by Pantheon+, 
+    introducing a fundamental selection bias. The Hubble-flow $X_i$-step with
     measured $V_{\rm rot}$ is therefore consistent with TEP but
     inconclusive: the small, nearby, unbalanced subsample does not
     provide a clean test. A
@@ -312,9 +308,9 @@
     represented by a finite-coherence profile with characteristic
     scale $L_T \simeq 56$ Mpc along the independently measured CF4
     axis than by the previously assumed global linear-gradient
-    profile. This identifies a local environmental scale for the
+    profile. This identifies a candidate local environmental coherence scale for the
     macroscopic temporal-field perturbation and motivates the
-    independent CF4 cross-prediction test (Section 6.3). The
+    independent CF4 cross-prediction test (Section 6.5). The
     standardization process suppresses approximately 70% of this
     pre-standardization directional signal, with the residual
     remaining significant in the standardized residuals.
@@ -322,8 +318,9 @@
 
 <p>
     Third, indicator comparisons show the directional signature
-    expected from acoustic-clock bias and forbidden by pure
-    kinematics ($2.39\sigma$ sign test; Xi regression negative on
+    expected from acoustic-clock bias, forming a combined pattern
+    not explained by a single pure kinematic outflow
+    ($2.39\sigma$ sign test; Xi regression negative on
     the primary analysis and on the independent CF4 non-R22 subset;
     $\kappa_{\rm Cep} = (0.45 \pm 0.22) \times 10^6$ mag,
     $2.1\sigma$ from redshift-only WLS; $1.6\sigma$ from joint
@@ -335,7 +332,8 @@
     mechanism for the host-mass step, which has persisted for
     $\sim$15 years without a unique physical explanation, and is
     consistent with the Jensen et al. (2025) TRGB-anchored SBF result.
-    The SN channel is falsifiable through the $X_i$-step test.
+    The host-potential dependence of the SN stretch channel remains an
+    uncalibrated prediction pending a decisive measured-$V_{\rm rot}$ sample test.
 </p>
 
 <p>
@@ -359,10 +357,10 @@
     DHOST-to-phenomenology mass-scale matching, and the need for
     measured rotation velocities for the full Hubble-flow sample.
     The falsifiable predictions — band-dependence (Pathway V,
-    cross-team test confirms the predicted negative sign at
-    $0.16\sigma$ with $\chi^2/{\rm dof} = 0.90$; same-team
-    comparison shows the wrong sign, attributed to correlated
-    systematics), tracer-type dependence (Pathway VI, null;
+    cross-team point estimate has the predicted negative sign but is statistically uninformative at
+    $0.16\sigma$ ($N=9$), while the same-team test yields a wrong-sign
+    positive slope that is consistent with a leverage/correlated-systematics explanation, reversing to $-4.87\sigma$ upon removal of a single
+    galactocentric-leverage outlier (M101)), tracer-type dependence (Pathway VI, null;
     implications for the disformal term remain dependent on the
     full non-radial geometry), the JWST matched sample ($N=17$,
     mean $\Delta\mu = -0.023$, $1.02\sigma$,
@@ -385,8 +383,8 @@
     matching remains unresolved. The disformal transport
     mechanism is dominated by the spatial and time-space sectors of the disformal metric; it does not generate the leading conformal spectroscopic
     signature and produces a transport signature distinct from the leading conventional systematics considered here. The
-    band-dependence cross-team test returns the predicted negative
-    sign ($0.16\sigma$, $\chi^2/{\rm dof} = 0.90$), while the
+    band-dependence cross-team point estimate returns the predicted negative
+    sign (albeit statistically uninformative), while the
     same-team comparison shows the wrong sign due to correlated
     systematics; the JWST matched sample shows the predicted negative mean
     $\Delta\mu$ with scatter consistent with the model; the $X_i$-step is

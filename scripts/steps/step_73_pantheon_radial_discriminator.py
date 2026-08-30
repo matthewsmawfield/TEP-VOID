@@ -43,6 +43,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 warnings.filterwarnings("ignore", message="divide by zero encountered in matmul")
 warnings.filterwarnings("ignore", message="overflow encountered in matmul")
@@ -326,6 +327,7 @@ class Step73PantheonRadialDiscriminator:
         return summary
 
     def make_figure(self, summary):
+        colors = apply_tep_style()
         n = len(summary)
         if n == 0:
             return
@@ -338,13 +340,13 @@ class Step73PantheonRadialDiscriminator:
             y = np.array([b["B_par"] for b in res["radial_bins"]])
             t = np.array([b["T_prediction"] for b in res["radial_bins"]])
             ax.plot(x, y, "o-", label="Fitted kinematic $B_{||}$")
-            ax.plot(x, t, "r--", label="TEP $T \\cdot V^2 / V_*$")
-            ax.axhline(0, color="k", ls=":", alpha=0.5)
+            ax.plot(x, t, "--", color=colors['red'], label="TEP $T \\cdot V^2 / V_*$")
+            ax.axhline(0, color=colors['dark'], ls=":", alpha=0.5)
             ax.set_xlabel(r"$V$ (km s$^{-1}$)")
             ax.set_ylabel(r"$B_{||}$ (km s$^{-1}$)")
             ax.set_title(res["label"] + f"\n$N={res['N']}$, $z<{res['z_max']:.2f}")
-            ax.legend(fontsize=8)
-            ax.grid(True, alpha=0.3)
+            ax.legend()
+            ax.grid(True)
         fig.suptitle("Pantheon+ low-z temporal-kinematic discriminator (diagnostic)", fontsize=12)
         fig.tight_layout(rect=[0, 0, 1, 0.96])
         fig.savefig(self.root / "results" / "figures" / "step_73_pantheon_radial_discriminator.png",

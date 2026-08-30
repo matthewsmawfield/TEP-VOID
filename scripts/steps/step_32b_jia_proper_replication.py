@@ -40,6 +40,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 
 class Step32bJiaProperReplication:
@@ -539,13 +540,19 @@ class Step32bJiaProperReplication:
     # ------------------------------------------------------------------
     def plot_results(self, results):
         """Generate comparison figure."""
+        colors = apply_tep_style()
         fig, ax = plt.subplots(1, 1, figsize=(12, 7))
 
         z_centers = [(self.BIN_EDGES[i] + self.BIN_EDGES[i + 1]) / 2
                      for i in range(self.N_BINS)]
 
-        colors = {'sn_only_opt': 'rs', 'sn_hz_opt': 'b^', 'sn_only_mcmc': 'go',
-                  'sn_hz_mcmc': 'mv', 'sn_hz_decor': 'kD'}
+        fmt_map = {
+            'sn_only_opt': ('s', 'red'),
+            'sn_hz_opt': ('^', 'blue'),
+            'sn_only_mcmc': ('o', 'green'),
+            'sn_hz_mcmc': ('v', 'purple'),
+            'sn_hz_decor': ('D', 'dark'),
+        }
         labels_map = {
             'sn_only_opt': 'SN-only (opt)',
             'sn_hz_opt': 'SN+H(z) (opt)',
@@ -565,25 +572,25 @@ class Step32bJiaProperReplication:
             err = r.get("h0z_err") or r.get("h0z_decorrelated_err")
             if h0 is None or err is None:
                 continue
-            fmt = colors[key]
+            marker, color_key = fmt_map[key]
             ax.errorbar(
                 np.array(z_centers) + offsets.get(key, 0),
-                h0, yerr=err, fmt=fmt + '-',
+                h0, yerr=err, fmt=marker + '-',
+                color=colors[color_key],
                 capsize=3, markersize=6, linewidth=1.5, alpha=0.8,
                 label=labels_map.get(key, key),
             )
 
-        ax.axhline(y=67.4, color='gray', linestyle=':', alpha=0.5, label='Planck $H_0$')
-        ax.axhline(y=73.04, color='gray', linestyle='-.', alpha=0.5, label='SH0ES $H_0$')
+        ax.axhline(y=67.4, color=colors['purple'], linestyle=':', alpha=0.5, label='Planck $H_0$')
+        ax.axhline(y=73.04, color=colors['purple'], linestyle='-.', alpha=0.5, label='SH0ES $H_0$')
 
-        ax.set_xlabel('Redshift $z$', fontsize=13)
-        ax.set_ylabel('$H_{0,z}$ (km/s/Mpc)', fontsize=13)
-        ax.set_title("Jia et al. (2023) proper replication: SN-only vs SN+H(z)",
-                     fontsize=12)
-        ax.legend(fontsize=9, loc='upper right')
+        ax.set_xlabel('Redshift $z$')
+        ax.set_ylabel('$H_{0,z}$ (km/s/Mpc)')
+        ax.set_title("Jia et al. (2023) proper replication: SN-only vs SN+H(z)")
+        ax.legend(loc='upper right')
         ax.set_xlim(-0.05, 2.5)
         ax.set_ylim(60, 78)
-        ax.grid(True, alpha=0.3)
+        ax.grid(True)
 
         plt.tight_layout()
         fig_path = self.figures / "step_32b_jia_proper_replication.png"

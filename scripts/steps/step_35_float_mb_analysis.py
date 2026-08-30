@@ -56,6 +56,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 from scripts.utils.screening import U_REF_SCREENED
 
 
@@ -460,6 +461,7 @@ class Step35FloatMBAnalysis:
         """Generate diagnostic figure."""
         print_status("Generating figure...", "PROCESS")
 
+        colors = apply_tep_style()
         fig, axes = plt.subplots(2, 2, figsize=(14, 10))
 
         # Panel 1: M_B fit per mass bin
@@ -485,7 +487,7 @@ class Step35FloatMBAnalysis:
         ax.set_ylabel("Best-fit $M_B$ (mag)")
         ax.set_title("Data-driven $M_B$ fit per host mass bin")
         ax.legend()
-        ax.axhline(y=self.MB_GLOBAL, color="red", ls="--", label="Global $M_B$")
+        ax.axhline(y=self.MB_GLOBAL, color=colors['red'], ls="--", label="Global $M_B$")
         ax.invert_yaxis()
 
         # Panel 2: SALT2 absorption
@@ -496,8 +498,8 @@ class Step35FloatMBAnalysis:
             salt2_results["salt2_mass_step_correction_mag"],
             salt2_results["tep_predicted_delta_mb_mag"],
         ]
-        colors = ["#2ecc71", "#e74c3c", "#3498db"]
-        ax.bar(categories, values, color=colors, alpha=0.8)
+        bar_colors = [colors['green'], colors['red'], colors['blue']]
+        ax.bar(categories, values, color=bar_colors, alpha=0.8)
         ax.set_ylabel("$\\Delta M_B$ (mag)")
         ax.set_title("SALT2 absorption of TEP host-mass signal")
         for i, v in enumerate(values):
@@ -512,15 +514,15 @@ class Step35FloatMBAnalysis:
         h0_orig_l = [b["low_mass"]["h0_orig"] for b in bins]
         h0_tep_l = [b["low_mass"]["h0_tep"] for b in bins]
 
-        ax.plot(z_mids, h0_orig_m, "o-", color="blue", label="Massive (orig)")
-        ax.plot(z_mids, h0_tep_m, "s--", color="cyan", label="Massive (TEP)")
-        ax.plot(z_mids, h0_orig_l, "o-", color="red", label="Low-mass (orig)")
-        ax.plot(z_mids, h0_tep_l, "s--", color="orange", label="Low-mass (TEP)")
-        ax.axhline(y=self.H0_CMB, color="gray", ls=":", label="CMB $H_0$")
+        ax.plot(z_mids, h0_orig_m, "o-", color=colors['blue'], label="Massive (orig)")
+        ax.plot(z_mids, h0_tep_m, "s--", color=colors['light_blue'], label="Massive (TEP)")
+        ax.plot(z_mids, h0_orig_l, "o-", color=colors['red'], label="Low-mass (orig)")
+        ax.plot(z_mids, h0_tep_l, "s--", color=colors['accent'], label="Low-mass (TEP)")
+        ax.axhline(y=self.H0_CMB, color=colors['purple'], ls=":", label="CMB $H_0$")
         ax.set_xlabel("z")
         ax.set_ylabel("$H_0$ (km/s/Mpc)")
         ax.set_title("Forward model: $H_0(z)$ with TEP per-host $M_B$")
-        ax.legend(fontsize=8)
+        ax.legend()
         ax.set_xscale("log")
         ax.set_ylim(65, 78)
 
@@ -536,7 +538,7 @@ class Step35FloatMBAnalysis:
             gf["scatter_orig_low"],
             gf["scatter_tep_low"],
         ]
-        ax.bar(cats, scatters, color=["#3498db", "#2ecc71"] * 3, alpha=0.8)
+        ax.bar(cats, scatters, color=[colors['blue'], colors['green']] * 3, alpha=0.8)
         ax.set_ylabel("Hubble residual scatter (mag)")
         ax.set_title("LCDM fit quality preserved")
         plt.setp(ax.get_xticklabels(), rotation=45, ha="right")

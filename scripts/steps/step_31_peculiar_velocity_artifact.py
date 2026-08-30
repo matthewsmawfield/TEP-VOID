@@ -47,6 +47,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 
 class Step31PeculiarVelocityArtifact:
@@ -276,6 +277,7 @@ class Step31PeculiarVelocityArtifact:
 
     def plot_results(self, df, results):
         """Generate figure showing calibration sensitivity of peculiar velocities."""
+        colors = apply_tep_style()
         print_status("Generating peculiar velocity figure...", "PROCESS")
 
         fig, axes = plt.subplots(1, 2, figsize=(14, 6))
@@ -285,23 +287,23 @@ class Step31PeculiarVelocityArtifact:
         if "v_pec_cepheid" in df.columns:
             v_cep = df["v_pec_cepheid"].dropna()
             ax1.hist(
-                v_cep, bins=50, alpha=0.6, color="#d62728",
+                v_cep, bins=50, alpha=0.6, color=colors['red'],
                 label=f"Cepheid $H_0={self.H0_CEPHEID}$ ($\\mu$={v_cep.mean():.0f} km/s)",
                 density=True,
             )
         if "v_pec_trgb" in df.columns:
             v_trgb = df["v_pec_trgb"].dropna()
             ax1.hist(
-                v_trgb, bins=50, alpha=0.6, color="#2ca02c",
+                v_trgb, bins=50, alpha=0.6, color=colors['green'],
                 label=f"TRGB $H_0={self.H0_TRGB}$ ($\\mu$={v_trgb.mean():.0f} km/s)",
                 density=True,
             )
-        ax1.set_xlabel("$v_{pec}$ (km/s)", fontsize=13)
-        ax1.set_ylabel("Density", fontsize=13)
-        ax1.set_title("Peculiar Velocity Distributions", fontsize=13)
-        ax1.legend(fontsize=10)
-        ax1.grid(True, alpha=0.3)
-        ax1.axvline(0, color="black", linestyle="--", alpha=0.5)
+        ax1.set_xlabel("$v_{pec}$ (km/s)")
+        ax1.set_ylabel("Density")
+        ax1.set_title("Peculiar Velocity Distributions")
+        ax1.legend()
+        ax1.grid(True)
+        ax1.axvline(0, color=colors['dark'], linestyle="--", alpha=0.5)
         ax1.set_xlim(-2000, 2000)
 
         # Panel 2: Calibration shift vs distance
@@ -314,20 +316,20 @@ class Step31PeculiarVelocityArtifact:
             if mask.sum() > 0:
                 if mask.sum() > 5000:
                     sample_idx = np.random.choice(mask[mask].index, 5000, replace=False)
-                    ax2.scatter(d.loc[sample_idx], shift.loc[sample_idx], c="#1f77b4", s=5, alpha=0.3)
+                    ax2.scatter(d.loc[sample_idx], shift.loc[sample_idx], c=colors['blue'], s=5, alpha=0.3)
                 else:
-                    ax2.scatter(d[mask], shift[mask], c="#1f77b4", s=20, alpha=0.6)
+                    ax2.scatter(d[mask], shift[mask], c=colors['blue'], s=20, alpha=0.6)
 
                 d_range = np.linspace(0, d[mask].max(), 100)
                 expected = (self.H0_TRGB - self.H0_CEPHEID) * d_range
-                ax2.plot(d_range, expected, "r--", linewidth=2, label="$\\Delta H_0 \\times d$")
+                ax2.plot(d_range, expected, color=colors['red'], linestyle="--", linewidth=2, label="$\\Delta H_0 \\times d$")
 
-            ax2.axhline(0, color="black", linestyle="--", alpha=0.5)
-            ax2.set_xlabel("Distance $d$ (Mpc)", fontsize=13)
-            ax2.set_ylabel("$\\Delta v_{pec} = v_{pec}^{Cep} - v_{pec}^{TRGB}$ (km/s)", fontsize=12)
-            ax2.set_title("Calibration-Induced Shift (Deterministic)", fontsize=13)
-            ax2.legend(fontsize=11)
-            ax2.grid(True, alpha=0.3)
+            ax2.axhline(0, color=colors['dark'], linestyle="--", alpha=0.5)
+            ax2.set_xlabel("Distance $d$ (Mpc)")
+            ax2.set_ylabel("$\\Delta v_{pec} = v_{pec}^{Cep} - v_{pec}^{TRGB}$ (km/s)")
+            ax2.set_title("Calibration-Induced Shift (Deterministic)")
+            ax2.legend()
+            ax2.grid(True)
 
         fig.suptitle(
             "Step 31: Peculiar Velocity Calibration Sensitivity\n"

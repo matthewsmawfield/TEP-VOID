@@ -1,27 +1,22 @@
-[20:54:26] [INFO] 
-[20:54:26] [INFO] ================================================================================
-[20:54:26] [INFO]    Step 02: CosmicFlows-4 Ingestion
-[20:54:26] [INFO] ================================================================================
-[20:54:26] [INFO] 
-[20:54:26] [INFO] Scientific context: This step addresses the question of how the local peculiar velocity field is characterized on large scales, which is essential for quantifying the bulk-flow signal that the void-based explanation of the Hubble tension invokes. The CosmicFlows-4 catalog (Tully et al. 2023) provides ~55,877 individual galaxy distances and ~38,053 group peculiar velocities from multiple distance indicators (TF, FP, SBF, SN Ia, SN II, TRGB, Cepheid, maser). Ingesting this catalog enables the downstream bulk-flow and void-geometry analyses that serve as the null-hypothesis benchmark against which the Temporal Equivalence Principle prediction is compared.
-[20:54:26] [INFO] Data sources: CDS archive J/ApJ/944/94 (table2.dat and table4.dat), downloaded via Playwright headless browser to bypass Anubis proof-of-work protection. Published Watkins et al. (2023) bulk-flow measurements serve as a documented fallback if the full catalog cannot be retrieved. This step is part of Block 0 of the TEP-VOID pipeline.
-[20:54:26] [PROCESS] CF4 table2.dat already exists (10422 KB)
-[20:54:26] [PROCESS] CF4 table4.dat already exists (5871 KB)
-[20:54:26] [PROCESS] Methodology: CF4 table2 is parsed as fixed-width columns per the CDS ReadMe specification (28 columns, 1-indexed bytes). Distances are derived from the composite distance modulus via d = 10^((DM - 25)/5) Mpc with uncertainty delta_d = e_DM * d * ln(10)/5. Redshift is computed from the CMB-frame velocity as z = Vcmb / c (c = 299792.458 km/s).
-[20:54:26] [PROCESS] Parsing CF4 table2 (individual galaxy distances)...
-[20:54:26] [SUCCESS]   Loaded 55877 galaxies
-[20:54:27] [SUCCESS] Saved 55877 galaxies to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cf4_galaxies.csv
-[20:54:27] [PROCESS] Methodology: CF4 table4 is parsed as fixed-width columns per the CDS ReadMe specification (22 columns). Group peculiar velocities are taken from the ramped estimator Vpec (Eq. 11 of Tully et al. 2023), which combines the Davis–Scrimgeour and Watkins–Feldman estimators. Redshift is computed from the CMB-frame group velocity as z = V3k / c. Supergalactic Cartesian coordinates (SGX, SGY, SGZ) are retained for downstream void-geometry analysis.
-[20:54:27] [PROCESS] Parsing CF4 table4 (group peculiar velocities)...
-[20:54:27] [SUCCESS]   Loaded 38053 galaxy groups
-[20:54:28] [SUCCESS] Saved 38053 groups to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cf4_groups.csv
-[20:54:28] [SUCCESS] Processed CF4 catalog saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cosmicflows4_processed.csv
-[20:54:28] [TEST] Interpretation: 38053 galaxy groups with peculiar velocities have been ingested. The group catalog (table4) serves as the primary input for downstream bulk-flow estimation, which characterizes the large-scale peculiar velocity field that the void-based explanation of the Hubble tension relies upon. The Temporal Equivalence Principle prediction does not require a coherent bulk flow, so the comparison of these two frameworks is direct.
-[20:54:28] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_02_cosmicflows_ingestion.json
-[20:54:28] [SUCCESS] Step 02 complete
-[20:54:28] [SUCCESS] step_02 completed in 2.1s
-[20:54:28] [INFO] 
-[20:54:28] [INFO] ================================================================================
-[20:54:28] [INFO]    Starting step_03: Pantheon+ supernova distance-redshift catalog
-[20:54:28] [INFO] ================================================================================
-[20:54:28] [INFO] 
+[23:43:40] [INFO] 
+[23:43:40] [INFO] ================================================================================
+[23:43:40] [INFO]    Step 02: CosmicFlows-4 Ingestion
+[23:43:40] [INFO] ================================================================================
+[23:43:40] [INFO] 
+[23:43:40] [INFO] Scientific context: This step addresses the question of how the local peculiar velocity field is characterized on large scales, which is essential for quantifying the bulk-flow signal that the void-based explanation of the Hubble tension invokes. The CosmicFlows-4 catalog (Tully et al. 2023) provides ~55,877 individual galaxy distances and ~38,053 group peculiar velocities from multiple distance indicators (TF, FP, SBF, SN Ia, SN II, TRGB, Cepheid, maser). Ingesting this catalog enables the downstream bulk-flow and void-geometry analyses that serve as the null-hypothesis benchmark against which the Temporal Equivalence Principle prediction is compared.
+[23:43:40] [INFO] Data sources: CDS archive J/ApJ/944/94 (table2.dat and table4.dat), downloaded via Playwright headless browser to bypass Anubis proof-of-work protection. Published Watkins et al. (2023) bulk-flow measurements serve as a documented fallback if the full catalog cannot be retrieved. This step is part of Block 0 of the TEP-VOID pipeline.
+[23:43:40] [PROCESS] CF4 table2.dat already exists (10422 KB)
+[23:43:40] [PROCESS] CF4 table4.dat already exists (5871 KB)
+[23:43:40] [PROCESS] Methodology: CF4 table2 is parsed as fixed-width columns per the CDS ReadMe specification (28 columns, 1-indexed bytes). Distances are derived from the composite distance modulus via d = 10^((DM - 25)/5) Mpc with uncertainty delta_d = e_DM * d * ln(10)/5. Redshift is computed from the CMB-frame velocity as z = Vcmb / c (c = 299792.458 km/s).
+[23:43:40] [PROCESS] Parsing CF4 table2 (individual galaxy distances)...
+[23:43:40] [SUCCESS]   Loaded 55877 galaxies
+[23:43:40] [SUCCESS] Saved 55877 galaxies to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cf4_galaxies.csv
+[23:43:40] [PROCESS] Methodology: CF4 table4 is parsed as fixed-width columns per the CDS ReadMe specification (22 columns). Group peculiar velocities are taken from the ramped estimator Vpec (Eq. 11 of Tully et al. 2023), which combines the Davis–Scrimgeour and Watkins–Feldman estimators. Redshift is computed from the CMB-frame group velocity as z = V3k / c. Supergalactic Cartesian coordinates (SGX, SGY, SGZ) are retained for downstream void-geometry analysis.
+[23:43:40] [PROCESS] Parsing CF4 table4 (group peculiar velocities)...
+[23:43:40] [SUCCESS]   Loaded 38053 galaxy groups
+[23:43:41] [SUCCESS] Saved 38053 groups to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cf4_groups.csv
+[23:43:41] [SUCCESS] Processed CF4 catalog saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cosmicflows4_processed.csv
+[23:43:41] [TEST] Interpretation: 38053 galaxy groups with peculiar velocities have been ingested. The group catalog (table4) serves as the primary input for downstream bulk-flow estimation, which characterizes the large-scale peculiar velocity field that the void-based explanation of the Hubble tension relies upon. The Temporal Equivalence Principle prediction does not require a coherent bulk flow, so the comparison of these two frameworks is direct.
+[23:43:41] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_02_cosmicflows_ingestion.json
+[23:43:41] [SUCCESS] Step 02 complete
+[23:43:41] [SUCCESS] step_02 completed in 0.9s

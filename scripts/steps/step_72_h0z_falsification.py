@@ -47,6 +47,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 warnings.filterwarnings("ignore", message="divide by zero encountered in matmul")
 warnings.filterwarnings("ignore", message="overflow encountered in matmul")
@@ -368,6 +369,7 @@ class Step72H0zFalsification:
         return summary
 
     def make_figures(self, df, results):
+        colors = apply_tep_style()
         fig, axes = plt.subplots(1, 2, figsize=(13, 5))
 
         # Panel 1: BIC comparison
@@ -380,7 +382,7 @@ class Step72H0zFalsification:
         axes[0].set_xticklabels(names, rotation=45, ha="right", fontsize=8)
         axes[0].set_ylabel(r"$\Delta$ BIC")
         axes[0].set_title("Model comparison (full Pantheon+ STAT+SYS)")
-        axes[0].axhline(0, color="k", ls=":")
+        axes[0].axhline(0, color=colors['dark'], ls=":")
 
         # Panel 2: H0(z) curves for best models
         z_plot = np.linspace(0.01, 2.6, 200)
@@ -395,11 +397,11 @@ class Step72H0zFalsification:
                 h = r.get("H0_inf", H0_CMB) + r["dH0"] * np.exp(-0.5 * (z_plot / r.get("sigma", 0.82)) ** 2)
                 ls = ":"
             axes[1].plot(z_plot, h, ls, label=r["name"])
-        axes[1].axhline(H0_CMB, color="k", ls=":", alpha=0.5)
+        axes[1].axhline(H0_CMB, color=colors['dark'], ls=":", alpha=0.5)
         axes[1].set_xlabel("z")
         axes[1].set_ylabel("H0(z) (km/s/Mpc)")
         axes[1].set_title("Fitted H0(z) profiles")
-        axes[1].legend(fontsize=7)
+        axes[1].legend()
         axes[1].set_xlim(0, 2.6)
 
         plt.tight_layout()

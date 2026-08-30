@@ -1,36 +1,31 @@
-[20:54:25] [INFO] 
-[20:54:25] [INFO] ================================================================================
-[20:54:25] [INFO]    Step 00: Data Ingestion — SH0ES + CCHP
-[20:54:25] [INFO] ================================================================================
-[20:54:25] [INFO] 
-[20:54:25] [INFO] Scientific context: This step addresses the foundational data-assembly question of whether independent distance indicators (Cepheid variables from the SH0ES/R22 programme and TRGB stars from the CCHP/Freedman 2025 programme) yield mutually consistent distance moduli for the same set of SN Ia host galaxies. The resulting matched catalog provides the indicator-pair sample whose divergence (delta_mu = mu_Cepheid - mu_TRGB) is the primary observable for testing whether local gravitational potential depth modulates the distance ladder in a manner consistent with the Temporal Equivalence Principle versus the standard void-based explanation of the Hubble tension.
-[20:54:25] [INFO] Data sources: Pantheon+SH0ES.dat (GitHub, Riess et al. 2022), R22 Cepheid distance moduli, CCHP TRGB distance moduli (Freedman et al. 2025), and HyperLEDA velocity dispersions. This step constitutes Block 0 of the TEP-VOID pipeline and feeds all downstream indicator-divergence and potential-stratification analyses.
-[20:54:25] [PROCESS] Pantheon+SH0ES.dat already exists (566 KB)
-[20:54:25] [PROCESS] Loading SH0ES Cepheid + SN Ia data...
-[20:54:25] [SUCCESS] Loaded 1701 rows from Pantheon+SH0ES.dat
-[20:54:25] [SUCCESS] Saved Cepheid hosts to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/shoes_cepheid_hosts.csv
-[20:54:25] [PROCESS] Loading R22 Cepheid distances from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/r22_cepheid_distances.csv
-[20:54:25] [SUCCESS] Loaded 40 R22 Cepheid distance moduli
-[20:54:25] [SUCCESS] Saved R22 Cepheid hosts to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/r22_cepheid_hosts.csv
-[20:54:25] [PROCESS] Loading CCHP TRGB distances from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/trgb_distances_freedman2024.csv
-[20:54:25] [SUCCESS] Loaded 18 TRGB host galaxies
-[20:54:25] [SUCCESS] Saved TRGB hosts to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cchp_trgb_hosts.csv
-[20:54:25] [PROCESS] Loading velocity dispersions from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/velocity_dispersions_literature.csv
-[20:54:25] [SUCCESS] Loaded 41 velocity dispersion entries
-[20:54:25] [PROCESS] Methodology: Cross-matching is performed on normalized galaxy names (case-insensitive, whitespace-collapsed, NGC zero-padding removed). An inner join between the Cepheid and TRGB catalogs retains only galaxies with both indicators. Velocity dispersions are attached via a left join. The divergence observable delta_mu = mu_Cepheid - mu_TRGB is computed with Gaussian uncertainty propagation (delta_mu_err = sqrt(mu_cep_err^2 + mu_trgb_err^2)).
-[20:54:25] [PROCESS] Cross-matching Cepheid + TRGB + velocity dispersions...
-[20:54:25] [SUCCESS]   Cepheid + TRGB match: 18 galaxies
-[20:54:25] [SUCCESS]   With velocity dispersions: 18/18
-[20:54:25] [SUCCESS]   Final matched catalog: 18 galaxies
-[20:54:25] [TEST]   Mean delta_mu: -0.0052 mag
-[20:54:25] [TEST]   delta_mu range: [-0.2161, 0.1072]
-[20:54:25] [SUCCESS] Saved matched hosts to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/matched_hosts.csv
-[20:54:25] [TEST] Interpretation: 18 galaxies possess both Cepheid and TRGB distance moduli, forming the indicator-pair sample. The mean divergence delta_mu = -0.0052 mag quantifies the systematic offset between the two distance scales; a statistically significant non-zero mean would indicate that the two indicators are not mutually calibrated, motivating the potential-stratified analysis in subsequent blocks.
-[20:54:25] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_00_data_ingestion_summary.json
-[20:54:25] [SUCCESS] Step 00 complete
-[20:54:25] [SUCCESS] step_00 completed in 0.7s
-[20:54:25] [INFO] 
-[20:54:25] [INFO] ================================================================================
-[20:54:25] [INFO]    Starting step_00b: External data download: all datasets with SHA-256 checksums + provenance manifest
-[20:54:25] [INFO] ================================================================================
-[20:54:25] [INFO] 
+[23:43:38] [INFO] 
+[23:43:38] [INFO] ================================================================================
+[23:43:38] [INFO]    Step 00: Data Ingestion — SH0ES + CCHP
+[23:43:38] [INFO] ================================================================================
+[23:43:38] [INFO] 
+[23:43:38] [INFO] Scientific context: This step addresses the foundational data-assembly question of whether independent distance indicators (Cepheid variables from the SH0ES/R22 programme and TRGB stars from the CCHP/Freedman 2025 programme) yield mutually consistent distance moduli for the same set of SN Ia host galaxies. The resulting matched catalog provides the indicator-pair sample whose divergence (delta_mu = mu_Cepheid - mu_TRGB) is the primary observable for testing whether local gravitational potential depth modulates the distance ladder in a manner consistent with the Temporal Equivalence Principle versus the standard void-based explanation of the Hubble tension.
+[23:43:38] [INFO] Data sources: Pantheon+SH0ES.dat (GitHub, Riess et al. 2022), R22 Cepheid distance moduli, CCHP TRGB distance moduli (Freedman et al. 2025), and HyperLEDA velocity dispersions. This step constitutes Block 0 of the TEP-VOID pipeline and feeds all downstream indicator-divergence and potential-stratification analyses.
+[23:43:38] [PROCESS] Pantheon+SH0ES.dat already exists (566 KB)
+[23:43:38] [PROCESS] Loading SH0ES Cepheid + SN Ia data...
+[23:43:38] [SUCCESS] Loaded 1701 rows from Pantheon+SH0ES.dat
+[23:43:38] [SUCCESS] Saved Cepheid hosts to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/shoes_cepheid_hosts.csv
+[23:43:38] [PROCESS] Loading R22 Cepheid distances from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/r22_cepheid_distances.csv
+[23:43:38] [SUCCESS] Loaded 40 R22 Cepheid distance moduli
+[23:43:38] [SUCCESS] Saved R22 Cepheid hosts to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/r22_cepheid_hosts.csv
+[23:43:38] [PROCESS] Loading CCHP TRGB distances from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/trgb_distances_freedman2024.csv
+[23:43:38] [SUCCESS] Loaded 18 TRGB host galaxies
+[23:43:38] [SUCCESS] Saved TRGB hosts to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cchp_trgb_hosts.csv
+[23:43:38] [PROCESS] Loading velocity dispersions from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/external/velocity_dispersions_literature.csv
+[23:43:38] [SUCCESS] Loaded 41 velocity dispersion entries
+[23:43:38] [PROCESS] Methodology: Cross-matching is performed on normalized galaxy names (case-insensitive, whitespace-collapsed, NGC zero-padding removed). An inner join between the Cepheid and TRGB catalogs retains only galaxies with both indicators. Velocity dispersions are attached via a left join. The divergence observable delta_mu = mu_Cepheid - mu_TRGB is computed with Gaussian uncertainty propagation (delta_mu_err = sqrt(mu_cep_err^2 + mu_trgb_err^2)).
+[23:43:38] [PROCESS] Cross-matching Cepheid + TRGB + velocity dispersions...
+[23:43:38] [SUCCESS]   Cepheid + TRGB match: 18 galaxies
+[23:43:38] [SUCCESS]   With velocity dispersions: 18/18
+[23:43:38] [SUCCESS]   Final matched catalog: 18 galaxies
+[23:43:38] [TEST]   Mean delta_mu: -0.0052 mag
+[23:43:38] [TEST]   delta_mu range: [-0.2161, 0.1072]
+[23:43:38] [SUCCESS] Saved matched hosts to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/matched_hosts.csv
+[23:43:38] [TEST] Interpretation: 18 galaxies possess both Cepheid and TRGB distance moduli, forming the indicator-pair sample. The mean divergence delta_mu = -0.0052 mag quantifies the systematic offset between the two distance scales; a statistically significant non-zero mean would indicate that the two indicators are not mutually calibrated, motivating the potential-stratified analysis in subsequent blocks.
+[23:43:38] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_00_data_ingestion_summary.json
+[23:43:38] [SUCCESS] Step 00 complete
+[23:43:38] [SUCCESS] step_00 completed in 0.4s

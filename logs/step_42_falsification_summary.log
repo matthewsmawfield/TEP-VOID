@@ -1,34 +1,29 @@
-[20:56:07] [INFO] 
-[20:56:07] [INFO] ================================================================================
-[20:56:07] [INFO]    Step 42: Falsification Summary — Void vs TEP Head-to-Head
-[20:56:07] [INFO] ================================================================================
-[20:56:07] [INFO] 
-[20:56:07] [INFO] This step compiles the four discriminating observables that distinguish the KBC void/MOND model from the TEP isochrony-violation framework into a single head-to-head falsification assessment. Observables 1, 3, and 4 are independent direct falsification tests; Observable 2 quantifies how the indicator divergence propagates into the peculiar velocity field. The overall verdict determines whether the void model survives the combined evidence or is falsified in favor of TEP.
-[20:56:07] [PROCESS] Loading previous step results...
-[20:56:07] [SUCCESS]   Loaded step_30_bulk_flow_recalculation.json
-[20:56:07] [SUCCESS]   Loaded step_31_peculiar_velocity_artifact.json
-[20:56:07] [SUCCESS]   Loaded step_32_redshift_decay_profile.json
-[20:56:07] [SUCCESS]   Loaded step_34_void_boundary_test.json
-[20:56:07] [SUCCESS]   Loaded step_40_redshift_shear_reconstruction.json
-[20:56:07] [PROCESS] Loaded 5/5 step results
-[20:56:07] [PROCESS] Methodology: four discriminating observables are compiled from upstream step results (steps 30, 31, 32, 34, 40). Each observable carries explicit TEP and void predictions, a measured result, and a significance assessment. Direct falsification tests (observables 1, 3, 4) are weighted most heavily in the overall verdict.
-[20:56:07] [PROCESS] Compiling discriminating observables...
-[20:56:07] [TEST]   Observable 1: Indicator Divergence — TEP favored: False
-[20:56:07] [TEST]   Observable 2: Calibration Sensitivity — TEP favored: True
-[20:56:07] [TEST]   Observable 3: H0(z) Profile — TEP favored: True
-[20:56:07] [TEST]   Observable 4: Relative Evolution — TEP favored: True
-[20:56:07] [PROCESS] Computing overall assessment...
-[20:56:07] [TEST]   TEP favored in 3/4 observables
-[20:56:07] [TEST]   Direct falsification tests: 2/3 favor TEP
-[20:56:07] [SUCCESS]   Overall verdict: TEP strongly favored — majority of observables support TEP; void model falsified on redshift-profile grounds
-[20:56:07] [SUCCESS] Interpretation: TEP is favored in 3/4 observables, with 2/3 direct falsification tests supporting TEP over the void model. The verdict is: TEP strongly favored — majority of observables support TEP; void model falsified on redshift-profile grounds
-[20:56:07] [PROCESS] Writing falsification summary CSV table...
-[20:56:07] [SUCCESS] CSV table saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_42_falsification_table.csv
-[20:56:07] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_42_falsification_summary.json
-[20:56:07] [SUCCESS] Step 42 complete
-[20:56:07] [SUCCESS] step_42 completed in 0.0s
-[20:56:07] [INFO] 
-[20:56:07] [INFO] ================================================================================
-[20:56:07] [INFO]    Starting step_43: Manuscript figure generation from all results
-[20:56:07] [INFO] ================================================================================
-[20:56:07] [INFO] 
+[23:45:21] [INFO] 
+[23:45:21] [INFO] ================================================================================
+[23:45:21] [INFO]    Step 42: Falsification Summary — Void vs TEP Head-to-Head
+[23:45:21] [INFO] ================================================================================
+[23:45:21] [INFO] 
+[23:45:21] [INFO] This step compiles the four discriminating observables that distinguish the KBC void/MOND model from the TEP isochrony-violation framework into a single head-to-head falsification assessment. Observables 1, 3, and 4 are independent direct falsification tests; Observable 2 quantifies how the indicator divergence propagates into the peculiar velocity field. The overall verdict determines whether the void model survives the combined evidence or is falsified in favor of TEP.
+[23:45:21] [PROCESS] Loading previous step results...
+[23:45:21] [SUCCESS]   Loaded step_30_bulk_flow_recalculation.json
+[23:45:21] [SUCCESS]   Loaded step_31_peculiar_velocity_artifact.json
+[23:45:21] [SUCCESS]   Loaded step_32_redshift_decay_profile.json
+[23:45:21] [SUCCESS]   Loaded step_34_void_boundary_test.json
+[23:45:21] [SUCCESS]   Loaded step_40_redshift_shear_reconstruction.json
+[23:45:21] [PROCESS] Loaded 5/5 step results
+[23:45:21] [PROCESS] Methodology: four discriminating observables are compiled from upstream step results (steps 30, 31, 32, 34, 40). Each observable carries explicit TEP and void predictions, a measured result, and a significance assessment. Direct falsification tests (observables 1, 3, 4) are weighted most heavily in the overall verdict.
+[23:45:21] [PROCESS] Compiling discriminating observables...
+[23:45:21] [TEST]   Observable 1: Indicator Divergence — TEP favored: False
+[23:45:21] [TEST]   Observable 2: Calibration Sensitivity — TEP favored: True
+[23:45:21] [TEST]   Observable 3: H0(z) Profile — TEP favored: True
+[23:45:21] [TEST]   Observable 4: Relative Evolution — TEP favored: True
+[23:45:21] [PROCESS] Computing overall assessment...
+[23:45:21] [TEST]   TEP favored in 3/4 observables
+[23:45:21] [TEST]   Direct falsification tests: 2/3 favor TEP
+[23:45:21] [SUCCESS]   Overall verdict: TEP strongly favored — majority of observables support TEP; void model falsified on redshift-profile grounds
+[23:45:21] [SUCCESS] Interpretation: TEP is favored in 3/4 observables, with 2/3 direct falsification tests supporting TEP over the void model. The verdict is: TEP strongly favored — majority of observables support TEP; void model falsified on redshift-profile grounds
+[23:45:21] [PROCESS] Writing falsification summary CSV table...
+[23:45:21] [SUCCESS] CSV table saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_42_falsification_table.csv
+[23:45:21] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_42_falsification_summary.json
+[23:45:21] [SUCCESS] Step 42 complete
+[23:45:21] [SUCCESS] step_42 completed in 0.0s

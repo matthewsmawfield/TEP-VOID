@@ -40,6 +40,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 
 class Step34VoidBoundaryTest:
@@ -689,6 +690,7 @@ class Step34VoidBoundaryTest:
         """Generate the void boundary test figure."""
         print_status("Generating void boundary test figure...", "PROCESS")
 
+        colors = apply_tep_style()
         fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
         # Panel 1: H0(z) for massive vs low-mass hosts
@@ -703,28 +705,28 @@ class Step34VoidBoundaryTest:
         tm = mc_massive.get("tep_fit", {})
         if vm:
             h0_void_g = self.H0_CMB + vm["delta_h0"] * np.exp(-z_fine**2 / (2 * vm["sigma_z"]**2))
-            ax1.plot(z_fine, h0_void_g, "r--", linewidth=2,
+            ax1.plot(z_fine, h0_void_g, "--", color=colors['red'], linewidth=2,
                      label=f"Void-Gauss fit ($\\sigma_z$={vm['sigma_z']:.2f})")
         if vm_e:
             h0_void_e = self.H0_CMB + vm_e["delta_h0"] * np.exp(-z_fine / vm_e["z_0"])
-            ax1.plot(z_fine, h0_void_e, "m--", linewidth=2, alpha=0.7,
+            ax1.plot(z_fine, h0_void_e, "--", color=colors['purple'], linewidth=2, alpha=0.7,
                      label=f"Void-Exp fit ($z_0$={vm_e['z_0']:.2f})")
         # Also plot published fixed curves
         h0_void_pub = self.void_model_h0(z_fine, profile="gaussian")
-        ax1.plot(z_fine, h0_void_pub, "r:", linewidth=1.5, alpha=0.6,
+        ax1.plot(z_fine, h0_void_pub, ":", color=colors['red'], linewidth=1.5, alpha=0.6,
                  label=f"Void-Gauss (published $\\sigma_z$={self.VOID_GAUSSIAN_SIGMA_Z})")
         h0_void_exp_pub = self.void_model_h0(z_fine, profile="exponential")
-        ax1.plot(z_fine, h0_void_exp_pub, "m:", linewidth=1.5, alpha=0.6,
+        ax1.plot(z_fine, h0_void_exp_pub, ":", color=colors['purple'], linewidth=1.5, alpha=0.6,
                  label=f"Void-Exp (published $z_0$={self.VOID_EXPONENTIAL_Z0})")
         if tm:
             h0_tep = self.H0_CMB + tm["delta_h0"] * (1.0 + z_fine) ** (-tm["decay_index"])
-            ax1.plot(z_fine, h0_tep, "b-", linewidth=2,
+            ax1.plot(z_fine, h0_tep, "-", color=colors['blue'], linewidth=2,
                      label=f"TEP fit ($n$={tm['decay_index']:.2f})")
-        ax1.axhline(self.H0_CMB, color="gray", linestyle=":", alpha=0.5, label="Planck CMB")
-        ax1.axhline(self.H0_SH0ES, color="gray", linestyle="--", alpha=0.3, label="SH0ES local")
+        ax1.axhline(self.H0_CMB, color=colors['purple'], linestyle=":", alpha=0.5, label="Planck CMB")
+        ax1.axhline(self.H0_SH0ES, color=colors['purple'], linestyle="--", alpha=0.3, label="SH0ES local")
 
         # Data points
-        for host_type, color, marker in [("massive", "#d62728", "^"), ("low_mass", "#1f77b4", "s")]:
+        for host_type, color_key, marker in [("massive", "red", "^"), ("low_mass", "blue", "s")]:
             z_pts = []
             h0_pts = []
             err_pts = []
@@ -736,14 +738,14 @@ class Step34VoidBoundaryTest:
                     err_pts.append(cat["h0_sem"])
             if z_pts:
                 label = f"Massive hosts" if host_type == "massive" else f"Low-mass hosts"
-                ax1.errorbar(z_pts, h0_pts, yerr=err_pts, fmt=marker, color=color,
+                ax1.errorbar(z_pts, h0_pts, yerr=err_pts, fmt=marker, color=colors[color_key],
                             capsize=4, markersize=7, label=label, zorder=5)
 
-        ax1.set_xlabel("Redshift $z$", fontsize=13)
-        ax1.set_ylabel("$H_0(z)$ (km/s/Mpc)", fontsize=13)
-        ax1.set_title("Void Boundary Test: $H_0(z)$ by Host Mass", fontsize=14)
-        ax1.legend(fontsize=7, loc="upper right")
-        ax1.grid(True, alpha=0.3)
+        ax1.set_xlabel("Redshift $z$")
+        ax1.set_ylabel("$H_0(z)$ (km/s/Mpc)")
+        ax1.set_title("Void Boundary Test: $H_0(z)$ by Host Mass")
+        ax1.legend(loc="upper right")
+        ax1.grid(True)
         ax1.set_xlim(0, 2.3)
         ax1.set_ylim(60, 80)
 
@@ -755,12 +757,12 @@ class Step34VoidBoundaryTest:
             model_comparison.get("low_mass", {}).get("delta_aic", 0),
         ]
 
-        colors = ["#2ca02c" if d < 0 else "#d62728" for d in delta_aics]
-        bars = ax2.barh(categories, delta_aics, color=colors, alpha=0.7)
-        ax2.axvline(0, color="black", linewidth=1)
-        ax2.set_xlabel("$\\Delta$AIC (TEP $-$ Void)", fontsize=13)
-        ax2.set_title("Model Comparison: TEP vs Void", fontsize=14)
-        ax2.grid(True, alpha=0.3, axis="x")
+        bar_colors = [colors['green'] if d < 0 else colors['red'] for d in delta_aics]
+        bars = ax2.barh(categories, delta_aics, color=bar_colors, alpha=0.7)
+        ax2.axvline(0, color=colors['dark'], linewidth=1)
+        ax2.set_xlabel("$\\Delta$AIC (TEP $-$ Void)")
+        ax2.set_title("Model Comparison: TEP vs Void")
+        ax2.grid(True, axis="x")
 
         for bar, d in zip(bars, delta_aics):
             if not np.isnan(d):

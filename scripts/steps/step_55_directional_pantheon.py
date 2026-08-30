@@ -50,6 +50,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 CMB_DIPOLE_GAL_L = 264.021
 CMB_DIPOLE_GAL_B = 48.253
@@ -461,6 +462,7 @@ class Step55DirectionalPantheon:
     # ------------------------------------------------------------------
     def make_figure(self, df):
         """Generate sky-coverage figure."""
+        colors = apply_tep_style()
         print_status("\n--- Generating sky figure ---", "PROCESS")
 
         coords = SkyCoord(ra=df["ra"].values * u.deg, dec=df["dec"].values * u.deg,
@@ -476,20 +478,20 @@ class Step55DirectionalPantheon:
                          vmin=-0.3, vmax=0.3, s=5, alpha=0.6, zorder=3)
         cmb_l = np.radians(CMB_DIPOLE_GAL_L - 360 if CMB_DIPOLE_GAL_L > 180 else CMB_DIPOLE_GAL_L)
         cmb_b = np.radians(CMB_DIPOLE_GAL_B)
-        ax1.scatter([cmb_l], [cmb_b], marker="*", c="gold", s=200, edgecolors="k",
+        ax1.scatter([cmb_l], [cmb_b], marker="*", c="gold", s=200, edgecolors=colors['dark'],
                     linewidths=1, zorder=5, label="CMB dipole")
-        ax1.set_title("Pantheon+ Hubble residuals (galactic)", fontsize=11)
-        ax1.legend(fontsize=8, loc="lower left")
-        ax1.grid(True, alpha=0.3)
+        ax1.set_title("Pantheon+ Hubble residuals (galactic)")
+        ax1.legend(loc="lower left")
+        ax1.grid(True)
         plt.colorbar(sc, ax=ax1, orientation="vertical", shrink=0.7, label="HR (mag)")
 
         # Panel 2: HR vs cmb_dot
         ax2 = axes[0, 1]
         toward = df["cmb_dot"] > 0
         ax2.scatter(df.loc[toward, "cmb_dot"], df.loc[toward, "HR"],
-                   c="C1", s=10, alpha=0.5, label=f"Toward (N={toward.sum()})")
+                   c=colors['red'], s=10, alpha=0.5, label=f"Toward (N={toward.sum()})")
         ax2.scatter(df.loc[~toward, "cmb_dot"], df.loc[~toward, "HR"],
-                   c="C0", s=10, alpha=0.5, label=f"Away (N={(~toward).sum()})")
+                   c=colors['blue'], s=10, alpha=0.5, label=f"Away (N={(~toward).sum()})")
         # Binned means
         bins = np.linspace(-1, 1, 11)
         bin_centers = 0.5 * (bins[:-1] + bins[1:])
@@ -506,15 +508,15 @@ class Step55DirectionalPantheon:
             else:
                 bin_means.append(np.nan)
                 bin_errs.append(np.nan)
-        ax2.errorbar(bin_centers, bin_means, yerr=bin_errs, fmt="ko-",
-                    markersize=6, linewidth=2, capsize=3, zorder=5)
+        ax2.errorbar(bin_centers, bin_means, yerr=bin_errs, fmt="o-",
+                    color=colors['dark'], markersize=6, linewidth=2, capsize=3, zorder=5)
         r, p = sp_stats.pearsonr(df["cmb_dot"].values, df["HR"].values)
         ax2.set_xlabel("CMB dipole projection (cos θ)")
         ax2.set_ylabel("Hubble residual (mag)")
-        ax2.set_title(f"Directional HR: r={r:+.4f} (p={p:.4f})", fontsize=11)
-        ax2.legend(fontsize=8)
-        ax2.axhline(0, color="gray", linestyle=":", alpha=0.5)
-        ax2.axvline(0, color="gray", linestyle=":", alpha=0.5)
+        ax2.set_title(f"Directional HR: r={r:+.4f} (p={p:.4f})")
+        ax2.legend()
+        ax2.axhline(0, color=colors['purple'], linestyle=":", alpha=0.5)
+        ax2.axvline(0, color=colors['purple'], linestyle=":", alpha=0.5)
 
         # Panel 3: H0 by hemisphere
         ax3 = axes[1, 0]
@@ -532,26 +534,26 @@ class Step55DirectionalPantheon:
             H0_err = H0_ref * sem_hr * np.log(10) / 5
             h0_vals.append(H0)
             h0_errs.append(H0_err)
-        ax3.bar(labels, h0_vals, yerr=h0_errs, color=["C1", "C0", "gray"],
-               capsize=5, edgecolor="k")
+        ax3.bar(labels, h0_vals, yerr=h0_errs, color=[colors['red'], colors['blue'], colors['purple']],
+               capsize=5, edgecolor=colors['dark'])
         ax3.set_ylabel("H0 (km/s/Mpc)")
-        ax3.set_title("H0 by CMB hemisphere", fontsize=11)
-        ax3.axhline(73.0, color="red", linestyle="--", alpha=0.5, label="R22 H0")
-        ax3.axhline(69.8, color="blue", linestyle="--", alpha=0.5, label="TRGB H0")
-        ax3.legend(fontsize=8)
+        ax3.set_title("H0 by CMB hemisphere")
+        ax3.axhline(73.0, color=colors['red'], linestyle="--", alpha=0.5, label="R22 H0")
+        ax3.axhline(69.8, color=colors['blue'], linestyle="--", alpha=0.5, label="TRGB H0")
+        ax3.legend()
 
         # Panel 4: Histogram
         ax4 = axes[1, 1]
-        ax4.hist(df.loc[~toward, "HR"], bins=50, alpha=0.6, color="C0",
-                label=f"Away (N={(~toward).sum()})", edgecolor="k", density=True)
-        ax4.hist(df.loc[toward, "HR"], bins=50, alpha=0.6, color="C1",
-                label=f"Toward (N={toward.sum()})", edgecolor="k", density=True)
-        ax4.axvline(df.loc[~toward, "HR"].mean(), color="C0", linestyle="--", linewidth=2)
-        ax4.axvline(df.loc[toward, "HR"].mean(), color="C1", linestyle="--", linewidth=2)
+        ax4.hist(df.loc[~toward, "HR"], bins=50, alpha=0.6, color=colors['blue'],
+                label=f"Away (N={(~toward).sum()})", edgecolor=colors['dark'], density=True)
+        ax4.hist(df.loc[toward, "HR"], bins=50, alpha=0.6, color=colors['red'],
+                label=f"Toward (N={toward.sum()})", edgecolor=colors['dark'], density=True)
+        ax4.axvline(df.loc[~toward, "HR"].mean(), color=colors['blue'], linestyle="--", linewidth=2)
+        ax4.axvline(df.loc[toward, "HR"].mean(), color=colors['red'], linestyle="--", linewidth=2)
         ax4.set_xlabel("Hubble residual (mag)")
         ax4.set_ylabel("Density")
-        ax4.set_title("HR distribution by hemisphere", fontsize=11)
-        ax4.legend(fontsize=9)
+        ax4.set_title("HR distribution by hemisphere")
+        ax4.legend()
 
         fig.suptitle("Step 55: Directional Pantheon+ — CMB Hemisphere Split",
                      fontsize=13, fontweight="bold")

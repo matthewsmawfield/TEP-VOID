@@ -6,7 +6,7 @@
       "url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon%2BSH0ES.dat",
       "source": "Pantheon+SH0ES (Scolnic et al. 2022, Riess et al. 2022)",
       "status": "skip_exists",
-      "downloaded_at": "2026-08-30T19:54:25.672805+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.065270+00:00",
       "notes": ""
     },
     "data/raw/Pantheon+SH0ES_STAT+SYS.cov": {
@@ -15,7 +15,7 @@
       "url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon%2BSH0ES_STAT%2BSYS.cov",
       "source": "Pantheon+SH0ES (Scolnic et al. 2022)",
       "status": "skip_exists",
-      "downloaded_at": "2026-08-30T19:54:25.729088+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.099305+00:00",
       "notes": ""
     },
     "data/raw/Pantheon+SH0ES_STATONLY.cov": {
@@ -24,7 +24,7 @@
       "url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon%2BSH0ES_STATONLY.cov",
       "source": "Pantheon+SH0ES (Scolnic et al. 2022)",
       "status": "skip_exists",
-      "downloaded_at": "2026-08-30T19:54:25.770147+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.134114+00:00",
       "notes": ""
     },
     "data/raw/external/cf4_table2.dat.gz": {
@@ -33,7 +33,7 @@
       "url": "http://cdsarc.u-strasbg.fr/ftp/J/ApJ/944/94/table2.dat.gz",
       "source": "CosmicFlows-4 (Tully et al. 2023, ApJ 944 94)",
       "status": "skip_exists",
-      "downloaded_at": "2026-08-30T19:54:25.781163+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.137865+00:00",
       "notes": ""
     },
     "data/raw/external/cf4_table4.dat.gz": {
@@ -42,7 +42,7 @@
       "url": "http://cdsarc.u-strasbg.fr/ftp/J/ApJ/944/94/table4.dat.gz",
       "source": "CosmicFlows-4 (Tully et al. 2023, ApJ 944 94)",
       "status": "skip_exists",
-      "downloaded_at": "2026-08-30T19:54:25.791822+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.141296+00:00",
       "notes": ""
     },
     "data/raw/external/cf4_readme.txt": {
@@ -51,7 +51,7 @@
       "url": "http://cdsarc.u-strasbg.fr/ftp/J/ApJ/944/94/ReadMe",
       "source": "CDS ReadMe for J/ApJ/944/94",
       "status": "skip_exists",
-      "downloaded_at": "2026-08-30T19:54:25.793481+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.141653+00:00",
       "notes": ""
     },
     "data/raw/external/2mtf_catalog.vot": {
@@ -60,7 +60,7 @@
       "url": "http://vizier.u-strasbg.fr/viz-bin/votable?-source=J/MNRAS/487/2061&-out.all=1&-out.max=999999",
       "source": "2MTF (Hong et al. 2019, MNRAS 487 2061)",
       "status": "skip_exists",
-      "downloaded_at": "2026-08-30T19:54:25.796748+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.144022+00:00",
       "notes": ""
     },
     "data/raw/external/sfipp_catalog.vot": {
@@ -69,7 +69,7 @@
       "url": "http://vizier.u-strasbg.fr/viz-bin/votable?-source=J/ApJS/182/474&-out.all=1&-out.max=999999",
       "source": "SFI++ (Springob et al. 2007, ApJS 182 474)",
       "status": "skip_failure_cooldown",
-      "downloaded_at": "2026-08-30T19:54:25.796840+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.144107+00:00",
       "notes": "Skipped due to recent failure"
     },
     "data/raw/external/alfalfa_a40.vot": {
@@ -78,7 +78,7 @@
       "url": "http://vizier.u-strasbg.fr/viz-bin/votable?-source=J/AJ/154/78/table2&-out.all=1&-out.max=999999",
       "source": "ALFALFA A40 (Haynes et al. 2018, AJ 154 78)",
       "status": "skip_failure_cooldown",
-      "downloaded_at": "2026-08-30T19:54:25.796885+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.144149+00:00",
       "notes": "Skipped due to recent failure"
     },
     "data/raw/external/6dfgs_pecvel.vot": {
@@ -87,7 +87,7 @@
       "url": "http://vizier.u-strasbg.fr/viz-bin/votable?-source=J/MNRAS/445/2677/table1&-out.all=1&-out.max=999999",
       "source": "6dFGS (Springob et al. 2014, MNRAS 445 2677)",
       "status": "skip_exists",
-      "downloaded_at": "2026-08-30T19:54:25.802319+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.148010+00:00",
       "notes": ""
     },
     "data/raw/external/jia_hz_data.txt": {
@@ -96,7 +96,7 @@
       "url": "https://raw.githubusercontent.com/JoJo20221003/Hz-Code/main/Data/Hz%20data.txt",
       "source": "Jia et al. 2023, A&A 674 A45",
       "status": "skip_exists",
-      "downloaded_at": "2026-08-30T19:54:25.802994+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.148325+00:00",
       "notes": ""
     },
     "data/raw/external/hyperleda_vii237.vot": {
@@ -105,7 +105,7 @@
       "url": "http://vizier.u-strasbg.fr/viz-bin/votable?-source=VII/237&-out.all=1&-out.max=999999",
       "source": "HyperLEDA VII/237",
       "status": "skip_exists",
-      "downloaded_at": "2026-08-30T19:54:26.497559+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.550041+00:00",
       "notes": ""
     },
     "data/raw/external/hyperleda_vii238.vot": {
@@ -114,7 +114,7 @@
       "url": "http://vizier.u-strasbg.fr/viz-bin/votable?-source=VII/238&-out.all=1&-out.max=999999",
       "source": "HyperLEDA VII/238",
       "status": "skip_exists",
-      "downloaded_at": "2026-08-30T19:54:26.519110+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.555385+00:00",
       "notes": ""
     },
     "data/raw/external/r22_cepheid_distances.csv": {
@@ -123,7 +123,7 @@
       "url": "curated_from_publication",
       "source": "Riess et al. 2022, ApJ 934 L7 (Table 3 / SH0ES DataRelease)",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.519407+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.555618+00:00",
       "notes": "R22 Cepheid distance moduli for 37 calibrator hosts"
     },
     "data/raw/external/trgb_distances_freedman2024.csv": {
@@ -132,7 +132,7 @@
       "url": "curated_from_publication",
       "source": "Freedman et al. 2024/2025, CCHP (arXiv:2408.06153)",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.519518+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.555763+00:00",
       "notes": "CCHP TRGB distance moduli for SN Ia hosts"
     },
     "data/raw/external/jwst_trgb_distances.csv": {
@@ -141,7 +141,7 @@
       "url": "curated_from_publication",
       "source": "Anand et al. 2024 (ApJ 976 177) + Freedman et al. 2025 (CCHP)",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.523146+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.556117+00:00",
       "notes": "JWST TRGB distances (F090W + F115W) for Cepheid/TRGB overlap"
     },
     "data/raw/external/key_project_cepheid_distances.csv": {
@@ -150,7 +150,7 @@
       "url": "curated_from_publication",
       "source": "Freedman et al. 2001 (ApJ 553 47, Table 3)",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.525286+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.556347+00:00",
       "notes": "Key Project Cepheid distances (V/I band)"
     },
     "data/raw/external/madore_freedman2023_vih_vi.csv": {
@@ -159,7 +159,7 @@
       "url": "curated_from_publication",
       "source": "Madore & Freedman 2023 (arXiv:2309.10859, Table 2)",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.527413+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.556613+00:00",
       "notes": "MF2023 VIH and VI Cepheid distance moduli"
     },
     "data/raw/external/velocity_dispersions_literature.csv": {
@@ -168,7 +168,7 @@
       "url": "curated_from_publication",
       "source": "HyperLEDA (Makarov et al. 2014) curated for SH0ES hosts",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.527593+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.556677+00:00",
       "notes": "V_rot-derived potential proxy for 37+ R22 hosts"
     },
     "data/raw/external/hosts_properties.csv": {
@@ -177,7 +177,7 @@
       "url": "curated_from_publication",
       "source": "Pantheon+SH0ES.dat host galaxy metadata",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.528493+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.556955+00:00",
       "notes": "Host galaxy RA/DEC/mass/Pantheon+ ID mapping"
     },
     "data/raw/external/cf4_matched_galaxies_vrot.csv": {
@@ -186,7 +186,7 @@
       "url": "curated_from_publication",
       "source": "HyperLEDA query for 22 CF4 Cepheid+TRGB galaxies",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.529702+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.557231+00:00",
       "notes": "V_rot for 22 CF4 galaxies with both Cepheid and TRGB"
     },
     "data/raw/external/cosmicflows4_catalog.csv": {
@@ -195,7 +195,7 @@
       "url": "curated_from_publication",
       "source": "CosmicFlows-4 (Tully et al. 2023) processed catalog",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.529964+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.558331+00:00",
       "notes": "Processed CF4 catalog with Cepheid/TRGB overlaps"
     },
     "data/raw/external/mazurenko_curves/maxwell_boltzmann_method3.json": {
@@ -204,7 +204,7 @@
       "url": "digitized_from_figure",
       "source": "Mazurenko et al. 2025, MNRAS 536 3232, Fig 3",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.530267+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.558543+00:00",
       "notes": "Digitized void H(z) curve points"
     },
     "data/raw/external/mazurenko_curves/mazurenko_curves_all.csv": {
@@ -213,7 +213,7 @@
       "url": "digitized_from_figure",
       "source": "Mazurenko et al. 2025, MNRAS 536 3232, Fig 3",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.530901+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.558970+00:00",
       "notes": "Digitized void H(z) curve points"
     },
     "data/raw/external/mazurenko_curves/gaussian_method3.json": {
@@ -222,7 +222,7 @@
       "url": "digitized_from_figure",
       "source": "Mazurenko et al. 2025, MNRAS 536 3232, Fig 3",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.531079+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.559120+00:00",
       "notes": "Digitized void H(z) curve points"
     },
     "data/raw/external/mazurenko_curves/gaussian_method3_cleaned.json": {
@@ -231,7 +231,7 @@
       "url": "digitized_from_figure",
       "source": "Mazurenko et al. 2025, MNRAS 536 3232, Fig 3",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.531420+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.559251+00:00",
       "notes": "Digitized void H(z) curve points"
     },
     "data/raw/external/mazurenko_curves/cleaning_log.json": {
@@ -240,7 +240,7 @@
       "url": "digitized_from_figure",
       "source": "Mazurenko et al. 2025, MNRAS 536 3232, Fig 3",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.531763+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.559385+00:00",
       "notes": "Digitized void H(z) curve points"
     },
     "data/raw/external/mazurenko_curves/gaussian_method3_fitted.json": {
@@ -249,7 +249,7 @@
       "url": "digitized_from_figure",
       "source": "Mazurenko et al. 2025, MNRAS 536 3232, Fig 3",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.532002+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.559505+00:00",
       "notes": "Digitized void H(z) curve points"
     },
     "data/raw/external/mazurenko_curves/exponential_method3.json": {
@@ -258,20 +258,20 @@
       "url": "digitized_from_figure",
       "source": "Mazurenko et al. 2025, MNRAS 536 3232, Fig 3",
       "status": "curated",
-      "downloaded_at": "2026-08-30T19:54:26.532162+00:00",
+      "downloaded_at": "2026-08-30T22:43:38.559597+00:00",
       "notes": "Digitized void H(z) curve points"
     }
   },
   "failures": {
     "http://vizier.u-strasbg.fr/viz-bin/votable?-source=J/ApJS/182/474&-out.all=1&-out.max=999999": {
       "error": "VizieR returned an error response for J/ApJS/182/474",
-      "failed_at": "2026-08-30T19:00:17.198321+00:00"
+      "failed_at": "2026-08-30T22:28:24.143435+00:00"
     },
     "http://vizier.u-strasbg.fr/viz-bin/votable?-source=J/AJ/154/78/table2&-out.all=1&-out.max=999999": {
       "error": "VizieR returned an error response for J/AJ/154/78/table2",
-      "failed_at": "2026-08-30T19:00:34.291360+00:00"
+      "failed_at": "2026-08-30T22:28:41.312661+00:00"
     }
   },
-  "generated": "2026-08-30T19:54:26.532171+00:00",
+  "generated": "2026-08-30T22:43:38.559609+00:00",
   "pipeline": "TEP-VOID"
 }

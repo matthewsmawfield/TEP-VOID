@@ -121,6 +121,8 @@ def derive_eta_p():
 
        giving \\eta_P = 1/2 * (1 + \\delta_{rad}) ≈ 1.0
     """
+    logger = TEPLogger("step_52", log_file_path=PROJECT_ROOT / "logs" / "step_52_eta_p_derivation.log")
+    set_step_logger(logger)
     print_status("=" * 60, "INFO")
     print_status("Step 52: Derivation of eta_P", "INFO")
     print_status("=" * 60, "INFO")

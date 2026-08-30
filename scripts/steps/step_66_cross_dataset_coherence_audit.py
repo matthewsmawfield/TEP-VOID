@@ -26,6 +26,7 @@ warnings.filterwarnings("ignore")
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 from scripts.utils.logger import TEPLogger, set_step_logger
+from scripts.utils.plot_style import apply_tep_style
 
 C_KMS = 299792.458
 cosmo = FlatLambdaCDM(H0=73.04, Om0=0.334)
@@ -159,28 +160,29 @@ def fit_LT_continuous(df, target='raw_mag_resid'):
     return best_LT, fit_res
 
 def plot_cross_prediction(df_pan, df_cf4, pan_LT, pan_DT):
+    colors = apply_tep_style()
     fig, ax = plt.subplots(figsize=(10, 6))
-    
+
     # We want to plot the dipole amplitude vs Distance.
     # To do this, we can bin the data by distance and compute the dipole projection.
-    
+
     # Synthetic curve
     D_grid = np.linspace(30, 450, 100)
     # The magnitude amplitude is DT * (1 - exp(-D/LT))/D * 100 (since we multiplied P by 100)
     mu_pred = pan_DT * ((1.0 - np.exp(-D_grid / pan_LT)) / D_grid) * 100.0
-    
-    ax.plot(D_grid, mu_pred, 'k-', lw=3, label=f'Pantheon+ Prediction\n(LT={pan_LT:.1f} Mpc, DT={pan_DT:.3f})')
-    
+
+    ax.plot(D_grid, mu_pred, color=colors['dark'], lw=3, label=f'Pantheon+ Prediction\n(LT={pan_LT:.1f} Mpc, DT={pan_DT:.3f})')
+
     # Bin CF4 data
     bins = np.linspace(30, 450, 15)
     cf4_D = df_cf4['D_Mpc'].values
     cf4_res = df_cf4['raw_mag_resid'].values
     cf4_cos = df_cf4['cos_theta'].values
-    
+
     binned_D = []
     binned_amp = []
     binned_err = []
-    
+
     for i in range(len(bins)-1):
         mask = (cf4_D >= bins[i]) & (cf4_D < bins[i+1])
         if np.sum(mask) > 10:
@@ -191,18 +193,19 @@ def plot_cross_prediction(df_pan, df_cf4, pan_LT, pan_DT):
             binned_D.append(np.mean(cf4_D[mask]))
             binned_amp.append(model.params[1])
             binned_err.append(model.bse[1])
-            
-    ax.errorbar(binned_D, binned_amp, yerr=binned_err, fmt='ro', label='CF4 Measured Dipole Amplitude')
-    
+
+    ax.errorbar(binned_D, binned_amp, yerr=binned_err, fmt='o', color=colors['red'],
+                markeredgecolor=colors['dark'], label='CF4 Measured Dipole Amplitude')
+
     # Bin Pantheon data
     pan_D = df_pan['D_Mpc'].values
     pan_res = df_pan['raw_mag_resid'].values
     pan_cos = df_pan['cos_theta'].values
-    
+
     binned_D_pan = []
     binned_amp_pan = []
     binned_err_pan = []
-    
+
     for i in range(len(bins)-1):
         mask = (pan_D >= bins[i]) & (pan_D < bins[i+1])
         if np.sum(mask) > 5:
@@ -212,18 +215,18 @@ def plot_cross_prediction(df_pan, df_cf4, pan_LT, pan_DT):
             binned_D_pan.append(np.mean(pan_D[mask]))
             binned_amp_pan.append(model.params[1])
             binned_err_pan.append(model.bse[1])
-            
-    ax.errorbar(binned_D_pan, binned_amp_pan, yerr=binned_err_pan, fmt='bs', alpha=0.5, label='Pantheon+ Dipole Amplitude')
-    
-    ax.set_xlabel('Comoving Distance (Mpc)', fontsize=14)
-    ax.set_ylabel(r'Magnitude Dipole Amplitude ($\delta \mu$)', fontsize=14)
-    ax.set_title('Zero-Parameter Cross-Prediction: Pantheon+ Model vs CF4 Data', fontsize=16)
-    ax.legend(fontsize=12)
-    ax.grid(True, alpha=0.3)
-    
+
+    ax.errorbar(binned_D_pan, binned_amp_pan, yerr=binned_err_pan, fmt='s', color=colors['blue'],
+                markeredgecolor=colors['dark'], alpha=0.5, label='Pantheon+ Dipole Amplitude')
+
+    ax.set_xlabel('Comoving Distance (Mpc)')
+    ax.set_ylabel(r'Magnitude Dipole Amplitude ($\delta \mu$)')
+    ax.set_title('Zero-Parameter Cross-Prediction: Pantheon+ Model vs CF4 Data')
+    ax.legend()
+    ax.grid(True, alpha=0.2)
+
     out_path = PROJECT_ROOT / 'results/figures/step_66_cross_prediction.png'
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    plt.tight_layout()
     plt.savefig(out_path, dpi=300)
     plt.close()
 
@@ -269,7 +272,7 @@ def compute_cf4_chi2(df_cf4, L_T, D_T):
     }
 
 def run_audit():
-    log = TEPLogger("step_66_cross_dataset_audit", log_file_path=PROJECT_ROOT / "outputs/logs/step_66_cross_dataset_audit.log")
+    log = TEPLogger("step_66_cross_dataset_audit", log_file_path=PROJECT_ROOT / "logs/step_66_cross_dataset_coherence_audit.log")
     set_step_logger(log)
 
     df_pan = load_pantheon()

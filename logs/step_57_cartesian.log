@@ -1,36 +1,21 @@
-[20:19:42] [INFO] ================================================================================
-[20:19:42] [INFO]    Step 57: Differential Dipole Test (Nested Model Hierarchy)
-[20:19:42] [INFO] ================================================================================
-[20:19:42] [SUCCESS] Loaded 33 galaxies.
-[20:19:43] [TEST] M_X (Base) NLL: -56.80, kappa: -5.50e+05, sigma_t: 0.038
-[20:19:43] [TEST] M_CMB NLL: -58.26 (Delta NLL = 1.46), D = 0.062
-[20:19:43] [TEST] M_3D NLL: -59.86 (Delta NLL vs M_X = 3.06)
-[20:19:43] [SUCCESS] Freely Preferred Dipole: D = 0.0982 at (l=198.7, b=24.2)
-[20:19:43] [SUCCESS] Angular distance to CMB (264.0, 48.0): 55.9 degrees
-[20:19:43] [PROCESS] 
+[23:47:11] [INFO] ================================================================================
+[23:47:11] [INFO]    Step 57: Differential Dipole Test (Nested Model Hierarchy)
+[23:47:11] [INFO] ================================================================================
+[23:47:11] [SUCCESS] Loaded 33 galaxies.
+[23:47:11] [TEST] M_X (Base) NLL: -56.80, kappa: -5.50e+05, sigma_t: 0.038
+[23:47:11] [TEST] M_CMB NLL: -58.26 (Delta NLL = 1.46), D = 0.062
+[23:47:11] [TEST] M_3D NLL: -59.86 (Delta NLL vs M_X = 3.06)
+[23:47:11] [SUCCESS] Freely Preferred Dipole: D = 0.0982 at (l=198.7, b=24.2)
+[23:47:11] [SUCCESS] Angular distance to CMB (264.0, 48.0): 55.9 degrees
+[23:47:11] [PROCESS] 
 --- Likelihood Ratio Tests ---
-[20:19:43] [TEST] M_CMB vs M_X: 2*dNLL=2.92, p-value=0.0874
-[20:19:43] [TEST] M_3D vs M_X:  2*dNLL=6.12, p-value=0.1059
-[20:19:43] [TEST] M_3D vs M_CMB: 2*dNLL=3.20, p-value=0.2020
-[20:19:43] [PROCESS] 
+[23:47:11] [TEST] M_CMB vs M_X: 2*dNLL=2.92, p-value=0.0874
+[23:47:11] [TEST] M_3D vs M_X:  2*dNLL=6.12, p-value=0.1059
+[23:47:11] [TEST] M_3D vs M_CMB: 2*dNLL=3.20, p-value=0.2020
+[23:47:11] [PROCESS] 
 --- Parametric Bootstrap (Null Model M_X) ---
-[20:22:20] [TEST] Bootstrap p-value for M_3D vs M_X: p = 0.2620
-[20:22:20] [TEST] Random alignment P(theta_CMB <= 30 deg): 4.4%
-[20:22:20] [TEST] Random alignment P(theta_CMB <= 60 deg): 26.1%
-[20:22:20] [TEST] Random alignment P(theta_CMB <= 90 deg): 55.0%
-[20:22:20] [SUCCESS] step_57 completed in 179.7s
-[20:22:20] [INFO] 
-[20:22:20] [INFO] ================================================================================
-[20:22:20] [INFO]    Starting step_58: Gate F: dual-calibration TF experiment — H0-invariant log-distance estimator gives ΔB = 0.0 km/s
-[20:22:20] [INFO] ================================================================================
-[20:22:20] [INFO] 
-[20:22:29] [TEST] Bootstrap p-value for M_3D vs M_X: p = 0.2620
-[20:22:29] [TEST] Random alignment P(theta_CMB <= 30 deg): 4.4%
-[20:22:29] [TEST] Random alignment P(theta_CMB <= 60 deg): 26.1%
-[20:22:29] [TEST] Random alignment P(theta_CMB <= 90 deg): 55.0%
-[20:22:29] [SUCCESS] step_57 completed in 166.8s
-[20:22:29] [INFO] 
-[20:22:29] [INFO] ================================================================================
-[20:22:29] [INFO]    Starting step_58: Gate F: dual-calibration TF experiment — H0-invariant log-distance estimator gives ΔB = 0.0 km/s
-[20:22:29] [INFO] ================================================================================
-[20:22:29] [INFO] 
+[23:48:33] [TEST] Bootstrap p-value for M_3D vs M_X: p = 0.2620
+[23:48:33] [TEST] Random alignment P(theta_CMB <= 30 deg): 4.4%
+[23:48:33] [TEST] Random alignment P(theta_CMB <= 60 deg): 26.1%
+[23:48:33] [TEST] Random alignment P(theta_CMB <= 90 deg): 55.0%
+[23:48:33] [SUCCESS] step_57 completed in 82.5s

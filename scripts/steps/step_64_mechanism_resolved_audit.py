@@ -193,7 +193,7 @@ def run_stratified_permutation(df, target_col, axis_name='CMB', n_perms=1000):
     return p_DT, p_DK
 
 def run_audit():
-    log = TEPLogger("step_64_mechanism_audit", log_file_path=PROJECT_ROOT / "outputs/logs/step_64_mechanism_audit.log")
+    log = TEPLogger("step_64_mechanism_audit", log_file_path=PROJECT_ROOT / "logs/step_64_mechanism_resolved_audit.log")
     set_step_logger(log)
     
     df = load_pantheon()

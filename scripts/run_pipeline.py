@@ -90,6 +90,8 @@ PIPELINE = [
      "Data ingestion: SH0ES Cepheid + CCHP TRGB host samples"),
     ("0", "00b", "scripts.steps.step_00b_external_data", "Step00bExternalData",
      "External data download: all datasets with SHA-256 checksums + provenance manifest"),
+    ("0", "00c", "scripts.steps.step_00c_vrot_deep_catalogs", "Step00cDeepVrot",
+     "Deep V_rot catalogs cross-match (SPARC, ALFALFA)"),
     ("0", 1, "scripts.steps.step_01_host_potential_catalog", "Step01HostPotentialCatalog",
      "Host galaxy gravitational potential catalog"),
     ("0", 2, "scripts.steps.step_02_cosmicflows_ingestion", "Step02CosmicflowsIngestion",
@@ -116,6 +118,8 @@ PIPELINE = [
      "Omega_m sensitivity: ΔAIC and R_H as functions of Omega_m (robustness of void rejection)"),
     ("I", "32r", "scripts.steps.step_32b_jia_replication", "Step32bJiaReplication",
      "Jia et al. (2023) full replication: six-bin H_0(z) reconstruction from Pantheon+"),
+    ("I", "32p", "scripts.steps.step_32b_jia_proper_replication", "Step32bJiaProperReplication",
+     "Proper replication: Jia method parameter extraction"),
     ("I", "32b", "scripts.steps.step_32b_jia_validation", "Step32BJiaValidation",
      "VALIDATION: reproduce Jia et al. H_0(z) reconstruction, confirm direct-μ likelihood differs"),
     ("I", 33, "scripts.steps.step_33_host_mass_z03_survey", "Step33HostMassZ03Survey",
@@ -200,12 +204,10 @@ def run_step(block, step_num, module_name, class_name, description, master_logge
         step_id = f"step_{step_num:02d}"
     else:
         step_id = f"step_{step_num}"
+    # Clear any previous step logger so runner messages go to console only;
+    # each step creates its own descriptive logger and calls set_step_logger().
+    set_step_logger(None)
     print_status(f"Starting {step_id}: {description}", "TITLE")
-
-    # Create step-specific logger
-    log_file = PROJECT_ROOT / "logs" / f"{step_id}.log"
-    step_logger = TEPLogger(step_id, log_file_path=log_file)
-    set_step_logger(step_logger)
 
     start_time = time.time()
 
@@ -225,9 +227,6 @@ def run_step(block, step_num, module_name, class_name, description, master_logge
         elapsed = time.time() - start_time
         print_status(f"{step_id} completed in {elapsed:.1f}s", "SUCCESS")
         master_logger.info(f"  {step_id}: OK ({elapsed:.1f}s)")
-        # Clean up empty step_NN.log files (actual content is in descriptively-named logs)
-        if log_file.exists() and log_file.stat().st_size == 0:
-            log_file.unlink()
         return True
 
     except Exception as e:
@@ -236,9 +235,6 @@ def run_step(block, step_num, module_name, class_name, description, master_logge
         print_status(error_msg, "ERROR")
         master_logger.error(f"  {step_id}: FAILED ({elapsed:.1f}s) — {e}")
         traceback.print_exc()
-        # Clean up empty step_NN.log files
-        if log_file.exists() and log_file.stat().st_size == 0:
-            log_file.unlink()
         return False
 
 
@@ -277,7 +273,7 @@ def main():
     set_step_logger(master_logger)
 
     print_status("TEP-VOID Analysis Pipeline (Paper 31)", "TITLE")
-    print_status("Cosmological Voids vs Isochrony Violation", "PROCESS")
+    print_status("Cosmological Voids vs Temporal Shear", "PROCESS")
     print_status(f"Project root: {PROJECT_ROOT}", "INFO")
     print_status(f"Results: {PROJECT_ROOT / 'results'}", "INFO")
     print_status(f"Logs: {PROJECT_ROOT / 'logs'}", "INFO")
@@ -311,7 +307,13 @@ def main():
                 break
 
     total_elapsed = time.time() - total_start
-    print_status(f"Pipeline complete: {succeeded} succeeded, {failed} failed, {total_elapsed:.1f}s total", "TITLE")
+    summary = f"Pipeline complete: {succeeded} succeeded, {failed} failed, {total_elapsed:.1f}s total"
+    print_status(summary, "TITLE")
+    master_logger.info("")
+    master_logger.info("=" * 80)
+    master_logger.info(f"   {summary}")
+    master_logger.info("=" * 80)
+    master_logger.info("")
 
     sys.exit(0 if failed == 0 else 1)
 

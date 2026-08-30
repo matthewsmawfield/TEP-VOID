@@ -56,6 +56,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 from scripts.utils.screening import U_REF_SCREENED, compute_screening
 
 warnings.filterwarnings("ignore", message="divide by zero encountered in matmul")
@@ -148,6 +149,14 @@ class Step71XiDisformalChannel:
         # Restrict to Hubble flow
         df = df[df["IS_CALIBRATOR"] == 0].copy()
         df = df[df["HOST_LOGMASS"].notna() & (df["HOST_LOGMASS"] > 7)].copy()
+
+        # Deduplicate: keep one entry per CID (smallest x1ERR = best measurement)
+        # Pantheon+ contains multiple survey cross-listings for the same SN
+        n_before = len(df)
+        df = df.sort_values("x1ERR").drop_duplicates(subset=["CID"], keep="first")
+        n_after = len(df)
+        if n_before != n_after:
+            print_status(f"  Deduplicated: {n_before} -> {n_after} unique SNe", "INFO")
 
         print_status(f"  {len(df)} SNe with measured V_rot and mass", "SUCCESS")
         print_status(f"  V_rot source: {df['V_rot_source'].value_counts().to_dict()}", "INFO")
@@ -284,6 +293,7 @@ class Step71XiDisformalChannel:
         return summary
 
     def make_figures(self, df, res_x1, res_hr, binned):
+        colors = apply_tep_style()
         fig, axes = plt.subplots(2, 2, figsize=(12, 10))
 
         # x1 vs X_i: partial regression line from the best model
@@ -296,7 +306,7 @@ class Step71XiDisformalChannel:
         y_mean = df["x1"].mean()
         x_mean = X.mean()
         y_plot = y_mean + slope * (x_plot - x_mean)
-        ax.plot(x_plot * 1e7, y_plot, "r--")
+        ax.plot(x_plot * 1e7, y_plot, "--", color=colors['red'])
         ax.set_xlabel(r"$X_i \times 10^7$")
         ax.set_ylabel(r"$x_1$")
         ax.set_title(f"x1 vs $X_i$ (best: {best_x1})")
@@ -308,8 +318,8 @@ class Step71XiDisformalChannel:
         slope = res_hr[best_hr].get("slope_X", 0.0)
         y_mean = df["HR"].mean()
         y_plot = y_mean + slope * (x_plot - x_mean)
-        ax.plot(x_plot * 1e7, y_plot, "r--")
-        ax.axhline(0, color="k", ls=":")
+        ax.plot(x_plot * 1e7, y_plot, "--", color=colors['red'])
+        ax.axhline(0, color=colors['dark'], ls=":")
         ax.set_xlabel(r"$X_i \times 10^7$")
         ax.set_ylabel("Hubble residual (mag)")
         ax.set_title(f"HR vs $X_i$ (best: {best_hr})")
@@ -328,8 +338,8 @@ class Step71XiDisformalChannel:
         ax = axes[1, 1]
         hrm = [b["hr_mean"] for b in binned]
         hre = [b["hr_err"] for b in binned]
-        ax.errorbar(Xmed, hrm, yerr=hre, fmt="o-", color="C1")
-        ax.axhline(0, color="k", ls=":")
+        ax.errorbar(Xmed, hrm, yerr=hre, fmt="o-", color=colors['red'])
+        ax.axhline(0, color=colors['dark'], ls=":")
         ax.set_xlabel(r"$X_i \times 10^7$")
         ax.set_ylabel("Mean Hubble residual (mag)")
         ax.set_title("Binned HR step")

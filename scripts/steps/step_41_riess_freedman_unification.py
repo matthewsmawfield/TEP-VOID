@@ -40,6 +40,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 
 class Step41RiessFreedmanUnification:
@@ -237,6 +238,7 @@ class Step41RiessFreedmanUnification:
 
     def plot_h0_unification(self, tension_results, unification_results):
         """Generate H0 unification figure."""
+        colors = apply_tep_style()
         print_status("Generating H0 unification figure...", "PROCESS")
 
         fig, axes = plt.subplots(1, 2, figsize=(14, 6))
@@ -246,47 +248,47 @@ class Step41RiessFreedmanUnification:
         labels = ["SH0ES\n(Cepheid)", "CCHP\n(TRGB)", "CCHP\n(JAGB)", "Planck\n(CMB)"]
         h0_vals = [self.H0_CEPHEID, self.H0_TRGB, self.H0_JAGB, self.H0_CMB]
         h0_errs = [self.H0_CEPHEID_ERR, self.H0_TRGB_ERR, self.H0_JAGB_ERR, self.H0_CMB_ERR]
-        colors = ["#d62728", "#2ca02c", "#ff7f0e", "#1f77b4"]
+        bar_colors = [colors['red'], colors['green'], colors['accent'], colors['blue']]
 
         y_pos = np.arange(len(labels))
-        ax1.barh(y_pos, h0_vals, xerr=h0_errs, color=colors, alpha=0.7, capsize=5, height=0.6)
+        ax1.barh(y_pos, h0_vals, xerr=h0_errs, color=bar_colors, alpha=0.7, capsize=5, height=0.6)
         ax1.set_yticks(y_pos)
         ax1.set_yticklabels(labels, fontsize=11)
-        ax1.set_xlabel("$H_0$ (km/s/Mpc)", fontsize=13)
-        ax1.set_title("Before TEP Correction", fontsize=14)
-        ax1.axvline(self.H0_CMB, color="#1f77b4", linestyle=":", alpha=0.5)
+        ax1.set_xlabel("$H_0$ (km/s/Mpc)")
+        ax1.set_title("Before TEP Correction")
+        ax1.axvline(self.H0_CMB, color=colors['blue'], linestyle=":", alpha=0.5)
         ax1.set_xlim(64, 76)
-        ax1.grid(True, axis="x", alpha=0.3)
+        ax1.grid(True, axis="x")
 
         # Add tension annotation
         sigma_cmb = tension_results["before_tep"]["cepheid_vs_cmb"]["sigma_tension"]
-        ax1.annotate(f"{sigma_cmb:.1f}$\\sigma$ tension", xy=(73, 0), fontsize=12, color="#d62728", fontweight="bold")
+        ax1.annotate(f"{sigma_cmb:.1f}$\\sigma$ tension", xy=(73, 0), fontsize=12, color=colors['red'], fontweight="bold")
 
         # Panel 2: After TEP correction
         ax2 = axes[1]
         labels_after = ["TEP-corrected\nCepheid", "CCHP\n(TRGB)", "CCHP\n(JAGB)", "Planck\n(CMB)"]
         h0_vals_after = [self.H0_TEP_CORRECTED, self.H0_TRGB, self.H0_JAGB, self.H0_CMB]
         h0_errs_after = [self.H0_TEP_CORRECTED_ERR, self.H0_TRGB_ERR, self.H0_JAGB_ERR, self.H0_CMB_ERR]
-        colors_after = ["#d62728", "#2ca02c", "#ff7f0e", "#1f77b4"]
+        bar_colors_after = [colors['red'], colors['green'], colors['accent'], colors['blue']]
 
-        ax2.barh(y_pos, h0_vals_after, xerr=h0_errs_after, color=colors_after, alpha=0.7, capsize=5, height=0.6)
+        ax2.barh(y_pos, h0_vals_after, xerr=h0_errs_after, color=bar_colors_after, alpha=0.7, capsize=5, height=0.6)
         ax2.set_yticks(y_pos)
         ax2.set_yticklabels(labels_after, fontsize=11)
-        ax2.set_xlabel("$H_0$ (km/s/Mpc)", fontsize=13)
-        ax2.set_title("After TEP Correction", fontsize=14)
+        ax2.set_xlabel("$H_0$ (km/s/Mpc)")
+        ax2.set_title("After TEP Correction")
 
         # Unified mean
         h0_unified = unification_results["h0_unified_mean"]
         h0_unified_err = unification_results["h0_unified_err"]
-        ax2.axvline(h0_unified, color="black", linestyle="--", linewidth=2, label=f"Unified: {h0_unified:.1f}$\\pm${h0_unified_err:.1f}")
-        ax2.axvspan(h0_unified - h0_unified_err, h0_unified + h0_unified_err, alpha=0.1, color="black")
+        ax2.axvline(h0_unified, color=colors['dark'], linestyle="--", linewidth=2, label=f"Unified: {h0_unified:.1f}$\\pm${h0_unified_err:.1f}")
+        ax2.axvspan(h0_unified - h0_unified_err, h0_unified + h0_unified_err, alpha=0.1, color=colors['dark'])
         ax2.set_xlim(64, 76)
-        ax2.legend(fontsize=11, loc="lower right")
-        ax2.grid(True, axis="x", alpha=0.3)
+        ax2.legend(loc="lower right")
+        ax2.grid(True, axis="x")
 
         # Add unification annotation
         sigma_after = tension_results["after_tep"]["corrected_cepheid_vs_cmb"]["sigma_tension"]
-        ax2.annotate(f"{sigma_after:.1f}$\\sigma$ tension", xy=(66.65, 0), fontsize=12, color="#2ca02c", fontweight="bold")
+        ax2.annotate(f"{sigma_after:.1f}$\\sigma$ tension", xy=(66.65, 0), fontsize=12, color=colors['green'], fontweight="bold")
 
         fig.suptitle("Riess–Freedman Unification: $H_0$ Convergence Under TEP", fontsize=15, y=1.02)
         fig.tight_layout()

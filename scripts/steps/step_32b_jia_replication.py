@@ -75,6 +75,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 
 class Step32bJiaReplication:
@@ -634,6 +635,7 @@ class Step32bJiaReplication:
     # ------------------------------------------------------------------
     def plot_results(self, jia_fit, m_fit, simple_dL, simple_inv):
         """Generate comparison figure."""
+        colors = apply_tep_style()
         fig, ax = plt.subplots(1, 1, figsize=(10, 7))
 
         z_centers = [(self.BIN_EDGES[i] + self.BIN_EDGES[i + 1]) / 2
@@ -642,50 +644,54 @@ class Step32bJiaReplication:
         # Jia piecewise H_th method
         h0_jia = np.array(jia_fit["h0z"])
         err_jia = np.array(jia_fit["h0z_err"])
-        ax.errorbar(z_centers, h0_jia, yerr=err_jia, fmt='rs-',
+        ax.errorbar(z_centers, h0_jia, yerr=err_jia, fmt='s-',
+                    color=colors['red'],
                     capsize=4, markersize=8, linewidth=2,
                     label="Jia piecewise $H_{th}$ (this replication)")
 
         # With M free
         h0_m = np.array(m_fit["h0z"])
         err_m = np.array(m_fit["h0z_err"])
-        ax.errorbar(np.array(z_centers) + 0.02, h0_m, yerr=err_m, fmt='b^-',
+        ax.errorbar(np.array(z_centers) + 0.02, h0_m, yerr=err_m, fmt='^-',
+                    color=colors['blue'],
                     capsize=4, markersize=7, linewidth=1.5, alpha=0.8,
                     label="With free $M$ + Cepheid anchor")
 
         # Simple d_L (single H0 per bin)
         h0_sd = np.array(simple_dL["h0z"])
         err_sd = np.array(simple_dL["h0z_err"])
-        ax.errorbar(np.array(z_centers) - 0.02, h0_sd, yerr=err_sd, fmt='gd--',
+        ax.errorbar(np.array(z_centers) - 0.02, h0_sd, yerr=err_sd, fmt='d--',
+                    color=colors['green'],
                     capsize=3, markersize=7, linewidth=1.5, alpha=0.8,
                     label="Simple $d_L$ (single $H_{0,z_i}$, not Jia)")
 
         # Simple inversion (unweighted mean)
         if simple_inv:
-            ax.plot(z_centers, simple_inv["h0z_binned"], 'co--',
+            ax.plot(z_centers, simple_inv["h0z_binned"], 'o--',
+                    color=colors['light_blue'],
                     markersize=6, linewidth=1, alpha=0.6,
                     label="Simple inversion (unweighted mean)")
 
         # Jia published (approximate from Fig. 2)
         jia_pub = np.array(self.JIA_PUBLISHED_6BIN)
         jia_pub_err = np.array(self.JIA_PUBLISHED_6BIN_ERR)
-        ax.errorbar(z_centers, jia_pub, yerr=jia_pub_err, fmt='ko--',
+        ax.errorbar(z_centers, jia_pub, yerr=jia_pub_err, fmt='o--',
+                    color=colors['dark'],
                     capsize=3, markersize=5, linewidth=1, alpha=0.5,
                     label="Jia et al. published (Fig. 2, approx.)")
 
-        ax.axhline(y=67.4, color='gray', linestyle=':', alpha=0.5,
+        ax.axhline(y=67.4, color=colors['purple'], linestyle=':', alpha=0.5,
                    label='Planck $H_0$')
-        ax.axhline(y=73.04, color='gray', linestyle='-.', alpha=0.5,
+        ax.axhline(y=73.04, color=colors['purple'], linestyle='-.', alpha=0.5,
                    label='SH0ES $H_0$')
 
-        ax.set_xlabel('Redshift $z$', fontsize=13)
-        ax.set_ylabel('$H_{0,z}$ (km/s/Mpc)', fontsize=13)
-        ax.set_title("Jia et al. (2023) Pantheon+-only six-bin $H_0$ replication",
-                     fontsize=12)
-        ax.legend(fontsize=9, loc='upper right')
+        ax.set_xlabel('Redshift $z$')
+        ax.set_ylabel('$H_{0,z}$ (km/s/Mpc)')
+        ax.set_title("Jia et al. (2023) Pantheon+-only six-bin $H_0$ replication")
+        ax.legend(loc='upper right')
         ax.set_xlim(-0.05, 2.5)
         ax.set_ylim(60, 78)
-        ax.grid(True, alpha=0.3)
+        ax.grid(True)
 
         plt.tight_layout()
         fig_path = self.figures / "step_32b_jia_replication.png"

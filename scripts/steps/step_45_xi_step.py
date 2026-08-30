@@ -35,6 +35,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 from scripts.utils.screening import U_REF_SCREENED, compute_screening
 
 
@@ -47,6 +48,7 @@ class Step45XiStep:
     U_REF = U_REF_SCREENED  # screened anchor reference (matches TEP-H0)
 
     def run(self):
+        colors = apply_tep_style()
         logger = TEPLogger(
             "step_45",
             log_file_path=PROJECT_ROOT / "logs" / "step_45_xi_step.log",
@@ -400,54 +402,54 @@ class Step45XiStep:
 
         # Panel 1: HR vs logM
         ax = axes[0, 0]
-        ax.scatter(logM, hr, alpha=0.3, s=10, c="blue")
-        ax.axhline(0, color="k", linestyle="--", alpha=0.3)
-        ax.axvline(10.5, color="r", linestyle=":", alpha=0.5, label="Mass step cut")
+        ax.scatter(logM, hr, alpha=0.3, s=10, c=colors['blue'])
+        ax.axhline(0, color=colors['dark'], linestyle="--", alpha=0.3)
+        ax.axvline(10.5, color=colors['red'], linestyle=":", alpha=0.5, label="Mass step cut")
         ax.set_xlabel(r"$\log_{10}(M_*/M_\odot)$")
         ax.set_ylabel("Hubble residual (mag)")
         ax.set_title(f"Mass step: {step_mass*1000:.1f} ± {step_mass_err*1000:.1f} mmag")
-        ax.legend(fontsize=8)
+        ax.legend()
 
         # Panel 2: HR vs X
         ax = axes[0, 1]
-        ax.scatter(X * 1e7, hr, alpha=0.3, s=10, c="red")
-        ax.axhline(0, color="k", linestyle="--", alpha=0.3)
-        ax.axvline(0, color="r", linestyle=":", alpha=0.5, label="X = 0 (anchor)")
+        ax.scatter(X * 1e7, hr, alpha=0.3, s=10, c=colors['red'])
+        ax.axhline(0, color=colors['dark'], linestyle="--", alpha=0.3)
+        ax.axvline(0, color=colors['red'], linestyle=":", alpha=0.5, label="X = 0 (anchor)")
         # Fit line
         x_fit = np.linspace(X.min(), X.max(), 100)
-        ax.plot(x_fit * 1e7, intercept_X + slope_X * x_fit, "k-", alpha=0.5,
+        ax.plot(x_fit * 1e7, intercept_X + slope_X * x_fit, color=colors['dark'], alpha=0.5,
                 label=f"slope = {slope_X:.1e} ({abs(slope_X/se_X):.1f}σ)")
         ax.set_xlabel(r"$X_i$ ($\times 10^{-7}$)")
         ax.set_ylabel("Hubble residual (mag)")
         ax.set_title(f"X step: {step_X*1000:.1f} ± {step_X_err*1000:.1f} mmag")
-        ax.legend(fontsize=8)
+        ax.legend()
 
         # Panel 3: Mass-corrected HR vs X
         ax = axes[1, 0]
-        ax.scatter(X * 1e7, hr_mass_corr, alpha=0.3, s=10, c="green")
-        ax.axhline(0, color="k", linestyle="--", alpha=0.3)
-        ax.axvline(0, color="r", linestyle=":", alpha=0.5)
+        ax.scatter(X * 1e7, hr_mass_corr, alpha=0.3, s=10, c=colors['green'])
+        ax.axhline(0, color=colors['dark'], linestyle="--", alpha=0.3)
+        ax.axvline(0, color=colors['red'], linestyle=":", alpha=0.5)
         x_fit = np.linspace(X.min(), X.max(), 100)
-        ax.plot(x_fit * 1e7, intercept_Xc + slope_Xc * x_fit, "k-", alpha=0.5,
+        ax.plot(x_fit * 1e7, intercept_Xc + slope_Xc * x_fit, color=colors['dark'], alpha=0.5,
                 label=f"slope = {slope_Xc:.1e} ({abs(slope_Xc/se_Xc):.1f}σ)")
         ax.set_xlabel(r"$X_i$ ($\times 10^{-7}$)")
         ax.set_ylabel("Mass-corrected HR (mag)")
         ax.set_title(f"After mass correction: {step_X_corr*1000:.1f} ± {step_X_corr_err*1000:.1f} mmag")
-        ax.legend(fontsize=8)
+        ax.legend()
 
         # Panel 4: x1 vs X
         ax = axes[1, 1]
         if x1_valid.sum() > 50:
-            ax.scatter(X[x1_valid] * 1e7, x1[x1_valid], alpha=0.3, s=10, c="purple")
-            ax.axhline(0, color="k", linestyle="--", alpha=0.3)
-            ax.axvline(0, color="r", linestyle=":", alpha=0.5)
+            ax.scatter(X[x1_valid] * 1e7, x1[x1_valid], alpha=0.3, s=10, c=colors['purple'])
+            ax.axhline(0, color=colors['dark'], linestyle="--", alpha=0.3)
+            ax.axvline(0, color=colors['red'], linestyle=":", alpha=0.5)
             x_fit = np.linspace(X[x1_valid].min(), X[x1_valid].max(), 100)
-            ax.plot(x_fit * 1e7, intercept_x1 + slope_x1 * x_fit, "k-", alpha=0.5,
+            ax.plot(x_fit * 1e7, intercept_x1 + slope_x1 * x_fit, color=colors['dark'], alpha=0.5,
                     label=f"slope = {slope_x1:.1e} ({abs(slope_x1/se_x1):.1f}σ)")
         ax.set_xlabel(r"$X_i$ ($\times 10^{-7}$)")
         ax.set_ylabel(r"$x_1$ (stretch)")
         ax.set_title("SN stretch vs potential")
-        ax.legend(fontsize=8)
+        ax.legend()
 
         plt.suptitle("X_i-Step Test: Pantheon+ Hubble Residuals vs Host Potential", fontsize=13)
         plt.tight_layout()

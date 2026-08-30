@@ -1,50 +1,56 @@
-[20:58:58] [INFO] 
-[20:58:58] [INFO] ================================================================================
-[20:58:58] [INFO]    Step 54: Directional Δμ Analysis
-[20:58:58] [INFO] ================================================================================
-[20:58:58] [INFO] 
-[20:58:58] [PROCESS] Bulk flow as temporal topology gradient vs kinetic motion
-[20:58:58] [PROCESS] Loading directional Cepheid-TRGB sample...
-[20:58:58] [SUCCESS]   33 galaxies loaded
-[20:58:58] [PROCESS] Loading CF4 table2 for bulk flow comparison...
-[20:58:59] [SUCCESS]   55877 CF4 galaxies
-[20:58:59] [PROCESS] 
+[23:46:26] [INFO] 
+[23:46:26] [INFO] ================================================================================
+[23:46:26] [INFO]    Step 54: Directional Δμ Analysis
+[23:46:26] [INFO] ================================================================================
+[23:46:26] [INFO] 
+[23:46:26] [PROCESS] Bulk flow as temporal topology gradient vs kinetic motion
+[23:46:26] [PROCESS] Loading directional Cepheid-TRGB sample...
+[23:46:26] [SUCCESS]   33 galaxies loaded
+[23:46:26] [PROCESS] Loading CF4 table2 for bulk flow comparison...
+[23:46:26] [SUCCESS]   55877 CF4 galaxies
+[23:46:26] [PROCESS] 
 --- Analysis 1: Primary directional correlation ---
-[20:59:58] [TEST]   N=33: r(Δμ, cmb_dot) = +0.3290 (p=0.0616)
-[20:59:58] [TEST]   Permutation: p_two=0.0615, p_one=0.0302
-[20:59:58] [TEST]   Toward CMB (N=20): Δμ = -0.022 ± 0.026
-[20:59:58] [TEST]   Away from CMB (N=13): Δμ = -0.119 ± 0.023
-[20:59:58] [TEST]   Difference: 0.097 mag (2.33σ, p=0.0086)
-[20:59:58] [PROCESS] 
+[23:46:46] [TEST]   N=33: r(Δμ, cmb_dot) = +0.3290 (p=0.0616)
+[23:46:46] [TEST]   Permutation: p_two=0.0615, p_one=0.0302
+[23:46:46] [TEST]   Toward CMB (N=20): Δμ = -0.022 ± 0.026
+[23:46:46] [TEST]   Away from CMB (N=13): Δμ = -0.119 ± 0.023
+[23:46:46] [TEST]   Difference: 0.097 mag (2.33σ, p=0.0086)
+[23:46:46] [PROCESS] 
 --- Analysis 2: 3-D vector dipole fit ---
-[20:59:58] [TEST]   Dipole amplitude: 0.0612 mag (8446 km/s equiv)
-[20:59:58] [TEST]   Direction: l=214.9°, b=+50.6°
-[20:59:58] [TEST]   CMB dipole: l=264.0°, b=+48.3°
-[20:59:58] [TEST]   Angular separation: 31.5°
-[20:59:58] [TEST]   Permutation: p=0.5368 (-0.20σ)
-[20:59:58] [PROCESS] 
+[23:46:46] [TEST]   Dipole amplitude: 0.0612 mag (8446 km/s equiv)
+[23:46:46] [TEST]   Direction: l=214.9°, b=+50.6°
+[23:46:46] [TEST]   CMB dipole: l=264.0°, b=+48.3°
+[23:46:46] [TEST]   Angular separation: 31.5°
+[23:46:46] [TEST]   Permutation: p=0.5368 (-0.20σ)
+[23:46:46] [PROCESS] 
 --- Analysis 3: Partial correlations ---
-[20:59:58] [TEST]   r(Δμ, cmb_dot) = +0.3290 (p=0.0616)
-[20:59:58] [TEST]   r(Δμ, X_i)     = +0.2864 (p=0.1061)
-[20:59:58] [TEST]   r(X_i, cmb_dot)= +0.2439 (p=0.1713)
-[20:59:58] [TEST]   Partial r(Δμ, cmb_dot | X_i)     = +0.2789 (p=0.1161)
-[20:59:58] [TEST]   Partial r(Δμ, cmb_dot | R22)     = +0.2668 (p=0.1333)
-[20:59:58] [TEST]   Partial r(Δμ, cmb_dot | X_i,R22) = +0.1993 (p=0.2661)
-[20:59:58] [TEST]   Partial r(Δμ, X_i | cmb_dot)     = +0.2252 (p=0.2078)
-[20:59:58] [PROCESS] 
+[23:46:46] [TEST]   r(Δμ, cmb_dot) = +0.3290 (p=0.0616)
+[23:46:46] [TEST]   r(Δμ, X_i)     = +0.2864 (p=0.1061)
+[23:46:46] [TEST]   r(X_i, cmb_dot)= +0.2439 (p=0.1713)
+[23:46:46] [TEST]   Partial r(Δμ, cmb_dot | X_i)     = +0.2789 (p=0.1161)
+[23:46:46] [TEST]   Partial r(Δμ, cmb_dot | R22)     = +0.2668 (p=0.1333)
+[23:46:46] [TEST]   Partial r(Δμ, cmb_dot | X_i,R22) = +0.1993 (p=0.2661)
+[23:46:46] [TEST]   Partial r(Δμ, X_i | cmb_dot)     = +0.2252 (p=0.2078)
+[23:46:46] [PROCESS] 
 --- Analysis 4: Joint model with F-test ---
-[20:59:58] [TEST]   TEP model (X_i + direction): R² = 0.153
-[20:59:58] [TEST]     κ = +3.73e+05, D = +0.046 mag
-[20:59:58] [TEST]   Kinematic model (X_i only):  R² = 0.082
-[20:59:58] [TEST]   Direction only:              R² = 0.108
-[20:59:58] [TEST]   F-test for direction: F=2.53, p=0.122
-[20:59:58] [TEST]   ΔR² from direction = 0.071
-[20:59:58] [PROCESS] 
+[23:46:46] [TEST]   TEP model (X_i + direction): R² = 0.153
+[23:46:46] [TEST]     κ = +3.73e+05, D = +0.046 mag
+[23:46:46] [TEST]   Kinematic model (X_i only):  R² = 0.082
+[23:46:46] [TEST]   Direction only:              R² = 0.108
+[23:46:46] [TEST]   F-test for direction: F=2.53, p=0.122
+[23:46:46] [TEST]   ΔR² from direction = 0.071
+[23:46:46] [PROCESS] 
 --- Analysis 5: Subsample analysis ---
-[20:59:58] [TEST]   CF4 (N=22): r=+0.360 (p=0.100), mean Δμ=-0.080
-[20:59:58] [TEST]   JWST (N=11): r=+0.019 (p=0.955), mean Δμ=-0.021
-[20:59:58] [TEST]   R22 (N=11): r(Δμ,cmb)=+0.019 (p=0.955), r(Δμ,X_i)=+0.346
-[20:59:58] [TEST]   non-R22 (N=22): r(Δμ,cmb)=+0.360 (p=0.100), r(Δμ,X_i)=+0.303
-[20:59:58] [PROCESS] 
+[23:46:46] [TEST]   CF4 (N=22): r=+0.360 (p=0.100), mean Δμ=-0.080
+[23:46:46] [TEST]   JWST (N=11): r=+0.019 (p=0.955), mean Δμ=-0.021
+[23:46:46] [TEST]   R22 (N=11): r(Δμ,cmb)=+0.019 (p=0.955), r(Δμ,X_i)=+0.346
+[23:46:46] [TEST]   non-R22 (N=22): r(Δμ,cmb)=+0.360 (p=0.100), r(Δμ,X_i)=+0.303
+[23:46:46] [PROCESS] 
 --- Analysis 6: Indicator-specific bulk flow ---
-[20:59:58] [ERROR] step_54 FAILED after 59.7s: [Errno 32] Broken pipe
+[23:46:46] [TEST]   Cepheid excess: 155 km/s (Cepheid 663 vs TRGB 508)
+[23:46:46] [PROCESS] 
+--- Generating sky-coverage figure ---
+[23:46:47] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_54_directional_dmu.png
+[23:46:47] [SUCCESS] 
+Results saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_54_directional_dmu.json
+[23:46:47] [SUCCESS] step_54 completed in 21.0s

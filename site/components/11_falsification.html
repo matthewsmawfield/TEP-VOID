@@ -4,8 +4,8 @@
     The value of a physical theory lies not only in what it explains
     but in what it forbids. The TEP framework makes specific,
     quantitative predictions that can be tested with current and
-    near-future observational facilities. This section outlines three
-    primary falsification pathways, each designed to either confirm
+    near-future observational facilities. This section outlines seven
+    falsification pathways (Pathways I–VII) and auxiliary tests, each designed to either confirm
     or refute the TEP acoustic clock bias hypothesis against the
     kinematic void alternative.
 </p>
@@ -28,7 +28,7 @@
 </p>
 
 <p>
-    A JWST-era matched sample (step_50) is constructed from 18
+    A JWST-era matched sample is constructed from 18
     galaxies with both JWST NIRCam TRGB distances (CCHP F115W from
     Freedman et al. 2024, GO-1995, and Anand et al. 2024 F090W,
     GO-1685/GO-2875) and R22 Cepheid distances on the same NGC 4258
@@ -61,7 +61,7 @@
     significance compared to the CF4 compilation
     ($+5.4 \times 10^5$, $2.11\sigma$), suggesting the CF4 positive
     slope was partly driven by registration artifacts. A direct
-    comparison (step_36) confirms this diagnosis: the $X_i$
+    comparison confirms this diagnosis: the $X_i$
     regression on the TEP-H0 raw SH0ES Cepheid + EDD/CCHP TRGB data
     ($N=18$, not CF4 registered) yields a slope of
     $-1.0 \times 10^5 \pm 3.8 \times 10^5$ ($0.27\sigma$) — the
@@ -97,7 +97,7 @@
     MF2023 NIR ($VIH$) Cepheid distances yield a weighted mean
     $\Delta\mu = -0.196 \pm 0.016$ mag with all 13 of 13 galaxies
     showing the TEP-predicted negative sign ($p = 0.00012$,
-    $3.67\sigma$ one-sided binomial). By contrast, the R22 Cepheid
+    $3.67\sigma$ one-sided binomial, providing independent confirmation distinct from the $3.65\sigma$ M31 internal gradient result). By contrast, the R22 Cepheid
     distances on the same 13 galaxies give a positive slope
     ($+2.60 \times 10^5$, wrong sign) and only 9 of 13 negative. The
     R22$-$MF2023 offset correlates with $X_i$ ($r = +0.28$ for $VIH$),
@@ -166,7 +166,7 @@
     velocity field. The conventional estimator
     $v_{\rm pec} = cz - H_0 d$ absorbs a change of distance
     calibration into a distance-dependent, apparently dipolar
-    residual. A dual-calibration experiment (step_58) re-calibrates
+    residual. A dual-calibration experiment re-calibrates
     the full CosmicFlows-4 Tully-Fisher catalog with both Cepheid and
     TRGB zero-points. When the standard $v_{\rm pec}$ estimator is
     used, the two calibrations give bulk flows that differ by
@@ -178,15 +178,15 @@
     differential bulk flow is $\Delta B = 0.0$ km/s. The
     $155\ {\rm km\,s^{-1}}$ Cepheid excess is therefore an
     estimator artifact of the conventional $v_{\rm pec}$ estimator,
-    not a physical kinematic flow. The macroscopic temporal signal
-    is a finite-coherence topological feature with
-    $L_T = 55.6$ Mpc (step_66), not a rigid dipolar gradient.
+    not a physical kinematic flow. The candidate macroscopic temporal component is
+    the finite-coherence feature with best-fit
+    $L_T = 55.6$ Mpc, not a rigid dipolar gradient.
 </p>
 
 <p>
     The directional $\Delta\mu$ signal in the Cepheid–TRGB offset is
     likewise not a robust discriminator. A compiled sample of 33
-    galaxies with both Cepheid and TRGB distances (step_53) gives
+    galaxies with both Cepheid and TRGB distances gives
     $r(\Delta\mu, \cos\theta_{\rm CMB}) = +0.329$ ($p = 0.062$), with
     a 3-D dipole-fit permutation $p = 0.537$. After conditioning on
     the screened host potential $X_i$ and R22 membership, the partial
@@ -198,9 +198,9 @@
     calibration-sensitivity of the conventional bulk-flow estimator
     is a diagnostic of the indicator divergence, not evidence for a
     Cepheid-specific large-scale temporal dipole. The macroscopic
-    temporal signal that does survive is the finite-coherence
-    topological feature in the Pantheon+ raw magnitude residuals
-    ($L_T = 55.6$ Mpc, Section 6.2), not the Cepheid–TRGB
+    temporal signal that does survive is the candidate finite-coherence
+    component in the pre-standardization Pantheon+ residuals
+    ($L_T = 55.6$ Mpc, Section 6.4), not the Cepheid–TRGB
     directional split.
 </p>
 
@@ -239,7 +239,7 @@
     Hubble residuals after SALT3 standardization should correlate
     with the potential coordinate $X_i$ of the SN host, beyond the
     standard host-mass correction. This is directly testable with
-    Pantheon+ data. A preliminary test (step_45) used
+    Pantheon+ data. A preliminary test used
     the 1,353 Pantheon+ Hubble-flow SNe ($z > 0.01$, $\log M > 7$)
     with host stellar mass measurements. The host potential was
     estimated from measured $V_{\rm rot}$ where available (107 SNe
@@ -269,7 +269,7 @@
 </p>
 
 <p>
-    An improved analysis (step_48) uses measured $V_{\rm rot}$ from
+    An improved analysis uses measured $V_{\rm rot}$ from
     the HyperLEDA catalog (VII/237, VII/238) queried via the Vizier
     HTTP API for all 1,543 Pantheon+ hosts. Measured rotation
     velocities (with inclination corrections from axis-ratio data)
@@ -283,11 +283,12 @@
     Hubble-flow) shows a step of $+22.3 \pm 15.1$ mmag ($+1.47\sigma$) —
     the TEP-predicted direction (high-$X_i$ hosts have more positive
     Hubble residuals, as expected when Cepheid distances are compressed
-    in deeper potentials). The measured-$V_{\rm rot}$-only subsample
-    ($N = 122$ Hubble-flow) is too unbalanced
-    ($N_{\rm high} = 116$, $N_{\rm low} = 6$) for a standalone
-    $X_i$-step after screening; the mass-residualized step for this
-    subsample is $+165.6 \pm 139.3$ mmag ($+1.19\sigma$) — also in the
+    in deeper potentials). Despite aggressively expanding the measured-$V_{\rm rot}$ kinematic 
+    sample with deep 21-cm blind surveys (ALFALFA, 2MTF, WALLABY), the 
+    subsample ($N = 128$ Hubble-flow) remains too structurally unbalanced 
+    ($N_{\rm high} = 121$, $N_{\rm low} = 7$) for a standalone 
+    detection ($1.06\sigma$–$2.11\sigma$, correct sign); the mass-residualized step for this
+    subsample is $+131.1 \pm 123.6$ mmag ($+1.06\sigma$) — also in the
     TEP-predicted direction, with a larger amplitude consistent with
     the deeper potential leverage of the measured-$V_{\rm rot}$ sample.
 </p>
@@ -304,22 +305,23 @@
     $\sim 10^7$, reflecting strong multicollinearity between $X_i$
     and $\log M_*$ (for the $\sim 88\%$ of hosts without measured
     $V_{\rm rot}$, $X_i$ is generated from $\log M_*$ via the
-    Tully-Fisher proxy). The joint OLS coefficient should therefore
-    be interpreted with caution; the sequentially residualized step
-    ($+1.00\sigma$) is the more conservative estimate. The
-    measured-$V_{\rm rot}$ subsample ($N = 122$) gives
-    $+165.6 \pm 139.3$ mmag ($+1.19\sigma$), preserving the
-    TEP-predicted direction but limited by severe sample imbalance
-    ($N_{\rm high} = 116$, $N_{\rm low} = 6$). If TEP
+    Tully-Fisher proxy). Because stellar mass physically correlates with the host potential well depth, mass-correction inevitably absorbs a significant portion of any true $X_i$ signal. The uncorrected step ($+1.47\sigma$) therefore remains the primary observable, while the sequentially residualized step
+    ($+1.00\sigma$) provides a highly conservative lower bound. The aggressively expanded, purely
+    measured-$V_{\rm rot}$ subsample ($N = 128$) gives
+    consistent-sign trends ($1.06\sigma$–$2.22\sigma$) but remains completely
+    underpowered due to the fundamental selection bias in the Pantheon+ dataset
+    ($N_{\rm high} = 121$, $N_{\rm low} = 7$). If TEP
+    is incorrect, the TF-proxy $X_i$-step detection must be an astrophysical confound. If TEP
     generates both the mass step and the $X_i$-step (as predicted by
     the framework), mass residualization provides a conservative
     lower bound; the uncorrected step is the primary TEP estimate.
 </p>
 
 <p>
-    The measured-$V_{\rm rot}$ subsample is unbalanced
-    ($N_{\rm high} = 116$, $N_{\rm low} = 6$) and the low-$X_i$
-    subset is concentrated at very low redshift (median $z = 0.020$,
+    The purely measured-$V_{\rm rot}$ sample is structurally unbalanced
+    ($N_{\rm high} = 121$, $N_{\rm low} = 7$) since blind HI surveys do not 
+    intersect with the distant, low-mass hosts selected by Pantheon+. The low-$X_i$
+    signal thus inherently relies on the TF-proxy for $V_{\rm rot}$. Furthermore, the measured-$V_{\rm rot}$ subsample is concentrated at very low redshift (median $z = 0.020$,
     maximum $z = 0.064$) where peculiar velocity contamination
     ($\sim$100–200 mmag) is largest. HyperLEDA preferentially samples
     nearby massive spirals, introducing a selection bias that
@@ -337,29 +339,10 @@
     (the bulk flow is independent of host potential).
 </p>
 
-<p>
-    <em>Updated stretch-channel regression (step_71).</em> A continuous
-    linear regression on the measured-$V_{\rm rot}$ deep catalog
-    ($N = 171$ Hubble-flow SNe, 167 HyperLEDA + 4 ALFALFA) with
-    redshift and $\log M_*$ controls gives
-    $\mathrm{d}x_1/\mathrm{d}X_i = +1.66 \times 10^6$ in the best
-    $X_i$-plus-controls model. The model is strongly preferred over the
-    null ($\Delta{\rm BIC} = 3{,}112$) and over redshift and mass alone
-    ($\Delta{\rm BIC} = 1{,}200$). For the typically negative
-    intrinsic SN stretch, this positive slope corresponds to $x_1$
-    becoming less negative — i.e. a longer observed diffusion timescale
-    in deeper potentials, the expected TEP clock-shear signature. The
-    Hubble residual channel, by contrast, shows no independent $X_i$
-    signal; models including $X_i$ are not preferred over the null. This
-    indicates that the TEP host-potential bias is carried primarily by
-    the $x_1$ light-curve stretch, which the SALT3 standardization
-    absorbs, leaving no residual once $x_1$ is included.
-</p>
-
 <h3>10.5 Additional Tests and Cross-Checks</h3>
 
 <p>
-    Beyond the four primary falsification pathways, several
+    Beyond the seven falsification pathways, several
     additional tests provide further discrimination:
 </p>
 
@@ -417,8 +400,7 @@
     $H_0$ with a clean anchor is exactly what the two-channel model
     predicts: the TRGB anchor removes the Cepheid channel, but the SN
     stretch channel remains. The Jensen et al. (2025) result thus
-    isolates the SN stretch channel and is consistent with the TEP
-    prediction.
+    is compatible with and motivates the SN stretch-channel interpretation.
 </p>
 
 <p>
@@ -440,8 +422,7 @@
     with the Riess et al. (2025) finding that the two calibrations
     agree at the $\sim 1\%$ level. The combined result does not
     falsify TEP; it is consistent with the two-channel structure,
-    demonstrating that the SN stretch channel operates independently
-    of the anchor choice.
+    and is compatible with and motivates the SN stretch-channel interpretation.
 </p>
 
 <p>
@@ -474,7 +455,7 @@
 </p>
 
 <p>
-    A matched-host test (step_49) is conducted using two independent
+    A matched-host test is conducted using two independent
     samples. The primary sample uses the Madore &
     Freedman (2023, arXiv:2309.10859) compilation, which provides
     both $W(H,VI)$ NIR and $W(V,VI)$ optical Cepheid true distance
@@ -489,7 +470,7 @@
     by leverage points rather than a tight global trend; the single
     galaxy M~101 contributes 26\% of the total WLS weight and drives
     the positive slope. A formal M101-exclusion sensitivity run
-    (saved in `step_49_band_dependence.json`) confirms the leverage
+    (saved in the band-dependence archive) confirms the leverage
     diagnosis: removing M~101 alone flips the slope to
     $-1.20 \times 10^6 \pm 2.47 \times 10^5$ ($-4.87\sigma$), the
     TEP-predicted negative sign, with the remaining 19 galaxies.
@@ -531,7 +512,7 @@
     $q_i^{\rm clock} \approx 1$ and therefore $\Delta\mu \approx 0$, while hosts
     with nuclear optical redshifts (bulge-weighted, compact) should
     show $q_i^{\rm clock} < 1$ and the full $\Delta\mu < 0$ signal. A preliminary
-    classification (step_47) of the 22-galaxy matched sample finds
+    classification of the 22-galaxy matched sample finds
     $N_{\rm HI} = 14$ and $N_{\rm nuclear} = 8$. The H I subsample
     shows $\Delta\mu = -0.092 \pm 0.031$ mag (11/14 shorter), while
     the nuclear subsample shows $\Delta\mu = -0.059 \pm 0.039$ mag
@@ -569,8 +550,8 @@
             <td>II</td>
             <td>Bulk-flow estimator calibration sensitivity</td>
             <td>No calibration dependence; bulk flow is physical</td>
-            <td>Conventional $v_{\rm pec} = cz - H_0 d$ gives a $155\ {\rm km\,s^{-1}}$ Cepheid excess; the $H_0$-invariant log-distance estimator gives $\Delta B = 0.0$ km/s (step_58); the macroscopic temporal signal is a finite-coherence topological feature with $L_T = 55.6$ Mpc ($p \lt 0.001$, step_66), carrying directional predictive power in the independent CF4 dataset</td>
-            <td>Completed (step_53/54/58/66); the bulk-flow dipole is an estimator artifact; the temporal topology is finite-coherence at the supercluster scale</td>
+            <td>Conventional $v_{\rm pec} = cz - H_0 d$ gives a $155\ {\rm km\,s^{-1}}$ Cepheid excess; the $H_0$-invariant log-distance estimator gives $\Delta B = 0.0$ km/s; Pantheon+ favours a candidate finite-coherence component rather than the previously assumed global linear-gradient form.</td>
+            <td>Completed for the calibration differential: the indicator-dependent bulk-flow excess is an estimator artifact. The remaining common directional field is tested independently by the finite-coherence analysis; Pantheon+ favours a candidate finite-coherence component rather than the previously assumed global linear-gradient form.</td>
         </tr>
         <tr>
             <td>III</td>
@@ -583,7 +564,7 @@
             <td>IV</td>
             <td>$X_i$-step in Pantheon+ Hubble residuals</td>
             <td>No $X_i$-step</td>
-            <td>step_45 ($N=1353$, TF+measured $V_{\rm rot}$, screened): $X_i$-step $+7.5 \pm 50.2$ mmag ($+0.15\sigma$, TEP-predicted direction; underpowered, $N_{\rm low}=18$); mass-corrected $X_i$ regression $0.71\sigma$; step_48 full sample ($N=1470$): $+22.3 \pm 15.1$ mmag ($+1.47\sigma$, TEP-predicted); joint OLS $X_i$ coefficient after mass correction $+7.92 \times 10^4 \pm 3.75 \times 10^4$ ($+2.11\sigma$, TEP-predicted); measured-$V_{\rm rot}$ subsample ($N=122$, mass-residualized): $+165.6 \pm 139.3$ mmag ($+1.19\sigma$, TEP-predicted; unbalanced $N_{\rm high}=116$, $N_{\rm low}=6$)</td>
+            <td>Preliminary ($N=1353$, TF+measured $V_{\rm rot}$, screened): $X_i$-step $+7.5 \pm 50.2$ mmag ($+0.15\sigma$, TEP-predicted direction; underpowered, $N_{\rm low}=18$); mass-corrected $X_i$ regression $0.71\sigma$; full sample ($N=1470$): $+22.3 \pm 15.1$ mmag ($+1.47\sigma$, TEP-predicted); joint OLS $X_i$ coefficient after mass correction $+7.92 \times 10^4 \pm 3.75 \times 10^4$ ($+2.11\sigma$, TEP-predicted); measured-$V_{\rm rot}$ expanded subsample ($N=128$, mass-residualized): $+131.1 \pm 123.6$ mmag ($+1.06\sigma$, TEP-predicted; unbalanced $N_{\rm high}=121$, $N_{\rm low}=7$)</td>
             <td>Inconclusive with current HyperLEDA coverage; needs deeper $V_{\rm rot}$ catalog</td>
         </tr>
         <tr>
@@ -612,7 +593,7 @@
             <td>Band-dependence: optical versus NIR Cepheid offset</td>
             <td>No band dependence</td>
             <td>NIR compression $\sim 18\%$ larger than optical ($b_H \approx -3.26$ versus $b_V \approx -2.76$); predicted slope $\approx -5.6 \times 10^4$; cross-team test (KP vs R22, $N=9$): slope $-6.2 \times 10^4 \pm 3.8 \times 10^5$ ($0.16\sigma$, negative — correct sign), $\chi^2/{\rm dof} = 0.90$; same-team test (MF2023, $N=20$): slope $+2.27 \times 10^5$ (positive — wrong sign, driven by M~101 leverage, $\chi^2/{\rm dof} = 6.40$); M101-excluded ($N=19$): slope $-1.20 \times 10^6 \pm 2.47 \times 10^5$ ($-4.87\sigma$, correct sign)</td>
-            <td>Cross-team result confirms predicted negative sign at $0.02\sigma$ with good $\chi^2/{\rm dof} = 0.90$ and consistency at $0.02\sigma$; same-team positive slope attributed to correlated systematics (shared photometry, metallicity corrections); Bayesian hierarchical modelling (step_51) on same-team sample finds $\sigma_{\rm int} = 0.132 \pm 0.028$ mag, confirming large unmodeled scatter in same-team differential</td>
+            <td>The cross-team point estimate has the predicted negative sign and is consistent with the predicted amplitude, but is statistically uninformative at $0.16\sigma$; same-team positive slope is consistent with a leverage/correlated-systematics explanation (shared photometry, metallicity corrections); Bayesian hierarchical modelling on same-team sample finds $\sigma_{\rm int} = 0.132 \pm 0.028$ mag, confirming large unmodeled scatter in same-team differential</td>
         </tr>
         <tr>
             <td>VI</td>
@@ -745,7 +726,7 @@
     parameter and stands independently of the auxiliary program. The
     secondary contribution — the auxiliary TEP supporting tests
     (indicator divergence, $\kappa_{\rm Cep}$, $X_i$-step,
-    band-dependence, tracer-type) — is provisional. The auxiliary evidence is heterogeneous: the cross-team band-dependence test confirms the predicted negative sign with good $\chi^2/{\rm dof}$, while other nominal statistics exceed $3\sigma$ but provenance controls, selection effects and intrinsic-scatter modelling substantially reduce their inferential weight.
+    band-dependence, tracer-type) — is provisional. The auxiliary evidence is heterogeneous: the cross-team band-dependence test has the predicted negative sign but is statistically uninformative at $0.16\sigma$, while other nominal statistics exceed $3\sigma$ but provenance controls, selection effects and intrinsic-scatter modelling substantially reduce their inferential weight.
 </p>
 
 <ul>
@@ -757,7 +738,7 @@
         in the opposite hemisphere. The monopole test can partially
         evade an anisotropic void signal if the void axis is
         misaligned with the Pantheon+ sky coverage. A hemispheric
-        asymmetry test (Section 6, step 55) directly evaluates this by
+        asymmetry test (Section 6) directly evaluates this by
         splitting Pantheon+ by CMB dipole and bulk-flow alignment; the
         null dipolar residual ($\Delta H_0 = 0.00 \pm 0.45$ km/s/Mpc)
         confirms the monopole rejection. The published KBC predictions
@@ -771,8 +752,8 @@
     <li>Global $M_B$ calibration: Pantheon+ uses a
         single global $M_B$ calibration for all SNe, meaning the
         Cepheid calibration bias is imprinted uniformly on all SNe
-        regardless of host mass or redshift. This means: (a) the
-        host-mass dependence cannot be tested with Pantheon+ data
+        regardless of host mass or redshift. This means: (a) 
+        host dependence cannot be tested through the globally calibrated Pantheon+ distance moduli or $H_0(z)$ profile; it can, however, be tested in pre-standardization/light-curve observables such as $x_1$
         (Section 8 tests spatial persistence only), and (b) the
         $H_0(z)$ profile is expected to be flat (the bias is in the
         zero-point, not distance-dependent). The specific

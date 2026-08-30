@@ -42,6 +42,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 
 
@@ -921,6 +922,7 @@ class Step36XiRegression:
     # ------------------------------------------------------------------
     def plot_regression(self, df, slope, intercept, slope_err):
         """Generate the Xi vs Δμ regression figure."""
+        colors = apply_tep_style()
         fig, ax = plt.subplots(figsize=(8, 6))
 
         x = df["X_i"].values
@@ -931,35 +933,35 @@ class Step36XiRegression:
         # Plot non-R22
         ax.errorbar(
             x[~r22], y[~r22], yerr=yerr[~r22],
-            fmt="o", color="steelblue", ms=6, capsize=3,
+            fmt="o", color=colors['blue'], ms=6, capsize=3,
             label=f"Non-R22 (N={sum(~r22)})", alpha=0.8,
         )
         # Plot R22
         ax.errorbar(
             x[r22], y[r22], yerr=yerr[r22],
-            fmt="s", color="crimson", ms=6, capsize=3,
+            fmt="s", color=colors['red'], ms=6, capsize=3,
             label=f"R22-matched (N={sum(r22)})", alpha=0.8,
         )
 
         # Regression line
         x_line = np.linspace(x.min(), x.max(), 100)
         y_line = slope * x_line + intercept
-        ax.plot(x_line, y_line, "k--", lw=1.5,
+        ax.plot(x_line, y_line, color=colors['dark'], linestyle="--", lw=1.5,
                 label=f"Fit: slope = {slope:.2e} ± {slope_err:.2e}")
 
         # TEP predicted line (default κ_μ)
         tep_slope = -self.KAPPA_CEP_DEFAULT
         tep_intercept = 0  # TEP predicts zero intercept at X_i = 0
         y_tep = tep_slope * x_line + tep_intercept
-        ax.plot(x_line, y_tep, "g-", lw=1.5, alpha=0.6,
+        ax.plot(x_line, y_tep, color=colors['green'], linestyle="-", lw=1.5, alpha=0.6,
                 label=f"TEP prediction (κ = {self.KAPPA_CEP_DEFAULT:.3g} mag)")
 
-        ax.axhline(0, color="gray", lw=0.5)
-        ax.axvline(0, color="gray", lw=0.5)
-        ax.set_xlabel("$X_i = (U_i - U_{\\rm ref}) / c^2$", fontsize=12)
-        ax.set_ylabel("$\\Delta\\mu = \\mu_{\\rm Cep} - \\mu_{\\rm TRGB}$ (mag)", fontsize=12)
-        ax.set_title("Cepheid–TRGB Distance Divergence vs Gravitational Potential", fontsize=13)
-        ax.legend(fontsize=9, loc="upper right")
+        ax.axhline(0, color=colors['purple'], lw=0.5)
+        ax.axvline(0, color=colors['purple'], lw=0.5)
+        ax.set_xlabel("$X_i = (U_i - U_{\\rm ref}) / c^2$")
+        ax.set_ylabel("$\\Delta\\mu = \\mu_{\\rm Cep} - \\mu_{\\rm TRGB}$ (mag)")
+        ax.set_title("Cepheid–TRGB Distance Divergence vs Gravitational Potential")
+        ax.legend(loc="upper right")
 
         fig.tight_layout()
         fig_path = self.figures / "step_36_xi_regression.png"

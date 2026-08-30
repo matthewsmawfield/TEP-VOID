@@ -54,7 +54,7 @@
 </p>
 
 <p>
-    The apparent bulk-flow amplitude is an estimator artifact. The
+    The calibration-dependent bulk-flow excess is an estimator artifact. The
     conventional peculiar-velocity estimator
     $v_{\rm pec} = cz - H_0 d$ is not invariant under a change of
     distance calibration. When the same CosmicFlows-4 Tully-Fisher
@@ -62,7 +62,7 @@
     ($H_0^{\rm Cep} = 73.04$) and with the TRGB anchor
     ($H_0^{\rm TRGB} = 69.84$), the inferred bulk-flow vectors differ
     by $|{\bf \Delta B}| = 50.4$ km/s at an angle of
-    $74^\circ$ to the CMB dipole (step_58). The CMB-aligned
+    $74^\circ$ to the CMB dipole. The CMB-aligned
     component of the difference is only
     $\Delta B_\parallel = +13.9$ km/s; the dominant component is
     perpendicular to the CMB axis. The differential flow is therefore
@@ -82,13 +82,11 @@
     inflates the apparent Cepheid bulk flow because it absorbs the
     larger $H_0$ in a distance-dependent way, producing the illusion of
     a $155$ km/s Cepheid excess; that excess vanishes under the
-    $H_0$-invariant log-distance formulation. The "bulk flow" is a
-    derived quantity whose amplitude and direction shift with the
-    assumed distance scale, not a physical CMB-aligned kinematic flow.
+    $H_0$-invariant log-distance formulation. The $H_0$-invariant estimator removes the Cepheid–TRGB differential while retaining a common $B=290\ {\rm km\,s^{-1}}$ directional component. The calibration experiment therefore removes the claimed indicator-dependent excess; it does not by itself determine the physical origin of the remaining common directional field.
 </p>
 
 <p>
-    The $4.6\sigma$ Watkins et al. (2023) bulk-flow anomaly is therefore
+    The $155$ km/s calibration-dependent excess in the Watkins et al. (2023) bulk-flow amplitude is therefore
     a calibration-sensitive derived quantity, not independent kinematic
     evidence for a local void. The TEP prediction is not that the bulk
     flow itself is a temporal topology gradient, but that standard
@@ -137,20 +135,32 @@
     void model predicts no such host-mass dependence.
 </p>
 
-<h3>6.2 The Saturated Integral: Finite-Coherence Temporal Topology</h3>
+<h3>6.2 Directional $\Delta\mu$ (33 galaxies)</h3>
+
+<p>
+    If the Hubble tension originates from a local Gpc-scale underdensity, the observed kinematics should contain a dipole signature aligned with the bulk flow. Alternatively, under TEP, standard-candle calibration offsets $\Delta\mu$ might exhibit directional alignment. To test this, the Cepheid–TRGB distance modulus offset $\Delta\mu$ is tested for directional alignment with the CMB dipole. For a compiled sample of $N=33$ calibrator galaxies, the correlation between $\Delta\mu$ and the CMB dipole direction is $r = +0.329$ ($p = 0.062$). While this marginal alignment is in the direction of the CMB dipole, it lacks the statistical significance required for a decisive detection of a global gradient, motivating the need for a larger-scale hemispheric test.
+</p>
+
+<h3>6.3 Directional Pantheon+ Consistency Check</h3>
+
+<p>
+    A hemispheric asymmetry test evaluates whether the Pantheon+ sample exhibits an anisotropic distance-scale signal. Splitting the Pantheon+ dataset by angular distance from the CMB dipole (and bulk-flow alignment) yields a correlation of $r = +0.002$ and a null dipolar residual in the inferred Hubble constant of $\Delta H_0 = 0.00 \pm 0.45\ \mathrm{km\,s^{-1}\,Mpc^{-1}}$. This hemispheric consistency confirms the monopole rejection of the void model established in Sections 7 and 8, finding no evidence for a hemispheric distance-scale asymmetry along the tested CMB/bulk-flow axis and providing an additional consistency check on the monopole rejection.
+</p>
+
+<h3>6.4 The Saturated Integral: Finite-Coherence Temporal Topology</h3>
 
 <p>
     The indicator-specific bulk-flow excess (Section 6) motivates a
     sharper discriminating test. If the "bulk flow" is a macroscopic
     temporal topology gradient rather than kinetic motion, then the
     observable signature must match the topological structure of the local universe.
-    Standard cosmology assumes that any macroscopic directional signal is a pure
-    kinematic bulk flow, decaying as $1/r$ in velocity space. In contrast,
-    TEP predicts that the macroscopic temporal signal is an extended topological feature
+    Conventional peculiar-velocity analyses ordinarily parameterize coherent low-redshift 
+    directional residuals as kinematic bulk-flow components, decaying as $1/r$ in velocity space. In contrast,
+    TEP predicts that the candidate macroscopic temporal component is the finite-coherence feature
     with a finite coherence scale $L_T$. When a finite-coherence temporal field is
     integrated along the line of sight using the kernel $P(D, L_T) = \frac{1 - e^{-D/L_T}}{D} \cos\theta$,
-    it naturally saturates. This saturation mimics a $1/r$ kinematic velocity flow
-    at large distances, which is why standard kinematic estimators misclassify it.
+    it naturally saturates. The exponential saturation kernel is adopted as a minimal one-scale phenomenological representation of finite temporal coherence; $L_T$ is therefore an empirically inferred coherence scale rather than a first-principles TEP constant. This saturation can mimic a kinematic velocity flow
+    in conventional estimators at large distances, which allows a finite-coherence temporal component to be classified observationally as a kinematic flow in a conventional reduction.
     The finite-coherence mode identified below is distinct from the Cepheid–TRGB
     calibration differential above: the latter describes how an indicator bias
     propagates into a conventional velocity estimator, whereas the former probes
@@ -163,29 +173,31 @@
     ($z \ge 0.01$) along the dominant large-scale structure axis
     ($l=298^\circ, b=-7^\circ$). By allowing the optimizer to freely
     explore the $L_T$ parameter space, the temporal structure is
-    tested directly against the raw unstandardized data.
+    tested directly against the pre-standardization Pantheon+ residuals.
 </p>
 
 <p>
     The likelihood has an interior optimum at $L_T = 55.61$ Mpc rather than either
     limiting profile (the $L_T \to 0$ pure kinematic limit or the $L_T \to \infty$ long-coherence/unsaturated limit),
-    with the associated directional amplitude detected at $p < 0.001$. This exact minimization of the log-likelihood
-    demonstrates that the structural binding scale of the
-    macroscopic temporal field is precisely 55.6 Mpc — placing
+    with the associated directional amplitude detected at $p < 0.001$. However, because the continuous optimizer
+    freely explores the $L_T$ parameter space, the raw $p$-value does not by itself account 
+    for the coherence-scale scan. Subject to this look-elsewhere cost, this minimization
+    demonstrates a best-fit coherence scale of 55.6 Mpc — placing
     the characteristic structure on a tens-of-Mpc
     local-environment scale rather than the Gpc scale required
     by the KBC void.
 </p>
 
-<h3>6.3 Zero-Parameter Cross-Prediction</h3>
+<h3>6.5 Amplitude/Scale-Frozen CF4 Cross-Check</h3>
 
 <p>
     To test whether this finite-coherence temporal field is a
-    universal physical feature rather than a Pantheon+ artifact, a
-    zero-parameter cross-prediction is performed onto the fully
-    independent CosmicFlows-4 dataset. CosmicFlows-4 (CF4) contains
-    35,978 galaxies dominated by ultra-local Tully-Fisher and
-    Fundamental Plane distances.
+    universal physical feature rather than a Pantheon+ artifact, an
+    amplitude/scale-frozen CF4 cross-check is performed at the pre-specified CF4 axis onto the
+    CosmicFlows-4 dataset. CosmicFlows-4 (CF4) contains
+    51,904 non-SN galaxies with Tully-Fisher and
+    Fundamental Plane distances spanning $D = 23$–$804$ Mpc
+    (median $218$ Mpc).
 </p>
 
 <p>
@@ -199,33 +211,32 @@
     quantitative comparison yields a residual sum of squares
     $\mathrm{RSS}_{\rm frozen} = 11783.7$ for the frozen Pantheon+
     model, against $\mathrm{RSS}_{\rm null} = 11801.5$ for the
-    no-dipole null. The frozen model therefore improves over the null
-    by $\Delta\mathrm{RSS} = 17.8$ across $N = 51{,}904$ CF4 galaxies,
-    confirming that the Pantheon+ signal carries directional predictive
-    power in the completely independent dataset. However, the pure $1/r$
-    kinematic limit still yields a slightly better fit to the CF4 data
+    no-dipole null. The frozen model produces a marginal improvement over the no-dipole null 
+    ($\Delta\mathrm{RSS} = 17.8$ across $N = 51{,}904$ CF4 galaxies, $\sim 0.15\%$), 
+    but is slightly outperformed by the pure $1/r$ kinematic limit
     ($\mathrm{RSS}_{1/r} = 11776.4$, or $\Delta\mathrm{RSS} = -7.3$ vs the
-    frozen model). The CF4 sample, dominated by galaxies at $D \ll L_T$,
-    does not independently recover the 55.6 Mpc scale; at small distances
-    the finite-coherence kernel degenerates toward a constant
-    amplitude, and the CF4 distance window lacks the leverage to
-    distinguish the 55.6 Mpc coherence scale from the pure $1/r$
-    kinematic profile.
+    frozen model). The CF4 sample is dominated by galaxies at $D \gg L_T$
+    (79.7% at $D/L_T > 2$, median $D = 218$ Mpc), where the finite-coherence
+    kernel $K(D,L_T) = (1-e^{-D/L_T})/D$ approaches $1/D$ and the two models
+    become nearly degenerate. The frozen model's improvement over the null
+    is concentrated in the transition zone ($D/L_T \sim 1$–$2$), where the
+    kernel shape differs most from $1/r$, but the $1/r$ model performs
+    comparably in the saturated majority, yielding a marginally lower
+    overall RSS. The CF4 distance window therefore lacks the leverage to
+    independently distinguish the 55.6 Mpc coherence scale from the pure
+    $1/r$ kinematic profile.
 </p>
 
 <figure>
-    <img src="figures/step_66_cross_prediction.png" alt="Zero-Parameter Cross-Prediction: Pantheon+ Model vs CF4 Data">
-    <figcaption><strong>Figure 6:</strong> Zero-parameter cross-prediction. The Pantheon+ derived finite-coherence temporal model ($L_T = 55.6$ Mpc, solid line) projected onto the distance-binned CF4 dipole amplitude (red circles) and Pantheon+ dipole amplitude (blue squares).</figcaption>
+    <img src="figures/step_66_cross_prediction.png" alt="Amplitude/Scale-Frozen CF4 Cross-Check: Pantheon+ Model vs CF4 Data">
+    <figcaption><strong>Figure 1:</strong> Amplitude/scale-frozen CF4 cross-check. The Pantheon+ derived finite-coherence temporal model ($L_T = 55.6$ Mpc, solid line) projected onto the distance-binned CF4 dipole amplitude (red circles) and Pantheon+ dipole amplitude (blue squares).</figcaption>
 </figure>
 
 <p>
-    The cross-prediction therefore establishes that the Pantheon+
-    directional signal is not a Pantheon+ artifact — it carries
-    predictive power in the independent CF4 dataset. The specific
-    55.6 Mpc coherence scale is not independently recovered by CF4,
-    which is dominated by galaxies at distances where the
-    finite-coherence kernel and the $1/r$ kinematic profile are
-    nearly degenerate. A definitive test of the coherence scale
+    This test therefore neither confirms nor excludes the finite-coherence model — 
+    the CF4 distance distribution lacks the leverage to discriminate between the two models. 
+    Consequently, the look-elsewhere cost of the Pantheon+ continuous optimization remains 
+    un-neutralized. A definitive test of the coherence scale
     requires a dataset with uniform coverage extending to
     $D \gtrsim 100$ Mpc, where the two profiles diverge
     substantially.

@@ -44,6 +44,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 
 class Step50JWSTMatched:
@@ -533,6 +534,7 @@ class Step50JWSTMatched:
     # ------------------------------------------------------------------
     def plot_regression(self, df, slope, intercept, slope_err, x_col="X_i"):
         """Generate the Xi vs Delta_mu regression figure."""
+        colors = apply_tep_style()
         fig, ax = plt.subplots(figsize=(9, 7))
 
         x = df[x_col].values
@@ -542,9 +544,9 @@ class Step50JWSTMatched:
 
         # Plot by source
         for flag, color, marker, label in [
-            ("JWST_F115W", "crimson", "s", f"CCHP F115W (GO-1995, N={sum(source=='JWST_F115W')})"),
-            ("JWST_F090W", "steelblue", "o", f"Anand F090W (GO-1685/2875, N={sum(source=='JWST_F090W')})"),
-            ("MASER", "forestgreen", "D", f"NGC 4258 (maser anchor, N={sum(source=='MASER')})"),
+            ("JWST_F115W", colors['red'], "s", f"CCHP F115W (GO-1995, N={sum(source=='JWST_F115W')})"),
+            ("JWST_F090W", colors['blue'], "o", f"Anand F090W (GO-1685/2875, N={sum(source=='JWST_F090W')})"),
+            ("MASER", colors['green'], "D", f"NGC 4258 (maser anchor, N={sum(source=='MASER')})"),
         ]:
             mask = source == flag
             if mask.any():
@@ -557,25 +559,24 @@ class Step50JWSTMatched:
         # Regression line
         x_line = np.linspace(x.min() - x.std() * 0.1, x.max() + x.std() * 0.1, 100)
         y_line = slope * x_line + intercept
-        ax.plot(x_line, y_line, "k--", lw=1.5,
+        ax.plot(x_line, y_line, color=colors['dark'], linestyle="--", lw=1.5,
                 label=f"Fit: slope = {slope:.2e} $\\pm$ {slope_err:.2e}", zorder=2)
 
         # TEP predicted line
         tep_slope = -self.KAPPA_CEP_DEFAULT
         y_tep = tep_slope * x_line
-        ax.plot(x_line, y_tep, "g-", lw=1.5, alpha=0.5,
+        ax.plot(x_line, y_tep, color=colors['green'], lw=1.5, alpha=0.5,
                 label=f"TEP prediction ($\\kappa$ = {self.KAPPA_CEP_DEFAULT:.3g} mag)", zorder=1)
 
-        ax.axhline(0, color="gray", lw=0.5, linestyle=":")
-        ax.axvline(0, color="gray", lw=0.5, linestyle=":")
-        ax.set_xlabel("$X_i = (U_i - U_{\\rm ref}) / c^2$", fontsize=13)
-        ax.set_ylabel("$\\Delta\\mu = \\mu_{\\rm Cep} - \\mu_{\\rm TRGB}$ (mag)", fontsize=13)
+        ax.axhline(0, color=colors['purple'], lw=0.5, linestyle=":")
+        ax.axvline(0, color=colors['purple'], lw=0.5, linestyle=":")
+        ax.set_xlabel("$X_i = (U_i - U_{\\rm ref}) / c^2$")
+        ax.set_ylabel("$\\Delta\\mu = \\mu_{\\rm Cep} - \\mu_{\\rm TRGB}$ (mag)")
         ax.set_title(
             "JWST Matched Cepheid/TRGB Sample: $\\Delta\\mu$ vs $X_i$\n"
             "(Pristine NIRCam data, no CF4 registration)",
-            fontsize=13,
         )
-        ax.legend(fontsize=9, loc="best")
+        ax.legend(loc="best")
 
         fig.tight_layout()
         fig_path = self.figures / "step_50_jwst_matched.png"

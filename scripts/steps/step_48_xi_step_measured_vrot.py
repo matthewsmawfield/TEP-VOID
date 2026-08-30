@@ -27,6 +27,8 @@ from scipy.optimize import curve_fit
 from scipy.integrate import cumulative_trapezoid
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from pathlib import Path
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
 from scripts.utils.screening import U_REF_SCREENED, compute_screening
 
@@ -41,6 +43,8 @@ class MeasuredVrotXiStep:
 
     def __init__(self):
         self.results = {}
+        self.logger = TEPLogger("step_48", log_file_path=PROJECT_ROOT / "logs" / "step_48_xi_step_measured_vrot.log")
+        set_step_logger(self.logger)
 
     def load_data(self):
         """Load Pantheon+ and measured V_rot catalog."""

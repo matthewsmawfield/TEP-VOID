@@ -109,7 +109,7 @@ def run_permutation(df, target_col, use_weights, err_col, n_perms=1000):
     return p_perm
 
 def run_audit():
-    log = TEPLogger("step_63_temporal_audit", log_file_path=PROJECT_ROOT / "outputs/logs/step_63_temporal_audit.log")
+    log = TEPLogger("step_63_temporal_audit", log_file_path=PROJECT_ROOT / "logs/step_63_raw_sn_temporal_audit.log")
     set_step_logger(log)
     
     df = load_pantheon()

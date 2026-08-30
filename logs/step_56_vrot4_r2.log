@@ -1,31 +1,26 @@
-[20:19:42] [INFO] 
-[20:19:42] [INFO] ================================================================================
-[20:19:42] [INFO]    Step 56: 2D Geometric Prediction — V_rot^4/r^2 Test
-[20:19:42] [INFO] ================================================================================
-[20:19:42] [INFO] 
-[20:19:42] [PROCESS] DHOST scalar-tensor derivation: ε_0 ∝ V_rot^4/r^2
-[20:19:42] [PROCESS] Loading SPARC catalog...
-[20:19:42] [SUCCESS]   175 SPARC galaxies
-[20:19:42] [PROCESS] Loading directional sample...
-[20:19:42] [SUCCESS]   33 galaxies
-[20:19:42] [PROCESS] Cross-matching SPARC with directional sample...
-[20:19:42] [SUCCESS]   6 matched galaxies with V_flat > 0
-[20:19:42] [PROCESS] 
+[23:47:10] [INFO] 
+[23:47:10] [INFO] ================================================================================
+[23:47:10] [INFO]    Step 56: 2D Geometric Prediction — V_rot^4/r^2 Test
+[23:47:10] [INFO] ================================================================================
+[23:47:10] [INFO] 
+[23:47:10] [PROCESS] DHOST scalar-tensor derivation: ε_0 ∝ V_rot^4/r^2
+[23:47:10] [PROCESS] Loading SPARC catalog...
+[23:47:10] [SUCCESS]   175 SPARC galaxies
+[23:47:10] [PROCESS] Loading directional sample...
+[23:47:10] [SUCCESS]   33 galaxies
+[23:47:10] [PROCESS] Cross-matching SPARC with directional sample...
+[23:47:10] [SUCCESS]   6 matched galaxies with V_flat > 0
+[23:47:10] [PROCESS] 
 --- 2D geometric prediction test ---
-[20:19:42] [TEST]   N=6 matched galaxies
-[20:19:42] [TEST]   1D: r(Δμ, V²) = +0.1620 (p=0.7592)
-[20:19:42] [TEST]   2D: r(Δμ, V⁴/R²) = +0.6147 (p=0.1941)
-[20:19:42] [TEST]   Partial r(Δμ, V⁴/R² | V²) = +0.7779 (p=0.0685)
-[20:19:42] [TEST]   AIC: 1D=-23.22, 2D=-25.91, ΔAIC=-2.69
-[20:19:42] [TEST]   BIC: 1D=-23.64, 2D=-26.33, ΔBIC=-2.69
-[20:19:42] [PROCESS] 
+[23:47:10] [TEST]   N=6 matched galaxies
+[23:47:10] [TEST]   1D: r(Δμ, V²) = +0.1620 (p=0.7592)
+[23:47:10] [TEST]   2D: r(Δμ, V⁴/R²) = +0.6147 (p=0.1941)
+[23:47:10] [TEST]   Partial r(Δμ, V⁴/R² | V²) = +0.7779 (p=0.0685)
+[23:47:10] [TEST]   AIC: 1D=-23.22, 2D=-25.91, ΔAIC=-2.69
+[23:47:10] [TEST]   BIC: 1D=-23.64, 2D=-26.33, ΔBIC=-2.69
+[23:47:10] [PROCESS] 
 --- Generating figure ---
-[20:19:42] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_56_vrot4_r2.png
-[20:19:42] [SUCCESS] 
+[23:47:11] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_56_vrot4_r2.png
+[23:47:11] [SUCCESS] 
 Results saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_56_vrot4_r2.json
-[20:19:42] [SUCCESS] step_56 completed in 0.6s
-[20:19:42] [INFO] 
-[20:19:42] [INFO] ================================================================================
-[20:19:42] [INFO]    Starting step_57: Gate D: Cartesian dipole rebuild with Freedman-Lane permutations (directional signal not robust)
-[20:19:42] [INFO] ================================================================================
-[20:19:42] [INFO] 
+[23:47:11] [SUCCESS] step_56 completed in 0.2s

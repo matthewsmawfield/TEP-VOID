@@ -281,7 +281,7 @@
     This form is dimensionless and ensures that $X_i > 0$ for massive
     hosts (deeper potentials than the anchor) and $X_i \approx 0$ for
     low-mass hosts near the reference potential. The TEP-VOID pipeline
-    (step_40) adopts the same potential coordinate construction as
+    adopts the same potential coordinate construction as
     TEP-H0, with screening set to $S_i \approx 1$ for the Pantheon+
     Hubble-flow regime, consistent with the TEP-H0 finding that disk
     Cepheids reside in the weakly screened ($S_i \approx 1$) regime.
@@ -293,7 +293,7 @@
     may reflect a bulge/nuclear value rather than the disk dispersion at
     the Cepheid radii ($R \sim 3$–$5$ kpc, where
     $\sigma_{\rm disk} \sim 60$–$80\ {\rm km\,s^{-1}}$ from stellar
-    absorption-line spectroscopy). A sensitivity analysis (step_46)
+    absorption-line spectroscopy). A sensitivity analysis
     tests the impact: varying $\sigma_{\rm N4258}$ from 60 to
     $150\ {\rm km\,s^{-1}}$ changes $U_{\rm ref}$ by a factor of
     $\sim$5, but the maximum per-host correction
@@ -308,7 +308,7 @@
 </p>
 
 <p>
-    A note on the amplitude scale. The step_46 analysis uses the
+    A note on the amplitude scale. The sensitivity analysis uses the
     velocity-dispersion proxy $\phi_{\rm proxy} = \sigma^2$ with the
     unscreened anchor $U_{\rm ref} = (87.165\ {\rm km\,s^{-1}})^2$,
     which gives $X_{\rm max} \approx 8.3 \times 10^{-7}$ (at NGC 976) and
@@ -621,7 +621,7 @@
 
 <div class="equation">
     \begin{equation}
-    d\tilde{\tau}^2 = A^2\left[-(1+2\Psi)\,dt^2 + (1-2\Phi)\,(dr^2 + r^2 d\Omega^2)\right]
+    d\tilde{s}^2 = \tilde{g}_{\mu\nu}dx^\mu dx^\nu = A^2\left[-(1+2\Psi)\,dt^2 + (1-2\Phi)\,(dr^2 + r^2 d\Omega^2)\right]
     + B(\mathcal X)\left[dt^2 + 2\psi'\,dt\,dr + \psi'^2\,dr^2\right] .
         \end{equation}
 </div>
@@ -632,7 +632,7 @@
 
 <div class="equation">
     \begin{equation}
-    d\tilde{\tau}^2 \approx -A^2(1+2\Psi - b)\,dt^2
+    d\tilde{s}^2 = \tilde{g}_{\mu\nu}dx^\mu dx^\nu \approx -A^2(1+2\Psi - b)\,dt^2
     + 2 A^2 b\,\psi'\,dt\,dr
     + A^2(1-2\Phi + \epsilon)\,dr^2
     + A^2(1-2\Phi)\,r^2 d\Omega^2 ,
@@ -699,7 +699,7 @@
 
 <p>
     The transport efficiency factor $\mathcal{T}_i$ is a parameterization of the
-    synchronization holonomy. For a photon traveling radially ($d\tilde{\tau}^2 = 0$, $d\Omega = 0$), the time
+    synchronization holonomy. For a photon traveling radially ($d\tilde{s}^2 = 0$, $d\Omega = 0$), the time
     of flight is given by the root of the metric quadratic:
 </p>
 
@@ -720,7 +720,7 @@
 </p>
 
 <p>
-    The non-radial $g_{0i}$ structure induced by orbital motion and stellar pulsation eigenvalue modification is represented by an $\mathcal{O}(1)$ transport efficiency coefficient $\eta_P$ derived from modified stellar structure and the linear adiabatic wave equation (step 52):
+    The non-radial $g_{0i}$ transport induced by orbital motion is represented phenomenologically by an $\mathcal{O}(1)$ transport-efficiency coefficient $\eta_P$. A first-principles determination of $\eta_P$ requires the full non-radial transport solution:
 </p>
 
 <div class="equation">
@@ -730,7 +730,7 @@
 </div>
 
 <p>
-    This formally establishes the parameterized origin of the bias:
+    This defines the leading-order parameterized transport response:
 </p>
 
 <div class="equation">
@@ -1123,7 +1123,7 @@
     duplicated here.
 </p>
 
-<h3>4.9 The Mount Wilson Equivalence Theorem</h3>
+<h3>4.14 The Mount Wilson Equivalence Theorem</h3>
 
 <p>
     A global gradient in the temporal shear field, superposed on a
@@ -1137,7 +1137,7 @@
 </p>
 
 <p>
-    Step 70 tests this theorem directly with the full Pantheon+ sample.
+    This theorem is tested directly with the full Pantheon+ sample.
     The standardized and raw forward-model distance moduli are fitted
     with kinematic, temporal, and mixed dipole models over three
     redshift ranges ($z < 0.1$, $z < 0.5$, $z > 0.01$). In every case
@@ -1158,8 +1158,8 @@
     (Section 10.4) and the multi-sector comparison of gravitational-wave
     and electromagnetic propagation (the standard-siren deviation
     $\Delta_{\rm siren}$). The Mount Wilson Equivalence Theorem turns
-    the apparent null in the global dipole into an expected validation
-    of the TEP framework.
+    the apparent null in the global dipole into an expected outcome
+    that removes an apparent tension.
 </p>
 
 <p>

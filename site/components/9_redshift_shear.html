@@ -23,7 +23,7 @@
     ($2.05\sigma$ at $\sigma_v = 150$ km/s), with the joint
     multi-block likelihood returning $1.58\sigma$ as a consistency
     check. The supernova $X_i$-step emerges at $1.47\sigma$ in the
-    TEP-predicted direction (step_48, $N=1470$ Hubble-flow), placing the longstanding host-mass residual in a concrete, falsifiable timescale-bias framework. These multi-scale detections
+    TEP-predicted direction ($N=1470$ Hubble-flow), placing the longstanding host-mass residual in a concrete, falsifiable timescale-bias framework. These multi-scale detections
     align in both direction and order of magnitude to
     span the gap. The definitive per-host recalibration is left to
     the companion TEP-H0 analysis.
@@ -50,7 +50,7 @@
 <p>
     Type Ia supernovae belong to this third category. The SALT2/SALT3
     standardization relation is
-    $m_B = M + \alpha\,x_1 - \beta\,c + \Delta_{\rm host}$, where
+    $\mu = m_B - M_B + \alpha\,x_1 - \beta\,c + \Delta_{\rm host}$, where
     $x_1$ is the light-curve stretch — the timescale of the
     photospheric diffusion through the ejecta. The peak luminosity is
     nuclear physics; the light-curve width by which it is standardized
@@ -100,7 +100,7 @@
     The potential of an arbitrary high-redshift SN host does not enter
     this chain. The Cepheid channel affects only the Cepheid
     calibrators that set $M_B$, not the SNe themselves. The SN
-    stretch channel (Section 9.5) operates independently on the
+    stretch channel (Section 9.6) operates independently on the
     Hubble-flow SNe.
 </p>
 
@@ -164,7 +164,7 @@
 
 <p>
     The TEP correction is applied to the Cepheid calibrator hosts with
-    measured rotation velocities from the step_01 potential catalog.
+    measured rotation velocities from the host potential catalog.
     The mean correction over these calibrators determines the
     zero-point shift $\Delta M_B$:
 </p>
@@ -209,8 +209,8 @@
     The direct shift of $+0.035 \pm 0.030$ mag is a simple
     calibrator-average estimator using the endpoint-slope
     $\kappa_{\rm Cep}^{\rm equiv} = 0.365 \times 10^6$ mag applied to
-    the screened calibrator-only $\langle X_i \rangle$ (step_40
-    cross-validation). The
+    the screened calibrator-only $\langle X_i \rangle$ via
+    cross-validation. The
     Hubble tension demands a mean calibrator correction of
     $\Delta\mu_{\rm tension} = 5\log_{10}(73.0/67.4) \approx 0.174$
     mag. Two propagation routes exist, yielding different results:
@@ -228,7 +228,7 @@
     $\kappa_{\rm Cep}^{\rm equiv}$ is
     $\kappa_{\rm Cep}^{\rm equiv} \cdot X_{\rm max} = 0.365 \times
     10^6 \times 3.28 \times 10^{-7} \approx 0.120$ mag (at M101).
-    A propagation audit (step_40) confirms: the mean calibrator
+    A propagation audit confirms: the mean calibrator
     correction is $+0.039 \pm 0.019$ mag (using the redshift-only WLS
     $\kappa_{\rm Cep} = 0.45 \times 10^6$), or $+0.035 \pm 0.030$
     mag using the endpoint-closure $\kappa_{\rm Cep}^{\rm equiv}$,
@@ -265,7 +265,7 @@
 
 <p>
     The SALT2/SALT3 standardization relation
-    $m_B = M + \alpha\,x_1 - \beta\,c + \Delta_{\rm host}$ corrects
+    $\mu = m_B - M_B + \alpha\,x_1 - \beta\,c + \Delta_{\rm host}$ corrects
     the observed peak magnitude using the light-curve stretch $x_1$,
     which parameterizes the timescale of photospheric diffusion
     through the ejecta. The stretch $x_1$ is a time-domain
@@ -305,10 +305,9 @@
     principles; the range shown is bounded by the observed
     host-mass step. The falsifiable test — the $X_i$-step in
     Pantheon+ residuals (Section 10.4) — is needed before this
-    channel counts as evidence rather than a prediction. The
-    fiducial choice $\eta_{\rm SN} \sim 1/2$, motivated by the common rank-1 transport structure (Section 4.9),
-    provides the structural motivation; the empirical confirmation
-    is the $X_i$-step.
+    channel counts as evidence rather than a prediction.
+    The fiducial choice $\eta_{\rm SN} \sim 1/2$, motivated by the common rank-1 transport structure (Section 4.9),
+    provides the structural motivation.
 </p>
 
 <p>
@@ -332,20 +331,20 @@
 
 <p>
     The two-channel amplitudes are summarized in Table 7. The
-    Cepheid channel is directly measured; the SN stretch channel
-    is a prediction bounded by the observed host-mass step. The
-    $X_i$-step test (Section 10.4) is the falsifiable empirical
-    test of the SN channel.
+    Cepheid channel is directly measured. The predicted host-potential dependence
+    of SN stretch remains an independent, uncalibrated prediction to be tested.
+    Closing this gap requires radiative-transfer simulations of SN Ia light curves
+    in a disformal metric with environment-dependent $g_{0i}$ structure, or alternatively
+    an empirical calibration against a sample with both measured $V_{\rm rot}$ and
+    independent Cepheid distances permitting a direct $\Delta M_B^{\rm SN}$–$x_1$
+    cross-anchor.
 </p>
 
 <table class="data-table">
     <caption>Table 7: Two-channel amplitude summary. Channel 1
     (Cepheid period transport) is measured from the matched-host
     divergence and the likelihood analysis. Channel 2 (SN
-    light-curve stretch) is a TEP prediction, bounded by the
-    observed host-mass step; its amplitude is not yet
-    independently constrained. The $X_i$-step test (Section 10.4)
-    is the falsifiable empirical test of Channel 2.</caption>
+    light-curve stretch) host-potential dependence remains an uncalibrated prediction.</caption>
     <thead>
         <tr>
             <th>Channel</th>
@@ -364,20 +363,17 @@
         <tr>
             <td>SN light-curve stretch</td>
             <td>$\alpha \cdot \Delta x_1(X_i)$</td>
-            <td>$\sim 0.04$–$0.10$ mag (predicted)</td>
-            <td>SN Ia host-mass step ($0.057 \pm 0.018$ mag raw; $\sim 0.04$–$0.06$ mag after SALT3 host correction); $X_i$-step test pending</td>
+            <td>SN Ia host-mass step ($0.057 \pm 0.018$ mag raw; $\sim 0.04$–$0.06$ mag after SALT3 host correction); HR channel null after $x_1$ absorption (pending decisive measured-$V_{\rm rot}$ sample test)</td>
         </tr>
     </tbody>
 </table>
 
 <p>
     The Cepheid channel is the directly measured calibration bias.
-    The SN stretch channel is a separate, falsifiable prediction
-    of the same transport mechanism: if the $X_i$-step in
-    Pantheon+ Hubble residuals is detected at the predicted
-    amplitude, the SN channel is confirmed; if it is excluded,
-    the SN channel is falsified while the Cepheid channel stands
-    independently. The two channels are additive and both scale
+    The SN stretch channel remains a falsifiable host-potential prediction;
+    an independently calibrated $x_1(X_i)$ test with a decisive
+    measured-$V_{\rm rot}$ sample remains outstanding.
+    The two channels are additive and both scale
     with $X_i$, but the paper does not depend on the SN channel
     to balance the amplitude budget — the Cepheid channel
     reconstruction (Paper 11, Step 04) already yields
@@ -413,8 +409,8 @@
     method vary jointly with potential depth across the four classes.
     The ordering has been noted informally in the Hubble-tension
     literature and attributed to sample selection and
-    stellar-population effects specific to each method. The figure
-    (Figure 9, step_44) is available in the reproducibility archive.
+    stellar-population effects specific to each method. A plot of
+    this ordering is available in the reproducibility archive.
     The two-channel model predicts that this ordering
     will persist under refinement, a directional expectation
     that future data with larger indicator samples can test. The
@@ -445,9 +441,9 @@
     the central values match the TEP-predicted $\sim 0.02$–$0.05$ mag
     with stable sign). The two-channel structure (Table 7) shows
     the Cepheid channel (measured) and the SN stretch channel
-    (predicted), each bounded by an independent observational
-    constraint. The falsifiable prediction — the $X_i$-step in
-    Pantheon+ Hubble residuals beyond the SALT3 mass correction — is
+    (remaining a falsifiable host-potential prediction awaiting a decisive
+    measured-$V_{\rm rot}$ sample test), each bounded by an independent observational
+    constraint. The standardized Hubble-residual channel is
     the subject of Section 10.
 </p>
 
@@ -456,33 +452,17 @@
 <p>
     An audit of the standard SN Ia data reduction pipeline reveals a
     critical mechanism that suppresses the macroscopic temporal signal:
-    the SALT standardization process itself acts as a scrubber.
+    the SALT standardization process itself attenuates the pre-standardization directional signal.
 </p>
 
 <p>
-    The SALT3 model standardizes supernova luminosities under the
-    strict assumption of the Isochrony Axiom — that clocks tick at
-    the same fundamental rate everywhere. Because the macroscopic
-    temporal field (the 55.6 Mpc finite-coherence structure) is an
-    accumulated temporal shear that alters the local clock rate
-    directionally across the sky, it modifies the observed timescales
-    of all local events. For a supernova, this manifests as an
-    apparent broadening or narrowing of the light-curve width
-    depending on its alignment with the dipole.
-</p>
-
-<p>
-    Standard cosmology interprets any macroscopic temporal distortion
-    not as a topological feature of spacetime, but as an intrinsic
-    artifact of the supernova explosion. The aggregate SALT3
+    Because the standard rest-frame time mapping used by SALT3 implicitly assumes that the spectroscopic redshift fully accounts for the transformation between observed and emitted light-curve timescales, the aggregate SALT3
     standardization — combining the stretch correction $\alpha x_1$,
-    the color correction $\beta c$, and the host-mass step — absorbs
-    part of the macroscopic temporal signal into the standardized
-    magnitude $m_{B,\rm corr}$. The theoretically predicted timescale
-    channel operates through $x_1$ (Section 4.9), but the Gate G audit
-    (step_63) shows that the raw stretch coefficient itself is not
+    the color correction $\beta c$, and the host-mass step — attenuates the pre-standardization directional signal, consistent with partial absorption of a temporal contribution. This constitutes a falsifiable prediction: the temporal signal should appear in pre-standardization SALT magnitude residuals at a specific amplitude and be attenuated in standardized ones. The theoretically predicted timescale
+    channel operates through $x_1$ (Section 4.9), but a direct audit
+    shows that the raw stretch coefficient itself is not
     significantly directional ($D_{x_1} = +0.061 \pm 0.061$,
-    $p = 0.32$); the suppression is instead observed in the aggregate
+    $p = 0.32$). This directional $x_1$ null is distinct from the uncalibrated host-potential $x_1(X_i)$ prediction of Section 10.4; the two tests probe different spatial structures. The suppression is instead observed in the aggregate
     correction, where the pre-standardization magnitude dipole
     ($D = -0.070 \pm 0.019$, $p_{\rm perm} < 10^{-3}$) is reduced to
     $D = -0.021 \pm 0.010$ ($p_{\rm perm} = 0.014$) after the full

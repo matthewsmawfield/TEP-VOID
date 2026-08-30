@@ -16,7 +16,7 @@ python3 scripts/run_pipeline.py --continue-on-error # Don't stop on failures
 
 ## Pipeline Structure
 
-The pipeline consists of 46 registered steps in 6 blocks:
+The pipeline consists of 48 registered steps in 6 blocks:
 
 ### Block 0: Data Ingestion (Steps 00-03)
 - `step_00_data_ingestion.py` — SH0ES Cepheid + CCHP TRGB host samples

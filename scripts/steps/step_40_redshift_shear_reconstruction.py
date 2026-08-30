@@ -60,6 +60,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 from scripts.utils.screening import U_REF_SCREENED, compute_screening_by_name
 
 # Path to the companion TEP-H0 project (sibling directory)
@@ -624,6 +625,7 @@ class Step40RedshiftShearReconstruction:
 
     def plot_tep_correction(self, df):
         """Generate figure showing TEP correction to Pantheon+ Hubble diagram."""
+        colors = apply_tep_style()
         print_status("Generating TEP correction figure...", "PROCESS")
 
         fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -644,19 +646,19 @@ class Step40RedshiftShearReconstruction:
             if "is_massive_host" in df.columns:
                 massive = mask & (df["is_massive_host"] == True)
                 low = mask & (df["is_massive_host"] == False)
-                ax1.scatter(z[low], mu[low], c="#1f77b4", s=10, alpha=0.5, label="Low-mass hosts")
-                ax1.scatter(z[massive], mu[massive], c="#d62728", s=15, alpha=0.6, label="Massive hosts", marker="^")
+                ax1.scatter(z[low], mu[low], c=colors['blue'], s=10, alpha=0.5, label="Low-mass hosts")
+                ax1.scatter(z[massive], mu[massive], c=colors['red'], s=15, alpha=0.6, label="Massive hosts", marker="^")
             else:
-                ax1.scatter(z[mask], mu[mask], c="#1f77b4", s=10, alpha=0.5)
+                ax1.scatter(z[mask], mu[mask], c=colors['blue'], s=10, alpha=0.5)
             # LambdaCDM line (proper LCDM, not linear)
             z_fine = np.linspace(0.01, max(z[mask].max(), 0.01), 100)
             mu_model = np.array([self._mu_lcdm(zv, self.H0_CMB) for zv in z_fine])
-            ax1.plot(z_fine, mu_model, "k--", linewidth=1, label="$\\Lambda$CDM")
-            ax1.set_xlabel("Redshift $z$", fontsize=12)
-            ax1.set_ylabel("$\\mu$ (mag)", fontsize=12)
-            ax1.set_title("Before TEP Correction", fontsize=13)
-            ax1.legend(fontsize=10)
-            ax1.grid(True, alpha=0.3)
+            ax1.plot(z_fine, mu_model, color=colors['dark'], linestyle="--", linewidth=1, label="$\\Lambda$CDM")
+            ax1.set_xlabel("Redshift $z$")
+            ax1.set_ylabel("$\\mu$ (mag)")
+            ax1.set_title("Before TEP Correction")
+            ax1.legend()
+            ax1.grid(True)
 
         # Panel 2: Hubble diagram after correction
         ax2 = axes[0, 1]
@@ -666,16 +668,16 @@ class Step40RedshiftShearReconstruction:
             if "is_massive_host" in df.columns:
                 massive = mask & (df["is_massive_host"] == True)
                 low = mask & (df["is_massive_host"] == False)
-                ax2.scatter(z[low], mu_corr[low], c="#1f77b4", s=10, alpha=0.5, label="Low-mass hosts")
-                ax2.scatter(z[massive], mu_corr[massive], c="#d62728", s=15, alpha=0.6, label="Massive hosts", marker="^")
+                ax2.scatter(z[low], mu_corr[low], c=colors['blue'], s=10, alpha=0.5, label="Low-mass hosts")
+                ax2.scatter(z[massive], mu_corr[massive], c=colors['red'], s=15, alpha=0.6, label="Massive hosts", marker="^")
             else:
-                ax2.scatter(z[mask], mu_corr[mask], c="#1f77b4", s=10, alpha=0.5)
-            ax2.plot(z_fine, mu_model, "k--", linewidth=1, label="$\\Lambda$CDM")
-            ax2.set_xlabel("Redshift $z$", fontsize=12)
-            ax2.set_ylabel("$\\mu_{TEP}$ (mag)", fontsize=12)
-            ax2.set_title("After TEP Correction", fontsize=13)
-            ax2.legend(fontsize=10)
-            ax2.grid(True, alpha=0.3)
+                ax2.scatter(z[mask], mu_corr[mask], c=colors['blue'], s=10, alpha=0.5)
+            ax2.plot(z_fine, mu_model, color=colors['dark'], linestyle="--", linewidth=1, label="$\\Lambda$CDM")
+            ax2.set_xlabel("Redshift $z$")
+            ax2.set_ylabel("$\\mu_{TEP}$ (mag)")
+            ax2.set_title("After TEP Correction")
+            ax2.legend()
+            ax2.grid(True)
 
         # Panel 3: Residuals before correction
         ax3 = axes[1, 0]
@@ -691,16 +693,16 @@ class Step40RedshiftShearReconstruction:
             if "is_massive_host" in df.columns:
                 massive = mask & (df["is_massive_host"] == True)
                 low = mask & (df["is_massive_host"] == False)
-                ax3.scatter(z[low], residual[low], c="#1f77b4", s=10, alpha=0.5, label="Low-mass")
-                ax3.scatter(z[massive], residual[massive], c="#d62728", s=15, alpha=0.6, label="Massive", marker="^")
+                ax3.scatter(z[low], residual[low], c=colors['blue'], s=10, alpha=0.5, label="Low-mass")
+                ax3.scatter(z[massive], residual[massive], c=colors['red'], s=15, alpha=0.6, label="Massive", marker="^")
             else:
-                ax3.scatter(z[mask], residual[mask], c="#1f77b4", s=10, alpha=0.5)
-            ax3.axhline(0, color="black", linestyle="--", alpha=0.5)
-            ax3.set_xlabel("Redshift $z$", fontsize=12)
-            ax3.set_ylabel("Residual $\\mu - \\mu_{\\Lambda CDM}$ (mag)", fontsize=12)
-            ax3.set_title("Residuals Before TEP Correction", fontsize=13)
-            ax3.legend(fontsize=10)
-            ax3.grid(True, alpha=0.3)
+                ax3.scatter(z[mask], residual[mask], c=colors['blue'], s=10, alpha=0.5)
+            ax3.axhline(0, color=colors['dark'], linestyle="--", alpha=0.5)
+            ax3.set_xlabel("Redshift $z$")
+            ax3.set_ylabel("Residual $\\mu - \\mu_{\\Lambda CDM}$ (mag)")
+            ax3.set_title("Residuals Before TEP Correction")
+            ax3.legend()
+            ax3.grid(True)
 
         # Panel 4: TEP Delta_mu vs redshift
         ax4 = axes[1, 1]
@@ -710,16 +712,16 @@ class Step40RedshiftShearReconstruction:
             if "is_massive_host" in df.columns:
                 massive = mask & (df["is_massive_host"] == True)
                 low = mask & (df["is_massive_host"] == False)
-                ax4.scatter(z[low], delta_mu[low], c="#1f77b4", s=10, alpha=0.5, label="Low-mass")
-                ax4.scatter(z[massive], delta_mu[massive], c="#d62728", s=15, alpha=0.6, label="Massive", marker="^")
+                ax4.scatter(z[low], delta_mu[low], c=colors['blue'], s=10, alpha=0.5, label="Low-mass")
+                ax4.scatter(z[massive], delta_mu[massive], c=colors['red'], s=15, alpha=0.6, label="Massive", marker="^")
             else:
-                ax4.scatter(z[mask], delta_mu[mask], c="#1f77b4", s=10, alpha=0.5)
-            ax4.axhline(0, color="black", linestyle="--", alpha=0.5)
-            ax4.set_xlabel("Redshift $z$", fontsize=12)
-            ax4.set_ylabel("$\\Delta\\mu_{TEP}$ (mag)", fontsize=12)
-            ax4.set_title("TEP Temporal Shear Correction", fontsize=13)
-            ax4.legend(fontsize=10)
-            ax4.grid(True, alpha=0.3)
+                ax4.scatter(z[mask], delta_mu[mask], c=colors['blue'], s=10, alpha=0.5)
+            ax4.axhline(0, color=colors['dark'], linestyle="--", alpha=0.5)
+            ax4.set_xlabel("Redshift $z$")
+            ax4.set_ylabel("$\\Delta\\mu_{TEP}$ (mag)")
+            ax4.set_title("TEP Temporal Shear Correction")
+            ax4.legend()
+            ax4.grid(True)
 
         fig.suptitle("Pantheon+ Distance Moduli: TEP Redshift Shear Reconstruction", fontsize=15, y=1.02)
         fig.tight_layout()

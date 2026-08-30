@@ -1,28 +1,23 @@
-[20:54:30] [INFO] 
-[20:54:30] [INFO] ================================================================================
-[20:54:30] [INFO]    Step 12: Void Prediction Uniformity Test
-[20:54:30] [INFO] ================================================================================
-[20:54:30] [INFO] 
-[20:54:30] [PROCESS] Scientific question: can the kinematic void model's prediction of indicator-uniform distances (Delta_mu = 0 for all hosts) survive a rigorous statistical test against the observed Cepheid-TRGB divergence? The void model requires all distance indicators to yield identical moduli, so any significant departure from Delta_mu = 0 falsifies the void null hypothesis. The TEP framework predicts a non-zero, potential-dependent divergence and is therefore not constrained by this null. This step formally tests the void null hypothesis using multiple independent statistics and renders a falsification verdict, closing Block Ia.
-[20:54:30] [PROCESS] Loading observed Delta_mu distribution...
-[20:54:30] [PROCESS] Loading step_10 per-galaxy results: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_10_per_galaxy_delta_mu.csv
-[20:54:30] [SUCCESS]   18 hosts with Delta_mu
-[20:54:30] [PROCESS] Methodology: the observed per-galaxy Delta_mu distribution (from step_10) is tested against the void null hypothesis Delta_mu = 0 for all hosts. Four independent statistics are computed: a chi-squared statistic (sum of Delta_mu_i^2 / sigma_i^2 with N degrees of freedom), a one-sample t-test against zero, a Wilcoxon signed-rank test, and the inverse-variance weighted mean with its significance. The chi-squared significance in sigma equivalents is the primary falsification criterion, using a 2-sigma threshold.
-[20:54:30] [PROCESS] Testing void null hypothesis: Delta_mu = 0 for all hosts...
-[20:54:30] [TEST]   Chi-squared:     12.36 (dof=18)
-[20:54:30] [TEST]   Reduced chi-sq:  0.686
-[20:54:30] [TEST]   p-value (chi2):  8.283739e-01
-[20:54:30] [TEST]   Significance:    0.22 sigma
-[20:54:30] [TEST]   t-test:          t=-0.290, p=0.7752
-[20:54:30] [TEST]   Wilcoxon:        W=81.0, p=0.8650
-[20:54:30] [TEST]   Weighted mean:   -0.0027 +/- 0.0177 mag
-[20:54:30] [TEST]   Weighted signif: 0.15 sigma
-[20:54:30] [TEST] Interpretation: the void null hypothesis (Delta_mu = 0) yields a chi-squared of 12.36 for 18 degrees of freedom (reduced chi-squared = 0.686), corresponding to 0.22 sigma. Void null hypothesis (Delta_mu = 0) is not definitively falsified at 0.22 sigma. The weighted mean divergence is -0.0027 +/- 0.0177 mag (0.15 sigma). A significant rejection of the void null is consistent with the TEP prediction of non-zero, potential-dependent divergence.
-[20:54:30] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_12_void_prediction_uniformity.json
-[20:54:30] [SUCCESS] Step 12 complete
-[20:54:30] [SUCCESS] step_12 completed in 0.0s
-[20:54:30] [INFO] 
-[20:54:30] [INFO] ================================================================================
-[20:54:30] [INFO]    Starting step_30: Bulk-flow recalculation: Cepheid-calibrated vs TRGB-calibrated
-[20:54:30] [INFO] ================================================================================
-[20:54:30] [INFO] 
+[23:43:41] [INFO] 
+[23:43:41] [INFO] ================================================================================
+[23:43:41] [INFO]    Step 12: Void Prediction Uniformity Test
+[23:43:41] [INFO] ================================================================================
+[23:43:41] [INFO] 
+[23:43:41] [PROCESS] Scientific question: can the kinematic void model's prediction of indicator-uniform distances (Delta_mu = 0 for all hosts) survive a rigorous statistical test against the observed Cepheid-TRGB divergence? The void model requires all distance indicators to yield identical moduli, so any significant departure from Delta_mu = 0 falsifies the void null hypothesis. The TEP framework predicts a non-zero, potential-dependent divergence and is therefore not constrained by this null. This step formally tests the void null hypothesis using multiple independent statistics and renders a falsification verdict, closing Block Ia.
+[23:43:41] [PROCESS] Loading observed Delta_mu distribution...
+[23:43:41] [PROCESS] Loading step_10 per-galaxy results: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_10_per_galaxy_delta_mu.csv
+[23:43:41] [SUCCESS]   18 hosts with Delta_mu
+[23:43:41] [PROCESS] Methodology: the observed per-galaxy Delta_mu distribution (from step_10) is tested against the void null hypothesis Delta_mu = 0 for all hosts. Four independent statistics are computed: a chi-squared statistic (sum of Delta_mu_i^2 / sigma_i^2 with N degrees of freedom), a one-sample t-test against zero, a Wilcoxon signed-rank test, and the inverse-variance weighted mean with its significance. The chi-squared significance in sigma equivalents is the primary falsification criterion, using a 2-sigma threshold.
+[23:43:41] [PROCESS] Testing void null hypothesis: Delta_mu = 0 for all hosts...
+[23:43:41] [TEST]   Chi-squared:     12.36 (dof=18)
+[23:43:41] [TEST]   Reduced chi-sq:  0.686
+[23:43:41] [TEST]   p-value (chi2):  8.283739e-01
+[23:43:41] [TEST]   Significance:    0.22 sigma
+[23:43:41] [TEST]   t-test:          t=-0.290, p=0.7752
+[23:43:41] [TEST]   Wilcoxon:        W=81.0, p=0.8650
+[23:43:41] [TEST]   Weighted mean:   -0.0027 +/- 0.0177 mag
+[23:43:41] [TEST]   Weighted signif: 0.15 sigma
+[23:43:41] [TEST] Interpretation: the void null hypothesis (Delta_mu = 0) yields a chi-squared of 12.36 for 18 degrees of freedom (reduced chi-squared = 0.686), corresponding to 0.22 sigma. Void null hypothesis (Delta_mu = 0) is not definitively falsified at 0.22 sigma. The weighted mean divergence is -0.0027 +/- 0.0177 mag (0.15 sigma). A significant rejection of the void null is consistent with the TEP prediction of non-zero, potential-dependent divergence.
+[23:43:41] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_12_void_prediction_uniformity.json
+[23:43:41] [SUCCESS] Step 12 complete
+[23:43:41] [SUCCESS] step_12 completed in 0.0s

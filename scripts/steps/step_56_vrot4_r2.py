@@ -46,6 +46,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 from scripts.utils.screening import U_REF_SCREENED, C_KMS
 
 
@@ -239,6 +240,7 @@ class Step56Vrot4R2:
 
     def make_figure(self, df):
         """Generate comparison figure."""
+        colors = apply_tep_style()
         print_status("\n--- Generating figure ---", "PROCESS")
 
         if len(df) < 4:
@@ -254,36 +256,36 @@ class Step56Vrot4R2:
 
         # Panel 1: Δμ vs V_rot^2 (1D proxy)
         ax1 = axes[0]
-        ax1.scatter(vrot2, dmu, c="C0", s=80, edgecolors="k", zorder=3)
+        ax1.scatter(vrot2, dmu, c=colors['blue'], s=80, edgecolors=colors['dark'], zorder=3)
         for i in range(n):
             ax1.annotate(df.iloc[i]["sparc_name"], (vrot2[i], dmu[i]),
                         fontsize=7, xytext=(5, 5), textcoords="offset points")
         r1, p1 = sp_stats.pearsonr(vrot2, dmu)
         ax1.set_xlabel("$V_{\\rm rot}^2$ (km/s)$^2$")
         ax1.set_ylabel("Δμ (mag)")
-        ax1.set_title(f"1D proxy: $r = {r1:+.3f}$ (p={p1:.3f})", fontsize=11)
-        ax1.axhline(0, color="gray", linestyle=":", alpha=0.5)
+        ax1.set_title(f"1D proxy: $r = {r1:+.3f}$ (p={p1:.3f})")
+        ax1.axhline(0, color=colors['purple'], linestyle=":", alpha=0.5)
 
         # Panel 2: Δμ vs V_rot^4/R^2 (2D prediction)
         ax2 = axes[1]
-        ax2.scatter(vrot4_r2, dmu, c="C1", s=80, edgecolors="k", zorder=3)
+        ax2.scatter(vrot4_r2, dmu, c=colors['red'], s=80, edgecolors=colors['dark'], zorder=3)
         for i in range(n):
             ax2.annotate(df.iloc[i]["sparc_name"], (vrot4_r2[i], dmu[i]),
                         fontsize=7, xytext=(5, 5), textcoords="offset points")
         r2, p2 = sp_stats.pearsonr(vrot4_r2, dmu)
         ax2.set_xlabel("$V_{\\rm rot}^4 / R_{\\rm disk}^2$ (km/s)$^4$/kpc$^2$")
         ax2.set_ylabel("Δμ (mag)")
-        ax2.set_title(f"2D prediction: $r = {r2:+.3f}$ (p={p2:.3f})", fontsize=11)
-        ax2.axhline(0, color="gray", linestyle=":", alpha=0.5)
+        ax2.set_title(f"2D prediction: $r = {r2:+.3f}$ (p={p2:.3f})")
+        ax2.axhline(0, color=colors['purple'], linestyle=":", alpha=0.5)
 
         # Panel 3: Comparison bar chart
         ax3 = axes[2]
         models = ["1D: $V_{\\rm rot}^2$", "2D: $V_{\\rm rot}^4/R^2$"]
         r_vals = [r1, r2]
-        colors = ["C0", "C1"]
-        ax3.barh(models, [abs(r) for r in r_vals], color=colors, edgecolor="k")
+        bar_colors = [colors['blue'], colors['red']]
+        ax3.barh(models, [abs(r) for r in r_vals], color=bar_colors, edgecolor=colors['dark'])
         ax3.set_xlabel("|Pearson r|")
-        ax3.set_title("Correlation strength comparison", fontsize=11)
+        ax3.set_title("Correlation strength comparison")
         ax3.set_xlim(0, 1)
         for i, (r, p) in enumerate(zip(r_vals, [p1, p2])):
             ax3.text(abs(r) + 0.02, i, f"r={r:+.3f}\np={p:.3f}", va="center", fontsize=9)

@@ -58,6 +58,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 warnings.filterwarnings("ignore", message="divide by zero encountered in matmul")
 warnings.filterwarnings("ignore", message="overflow encountered in matmul")
@@ -377,7 +378,7 @@ class Step70PantheonFullDiscriminator:
     def __init__(self):
         self.root = PROJECT_ROOT
         for d in [self.root / "logs", self.root / "results" / "outputs",
-                  self.root / "results" / "figures", self.root / "outputs" / "logs"]:
+                  self.root / "results" / "figures"]:
             d.mkdir(parents=True, exist_ok=True)
 
         self.logger = TEPLogger(
@@ -488,6 +489,7 @@ class Step70PantheonFullDiscriminator:
         return summary
 
     def make_figures(self, summary):
+        colors = apply_tep_style()
         for label in summary:
             fig, axes = plt.subplots(2, 2, figsize=(13, 10))
 
@@ -515,7 +517,7 @@ class Step70PantheonFullDiscriminator:
                 vmed = [b["v_med"] for b in br]
                 bpar = [b["B_par"] for b in br]
                 axes[0, 1].plot(vmed, bpar, "s-", label="HR_raw")
-            axes[0, 1].axhline(0, color="k", ls=":")
+            axes[0, 1].axhline(0, color=colors['dark'], ls=":")
             axes[0, 1].set_xlabel("V_cmb (km/s)")
             axes[0, 1].set_ylabel("B_|| (km/s)")
             axes[0, 1].set_title("Kinematic dipole vs distance")
@@ -529,7 +531,7 @@ class Step70PantheonFullDiscriminator:
 
             x1s = summary[label]["x1_directional"]["slope"]
             axes[1, 1].bar(["x1 vs cosθ"], [x1s])
-            axes[1, 1].axhline(0, color="k", ls=":")
+            axes[1, 1].axhline(0, color=colors['dark'], ls=":")
             axes[1, 1].set_ylabel("Slope")
             axes[1, 1].set_title("Stretch channel directional compression")
 

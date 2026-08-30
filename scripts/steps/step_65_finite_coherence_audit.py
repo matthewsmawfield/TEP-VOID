@@ -106,7 +106,7 @@ def fit_kernel(df, L_T, axis_name='CMB', target='raw_mag_resid'):
     }
 
 def run_audit():
-    log = TEPLogger("step_65_finite_coherence_audit", log_file_path=PROJECT_ROOT / "outputs/logs/step_65_finite_coherence_audit.log")
+    log = TEPLogger("step_65_finite_coherence_audit", log_file_path=PROJECT_ROOT / "logs/step_65_finite_coherence_audit.log")
     set_step_logger(log)
     
     df = load_pantheon()

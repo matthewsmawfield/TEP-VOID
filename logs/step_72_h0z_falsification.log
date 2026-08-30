@@ -1,27 +1,22 @@
-[20:22:50] [INFO] ======================================================================
-[20:22:50] [INFO] Step 72: H0(z) Falsification
-[20:22:50] [INFO] ======================================================================
-[20:22:50] [PROCESS] Loading Pantheon+ for H0(z) falsification...
-[20:22:50] [SUCCESS]   1459 Hubble-flow SNe
-[20:22:50] [INFO]   z range: 0.0103 - 2.2613
-[20:22:50] [PROCESS] Loading covariance /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/Pantheon+SH0ES_STAT+SYS.cov...
-[20:22:50] [SUCCESS]   Loaded 1701x1701 covariance
-[20:22:50] [INFO]   STAT+SYS file is not positive definite; reconstructing covariance from published errors
-[20:22:50] [PROCESS] 
+[23:48:46] [INFO] ======================================================================
+[23:48:46] [INFO] Step 72: H0(z) Falsification
+[23:48:46] [INFO] ======================================================================
+[23:48:46] [PROCESS] Loading Pantheon+ for H0(z) falsification...
+[23:48:46] [SUCCESS]   1459 Hubble-flow SNe
+[23:48:46] [INFO]   z range: 0.0103 - 2.2613
+[23:48:46] [PROCESS] Loading covariance /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/Pantheon+SH0ES_STAT+SYS.cov...
+[23:48:46] [SUCCESS]   Loaded 1701x1701 covariance
+[23:48:47] [INFO]   STAT+SYS file is not positive definite; reconstructing covariance from published errors
+[23:48:47] [PROCESS] 
 Fitting models...
-[20:22:50] [TEST] 
+[23:48:47] [TEST] 
 Model comparison:
-[20:22:50] [INFO]   Flat_TEP               chi2=      4515.2  BIC=    4529.8  dBIC=    0.00  n_p=2
-[20:22:50] [INFO]   KBC_Exponential_Fixed  chi2=      5049.8  BIC=    5057.1  dBIC=  527.27  n_p=1
-[20:22:50] [INFO]   KBC_Gaussian_Fixed     chi2=      4658.7  BIC=    4666.0  dBIC=  136.16  n_p=1
-[20:22:50] [INFO]   Free_Exponential       chi2=      4515.2  BIC=    4544.4  dBIC=   14.57  n_p=4
-[20:22:50] [INFO]   Free_Gaussian          chi2=      4518.8  BIC=    4547.9  dBIC=   18.08  n_p=4
-[20:22:50] [SUCCESS] 
+[23:48:47] [INFO]   Flat_TEP               chi2=      4515.2  BIC=    4529.8  dBIC=    0.00  n_p=2
+[23:48:47] [INFO]   KBC_Exponential_Fixed  chi2=      5049.8  BIC=    5057.1  dBIC=  527.27  n_p=1
+[23:48:47] [INFO]   KBC_Gaussian_Fixed     chi2=      4658.7  BIC=    4666.0  dBIC=  136.16  n_p=1
+[23:48:47] [INFO]   Free_Exponential       chi2=      4515.2  BIC=    4544.4  dBIC=   14.57  n_p=4
+[23:48:47] [INFO]   Free_Gaussian          chi2=      4518.8  BIC=    4547.9  dBIC=   18.08  n_p=4
+[23:48:47] [SUCCESS] 
 Saved results to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_72_h0z_falsification.json
-[20:22:50] [SUCCESS] Saved figure /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_72_h0z_falsification.png
-[20:22:50] [SUCCESS] step_72 completed in 0.3s
-[20:22:50] [INFO] 
-[20:22:50] [INFO] ================================================================================
-[20:22:50] [INFO]    Starting step_73: Pantheon+ low-z radial discriminator audit: zCMB/zHD × CMB/CF4 axis sensitivity test
-[20:22:50] [INFO] ================================================================================
-[20:22:50] [INFO] 
+[23:48:47] [SUCCESS] Saved figure /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_72_h0z_falsification.png
+[23:48:47] [SUCCESS] step_72 completed in 0.3s

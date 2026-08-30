@@ -33,6 +33,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 
 class Step43ManuscriptFigures:
@@ -87,7 +88,8 @@ class Step43ManuscriptFigures:
 
     def plot_panel_indicator_divergence(self, ax, step_data):
         """Panel (a): Indicator-specific distance divergence (Cepheid vs TRGB DM)."""
-        ax.set_title("(a) Indicator Divergence: Cepheid vs TRGB", fontsize=12, fontweight="bold")
+        colors = apply_tep_style()
+        ax.set_title("(a) Indicator Divergence: Cepheid vs TRGB", fontweight="bold")
 
         s30 = step_data.get("step_30_bulk_flow_recalculation", {})
         test_a = s30.get("test_a_indicator_comparison", {})
@@ -101,30 +103,31 @@ class Step43ManuscriptFigures:
                 if "DMceph" in df2.columns and "DMtrgb" in df2.columns:
                     both = df2[df2["DMceph"].notna() & df2["DMtrgb"].notna()]
                     ax.scatter(both["DMtrgb"], both["DMceph"], s=60, alpha=0.7,
-                               color="#2ca02c", edgecolors="black", linewidth=0.5)
+                               color=colors['green'], edgecolors=colors['dark'], linewidth=0.5)
                     lims = [min(both["DMtrgb"].min(), both["DMceph"].min()) - 0.5,
                             max(both["DMtrgb"].max(), both["DMceph"].max()) + 0.5]
-                    ax.plot(lims, lims, "k--", alpha=0.5, label="1:1 (void)")
+                    ax.plot(lims, lims, color=colors['dark'], linestyle="--", alpha=0.5, label="1:1 (void)")
                     mean_delta = test_a.get("mean_delta_mu", 0)
-                    ax.plot(lims, [l + mean_delta for l in lims], "r--", alpha=0.7,
+                    ax.plot(lims, [l + mean_delta for l in lims], color=colors['red'], linestyle="--", alpha=0.7,
                             label=f"TEP: $\\Delta\\mu$={mean_delta:.3f}")
-                    ax.set_xlabel("$\\mu_{TRGB}$ (mag)", fontsize=11)
-                    ax.set_ylabel("$\\mu_{Cep}$ (mag)", fontsize=11)
+                    ax.set_xlabel("$\\mu_{TRGB}$ (mag)")
+                    ax.set_ylabel("$\\mu_{Cep}$ (mag)")
                     ax.set_aspect("equal")
                     sigma = test_a.get("significance_sigma", 0)
                     ax.text(0.05, 0.95, f"N={n_overlap}, {sigma:.2f}$\\sigma$",
                             transform=ax.transAxes, fontsize=9, va="top",
-                            bbox=dict(boxstyle="round", facecolor="wheat", alpha=0.8))
+                            bbox=dict(boxstyle="round", facecolor=colors['bg'], alpha=0.8))
         else:
             ax.text(0.5, 0.5, "Data unavailable", transform=ax.transAxes,
-                    ha="center", fontsize=11, color="gray")
+                    ha="center", fontsize=11, color=colors['purple'])
 
-        ax.legend(fontsize=9, loc="lower right")
-        ax.grid(True, alpha=0.3)
+        ax.legend(loc="lower right")
+        ax.grid(True)
 
     def plot_panel_calibration_sensitivity(self, ax, step_data):
         """Panel (b): Peculiar velocity calibration sensitivity."""
-        ax.set_title("(b) Calibration Sensitivity", fontsize=12, fontweight="bold")
+        colors = apply_tep_style()
+        ax.set_title("(b) Calibration Sensitivity", fontweight="bold")
 
         s30 = step_data.get("step_30_bulk_flow_recalculation", {})
         s31 = step_data.get("step_31_peculiar_velocity_artifact", {})
@@ -140,27 +143,28 @@ class Step43ManuscriptFigures:
             cep_e = [bf_cep.get(str(b), {}).get("v_bf_err", 0) for b in bins]
             trgb_v = [bf_trgb.get(str(b), {}).get("v_bf", 0) for b in bins]
             trgb_e = [bf_trgb.get(str(b), {}).get("v_bf_err", 0) for b in bins]
-            ax.errorbar(bins, cep_v, yerr=cep_e, fmt="o-", color="#d62728",
+            ax.errorbar(bins, cep_v, yerr=cep_e, fmt="o-", color=colors['red'],
                         label=f"Cepheid ($H_0$=73.0)", capsize=4, markersize=7)
-            ax.errorbar(bins, trgb_v, yerr=trgb_e, fmt="s-", color="#2ca02c",
+            ax.errorbar(bins, trgb_v, yerr=trgb_e, fmt="s-", color=colors['green'],
                         label=f"TRGB ($H_0$=69.8)", capsize=4, markersize=7)
 
             mean_red = test_b.get("mean_reduction_pct", 0)
             ax.text(0.05, 0.95, f"{mean_red:.1f}% reduction",
                     transform=ax.transAxes, fontsize=9, va="top",
-                    bbox=dict(boxstyle="round", facecolor="wheat", alpha=0.8))
+                    bbox=dict(boxstyle="round", facecolor=colors['bg'], alpha=0.8))
         else:
             ax.text(0.5, 0.5, "Data unavailable", transform=ax.transAxes,
-                    ha="center", fontsize=11, color="gray")
+                    ha="center", fontsize=11, color=colors['purple'])
 
-        ax.set_xlabel("$R_{max}$ (Mpc)", fontsize=11)
-        ax.set_ylabel("$|v_{bf}|$ (km/s)", fontsize=11)
-        ax.legend(fontsize=9, loc="upper right")
-        ax.grid(True, alpha=0.3)
+        ax.set_xlabel("$R_{max}$ (Mpc)")
+        ax.set_ylabel("$|v_{bf}|$ (km/s)")
+        ax.legend(loc="upper right")
+        ax.grid(True)
 
     def plot_panel_h0_decay(self, ax, step_data):
         """Panel (c): H0(z) decay profile."""
-        ax.set_title("(c) $H_0(z)$ Decay: Void vs TEP", fontsize=12, fontweight="bold")
+        colors = apply_tep_style()
+        ax.set_title("(c) $H_0(z)$ Decay: Void vs TEP", fontweight="bold")
 
         s32 = step_data.get("step_32_redshift_decay_profile", {})
         h0_z = s32.get("h0_z_data", {})
@@ -170,26 +174,26 @@ class Step43ManuscriptFigures:
             z_vals = sorted([float(k) for k in h0_z.keys()])
             h0_obs = [h0_z[str(z)]["h0"] for z in z_vals]
             h0_err = [h0_z[str(z)]["h0_err"] for z in z_vals]
-            ax.errorbar(z_vals, h0_obs, yerr=h0_err, fmt="ko", capsize=4,
+            ax.errorbar(z_vals, h0_obs, yerr=h0_err, fmt="o", color=colors['dark'], capsize=4,
                         markersize=7, label="Pantheon+ $H_0(z)$", zorder=5)
         else:
             ax.text(0.5, 0.5, "Data unavailable", transform=ax.transAxes,
-                    ha="center", fontsize=11, color="gray")
+                    ha="center", fontsize=11, color=colors['purple'])
 
         z_fine = np.linspace(0.005, 1.5, 500)
         z_wall = 300.0 * self.H0_SH0ES / self.C_KMS
         delta_h0 = self.H0_SH0ES - self.H0_CMB
         h0_void = self.H0_CMB + delta_h0 * 0.5 * (1 - np.tanh(5.0 * (z_fine - z_wall)))
-        ax.plot(z_fine, h0_void, "r--", linewidth=2, label="Void model")
+        ax.plot(z_fine, h0_void, color=colors['red'], linestyle="--", linewidth=2, label="Void model")
 
         h0_tep = self.H0_CMB + delta_h0 / (1.0 + z_fine) ** 0.3
-        ax.plot(z_fine, h0_tep, "b-", linewidth=2, label="TEP model")
+        ax.plot(z_fine, h0_tep, color=colors['blue'], linestyle="-", linewidth=2, label="TEP model")
 
-        ax.axhline(self.H0_CMB, color="gray", linestyle=":", alpha=0.5)
-        ax.set_xlabel("Redshift $z$", fontsize=11)
-        ax.set_ylabel("$H_0(z)$ (km/s/Mpc)", fontsize=11)
-        ax.legend(fontsize=9, loc="lower right")
-        ax.grid(True, alpha=0.3)
+        ax.axhline(self.H0_CMB, color=colors['purple'], linestyle=":", alpha=0.5)
+        ax.set_xlabel("Redshift $z$")
+        ax.set_ylabel("$H_0(z)$ (km/s/Mpc)")
+        ax.legend(loc="lower right")
+        ax.grid(True)
         ax.set_xlim(0, 1.5)
         ax.set_ylim(65, 75)
 
@@ -197,11 +201,12 @@ class Step43ManuscriptFigures:
             textstr = f"$\\Delta$AIC = {mc.get('delta_aic', 0):.1f}"
             ax.text(0.60, 0.95, textstr, transform=ax.transAxes, fontsize=9,
                     verticalalignment="top",
-                    bbox=dict(boxstyle="round", facecolor="wheat", alpha=0.8))
+                    bbox=dict(boxstyle="round", facecolor=colors['bg'], alpha=0.8))
 
     def plot_panel_boundary_test(self, ax, step_data):
         """Panel (d): Void boundary test at z > 0.3."""
-        ax.set_title("(d) Void Boundary Test ($z > 0.3$)", fontsize=12, fontweight="bold")
+        colors = apply_tep_style()
+        ax.set_title("(d) Void Boundary Test ($z > 0.3$)", fontweight="bold")
 
         s34 = step_data.get("step_34_void_boundary_test", {})
         h0_z = s34.get("h0_z_by_host_mass", {})
@@ -211,14 +216,14 @@ class Step43ManuscriptFigures:
         z_wall = 300.0 * self.H0_SH0ES / self.C_KMS
         delta_h0 = self.H0_SH0ES - self.H0_CMB
         h0_void = self.H0_CMB + delta_h0 * 0.5 * (1 - np.tanh(5.0 * (z_fine - z_wall)))
-        ax.plot(z_fine, h0_void, "r--", linewidth=2, label="Void model")
+        ax.plot(z_fine, h0_void, color=colors['red'], linestyle="--", linewidth=2, label="Void model")
 
         h0_tep = self.H0_CMB + delta_h0 / (1.0 + z_fine) ** 0.3
-        ax.plot(z_fine, h0_tep, "b-", linewidth=2, label="TEP model")
+        ax.plot(z_fine, h0_tep, color=colors['blue'], linestyle="-", linewidth=2, label="TEP model")
 
         for host_type, color, marker, label in [
-            ("massive", "#d62728", "^", "Massive hosts"),
-            ("low_mass", "#1f77b4", "s", "Low-mass hosts"),
+            ("massive", colors['red'], "^", "Massive hosts"),
+            ("low_mass", colors['blue'], "s", "Low-mass hosts"),
         ]:
             z_pts, h0_pts, err_pts = [], [], []
             for b in bins:
@@ -231,17 +236,18 @@ class Step43ManuscriptFigures:
                 ax.errorbar(z_pts, h0_pts, yerr=err_pts, fmt=marker, color=color,
                             capsize=4, markersize=7, label=label, zorder=5)
 
-        ax.axvline(z_wall, color="red", linestyle=":", alpha=0.3)
-        ax.axhline(self.H0_CMB, color="gray", linestyle=":", alpha=0.5)
-        ax.set_xlabel("Redshift $z$", fontsize=11)
-        ax.set_ylabel("$H_0(z)$ (km/s/Mpc)", fontsize=11)
-        ax.legend(fontsize=8, loc="upper right")
-        ax.grid(True, alpha=0.3)
+        ax.axvline(z_wall, color=colors['red'], linestyle=":", alpha=0.3)
+        ax.axhline(self.H0_CMB, color=colors['purple'], linestyle=":", alpha=0.5)
+        ax.set_xlabel("Redshift $z$")
+        ax.set_ylabel("$H_0(z)$ (km/s/Mpc)")
+        ax.legend(loc="upper right")
+        ax.grid(True)
         ax.set_xlim(0, 2.3)
         ax.set_ylim(60, 80)
 
     def generate_composite_figure(self, step_data):
         """Generate the 4-panel composite manuscript figure."""
+        colors = apply_tep_style()
         print_status("Generating composite manuscript figure...", "PROCESS")
 
         fig = plt.figure(figsize=(16, 12))

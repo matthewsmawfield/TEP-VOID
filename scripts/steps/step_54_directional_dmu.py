@@ -49,6 +49,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 # CMB dipole (Planck 2018)
 CMB_DIPOLE_GAL_L = 264.021
@@ -568,6 +569,7 @@ class Step54DirectionalDmu:
     # ------------------------------------------------------------------
     def make_sky_figure(self, df):
         """Generate a sky-coverage figure showing Δμ color-coded by direction."""
+        colors = apply_tep_style()
         print_status("\n--- Generating sky-coverage figure ---", "PROCESS")
 
         valid = df["delta_mu"].notna() & df["ra"].notna() & df["dec"].notna() & df["cmb_dot"].notna()
@@ -586,37 +588,37 @@ class Step54DirectionalDmu:
         l_rad = np.radians(np.where(coords.l.deg > 180, coords.l.deg - 360, coords.l.deg))
         b_rad = np.radians(coords.b.deg)
         sc = ax1.scatter(l_rad, b_rad, c=sub["delta_mu"].values, cmap="RdBu_r",
-                         vmin=-0.2, vmax=0.2, s=60, edgecolors="k", linewidths=0.5, zorder=3)
+                         vmin=-0.2, vmax=0.2, s=60, edgecolors=colors['dark'], linewidths=0.5, zorder=3)
         # CMB dipole
         cmb_l = np.radians(CMB_DIPOLE_GAL_L - 360 if CMB_DIPOLE_GAL_L > 180 else CMB_DIPOLE_GAL_L)
         cmb_b = np.radians(CMB_DIPOLE_GAL_B)
-        ax1.scatter([cmb_l], [cmb_b], marker="*", c="gold", s=200, edgecolors="k",
+        ax1.scatter([cmb_l], [cmb_b], marker="*", c="gold", s=200, edgecolors=colors['dark'],
                     linewidths=1, zorder=5, label="CMB dipole")
-        ax1.set_title("Δμ = μ_Cep − μ_TRGB (galactic)", fontsize=11)
-        ax1.legend(fontsize=8, loc="lower left")
-        ax1.grid(True, alpha=0.3)
+        ax1.set_title("Δμ = μ_Cep − μ_TRGB (galactic)")
+        ax1.legend(loc="lower left")
+        ax1.grid(True)
         plt.colorbar(sc, ax=ax1, orientation="vertical", shrink=0.7, label="Δμ (mag)")
 
         # Panel 2: Δμ vs cmb_dot
         ax2 = axes[0, 1]
-        colors = {"CF4": "C0", "JWST": "C1", "R22_x_CF4TRGB": "C2", "KP_x_CF4TRGB": "C3"}
+        sample_colors = {"CF4": colors['blue'], "JWST": colors['red'], "R22_x_CF4TRGB": colors['green'], "KP_x_CF4TRGB": colors['light_blue']}
         for sample in sub["sample"].unique():
             mask = sub["sample"] == sample
             ax2.scatter(sub.loc[mask, "cmb_dot"], sub.loc[mask, "delta_mu"],
-                       label=sample, c=colors.get(sample, "gray"), s=50, edgecolors="k", linewidths=0.5)
+                       label=sample, c=sample_colors.get(sample, colors['purple']), s=50, edgecolors=colors['dark'], linewidths=0.5)
         # Fit line
         x = sub["cmb_dot"].values
         y = sub["delta_mu"].values
         beta = lstsq(np.column_stack([x, np.ones(len(x))]), y, rcond=None)[0]
         xx = np.linspace(x.min(), x.max(), 100)
-        ax2.plot(xx, beta[0] * xx + beta[1], "k--", alpha=0.5)
+        ax2.plot(xx, beta[0] * xx + beta[1], color=colors['dark'], linestyle="--", alpha=0.5)
         r, p = sp_stats.pearsonr(x, y)
         ax2.set_xlabel("CMB dipole projection (cos θ)")
         ax2.set_ylabel("Δμ (mag)")
-        ax2.set_title(f"Directional Δμ signal: r={r:+.3f} (p={p:.3f})", fontsize=11)
-        ax2.legend(fontsize=8)
-        ax2.axhline(0, color="gray", linestyle=":", alpha=0.5)
-        ax2.axvline(0, color="gray", linestyle=":", alpha=0.5)
+        ax2.set_title(f"Directional Δμ signal: r={r:+.3f} (p={p:.3f})")
+        ax2.legend()
+        ax2.axhline(0, color=colors['purple'], linestyle=":", alpha=0.5)
+        ax2.axvline(0, color=colors['purple'], linestyle=":", alpha=0.5)
 
         # Panel 3: Δμ vs X_i
         ax3 = axes[1, 0]
@@ -625,33 +627,33 @@ class Step54DirectionalDmu:
             for sample in sub.loc[valid_xi, "sample"].unique():
                 mask = (sub["sample"] == sample) & valid_xi
                 ax3.scatter(sub.loc[mask, "X_i"], sub.loc[mask, "delta_mu"],
-                           label=sample, c=colors.get(sample, "gray"), s=50, edgecolors="k", linewidths=0.5)
+                           label=sample, c=sample_colors.get(sample, colors['purple']), s=50, edgecolors=colors['dark'], linewidths=0.5)
             x = sub.loc[valid_xi, "X_i"].values
             y = sub.loc[valid_xi, "delta_mu"].values
             beta = lstsq(np.column_stack([x, np.ones(len(x))]), y, rcond=None)[0]
             xx = np.linspace(x.min(), x.max(), 100)
-            ax3.plot(xx, beta[0] * xx + beta[1], "k--", alpha=0.5)
+            ax3.plot(xx, beta[0] * xx + beta[1], color=colors['dark'], linestyle="--", alpha=0.5)
             r, p = sp_stats.pearsonr(x, y)
-            ax3.set_title(f"X_i correlation: r={r:+.3f} (p={p:.3f})", fontsize=11)
+            ax3.set_title(f"X_i correlation: r={r:+.3f} (p={p:.3f})")
         ax3.set_xlabel("X_i (dimensionless)")
         ax3.set_ylabel("Δμ (mag)")
-        ax3.axhline(0, color="gray", linestyle=":", alpha=0.5)
+        ax3.axhline(0, color=colors['purple'], linestyle=":", alpha=0.5)
 
         # Panel 4: Histogram by direction
         ax4 = axes[1, 1]
         toward = sub["cmb_dot"] > 0
         away = sub["cmb_dot"] <= 0
         bins = np.linspace(-0.3, 0.2, 15)
-        ax4.hist(sub.loc[away, "delta_mu"], bins=bins, alpha=0.6, color="C0",
-                label=f"Away from CMB (N={away.sum()})", edgecolor="k")
-        ax4.hist(sub.loc[toward, "delta_mu"], bins=bins, alpha=0.6, color="C1",
-                label=f"Toward CMB (N={toward.sum()})", edgecolor="k")
-        ax4.axvline(sub.loc[away, "delta_mu"].mean(), color="C0", linestyle="--", linewidth=2)
-        ax4.axvline(sub.loc[toward, "delta_mu"].mean(), color="C1", linestyle="--", linewidth=2)
+        ax4.hist(sub.loc[away, "delta_mu"], bins=bins, alpha=0.6, color=colors['blue'],
+                label=f"Away from CMB (N={away.sum()})", edgecolor=colors['dark'])
+        ax4.hist(sub.loc[toward, "delta_mu"], bins=bins, alpha=0.6, color=colors['red'],
+                label=f"Toward CMB (N={toward.sum()})", edgecolor=colors['dark'])
+        ax4.axvline(sub.loc[away, "delta_mu"].mean(), color=colors['blue'], linestyle="--", linewidth=2)
+        ax4.axvline(sub.loc[toward, "delta_mu"].mean(), color=colors['red'], linestyle="--", linewidth=2)
         ax4.set_xlabel("Δμ (mag)")
         ax4.set_ylabel("Count")
-        ax4.set_title("Δμ distribution by CMB dipole direction", fontsize=11)
-        ax4.legend(fontsize=9)
+        ax4.set_title("Δμ distribution by CMB dipole direction")
+        ax4.legend()
 
         fig.suptitle("Step 54: Directional Δμ — Bulk Flow as Temporal Topology Gradient",
                      fontsize=13, fontweight="bold")

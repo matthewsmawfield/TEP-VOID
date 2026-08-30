@@ -1,10 +1,11 @@
 {
   "step": "00c_vrot_deep_catalogs",
-  "description": "Cross-match Pantheon+ against VizieR deep V_rot catalogs (SPARC, ALFALFA)",
+  "description": "Cross-match Pantheon+ against VizieR deep V_rot catalogs (SPARC, ALFALFA, 2MTF, WALLABY)",
   "sources": {
-    "SPARC": 1,
-    "ALFALFA": 3,
-    "HyperLEDA": 170,
-    "Total Measured": 174
+    "None": 1364,
+    "HyperLEDA": 141,
+    "2MTF": 33,
+    "ALFALFA": 4,
+    "SPARC": 1
   }
 }

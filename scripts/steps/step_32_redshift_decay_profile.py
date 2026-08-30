@@ -66,6 +66,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 
 class Step32RedshiftDecayProfile:
@@ -1457,6 +1458,7 @@ class Step32RedshiftDecayProfile:
     # ------------------------------------------------------------------
     def plot_h0_vs_redshift(self, h0_data, fit_results, host_mass_results):
         """Generate H0(z) vs redshift figure."""
+        colors = apply_tep_style()
         print_status("Generating H0 vs redshift figure...", "PROCESS")
 
         fig, axes = plt.subplots(1, 2, figsize=(16, 7))
@@ -1468,7 +1470,7 @@ class Step32RedshiftDecayProfile:
         h0_obs = np.array([h0_data[z]["h0"] for z in z_vals])
         h0_err = np.array([h0_data[z]["h0_err"] for z in z_vals])
 
-        ax1.errorbar(z_vals, h0_obs, yerr=h0_err, fmt="ko", capsize=5, markersize=8,
+        ax1.errorbar(z_vals, h0_obs, yerr=h0_err, fmt="o", color=colors['dark'], capsize=5, markersize=8,
                      label="Pantheon+ $H_0(z)$", zorder=5)
 
         # Model predictions — use fitted parameters
@@ -1481,36 +1483,36 @@ class Step32RedshiftDecayProfile:
 
         if vm_g:
             h0_void_g = self._void_model_gaussian(z_fine, vm_g["sigma_z_fit"], vm_g["delta_h0_fit"])
-            ax1.plot(z_fine, h0_void_g, "r--", linewidth=2,
+            ax1.plot(z_fine, h0_void_g, color=colors['red'], linestyle="--", linewidth=2,
                      label=f"Void-Gaussian fit ($\\sigma_z$={vm_g['sigma_z_fit']:.2f})")
         if vm_e:
             h0_void_e = self._void_model_exponential(z_fine, vm_e["z_0_fit"], vm_e["delta_h0_fit"])
-            ax1.plot(z_fine, h0_void_e, "m--", linewidth=2, alpha=0.7,
+            ax1.plot(z_fine, h0_void_e, color=colors['purple'], linestyle="--", linewidth=2, alpha=0.7,
                      label=f"Void-Exp fit ($z_0$={vm_e['z_0_fit']:.2f})")
         # Also plot the FIXED published predictions
         fpc = fit_results.get("fixed_prediction_comparison", {})
         if fpc:
             h0_void_fixed = self.void_model_prediction(z_fine, profile="gaussian")
-            ax1.plot(z_fine, h0_void_fixed, "r:", linewidth=1.5, alpha=0.6,
+            ax1.plot(z_fine, h0_void_fixed, color=colors['red'], linestyle=":", linewidth=1.5, alpha=0.6,
                      label=f"Void-Gaussian (published $\\sigma_z$={self.VOID_GAUSSIAN_SIGMA_Z})")
             h0_void_exp_fixed = self.void_model_prediction(z_fine, profile="exponential")
-            ax1.plot(z_fine, h0_void_exp_fixed, "m:", linewidth=1.5, alpha=0.6,
+            ax1.plot(z_fine, h0_void_exp_fixed, color=colors['purple'], linestyle=":", linewidth=1.5, alpha=0.6,
                      label=f"Void-Exp (published $z_0$={self.VOID_EXPONENTIAL_Z0})")
         if tm:
             h0_tep = self._tep_model(z_fine, tm["delta_h0_fit"], tm["decay_index_fit"])
-            ax1.plot(z_fine, h0_tep, "b-", linewidth=2,
+            ax1.plot(z_fine, h0_tep, color=colors['blue'], linestyle="-", linewidth=2,
                      label=f"TEP fit ($n$={tm['decay_index_fit']:.2f}, $\\Delta H_0$={tm['delta_h0_fit']:.1f})")
         if cm:
-            ax1.axhline(cm["h0_const"], color="green", linestyle="-.", alpha=0.5,
+            ax1.axhline(cm["h0_const"], color=colors['green'], linestyle="-.", alpha=0.5,
                         label=f"Constant/TEP global $M_B$ ($H_0$={cm['h0_const']:.1f})")
 
         # Reference lines
-        ax1.axhline(self.H0_CMB, color="gray", linestyle=":", alpha=0.5, label=f"Planck $H_0$={self.H0_CMB}")
-        ax1.axhline(self.H0_SH0ES, color="gray", linestyle="--", alpha=0.5, label=f"SH0ES $H_0$={self.H0_SH0ES}")
+        ax1.axhline(self.H0_CMB, color=colors['purple'], linestyle=":", alpha=0.5, label=f"Planck $H_0$={self.H0_CMB}")
+        ax1.axhline(self.H0_SH0ES, color=colors['purple'], linestyle="--", alpha=0.5, label=f"SH0ES $H_0$={self.H0_SH0ES}")
 
-        ax1.set_xlabel("Redshift $z$", fontsize=13)
-        ax1.set_ylabel("$H_0(z)$ (km/s/Mpc)", fontsize=13)
-        ax1.set_title("Redshift Profile: Published KBC Curves vs TEP", fontsize=14)
+        ax1.set_xlabel("Redshift $z$")
+        ax1.set_ylabel("$H_0(z)$ (km/s/Mpc)")
+        ax1.set_title("Redshift Profile: Published KBC Curves vs TEP")
 
         textstr = (
             f"$\\chi^2_{{\\rm red}}$(Void-Gauss) = {vm_g.get('chi2_reduced', 0):.2f}\n"
@@ -1520,10 +1522,10 @@ class Step32RedshiftDecayProfile:
             f"$\\Delta$AIC(TEP$-$Void_Gauss) = {fit_results.get('delta_aic_tep_vs_void_fixed', 0):.1f}"
         )
         ax1.text(0.55, 0.95, textstr, transform=ax1.transAxes, fontsize=11,
-                 verticalalignment="top", bbox=dict(boxstyle="round", facecolor="wheat", alpha=0.8))
+                 verticalalignment="top", bbox=dict(boxstyle="round", facecolor=colors['bg'], alpha=0.8))
 
-        ax1.legend(fontsize=9, loc="lower right")
-        ax1.grid(True, alpha=0.3)
+        ax1.legend(loc="lower right")
+        ax1.grid(True)
         ax1.set_xlim(0, 1.5)
         ax1.set_ylim(65, 76)
 
@@ -1542,18 +1544,18 @@ class Step32RedshiftDecayProfile:
             h0_l_vals = np.array([h0_l[str(z)]["h0"] for z in z_l])
             h0_l_errs = np.array([h0_l[str(z)]["h0_err"] for z in z_l])
 
-            ax2.errorbar(z_m, h0_m_vals, yerr=h0_m_errs, fmt="^", color="#d62728",
+            ax2.errorbar(z_m, h0_m_vals, yerr=h0_m_errs, fmt="^", color=colors['red'],
                          capsize=5, markersize=8, label=f"Massive hosts (logM >= {self.MASSIVE_THRESHOLD})")
-            ax2.errorbar(z_l, h0_l_vals, yerr=h0_l_errs, fmt="s", color="#2ca02c",
+            ax2.errorbar(z_l, h0_l_vals, yerr=h0_l_errs, fmt="s", color=colors['green'],
                          capsize=5, markersize=8, label=f"Low-mass hosts (logM < {self.MASSIVE_THRESHOLD})")
 
             # TEP fitted model for both populations
             if tm:
                 ax2.plot(z_fine, self._tep_model(z_fine, tm["delta_h0_fit"], tm["decay_index_fit"]),
-                         "b-", linewidth=2, alpha=0.5, label="TEP fit (overall)")
+                         color=colors['blue'], linestyle="-", linewidth=2, alpha=0.5, label="TEP fit (overall)")
 
-            ax2.axhline(self.H0_CMB, color="gray", linestyle=":", alpha=0.5)
-            ax2.axhline(self.H0_SH0ES, color="gray", linestyle="--", alpha=0.5)
+            ax2.axhline(self.H0_CMB, color=colors['purple'], linestyle=":", alpha=0.5)
+            ax2.axhline(self.H0_SH0ES, color=colors['purple'], linestyle="--", alpha=0.5)
 
             hm_text = (
                 f"$\\Delta H_0$ = {host_mass_results['delta_h0']:.2f} km/s/Mpc\n"
@@ -1561,16 +1563,16 @@ class Step32RedshiftDecayProfile:
                 f"Null: global $M_B$ calibration"
             )
             ax2.text(0.55, 0.95, hm_text, transform=ax2.transAxes, fontsize=11,
-                     verticalalignment="top", bbox=dict(boxstyle="round", facecolor="wheat", alpha=0.8))
+                     verticalalignment="top", bbox=dict(boxstyle="round", facecolor=colors['bg'], alpha=0.8))
         else:
             ax2.text(0.5, 0.5, "Host-mass analysis\nnot available", transform=ax2.transAxes,
                      ha="center", va="center", fontsize=14)
 
-        ax2.set_xlabel("Redshift $z$", fontsize=13)
-        ax2.set_ylabel("$H_0(z)$ (km/s/Mpc)", fontsize=13)
-        ax2.set_title("Host-Mass-Resolved $H_0(z)$", fontsize=14)
-        ax2.legend(fontsize=9, loc="lower right")
-        ax2.grid(True, alpha=0.3)
+        ax2.set_xlabel("Redshift $z$")
+        ax2.set_ylabel("$H_0(z)$ (km/s/Mpc)")
+        ax2.set_title("Host-Mass-Resolved $H_0(z)$")
+        ax2.legend(loc="lower right")
+        ax2.grid(True)
         ax2.set_xlim(0, 1.5)
         ax2.set_ylim(65, 76)
 

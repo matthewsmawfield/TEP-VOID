@@ -22,7 +22,7 @@
         each manuscript section. These are the only files that should
         be edited; all other formats are auto-generated.</li>
     <li><em>scripts/steps/</em>—Reproducible analysis pipeline
-        with 46 registered step scripts organized into six blocks
+        with 48 registered step scripts organized into six blocks
         (data ingestion, indicator divergence and void
         falsification, void boundary test, TEP reconstruction
         / synthesis, auxiliary TEP supporting tests, and bulk-flow
@@ -47,7 +47,7 @@
 python3 scripts/run_pipeline.py</code></pre>
 
 <p>
-    This executes all 46 registered step scripts in sequence, populating
+    This executes all 48 registered step scripts in sequence, populating
     <code>results/figures/</code> and <code>results/outputs/</code>
     with fresh data. Individual blocks or steps can be run
     selectively:
@@ -57,7 +57,7 @@ python3 scripts/run_pipeline.py</code></pre>
 python3 scripts/run_pipeline.py --step 40       # Single step only</code></pre>
 
 <p>
-    The pipeline is fully implemented and all 46 registered steps run
+    The pipeline is fully implemented and all 48 registered steps run
     successfully against real published data. The pipeline structure,
     data sources, and analysis methodology are documented in
     <code>scripts/README.md</code>.

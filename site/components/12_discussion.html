@@ -294,19 +294,19 @@
         provides a mechanism for the SN Ia host-mass step anomaly,
         which has persisted for approximately 15 years without a unique
         physical explanation, and is a falsifiable prediction of the
-        same transport mechanism (Table 7). A preliminary test (step_45)
+        same transport mechanism (Table 7). A preliminary test
         on 1,353 Pantheon+ Hubble-flow SNe finds an $X_i$-step of
         $+7.5 \pm 50.2$ mmag ($0.15\sigma$) in the TEP-predicted
         direction, with the mass-corrected $X_i$ regression at
         $0.71\sigma$ in the same direction; the test is underpowered
         because screening compresses the sample into the high-$X_i$ bin
-        ($N_{\rm high}=1335$, $N_{\rm low}=18$). An expanded analysis (step_48,
+        ($N_{\rm high}=1335$, $N_{\rm low}=18$). An expanded analysis (
         $N=1,470$ Hubble-flow) gives $+22.3 \pm 15.1$ mmag ($1.47\sigma$)
-        in the predicted direction; the measured-$V_{\rm rot}$ subsample
-        ($N=122$ Hubble-flow) is inconclusive
-        due to severe selection bias (the low-$X_i$ bin is concentrated
-        at $z < 0.06$ where peculiar velocities dominate). A
-        definitive test requires a deeper $V_{\rm rot}$ catalog
+        in the predicted direction; While the aggressively expanded measured-$V_{\rm rot}$ sample 
+        ($N=128$ Hubble-flow) remains structurally inconclusive 
+        ($1.06\sigma$, due to fundamental Pantheon+ selection biases against distant low-mass HI hosts), the 
+        TF-proxy enables a clean test using the full statistical power of the 
+        Pantheon+ catalog. A definitive test requires a deeper $V_{\rm rot}$ catalog
         that populates the low-$X_i$ bin with Hubble-flow SNe at
         $z > 0.03$.</li>
     <li>A possible explanation for the JWST high-redshift galaxy
@@ -412,29 +412,24 @@
     macroscopic temporal signal is not an isotropic artifact.
     A finite-coherence topological feature integrated along the
     line of sight mimics a $1/r$ kinematic velocity flow at large
-    distances. Continuous optimization of the Pantheon+ raw
+    distances.    Continuous optimization of the Pantheon+ raw
     magnitude residuals locks onto a coherence scale of
-    $L_T = 55.6$ Mpc, and the frozen model carries directional
-    predictive power in the independent CosmicFlows-4 dataset
-    ($\Delta\mathrm{RSS} = 17.8$ vs null). The CF4 sample,
-    dominated by very nearby galaxies, does not independently
-    recover the 55.6 Mpc scale, but the frozen Pantheon+ model
-    is not a Pantheon+ artifact. The directional structure in
-    cosmology is a local, structured temporal field on a
-    tens-of-Mpc scale, rather than a Gpc-scale kinematic outflow.
+    $L_T = 55.6$ Mpc. A frozen projection gives a small out-of-sample 
+    improvement over the CF4 null ($\Delta\mathrm{RSS} = 17.8$), but the CF4 sample,
+    dominated by galaxies at $D \gg L_T$ where the finite-coherence
+    kernel becomes degenerate with $1/r$, does not discriminate 
+    the finite-coherence profile from its $1/r$ asymptote.
 </p>
 
 <h3>11.8 $X_i$-step Estimator Consistency</h3>
 
 <p>
     The $X_i$-step tests return consistent directional evidence across
-    estimators: the full-sample dichotomous step (step_48, $N=1470$)
+    estimators: the full-sample dichotomous step ($N=1470$)
     gives $+22.3 \pm 15.1$ mmag ($+1.47\sigma$) in the TEP-predicted
     direction, and the joint OLS $X_i$ coefficient after mass
     correction gives $+7.92 \times 10^4 \pm 3.75 \times 10^4$
-    ($+2.11\sigma$), also in the predicted direction — the strongest
-    $X_i$-step result, confirming that the $X_i$ dependence persists
-    beyond the standard SALT3 mass correction. The CF4 full-sample Xi
+    ($+2.11\sigma$). The joint coefficient retains the TEP-predicted sign at $2.11\sigma$ after inclusion of host mass, although interpretation is limited by severe $X_i$–mass multicollinearity; the measured-$V_{\rm rot}$ sample remains the decisive test. The CF4 full-sample Xi
     regression ($+2.11\sigma$, opposite sign) is the single contrary
     result; an exclusion test (Section 5.4) demonstrates this is
     driven by two influential R22-matched galaxies (M101 and

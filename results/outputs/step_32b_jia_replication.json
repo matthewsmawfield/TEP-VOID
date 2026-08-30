@@ -20,15 +20,8 @@
   "proper_replication": {
     "script": "step_32b_jia_proper_replication.py",
     "description": "A proper replication using Jia's actual code as reference (github.com/JoJo20221003/Hz-Code) with MCMC (emcee) and PCA decorrelation. Uses Jia's actual 8-bin partition and H(z) data from their repository. Tests SN-only vs SN+H(z) to isolate the source of the decline.",
-    "key_results": {
-      "sn_only_mcmc_decline": -4.258050977060876,
-      "sn_only_mcmc_significance_sigma": 2.511996338968925,
-      "sn_hz_mcmc_decline": -5.9230396692349245,
-      "sn_hz_mcmc_significance_sigma": 6.273669478896878,
-      "sn_hz_decorrelated_decline": -5.916239458979675,
-      "sn_hz_decorrelated_significance_sigma": 5.20744836308822
-    },
-    "conclusion": "The declining H0(z) is driven by the H(z) cosmic chronometer data, not by the Pantheon+ SN distance moduli. SN-only gives 2.51sigma (not significant). SN+H(z) gives 5.21sigma after PCA decorrelation. The KBC-Jia agreement is not independent support from the SN data."
+    "key_results": {},
+    "conclusion": "The declining H0(z) is driven by the H(z) cosmic chronometer data, not by the Pantheon+ SN distance moduli. SN-only gives 0.00sigma (not significant). SN+H(z) gives 0.00sigma after PCA decorrelation. The KBC-Jia agreement is not independent support from the SN data."
   },
   "data": {
     "source": "data/raw/Pantheon+SH0ES.dat",

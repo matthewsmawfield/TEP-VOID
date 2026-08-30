@@ -27,6 +27,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 
 class Step46AnchorSensitivity:
@@ -48,6 +49,7 @@ class Step46AnchorSensitivity:
     #      Kormendy & Ho 2013 (review)
 
     def run(self):
+        colors = apply_tep_style()
         logger = TEPLogger(
             "step_46",
             log_file_path=PROJECT_ROOT / "logs" / "step_46_anchor_sensitivity.log",
@@ -246,26 +248,26 @@ class Step46AnchorSensitivity:
         ax = axes[0]
         sigmas = np.array([r["sigma_n4258"] for r in results])
         sigma_refs = np.array([r["sigma_ref"] for r in results])
-        ax.plot(sigmas, sigma_refs, "bo-")
-        ax.axhline(87.165, color="r", linestyle="--", alpha=0.5, label="Current (87.165)")
-        ax.axvline(115, color="r", linestyle=":", alpha=0.5, label="Current N4258 (115)")
-        ax.axvline(80, color="g", linestyle=":", alpha=0.5, label="Disk N4258 (80)")
+        ax.plot(sigmas, sigma_refs, color=colors['blue'], marker="o")
+        ax.axhline(87.165, color=colors['red'], linestyle="--", alpha=0.5, label="Current (87.165)")
+        ax.axvline(115, color=colors['red'], linestyle=":", alpha=0.5, label="Current N4258 (115)")
+        ax.axvline(80, color=colors['green'], linestyle=":", alpha=0.5, label="Disk N4258 (80)")
         ax.set_xlabel(r"$\sigma_{\rm N4258}$ (km/s)")
         ax.set_ylabel(r"$\sigma_{\rm ref}$ (km/s)")
         ax.set_title("Anchor reference potential vs N4258 sigma")
-        ax.legend(fontsize=8)
+        ax.legend()
 
         # Panel 2: Delta_mu_max vs N4258 sigma
         ax = axes[1]
         delta_maxes = np.array([r["delta_mu_max"] for r in results])
-        ax.plot(sigmas, delta_maxes, "ro-")
-        ax.axhline(0.093, color="r", linestyle="--", alpha=0.5, label="Current (0.093)")
-        ax.axvline(115, color="r", linestyle=":", alpha=0.5)
-        ax.axvline(80, color="g", linestyle=":", alpha=0.5, label="Disk N4258 (80)")
+        ax.plot(sigmas, delta_maxes, color=colors['red'], marker="o")
+        ax.axhline(0.093, color=colors['red'], linestyle="--", alpha=0.5, label="Current (0.093)")
+        ax.axvline(115, color=colors['red'], linestyle=":", alpha=0.5)
+        ax.axvline(80, color=colors['green'], linestyle=":", alpha=0.5, label="Disk N4258 (80)")
         ax.set_xlabel(r"$\sigma_{\rm N4258}$ (km/s)")
         ax.set_ylabel(r"$\Delta\mu_{\rm max}$ (mag)")
         ax.set_title("Maximum per-host correction vs N4258 sigma")
-        ax.legend(fontsize=8)
+        ax.legend()
 
         plt.suptitle("Anchor Sensitivity: NGC 4258 sigma audit", fontsize=13)
         plt.tight_layout()

@@ -32,6 +32,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 
 # NOTE: No hardcoded fallback catalog. If data/interim/matched_hosts.csv is
@@ -249,6 +250,7 @@ class Step10MatchedHostComparison:
     # ------------------------------------------------------------------
     def plot_divergence(self, df, stats):
         """Generate the Cepheid-TRGB divergence figure."""
+        colors = apply_tep_style()
         print_status("Generating divergence figure...", "PROCESS")
 
         fig, axes = plt.subplots(1, 2, figsize=(14, 6))
@@ -259,37 +261,37 @@ class Step10MatchedHostComparison:
         x = np.arange(len(galaxies))
         ax.errorbar(
             x, df["delta_mu"], yerr=df["delta_mu_err"],
-            fmt="o", color="#2166ac", ecolor="#92c5de", capsize=3, markersize=6,
+            fmt="o", color=colors['blue'], ecolor=colors['light_blue'], capsize=3, markersize=6,
         )
-        ax.axhline(0, color="#b2182b", linestyle="--", linewidth=1.5, label="Void prediction ($\\Delta\\mu = 0$)")
+        ax.axhline(0, color=colors['red'], linestyle="--", linewidth=1.5, label="Void prediction ($\\Delta\\mu = 0$)")
         ax.axhline(
             stats["weighted_mean_delta_mu"],
-            color="#4daf4a", linestyle="-", linewidth=1.5,
+            color=colors['green'], linestyle="-", linewidth=1.5,
             label=f"Weighted mean: {stats['weighted_mean_delta_mu']:+.3f} mag",
         )
         ax.set_xticks(x)
         ax.set_xticklabels(galaxies, rotation=75, ha="right", fontsize=8)
         ax.set_ylabel("$\\Delta\\mu = \\mu_{\\rm Cepheid} - \\mu_{\\rm TRGB}$ (mag)")
         ax.set_title("Per-Galaxy Cepheid–TRGB Distance Modulus Divergence")
-        ax.legend(fontsize=9, loc="best")
+        ax.legend(loc="best")
         ax.set_ylim(-0.35, 0.35)
 
         # Right panel: histogram of Delta_mu
         ax = axes[1]
         ax.hist(
             df["delta_mu"], bins=min(10, max(5, len(df) // 2)),
-            color="#2166ac", alpha=0.7, edgecolor="white",
+            color=colors['blue'], alpha=0.7, edgecolor="white",
         )
-        ax.axvline(0, color="#b2182b", linestyle="--", linewidth=1.5, label="Void prediction ($\\Delta\\mu = 0$)")
+        ax.axvline(0, color=colors['red'], linestyle="--", linewidth=1.5, label="Void prediction ($\\Delta\\mu = 0$)")
         ax.axvline(
             stats["weighted_mean_delta_mu"],
-            color="#4daf4a", linestyle="-", linewidth=1.5,
+            color=colors['green'], linestyle="-", linewidth=1.5,
             label=f"Weighted mean: {stats['weighted_mean_delta_mu']:+.3f} mag",
         )
         ax.set_xlabel("$\\Delta\\mu$ (mag)")
         ax.set_ylabel("Count")
         ax.set_title(f"Distribution of $\\Delta\\mu$ (N={stats['n_hosts']})")
-        ax.legend(fontsize=9, loc="best")
+        ax.legend(loc="best")
 
         fig.tight_layout()
         fig_path = self.figures / "step_10_cepheid_trgb_divergence.png"

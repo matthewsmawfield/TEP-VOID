@@ -33,9 +33,11 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
 from scripts.utils.screening import U_REF_SCREENED
+from scripts.utils.plot_style import apply_tep_style
 
 
 def main():
+    colors = apply_tep_style()
     logger = TEPLogger(
         "step_44",
         log_file_path=PROJECT_ROOT / "logs" / "step_44_h0_vs_potential.log",
@@ -53,7 +55,7 @@ def main():
             "H0_sys": 1.64,
             "V_rot_typical": 80.0,   # km/s, low-mass hosts
             "V_rot_spread": 20.0,    # spread in population
-            "color": "#2196F3",
+            "color": colors['blue'],
             "marker": "s",
         },
         {
@@ -63,7 +65,7 @@ def main():
             "H0_sys": 1.32,
             "V_rot_typical": 120.0,  # km/s, mixed hosts
             "V_rot_spread": 30.0,
-            "color": "#4CAF50",
+            "color": colors['green'],
             "marker": "D",
         },
         {
@@ -73,7 +75,7 @@ def main():
             "H0_sys": 1.04,
             "V_rot_typical": 200.0,  # km/s, massive spirals (SH0ES)
             "V_rot_spread": 40.0,
-            "color": "#FF5722",
+            "color": colors['red'],
             "marker": "o",
         },
         {
@@ -83,7 +85,7 @@ def main():
             "H0_sys": 2.70,
             "V_rot_typical": 250.0,  # km/s, massive early-types
             "V_rot_spread": 50.0,
-            "color": "#9C27B0",
+            "color": colors['purple'],
             "marker": "^",
         },
     ]
@@ -153,32 +155,32 @@ def main():
     ax.plot(
         X_fit,
         H0_fit,
-        "k--",
+        color=colors['dark'],
+        linestyle="--",
         alpha=0.5,
         linewidth=1.5,
         label=f"Linear fit ($H_0 = {intercept:.1f} + {slope:.1f} \\langle X \\rangle$)",
     )
 
     # Planck reference line
-    ax.axhline(67.4, color="blue", linestyle=":", alpha=0.4, linewidth=1)
-    ax.text(0.95, 67.6, "Planck ($67.4$)", color="blue", fontsize=9,
+    ax.axhline(67.4, color=colors['blue'], linestyle=":", alpha=0.4, linewidth=1)
+    ax.text(0.95, 67.6, "Planck ($67.4$)", color=colors['blue'], fontsize=9,
             ha="right", va="bottom", alpha=0.6)
 
     # SH0ES reference line
-    ax.axhline(73.04, color="red", linestyle=":", alpha=0.4, linewidth=1)
-    ax.text(0.95, 73.2, "SH0ES ($73.0$)", color="red", fontsize=9,
+    ax.axhline(73.04, color=colors['red'], linestyle=":", alpha=0.4, linewidth=1)
+    ax.text(0.95, 73.2, "SH0ES ($73.0$)", color=colors['red'], fontsize=9,
             ha="right", va="bottom", alpha=0.6)
 
-    ax.set_xlabel(r"$\langle X \rangle$ ($\times 10^{-7}$)", fontsize=12)
-    ax.set_ylabel(r"$H_0$ (km s$^{-1}$ Mpc$^{-1}$)", fontsize=12)
+    ax.set_xlabel(r"$\langle X \rangle$ ($\times 10^{-7}$)")
+    ax.set_ylabel(r"$H_0$ (km s$^{-1}$ Mpc$^{-1}$)")
     ax.set_title(
         r"$H_0$ vs Calibrator-Population Potential Depth",
-        fontsize=13,
     )
-    ax.legend(fontsize=9, loc="upper left")
+    ax.legend(loc="upper left")
     ax.set_xlim(-0.5, max(X_vals) * 1.3)
     ax.set_ylim(65, 77)
-    ax.grid(True, alpha=0.3)
+    ax.grid(True)
 
     # Add annotation
     ax.text(
@@ -189,7 +191,7 @@ def main():
         fontsize=8,
         va="bottom",
         ha="left",
-        bbox=dict(boxstyle="round,pad=0.3", facecolor="lightyellow", alpha=0.8),
+        bbox=dict(boxstyle="round,pad=0.3", facecolor=colors['bg'], alpha=0.8),
     )
 
     plt.tight_layout()

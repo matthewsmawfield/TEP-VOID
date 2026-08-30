@@ -1,36 +1,31 @@
-[20:55:53] [INFO] 
-[20:55:53] [INFO] ================================================================================
-[20:55:53] [INFO]    Step 31: Peculiar Velocity Calibration Sensitivity
-[20:55:53] [INFO] ================================================================================
-[20:55:53] [INFO] 
-[20:55:53] [INFO] This step quantifies how the Hubble tension between Cepheid- and TRGB-calibrated H0 values propagates into the peculiar velocity field derived from the CosmicFlows-4 catalog. The void model predicts that the bulk flow is physical and independent of the H0 calibration, while TEP predicts that the Cepheid-calibrated H0 introduces a distance-dependent systematic that inflates the apparent bulk flow. The key discriminating observable is the calibration-induced velocity shift Δv = −ΔH0 · d, which is deterministic by construction but demonstrates the sensitivity of bulk-flow inferences to the distance indicator calibration.
-[20:55:53] [PROCESS]   Step 30: H0_TRGB published=69.8, derived from Δμ=70.45 (0.8σ consistent)
-[20:55:53] [PROCESS]   Using H0_Cepheid=73.0, H0_TRGB=69.8 (Freedman et al. 2025 (CCHP), consistent with Δμ-derived value)
-[20:55:53] [PROCESS]   ΔH0 = 3.20 km/s/Mpc
-[20:55:53] [PROCESS] Loading CosmicFlows-4 data from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cosmicflows4_processed.csv...
-[20:55:53] [SUCCESS] Loaded 38053 rows from CosmicFlows-4 data
-[20:55:53] [PROCESS] Methodology: peculiar velocities are computed as v_pec = cz − H0·d for both H0 calibrations (Cepheid and TRGB). The calibration-induced shift Δv = (H0_TRGB − H0_CEPHEID) · d is deterministic and quantifies the distance-dependent systematic. Bulk-flow amplitudes are compared in radial bins (100, 200, 250 Mpc) using inverse-distance-squared weighting in supergalactic coordinates. The RMS shift and fraction of galaxies with |shift| > 200 km/s characterize the calibration sensitivity of the peculiar velocity field.
-[20:55:53] [PROCESS] Computing peculiar velocities: v_pec = cz - H0 * d...
-[20:55:53] [SUCCESS]   Cepheid v_pec (H0=73.0): N=38053, mean=-795.8, std=4078.3 km/s
-[20:55:53] [SUCCESS]   TRGB v_pec    (H0=69.8): N=38053, mean=-77.5, std=3848.2 km/s
-[20:55:53] [TEST]   ΔH0 = 3.2 km/s/Mpc → shift = -3.2 × d km/s
-[20:55:53] [PROCESS] Quantifying calibration sensitivity of bulk-flow...
-[20:55:53] [TEST]   Shift at d=100 Mpc: -320 km/s
-[20:55:53] [TEST]   Shift at d=200 Mpc: -640 km/s
-[20:55:53] [TEST]   Shift at d=250 Mpc: -800 km/s
-[20:55:53] [TEST]   RMS shift: 839 km/s
-[20:55:53] [TEST]   Fraction with |shift| > 200 km/s: 89.0%
-[20:55:53] [TEST]   R<=100 Mpc: BF_cep=13.1, BF_trgb=12.7, reduction=2.9%
-[20:55:53] [TEST]   R<=200 Mpc: BF_cep=12.7, BF_trgb=12.3, reduction=3.8%
-[20:55:53] [TEST]   R<=250 Mpc: BF_cep=12.3, BF_trgb=11.7, reduction=4.4%
-[20:55:53] [TEST] The calibration-induced RMS velocity shift of 839 km/s affects 89.0% of galaxies at >200 km/s. Under TEP, this systematic inflates the apparent bulk flow when the Cepheid-calibrated H0 = 73.0 is used. The void model, which predicts a calibration-independent bulk flow, has no mechanism to account for this distance-dependent artifact.
-[20:55:53] [PROCESS] Generating peculiar velocity figure...
-[20:55:54] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_31_peculiar_velocity_artifact.png
-[20:55:54] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_31_peculiar_velocity_artifact.json
-[20:55:54] [SUCCESS] Step 31 complete
-[20:55:54] [SUCCESS] step_31 completed in 0.5s
-[20:55:54] [INFO] 
-[20:55:54] [INFO] ================================================================================
-[20:55:54] [INFO]    Starting step_32: H0(z) decay profile: void sharp step vs TEP smooth decay (fitted models, valid AIC)
-[20:55:54] [INFO] ================================================================================
-[20:55:54] [INFO] 
+[23:44:15] [INFO] 
+[23:44:15] [INFO] ================================================================================
+[23:44:15] [INFO]    Step 31: Peculiar Velocity Calibration Sensitivity
+[23:44:15] [INFO] ================================================================================
+[23:44:15] [INFO] 
+[23:44:15] [INFO] This step quantifies how the Hubble tension between Cepheid- and TRGB-calibrated H0 values propagates into the peculiar velocity field derived from the CosmicFlows-4 catalog. The void model predicts that the bulk flow is physical and independent of the H0 calibration, while TEP predicts that the Cepheid-calibrated H0 introduces a distance-dependent systematic that inflates the apparent bulk flow. The key discriminating observable is the calibration-induced velocity shift Δv = −ΔH0 · d, which is deterministic by construction but demonstrates the sensitivity of bulk-flow inferences to the distance indicator calibration.
+[23:44:15] [PROCESS]   Step 30: H0_TRGB published=69.8, derived from Δμ=70.45 (0.8σ consistent)
+[23:44:15] [PROCESS]   Using H0_Cepheid=73.0, H0_TRGB=69.8 (Freedman et al. 2025 (CCHP), consistent with Δμ-derived value)
+[23:44:15] [PROCESS]   ΔH0 = 3.20 km/s/Mpc
+[23:44:15] [PROCESS] Loading CosmicFlows-4 data from /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/interim/cosmicflows4_processed.csv...
+[23:44:15] [SUCCESS] Loaded 38053 rows from CosmicFlows-4 data
+[23:44:15] [PROCESS] Methodology: peculiar velocities are computed as v_pec = cz − H0·d for both H0 calibrations (Cepheid and TRGB). The calibration-induced shift Δv = (H0_TRGB − H0_CEPHEID) · d is deterministic and quantifies the distance-dependent systematic. Bulk-flow amplitudes are compared in radial bins (100, 200, 250 Mpc) using inverse-distance-squared weighting in supergalactic coordinates. The RMS shift and fraction of galaxies with |shift| > 200 km/s characterize the calibration sensitivity of the peculiar velocity field.
+[23:44:15] [PROCESS] Computing peculiar velocities: v_pec = cz - H0 * d...
+[23:44:15] [SUCCESS]   Cepheid v_pec (H0=73.0): N=38053, mean=-795.8, std=4078.3 km/s
+[23:44:15] [SUCCESS]   TRGB v_pec    (H0=69.8): N=38053, mean=-77.5, std=3848.2 km/s
+[23:44:15] [TEST]   ΔH0 = 3.2 km/s/Mpc → shift = -3.2 × d km/s
+[23:44:15] [PROCESS] Quantifying calibration sensitivity of bulk-flow...
+[23:44:15] [TEST]   Shift at d=100 Mpc: -320 km/s
+[23:44:15] [TEST]   Shift at d=200 Mpc: -640 km/s
+[23:44:15] [TEST]   Shift at d=250 Mpc: -800 km/s
+[23:44:15] [TEST]   RMS shift: 839 km/s
+[23:44:15] [TEST]   Fraction with |shift| > 200 km/s: 89.0%
+[23:44:15] [TEST]   R<=100 Mpc: BF_cep=13.1, BF_trgb=12.7, reduction=2.9%
+[23:44:15] [TEST]   R<=200 Mpc: BF_cep=12.7, BF_trgb=12.3, reduction=3.8%
+[23:44:15] [TEST]   R<=250 Mpc: BF_cep=12.3, BF_trgb=11.7, reduction=4.4%
+[23:44:15] [TEST] The calibration-induced RMS velocity shift of 839 km/s affects 89.0% of galaxies at >200 km/s. Under TEP, this systematic inflates the apparent bulk flow when the Cepheid-calibrated H0 = 73.0 is used. The void model, which predicts a calibration-independent bulk flow, has no mechanism to account for this distance-dependent artifact.
+[23:44:15] [PROCESS] Generating peculiar velocity figure...
+[23:44:15] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_31_peculiar_velocity_artifact.png
+[23:44:15] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_31_peculiar_velocity_artifact.json
+[23:44:15] [SUCCESS] Step 31 complete
+[23:44:15] [SUCCESS] step_31 completed in 0.3s

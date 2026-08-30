@@ -33,6 +33,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 
 class Step11IndicatorDivergence:
@@ -369,6 +370,7 @@ class Step11IndicatorDivergence:
     # ------------------------------------------------------------------
     def plot_divergence_vs_potential(self, df, fit_results, kappa, intercept, kappa_err, intercept_err):
         """Generate the divergence vs potential figure."""
+        colors = apply_tep_style()
         print_status("Generating divergence vs potential figure...", "PROCESS")
 
         fig, ax = plt.subplots(figsize=(10, 7))
@@ -379,7 +381,7 @@ class Step11IndicatorDivergence:
 
         # Data points
         ax.errorbar(
-            x, y, yerr=yerr, fmt="o", color="#2166ac", ecolor="#92c5de",
+            x, y, yerr=yerr, fmt="o", color=colors['blue'], ecolor=colors['light_blue'],
             capsize=3, markersize=7, label="Matched hosts", zorder=3,
         )
 
@@ -387,28 +389,28 @@ class Step11IndicatorDivergence:
         x_fit = np.linspace(x.min() - 0.1, x.max() + 0.1, 200)
         # kappa is in mag per X_i (dimensionless), so scale by 1e-7 for plotting
         y_fit = (kappa * 1e7) * x_fit + intercept
-        ax.plot(x_fit, y_fit, color="#4daf4a", linewidth=2,
+        ax.plot(x_fit, y_fit, color=colors['green'], linewidth=2,
                 label=f"TEP fit: $\\kappa = {kappa:.2e} \\pm {kappa_err:.2e}$ mag", zorder=2)
 
         # TEP predicted slope
         x_pred = np.array([x.min() - 0.1, x.max() + 0.1])
         y_pred_default = (-self.KAPPA_CEP_DEFAULT * 1e7) * x_pred
-        ax.plot(x_pred, y_pred_default, color="#ff7f00", linestyle=":", linewidth=1.5,
+        ax.plot(x_pred, y_pred_default, color=colors['accent'], linestyle=":", linewidth=1.5,
                 label=f"TEP prediction ($\\kappa = -{self.KAPPA_CEP_DEFAULT/1e6:.2f} \\times 10^6$)", zorder=2)
 
         # Fit uncertainty band
         y_upper = ((kappa + kappa_err) * 1e7) * x_fit + (intercept + intercept_err)
         y_lower = ((kappa - kappa_err) * 1e7) * x_fit + (intercept - intercept_err)
-        ax.fill_between(x_fit, y_lower, y_upper, alpha=0.15, color="#4daf4a", zorder=1)
+        ax.fill_between(x_fit, y_lower, y_upper, alpha=0.15, color=colors['green'], zorder=1)
 
         # Void prediction (kappa = 0, intercept = 0)
-        ax.axhline(0, color="#b2182b", linestyle="--", linewidth=1.5,
+        ax.axhline(0, color=colors['red'], linestyle="--", linewidth=1.5,
                    label="Void prediction ($\\Delta\\mu = 0$)", zorder=2)
 
-        ax.set_xlabel("$X_i = (S_{\\rm tot}\\,\\sigma_v^2 - U_{\\rm ref}^{\\rm scr}) / c^2$  ($\\times 10^{-7}$)", fontsize=12)
-        ax.set_ylabel("$\\Delta\\mu = \\mu_{\\rm Cepheid} - \\mu_{\\rm TRGB}$ (mag)", fontsize=12)
-        ax.set_title("Cepheid–TRGB Divergence vs TEP Potential Coordinate", fontsize=13)
-        ax.legend(fontsize=9, loc="best")
+        ax.set_xlabel("$X_i = (S_{\\rm tot}\\,\\sigma_v^2 - U_{\\rm ref}^{\\rm scr}) / c^2$  ($\\times 10^{-7}$)")
+        ax.set_ylabel("$\\Delta\\mu = \\mu_{\\rm Cepheid} - \\mu_{\\rm TRGB}$ (mag)")
+        ax.set_title("Cepheid–TRGB Divergence vs TEP Potential Coordinate")
+        ax.legend(loc="best")
 
         # Annotate with statistics
         text = (f"Pearson r = {fit_results['pearson_r']:+.3f} (p = {fit_results['pearson_p']:.3f})\n"
@@ -416,7 +418,7 @@ class Step11IndicatorDivergence:
                 f"$\\kappa$ = {kappa:.2e} $\\pm$ {kappa_err:.2e} ({fit_results['linear_fit']['kappa_significance_sigma']:.1f}$\\sigma$)\n"
                 f"$R^2$ = {fit_results['linear_fit']['r_squared']:.3f}")
         ax.text(0.05, 0.95, text, transform=ax.transAxes, fontsize=9,
-                verticalalignment="top", bbox=dict(boxstyle="round,pad=0.4", facecolor="white", alpha=0.8))
+                verticalalignment="top", bbox=dict(boxstyle="round,pad=0.4", facecolor=colors['bg'], alpha=0.8))
 
         fig.tight_layout()
         fig_path = self.figures / "step_11_divergence_vs_potential.png"

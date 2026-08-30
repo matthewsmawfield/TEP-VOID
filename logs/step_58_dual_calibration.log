@@ -1,34 +1,29 @@
-[20:27:49] [INFO] ================================================================================
-[20:27:49] [INFO]    Step 58: Dual-Calibration Peculiar-Velocity Experiment (Gate F)
-[20:27:49] [INFO] ================================================================================
-[20:27:49] [PROCESS] Parsing CF4 TF Distances (2000 < Vcmb < 15000 km/s)...
-[20:27:49] [SUCCESS] Loaded 12222 TF galaxies from CF4.
-[20:27:49] [SUCCESS] Found 20 overlapping TF/Anchor galaxies.
-[20:27:49] [INFO]   Overlaps: 20 Cepheid, 20 TRGB
-[20:27:49] [TEST] Zero-Point Offset (Cepheid): +0.250 mag
-[20:27:49] [TEST] Zero-Point Offset (TRGB):    +0.309 mag
-[20:27:49] [PROCESS] 
+[23:48:33] [INFO] ================================================================================
+[23:48:33] [INFO]    Step 58: Dual-Calibration Peculiar-Velocity Experiment (Gate F)
+[23:48:33] [INFO] ================================================================================
+[23:48:33] [PROCESS] Parsing CF4 TF Distances (2000 < Vcmb < 15000 km/s)...
+[23:48:33] [SUCCESS] Loaded 12222 TF galaxies from CF4.
+[23:48:33] [SUCCESS] Found 20 overlapping TF/Anchor galaxies.
+[23:48:33] [INFO]   Overlaps: 20 Cepheid, 20 TRGB
+[23:48:33] [TEST] Zero-Point Offset (Cepheid): +0.250 mag
+[23:48:33] [TEST] Zero-Point Offset (TRGB):    +0.309 mag
+[23:48:33] [PROCESS] 
 Propagating Zero-Points to Full TF Catalog (Vcmb > 2000 km/s)...
-[20:27:49] [INFO] Retained 10866 TF galaxies in the linear flow.
-[20:27:49] [PROCESS] 
+[23:48:33] [INFO] Retained 10866 TF galaxies in the linear flow.
+[23:48:33] [PROCESS] 
 Fitting H0-Invariant Log-Distance Bulk Flows...
-[20:27:49] [TEST] Cepheid-calibrated Flow: B = 290.0 km/s, alpha = -15.9263
-[20:27:49] [TEST] TRGB-calibrated Flow:    B = 290.0 km/s, alpha = -15.9857
-[20:27:49] [PROCESS] 
+[23:48:33] [TEST] Cepheid-calibrated Flow: B = 290.0 km/s, alpha = -15.9263
+[23:48:33] [TEST] TRGB-calibrated Flow:    B = 290.0 km/s, alpha = -15.9857
+[23:48:33] [PROCESS] 
 Fitting Conventional V_pec Bulk Flows...
-[20:27:49] [TEST] Cepheid-calibrated Flow: B = 302.2 km/s
-[20:27:49] [TEST] TRGB-calibrated Flow:    B = 335.6 km/s
-[20:27:49] [PROCESS] 
+[23:48:33] [TEST] Cepheid-calibrated Flow: B = 302.2 km/s
+[23:48:33] [TEST] TRGB-calibrated Flow:    B = 335.6 km/s
+[23:48:33] [PROCESS] 
 Extracting Differential Flow (B_cep - B_trgb)...
-[20:27:49] [SUCCESS] Differential Bulk Flow: |Delta B| = 50.4 km/s
-[20:27:49] [SUCCESS] Angle to CMB Dipole:    74.0 degrees
-[20:27:49] [TEST] Parallel Component:     Delta B_|| = +13.9 km/s
-[20:27:49] [TEST] Perpendicular Comp:     |Delta B_perp| = 48.4 km/s
-[20:27:49] [WARNING] CONCLUSION: The differential flow is not dominated by the CMB axis.
-[20:27:49] [SUCCESS] Saved summary to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_58_dual_calibration_tf.json
-[20:27:49] [SUCCESS] step_58 completed in 1.2s
-[20:27:49] [INFO] 
-[20:27:49] [INFO] ================================================================================
-[20:27:49] [INFO]    Pipeline complete: 1 succeeded, 0 failed, 1.2s total
-[20:27:49] [INFO] ================================================================================
-[20:27:49] [INFO] 
+[23:48:33] [SUCCESS] Differential Bulk Flow: |Delta B| = 50.4 km/s
+[23:48:33] [SUCCESS] Angle to CMB Dipole:    74.0 degrees
+[23:48:33] [TEST] Parallel Component:     Delta B_|| = +13.9 km/s
+[23:48:33] [TEST] Perpendicular Comp:     |Delta B_perp| = 48.4 km/s
+[23:48:33] [WARNING] CONCLUSION: The differential flow is not dominated by the CMB axis.
+[23:48:33] [SUCCESS] Saved summary to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_58_dual_calibration_tf.json
+[23:48:33] [SUCCESS] step_58 completed in 0.3s

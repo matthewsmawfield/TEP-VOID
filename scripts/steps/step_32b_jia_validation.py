@@ -58,6 +58,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 
 
 class Step32BJiaValidation:
@@ -406,6 +407,7 @@ class Step32BJiaValidation:
     # ------------------------------------------------------------------
     def plot_validation(self, level_a, level_b):
         """Generate validation figure."""
+        colors = apply_tep_style()
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
 
         # Panel 1: Level A — KBC curves vs Jia published values
@@ -415,19 +417,20 @@ class Step32BJiaValidation:
         kbc_g = np.array(level_a["kbc_gaussian_at_jia_bins"])
         kbc_e = np.array(level_a["kbc_exponential_at_jia_bins"])
 
-        ax1.errorbar(z_centers, jia_vals, yerr=jia_errs, fmt='ko-', capsize=3,
+        ax1.errorbar(z_centers, jia_vals, yerr=jia_errs, fmt='o-', color=colors['dark'],
+                     capsize=3,
                      label='Jia et al. (2023) published', markersize=6, linewidth=1.5)
-        ax1.plot(z_centers, kbc_g, 'b^--', label='KBC Gaussian (Method-3)', markersize=8)
-        ax1.plot(z_centers, kbc_e, 'rs--', label='KBC Exponential (Method-3)', markersize=8)
-        ax1.axhline(y=67.4, color='gray', linestyle=':', alpha=0.5, label='Planck $H_0$')
-        ax1.axhline(y=73.0, color='gray', linestyle='-.', alpha=0.5, label='SH0ES $H_0$')
-        ax1.set_xlabel('Redshift $z$', fontsize=12)
-        ax1.set_ylabel('$H_{0,z}$ (km/s/Mpc)', fontsize=12)
-        ax1.set_title('Level A: KBC curves vs Jia et al. reconstruction', fontsize=11)
-        ax1.legend(fontsize=9, loc='upper right')
+        ax1.plot(z_centers, kbc_g, '^--', color=colors['blue'], label='KBC Gaussian (Method-3)', markersize=8)
+        ax1.plot(z_centers, kbc_e, 's--', color=colors['red'], label='KBC Exponential (Method-3)', markersize=8)
+        ax1.axhline(y=67.4, color=colors['purple'], linestyle=':', alpha=0.5, label='Planck $H_0$')
+        ax1.axhline(y=73.0, color=colors['purple'], linestyle='-.', alpha=0.5, label='SH0ES $H_0$')
+        ax1.set_xlabel('Redshift $z$')
+        ax1.set_ylabel('$H_{0,z}$ (km/s/Mpc)')
+        ax1.set_title('Level A: KBC curves vs Jia et al. reconstruction')
+        ax1.legend(loc='upper right')
         ax1.set_xlim(-0.05, 2.5)
         ax1.set_ylim(60, 78)
-        ax1.grid(True, alpha=0.3)
+        ax1.grid(True)
 
         # Panel 2: Level B — Our binned H_0(z) vs Jia
         if level_b:
@@ -437,19 +440,21 @@ class Step32BJiaValidation:
             jia_pub = level_b["jia_published_h0z"]
             jia_pub_err = level_b["jia_published_err"]
 
-            ax2.errorbar(z_centers_b, h0_fit, yerr=h0_err, fmt='bo-',
+            ax2.errorbar(z_centers_b, h0_fit, yerr=h0_err, fmt='o-',
+                         color=colors['blue'],
                          capsize=3, label='This work (binned inversion)', markersize=6, linewidth=1.5)
-            ax2.errorbar(z_centers_b, jia_pub, yerr=jia_pub_err, fmt='ko--',
+            ax2.errorbar(z_centers_b, jia_pub, yerr=jia_pub_err, fmt='o--',
+                         color=colors['dark'],
                          capsize=3, label='Jia et al. (2023) published', markersize=5, linewidth=1, alpha=0.7)
-            ax2.axhline(y=67.4, color='gray', linestyle=':', alpha=0.5)
-            ax2.axhline(y=73.0, color='gray', linestyle='-.', alpha=0.5)
-            ax2.set_xlabel('Redshift $z$', fontsize=12)
-            ax2.set_ylabel('$H_{0,z}$ (km/s/Mpc)', fontsize=12)
-            ax2.set_title('Level B: SN-only piecewise reconstruction', fontsize=11)
-            ax2.legend(fontsize=9, loc='upper right')
+            ax2.axhline(y=67.4, color=colors['purple'], linestyle=':', alpha=0.5)
+            ax2.axhline(y=73.0, color=colors['purple'], linestyle='-.', alpha=0.5)
+            ax2.set_xlabel('Redshift $z$')
+            ax2.set_ylabel('$H_{0,z}$ (km/s/Mpc)')
+            ax2.set_title('Level B: SN-only piecewise reconstruction')
+            ax2.legend(loc='upper right')
             ax2.set_xlim(-0.05, 2.5)
             ax2.set_ylim(60, 78)
-            ax2.grid(True, alpha=0.3)
+            ax2.grid(True)
 
         plt.tight_layout()
         fig_path = self.figures / "step_32b_jia_validation.png"

@@ -60,6 +60,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
+from scripts.utils.plot_style import apply_tep_style
 from scripts.utils.screening import (
     U_REF_SCREENED,
     U_REF_UNSCREENED,
@@ -519,6 +520,7 @@ class Step49BandDependence:
     def plot_band_dependence(self, df_primary, df_secondary, res_primary,
                              res_secondary):
         """Generate the band-dependence regression figure."""
+        colors = apply_tep_style()
         fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 
         # --- Panel 1: Primary (Madore & Freedman 2023 VIH vs VI) ---
@@ -527,7 +529,7 @@ class Step49BandDependence:
         y = df_primary["delta_mu_band"].values
         yerr = df_primary["delta_mu_band_err"].values
 
-        ax.errorbar(x, y, yerr=yerr, fmt="o", color="steelblue", ms=5,
+        ax.errorbar(x, y, yerr=yerr, fmt="o", color=colors['blue'], ms=5,
                     capsize=3, alpha=0.8, zorder=3)
 
         if res_primary:
@@ -535,29 +537,27 @@ class Step49BandDependence:
             intercept = res_primary["intercept"]
             slope_err = res_primary["slope_err"]
             x_line = np.linspace(x.min(), x.max(), 100)
-            ax.plot(x_line, slope * x_line + intercept, "k--", lw=1.5,
+            ax.plot(x_line, slope * x_line + intercept, color=colors['dark'], linestyle="--", lw=1.5,
                     label=f"Fit: slope = {slope:.2e} ± {slope_err:.2e}")
 
             # TEP predicted line (NEGATIVE slope: NIR more compressed at high X_i)
             tep_slope = -DELTA_B * KAPPA_P_EQUIV
-            ax.plot(x_line, tep_slope * x_line, "g-", lw=1.5, alpha=0.6,
+            ax.plot(x_line, tep_slope * x_line, color=colors['green'], lw=1.5, alpha=0.6,
                     label=f"TEP pred (κ_P = {KAPPA_P_EQUIV:.3g})")
 
-        ax.axhline(0, color="gray", lw=0.5)
-        ax.axvline(0, color="gray", lw=0.5)
+        ax.axhline(0, color=colors['purple'], lw=0.5)
+        ax.axvline(0, color=colors['purple'], lw=0.5)
         ax.set_xlabel(
-            r"$X_i = (S_{\rm tot}\,V_{\rm rot}^2/2 - U_{\rm ref}^{\rm scr}) / c^2$", fontsize=12
+            r"$X_i = (S_{\rm tot}\,V_{\rm rot}^2/2 - U_{\rm ref}^{\rm scr}) / c^2$"
         )
         ax.set_ylabel(
             r"$\Delta\mu_{\rm band} = \mu_{\rm NIR} - \mu_{\rm opt}$ (mag)",
-            fontsize=12,
         )
         ax.set_title(
             f"Same-team VIH vs VI  (N={len(df_primary)})\n"
             f"Madore & Freedman (2023)",
-            fontsize=12,
         )
-        ax.legend(fontsize=8, loc="best")
+        ax.legend(loc="best")
 
         # --- Panel 2: Secondary (Key Project vs R22) ---
         ax = axes[1]
@@ -566,7 +566,7 @@ class Step49BandDependence:
             y2 = df_secondary["delta_mu_band"].values
             yerr2 = df_secondary["delta_mu_band_err"].values
 
-            ax.errorbar(x2, y2, yerr=yerr2, fmt="s", color="crimson", ms=5,
+            ax.errorbar(x2, y2, yerr=yerr2, fmt="s", color=colors['red'], ms=5,
                         capsize=3, alpha=0.8, zorder=3)
 
             if res_secondary:
@@ -574,31 +574,29 @@ class Step49BandDependence:
                 intercept2 = res_secondary["intercept"]
                 slope_err2 = res_secondary["slope_err"]
                 x_line = np.linspace(x2.min(), x2.max(), 100)
-                ax.plot(x_line, slope2 * x_line + intercept2, "k--", lw=1.5,
+                ax.plot(x_line, slope2 * x_line + intercept2, color=colors['dark'], linestyle="--", lw=1.5,
                         label=f"Fit: slope = {slope2:.2e} ± {slope_err2:.2e}")
 
                 tep_slope = -DELTA_B * KAPPA_P_EQUIV
-                ax.plot(x_line, tep_slope * x_line, "g-", lw=1.5, alpha=0.6,
+                ax.plot(x_line, tep_slope * x_line, color=colors['green'], lw=1.5, alpha=0.6,
                         label=f"TEP pred (κ_P = {KAPPA_P_EQUIV:.3g})")
 
             ax.set_title(
                 f"Key Project vs R22  (N={len(df_secondary)})\n"
                 f"Freedman (2001) vs Riess (2022)",
-                fontsize=12,
             )
         else:
             ax.set_title("Key Project vs R22  (no matches)")
 
-        ax.axhline(0, color="gray", lw=0.5)
-        ax.axvline(0, color="gray", lw=0.5)
+        ax.axhline(0, color=colors['purple'], lw=0.5)
+        ax.axvline(0, color=colors['purple'], lw=0.5)
         ax.set_xlabel(
-            r"$X_i = (S_{\rm tot}\,V_{\rm rot}^2/2 - U_{\rm ref}^{\rm scr}) / c^2$", fontsize=12
+            r"$X_i = (S_{\rm tot}\,V_{\rm rot}^2/2 - U_{\rm ref}^{\rm scr}) / c^2$"
         )
         ax.set_ylabel(
             r"$\Delta\mu_{\rm band} = \mu_{\rm NIR} - \mu_{\rm opt}$ (mag)",
-            fontsize=12,
         )
-        ax.legend(fontsize=8, loc="best")
+        ax.legend(loc="best")
 
         fig.suptitle(
             "TEP Band-Dependence: Optical vs NIR Cepheid Distance "
