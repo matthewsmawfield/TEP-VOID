@@ -1,0 +1,49 @@
+{
+  "description": "Matched-GLS R_H check: KBC model vectors through the same two-bin GLS operator",
+  "H0_REF": 73.04,
+  "omega_m": 0.302,
+  "bins": {
+    "low": [
+      0.05,
+      0.15
+    ],
+    "high": [
+      0.25,
+      null
+    ]
+  },
+  "n_low": 178,
+  "n_high": 614,
+  "observed": {
+    "H0_low": 73.076292885037,
+    "H0_high": 73.75428756608521,
+    "R_H": 1.0092779019608291,
+    "sigma_R_H": 0.0062057538237247556,
+    "a_low": -0.0010787161182948051,
+    "a_high": -0.021132538732786775
+  },
+  "kbc_gaussian": {
+    "H0_low_gls": 72.21566058995765,
+    "H0_high_gls": 69.10362444058137,
+    "R_H_kbc_gls": 0.9569063534979414,
+    "sigma_exclusion": 8.439192070860102,
+    "a_low": 0.024646881162001803,
+    "a_high": 0.12029969044443543
+  },
+  "kbc_exponential": {
+    "H0_low_gls": 73.3792055645913,
+    "H0_high_gls": 69.66313545578866,
+    "R_H_kbc_gls": 0.9493579948132362,
+    "sigma_exclusion": 9.655540462871334,
+    "a_low": -0.01006120528460302,
+    "a_high": 0.10278873440152804
+  },
+  "kbc_gaussian_arithmetic_mean": {
+    "R_H_kbc_arith": 0.9523956656086616,
+    "sigma_exclusion_arith": 9.166047827212426
+  },
+  "kbc_exponential_arithmetic_mean": {
+    "R_H_kbc_arith": 0.9458355889532554,
+    "sigma_exclusion_arith": 10.223143684016623
+  }
+}

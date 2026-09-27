@@ -355,6 +355,24 @@ class HTMLToMarkdownConverter {
             const outputName = `31-TEP-VOID-${versionSlug}-Valencia.md`;
             const outputPath = path.join(__dirname, '..', outputName);
             fs.writeFileSync(outputPath, markdown, 'utf8');
+
+            // Keep the shared collection archive (../manuscripts/) in sync
+            try {
+                const sharedArchiveDir = path.join(__dirname, '..', '..', 'manuscripts');
+                if (fs.existsSync(sharedArchiveDir)) {
+                    const archiveName = path.basename(outputPath);
+                    const paperPrefix = archiveName.split('-')[0];
+                    for (const staleFile of fs.readdirSync(sharedArchiveDir)) {
+                        if (staleFile !== archiveName && staleFile.endsWith('.md') && staleFile.startsWith(`${paperPrefix}-TEP`)) {
+                            fs.rmSync(path.join(sharedArchiveDir, staleFile));
+                        }
+                    }
+                    fs.copyFileSync(outputPath, path.join(sharedArchiveDir, archiveName));
+                    console.log(`📄 Copied to shared archive: manuscripts/${archiveName}`);
+                }
+            } catch (archiveError) {
+                console.warn(`⚠️  Could not update shared manuscripts archive: ${archiveError.message}`);
+            }
             
             console.log('✅ Markdown conversion complete!');
             console.log(`📄 Output: ${outputPath}`);
@@ -412,7 +430,7 @@ ${content}
 - [TEP-EXP: Precision Tests of GR](https://doi.org/10.5281/zenodo.18109760) (Measurement taxonomy)
 - [TEP-JWST: JWST High-Redshift Anomalies](https://doi.org/10.5281/zenodo.19000827) (High-redshift galaxy ages and masses)
 - [TEP-HUB: The Mount Wilson Paradigm](https://doi.org/10.5281/zenodo.21954258) (Cosmological redshift as temporal shear)
-- [TEP-BBN: Primordial Deuterium](https://doi.org/10.5281/zenodo.21841148) (Deuterium isotope identifiability)
+- [TEP-BBN: Primordial Deuterium](https://doi.org/10.5281/zenodo.21841147) (Deuterium isotope identifiability)
 
 *Source code available at: https://github.com/matthewsmawfield/TEP-VOID*
 `;

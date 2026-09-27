@@ -197,6 +197,19 @@ class MeasuredVrotXiStep:
                 )
                 self._step_test(measured, 'measured_vrot_only', 'Measured V_rot only')
 
+                # Error-weighted variant using the published SH0ES distance
+                # errors; this is the properly powered version of the step.
+                self._step_test_weighted(measured, 'measured_vrot_weighted',
+                                         'Measured V_rot (error-weighted)')
+
+                # Continuous X_i regression on the measured subsample — the
+                # powered discriminator of the stretch channel's environmental
+                # scaling, since X_i here derives from kinematics rather than
+                # mass (breaking the TF degeneracy that affects the TF-proxy
+                # sample).
+                self._weighted_xi_regression(measured, 'measured_vrot_regression',
+                                            'Measured V_rot continuous regression')
+
                 # Also run with mass correction
                 self._step_test_with_mass(measured, 'measured_vrot_mass_corrected',
                                          'Measured V_rot (mass-corrected)')
@@ -268,6 +281,142 @@ class MeasuredVrotXiStep:
             'step_err': float(step_err),
             'step_sigma': float(step_sigma),
             'tep_direction': bool(tep_direction),
+        }
+
+    def _mu_err(self, df):
+        """Per-SN distance-modulus error from the published SH0ES diagonal."""
+        if 'MU_SH0ES_ERR_DIAG' in df.columns:
+            return np.maximum(df['MU_SH0ES_ERR_DIAG'].values, 0.05)
+        return np.full(len(df), np.nan)
+
+    def _step_test_weighted(self, df, key, label):
+        """Error-weighted X_i-step test using the published per-SN distance errors.
+
+        The unweighted step treats a sigma~0.7 mag peculiar-velocity-dominated
+        SN identically to a sigma~0.15 mag Hubble-flow SN; the weighted version
+        is the efficient estimator for a two-population mean difference.
+        """
+        high_x = df['X_i'].values > 0
+        y = df['hubble_residual'].values
+        err = self._mu_err(df)
+        if not np.isfinite(err).all():
+            print_status(f"  {label}: no per-SN errors, skipping weighted step", "WARN")
+            return
+        w = 1.0 / err ** 2
+
+        n_high, n_low = int(high_x.sum()), int((~high_x).sum())
+        if n_high < 5 or n_low < 5:
+            print_status(f"  {label}: insufficient data (N_high={n_high}, "
+                        f"N_low={n_low})", "WARN")
+            return
+
+        mu_h = np.sum(w[high_x] * y[high_x]) / np.sum(w[high_x])
+        mu_l = np.sum(w[~high_x] * y[~high_x]) / np.sum(w[~high_x])
+        step = mu_h - mu_l
+        # Heteroscedasticity-robust (sandwich) variance of each weighted mean:
+        # Var = sum(w_i^2 r_i^2) / (sum w_i)^2. It reduces to 1/sum(w) when the
+        # quoted errors equal the true scatter and to var(y)/n at equal weights,
+        # so mis-estimated per-SN errors cannot manufacture significance.
+        r_h = y[high_x] - mu_h
+        r_l = y[~high_x] - mu_l
+        var_h = np.sum(w[high_x] ** 2 * r_h ** 2) / np.sum(w[high_x]) ** 2
+        var_l = np.sum(w[~high_x] ** 2 * r_l ** 2) / np.sum(w[~high_x]) ** 2
+        step_err = np.sqrt(var_h + var_l)
+        step_sigma = step / step_err if step_err > 0 else 0
+
+        print_status(f"  {label}:", "TEST")
+        print_status(f"    N(X>0)={n_high}, N(X<=0)={n_low}", "TEST")
+        print_status(f"    Weighted step = {step*1000:.1f} +/- {step_err*1000:.1f} mmag "
+                     f"({step_sigma:.2f}sigma)", "TEST")
+
+        self.results[key] = {
+            'n_high_x': n_high,
+            'n_low_x': n_low,
+            'step_mag': float(step),
+            'step_err': float(step_err),
+            'step_sigma': float(step_sigma),
+            'tep_direction': bool(step > 0),
+            'weighting': 'MU_SH0ES_ERR_DIAG',
+        }
+
+    def _weighted_xi_regression(self, df, key, label):
+        """Continuous X_i regression on the measured-V_rot subsample.
+
+        This is the powered version of the environmental-scaling test: X_i on
+        this subsample derives from kinematics (not the mass proxy), so the
+        coefficient is identified independently of the mass step. A leave-one-out
+        and top-leverage-removal audit is reported so the result cannot be
+        carried by a handful of high-weight points.
+        """
+        y = df['hubble_residual'].values
+        X = df['X_i'].values
+        logm = df['HOST_LOGMASS'].values
+        err = self._mu_err(df)
+        if not np.isfinite(err).all() or len(y) < 30:
+            print_status(f"  {label}: insufficient data for weighted regression", "WARN")
+            return
+        w = 1.0 / err ** 2
+        ok = df['HOST_LOGMASS'].notna().values & np.isfinite(y)
+        y, X, logm, w, err = y[ok], X[ok], logm[ok], w[ok], err[ok]
+        n = len(y)
+
+        def wls(y, Xd, w):
+            Xw = Xd * np.sqrt(w)[:, None]
+            yw = y * np.sqrt(w)
+            p, *_ = np.linalg.lstsq(Xw, yw, rcond=None)
+            r = y - Xd @ p
+            chi2 = np.sum(w * r ** 2)
+            dof = max(len(y) - Xd.shape[1], 1)
+            cov = (chi2 / dof) * np.linalg.pinv(Xd.T @ (w[:, None] * Xd))
+            return p, chi2, cov
+
+        def slope_and_err(keep_mask):
+            yy, XX, ll, ww = y[keep_mask], X[keep_mask], logm[keep_mask], w[keep_mask]
+            Xd = np.column_stack([np.ones(len(yy)), XX, ll])
+            p, chi2, cov = wls(yy, Xd, ww)
+            return p[1], np.sqrt(cov[1, 1]), chi2
+
+        slope, slope_err, chi2 = slope_and_err(np.ones(n, bool))
+        sigma = slope / slope_err
+
+        # Leave-one-out slope distribution (leverage audit)
+        loo = np.empty(n)
+        for i in range(n):
+            keep = np.ones(n, bool); keep[i] = False
+            loo[i], _, _ = slope_and_err(keep)
+        loo_std = float(np.std(loo))
+
+        # Remove the single largest-residual point and refit (top-leverage check)
+        Xd_full = np.column_stack([np.ones(n), X, logm])
+        p_full, _, _ = wls(y, Xd_full, w)
+        contrib = w * (y - Xd_full @ p_full) ** 2
+        order = np.argsort(-contrib)
+        drop_slopes = {}
+        for k in (1, 3, 5):
+            keep = np.ones(n, bool); keep[order[:k]] = False
+            s_k, e_k, _ = slope_and_err(keep)
+            drop_slopes[f'drop_top_{k}'] = {'slope': float(s_k), 'err': float(e_k),
+                                            'sigma': float(s_k / e_k)}
+
+        print_status(f"  {label}:", "TEST")
+        print_status(f"    N={n}; dHR/dX_i = {slope:.3e} +/- {slope_err:.3e} "
+                     f"({sigma:.2f}sigma), TEP-predicted sign positive", "TEST")
+        print_status(f"    LOO slope std = {loo_std:.3e} "
+                     f"({'stable' if loo_std < abs(slope) else 'leverage-dominated'})", "TEST")
+        for k, v in drop_slopes.items():
+            print_status(f"    {k}: slope={v['slope']:.3e} ({v['sigma']:.2f}sigma)", "TEST")
+
+        self.results[key] = {
+            'n': int(n),
+            'slope': float(slope),
+            'slope_err': float(slope_err),
+            'slope_sigma': float(sigma),
+            'tep_direction': bool(slope > 0),
+            'chi2': float(chi2),
+            'loo_slope_std': loo_std,
+            'leverage_robustness': drop_slopes,
+            'weighting': 'MU_SH0ES_ERR_DIAG',
+            'controls': ['HOST_LOGMASS'],
         }
 
     def _step_test_with_mass(self, df, key, label):

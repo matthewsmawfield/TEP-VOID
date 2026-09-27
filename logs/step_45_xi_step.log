@@ -1,63 +1,68 @@
-[23:46:22] [INFO] ======================================================================
-[23:46:22] [INFO] Step 45: X_i-Step Test in Pantheon+ Hubble Residuals
-[23:46:22] [INFO] ======================================================================
-[23:46:22] [PROCESS]   Loaded 1701 Pantheon+ rows
-[23:46:22] [PROCESS]   1543 unique SNe
-[23:46:22] [PROCESS]   1353 Hubble-flow SNe with mass (z > 0.01, logM > 7)
-[23:46:22] [PROCESS]   1214 Hubble-flow SNe with mass (z > 0.023)
-[23:46:22] [INFO]   V_rot: 107 measured, 1246 TF proxy
-[23:46:22] [TEST]   V_rot range: 26.6 - 509.2 km/s
-[23:46:22] [TEST]   X range: -0.064 - 7.479 x 1e-7
-[23:46:22] [TEST]   HR range: -0.740 - 0.743 mag
-[23:46:22] [INFO] 
-[23:46:22] [TEST]   --- Test 1: Standard mass step (logM = 10.5) ---
-[23:46:22] [TEST]   N_high = 475, N_low = 878
-[23:46:22] [TEST]   HR_high = 0.0055 +/- 0.0070
-[23:46:22] [TEST]   HR_low = 0.0037 +/- 0.0052
-[23:46:22] [TEST]   Mass step = 1.8 +/- 8.7 mmag (0.21 sigma)
-[23:46:22] [INFO] 
-[23:46:22] [TEST]   --- Test 2: X_i step (X = 0) ---
-[23:46:22] [TEST]   N_highX = 1335, N_lowX = 18
-[23:46:22] [TEST]   HR_highX = 0.0044 +/- 0.0042
-[23:46:22] [TEST]   HR_lowX = -0.0030 +/- 0.0500
-[23:46:22] [TEST]   X step = 7.5 +/- 50.2 mmag (0.15 sigma)
-[23:46:22] [TEST]   Direction: TEP-predicted (high-X -> positive HR)
-[23:46:22] [INFO] 
-[23:46:22] [TEST]   --- Test 3: Continuous regression HR vs X ---
-[23:46:22] [TEST]   slope = 3.01e+04 +/- 2.38e+04 mag per unit X
-[23:46:22] [TEST]   R = 0.0343, p = 0.2074, significance = 1.26 sigma
-[23:46:22] [INFO] 
-[23:46:22] [TEST]   --- Test 4: Continuous regression HR vs logM ---
-[23:46:22] [TEST]   slope = 0.0032 +/- 0.0047 mag/dex
-[23:46:22] [TEST]   R = 0.0182, p = 0.5040, significance = 0.67 sigma
-[23:46:22] [INFO] 
-[23:46:22] [TEST]   --- Test 5: X_i step after mass-step correction ---
-[23:46:22] [TEST]   X step (mass-corrected) = 0.8 +/- 50.5 mmag (0.02 sigma)
-[23:46:22] [TEST]   slope (mass-corrected) = 1.68e+04 +/- 2.39e+04
-[23:46:22] [TEST]   R = 0.0192, p = 0.4801, significance = 0.71 sigma
-[23:46:22] [INFO] 
-[23:46:22] [TEST]   --- Test 6: Joint fit HR = a + b*logM + c*X ---
-[23:46:22] [WARNING]   Joint fit degenerate (cond=1.07e+16); X_i collinear with logM.
-[23:46:22] [INFO]   Joint X_i and mass coefficients are unidentifiable; see Test 5 (mass-residualized regression) for the well-posed result.
-[23:46:22] [TEST]   b (mass slope) = -0.0057 +/- nan mag/dex (n/a sigma)
-[23:46:22] [TEST]   c (X slope) = 5.41e+04 +/- nan (n/a sigma)
-[23:46:22] [TEST]   Direction of c: TEP-predicted
-[23:46:22] [INFO] 
-[23:46:22] [TEST]   --- Test 7: SN stretch (x1) vs X ---
-[23:46:22] [INFO]   NOTE: X_i is derived from mass via Tully-Fisher;
-[23:46:22] [INFO]         stretch-X_i is NOT independent of mass-stretch.
-[23:46:22] [TEST]   x1 vs X: slope = -1.65e+06 +/- 1.47e+05 (11.19 sigma)
-[23:46:22] [TEST]   R = -0.2947, p = 0.0000
-[23:46:22] [TEST]   Direction: TEP-predicted (high-X -> negative x1)
-[23:46:22] [TEST]   x1 vs logM: slope = -0.3261 +/- 0.0290 (11.23 sigma)
-[23:46:22] [TEST]   R(x1,logM) = -0.2957, R(x1,X) = -0.2947
-[23:46:22] [TEST]   Partial corr(x1, X | logM): r = -0.092929, p = 0.0007
-[23:46:22] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_45_xi_step.png
-[23:46:22] [INFO] 
-[23:46:22] [INFO] ======================================================================
-[23:46:22] [INFO] INTERPRETATION
-[23:46:22] [INFO] ======================================================================
-[23:46:22] [WARNING] NULL: The X_i-step is not detected (0.71sigma) after mass correction. The SN stretch channel prediction is not confirmed with the current sample and V_rot proxy. A proper test requires measured rotation velocities for each SN host (from HyperLEDA or SPARC).
-[23:46:22] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_45_xi_step.json
-[23:46:22] [SUCCESS] Step 45 complete
-[23:46:22] [SUCCESS] step_45 completed in 0.4s
+[22:13:57] [INFO] ======================================================================
+[22:13:57] [INFO] Step 45: X_i-Step Test in Pantheon+ Hubble Residuals
+[22:13:57] [INFO] ======================================================================
+[22:13:57] [PROCESS]   Loaded 1701 Pantheon+ rows
+[22:13:57] [PROCESS]   1543 unique SNe
+[22:13:57] [PROCESS]   1353 Hubble-flow SNe with mass (z > 0.01, logM > 7)
+[22:13:57] [PROCESS]   1214 Hubble-flow SNe with mass (z > 0.023)
+[22:13:58] [INFO]   V_rot: 116 measured, 1237 TF proxy
+[22:13:58] [TEST]   V_rot range: 30.9 - 975.6 km/s
+[22:13:58] [TEST]   X range: -0.050 - 49.709 x 1e-7
+[22:13:58] [TEST]   HR range: -0.740 - 0.743 mag
+[22:13:58] [INFO] 
+[22:13:58] [TEST]   --- Test 1: Standard mass step (logM = 10.5) ---
+[22:13:58] [TEST]   N_high = 475, N_low = 878
+[22:13:58] [TEST]   HR_high = 0.0055 +/- 0.0070
+[22:13:58] [TEST]   HR_low = 0.0037 +/- 0.0052
+[22:13:58] [TEST]   Mass step = 1.8 +/- 8.7 mmag (0.21 sigma)
+[22:13:58] [INFO] 
+[22:13:58] [TEST]   --- Test 2: X_i step (X = 0) ---
+[22:13:58] [TEST]   N_highX = 1336, N_lowX = 17
+[22:13:58] [TEST]   HR_highX = 0.0044 +/- 0.0042
+[22:13:58] [TEST]   HR_lowX = -0.0011 +/- 0.0529
+[22:13:58] [TEST]   X step = 5.5 +/- 53.1 mmag (0.10 sigma)
+[22:13:58] [TEST]   Direction: TEP-predicted (high-X -> positive HR)
+[22:13:58] [INFO] 
+[22:13:58] [TEST]   --- Test 3: Continuous regression HR vs X ---
+[22:13:58] [TEST]   slope = 1.62e+04 +/- 1.85e+04 mag per unit X
+[22:13:58] [TEST]   R = 0.0238, p = 0.3810, significance = 0.88 sigma
+[22:13:58] [INFO] 
+[22:13:58] [TEST]   --- Test 4: Continuous regression HR vs logM ---
+[22:13:58] [TEST]   slope = 0.0032 +/- 0.0047 mag/dex
+[22:13:58] [TEST]   R = 0.0182, p = 0.5040, significance = 0.67 sigma
+[22:13:58] [INFO] 
+[22:13:58] [TEST]   --- Test 5: X_i step after mass-step correction ---
+[22:13:58] [TEST]   X step (mass-corrected) = -1.8 +/- 53.4 mmag (0.03 sigma)
+[22:13:58] [TEST]   slope (mass-corrected) = 7.99e+03 +/- 1.85e+04
+[22:13:58] [TEST]   R = 0.0118, p = 0.6655, significance = 0.43 sigma
+[22:13:58] [INFO] 
+[22:13:58] [TEST]   --- Test 6: Joint fit HR = a + b*logM + c*X ---
+[22:13:58] [WARNING]   Joint fit degenerate (cond=3.57e+15); X_i collinear with logM.
+[22:13:58] [INFO]   Joint X_i and mass coefficients are unidentifiable; see Test 5 (mass-residualized regression) for the well-posed result.
+[22:13:58] [TEST]   b (mass slope) = 0.0007 +/- nan mag/dex (n/a sigma)
+[22:13:58] [TEST]   c (X slope) = 1.43e+04 +/- nan (n/a sigma)
+[22:13:58] [TEST]   Direction of c: TEP-predicted
+[22:13:58] [INFO] 
+[22:13:58] [TEST]   --- Test 7: SN stretch (x1) vs X ---
+[22:13:58] [INFO]   NOTE: X_i is derived from mass via Tully-Fisher;
+[22:13:58] [INFO]         stretch-X_i is NOT independent of mass-stretch.
+[22:13:58] [TEST]   x1 vs X: slope = -1.11e+06 +/- 1.15e+05 (9.70 sigma)
+[22:13:58] [TEST]   R = -0.2583, p = 0.0000
+[22:13:58] [TEST]   Direction: TEP-predicted (high-X -> negative x1)
+[22:13:58] [TEST]   x1 vs logM: slope = -0.3261 +/- 0.0290 (11.23 sigma)
+[22:13:58] [TEST]   R(x1,logM) = -0.2957, R(x1,X) = -0.2583
+[22:13:58] [TEST]   Partial corr(x1, X | logM): r = -0.087879, p = 0.0014
+[22:13:58] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_45_xi_step.png
+[22:13:58] [INFO] 
+[22:13:58] [INFO] ======================================================================
+[22:13:58] [INFO] INTERPRETATION
+[22:13:58] [INFO] ======================================================================
+[22:13:58] [WARNING] NULL: The X_i-step is not detected (0.43sigma) after mass correction. The SN stretch channel prediction is not confirmed with the current sample and V_rot proxy. A proper test requires measured rotation velocities for each SN host (from HyperLEDA or SPARC).
+[22:13:58] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_45_xi_step.json
+[22:13:58] [SUCCESS] Step 45 complete
+[22:13:58] [SUCCESS] step_45 completed in 1.4s
+[22:13:58] [INFO] 
+[22:13:58] [INFO] ================================================================================
+[22:13:58] [INFO]    Pipeline complete: 1 succeeded, 0 failed, 1.4s total
+[22:13:58] [INFO] ================================================================================
+[22:13:58] [INFO] 

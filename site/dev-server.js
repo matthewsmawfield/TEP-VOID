@@ -14,7 +14,7 @@ class DevServer {
         this.liveServerProcess = null;
         this.watcherReady = false;
         this.watcherRestarting = false;
-        this.port = 51831; // Unique port for TEP-VOID
+        this.port = 55531; // Unique port for TEP-VOID (Paper 31)
     }
 
     async startLiveServer() {

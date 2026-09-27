@@ -159,6 +159,49 @@ def fit_LT_continuous(df, target='raw_mag_resid'):
     
     return best_LT, fit_res
 
+def null_model_llf(df, target='raw_mag_resid'):
+    X = pd.DataFrame(index=df.index)
+    if 'IDSURVEY' in df.columns:
+        X['zCMB'] = df['zCMB']
+        X['mass'] = df['HOST_LOGMASS']
+        surveys = pd.get_dummies(df['IDSURVEY'], drop_first=True, dtype=float)
+        X = pd.concat([X, surveys], axis=1)
+    else:
+        X['z'] = df['z']
+    X = sm.add_constant(X)
+    return sm.OLS(df[target], X).fit().llf
+
+def look_elsewhere_mc(df_pan, obs_LT, obs_llf, n_perm=300, seed=1042):
+    """Global p-value for the continuous L_T optimization: permute the
+    residuals (destroying any real D- and cos(theta)-coherent structure while
+    preserving the residual distribution and control design), re-optimize
+    L_T on each draw, and compare the best -2*Delta(lnL) against the observed."""
+    rng = np.random.default_rng(seed)
+    T_obs = -2.0 * (null_model_llf(df_pan) - obs_llf)
+
+    best_lt_null = []
+    T_null = []
+    y = df_pan['raw_mag_resid'].values
+    for i in range(n_perm):
+        df_p = df_pan.copy()
+        df_p['raw_mag_resid'] = rng.permutation(y)
+        lt_p, res_p = fit_LT_continuous(df_p)
+        T_p = -2.0 * (null_model_llf(df_p) - res_p.llf)
+        best_lt_null.append(lt_p)
+        T_null.append(T_p)
+
+    T_null = np.asarray(T_null)
+    global_p = float((1 + np.sum(T_null >= T_obs)) / (n_perm + 1))
+    return {
+        'n_perm': n_perm,
+        'seed': seed,
+        'T_obs': float(T_obs),
+        'T_null_median': float(np.median(T_null)),
+        'T_null_max': float(np.max(T_null)),
+        'global_p': global_p,
+        'null_best_lt_median_mpc': float(np.median(best_lt_null)),
+    }
+
 def plot_cross_prediction(df_pan, df_cf4, pan_LT, pan_DT):
     colors = apply_tep_style()
     fig, ax = plt.subplots(figsize=(10, 6))
@@ -287,6 +330,12 @@ def run_audit():
     log.info(f"Pantheon+ Best Fit L_T = {pan_LT:.2f} Mpc")
     log.info(f"Pantheon+ D_T Amplitude = {pan_DT:.4f} +/- {pan_res.bse['P_kernel']:.4f} (p={pan_res.pvalues['P_kernel']:.4f})")
 
+    log.info("\n=== 1b. LOOK-ELSEWHERE CALIBRATION (null permutation MC) ===")
+    le = look_elsewhere_mc(df_pan, pan_LT, pan_res.llf)
+    log.info(f"Observed -2*Delta(lnL) = {le['T_obs']:.2f}")
+    log.info(f"Null distribution: median {le['T_null_median']:.2f}, max {le['T_null_max']:.2f} over {le['n_perm']} permutations")
+    log.info(f"Global p (look-elsewhere corrected) = {le['global_p']:.4f}")
+
     log.info("\n=== 2. INDEPENDENT CONFIRMATION (CF4) ===")
     cf4_LT, cf4_res = fit_LT_continuous(df_cf4, target='raw_mag_resid')
     log.info(f"CF4 Best Fit L_T       = {cf4_LT:.2f} Mpc")
@@ -317,6 +366,7 @@ def run_audit():
         "pantheon_dt_amplitude": float(pan_DT),
         "pantheon_dt_err": float(pan_res.bse['P_kernel']),
         "pantheon_dt_pval": float(pan_res.pvalues['P_kernel']),
+        "look_elsewhere": le,
         "cf4_best_lt_mpc": float(cf4_LT),
         "cf4_dt_amplitude": float(cf4_res.params['P_kernel']),
         "cf4_dt_err": float(cf4_res.bse['P_kernel']),

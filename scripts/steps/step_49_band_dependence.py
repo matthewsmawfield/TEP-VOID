@@ -408,12 +408,21 @@ class Step49BandDependence:
         
         cooks_d = [(e[i]**2 * w[i]) / (2 * MSE) * (H[i, i] / (1 - H[i, i])**2) for i in range(n)]
         
-        # Student-t regression
-        res = minimize(student_t_nll, [slope, intercept, -2.0], args=(x, y, yerr), method='BFGS')
-        student_t_slope = res.x[0]
-        cov_t = res.hess_inv if hasattr(res, 'hess_inv') else np.eye(3) * 1e-4
-        # approximate student-t error from hess_inv
-        student_t_slope_err = np.sqrt(cov_t[0, 0])
+        # Student-t regression.  X_i ~ 1e-7 makes the NLL Hessian
+        # numerically singular in the raw parameterization (the slope
+        # curvature scales as sum(w*x^2) ~ 1e-14, so BFGS hess_inv
+        # degenerates to ~identity and slope errors collapse to ~1).
+        # Rescale x to O(1) before fitting, then convert back.
+        x_scale = 1e7
+        res = minimize(student_t_nll, [slope / x_scale, intercept, -2.0],
+                       args=(x * x_scale, y, yerr), method='BFGS')
+        student_t_slope = res.x[0] * x_scale
+        cov_t = res.hess_inv if hasattr(res, 'hess_inv') else None
+        student_t_slope_err = np.nan
+        if cov_t is not None and np.ndim(cov_t) == 2 and np.isfinite(cov_t[0, 0]) and cov_t[0, 0] > 0:
+            student_t_slope_err = float(np.sqrt(cov_t[0, 0]) * x_scale)
+        if not np.isfinite(student_t_slope_err):
+            student_t_slope_err = float(slope_err)  # WLS fallback
 
         return {
             "n": n,

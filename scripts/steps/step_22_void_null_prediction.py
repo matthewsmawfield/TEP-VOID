@@ -160,22 +160,24 @@ class Step22VoidNullPrediction:
         )
 
         measurements = [
-            ("M31 Pan-STARRS", m31_panstarrs),
-            ("M31 PHAT", m31_phat),
-            ("LMC OGLE-IV", lmc),
+            ("M31 Pan-STARRS", m31_panstarrs, "diagnostic"),
+            ("M31 PHAT", m31_phat, "diagnostic"),
+            ("LMC OGLE-IV", lmc, "evidence"),
         ]
 
         # Individual chi-squared contributions
         individual_results = []
         total_chi2 = 0.0
 
-        for name, m in measurements:
+        for name, m, classification in measurements:
             dw = m["delta_W"]
             dw_err = m["delta_W_err"]
             chi2 = float((dw / dw_err) ** 2) if dw_err > 0 else 0
             p_val = float(sp_stats.chi2.sf(chi2, 1))
             sig = float(abs(dw) / dw_err) if dw_err > 0 else 0
-            total_chi2 += chi2
+            # Only evidence-class measurements contribute to the combined test
+            if classification == "evidence":
+                total_chi2 += chi2
 
             individual_results.append({
                 "name": name,
@@ -185,22 +187,24 @@ class Step22VoidNullPrediction:
                 "chi2_vs_void": chi2,
                 "p_value_vs_void": p_val,
                 "void_falsified": sig > 2.0,
+                "classification": classification,
             })
 
             print_status(f"  {name}: Delta_W = {dw:+.4f} +/- {dw_err:.4f} ({sig:.2f} sigma, chi2={chi2:.2f})", "TEST")
 
-        # Combined chi-squared (3 independent measurements, 0 free parameters under void)
-        combined_dof = len(measurements)
+        # Combined chi-squared (evidence-class measurements only, 0 free parameters under void)
+        evidence_measurements = [(n, m) for n, m, c in measurements if c == "evidence"]
+        combined_dof = len(evidence_measurements)
         combined_p = float(sp_stats.chi2.sf(total_chi2, combined_dof))
         combined_sigma = float(sp_stats.norm.ppf(1.0 - combined_p / 2.0))
 
-        print_status(f"  Combined chi-squared: {total_chi2:.2f} (dof={combined_dof})", "TEST")
+        print_status(f"  Combined chi-squared (evidence only): {total_chi2:.2f} (dof={combined_dof})", "TEST")
         print_status(f"  Combined p-value:     {combined_p:.6e}", "TEST")
         print_status(f"  Combined significance: {combined_sigma:.2f} sigma", "TEST")
 
-        # Inverse-variance weighted meta-analysis
-        all_dw = np.array([m["delta_W"] for _, m in measurements])
-        all_err = np.array([m["delta_W_err"] for _, m in measurements])
+        # Inverse-variance weighted meta-analysis (evidence-class only)
+        all_dw = np.array([m["delta_W"] for _, m in evidence_measurements])
+        all_err = np.array([m["delta_W_err"] for _, m in evidence_measurements])
         weights = 1.0 / all_err ** 2
         weighted_mean = float(np.sum(weights * all_dw) / np.sum(weights))
         weighted_err = float(1.0 / np.sqrt(np.sum(weights)))
@@ -211,7 +215,10 @@ class Step22VoidNullPrediction:
         # M31/LMC gradient ratio (TEP scaling test)
         # TEP predicts Delta_W scales with gravitational potential depth.
         # M31 is much more massive than LMC, so Delta_W(M31) >> Delta_W(LMC).
-        m31_best = m31_phat  # Use PHAT as the best M31 measurement (higher significance)
+        # NOTE: M31 is classified as a diagnostic signal (fails confounder controls
+        # in TEP-H0); the ratio is reported for completeness but does not enter
+        # the evidence-class combined statistics.
+        m31_best = m31_phat  # Use PHAT as the best M31 measurement
         if lmc["delta_W_err"] > 0 and lmc["delta_W"] != 0:
             ratio = float(m31_best["delta_W"] / lmc["delta_W"])
             ratio_err = float(ratio * np.sqrt(

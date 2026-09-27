@@ -5,6 +5,15 @@
   "pantheon_dt_amplitude": -0.22593122441171165,
   "pantheon_dt_err": 0.04638024619804252,
   "pantheon_dt_pval": 1.4946585324040673e-06,
+  "look_elsewhere": {
+    "n_perm": 300,
+    "seed": 1042,
+    "T_obs": 24.020999816986205,
+    "T_null_median": 0.7491595803959399,
+    "T_null_max": 10.819975901803446,
+    "global_p": 0.0033222591362126247,
+    "null_best_lt_median_mpc": 4999.9998496674725
+  },
   "cf4_best_lt_mpc": 4999.999859355522,
   "cf4_dt_amplitude": -1.9601190978159178,
   "cf4_dt_err": 0.2635183280348038,

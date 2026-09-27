@@ -213,7 +213,7 @@
     The full 22-galaxy sample with $\Delta\mu$, $X_i$, screening
     factor $S_{\rm total}$, $v_{\rm rot}$, pipeline flag, and sign is
     released as a machine-readable CSV at
-    <code>results/outputs/22galaxy_table.csv</code>.
+    <code>results/outputs/step_36_22galaxy_table.csv</code>.
 </p>
 
 <p>
@@ -337,7 +337,11 @@
     where $u_\phi = v_{\rm rot}/\sqrt{2}$ is the disk velocity
     dispersion at the Cepheid location, $S_{\rm total}$ is the full
     TEP screening factor (group richness from the Tully 2015 2MRS
-    catalog), $U_{\rm ref} = \sigma_{\rm ref}^2$ with
+    catalog) — the source-side, $\mathcal{S}_\Sigma$-class habitat
+    suppression of the host's potential contribution to the field
+    level; the probe-side clock-amplitude factor $\mathcal{S}_A$ is a
+    per-source constant absorbed into $\kappa_{\rm Cep}$ (Section 4.12,
+    Paper 11 \S2.3, Appendix C) — $U_{\rm ref} = \sigma_{\rm ref}^2$ with
     $\sigma_{\rm ref} = 87.165$ km/s, and $c$ is the speed of light.
 </p>
 
@@ -616,4 +620,31 @@
     slope at $0.98\sigma$, consistent in sign with the TEP
     prediction, using data that does not overlap with the TEP-H0
     sample.
+</p>
+
+<p>
+    A consolidated sensitivity audit of every potential-scaling
+    test in the pipeline (step_74_scaling_power_audit) quantifies
+    this structure. For each test the instrument sensitivity
+    $|\kappa_{\rm pred}|/\sigma_{\rm slope}$ — the significance the
+    regression would return if the TEP slope were realized exactly —
+    is computed at the fitted $\kappa_{\rm Cep}$. No current
+    independent sample exceeds $\sim 1.7\sigma$ expected
+    significance (CF4 pooled $1.1\sigma$; CF4 two-intercept $0.9\sigma$;
+    TEP-H0 unregistered $1.0\sigma$; JWST $\times$ R22 $1.7\sigma$; the
+    band differential $0.28\sigma$), so null and leverage-dominated
+    draws are the expected regime rather than an anomaly. Within
+    that regime the recorded outcomes are internally consistent:
+    the only pooled-sample wrong sign (CF4) is a demonstrated
+    registration-mixture artifact — the R22-matched flag correlates
+    with $X_i$ at $r = 0.44$ and the per-reduction intercept model
+    returns a null slope with the offset detected at
+    $+0.119 \pm 0.063$ mag; the band-test wrong sign is the M~101
+    leverage draw (Cook's $D = 44$; both M101-exclusion and the
+    converged Student-$t$ estimator return the TEP sign); and the
+    same-team MF2023 $VI \times$ JWST-TRGB comparison returns the
+    predicted negative slope at the predicted amplitude
+    ($0.13\sigma$ consistency). A decisive scaling detection
+    requires the expanded same-team JWST matched sample named
+    above.
 </p>

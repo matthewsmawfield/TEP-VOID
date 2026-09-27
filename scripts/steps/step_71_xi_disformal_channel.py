@@ -91,6 +91,42 @@ def wls_fit(y, X, w):
     return params, chi2, nll
 
 
+def calibrate_sigma_int(y, X, err):
+    """Solve for the intrinsic scatter s.t. reduced chi2 = 1 on the given model.
+
+    The formal per-point errors (x1ERR or the SH0ES diagonal) omit the
+    intrinsic population scatter; without it the effective weights are
+    dominated by a handful of small-error points and the chi2 differences are
+    inflated by ~ (sigma_int/err)^2. Calibrating sigma_int on the richest
+    model so that chi2/dof = 1 makes the likelihood honest and prevents the
+    comparison from being carried by a few high-leverage SNe.
+    """
+    err = np.asarray(err, dtype=float)
+    err = np.where((err > 0) & np.isfinite(err), err, np.inf)
+    dof = max(len(y) - X.shape[1], 1)
+
+    def red_chi2(s2):
+        w = 1.0 / (err ** 2 + s2)
+        _, chi2, _ = wls_fit(y, X, w)
+        return chi2 / dof - 1.0
+
+    # chi2 decreases monotonically with sigma_int^2
+    lo, hi = 0.0, 10.0
+    if red_chi2(lo) <= 0:
+        return 0.0
+    f_hi = red_chi2(hi)
+    while f_hi > 0 and hi < 1e6:
+        hi *= 4.0
+        f_hi = red_chi2(hi)
+    for _ in range(80):
+        mid = np.sqrt(lo * hi) if lo > 0 else 0.5 * hi
+        if red_chi2(mid) > 0:
+            lo = mid
+        else:
+            hi = mid
+    return float(np.sqrt((lo + hi) / 2.0))
+
+
 def bic(nll, n, k):
     return 2 * nll + k * np.log(n)
 
@@ -168,7 +204,6 @@ class Step71XiDisformalChannel:
         """Fit x1 as a function of X_i, redshift, mass, and global dipole."""
         y = df["x1"].values
         err = df["x1ERR"].values
-        w = np.where(err > 0, 1.0 / err ** 2, 0.0)
         X = df["X_i"].values
         z = df["zcmb"].values
         logm = df["HOST_LOGMASS"].values
@@ -181,6 +216,13 @@ class Step71XiDisformalChannel:
             "Mz": np.column_stack([np.ones(len(y)), z, logm]),
             "MX": np.column_stack([np.ones(len(y)), z, logm, X]),
         }
+        # Intrinsic-scatter calibration on the richest model: x1ERR is the
+        # light-curve-fit error and does not include the ~1-unit population
+        # stretch scatter, so sigma_eff^2 = x1ERR^2 + sigma_int^2.
+        sigma_int = calibrate_sigma_int(y, models["MX"], err)
+        w = np.where(err > 0, 1.0 / (err ** 2 + sigma_int ** 2), 0.0)
+        print_status(f"  x1 intrinsic scatter calibration: sigma_int = {sigma_int:.3f}",
+                     "INFO")
         for name, design in models.items():
             params, chi2, nll = wls_fit(y, design, w)
             results[name] = {
@@ -196,13 +238,28 @@ class Step71XiDisformalChannel:
         best = min(results, key=lambda k: results[k]["bic"])
         for name in results:
             results[name]["dBIC"] = float(results[name]["bic"] - results[best]["bic"])
+
+        # Leverage audit on the MX slope: drop the top-k weighted-residual
+        # contributors and refit, so a single high-weight SN cannot carry the
+        # X_i coefficient.
+        params_mx, _, _ = wls_fit(y, models["MX"], w)
+        resid_mx = y - models["MX"] @ params_mx
+        contrib = w * resid_mx ** 2
+        order = np.argsort(-contrib)
+        audit = {}
+        for k in (1, 3, 5):
+            keep = np.ones(len(y), bool)
+            keep[order[:k]] = False
+            p_k, _, _ = wls_fit(y[keep], models["MX"][keep], w[keep])
+            audit[f"drop_top_{k}"] = float(p_k[3])
+        results["sigma_int"] = float(sigma_int)
+        results["mx_slope_leverage_audit"] = audit
         return results
 
     def fit_hr_models(self, df):
         """Fit Hubble residual as a function of X_i, redshift, mass step, and x1."""
         y = df["HR"].values
         err = df["MU_SH0ES_ERR_DIAG"].values
-        w = np.where(err > 0, 1.0 / err ** 2, 0.0)
         X = df["X_i"].values
         z = df["zcmb"].values
         logm = df["HOST_LOGMASS"].values
@@ -218,6 +275,13 @@ class Step71XiDisformalChannel:
             "MmassX": np.column_stack([np.ones(len(y)), z, logm, mass_step, X]),
             "MmassXx1": np.column_stack([np.ones(len(y)), z, logm, mass_step, x1, X]),
         }
+        # The SH0ES diagonal does not include the intrinsic standardized
+        # distance scatter, so calibrate a small intrinsic floor on the
+        # richest model (chi2/dof = 1).
+        sigma_int = calibrate_sigma_int(y, models["MmassXx1"], err)
+        w = np.where(err > 0, 1.0 / (err ** 2 + sigma_int ** 2), 0.0)
+        print_status(f"  HR intrinsic scatter calibration: sigma_int = {sigma_int:.3f} mag",
+                     "INFO")
         for name, design in models.items():
             params, chi2, nll = wls_fit(y, design, w)
             results[name] = {
@@ -233,6 +297,7 @@ class Step71XiDisformalChannel:
         best = min(results, key=lambda k: results[k]["bic"])
         for name in results:
             results[name]["dBIC"] = float(results[name]["bic"] - results[best]["bic"])
+        results["sigma_int"] = float(sigma_int)
         return results
 
     def binned_visualisation(self, df):
@@ -266,14 +331,16 @@ class Step71XiDisformalChannel:
 
         # Log summaries
         print_status("\nx1 models:", "TEST")
-        for name in res_x1:
-            r = res_x1[name]
+        for name, r in res_x1.items():
+            if not isinstance(r, dict) or "bic" not in r:
+                continue
             extra = f" d_x1/dX={r['d_x1_dX']:.2e}" if "d_x1_dX" in r else ""
             print_status(f"  {name:10s} BIC={r['bic']:.1f} dBIC={r['dBIC']:.2f}{extra}", "INFO")
 
         print_status("\nHubble residual models:", "TEST")
-        for name in res_hr:
-            r = res_hr[name]
+        for name, r in res_hr.items():
+            if not isinstance(r, dict) or "bic" not in r:
+                continue
             extra = f" dHR/dX={r['slope_X']:.2e}" if "slope_X" in r else ""
             print_status(f"  {name:10s} BIC={r['bic']:.1f} dBIC={r['dBIC']:.2f}{extra}", "INFO")
 
@@ -300,7 +367,8 @@ class Step71XiDisformalChannel:
         ax = axes[0, 0]
         X = df["X_i"].values
         ax.scatter(X * 1e7, df["x1"].values, s=5, alpha=0.3)
-        best_x1 = min(res_x1, key=lambda k: res_x1[k]["bic"])
+        best_x1 = min((k for k in res_x1 if isinstance(res_x1[k], dict) and "bic" in res_x1[k]),
+                      key=lambda k: res_x1[k]["bic"])
         slope = res_x1[best_x1].get("d_x1_dX", 0.0)
         x_plot = np.linspace(X.min(), X.max(), 100)
         y_mean = df["x1"].mean()
@@ -314,7 +382,8 @@ class Step71XiDisformalChannel:
         # Hubble residual vs X_i: partial regression line from the best model
         ax = axes[0, 1]
         ax.scatter(X * 1e7, df["HR"].values, s=5, alpha=0.3)
-        best_hr = min(res_hr, key=lambda k: res_hr[k]["bic"])
+        best_hr = min((k for k in res_hr if isinstance(res_hr[k], dict) and "bic" in res_hr[k]),
+                      key=lambda k: res_hr[k]["bic"])
         slope = res_hr[best_hr].get("slope_X", 0.0)
         y_mean = df["HR"].mean()
         y_plot = y_mean + slope * (x_plot - x_mean)

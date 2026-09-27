@@ -194,6 +194,10 @@ PIPELINE = [
      "H0(z) falsification: KBC/MOND gradual decay vs TEP flat profile with full Pantheon+ likelihood"),
     ("V", 73, "scripts.steps.step_73_pantheon_radial_discriminator", "Step73PantheonRadialDiscriminator",
      "Pantheon+ low-z radial discriminator audit: zCMB/zHD × CMB/CF4 axis sensitivity test"),
+    ("V", 74, "scripts.steps.step_74_scaling_power_audit", None,
+     "Scaling-test sensitivity audit: per-test power ledger and CF4 two-intercept mixture correction"),
+    ("V", 75, "scripts.steps.step_75_trgb_environmental_differential", None,
+     "Large-sample TRGB environmental differential test (issue 11-3): CF4 446-galaxy TRGB residuals vs local density, virial/Malmquist controls"),
 ]
 
 

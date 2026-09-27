@@ -11,18 +11,22 @@
     Cepheid channel is directly measured; the SN stretch channel
     is a falsifiable prediction of the same transport mechanism.
     The data tell a consistent story across multiple scales.
-    The strongest evidence comes from single-galaxy differential
-    tests: internal radial Period--Luminosity gradients within M31
-    ($\Delta W = +0.681 \pm 0.187$ mag, $3.65\sigma$ from HST PHAT
-    photometry, Kodric et al. 2018) and the LMC ($\Delta W = +0.0284 \pm 0.0086$
-    mag, $3.30\sigma$ from OGLE-IV) independently detect the
-    predicted clock-gradient signal free from host-to-host peculiar
+    The strongest single-galaxy evidence comes from the LMC
+    internal radial Period--Luminosity gradient
+    ($\Delta W = +0.0284 \pm 0.0086$ mag, $3.30\sigma$ from OGLE-IV,
+    robust to period and colour matching; Paper 11). The M31 gradient
+    ($\Delta W = +0.681 \pm 0.187$ mag, $3.65\sigma$ in the HST PHAT
+    catalogue of Kodric et al. 2018; $+0.630 \pm 0.195$ mag, $3.24\sigma$
+    for Pan-STARRS restricted to the same footprint; Paper 11) does not survive matched confounder
+    controls (colour-matched $0.1\sigma$; eW-matched $0.8\sigma$) and
+    is treated as a diagnostic signal. Both signals carry the
+    predicted clock-gradient sign free from host-to-host peculiar
     velocity systematics. At the cosmological level, the redshift-only
     WLS regression in $H_0$ space across 33 Hubble-flow hosts yields
     $\kappa_{\rm Cep} = (0.45 \pm 0.22) \times 10^6$ mag
     ($2.05\sigma$ at $\sigma_v = 150$ km/s), with the joint
     multi-block likelihood returning $1.58\sigma$ as a consistency
-    check. The supernova $X_i$-step emerges at $1.47\sigma$ in the
+    check. The supernova $X_i$-step emerges at $1.55\sigma$ in the
     TEP-predicted direction ($N=1470$ Hubble-flow), placing the longstanding host-mass residual in a concrete, falsifiable timescale-bias framework. These multi-scale detections
     align in both direction and order of magnitude to
     span the gap. The definitive per-host recalibration is left to
@@ -149,13 +153,13 @@
     matrix propagation) and
     $\kappa_{\rm Cep} = (0.45 \pm 0.22) \times 10^6$
     (the redshift-only WLS estimate in $H_0$ space at
-    $\sigma_v = 150$ km/s, used in the DHOST consistency analysis of
+    $\sigma_v = 150$ km/s, used in the scalar-tensor consistency analysis of
     Section 4.6). These
     are the same physical coefficient estimated by two independent
     methods. The difference ($0.087 \times 10^6$) is $0.23\sigma$
     relative to the combined uncertainty, confirming consistency.
     The matrix propagation uses $\kappa_{\rm Cep}^{\rm equiv}$ because
-    it is the direct endpoint-slope conversion; the DHOST analysis
+    it is the direct endpoint-slope conversion; the scalar-tensor analysis
     uses $\kappa_{\rm Cep}$ because it is the regression-optimized
     value from the $H_0$-space WLS fit.
 </p>
@@ -318,7 +322,7 @@
     persisted for approximately 15 years without a unique physical
     explanation. Under TEP, it arises
     naturally: more massive hosts reside in deeper gravitational
-    potentials, producing a larger disformal coupling and a
+    potentials, producing larger core-to-ejecta clock differentials and a
     correspondingly larger stretch bias. The TEP prediction is
     falsifiable: the step should correlate with the potential
     coordinate $X_i$ (or an equivalent bulge-concentration measure)
@@ -334,7 +338,7 @@
     Cepheid channel is directly measured. The predicted host-potential dependence
     of SN stretch remains an independent, uncalibrated prediction to be tested.
     Closing this gap requires radiative-transfer simulations of SN Ia light curves
-    in a disformal metric with environment-dependent $g_{0i}$ structure, or alternatively
+    accounting for environmental clock differentials across the ejecta, or alternatively
     an empirical calibration against a sample with both measured $V_{\rm rot}$ and
     independent Cepheid distances permitting a direct $\Delta M_B^{\rm SN}$–$x_1$
     cross-anchor.
@@ -358,7 +362,7 @@
             <td>Cepheid period transport</td>
             <td>$\kappa_{\rm Cep} \cdot X_i$</td>
             <td>$\sim 0.02$–$0.09$ mag (per host)</td>
-            <td>Matched-host Cepheid–TRGB divergence (JWST $N=17$: $\Delta\mu = -0.023 \pm 0.022$, $1.02\sigma$; filter-corrected $-0.042 \pm 0.024$, $1.77\sigma$); $\kappa_{\rm Cep} = (0.45 \pm 0.22) \times 10^6$ mag (redshift-only WLS, $2.05\sigma$); M31 ($3.65\sigma$) and LMC ($3.30\sigma$) internal gradients; Step 04 reconstruction yields $H_0 = 66.65 \pm 1.58$</td>
+            <td>Matched-host Cepheid–TRGB divergence (JWST $N=17$: $\Delta\mu = -0.023 \pm 0.022$, $1.02\sigma$; filter-corrected $-0.042 \pm 0.024$, $1.77\sigma$); $\kappa_{\rm Cep} = (0.45 \pm 0.22) \times 10^6$ mag (redshift-only WLS, $2.05\sigma$); LMC ($3.30\sigma$, robust) and M31 ($3.24\sigma$, fails confounders) internal gradients; Step 04 reconstruction yields $H_0 = 66.65 \pm 1.58$</td>
         </tr>
         <tr>
             <td>SN light-curve stretch</td>
@@ -468,8 +472,10 @@
     $D = -0.021 \pm 0.010$ ($p_{\rm perm} = 0.014$) after the full
     SALT3 correction is applied. The standardization therefore
     suppresses approximately 70% of the pre-standardization
-    directional signal, with the residual remaining significant in
+    directional signal (attenuation $0.70 \pm 0.16$, propagated from
+    the pre- and post-standardization dipole uncertainties under a
+    conservative uncorrelated treatment), with the residual remaining significant in
     the standardized residuals. Complete calibration of the $x_1$
-    channel requires the disformal coupling $\gamma_x$ to be
+    channel requires the stretch response coefficient $\gamma_x$ to be
     constrained independently (Section 4.9).
 </p>

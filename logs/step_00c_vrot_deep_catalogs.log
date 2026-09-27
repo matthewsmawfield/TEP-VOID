@@ -1,34 +1,46 @@
-[23:43:38] [INFO] 
-[23:43:38] [INFO] ================================================================================
-[23:43:38] [INFO]    ======================================================================
-[23:43:38] [INFO] ================================================================================
-[23:43:38] [INFO] 
-[23:43:38] [INFO] 
-[23:43:38] [INFO] ================================================================================
-[23:43:38] [INFO]    Step 00c: Deep V_rot Catalogs Cross-Match
-[23:43:38] [INFO] ================================================================================
-[23:43:38] [INFO] 
-[23:43:38] [INFO] 
-[23:43:38] [INFO] ================================================================================
-[23:43:38] [INFO]    ======================================================================
-[23:43:38] [INFO] ================================================================================
-[23:43:38] [INFO] 
-[23:43:38] [INFO] Loaded 1543 unique Pantheon+ SNe
-[23:43:38] [PROCESS] Querying ALFALFA 100% (J/ApJ/861/49) from VizieR...
-[23:43:40] [SUCCESS] Matched 13 SNe to ALFALFA
-[23:43:40] [PROCESS] Querying SPARC (J/AJ/152/157) from VizieR...
-[23:43:40] [SUCCESS] Matched 1 SNe to SPARC
-[23:43:40] [PROCESS] Querying 2MTF (J/MNRAS/487/2061) from VizieR...
-[23:43:40] [SUCCESS] Matched 33 SNe to 2MTF
-[23:43:40] [PROCESS] Querying WALLABY (J/ApJ/915/70) from VizieR...
-[23:43:40] [SUCCESS] Matched 0 SNe to WALLABY
-[23:43:40] [PROCESS] Merging deep V_rot sources...
-[23:43:40] [SUCCESS] Unified catalog V_rot sources:
-[23:43:40] [INFO]   HyperLEDA: 141
-[23:43:40] [INFO]   2MTF: 33
-[23:43:40] [INFO]   ALFALFA: 4
-[23:43:40] [INFO]   SPARC: 1
-[23:43:40] [INFO]   Total measured: 179
-[23:43:40] [SUCCESS] Saved deep V_rot catalog to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/pantheon_host_vrot_deep.csv
-[23:43:40] [SUCCESS] Step 00c complete
-[23:43:40] [SUCCESS] step_00c completed in 1.8s
+[22:07:21] [INFO] 
+[22:07:21] [INFO] ================================================================================
+[22:07:21] [INFO]    ======================================================================
+[22:07:21] [INFO] ================================================================================
+[22:07:21] [INFO] 
+[22:07:21] [INFO] 
+[22:07:21] [INFO] ================================================================================
+[22:07:21] [INFO]    Step 00c: Deep V_rot Catalogs Cross-Match
+[22:07:21] [INFO] ================================================================================
+[22:07:21] [INFO] 
+[22:07:21] [INFO] 
+[22:07:21] [INFO] ================================================================================
+[22:07:21] [INFO]    ======================================================================
+[22:07:21] [INFO] ================================================================================
+[22:07:21] [INFO] 
+[22:07:21] [INFO] Loaded 1543 unique Pantheon+ SNe
+[22:07:21] [PROCESS] Querying ALFALFA 100% (J/ApJ/861/49) from VizieR...
+[22:07:27] [SUCCESS] Matched 13 SNe to ALFALFA; 0 pass the redshift-consistency gate
+[22:07:27] [PROCESS] Querying SPARC (J/AJ/152/157) from VizieR...
+[22:07:28] [SUCCESS] Matched 1 SNe to SPARC
+[22:07:28] [PROCESS] Querying 2MTF (J/MNRAS/487/2061) from VizieR...
+[22:07:29] [SUCCESS] Matched 33 SNe to 2MTF; 33 pass the redshift-consistency gate
+[22:07:29] [PROCESS] Querying Kourkchi+2019 (J/ApJ/884/82) from VizieR...
+[22:07:31] [SUCCESS] Matched 30 SNe to Kourkchi+2019 (horizon-gated)
+[22:07:31] [PROCESS] Querying Dupuy+2021 CF4 HI (J/A+A/646/A113) from VizieR...
+[22:07:32] [SUCCESS] Matched 3 SNe to Dupuy CF4-HI; 3 pass the redshift-consistency gate
+[22:07:32] [PROCESS] Querying EDD All-Digital HI (J/AJ/138/1938) from VizieR...
+[22:07:35] [SUCCESS] Matched 134 SNe to EDD; 130 pass the redshift-consistency gate
+[22:07:35] [PROCESS] Merging deep V_rot sources...
+[22:07:35] [INFO] HyperLEDA redshift gate rejected 5 false positional matches: ['2004as', 'AT2016ews', 'PS16bnz', '2010hs', '310146']
+[22:07:35] [SUCCESS] Unified catalog V_rot sources:
+[22:07:35] [INFO]   EDD: 95
+[22:07:35] [INFO]   HyperLEDA: 52
+[22:07:35] [INFO]   Kourkchi: 29
+[22:07:35] [INFO]   2MTF: 7
+[22:07:35] [INFO]   Dupuy: 3
+[22:07:35] [INFO]   SPARC: 1
+[22:07:35] [INFO]   Total measured: 187
+[22:07:35] [SUCCESS] Saved deep V_rot catalog to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/pantheon_host_vrot_deep.csv
+[22:07:35] [SUCCESS] Step 00c complete
+[22:07:35] [SUCCESS] step_00c completed in 14.6s
+[22:07:35] [INFO] 
+[22:07:35] [INFO] ================================================================================
+[22:07:35] [INFO]    Pipeline complete: 1 succeeded, 0 failed, 14.6s total
+[22:07:35] [INFO] ================================================================================
+[22:07:35] [INFO] 

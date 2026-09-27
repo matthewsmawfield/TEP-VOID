@@ -1,0 +1,268 @@
+{
+  "step": "75_trgb_environmental_differential",
+  "description": "Large-sample TRGB environmental differential test (issue 11-3(iii)): TRGB distance-redshift residuals vs local-density environmental proxy",
+  "provenance": {
+    "data": "CosmicFlows-4 table2 (cf4_galaxies.csv), Tully et al. 2023 \u2014 446 real TRGB distances",
+    "environment_proxy": "local galaxy density: catalogue neighbour count within 3-D aperture",
+    "apertures_mpc": [
+      8.0,
+      4.0,
+      12.0
+    ],
+    "vpec_scatter_kms": 250.0,
+    "h0_reference": 73.0,
+    "min_vcmb_kms": 200.0,
+    "virial_control": "virial_control_group_v3k repeats the test with the CF4 group systemic velocity V3k in place of the galaxy's own Vcmb, removing intra-group virial scatter"
+  },
+  "delta_mu_definition": "mu_TRGB - 5*log10(Vcmb/H0_ref) - 25",
+  "tep_prediction": "Under TEP the temporal-landscape environment modulates the redshift-distance relation; a residual-vs-density gradient measures the environmental lever on the distance scale.",
+  "null_prediction": "Standard kinematic flow: Delta_mu scatter is peculiar-velocity noise. NOTE \u2014 the null is not literally zero correlation: symmetric virial scatter maps into magnitude residuals as a Jensen bias ~ +(5/ln10) sigma_v^2/(2v^2), positive in dense regions, and coherent infall flows are density-correlated. The observed negative slope has the opposite sign of the virial-scatter term, so the correlation is driven by the distance-density selection coupling (density rho vs distance = -0.47) rather than a clean potential-depth lever.",
+  "results": {
+    "primary": {
+      "label": "full_TRGB_sample",
+      "n": 285,
+      "h_app_median_kms_mpc": 101.7287642675446,
+      "h_app_iqr": [
+        76.11269779114073,
+        144.23008280749983
+      ],
+      "pearson_r_density_dmu": -0.4028525761575017,
+      "permutation_p_pearson": 0.0035087719298245615,
+      "spearman_rho_density_dmu": -0.4149302556580548,
+      "spearman_p": 2.7512698819352015e-13,
+      "distance_stratified_spearman": {
+        "rho_per_tercile": [
+          0.30298035758490593,
+          -0.26272429020515803,
+          -0.47312279597099843
+        ],
+        "p_per_tercile": [
+          0.002694788612568016,
+          0.009326967518714296,
+          1.2868220963510998e-06
+        ],
+        "n_per_tercile": [
+          96,
+          97,
+          95
+        ],
+        "mean_rho": -0.14428890953041684,
+        "combined_z": -0.2700561991314765
+      },
+      "wls_slope_mag_per_dex": -1.838567625740044,
+      "wls_slope_err": 0.19185698571821697,
+      "wls_slope_bootstrap_err": 0.2169804779469137,
+      "wls_slope_significance_sigma": 9.58301111037142,
+      "median_split": {
+        "n_deep": 145,
+        "n_shallow": 140,
+        "mean_dmu_deep_mag": -1.4126854060838285,
+        "mean_dmu_deep_err": 0.06091118474960717,
+        "mean_dmu_shallow_mag": -0.7373615751059059,
+        "mean_dmu_shallow_err": 0.059765786821868956,
+        "contrast_mag": -0.6753238309779226,
+        "contrast_err": 0.08533534849075067,
+        "contrast_sigma": -7.913764259732526
+      }
+    },
+    "virial_control_group_v3k": {
+      "label": "group_systemic_velocity_control",
+      "n": 274,
+      "h_app_median_kms_mpc": 105.35705678671113,
+      "h_app_iqr": [
+        78.62751143475317,
+        149.9129007357856
+      ],
+      "pearson_r_density_dmu": -0.4843010882689632,
+      "permutation_p_pearson": 0.0036496350364963502,
+      "spearman_rho_density_dmu": -0.4705920103301376,
+      "spearman_p": 1.662084199090214e-16,
+      "distance_stratified_spearman": {
+        "rho_per_tercile": [
+          0.28244477860068296,
+          -0.3058757657166109,
+          -0.5745695842143546
+        ],
+        "p_per_tercile": [
+          0.006087175953089131,
+          0.0025745409609344134,
+          2.1121603629449047e-09
+        ],
+        "n_per_tercile": [
+          93,
+          95,
+          92
+        ],
+        "mean_rho": -0.19933352377676083,
+        "combined_z": -0.3910058160506826
+      },
+      "wls_slope_mag_per_dex": -1.8504091762810708,
+      "wls_slope_err": 0.18838163183006476,
+      "wls_slope_bootstrap_err": 0.2576808448469887,
+      "wls_slope_significance_sigma": 9.822662423639516,
+      "median_split": {
+        "n_deep": 137,
+        "n_shallow": 137,
+        "mean_dmu_deep_mag": -1.4237818683923134,
+        "mean_dmu_deep_err": 0.05826890627858301,
+        "mean_dmu_shallow_mag": -0.7762992604747031,
+        "mean_dmu_shallow_err": 0.059686306265453744,
+        "contrast_mag": -0.6474826079176103,
+        "contrast_err": 0.08341295219877926,
+        "contrast_sigma": -7.7623749172024405
+      }
+    },
+    "distance_limited_d_le_12mpc": {
+      "label": "distance_limited_Malmquist_control",
+      "n": 272,
+      "h_app_median_kms_mpc": 103.80475316315488,
+      "h_app_iqr": [
+        77.20532716979922,
+        146.6981538110048
+      ],
+      "pearson_r_density_dmu": -0.41667072504842556,
+      "permutation_p_pearson": 0.003676470588235294,
+      "spearman_rho_density_dmu": -0.42503269864251014,
+      "spearman_p": 2.336933550542456e-13,
+      "distance_stratified_spearman": {
+        "rho_per_tercile": [
+          0.3031176956177942,
+          -0.22753352388426148,
+          -0.5980504614465376
+        ],
+        "p_per_tercile": [
+          0.0034932523096585784,
+          0.031023276983591554,
+          3.859263788608663e-10
+        ],
+        "n_per_tercile": [
+          91,
+          90,
+          91
+        ],
+        "mean_rho": -0.17415542990433497,
+        "combined_z": -0.35127128485793735
+      },
+      "wls_slope_mag_per_dex": -2.092753511485218,
+      "wls_slope_err": 0.24762759237657392,
+      "wls_slope_bootstrap_err": 0.2522904947785979,
+      "wls_slope_significance_sigma": 8.451212933907266,
+      "median_split": {
+        "n_deep": 137,
+        "n_shallow": 135,
+        "mean_dmu_deep_mag": -1.4744453864696423,
+        "mean_dmu_deep_err": 0.06331182902840916,
+        "mean_dmu_shallow_mag": -0.8624116996547352,
+        "mean_dmu_shallow_err": 0.0647783601824575,
+        "contrast_mag": -0.6120336868149071,
+        "contrast_err": 0.09057937758038918,
+        "contrast_sigma": -6.7568767103939
+      }
+    },
+    "aperture_4mpc": {
+      "label": "aperture_4.0_Mpc",
+      "n": 285,
+      "h_app_median_kms_mpc": 101.7287642675446,
+      "h_app_iqr": [
+        76.11269779114073,
+        144.23008280749983
+      ],
+      "pearson_r_density_dmu": -0.41829259082481135,
+      "permutation_p_pearson": 0.0035087719298245615,
+      "spearman_rho_density_dmu": -0.3677030521763197,
+      "spearman_p": 1.493089175762592e-10,
+      "distance_stratified_spearman": {
+        "rho_per_tercile": [
+          0.09193796426459054,
+          -0.10599689109077796,
+          -0.27258057610983705
+        ],
+        "p_per_tercile": [
+          0.37298652660076304,
+          0.30144979785128145,
+          0.007530590474887943
+        ],
+        "n_per_tercile": [
+          96,
+          97,
+          95
+        ],
+        "mean_rho": -0.09554650097867483,
+        "combined_z": -0.16860496846512965
+      },
+      "wls_slope_mag_per_dex": -0.9526438410453936,
+      "wls_slope_err": 0.12130887564951945,
+      "wls_slope_bootstrap_err": 0.18328682311726333,
+      "wls_slope_significance_sigma": 7.853043200216714,
+      "median_split": {
+        "n_deep": 147,
+        "n_shallow": 138,
+        "mean_dmu_deep_mag": -1.3187573284131535,
+        "mean_dmu_deep_err": 0.06639133420852855,
+        "mean_dmu_shallow_mag": -0.8927099273791055,
+        "mean_dmu_shallow_err": 0.05567438877393884,
+        "contrast_mag": -0.42604740103404803,
+        "contrast_err": 0.08664552396598581,
+        "contrast_sigma": -4.9171311053678926
+      }
+    },
+    "aperture_12mpc": {
+      "label": "aperture_12.0_Mpc",
+      "n": 285,
+      "h_app_median_kms_mpc": 101.7287642675446,
+      "h_app_iqr": [
+        76.11269779114073,
+        144.23008280749983
+      ],
+      "pearson_r_density_dmu": -0.22064895000932241,
+      "permutation_p_pearson": 0.06315789473684211,
+      "spearman_rho_density_dmu": -0.1681215797627879,
+      "spearman_p": 0.004426797073410844,
+      "distance_stratified_spearman": {
+        "rho_per_tercile": [
+          0.3006552828932212,
+          -0.21480560991547404,
+          -0.5421343116404762
+        ],
+        "p_per_tercile": [
+          0.0029164744761509954,
+          0.03460976223176649,
+          1.3933278256031715e-08
+        ],
+        "n_per_tercile": [
+          96,
+          97,
+          95
+        ],
+        "mean_rho": -0.15209487955424303,
+        "combined_z": -0.29506484387197024
+      },
+      "wls_slope_mag_per_dex": -1.6305384737259891,
+      "wls_slope_err": 0.28027535800267095,
+      "wls_slope_bootstrap_err": 0.25360141400732034,
+      "wls_slope_significance_sigma": 5.817630509316665,
+      "median_split": {
+        "n_deep": 145,
+        "n_shallow": 140,
+        "mean_dmu_deep_mag": -1.0252345241946872,
+        "mean_dmu_deep_err": 0.056193874108026357,
+        "mean_dmu_shallow_mag": -1.1276224662144434,
+        "mean_dmu_shallow_err": 0.06553927107853805,
+        "contrast_mag": 0.1023879420197562,
+        "contrast_err": 0.08633161379688677,
+        "contrast_sigma": 1.1859843401125956
+      }
+    },
+    "matched_ceph_trgb": {
+      "n": 12,
+      "delta_mu_definition": "mu_Cepheid - mu_TRGB",
+      "wls_slope_mag_per_dex": 0.027395136910841,
+      "wls_slope_err": 0.09553470516193861,
+      "wls_slope_significance_sigma": 0.28675586389683366,
+      "spearman_rho": -0.22377622377622378,
+      "spearman_p": 0.48445166145539886,
+      "weighted_mean_dmu": -0.011427407281031454
+    }
+  },
+  "interpretation_note": "This is a real-data test on the largest available TRGB catalogue (CF4, N = 285 usable with Vcmb > 200 km/s). It replaces the earlier register claim of an N = 350 differential sample that had no underlying data. A strong raw density-residual correlation is measured, but the distance-stratified Spearman rho changes sign across distance terciles and the density proxy is itself distance-correlated (magnitude-limited tracer field), so the gradient is dominated by the selection/flow confound rather than isolating a potential-depth lever. The matched Cepheid-TRGB subsample remains consistent with the Step-11 null. The claimed N = 350, 3.7-sigma, +0.039 mag gradient is NOT reproduced; the independent-kappa lever on the H0 ladder remains open."
+}

@@ -6,8 +6,8 @@
 ![TEP-VOID: Cosmological Voids vs Temporal Shear](site/public/image.webp)
 
 **Author:** Matthew Lukin Smawfield  
-**Version:** v0.2 (Valencia)  
-**Date:** First published: 29 August 2026 · Last updated: 30 August 2026  
+**Version:** v0.3 (Valencia)  
+**Date:** First published: 29 August 2026 · Last updated: 13 September 2026  
 **Status:** Preprint (Draft)  
 **DOI:** [10.5281/zenodo.22150139](https://doi.org/10.5281/zenodo.22150139)  
 **Website:** [https://mlsmawfield.com/tep/void/](https://mlsmawfield.com/tep/void/)  
@@ -15,7 +15,7 @@
 
 ## Abstract
 
-The Hubble tension admits fundamentally different interpretations: a physical expansion rate inflated by local kinematics (e.g., a Gpc-scale underdensity), or an operational redshift-distance calibration artifact. This paper tests the kinematic void hypothesis against the Temporal Equivalence Principle (TEP), which models cosmological redshift as accumulated temporal shear on a static spatial manifold. Using the matched $z \ge 0.05$ submatrix of the native Pantheon+ STAT+SYS covariance, the published KBC/MOND gradual-decay profiles are decisively rejected ($\Delta\chi^2 > 100$). A calibration-independent ratio $R_H = 1.009 \pm 0.006$ excludes the predicted 5% decline at $8.4\sigma$, falsifying the kinematic void solution. The residual evidence supports TEP. An exploratory fit to pre-standardization Pantheon+ residuals has an interior optimum at $L_T=55.6$ Mpc along the pre-specified CF4 axis. The scale remains subject to the coherence-scale look-elsewhere cost and is not independently distinguished from its $1/r$ asymptote by CF4. However, the identified coherence scale places the characteristic structure in the tens-of-Mpc local-environment regime rather than the Gpc scale required by the KBC void. Because the standard rest-frame time mapping used by SALT3 implicitly assumes that the spectroscopic redshift fully accounts for the transformation between observed and emitted light-curve timescales, aggregate SALT3 standardization attenuates the pre-standardization directional signal by about 70%, consistent with partial absorption of a temporal contribution. The underlying temporal shear instead manifests locally: host-galaxy systemic redshifts are weighted toward deeper central potentials than disk standard candles, artificially contracting rest-frame timescales. Consequently, Cepheid distances are systematically shorter than TRGB distances within the same galaxies ($2.39\sigma$ directional preference), and single-galaxy Period-Luminosity gradients within M31 ($3.65\sigma$) and the LMC ($3.30\sigma$) detect the predicted clock-rate differential. The Hubble tension is an observing-chain artifact driven by localized temporal topology.
+The Hubble tension admits fundamentally different interpretations: a physical expansion rate inflated by local kinematics (e.g., a Gpc-scale underdensity), or an operational redshift-distance calibration artifact. This paper tests the kinematic void hypothesis against the Temporal Equivalence Principle (TEP), which models cosmological redshift as accumulated temporal shear on a static spatial manifold. Using the matched $z \ge 0.05$ submatrix of the native Pantheon+ STAT+SYS covariance, the published KBC/MOND gradual-decay profiles are decisively rejected ($\Delta\chi^2 > 100$). A calibration-independent ratio $R_H = 1.009 \pm 0.006$ excludes the predicted 5% decline at $8.4\sigma$, falsifying the kinematic void solution. The residual evidence supports TEP. An exploratory fit to pre-standardization Pantheon+ residuals has an interior optimum at $L_T=55.6$ Mpc along the pre-specified CF4 axis. The scale remains subject to the coherence-scale look-elsewhere cost and is not independently distinguished from its $1/r$ asymptote by CF4. However, the identified coherence scale places the characteristic structure in the tens-of-Mpc local-environment regime rather than the Gpc scale required by the KBC void. Because the standard rest-frame time mapping used by SALT3 implicitly assumes that the spectroscopic redshift fully accounts for the transformation between observed and emitted light-curve timescales, aggregate SALT3 standardization attenuates the pre-standardization directional signal by about 70%, consistent with partial absorption of a temporal contribution. The underlying temporal shear instead manifests locally: host-galaxy systemic redshifts are weighted toward deeper central potentials than disk standard candles, artificially contracting rest-frame timescales. Consequently, Cepheid distances are systematically shorter than TRGB distances within the same galaxies ($2.39\sigma$ directional preference), and the LMC Period-Luminosity gradient ($3.30\sigma$, robust to confounder controls) provides the strongest single-galaxy evidence for the predicted clock-rate differential, while the M31 gradient ($3.24\sigma$) does not survive matched confounder controls and is treated as a diagnostic signal. The Hubble tension is an observing-chain artifact driven by localized temporal topology.
 
 ## Key Findings
 
@@ -85,7 +85,7 @@ TEP-VOID/
 ├── scripts/steps/                  # Reproducible analysis pipeline (48 registered steps)
 ├── core/                           # Shared TEP framework modules
 ├── scripts/                        # Utility scripts (PDF generation, etc.)
-├── 31-TEP-VOID-v0.2-Valencia.md   # Generated manuscript (built from site/components)
+├── 31-TEP-VOID-v0.3-Valencia.md   # Generated manuscript (built from site/components)
 └── VERSION.json                    # Version metadata
 ```
 
@@ -97,7 +97,7 @@ npm install
 npm run build
 ```
 
-The built site will be in `site/dist/`. The build also regenerates `31-TEP-VOID-v0.2-Valencia.md` at the repository root.
+The built site will be in `site/dist/`. The build also regenerates `31-TEP-VOID-v0.3-Valencia.md` at the repository root.
 
 ## Manuscript Editing
 
@@ -112,7 +112,7 @@ Edit `site/components/*.html` files only. The markdown and `site/dist/` files ar
   year         = {2026},
   doi          = {10.5281/zenodo.22150139},
   url          = {https://doi.org/10.5281/zenodo.22150139},
-  note         = {Preprint, Version v0.2 (Valencia)}
+  note         = {Preprint, Version v0.3 (Valencia)}
 }
 ```
 

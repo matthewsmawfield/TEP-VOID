@@ -1,0 +1,12 @@
+[23:24:46] [INFO] Step 75: TRGB Environmental Differential Test
+[23:24:46] [INFO] CF4 catalogue: 55877 rows
+[23:24:46] [INFO] Density tracer field: 55877 galaxies
+[23:24:46] [SUCCESS] TRGB galaxies with Vcmb > 200.0 km/s: 285
+[23:24:47] [INFO] Virial-controlled subsample (group V3k): 274
+[23:24:47] [SUCCESS] Wrote /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_75_trgb_environmental_differential.json
+[23:24:47] [INFO]   primary: n=285 slope=-1.8386 +/- 0.1919 mag/dex (9.58 sigma); split contrast -7.91 sigma
+[23:24:47] [INFO]   virial_control_group_v3k: n=274 slope=-1.8504 +/- 0.1884 mag/dex (9.82 sigma); split contrast -7.76 sigma
+[23:24:47] [INFO]   distance_limited_d_le_12mpc: n=272 slope=-2.0928 +/- 0.2476 mag/dex (8.45 sigma); split contrast -6.76 sigma
+[23:24:47] [INFO]   aperture_4mpc: n=285 slope=-0.9526 +/- 0.1213 mag/dex (7.85 sigma); split contrast -4.92 sigma
+[23:24:47] [INFO]   aperture_12mpc: n=285 slope=-1.6305 +/- 0.2803 mag/dex (5.82 sigma); split contrast 1.19 sigma
+[23:24:47] [INFO]   matched_ceph_trgb: n=12 slope=0.0274 +/- 0.0955 mag/dex (0.29 sigma)

@@ -1,0 +1,23 @@
+[01:01:13] [INFO] 
+[01:01:13] [INFO] ================================================================================
+[01:01:13] [INFO]    Step 74: Scaling-test sensitivity audit
+[01:01:13] [INFO] ================================================================================
+[01:01:13] [INFO] 
+[01:01:13] [SUCCESS] Saved /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_74_scaling_power_audit.json
+[01:01:13] [TEST]   cf4_pooled_single_intercept: slope=+5.36e+05 sens=1.10 -> mixture-artifact
+[01:01:13] [TEST]   cf4_two_intercept: slope=+1.72e+05 sens=0.90 -> non-discriminating
+[01:01:13] [TEST]   cf4_r22_matched: slope=+5.18e+05 sens=0.94 -> non-discriminating
+[01:01:13] [TEST]   cf4_non_r22: slope=-5.46e+05 sens=0.65 -> favorable-direction-underpowered
+[01:01:13] [TEST]   teph0_raw_primary: slope=-1.01e+05 sens=0.96 -> favorable-direction-underpowered
+[01:01:13] [TEST]   jwst_r22_combination: slope=+2.60e+05 sens=1.68 -> adverse
+[01:01:13] [TEST]   jwst_mf2023_vi_same_team: slope=-3.42e+05 sens=0.85 -> favorable-direction-underpowered
+[01:01:13] [TEST]   band_mf2023_vih_minus_vi: slope=+3.51e+05 sens=0.28 -> non-discriminating
+[01:01:13] [TEST]   band_key_project_cross_team: slope=-2.17e+05 sens=0.14 -> favorable-direction-underpowered
+[01:01:13] [TEST]   sn_xi_step_measured_vrot: slope=+nan sens=nan -> favorable-direction-underpowered
+[01:01:13] [SUCCESS] Step 74 complete
+[01:01:13] [SUCCESS] step_74 completed in 0.4s
+[01:01:13] [INFO] 
+[01:01:13] [INFO] ================================================================================
+[01:01:13] [INFO]    Pipeline complete: 1 succeeded, 0 failed, 0.4s total
+[01:01:13] [INFO] ================================================================================
+[01:01:13] [INFO] 

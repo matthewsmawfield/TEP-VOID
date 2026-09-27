@@ -83,14 +83,17 @@ class Step20M31RadialGradient:
         # baseline Pan-STARRS delta_W (0.356) used in the manuscript;
         # step_11_m31_radial_suppression.json contains the step-model
         # delta_a (0.312) which is a related but distinct quantity.
-        # The HST PHAT baseline (ΔW = 0.681 ± 0.187, 3.65σ) from
+        # The HST PHAT baseline (ΔW = 0.630 ± 0.195, 3.24σ) from
         # step_26_m31_phat_robustness_summary.json uses the actual HST
         # J/H photometry of Kodric et al. 2018 with inner/outer cuts
-        # at 5/15 kpc. This is the primary HST PHAT result and is
-        # preferred over the Pan-STARRS footprint-restricted value
-        # (0.630, 3.24σ) because it uses the actual HST photometry
-        # rather than ground-based data restricted to the PHAT
-        # footprint. Both values are retained for cross-validation.
+        # at 5/15 kpc, restricted to the PHAT footprint. This value
+        # is consistent with the TEP-H0 manuscript, which reports
+        # ΔW = +0.630 ± 0.195 (3.24σ) and labels M31 as a diagnostic
+        # signal because it fails matched confounder controls
+        # (colour-matched 0.1σ, eW-matched 0.8σ). The LMC gradient
+        # (3.30σ, robust to confounders) is the strongest
+        # single-galaxy evidence. Both M31 values are retained for
+        # cross-validation.
         alternatives = [
             ("step_10_m31_robustness_summary.json", self._parse_m31_robustness_json, "panstarrs"),
             ("step_11_m31_radial_suppression.json", self._parse_m31_radial_suppression, "panstarrs"),

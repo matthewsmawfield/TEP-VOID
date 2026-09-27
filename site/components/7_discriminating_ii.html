@@ -179,11 +179,19 @@
 <p>
     The likelihood has an interior optimum at $L_T = 55.61$ Mpc rather than either
     limiting profile (the $L_T \to 0$ pure kinematic limit or the $L_T \to \infty$ long-coherence/unsaturated limit),
-    with the associated directional amplitude detected at $p < 0.001$. However, because the continuous optimizer
+    with the associated directional amplitude detected at a local $p < 0.001$. Because the continuous optimizer
     freely explores the $L_T$ parameter space, the raw $p$-value does not by itself account 
-    for the coherence-scale scan. Subject to this look-elsewhere cost, this minimization
-    demonstrates a best-fit coherence scale of 55.6 Mpc — placing
-    the characteristic structure on a tens-of-Mpc
+    for the coherence-scale scan. The look-elsewhere cost is calibrated directly by a
+    permutation Monte Carlo (Step 66): the residuals are permuted against the fixed
+    $(D, \cos\theta, {\rm controls})$ design, $L_T$ is re-optimized on each of 300 draws,
+    and the best $-2\Delta\ln L$ of each null draw is compared with the observed
+    improvement. The observed statistic ($-2\Delta\ln L = 24.0$) exceeds the maximum
+    null value (10.8), yielding a look-elsewhere-corrected global
+    $p = 0.0033$ ($\sim 2.7\sigma$). The interior optimum therefore survives the
+    trials factor — an interior optimum is not the generic outcome of this scan on
+    structureless residuals — while the correction tempers the local significance
+    from $\sim 4\sigma$ to $\sim 2.7\sigma$. The best-fit coherence scale of
+    55.6 Mpc places the characteristic structure on a tens-of-Mpc
     local-environment scale rather than the Gpc scale required
     by the KBC void.
 </p>
@@ -235,8 +243,9 @@
 <p>
     This test therefore neither confirms nor excludes the finite-coherence model — 
     the CF4 distance distribution lacks the leverage to discriminate between the two models. 
-    Consequently, the look-elsewhere cost of the Pantheon+ continuous optimization remains 
-    un-neutralized. A definitive test of the coherence scale
+    Consequently, the coherence-scale evidence rests on the Pantheon+ optimization
+    alone, for which the permutation-calibrated global significance is
+    $p = 0.0033$. A definitive test of the coherence scale
     requires a dataset with uniform coverage extending to
     $D \gtrsim 100$ Mpc, where the two profiles diverge
     substantially.

@@ -1,11 +1,17 @@
 {
   "step": "00c_vrot_deep_catalogs",
-  "description": "Cross-match Pantheon+ against VizieR deep V_rot catalogs (SPARC, ALFALFA, 2MTF, WALLABY)",
+  "description": "Cross-match Pantheon+ against VizieR deep V_rot catalogs (SPARC, Kourkchi+2019, Dupuy+2021 CF4-HI, ALFALFA, EDD, 2MTF) with redshift-consistency gating",
+  "redshift_gate": {
+    "dv_max_kms": 1500.0,
+    "z_max_no_velocity": 0.1
+  },
   "sources": {
-    "None": 1364,
-    "HyperLEDA": 141,
-    "2MTF": 33,
-    "ALFALFA": 4,
+    "None": 1356,
+    "EDD": 95,
+    "HyperLEDA": 52,
+    "Kourkchi": 29,
+    "2MTF": 7,
+    "Dupuy": 3,
     "SPARC": 1
   }
 }

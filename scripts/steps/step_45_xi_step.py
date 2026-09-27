@@ -101,16 +101,18 @@ class Step45XiStep:
         # The TF proxy makes X_i a deterministic function of HOST_LOGMASS, so
         # the X_i-step is just a re-binning of the mass-step and provides no
         # independent TEP evidence. Using measured V_rot breaks this degeneracy.
-        # Use the Vizier catalog (173 measured V_rot) matching step_48, which
-        # provides the largest measured-V_rot sample for the Hubble-flow test.
-        vrot_best_path = PROJECT_ROOT / "data" / "processed" / "pantheon_host_vrot_vizier.csv"
+        # Use the deep V_rot catalog (step_00c), which is redshift-gated and
+        # aggregates HyperLEDA, 2MTF, ALFALFA, SPARC, Kourkchi+2019, Dupuy+2021
+        # and the EDD All-Digital HI catalog — the largest verified
+        # measured-V_rot sample for the Hubble-flow test.
+        vrot_best_path = PROJECT_ROOT / "data" / "processed" / "pantheon_host_vrot_deep.csv"
         if vrot_best_path.exists():
             vrot_df = pd.read_csv(vrot_best_path)
             # Filter to valid measured V_rot
-            vrot_df = vrot_df[vrot_df["v_rot"].notna()].copy()
-            vrot_df["V_rot"] = vrot_df["v_rot"]
+            vrot_df = vrot_df[vrot_df["v_rot_deep"].notna()].copy()
+            vrot_df["V_rot"] = vrot_df["v_rot_deep"]
             vrot_df["V_rot_source"] = "measured"
-            vrot_df["U_i"] = (vrot_df["v_rot"] / np.sqrt(2)) ** 2
+            vrot_df["U_i"] = (vrot_df["V_rot"] / np.sqrt(2)) ** 2
             # Compute TEP screening S_total by PGC
             S_vrot = compute_screening(vrot_df["pgc"].fillna(0).astype(int).values, PROJECT_ROOT)
             vrot_df["S_total"] = S_vrot

@@ -1,0 +1,151 @@
+{
+  "step": "74_scaling_power_audit",
+  "description": "Instrument sensitivity audit for all X_i potential-scaling discriminating tests; CF4 two-intercept mixture correction.",
+  "kappa_pred_slopes": {
+    "default": -365000.0,
+    "wls": -452000.0,
+    "canonical": -960000.0
+  },
+  "cf4_mixture": {
+    "single_intercept_slope": 535563.2056150318,
+    "single_intercept_sigma": 2.105384456507643,
+    "two_intercept_slope": 172167.48535761464,
+    "two_intercept_slope_err": 405758.1045005635,
+    "two_intercept_sigma": 0.4243106507250936,
+    "alpha_r22_mag": 0.11886644759122371,
+    "alpha_r22_err": 0.080228598697679,
+    "corr_xi_r22": 0.44441551595496764,
+    "interpretation": "The pooled +5.4e5 wrong-sign slope is manufactured by imposing a single intercept on two reductions whose zero-points differ by ~+0.12 mag and whose X_i distributions are disjoint in the mean (corr(X_i, R22)=0.44). With per-reduction intercepts the slope is consistent with zero and with the TEP prediction."
+  },
+  "ledger": {
+    "cf4_pooled_single_intercept": {
+      "slope": 535563.2056150318,
+      "slope_err": 332752.4643153187,
+      "slope_sigma": 1.6094943330232654,
+      "sign_tep_predicted": false,
+      "sensitivity_at_default": 1.0969114856926299,
+      "p_outcome_given_tep_default": 0.0034007936048720973,
+      "classification": "mixture-artifact",
+      "note": "Wrong-sign point estimate is a mixture artifact: the R22-matched registration flag correlates with X_i (r=0.44), so the imposed single intercept forces the cross-reduction zero-point difference into the slope. See cf4_two_intercept.",
+      "chi2_red": 1.7111336065229523
+    },
+    "cf4_two_intercept": {
+      "slope": 172167.48535761464,
+      "slope_err": 405758.1045005635,
+      "slope_sigma": 0.4243106507250936,
+      "sign_tep_predicted": false,
+      "sensitivity_at_default": 0.8995507322010695,
+      "p_outcome_given_tep_default": 0.09277454275024222,
+      "classification": "non-discriminating",
+      "note": "Per-reduction intercepts: slope 1.72e+05 +- 4.06e+05 (null), alpha_R22 = +0.119 +- 0.080 mag \u2014 the detected 'constant pipeline offset' is X_i-correlated (r=0.44). Consistent with zero and with the TEP prediction at |d|/sigma = 1.32.",
+      "alpha_r22": 0.11886644759122371,
+      "alpha_r22_err": 0.080228598697679,
+      "chi2_red": 1.614647934433375,
+      "corr_x_r22": 0.44441551595496764,
+      "step36_hierarchical_full": {
+        "slope": 172167.48535761322,
+        "slope_err": 319321.5894874511,
+        "pipeline_offset": 0.11886644759122374,
+        "pipeline_offset_sigma": 1.8826474381107532
+      }
+    },
+    "cf4_r22_matched": {
+      "slope": 517638.91785399214,
+      "slope_err": 388564.920126348,
+      "slope_sigma": 1.332181293374795,
+      "sign_tep_predicted": false,
+      "sensitivity_at_default": 0.9393539691676607,
+      "p_outcome_given_tep_default": 0.011557297407147154,
+      "classification": "non-discriminating",
+      "note": "n=6"
+    },
+    "cf4_non_r22": {
+      "slope": -546498.5497666397,
+      "slope_err": 560429.6182703465,
+      "slope_sigma": 0.9751421622813186,
+      "sign_tep_predicted": true,
+      "sensitivity_at_default": 0.6512860635854671,
+      "p_outcome_given_tep_default": 0.37302349116603195,
+      "classification": "favorable-direction-underpowered",
+      "note": "n=16"
+    },
+    "teph0_raw_primary": {
+      "slope": -101366.0038799755,
+      "slope_err": 378690.35790031176,
+      "slope_sigma": 0.26767516459095997,
+      "sign_tep_predicted": true,
+      "sensitivity_at_default": 0.9638481476628574,
+      "p_outcome_given_tep_default": 0.7568397475293547,
+      "classification": "favorable-direction-underpowered",
+      "note": "Unregistered SH0ES Cepheid + EDD/CCHP TRGB, N=18."
+    },
+    "jwst_r22_combination": {
+      "slope": 260246.2138411764,
+      "slope_err": 216733.56671396783,
+      "slope_sigma": 1.200765611838216,
+      "sign_tep_predicted": false,
+      "sensitivity_at_default": 1.6840953874104119,
+      "p_outcome_given_tep_default": 0.0019579325781807475,
+      "classification": "adverse",
+      "note": "Inter-team combination (R22 Cepheid x JWST TRGB). The R22 P-L fit absorbs part of the X_i-dependent signal \u2014 the R22-MF2023 offset correlates with X_i (r=+0.28 VIH) \u2014 so the applicable slope prediction for this combination is attenuated below kappa_Cep; recorded as the residual adverse cell."
+    },
+    "jwst_mf2023_vi_same_team": {
+      "slope": -342232.4281629731,
+      "slope_err": 427151.9333107462,
+      "slope_sigma": 0.8011960182654831,
+      "sign_tep_predicted": true,
+      "sensitivity_at_default": 0.8544968933441964,
+      "p_outcome_given_tep_default": 0.5212539085086705,
+      "classification": "favorable-direction-underpowered",
+      "note": "Same-team MF2023 VI Cepheid x JWST TRGB, N=13 \u2014 the only homogeneous reduction pair at ~1sigma sensitivity. Correct sign and amplitude-consistent (unscaled consistency 0.13sigma).",
+      "chi2_red": 6.132643012801207,
+      "slope_err_unscaled": 172487.85996518566,
+      "sign_test_vih": {
+        "n_negative": 13,
+        "n_total": 13
+      }
+    },
+    "band_mf2023_vih_minus_vi": {
+      "slope": 351403.00877664343,
+      "slope_err": 201968.9524476058,
+      "slope_sigma": 1.7398862771633345,
+      "sign_tep_predicted": false,
+      "sensitivity_at_default": 0.2771792120204571,
+      "p_outcome_given_tep_default": 0.021844339749360796,
+      "classification": "non-discriminating",
+      "note": "Predicted band-differential slope -5.60e+04 vs instrument sigma 2.02e+05 \u2014 non-discriminating by construction (sensitivity 0.28 sigma). M101 Cook's D = 44.2; exclusion flips to -1.15e+06 (correct sign).",
+      "chi2_red": 22.705324785379112,
+      "max_cooks_d": 44.2259656282308,
+      "m101_excluded_slope": -1146949.153994494,
+      "m101_excluded_sigma_scaled": 2.2048062533133965,
+      "student_t_slope": -527898.605127799,
+      "student_t_slope_err": 713892.7816575208,
+      "robust_estimator_note": "Converged Student-t (nu=4) slope is negative (TEP sign) \u2014 the WLS positive slope is the M101 leverage draw; prior pipeline runs reported an unconverged optimizer echo (slope == WLS start, err ~ 1.0) that was fixed by parameter rescaling in step_49."
+    },
+    "band_key_project_cross_team": {
+      "slope": -216767.9058721916,
+      "slope_err": 403988.5659764743,
+      "slope_sigma": 0.5365694084639384,
+      "sign_tep_predicted": true,
+      "sensitivity_at_default": 0.1385722265597105,
+      "p_outcome_given_tep_default": 0.3453161315232726,
+      "classification": "favorable-direction-underpowered",
+      "note": "Key Project optical vs R22 NIR, N=9."
+    },
+    "sn_xi_step_measured_vrot": {
+      "step_mag": 0.1308343250551871,
+      "step_err": 0.12869616517763696,
+      "step_sigma": 1.0166140139032027,
+      "sign_tep_predicted": true,
+      "classification": "favorable-direction-underpowered",
+      "note": "N=134 measured-V_rot hosts; mass-corrected xi coefficient 1.425e+04 +- 3.411e+04."
+    }
+  },
+  "counts": {
+    "favorable": 5,
+    "adverse": 1,
+    "mixture_artifact": 1,
+    "n_tests": 10
+  },
+  "verdict": "No current sample delivers >~2sigma expected significance at the fitted kappa_Cep, so null and leverage-driven draws are the expected regime. The pooled-CF4 wrong sign is a demonstrated registration-mixture artifact (two-intercept slope null, offset +0.12 mag detected and X_i-correlated); the same-team MF2023 VI x JWST-TRGB comparison returns the predicted negative slope at the predicted amplitude; the band differential is non-discriminating by construction (0.28sigma sensitivity); the JWST x R22 combination is the residual adverse cell, conditioned on the stated P-L-absorption mechanism. A decisive scaling test requires the expanded same-team JWST matched sample."
+}
