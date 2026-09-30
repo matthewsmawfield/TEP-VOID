@@ -13,7 +13,7 @@
     "kappa_p_equiv": 111963.19018404909,
     "kappa_p_wls": 138650.30674846628,
     "predicted_slope_default": -55981.595092024545,
-    "predicted_slope_joint": -61349.69325153375,
+    "predicted_slope_joint": -40797.546012269944,
     "predicted_slope_wls": -69325.15337423314,
     "formula": "Delta_mu_band = -(kappa_Cep_NIR - kappa_Cep_opt) * X_i = -(|b_H| - |b_V|) * kappa_P * X_i",
     "sign": "negative (NIR has steeper |b|, so NIR distances are more compressed at high X_i, giving mu_NIR < mu_opt and a negative slope)"
@@ -43,9 +43,9 @@
       "spearman_rho": -0.28872180451127816,
       "spearman_p": 0.21699266668730374,
       "tep_consistency_default": 9.611338175942235,
-      "tep_consistency_joint": 9.737986572280082,
+      "tep_consistency_joint": 9.25310414058661,
       "tep_predicted_slope_default": -55981.595092024545,
-      "tep_predicted_slope_joint": -61349.69325153375,
+      "tep_predicted_slope_joint": -40797.546012269944,
       "slope_sign_positive": true
     },
     "m101_exclusion": {
@@ -69,9 +69,9 @@
       "spearman_rho": -0.3736842105263158,
       "spearman_p": 0.11502788697337187,
       "tep_consistency_default": 8.274712547263068,
-      "tep_consistency_joint": 8.233996882683531,
+      "tep_consistency_joint": 8.389879712788048,
       "tep_predicted_slope_default": -55981.595092024545,
-      "tep_predicted_slope_joint": -61349.69325153375,
+      "tep_predicted_slope_joint": -40797.546012269944,
       "slope_sign_positive": false
     }
   },
@@ -100,9 +100,9 @@
       "spearman_rho": -0.19999999999999998,
       "spearman_p": 0.6059012741795533,
       "tep_consistency_default": 0.6680770271052023,
-      "tep_consistency_joint": 0.6457722485316262,
+      "tep_consistency_joint": 0.7311676864990317,
       "tep_predicted_slope_default": -55981.595092024545,
-      "tep_predicted_slope_joint": -61349.69325153375,
+      "tep_predicted_slope_joint": -40797.546012269944,
       "slope_sign_positive": false
     }
   },
@@ -114,10 +114,10 @@
     "coordinate": "screened",
     "c_kms": 299792.458,
     "kappa_cep_equiv_mag": 365000.0,
-    "kappa_cep_joint_mag": 400000.0,
+    "kappa_cep_joint_mag": 266000.0,
     "kappa_cep_wls_mag": 452000.0,
     "kappa_p_equiv_mag": 111963.19018404909,
-    "kappa_p_joint_mag": 122699.3865030675,
+    "kappa_p_joint_mag": 81595.09202453989,
     "kappa_p_wls_mag": 138650.30674846628
   },
   "matched_catalog": {

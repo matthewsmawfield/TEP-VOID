@@ -48,7 +48,7 @@ class Step11IndicatorDivergence:
     U_REF_SCREENED = SIGMA_REF_SCREENED ** 2  # ≈ 930.7 (km/s)^2
     C_KMS = 299792.458  # km/s
     KAPPA_CEP_DEFAULT = 0.365e6  # mag (TEP-H0 closure)
-    KAPPA_CEP_JOINT = 0.400e6  # mag (joint multi-block)
+    KAPPA_CEP_JOINT = 0.266e6  # mag (joint multi-block, Paper 11 v0.10)
     KAPPA_CEP_WLS = 0.452e6  # mag (redshift-only WLS — manuscript primary)
 
     def __init__(self):

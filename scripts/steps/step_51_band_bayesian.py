@@ -50,7 +50,7 @@ DELTA_B = ABS_B_H - ABS_B_V  # 0.50
 # kappa_Cep from TEP-H0 (Paper 11) — full Cepheid coupling constants
 # kappa_Cep = |b| * kappa_P, so kappa_P = kappa_Cep / |b_H|
 KAPPA_CEP_EQUIV = 0.365e6
-KAPPA_CEP_JOINT = 0.400e6
+KAPPA_CEP_JOINT = 0.266e6  # mag (joint multi-block, Paper 11 v0.10)
 KAPPA_P_EQUIV = KAPPA_CEP_EQUIV / ABS_B_H  # ~111963
 KAPPA_P_JOINT = KAPPA_CEP_JOINT / ABS_B_H  # ~122699
 

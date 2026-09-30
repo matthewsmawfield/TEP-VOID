@@ -1,16 +1,16 @@
-[01:01:13] [INFO] 
-[01:01:13] [INFO] ================================================================================
-[01:01:13] [INFO]    TEP-VOID Analysis Pipeline (Paper 31)
-[01:01:13] [INFO] ================================================================================
-[01:01:13] [INFO] 
-[01:01:13] [PROCESS] Cosmological Voids vs Temporal Shear
-[01:01:13] [INFO] Project root: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID
-[01:01:13] [INFO] Results: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results
-[01:01:13] [INFO] Logs: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/logs
-[01:01:13] [PROCESS] Running 1 step(s)
-[01:01:13] [INFO]   step_74: OK (0.4s)
-[01:01:13] [INFO] 
-[01:01:13] [INFO] ================================================================================
-[01:01:13] [INFO]    Pipeline complete: 1 succeeded, 0 failed, 0.4s total
-[01:01:13] [INFO] ================================================================================
-[01:01:13] [INFO] 
+[19:58:09] [INFO] 
+[19:58:09] [INFO] ================================================================================
+[19:58:09] [INFO]    TEP-VOID Analysis Pipeline (Paper 31)
+[19:58:09] [INFO] ================================================================================
+[19:58:09] [INFO] 
+[19:58:09] [PROCESS] Cosmological Voids vs Temporal Shear
+[19:58:09] [INFO] Project root: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID
+[19:58:09] [INFO] Results: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results
+[19:58:09] [INFO] Logs: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/logs
+[19:58:09] [PROCESS] Running 1 step(s)
+[19:58:11] [INFO]   step_74: OK (1.3s)
+[19:58:11] [INFO] 
+[19:58:11] [INFO] ================================================================================
+[19:58:11] [INFO]    Pipeline complete: 1 succeeded, 0 failed, 1.3s total
+[19:58:11] [INFO] ================================================================================
+[19:58:11] [INFO] 

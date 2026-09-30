@@ -92,7 +92,7 @@ assert EXPECTED_TEP_SIGN == -1, "TEP predicts a negative slope because NIR is mo
 # kappa_Cep = |b| * kappa_P, where kappa_P = eta_P * epsilon_0 / ln(10)
 # (manuscript Section 4.9: "kappa_Cep = |b| * kappa_P, with b ≈ -3.26")
 KAPPA_CEP_EQUIV = 0.365e6    # mag (Cepheid-channel closure, beta_X = 0)
-KAPPA_CEP_JOINT = 0.400e6    # mag (joint multi-block)
+KAPPA_CEP_JOINT = 0.266e6    # mag (joint multi-block, Paper 11 v0.10)
 KAPPA_CEP_WLS = 0.452e6      # mag (redshift-only WLS, sigma_v=150)
 
 # Derive kappa_P = kappa_Cep / |b_H| (using NIR slope as reference)

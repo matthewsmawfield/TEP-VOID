@@ -174,7 +174,7 @@ async function buildStaticSite() {
         
         console.log('✅ Static site built successfully!');
         console.log(`📁 Output: ${outputPath}`);
-        console.log('📄 Markdown: 31-TEP-VOID-v0.2-Valencia.md (in root)');
+        console.log('📄 Markdown: 31-TEP-VOID-v0.3-Valencia.md (in root)');
         console.log(`📊 Generated ${manifest.sections.length} sections (TEP-VOID)`);
         console.log('🚀 TEP-VOID ready for deployment');
         
@@ -195,6 +195,7 @@ function copyRecursiveSync(src, dest) {
             fs.mkdirSync(dest, { recursive: true });
         }
         fs.readdirSync(src).forEach(childItemName => {
+            if (childItemName === '.DS_Store') return;
             copyRecursiveSync(
                 path.join(src, childItemName),
                 path.join(dest, childItemName)

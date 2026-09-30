@@ -7,7 +7,7 @@
 
 **Author:** Matthew Lukin Smawfield  
 **Version:** v0.3 (Valencia)  
-**Date:** First published: 29 August 2026 · Last updated: 13 September 2026  
+**Date:** First published: 29 August 2026 · Last updated: 30 September 2026  
 **Status:** Preprint (Draft)  
 **DOI:** [10.5281/zenodo.22150139](https://doi.org/10.5281/zenodo.22150139)  
 **Website:** [https://mlsmawfield.com/tep/void/](https://mlsmawfield.com/tep/void/)  
@@ -15,7 +15,12 @@
 
 ## Abstract
 
-The Hubble tension admits fundamentally different interpretations: a physical expansion rate inflated by local kinematics (e.g., a Gpc-scale underdensity), or an operational redshift-distance calibration artifact. This paper tests the kinematic void hypothesis against the Temporal Equivalence Principle (TEP), which models cosmological redshift as accumulated temporal shear on a static spatial manifold. Using the matched $z \ge 0.05$ submatrix of the native Pantheon+ STAT+SYS covariance, the published KBC/MOND gradual-decay profiles are decisively rejected ($\Delta\chi^2 > 100$). A calibration-independent ratio $R_H = 1.009 \pm 0.006$ excludes the predicted 5% decline at $8.4\sigma$, falsifying the kinematic void solution. The residual evidence supports TEP. An exploratory fit to pre-standardization Pantheon+ residuals has an interior optimum at $L_T=55.6$ Mpc along the pre-specified CF4 axis. The scale remains subject to the coherence-scale look-elsewhere cost and is not independently distinguished from its $1/r$ asymptote by CF4. However, the identified coherence scale places the characteristic structure in the tens-of-Mpc local-environment regime rather than the Gpc scale required by the KBC void. Because the standard rest-frame time mapping used by SALT3 implicitly assumes that the spectroscopic redshift fully accounts for the transformation between observed and emitted light-curve timescales, aggregate SALT3 standardization attenuates the pre-standardization directional signal by about 70%, consistent with partial absorption of a temporal contribution. The underlying temporal shear instead manifests locally: host-galaxy systemic redshifts are weighted toward deeper central potentials than disk standard candles, artificially contracting rest-frame timescales. Consequently, Cepheid distances are systematically shorter than TRGB distances within the same galaxies ($2.39\sigma$ directional preference), and the LMC Period-Luminosity gradient ($3.30\sigma$, robust to confounder controls) provides the strongest single-galaxy evidence for the predicted clock-rate differential, while the M31 gradient ($3.24\sigma$) does not survive matched confounder controls and is treated as a diagnostic signal. The Hubble tension is an observing-chain artifact driven by localized temporal topology.
+
+
+
+
+The Hubble tension admits fundamentally different interpretations: a physical expansion rate inflated by local kinematics (e.g., a Gpc-scale underdensity), or an operational redshift-distance calibration artifact. This paper tests the kinematic void hypothesis against the Temporal Equivalence Principle (TEP), which models cosmological redshift as accumulated temporal shear on a static spatial manifold. Using the matched z ≥ 0.05 submatrix of the native Pantheon+ STAT+SYS covariance, the published KBC/MOND gradual-decay profiles are decisively rejected (Δχ² > 100). A calibration-independent ratio R_H = 1.009 ± 0.006 excludes the predicted declines — 4.3% (Gaussian profile) and 5.1% (Exponential) — at 8.4σ and 9.7σ respectively, falsifying the kinematic void solution. The residual directional evidence is consistent with TEP. An exploratory fit to pre-standardization Pantheon+ residuals has an interior optimum at L_T=55.6 Mpc along the pre-specified CF4 axis, surviving a 300-draw permutation look-elsewhere calibration at a global p = 0.0033 (~ 2.7σ), though CF4 cannot independently distinguish the kernel from its 1/r asymptote. However, the identified coherence scale places the characteristic structure in the tens-of-Mpc local-environment regime rather than the Gpc scale required by the KBC void. Because the standard rest-frame time mapping used by SALT3 implicitly assumes that the spectroscopic redshift fully accounts for the transformation between observed and emitted light-curve timescales, aggregate SALT3 standardization attenuates the pre-standardization directional signal by 70 ± 16%, consistent with partial absorption of a temporal contribution. The underlying temporal shear instead manifests locally: host-galaxy systemic redshifts are weighted toward deeper central potentials than disk standard candles, artificially contracting rest-frame timescales. Consequently, Cepheid distances are systematically shorter than TRGB distances within the same galaxies (2.39σ directional preference), and single-galaxy Period-Luminosity gradients within the LMC (3.30σ, robust to confounder controls) and M31 (3.65σ in the HST PHAT catalogue, failing matched confounder controls and retained as a diagnostic signal; Paper 11) are directionally consistent with the predicted clock-rate differential; potential-scaling tests across independent samples are presently leverage-limited rather than excluded. The Hubble tension is an observing-chain artifact driven by localized temporal topology.
+
 
 ## Key Findings
 
@@ -51,10 +56,10 @@ Block 0 (Steps 00-03): Data Ingestion
 
 Block I (Steps 10-12, 30-33, 36): Indicator Divergence & Void Falsification
   - Matched-host comparison, indicator divergence, void prediction uniformity
-  - Indicator-specific distance divergence (Cepheid vs TRGB, CF4 table2, 2.39σ sign test)
+  - Indicator-specific distance divergence (Cepheid vs TRGB, CF4 tab ≤ 2, 2.39σ sign test)
   - Peculiar velocity calibration sensitivity (H0 bias propagation)
   - H0(z) redshift profile: published KBC gradual decay curves vs TEP flat prediction
-  - Digitization sensitivity, Omega_m sensitivity, Jia et al. replication
+  - Digitization sensitivity, Ω_m sensitivity, Jia et al. replication
   - Host-mass z > 0.25 survey design, Xi regression
 
 Block II (Steps 34-35): Void Falsification — Boundary Test & Float M_B
@@ -71,7 +76,7 @@ Standalone (not in pipeline):
   - step_32b_jia_proper_replication: MCMC replication of Jia et al. with emcee
   - step_44: H0 vs calibrator-population potential depth
   - step_45: Xi-step test in Pantheon+ Hubble residuals
-  - step_46: Anchor sensitivity analysis (NGC 4258 sigma_local)
+  - step_46: Anchor sensitivity analysis (NGC 4258 σ_local)
 ```
 
 ## Repository Structure

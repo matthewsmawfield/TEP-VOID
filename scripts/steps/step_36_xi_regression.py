@@ -66,7 +66,7 @@ class Step36XiRegression:
     U_REF_SCREENED = SIGMA_REF_SCREENED ** 2  # ≈ 930.7 (km/s)^2
     C_KMS = 299792.458  # km/s
     KAPPA_CEP_DEFAULT = 0.365e6  # mag (TEP-H0 closure)
-    KAPPA_CEP_JOINT = 0.400e6  # mag (joint multi-block)
+    KAPPA_CEP_JOINT = 0.266e6  # mag (joint multi-block, Paper 11 v0.10)
     KAPPA_CEP_WLS = 0.452e6  # mag (redshift-only WLS, sigma_v=150 — manuscript primary)
     KAPPA_CEP_CANONICAL = 0.960e6  # mag (canonical reference)
 
@@ -371,7 +371,7 @@ class Step36XiRegression:
         # The slope of Δμ vs X_i IS κ_μ (in mag), NOT κ_μ/c².
         # Sign: deeper potential → shorter Cepheid distance → Δμ < 0.
         # X_i > 0 for deep potentials, so slope should be NEGATIVE.
-        # The TEP-H0 values (0.365e6, 0.400e6, 0.960e6) are magnitudes;
+        # The TEP-H0 values (0.365e6, 0.266e6, 0.960e6) are magnitudes;
         # the physical prediction is slope = -κ_μ.
         tep_slope_default = -self.KAPPA_CEP_DEFAULT
         tep_slope_joint = -self.KAPPA_CEP_JOINT
@@ -604,7 +604,7 @@ class Step36XiRegression:
           1. Redshift-distance block (N=31 Hubble-flow hosts)
           2. TRGB differential block (N=16 non-anchor calibrators)
           3. Geometric anchor block (N=2 independent anchors)
-        to achieve κ_Cep = (0.400 ± 0.270) × 10^6 mag (1.48σ, correct sign).
+        to achieve κ_Cep = (0.266 ± 0.239) × 10^6 mag (1.11σ, correct sign).
         This simple regression alone is underpowered but provides a direct
         cross-check of the sign.
         """
@@ -687,7 +687,7 @@ class Step36XiRegression:
                 "Step 44. The simple regression alone is underpowered "
                 "(N=18, R^2<0.01); the joint multi-block likelihood (Step 44) "
                 "combines redshift-distance and anchor constraints to achieve "
-                "kappa_Cep = (0.400 +/- 0.270) x 10^6 mag (1.48sigma, correct sign)."
+                "kappa_Cep = (0.266 +/- 0.239) x 10^6 mag (1.11sigma, correct sign)."
             ),
         }, results["screened"]["slope"], results["screened"]["intercept"], results["screened"]["slope_err"]
 
@@ -1419,7 +1419,7 @@ class Step36XiRegression:
                 "Delta_mu = kappa_mu * X_i with a non-zero negative slope "
                 "(deeper potential yields shorter Cepheid distance). The "
                 "predicted slope magnitude is kappa_Cep ~ 0.365e6 mag "
-                "(default), 0.400e6 mag (joint), or 0.960e6 mag (canonical)."
+                "(default), 0.266e6 mag (joint), or 0.960e6 mag (canonical)."
             ),
             "void_prediction": (
                 "A pipeline-offset systematic produces a constant offset "

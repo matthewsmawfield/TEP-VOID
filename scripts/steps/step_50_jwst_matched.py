@@ -58,7 +58,7 @@ class Step50JWSTMatched:
     U_REF_SCREENED = SIGMA_REF_SCREENED ** 2  # ≈ 930.7 (km/s)^2
     C_KMS = 299792.458  # km/s
     KAPPA_CEP_DEFAULT = 0.365e6  # mag (TEP-H0 closure)
-    KAPPA_CEP_JOINT = 0.400e6  # mag (joint multi-block)
+    KAPPA_CEP_JOINT = 0.266e6  # mag (joint multi-block, Paper 11 v0.10)
     KAPPA_CEP_WLS = 0.452e6  # mag (redshift-only WLS, sigma_v=150 — manuscript primary)
     KAPPA_CEP_CANONICAL = 0.960e6  # mag (canonical reference)
 
@@ -869,7 +869,7 @@ class Step50JWSTMatched:
                 "Delta_mu = mu_Cep - mu_TRGB = kappa_mu * X_i with a "
                 "non-zero negative slope (deeper potential yields shorter "
                 "Cepheid distance). Predicted slope magnitude: kappa_Cep "
-                "~ 0.365e6 mag (default), 0.400e6 mag (joint), 0.960e6 "
+                "~ 0.365e6 mag (default), 0.266e6 mag (joint), 0.960e6 "
                 "mag (canonical)."
             ),
             "void_prediction": (

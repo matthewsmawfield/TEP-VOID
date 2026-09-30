@@ -105,7 +105,7 @@ class Step46AnchorSensitivity:
             X_max = X_i.max()
             kappa_for_093 = 0.093 / X_max if X_max > 0 else np.inf
 
-            # kappa_Cep from fit (1.48 sigma, central value 0.400e6)
+            # kappa_Cep from joint multi-block fit (1.11 sigma, central value 0.266e6, Paper 11 v0.10)
             # The fit gives kappa such that Delta_mu = kappa * X_i
             # If X_i changes by factor f, kappa changes by 1/f
             # The SIGNIFICANCE is unchanged (ratio of signal to noise)
@@ -113,7 +113,7 @@ class Step46AnchorSensitivity:
             X_i_current = (host_cat["phi_proxy_kms2"].values - U_ref_current) / self.C_KMS**2
             mean_X_current = X_i_current[X_i_current > 0].mean()
             mean_X_new = X_i[X_i > 0].mean()
-            kappa_fitted = 0.400e6 * (mean_X_current / mean_X_new) if mean_X_new > 0 else np.inf
+            kappa_fitted = 0.266e6 * (mean_X_current / mean_X_new) if mean_X_new > 0 else np.inf
 
             # Maximum per-host correction with fitted kappa
             delta_mu_max = kappa_fitted * X_max
@@ -163,7 +163,7 @@ class Step46AnchorSensitivity:
             X_i = (host_cat["phi_proxy_kms2"].values - U_ref) / self.C_KMS**2
             X_i_current_pos = X_i_current[X_i_current > 0]
             X_i_new_pos = X_i[X_i > 0]
-            kappa = 0.400e6 * (X_i_current_pos.mean() / X_i_new_pos.mean()) if X_i_new_pos.mean() > 0 else np.inf
+            kappa = 0.266e6 * (X_i_current_pos.mean() / X_i_new_pos.mean()) if X_i_new_pos.mean() > 0 else np.inf
             delta_max = kappa * X_i.max() if X_i.max() > 0 else 0
             print_status(
                 f"  {name}: sigma_ref = {sigma_ref:6.2f}, "
@@ -191,9 +191,9 @@ class Step46AnchorSensitivity:
         X_i_current_all = (host_cat["phi_proxy_kms2"].values - U_ref_current) / self.C_KMS**2
         mean_X_current_pos = X_i_current_all[X_i_current_all > 0].mean()
         mean_X_disk_pos = X_i_disk[X_i_disk > 0].mean()
-        kappa_disk = 0.400e6 * (mean_X_current_pos / mean_X_disk_pos) if mean_X_disk_pos > 0 else np.inf
+        kappa_disk = 0.266e6 * (mean_X_current_pos / mean_X_disk_pos) if mean_X_disk_pos > 0 else np.inf
         delta_max_disk = kappa_disk * X_i_disk.max()
-        delta_max_current = 0.400e6 * X_i_current_all.max()
+        delta_max_current = 0.266e6 * X_i_current_all.max()
 
         print_status(
             f"  1. N4258 sigma = 115 km/s contributes "
@@ -210,8 +210,8 @@ class Step46AnchorSensitivity:
             "INFO",
         )
         print_status(
-            f"  4. kappa_Cep decreases by {abs((1 - kappa_disk/0.400e6)*100):.1f}% "
-            f"(from {0.400e6:.3e} to {kappa_disk:.3e})",
+            f"  4. kappa_Cep decreases by {abs((1 - kappa_disk/0.266e6)*100):.1f}% "
+            f"(from {0.266e6:.3e} to {kappa_disk:.3e})",
             "INFO",
         )
         print_status(
@@ -221,7 +221,7 @@ class Step46AnchorSensitivity:
             "INFO",
         )
         print_status(
-            f"  6. The SIGNIFICANCE of kappa_Cep (1.48 sigma) is UNCHANGED",
+            f"  6. The SIGNIFICANCE of kappa_Cep (1.11 sigma) is UNCHANGED",
             "INFO",
         )
         print_status(
@@ -317,9 +317,9 @@ class Step46AnchorSensitivity:
                 f"N4258 sigma = 115 km/s contributes {self.W_N4258 * self.SIGMA_N4258_CURRENT**2 / U_ref_current * 100:.1f}% of U_ref",
                 f"Using disk sigma = 80 km/s reduces U_ref by {(1 - U_ref_disk/U_ref_current) * 100:.1f}%",
                 f"All X_i increase by ~{(X_i_disk.mean() / X_i_current_all.mean() - 1)*100:.1f}% on average",
-                f"kappa_Cep decreases by {abs((1 - kappa_disk/0.400e6)*100):.1f}% (from {0.400e6:.3e} to {kappa_disk:.3e})",
+                f"kappa_Cep decreases by {abs((1 - kappa_disk/0.266e6)*100):.1f}% (from {0.266e6:.3e} to {kappa_disk:.3e})",
                 f"Maximum per-host correction changes from {delta_max_current:.4f} to {delta_max_disk:.4f} mag",
-                "Significance of kappa_Cep (1.48 sigma) is UNCHANGED (signal and noise scale identically)",
+                "Significance of kappa_Cep (1.11 sigma) is UNCHANGED (signal and noise scale identically)",
                 "The amplitude ledger is NOT materially affected",
             ],
             "recommendation": (

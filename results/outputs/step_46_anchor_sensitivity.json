@@ -19,8 +19,8 @@
     "sigma_ref": 62.00000000000001,
     "U_ref": 3844.000000000001,
     "U_ref_reduction_pct": 49.40607416669408,
-    "kappa_ceps_rescaled": 373703.2168997183,
-    "delta_mu_max": 0.3250253296991134
+    "kappa_ceps_rescaled": 248512.63923831264,
+    "delta_mu_max": 0.2161418442499104
   },
   "sensitivity_table": [
     {
@@ -28,73 +28,73 @@
       "sigma_ref": 48.0,
       "U_ref": 2304.0,
       "X_max": 8.868766675043277e-07,
-      "kappa_fitted": 358399.21432979713,
-      "delta_mu_max": 0.3178559008409798
+      "kappa_fitted": 238335.47752931507,
+      "delta_mu_max": 0.21137417405925155
     },
     {
       "sigma_n4258": 70,
       "sigma_ref": 54.945427471264615,
       "U_ref": 3019.0000000000005,
       "X_max": 8.789212196035444e-07,
-      "kappa_fitted": 354554.2656332081,
-      "delta_mu_max": 0.3116252675659783
+      "kappa_fitted": 235778.58664608336,
+      "delta_mu_max": 0.20723080293137555
     },
     {
       "sigma_n4258": 80,
       "sigma_ref": 62.00000000000001,
       "U_ref": 3844.000000000001,
       "X_max": 8.69741856641102e-07,
-      "kappa_fitted": 373703.2168997183,
-      "delta_mu_max": 0.3250253296991134
+      "kappa_fitted": 248512.63923831264,
+      "delta_mu_max": 0.2161418442499104
     },
     {
       "sigma_n4258": 90,
       "sigma_ref": 69.13031173081747,
       "U_ref": 4778.999999999999,
       "X_max": 8.593385786170007e-07,
-      "kappa_fitted": 374720.7124872127,
-      "delta_mu_max": 0.3220119644471111
+      "kappa_fitted": 249189.27380399645,
+      "delta_mu_max": 0.2141379563573289
     },
     {
       "sigma_n4258": 100,
       "sigma_ref": 76.31513611335565,
       "U_ref": 5824.0,
       "X_max": 8.477113855312404e-07,
-      "kappa_fitted": 389806.80041781755,
-      "delta_mu_max": 0.3304436628716878
+      "kappa_fitted": 259221.52227784868,
+      "delta_mu_max": 0.2197450358096724
     },
     {
       "sigma_n4258": 115,
       "sigma_ref": 87.16507328052906,
       "U_ref": 7597.750000000001,
       "X_max": 8.279757551619893e-07,
-      "kappa_fitted": 400000.0,
-      "delta_mu_max": 0.3311903020647957
+      "kappa_fitted": 266000.0,
+      "delta_mu_max": 0.22024155087308916
     },
     {
       "sigma_n4258": 130,
       "sigma_ref": 98.07650075323853,
       "U_ref": 9618.999999999998,
       "X_max": 8.054863159040055e-07,
-      "kappa_fitted": 396920.08409451623,
-      "delta_mu_max": 0.3197136962455999
+      "kappa_fitted": 263951.8559228533,
+      "delta_mu_max": 0.21260960800332396
     },
     {
       "sigma_n4258": 150,
       "sigma_ref": 112.6898398259577,
       "U_ref": 12699.000000000004,
       "X_max": 7.71216694177554e-07,
-      "kappa_fitted": 418983.95685939107,
-      "delta_mu_max": 0.3231274221225305
+      "kappa_fitted": 278624.33131149504,
+      "delta_mu_max": 0.21487973571148275
     }
   ],
   "key_findings": [
     "N4258 sigma = 115 km/s contributes 95.7% of U_ref",
     "Using disk sigma = 80 km/s reduces U_ref by 49.4%",
     "All X_i increase by ~42.0% on average",
-    "kappa_Cep decreases by 6.6% (from 4.000e+05 to 3.737e+05)",
-    "Maximum per-host correction changes from 0.3312 to 0.3250 mag",
-    "Significance of kappa_Cep (1.48 sigma) is UNCHANGED (signal and noise scale identically)",
+    "kappa_Cep decreases by 6.6% (from 2.660e+05 to 2.485e+05)",
+    "Maximum per-host correction changes from 0.2202 to 0.2161 mag",
+    "Significance of kappa_Cep (1.11 sigma) is UNCHANGED (signal and noise scale identically)",
     "The amplitude ledger is NOT materially affected"
   ],
   "recommendation": "The N4258 sigma = 115 km/s should be replaced with a disk-appropriate value (~80 km/s) or the anchor should be rederived from geometric anchors only (MW parallax + LMC DEB). The impact on the amplitude ledger is minimal because the maximum per-host correction is preserved. The kappa_Cep significance is unchanged. The manuscript should report the sensitivity and adopt the disk value as the primary configuration."

@@ -1,1 +1,5 @@
 v0.3 (Valencia) — 13 September 2026
+
+- Rewrote the TEP framework section around the core-disk clock-differential mechanism
+- Expanded falsification with the measured-V_rot multi-catalogue analysis and X_i step/regression tests
+- Reframed discussion and conclusions against the updated evidence; updated references
