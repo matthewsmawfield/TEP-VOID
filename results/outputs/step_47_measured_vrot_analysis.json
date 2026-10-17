@@ -15,14 +15,14 @@
   },
   "xi_step": {
     "n_total": 1470,
-    "n_high_x": 1337,
-    "n_low_x": 133,
-    "step_mag": 0.003862459443336957,
-    "step_err": 0.014323590327020687,
-    "step_sigma": 0.2696572126927307,
-    "step_corrected_mag": 0.015791936933333903,
-    "step_corrected_err": 0.008328789628036475,
-    "step_corrected_sigma": 1.8960662519527314,
+    "n_high_x": 916,
+    "n_low_x": 554,
+    "step_mag": 0.011292876164426662,
+    "step_err": 0.008539302896594415,
+    "step_sigma": 1.3224587886360615,
+    "step_corrected_mag": 0.011292876164426662,
+    "step_corrected_err": 0.008539302896594415,
+    "step_corrected_sigma": 1.3224587886360615,
     "v_rot_source": "Tully-Fisher proxy (measured V_rot not available for Hubble-flow hosts)"
   },
   "band_dependence": {
@@ -37,15 +37,15 @@
     "regression_by_band": {
       "optical": {
         "n": 16,
-        "slope": -546498.5765842414,
-        "slope_err": 560429.6236326848,
-        "slope_sigma": 0.9751422008027647
+        "slope": -5648662.384285873,
+        "slope_err": 5051583.75120653,
+        "slope_sigma": 1.1181963246549629
       },
       "NIR": {
         "n": 6,
-        "slope": 517638.9212398453,
-        "slope_err": 388564.9221433659,
-        "slope_sigma": 1.332181295173258
+        "slope": -125785.97449568589,
+        "slope_err": 1177054.0432243717,
+        "slope_sigma": 0.10686508000186053
       }
     }
   },

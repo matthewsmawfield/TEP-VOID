@@ -1,14 +1,19 @@
-[23:46:21] [INFO] Step 44: H0 vs Calibrator-Population Potential
-[23:46:21] [INFO] 
-[23:46:21] [TEST]   Indicator    H0        <X> (1e-7)    U_typ (km^2/s^2)
-[23:46:21] [TEST]   ------------------------------------------------------------
-[23:46:21] [TEST]   JAGB          67.80      0.275          3200.0
-[23:46:21] [TEST]   TRGB          68.81      0.747          7200.0
-[23:46:21] [TEST]   Cepheids      73.04      2.209         20000.0
-[23:46:21] [TEST]   SBF           74.60      3.510         31250.0
-[23:46:21] [TEST]   Linear fit: H0 = 68.79 + 1.70 * <X> (1e-7)
-[23:46:21] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_44_h0_vs_potential.png
-[23:46:22] [SUCCESS]   PDF saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_44_h0_vs_potential.pdf
-[23:46:22] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_44_h0_vs_potential.json
-[23:46:22] [SUCCESS] Step 44 complete
-[23:46:22] [SUCCESS] step_44 completed in 0.3s
+[08:58:36] [INFO] Step 44: H0 vs Calibrator-Population Potential
+[08:58:36] [INFO] 
+[08:58:36] [TEST]   Indicator    H0        <X> (1e-7)    U_typ (km^2/s^2)
+[08:58:36] [TEST]   ------------------------------------------------------------
+[08:58:36] [TEST]   JAGB          67.80      0.275          3200.0
+[08:58:36] [TEST]   TRGB          68.81      0.747          7200.0
+[08:58:36] [TEST]   Cepheids      73.04      2.209         20000.0
+[08:58:36] [TEST]   SBF           74.60      3.510         31250.0
+[08:58:36] [TEST]   Linear fit: H0 = 68.79 + 1.70 * <X> (1e-7)
+[08:58:37] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_44_h0_vs_potential.png
+[08:58:37] [SUCCESS]   PDF saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_44_h0_vs_potential.pdf
+[08:58:37] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_44_h0_vs_potential.json
+[08:58:37] [SUCCESS] Step 44 complete
+[08:58:37] [SUCCESS] step_44 completed in 0.6s
+[08:58:37] [INFO] 
+[08:58:37] [INFO] ================================================================================
+[08:58:37] [INFO]    Pipeline complete: 1 succeeded, 0 failed, 0.6s total
+[08:58:37] [INFO] ================================================================================
+[08:58:37] [INFO] 

@@ -76,7 +76,7 @@ class Step35FloatMBAnalysis:
     MASSIVE_THRESHOLD = 10.0
 
     # TEP parameters (from TEP-H0, Paper 11)
-    KAPPA_CEP = 0.365e6  # mag (Cepheid-channel coupling constant)
+    KAPPA_CEP = 1.220e6  # mag (Cepheid-channel coupling constant, endpoint closure under sigma_*)
     U_REF = U_REF_SCREENED  # ≈ 930.7 (km/s)^2, screened anchor reference
     C_KMS_SQUARED = C_KMS ** 2  # (km/s)^2
 

@@ -105,7 +105,7 @@ def run_permutation(df, target_col, use_weights, err_col, n_perms=1000):
     df['temporal_predictor'] = original_pred
     
     null_coefs = np.array(null_coefs)
-    p_perm = np.mean(np.abs(null_coefs) >= np.abs(obs_coef))
+    p_perm = float((np.sum(np.abs(null_coefs) >= np.abs(obs_coef)) + 1) / (len(null_coefs) + 1))
     return p_perm
 
 def run_audit():

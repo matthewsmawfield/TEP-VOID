@@ -86,11 +86,11 @@ proof-of-work bot protection. The download is automated in
 **Repository:** https://github.com/matthewsmawfield/TEP-H0
 
 The following TEP-H0 results are referenced (not re-downloaded):
-- 37-host endpoint likelihood analysis
+- 37-host endpoint likelihood analysis (Γ_X = (3.846 ± 1.653) × 10⁷ km s⁻¹ Mpc⁻¹, 2.33σ, σ_* coordinate)
 - M31 inner vs outer Cepheid P-L offset (+0.356 ± 0.136 mag, 2.6σ)
-- M31 PHAT-restricted offset (+0.630 ± 0.195 mag, 3.24σ)
+- M31 PHAT-restricted offset (+0.681 ± 0.187 mag, 3.65σ)
 - LMC OGLE-IV radial stratification (+0.0284 ± 0.0086 mag, 3.3σ)
-- Unified H₀ = 66.65 ± 1.58 km s⁻¹ Mpc⁻¹
+- Host-level reconstruction H₀ = 67.83 ± 1.56 km s⁻¹ Mpc⁻¹ (0.26σ from Planck; internal to the TEP framework)
 
 ---
 
@@ -150,7 +150,7 @@ All data is downloaded automatically by the pipeline. To regenerate from
 scratch:
 
 ```bash
-cd "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID"
+cd "TEP-VOID"
 python3 scripts/run_pipeline.py
 ```
 

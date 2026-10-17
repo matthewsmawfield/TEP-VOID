@@ -27,7 +27,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # ── Paths ──
-BASE = '/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID'
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PANTHEON_FILE = f'{BASE}/data/raw/Pantheon+SH0ES.dat'
 OUTPUT_CSV = f'{BASE}/data/processed/pantheon_host_vrot_vizier.csv'
 OUTPUT_JSON = f'{BASE}/results/outputs/step_48_vizier_vrot.json'

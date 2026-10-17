@@ -1,0 +1,207 @@
+[0;37m[08:13:05] [INFO] [0m
+[0;37m[08:13:05] [INFO] ================================================================================[0m
+[0;37m[08:13:05] [INFO]    ======================================================================[0m
+[0;37m[08:13:05] [INFO] ================================================================================[0m
+[0;37m[08:13:05] [INFO] [0m
+[0;37m[08:13:05] [INFO] [0m
+[0;37m[08:13:05] [INFO] ================================================================================[0m
+[0;37m[08:13:05] [INFO]    Step 50: JWST Matched Cepheid/TRGB Sample — Xi Regression[0m
+[0;37m[08:13:05] [INFO] ================================================================================[0m
+[0;37m[08:13:05] [INFO] [0m
+[0;37m[08:13:05] [INFO] [0m
+[0;37m[08:13:05] [INFO] ================================================================================[0m
+[0;37m[08:13:05] [INFO]    ======================================================================[0m
+[0;37m[08:13:05] [INFO] ================================================================================[0m
+[0;37m[08:13:05] [INFO] [0m
+[0;37m[08:13:05] [INFO] This step builds a matched Cepheid/TRGB sample from recent JWST programs (GO-1995, GO-1685, GO-2875) and tests the TEP acoustic clock bias prediction on pristine, co-spatial NIRCam data. Unlike the CF4 compilation (Step 36), which suffers from cross-telescope registration artifacts, the JWST sample provides Cepheid and TRGB observations through identical NIRCam optics, eliminating telescope zero-point drift. The TEP prediction is that Delta_mu = mu_Cep - mu_TRGB should be negative (Cepheid distances compressed in deeper potentials) and should correlate with the gravitational potential coordinate X_i.[0m
+[0;34m[08:13:05] [PROCESS] Loading JWST TRGB distance catalog...[0m
+[1;32m[08:13:05] [SUCCESS]   18 galaxies with JWST TRGB + R22 Cepheid distances[0m
+[0;34m[08:13:05] [PROCESS] Loading host potential catalog (V_rot)...[0m
+[1;32m[08:13:05] [SUCCESS]   41 galaxies with rotation velocities[0m
+[0;34m[08:13:05] [PROCESS] Merging JWST distances with rotation velocities...[0m
+[1;32m[08:13:05] [SUCCESS]   18/18 galaxies matched with V_rot[0m
+[1;32m[08:13:06] [SUCCESS] 
+Final sample: 18 total (17 test + 1 anchor)[0m
+[1;35m[08:13:06] [TEST] 
+--- JWST Matched Galaxy Summary ---[0m
+[1;35m[08:13:06] [TEST]   PGC  40809 [ JWST_F115W] NGC 4424     vrot=  91.9  X_i=-9.0845e-09  mu_TRGB=30.926  mu_Cep=30.856  Delta_mu=-0.0700 +/- 0.1334[0m
+[1;35m[08:13:06] [TEST]   PGC  37466 [ JWST_F115W] NGC 3972     vrot= 110.3  X_i=-3.9664e-09  mu_TRGB=31.747  mu_Cep=31.644  Delta_mu=-0.1030 +/- 0.1128[0m
+[1;35m[08:13:06] [TEST]   PGC  50063 [ JWST_F115W] M101         vrot=  39.6  X_i=-3.2987e-09  mu_TRGB=29.151  mu_Cep=29.194  Delta_mu=+0.0430 +/- 0.0573[0m
+[1;35m[08:13:06] [TEST]   PGC  21373 [ JWST_F115W] NGC 2442     vrot= 203.6  X_i=+8.6064e-11  mu_TRGB=31.646  mu_Cep=31.457  Delta_mu=-0.1890 +/- 0.1168[0m
+[1;35m[08:13:06] [TEST]   PGC  39600 [      MASER] NGC 4258     vrot= 162.6  X_i=+3.7241e-09  mu_TRGB=29.397  mu_Cep=29.385  Delta_mu=-0.0120 +/- 0.0388[0m
+[1;35m[08:13:06] [TEST]   PGC  68535 [ JWST_F115W] NGC 7250     vrot=  73.5  X_i=+1.7772e-08  mu_TRGB=31.629  mu_Cep=31.628  Delta_mu=-0.0010 +/- 0.1345[0m
+[1;35m[08:13:06] [TEST]   PGC  32694 [ JWST_F090W] NGC 3447     vrot=  77.8  X_i=+2.1300e-08  mu_TRGB=31.930  mu_Cep=31.950  Delta_mu=+0.0200 +/- 0.0781[0m
+[1;35m[08:13:06] [TEST]   PGC  13179 [ JWST_F115W] NGC 1365     vrot= 213.5  X_i=+2.2440e-08  mu_TRGB=31.366  mu_Cep=31.379  Delta_mu=+0.0130 +/- 0.0895[0m
+[1;35m[08:13:06] [TEST]   PGC  14814 [ JWST_F090W] NGC 1559     vrot= 103.2  X_i=+4.3024e-08  mu_TRGB=31.500  mu_Cep=31.500  Delta_mu=+0.0000 +/- 0.0860[0m
+[1;35m[08:13:06] [TEST]   PGC  22721 [ JWST_F090W] NGC 2525     vrot= 116.0  X_i=+5.4537e-08  mu_TRGB=31.870  mu_Cep=32.060  Delta_mu=+0.1900 +/- 0.1253[0m
+[1;35m[08:13:06] [TEST]   PGC  32207 [ JWST_F090W] NGC 3370     vrot= 120.2  X_i=+6.4872e-08  mu_TRGB=32.190  mu_Cep=32.130  Delta_mu=-0.0600 +/- 0.0849[0m
+[1;35m[08:13:06] [TEST]   PGC  13727 [ JWST_F090W] NGC 1448     vrot= 134.4  X_i=+6.7644e-08  mu_TRGB=31.340  mu_Cep=31.300  Delta_mu=-0.0400 +/- 0.0707[0m
+[1;35m[08:13:06] [TEST]   PGC  42741 [ JWST_F115W] NGC 4639     vrot= 136.0  X_i=+7.9115e-08  mu_TRGB=31.774  mu_Cep=31.818  Delta_mu=+0.0440 +/- 0.1120[0m
+[1;35m[08:13:06] [TEST]   PGC  41823 [ JWST_F115W] NGC 4536     vrot= 146.7  X_i=+7.9395e-08  mu_TRGB=30.923  mu_Cep=30.838  Delta_mu=-0.0850 +/- 0.0728[0m
+[1;35m[08:13:06] [TEST]   PGC  51969 [ JWST_F115W] NGC 5643     vrot= 151.3  X_i=+8.6080e-08  mu_TRGB=30.643  mu_Cep=30.570  Delta_mu=-0.0730 +/- 0.0868[0m
+[1;35m[08:13:06] [TEST]   PGC  51344 [ JWST_F090W] NGC 5584     vrot= 138.6  X_i=+8.8798e-08  mu_TRGB=31.950  mu_Cep=31.770  Delta_mu=-0.1800 +/- 0.1000[0m
+[1;35m[08:13:06] [TEST]   PGC  54097 [ JWST_F090W] NGC 5861     vrot= 158.4  X_i=+1.0736e-07  mu_TRGB=32.100  mu_Cep=32.230  Delta_mu=+0.1300 +/- 0.1253[0m
+[1;35m[08:13:06] [TEST]   PGC  37967 [ JWST_F115W] NGC 4038     vrot= 151.3  X_i=+1.0834e-07  mu_TRGB=31.645  mu_Cep=31.615  Delta_mu=-0.0300 +/- 0.1406[0m
+[0;34m[08:13:06] [PROCESS] 
+Methodology: Weighted linear regression Delta_mu = slope * X_i + intercept on the JWST matched sample (excluding NGC 4258 anchor), with weights = 1/delta_mu_err^2. Both screened (S_total * U_i) and unscreened (U_i) potential coordinates are evaluated.[0m
+[1;35m[08:13:06] [TEST]   [screened] N=17: slope = -3.3606e+05 +/- 6.0271e+05 (0.56sigma)[0m
+[1;35m[08:13:06] [TEST]   [screened] intercept = -0.0075 +/- 0.0353[0m
+[1;35m[08:13:06] [TEST]   [screened] Pearson r = +0.1511 (p=0.5625), Spearman rho = +0.0809 (p=0.7576)[0m
+[1;35m[08:13:06] [TEST]   [screened] R^2 = -0.0620, chi^2/dof = 0.85[0m
+[1;35m[08:13:06] [TEST]   [screened] Sign: NEGATIVE (correct for TEP)[0m
+[1;35m[08:13:06] [TEST]   [screened] Weighted mean Delta_mu = -0.0227 +/- 0.0223 (1.02sigma)[0m
+[1;35m[08:13:06] [TEST]   [screened] vs TEP (default): |slope - pred|/sigma = 1.47sigma[0m
+[1;35m[08:13:06] [TEST]   [screened] vs TEP (joint): |slope - pred|/sigma = 0.55sigma[0m
+[1;35m[08:13:06] [TEST]   [screened] vs TEP (wls): |slope - pred|/sigma = 1.56sigma[0m
+[1;35m[08:13:06] [TEST]   [screened] vs TEP (canonical): |slope - pred|/sigma = 1.04sigma[0m
+[1;35m[08:13:06] [TEST]   [unscreened] N=17: slope = -4.0597e+05 +/- 3.4377e+05 (1.18sigma)[0m
+[1;35m[08:13:06] [TEST]   [unscreened] intercept = -0.0198 +/- 0.0224[0m
+[1;35m[08:13:06] [TEST]   [unscreened] Pearson r = -0.2433 (p=0.3467), Spearman rho = -0.2232 (p=0.3892)[0m
+[1;35m[08:13:06] [TEST]   [unscreened] R^2 = 0.0570, chi^2/dof = 0.78[0m
+[1;35m[08:13:06] [TEST]   [unscreened] Sign: NEGATIVE (correct for TEP)[0m
+[1;35m[08:13:06] [TEST]   [unscreened] Weighted mean Delta_mu = -0.0227 +/- 0.0223 (1.02sigma)[0m
+[1;35m[08:13:06] [TEST]   [unscreened] vs TEP (default): |slope - pred|/sigma = 2.37sigma[0m
+[1;35m[08:13:06] [TEST]   [unscreened] vs TEP (joint): |slope - pred|/sigma = 0.75sigma[0m
+[1;35m[08:13:06] [TEST]   [unscreened] vs TEP (wls): |slope - pred|/sigma = 2.53sigma[0m
+[1;35m[08:13:06] [TEST]   [unscreened] vs TEP (canonical): |slope - pred|/sigma = 1.61sigma[0m
+[0;34m[08:13:06] [PROCESS] 
+Running regression by JWST program subset...[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/screened] N=10: slope = -3.6388e+05 +/- 7.1701e+05 (0.51sigma)[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/screened] intercept = -0.0178 +/- 0.0388[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/screened] Pearson r = +0.1795 (p=0.6198), Spearman rho = +0.1273 (p=0.7261)[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/screened] R^2 = -0.1695, chi^2/dof = 0.66[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/screened] Sign: NEGATIVE (correct for TEP)[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/screened] Weighted mean Delta_mu = -0.0305 +/- 0.0296 (1.03sigma)[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/screened] vs TEP (default): |slope - pred|/sigma = 1.19sigma[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/screened] vs TEP (joint): |slope - pred|/sigma = 0.42sigma[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/screened] vs TEP (wls): |slope - pred|/sigma = 1.27sigma[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/screened] vs TEP (canonical): |slope - pred|/sigma = 0.83sigma[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/unscreened] N=10: slope = -3.8576e+05 +/- 3.6614e+05 (1.05sigma)[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/unscreened] intercept = -0.0244 +/- 0.0301[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/unscreened] Pearson r = -0.3520 (p=0.3185), Spearman rho = -0.2979 (p=0.4032)[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/unscreened] R^2 = 0.0968, chi^2/dof = 0.55[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/unscreened] Sign: NEGATIVE (correct for TEP)[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/unscreened] Weighted mean Delta_mu = -0.0305 +/- 0.0296 (1.03sigma)[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/unscreened] vs TEP (default): |slope - pred|/sigma = 2.28sigma[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/unscreened] vs TEP (joint): |slope - pred|/sigma = 0.76sigma[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/unscreened] vs TEP (wls): |slope - pred|/sigma = 2.43sigma[0m
+[1;35m[08:13:06] [TEST]   [cchp_f115w/unscreened] vs TEP (canonical): |slope - pred|/sigma = 1.57sigma[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/screened] N=7: slope = -8.2059e+05 +/- 1.3785e+06 (0.60sigma)[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/screened] intercept = +0.0361 +/- 0.0881[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/screened] Pearson r = -0.0797 (p=0.8651), Spearman rho = -0.2500 (p=0.5887)[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/screened] R^2 = -0.0541, chi^2/dof = 1.40[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/screened] Sign: NEGATIVE (correct for TEP)[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/screened] Weighted mean Delta_mu = -0.0123 +/- 0.0340 (0.36sigma)[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/screened] vs TEP (default): |slope - pred|/sigma = 0.29sigma[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/screened] vs TEP (joint): |slope - pred|/sigma = 0.11sigma[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/screened] vs TEP (wls): |slope - pred|/sigma = 0.33sigma[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/screened] vs TEP (canonical): |slope - pred|/sigma = 0.10sigma[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/unscreened] N=7: slope = -4.6996e+05 +/- 1.1228e+06 (0.42sigma)[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/unscreened] intercept = -0.0145 +/- 0.0344[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/unscreened] Pearson r = -0.0056 (p=0.9905), Spearman rho = -0.2500 (p=0.5887)[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/unscreened] R^2 = -0.0579, chi^2/dof = 1.44[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/unscreened] Sign: NEGATIVE (correct for TEP)[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/unscreened] Weighted mean Delta_mu = -0.0123 +/- 0.0340 (0.36sigma)[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/unscreened] vs TEP (default): |slope - pred|/sigma = 0.67sigma[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/unscreened] vs TEP (joint): |slope - pred|/sigma = 0.17sigma[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/unscreened] vs TEP (wls): |slope - pred|/sigma = 0.72sigma[0m
+[1;35m[08:13:06] [TEST]   [anand_f090w/unscreened] vs TEP (canonical): |slope - pred|/sigma = 0.44sigma[0m
+[0;34m[08:13:06] [PROCESS] 
+Running filter-corrected analysis...[0m
+[1;35m[08:13:06] [TEST]   F115W mean delta_mu = -0.0451, F090W mean delta_mu = +0.0086[0m
+[1;35m[08:13:06] [TEST]   Filter offset (F090W - F115W) = +0.0537 mag[0m
+[1;35m[08:13:06] [TEST]   Filter offset uncertainty = 0.0519 mag[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected screened] N=17: slope = -5.0958e+05 +/- 6.2087e+05 (0.82sigma)[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected screened] intercept = -0.0196 +/- 0.0361[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected screened] Pearson r = +0.0612 (p=0.8156), Spearman rho = +0.0588 (p=0.8226)[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected screened] R^2 = -0.0760, chi^2/dof = 0.75[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected screened] Sign: NEGATIVE (correct for TEP)[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected screened] Weighted mean Delta_mu = -0.0420 +/- 0.0237 (1.77sigma)[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected screened] vs TEP (default): |slope - pred|/sigma = 1.14sigma[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected screened] vs TEP (joint): |slope - pred|/sigma = 0.25sigma[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected screened] vs TEP (wls): |slope - pred|/sigma = 1.23sigma[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected screened] vs TEP (canonical): |slope - pred|/sigma = 0.73sigma[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected unscreened] N=17: slope = -3.4602e+05 +/- 3.4899e+05 (0.99sigma)[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected unscreened] intercept = -0.0389 +/- 0.0239[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected unscreened] Pearson r = -0.1933 (p=0.4573), Spearman rho = -0.1251 (p=0.6324)[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected unscreened] R^2 = 0.0349, chi^2/dof = 0.73[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected unscreened] Sign: NEGATIVE (correct for TEP)[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected unscreened] Weighted mean Delta_mu = -0.0420 +/- 0.0237 (1.77sigma)[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected unscreened] vs TEP (default): |slope - pred|/sigma = 2.50sigma[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected unscreened] vs TEP (joint): |slope - pred|/sigma = 0.91sigma[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected unscreened] vs TEP (wls): |slope - pred|/sigma = 2.66sigma[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected unscreened] vs TEP (canonical): |slope - pred|/sigma = 1.76sigma[0m
+[0;34m[08:13:06] [PROCESS] 
+Running M101-exclusion analysis (N=16)...[0m
+[1;35m[08:13:06] [TEST]   [no-M101 screened] N=16: slope = 1.1670e+05 +/- 7.2488e+05 (0.16sigma)[0m
+[1;35m[08:13:06] [TEST]   [no-M101 screened] intercept = -0.0407 +/- 0.0461[0m
+[1;35m[08:13:06] [TEST]   [no-M101 screened] Pearson r = +0.2249 (p=0.4023), Spearman rho = +0.1412 (p=0.6020)[0m
+[1;35m[08:13:06] [TEST]   [no-M101 screened] R^2 = 0.0125, chi^2/dof = 0.82[0m
+[1;35m[08:13:06] [TEST]   [no-M101 screened] Sign: POSITIVE (wrong for TEP)[0m
+[1;35m[08:13:06] [TEST]   [no-M101 screened] Weighted mean Delta_mu = -0.0344 +/- 0.0242 (1.42sigma)[0m
+[1;35m[08:13:06] [TEST]   [no-M101 screened] vs TEP (default): |slope - pred|/sigma = 1.84sigma[0m
+[1;35m[08:13:06] [TEST]   [no-M101 screened] vs TEP (joint): |slope - pred|/sigma = 1.08sigma[0m
+[1;35m[08:13:06] [TEST]   [no-M101 screened] vs TEP (wls): |slope - pred|/sigma = 1.92sigma[0m
+[1;35m[08:13:06] [TEST]   [no-M101 screened] vs TEP (canonical): |slope - pred|/sigma = 1.49sigma[0m
+[1;35m[08:13:06] [TEST]   [no-M101 unscreened] N=16: slope = -2.4703e+05 +/- 4.0835e+05 (0.60sigma)[0m
+[1;35m[08:13:06] [TEST]   [no-M101 unscreened] intercept = -0.0290 +/- 0.0258[0m
+[1;35m[08:13:06] [TEST]   [no-M101 unscreened] Pearson r = -0.1960 (p=0.4670), Spearman rho = -0.1531 (p=0.5715)[0m
+[1;35m[08:13:06] [TEST]   [no-M101 unscreened] R^2 = 0.0311, chi^2/dof = 0.80[0m
+[1;35m[08:13:06] [TEST]   [no-M101 unscreened] Sign: NEGATIVE (correct for TEP)[0m
+[1;35m[08:13:06] [TEST]   [no-M101 unscreened] Weighted mean Delta_mu = -0.0344 +/- 0.0242 (1.42sigma)[0m
+[1;35m[08:13:06] [TEST]   [no-M101 unscreened] vs TEP (default): |slope - pred|/sigma = 2.38sigma[0m
+[1;35m[08:13:06] [TEST]   [no-M101 unscreened] vs TEP (joint): |slope - pred|/sigma = 1.02sigma[0m
+[1;35m[08:13:06] [TEST]   [no-M101 unscreened] vs TEP (wls): |slope - pred|/sigma = 2.52sigma[0m
+[1;35m[08:13:06] [TEST]   [no-M101 unscreened] vs TEP (canonical): |slope - pred|/sigma = 1.75sigma[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected no-M101 screened] N=16: slope = 8.6128e+04 +/- 7.5053e+05 (0.11sigma)[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected no-M101 screened] intercept = -0.0642 +/- 0.0480[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected no-M101 screened] Pearson r = +0.1548 (p=0.5671), Spearman rho = +0.1235 (p=0.6485)[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected no-M101 screened] R^2 = -0.0004, chi^2/dof = 0.66[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected no-M101 screened] Sign: POSITIVE (wrong for TEP)[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected no-M101 screened] Weighted mean Delta_mu = -0.0596 +/- 0.0261 (2.29sigma)[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected no-M101 screened] vs TEP (default): |slope - pred|/sigma = 1.74sigma[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected no-M101 screened] vs TEP (joint): |slope - pred|/sigma = 1.00sigma[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected no-M101 screened] vs TEP (wls): |slope - pred|/sigma = 1.81sigma[0m
+[1;35m[08:13:06] [TEST]   [filter-corrected no-M101 screened] vs TEP (canonical): |slope - pred|/sigma = 1.39sigma[0m
+[0;34m[08:13:06] [PROCESS] 
+Running leave-one-out on regression slope...[0m
+[1;35m[08:13:06] [TEST]   LOO: Full slope = -3.3606e+05, most influential = M101 (slope -> 1.1670e+05, 0.16sigma)[0m
+[1;35m[08:13:06] [TEST]   LOO sigma range: 0.13sigma to 0.98sigma[0m
+[1;35m[08:13:06] [TEST]   LOO: Full slope = -4.0597e+05, most influential = NGC 1365 (slope -> -8.4705e+05, 1.89sigma)[0m
+[1;35m[08:13:06] [TEST]   LOO sigma range: 0.60sigma to 1.89sigma[0m
+[0;34m[08:13:06] [PROCESS] 
+Comparing with CF4 Step 36 results...[0m
+[1;35m[08:13:06] [TEST]   CF4 (Step 36, N=22): slope = 5.3556e+05 +/- 2.5438e+05[0m
+[1;35m[08:13:06] [TEST]   JWST (Step 50, N=17): slope = -3.3606e+05 +/- 6.0271e+05[0m
+[0;34m[08:13:06] [PROCESS] 
+Running MF2023 Cepheid comparison...[0m
+[1;32m[08:13:06] [SUCCESS]   13 galaxies matched with MF2023 Cepheid distances[0m
+[1;35m[08:13:06] [TEST]   R22-MF2023(VI) offset vs X_i: r = -0.2490 (p = 0.4120)[0m
+[1;35m[08:13:06] [TEST]   R22-MF2023(VIH) offset vs X_i: r = +0.1497 (p = 0.6254)[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VI screened] N=13: slope = 1.2281e+06 +/- 5.4753e+05 (2.24sigma)[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VI screened] intercept = -0.1964 +/- 0.0289[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VI screened] Pearson r = +0.2498 (p=0.4105), Spearman rho = +0.2857 (p=0.3440)[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VI screened] R^2 = 0.0526, chi^2/dof = 6.03[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VI screened] Sign: POSITIVE (wrong for TEP)[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VI screened] Weighted mean Delta_mu = -0.1508 +/- 0.0206 (7.33sigma)[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VI screened] vs TEP (default): |slope - pred|/sigma = 4.47sigma[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VI screened] vs TEP (joint): |slope - pred|/sigma = 3.46sigma[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VI screened] vs TEP (wls): |slope - pred|/sigma = 4.57sigma[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VI screened] vs TEP (canonical): |slope - pred|/sigma = 4.00sigma[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VIH screened] N=13: slope = 2.0837e+05 +/- 4.2263e+05 (0.49sigma)[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VIH screened] intercept = -0.2016 +/- 0.0200[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VIH screened] Pearson r = -0.2055 (p=0.5007), Spearman rho = +0.0220 (p=0.9432)[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VIH screened] R^2 = -0.0422, chi^2/dof = 2.84[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VIH screened] Sign: POSITIVE (wrong for TEP)[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VIH screened] Weighted mean Delta_mu = -0.1959 +/- 0.0164 (11.92sigma)[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VIH screened] vs TEP (default): |slope - pred|/sigma = 3.38sigma[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VIH screened] vs TEP (joint): |slope - pred|/sigma = 2.07sigma[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VIH screened] vs TEP (wls): |slope - pred|/sigma = 3.51sigma[0m
+[1;35m[08:13:06] [TEST]   [MF2023 VIH screened] vs TEP (canonical): |slope - pred|/sigma = 2.76sigma[0m
+[1;35m[08:13:06] [TEST]   Sign test: R22 = 9/13, MF2023 VI = 10/13, MF2023 VIH = 13/13[0m
+[1;32m[08:13:06] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_50_jwst_matched.png[0m
+[1;32m[08:13:06] [SUCCESS] 
+Matched table saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/jwst_matched_2026.csv[0m
+[1;32m[08:13:06] [SUCCESS] 
+Results saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_50_jwst_matched.json[0m
+[1;32m[08:13:06] [SUCCESS] Step 50 complete[0m

@@ -1,0 +1,221 @@
+[0;37m[08:11:16] [INFO] Observable definition:\n  delta_mu_band = mu_NIR - mu_optical[0m
+[0;37m[08:11:16] [INFO] TEP prediction:\n  d(delta_mu_band)/dX_i < 0[0m
+[0;37m[08:11:16] [INFO] [0m
+[0;37m[08:11:16] [INFO] ================================================================================[0m
+[0;37m[08:11:16] [INFO]    Step 49: Band-Dependence Test[0m
+[0;37m[08:11:16] [INFO] ================================================================================[0m
+[0;37m[08:11:16] [INFO] [0m
+[0;34m[08:11:16] [PROCESS] Test the TEP prediction that the optical-to-NIR Cepheid distance differential anti-correlates with the gravitational potential coordinate X_i (NIR more compressed), with a predicted slope of -(|b_H| - |b_V|) * kappa_P = -0.50 * kappa_P.[0m
+[0;34m[08:11:16] [PROCESS] Leavitt law slopes: b_V = -2.76, b_H = -3.26, |b_H|/|b_V| = 1.181 (18.1% larger in NIR)[0m
+[0;34m[08:11:16] [PROCESS] Loading Key Project (Freedman et al. 2001) distances...[0m
+[1;32m[08:11:16] [SUCCESS]   31 Key Project galaxies loaded[0m
+[0;34m[08:11:16] [PROCESS] Loading SH0ES R22 NIR Cepheid distances...[0m
+[1;32m[08:11:16] [SUCCESS]   40 R22 galaxies loaded[0m
+[0;34m[08:11:16] [PROCESS] Loading host potential catalog...[0m
+[0;37m[08:11:17] [INFO]   Screening: 40/41 galaxies with S_total < 1[0m
+[1;32m[08:11:17] [SUCCESS]   41 galaxies with V_rot and screened X_i[0m
+[0;34m[08:11:17] [PROCESS] 
+Running rho sensitivity audit...[0m
+[0;34m[08:11:17] [PROCESS] 
+--- Testing rho = 0.0 ---[0m
+[0;34m[08:11:17] [PROCESS] Loading Madore & Freedman (2023) Table 2...[0m
+[1;32m[08:11:17] [SUCCESS]   20 galaxies with VIH (NIR) and VI (optical) distances[0m
+[0;34m[08:11:17] [PROCESS] 
+Merging Madore & Freedman (2023) with host potential catalog...[0m
+[1;32m[08:11:17] [SUCCESS]   20 galaxies matched (primary sample)[0m
+[0;34m[08:11:17] [PROCESS] 
+Merging Key Project + R22 + host potential catalog...[0m
+[1;35m[08:11:17] [TEST]   9 Key Project ↔ R22 matches[0m
+[1;32m[08:11:17] [SUCCESS]   9 galaxies matched (secondary sample)[0m
+[0;34m[08:11:17] [PROCESS] 
+Regression: Primary: MF2023 VIH vs VI (rho=0.0)[0m
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: divide by zero encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: overflow encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: invalid value encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+[1;35m[08:11:17] [TEST]   N=20, slope = -1.8047e+06 ± 2.6887e+05 (6.71σ)[0m
+[1;35m[08:11:17] [TEST]   Student-t (nu=4) robust slope: -1.9870e+06 ± 5.0794e+05 (Max Cook's D: 0.15)[0m
+[1;35m[08:11:17] [TEST]   intercept = +0.0760 ± 0.0143[0m
+[1;35m[08:11:17] [TEST]   Pearson r = -0.4774 (p = 0.0333)[0m
+[1;35m[08:11:17] [TEST]   Spearman ρ = -0.4211 (p = 0.0645)[0m
+[1;35m[08:11:17] [TEST]   R² = 0.2246, χ²/dof = 4.28[0m
+[1;35m[08:11:17] [TEST]   TEP predicted slope: -1.8712e+05 (default κ_P), -1.0199e+05 (joint κ_P)[0m
+[1;35m[08:11:17] [TEST]   vs TEP (default): |slope - pred|/σ = 6.02σ[0m
+[1;35m[08:11:17] [TEST]   vs TEP (joint): |slope - pred|/σ = 6.33σ[0m
+[0;34m[08:11:17] [PROCESS] 
+--- Testing rho = 0.2 ---[0m
+[0;34m[08:11:17] [PROCESS] Loading Madore & Freedman (2023) Table 2...[0m
+[1;32m[08:11:17] [SUCCESS]   20 galaxies with VIH (NIR) and VI (optical) distances[0m
+[0;34m[08:11:17] [PROCESS] 
+Merging Madore & Freedman (2023) with host potential catalog...[0m
+[1;32m[08:11:17] [SUCCESS]   20 galaxies matched (primary sample)[0m
+[0;34m[08:11:17] [PROCESS] 
+Merging Key Project + R22 + host potential catalog...[0m
+[1;35m[08:11:17] [TEST]   9 Key Project ↔ R22 matches[0m
+[1;32m[08:11:17] [SUCCESS]   9 galaxies matched (secondary sample)[0m
+[0;34m[08:11:17] [PROCESS] 
+Regression: Primary: MF2023 VIH vs VI (rho=0.2)[0m
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: divide by zero encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: overflow encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: invalid value encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+[1;35m[08:11:17] [TEST]   N=20, slope = -1.8308e+06 ± 2.4464e+05 (7.48σ)[0m
+[1;35m[08:11:17] [TEST]   Student-t (nu=4) robust slope: -2.0026e+06 ± 5.3713e+05 (Max Cook's D: 0.15)[0m
+[1;35m[08:11:17] [TEST]   intercept = +0.0750 ± 0.0130[0m
+[1;35m[08:11:17] [TEST]   Pearson r = -0.4774 (p = 0.0333)[0m
+[1;35m[08:11:17] [TEST]   Spearman ρ = -0.4211 (p = 0.0645)[0m
+[1;35m[08:11:17] [TEST]   R² = 0.2257, χ²/dof = 5.15[0m
+[1;35m[08:11:17] [TEST]   TEP predicted slope: -1.8712e+05 (default κ_P), -1.0199e+05 (joint κ_P)[0m
+[1;35m[08:11:17] [TEST]   vs TEP (default): |slope - pred|/σ = 6.72σ[0m
+[1;35m[08:11:17] [TEST]   vs TEP (joint): |slope - pred|/σ = 7.07σ[0m
+[0;34m[08:11:17] [PROCESS] 
+--- Testing rho = 0.4 ---[0m
+[0;34m[08:11:17] [PROCESS] Loading Madore & Freedman (2023) Table 2...[0m
+[1;32m[08:11:17] [SUCCESS]   20 galaxies with VIH (NIR) and VI (optical) distances[0m
+[0;34m[08:11:17] [PROCESS] 
+Merging Madore & Freedman (2023) with host potential catalog...[0m
+[1;32m[08:11:17] [SUCCESS]   20 galaxies matched (primary sample)[0m
+[0;34m[08:11:17] [PROCESS] 
+Merging Key Project + R22 + host potential catalog...[0m
+[1;35m[08:11:17] [TEST]   9 Key Project ↔ R22 matches[0m
+[1;32m[08:11:17] [SUCCESS]   9 galaxies matched (secondary sample)[0m
+[0;34m[08:11:17] [PROCESS] 
+Regression: Primary: MF2023 VIH vs VI (rho=0.4)[0m
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: divide by zero encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: overflow encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: invalid value encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+[1;35m[08:11:17] [TEST]   N=20, slope = -1.8653e+06 ± 2.1699e+05 (8.60σ)[0m
+[1;35m[08:11:17] [TEST]   Student-t (nu=4) robust slope: -2.0199e+06 ± 5.6978e+05 (Max Cook's D: 0.20)[0m
+[1;35m[08:11:17] [TEST]   intercept = +0.0737 ± 0.0115[0m
+[1;35m[08:11:17] [TEST]   Pearson r = -0.4774 (p = 0.0333)[0m
+[1;35m[08:11:17] [TEST]   Spearman ρ = -0.4211 (p = 0.0645)[0m
+[1;35m[08:11:17] [TEST]   R² = 0.2263, χ²/dof = 6.51[0m
+[1;35m[08:11:17] [TEST]   TEP predicted slope: -1.8712e+05 (default κ_P), -1.0199e+05 (joint κ_P)[0m
+[1;35m[08:11:17] [TEST]   vs TEP (default): |slope - pred|/σ = 7.73σ[0m
+[1;35m[08:11:17] [TEST]   vs TEP (joint): |slope - pred|/σ = 8.13σ[0m
+[0;34m[08:11:17] [PROCESS] 
+--- Testing rho = 0.6 ---[0m
+[0;34m[08:11:17] [PROCESS] Loading Madore & Freedman (2023) Table 2...[0m
+[1;32m[08:11:17] [SUCCESS]   20 galaxies with VIH (NIR) and VI (optical) distances[0m
+[0;34m[08:11:17] [PROCESS] 
+Merging Madore & Freedman (2023) with host potential catalog...[0m
+[1;32m[08:11:17] [SUCCESS]   20 galaxies matched (primary sample)[0m
+[0;34m[08:11:17] [PROCESS] 
+Merging Key Project + R22 + host potential catalog...[0m
+[1;35m[08:11:17] [TEST]   9 Key Project ↔ R22 matches[0m
+[1;32m[08:11:17] [SUCCESS]   9 galaxies matched (secondary sample)[0m
+[0;34m[08:11:17] [PROCESS] 
+Regression: Primary: MF2023 VIH vs VI (rho=0.6)[0m
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: divide by zero encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: overflow encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: invalid value encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+[1;35m[08:11:17] [TEST]   N=20, slope = -1.9152e+06 ± 1.8391e+05 (10.41σ)[0m
+[1;35m[08:11:17] [TEST]   Student-t (nu=4) robust slope: -2.0390e+06 ± 6.0033e+05 (Max Cook's D: 0.30)[0m
+[1;35m[08:11:17] [TEST]   intercept = +0.0724 ± 0.0096[0m
+[1;35m[08:11:17] [TEST]   Pearson r = -0.4774 (p = 0.0333)[0m
+[1;35m[08:11:17] [TEST]   Spearman ρ = -0.4211 (p = 0.0645)[0m
+[1;35m[08:11:17] [TEST]   R² = 0.2256, χ²/dof = 8.99[0m
+[1;35m[08:11:17] [TEST]   TEP predicted slope: -1.8712e+05 (default κ_P), -1.0199e+05 (joint κ_P)[0m
+[1;35m[08:11:17] [TEST]   vs TEP (default): |slope - pred|/σ = 9.40σ[0m
+[1;35m[08:11:17] [TEST]   vs TEP (joint): |slope - pred|/σ = 9.86σ[0m
+[0;34m[08:11:17] [PROCESS] 
+--- Testing rho = 0.8 ---[0m
+[0;34m[08:11:17] [PROCESS] Loading Madore & Freedman (2023) Table 2...[0m
+[1;32m[08:11:17] [SUCCESS]   20 galaxies with VIH (NIR) and VI (optical) distances[0m
+[0;34m[08:11:17] [PROCESS] 
+Merging Madore & Freedman (2023) with host potential catalog...[0m
+[1;32m[08:11:17] [SUCCESS]   20 galaxies matched (primary sample)[0m
+[0;34m[08:11:17] [PROCESS] 
+Merging Key Project + R22 + host potential catalog...[0m
+[1;35m[08:11:17] [TEST]   9 Key Project ↔ R22 matches[0m
+[1;32m[08:11:17] [SUCCESS]   9 galaxies matched (secondary sample)[0m
+[0;34m[08:11:17] [PROCESS] 
+Regression: Primary: MF2023 VIH vs VI (rho=0.8)[0m
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: divide by zero encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: overflow encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: invalid value encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+[1;35m[08:11:17] [TEST]   N=20, slope = -2.0060e+06 ± 1.4004e+05 (14.32σ)[0m
+[1;35m[08:11:17] [TEST]   Student-t (nu=4) robust slope: -2.0602e+06 ± 6.1859e+05 (Max Cook's D: 0.58)[0m
+[1;35m[08:11:17] [TEST]   intercept = +0.0712 ± 0.0072[0m
+[1;35m[08:11:17] [TEST]   Pearson r = -0.4774 (p = 0.0333)[0m
+[1;35m[08:11:17] [TEST]   Spearman ρ = -0.4211 (p = 0.0645)[0m
+[1;35m[08:11:17] [TEST]   R² = 0.2214, χ²/dof = 15.12[0m
+[1;35m[08:11:17] [TEST]   TEP predicted slope: -1.8712e+05 (default κ_P), -1.0199e+05 (joint κ_P)[0m
+[1;35m[08:11:17] [TEST]   vs TEP (default): |slope - pred|/σ = 12.99σ[0m
+[1;35m[08:11:17] [TEST]   vs TEP (joint): |slope - pred|/σ = 13.60σ[0m
+[0;34m[08:11:17] [PROCESS] 
+Regression: Secondary: Key Project vs R22 (rho=0.8)[0m
+[1;35m[08:11:17] [TEST]   N=9, slope = -3.5229e+05 ± 4.5821e+05 (0.77σ)[0m
+[1;35m[08:11:17] [TEST]   Student-t (nu=4) robust slope: -5.7969e+05 ± 7.9709e+05 (Max Cook's D: 0.60)[0m
+[1;35m[08:11:17] [TEST]   intercept = +0.0964 ± 0.0269[0m
+[1;35m[08:11:17] [TEST]   Pearson r = -0.1400 (p = 0.7194)[0m
+[1;35m[08:11:17] [TEST]   Spearman ρ = -0.0333 (p = 0.9322)[0m
+[1;35m[08:11:17] [TEST]   R² = -0.0168, χ²/dof = 2.85[0m
+[1;35m[08:11:17] [TEST]   TEP predicted slope: -1.8712e+05 (default κ_P), -1.0199e+05 (joint κ_P)[0m
+[1;35m[08:11:17] [TEST]   vs TEP (default): |slope - pred|/σ = 0.36σ[0m
+[1;35m[08:11:17] [TEST]   vs TEP (joint): |slope - pred|/σ = 0.55σ[0m
+[0;34m[08:11:17] [PROCESS] 
+--- Testing rho = 0.9 ---[0m
+[0;34m[08:11:17] [PROCESS] Loading Madore & Freedman (2023) Table 2...[0m
+[1;32m[08:11:17] [SUCCESS]   20 galaxies with VIH (NIR) and VI (optical) distances[0m
+[0;34m[08:11:17] [PROCESS] 
+Merging Madore & Freedman (2023) with host potential catalog...[0m
+[1;32m[08:11:17] [SUCCESS]   20 galaxies matched (primary sample)[0m
+[0;34m[08:11:17] [PROCESS] 
+Merging Key Project + R22 + host potential catalog...[0m
+[1;35m[08:11:17] [TEST]   9 Key Project ↔ R22 matches[0m
+[1;32m[08:11:17] [SUCCESS]   9 galaxies matched (secondary sample)[0m
+[0;34m[08:11:17] [PROCESS] 
+Regression: Primary: MF2023 VIH vs VI (rho=0.9)[0m
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: divide by zero encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: overflow encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_49_band_dependence.py:407: RuntimeWarning: invalid value encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+[1;35m[08:11:17] [TEST]   N=20, slope = -2.1096e+06 ± 1.0810e+05 (19.52σ)[0m
+[1;35m[08:11:17] [TEST]   Student-t (nu=4) robust slope: -2.0716e+06 ± 6.3245e+05 (Max Cook's D: 1.06)[0m
+[1;35m[08:11:17] [TEST]   intercept = +0.0723 ± 0.0054[0m
+[1;35m[08:11:17] [TEST]   Pearson r = -0.4774 (p = 0.0333)[0m
+[1;35m[08:11:17] [TEST]   Spearman ρ = -0.4211 (p = 0.0645)[0m
+[1;35m[08:11:17] [TEST]   R² = 0.2145, χ²/dof = 24.10[0m
+[1;35m[08:11:17] [TEST]   TEP predicted slope: -1.8712e+05 (default κ_P), -1.0199e+05 (joint κ_P)[0m
+[1;35m[08:11:17] [TEST]   vs TEP (default): |slope - pred|/σ = 17.78σ[0m
+[1;35m[08:11:17] [TEST]   vs TEP (joint): |slope - pred|/σ = 18.57σ[0m
+[1;35m[08:11:17] [TEST] 
+Rho Sensitivity Summary (Primary Sample, incl M101):[0m
+[1;35m[08:11:17] [TEST]   rho=0.0 | WLS slope=-1.8047e+06 ± 2.6887e+05 (6.71σ) | Student-t slope=-1.9870e+06 ± 5.0794e+05[0m
+[1;35m[08:11:17] [TEST]   rho=0.2 | WLS slope=-1.8308e+06 ± 2.4464e+05 (7.48σ) | Student-t slope=-2.0026e+06 ± 5.3713e+05[0m
+[1;35m[08:11:17] [TEST]   rho=0.4 | WLS slope=-1.8653e+06 ± 2.1699e+05 (8.60σ) | Student-t slope=-2.0199e+06 ± 5.6978e+05[0m
+[1;35m[08:11:17] [TEST]   rho=0.6 | WLS slope=-1.9152e+06 ± 1.8391e+05 (10.41σ) | Student-t slope=-2.0390e+06 ± 6.0033e+05[0m
+[1;35m[08:11:17] [TEST]   rho=0.8 | WLS slope=-2.0060e+06 ± 1.4004e+05 (14.32σ) | Student-t slope=-2.0602e+06 ± 6.1859e+05[0m
+[1;35m[08:11:17] [TEST]   rho=0.9 | WLS slope=-2.1096e+06 ± 1.0810e+05 (19.52σ) | Student-t slope=-2.0716e+06 ± 6.3245e+05[0m
+[0;34m[08:11:17] [PROCESS] 
+Regression: Primary (M101 excluded): MF2023 VIH vs VI[0m
+[1;35m[08:11:17] [TEST]   N=19, slope = -1.6220e+06 ± 1.8272e+05 (8.88σ)[0m
+[1;35m[08:11:17] [TEST]   Student-t (nu=4) robust slope: -2.0943e+06 ± 6.9673e+05 (Max Cook's D: 0.48)[0m
+[1;35m[08:11:17] [TEST]   intercept = +0.0413 ± 0.0116[0m
+[1;35m[08:11:17] [TEST]   Pearson r = -0.4572 (p = 0.0490)[0m
+[1;35m[08:11:17] [TEST]   Spearman ρ = -0.4193 (p = 0.0739)[0m
+[1;35m[08:11:17] [TEST]   R² = 0.1929, χ²/dof = 15.38[0m
+[1;35m[08:11:17] [TEST]   TEP predicted slope: -1.8712e+05 (default κ_P), -1.0199e+05 (joint κ_P)[0m
+[1;35m[08:11:17] [TEST]   vs TEP (default): |slope - pred|/σ = 7.85σ[0m
+[1;35m[08:11:17] [TEST]   vs TEP (joint): |slope - pred|/σ = 8.32σ[0m
+[1;35m[08:11:17] [TEST]   M101-excluded: N=19, slope=-1.622e+06 ± 1.827e+05 (8.88sigma)[0m
+[1;32m[08:11:17] [SUCCESS] Matched catalog saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/processed/band_dependence_matched.csv[0m
+[1;32m[08:11:17] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_49_band_dependence.png[0m
+[1;32m[08:11:17] [SUCCESS] Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_49_band_dependence.json[0m
+[1;32m[08:11:17] [SUCCESS] Step 49 complete[0m

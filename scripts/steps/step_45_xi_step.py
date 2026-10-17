@@ -36,7 +36,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
 from scripts.utils.plot_style import apply_tep_style
-from scripts.utils.screening import U_REF_SCREENED, compute_screening
+from scripts.utils.screening import U_REF_SCREENED, U_REF_UNSCREENED, compute_screening
 
 
 class Step45XiStep:
@@ -133,7 +133,9 @@ class Step45XiStep:
                 hf.loc[tf_mask, "V_rot_source"] = "tully-fisher"
                 hf.loc[tf_mask, "U_i"] = U_tf
                 hf.loc[tf_mask, "S_total"] = 1.0
-                hf.loc[tf_mask, "X_i"] = (U_tf - self.U_REF) / self.C_KMS ** 2
+                # Use matched unscreened reference U_REF_UNSCREENED for S_total = 1.0 TF rows
+                # (subtracting U_REF_SCREENED from unscreened U_tf artificially placed 1336/1353 rows in X > 0)
+                hf.loc[tf_mask, "X_i"] = (U_tf - U_REF_UNSCREENED) / self.C_KMS ** 2
             X = hf["X_i"].values
             n_measured = (hf["V_rot_source"] == "measured").sum()
             print_status(f"  V_rot: {n_measured} measured, {len(hf) - n_measured} TF proxy", "INFO")
@@ -143,11 +145,18 @@ class Step45XiStep:
             M_star = 10.0 ** logM
             V_rot = 200.0 * (M_star / 10.0 ** 10.5) ** 0.25
             U = (V_rot / np.sqrt(2)) ** 2
-            X = (U - self.U_REF) / self.C_KMS ** 2
+            X = (U - U_REF_UNSCREENED) / self.C_KMS ** 2
             hf["X_i"] = X
             hf["V_rot"] = V_rot
             hf["V_rot_source"] = "tully-fisher"
             hf["S_total"] = 1.0
+
+        # Also compute pre-BBC-mass-step SALT2/SALT3 Tripp Hubble residuals
+        # (MU_SH0ES has Pantheon+'s ad-hoc BBC host-mass step ~62 mmag already subtracted via biasCor_m_b)
+        alpha_salt, beta_salt = 0.148, 3.09
+        mu_tripp = hf["mB"].values + alpha_salt * hf["x1"].values - beta_salt * hf["c"].values
+        mu_tripp -= np.median(mu_tripp - mu_obs)
+        hr_tripp = mu_tripp - mu_ref
 
         print_status(f"  V_rot range: {hf['V_rot'].min():.1f} - {hf['V_rot'].max():.1f} km/s", "TEST")
         print_status(f"  X range: {X.min()*1e7:.3f} - {X.max()*1e7:.3f} x 1e-7", "TEST")
@@ -204,7 +213,21 @@ class Step45XiStep:
             "TEST",
         )
         print_status(
-            f"  X step = {step_X*1000:.1f} +/- {step_X_err*1000:.1f} mmag ({abs(step_X/step_X_err):.2f} sigma)",
+            f"  X step (post-BBC MU_SH0ES) = {step_X*1000:.1f} +/- {step_X_err*1000:.1f} mmag ({abs(step_X/step_X_err):.2f} sigma)",
+            "TEST",
+        )
+        step_X_tripp = float(hr_tripp[high_X].mean() - hr_tripp[low_X].mean())
+        step_X_tripp_err = float(np.sqrt(
+            hr_tripp[high_X].var() / len(hr_tripp[high_X])
+            + hr_tripp[low_X].var() / len(hr_tripp[low_X])
+        ))
+        slope_X_tripp, _, r_X_tripp, p_X_tripp, se_X_tripp = stats.linregress(X, hr_tripp)
+        print_status(
+            f"  X step (pre-BBC Tripp mB+a*x1-b*c) = {step_X_tripp*1000:.1f} +/- {step_X_tripp_err*1000:.1f} mmag ({abs(step_X_tripp/step_X_tripp_err):.2f} sigma)",
+            "TEST",
+        )
+        print_status(
+            f"  Pre-BBC continuous slope = {slope_X_tripp:.2e} +/- {se_X_tripp:.2e} ({abs(slope_X_tripp/se_X_tripp):.2f} sigma, p = {p_X_tripp:.2e})",
             "TEST",
         )
         print_status(
@@ -275,35 +298,27 @@ class Step45XiStep:
         print_status("")
         print_status("  --- Test 6: Joint fit HR = a + b*logM + c*X ---", "TEST")
 
-        X_mat = np.column_stack([np.ones(len(hr)), logM, X])
-        beta, _, _, _ = np.linalg.lstsq(X_mat, hr, rcond=None)
-        a_fit, b_fit, c_fit = beta
-        resid = hr - X_mat @ beta
+        X_scale = 1e7
+        X_mat_scaled = np.column_stack([np.ones(len(hr)), logM, X * X_scale])
+        beta_scaled, _, _, _ = np.linalg.lstsq(X_mat_scaled, hr, rcond=None)
+        a_fit = float(beta_scaled[0])
+        b_fit = float(beta_scaled[1])
+        c_fit = float(beta_scaled[2] * X_scale)
+        resid = hr - (a_fit + b_fit * logM + c_fit * X)
         dof = len(hr) - 3
         sigma_resid = np.sqrt(np.sum(resid ** 2) / dof)
-        # OLS covariance: sigma^2 * (X^T X)^-1.  When X_i is a deterministic
-        # function of logM (TF-proxy fallback), X^T X is singular and the
-        # joint fit is uninterpretable; the mass-residualized regression
-        # (Test 5) is the well-posed alternative.
-        xtx = X_mat.T @ X_mat
-        cond_num = float(np.linalg.cond(xtx))
-        joint_degenerate = cond_num > 1e10
-        if joint_degenerate:
-            print_status(
-                f"  Joint fit degenerate (cond={cond_num:.2e}); X_i collinear with logM.",
-                "WARNING",
-            )
-            print_status(
-                "  Joint X_i and mass coefficients are unidentifiable; see Test 5 "
-                "(mass-residualized regression) for the well-posed result.",
-                "INFO",
-            )
-            b_err = None
-            c_err = None
-        else:
-            cov = sigma_resid ** 2 * np.linalg.inv(xtx)
-            b_err = float(np.sqrt(cov[1, 1]))
-            c_err = float(np.sqrt(cov[2, 2]))
+        # Standardized design matrix condition number (removing the 1e-7 vs 10 unit scaling)
+        Xz = np.column_stack([
+            np.ones(len(hr)),
+            (logM - logM.mean()) / logM.std(),
+            (X - X.mean()) / X.std(),
+        ])
+        cond_num = float(np.linalg.cond(Xz.T @ Xz))
+        joint_degenerate = cond_num > 1e4
+        xtx_scaled = X_mat_scaled.T @ X_mat_scaled
+        cov_scaled = sigma_resid ** 2 * np.linalg.inv(xtx_scaled)
+        b_err = float(np.sqrt(cov_scaled[1, 1]))
+        c_err = float(np.sqrt(cov_scaled[2, 2]) * X_scale)
 
         def _sig(val, err):
             if err is None or err == 0 or not np.isfinite(err):
@@ -521,6 +536,13 @@ class Step45XiStep:
                     "direction": "TEP-predicted" if step_X > 0 else "opposite",
                     "n_highX": int(high_X.sum()),
                     "n_lowX": int(low_X.sum()),
+                    "pre_bbc_tripp_xi_step_mag": step_X_tripp,
+                    "pre_bbc_tripp_xi_step_err_mag": step_X_tripp_err,
+                    "pre_bbc_tripp_xi_step_sigma": float(abs(step_X_tripp / step_X_tripp_err)),
+                    "pre_bbc_tripp_slope": float(slope_X_tripp),
+                    "pre_bbc_tripp_slope_err": float(se_X_tripp),
+                    "pre_bbc_tripp_slope_sigma": float(abs(slope_X_tripp / se_X_tripp)),
+                    "pre_bbc_tripp_p_value": float(p_X_tripp),
                 },
                 "xi_regression": {
                     "slope": float(slope_X),

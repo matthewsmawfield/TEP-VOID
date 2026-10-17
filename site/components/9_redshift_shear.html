@@ -12,20 +12,19 @@
     is a falsifiable prediction of the same transport mechanism.
     The data tell a consistent story across multiple scales.
     The strongest single-galaxy evidence comes from the LMC
-    internal radial Period--Luminosity gradient
+    internal radial Period&ndash;Luminosity gradient
     ($\Delta W = +0.0284 \pm 0.0086$ mag, $3.30\sigma$ from OGLE-IV,
     robust to period and colour matching; Paper 11). The M31 gradient
     ($\Delta W = +0.681 \pm 0.187$ mag, $3.65\sigma$ in the HST PHAT
     catalogue of Kodric et al. 2018; $+0.630 \pm 0.195$ mag, $3.24\sigma$
-    for Pan-STARRS restricted to the same footprint; Paper 11) does not survive matched confounder
-    controls (colour-matched $0.1\sigma$; eW-matched $0.8\sigma$) and
-    is treated as a diagnostic signal. Both signals carry the
+    for Pan-STARRS restricted to the same footprint; Paper 11) survives 2D period&ndash;colour matching at $+0.604 \pm 0.277$ mag ($2.18\sigma$), retains a reddening-free offset $\Delta W = +0.501 \pm 0.171$ mag ($2.93\sigma$) under band decomposition, and sharpens to $+0.906 \pm 0.147$ mag ($6.17\sigma$) under flux-independent neighbour-density crowding control (whereas conditioning on propagated magnitude error $e_{W_H}$ induces outcome-collider bias because $e_{W_H}$ correlates with apparent magnitude $W_H$ at $r=+0.78$). Both signals carry the
     predicted clock-gradient sign free from host-to-host peculiar
     velocity systematics. At the cosmological level, the redshift-only
     WLS regression in $H_0$ space across 33 Hubble-flow hosts yields
-    $\kappa_{\rm Cep} = (0.45 \pm 0.22) \times 10^6$ mag
-    ($2.05\sigma$ at $\sigma_v = 150$ km/s), with the joint
-    multi-block likelihood returning $1.11\sigma$ as a consistency
+    $\kappa_{\rm Cep} = (1.275 \pm 0.370) \times 10^6$ mag
+    ($3.44\sigma$ at $\sigma_v = 150$ km/s), with the joint
+    multi-block likelihood returning $(0.665 \pm 0.362) \times 10^6$ mag
+    at $1.83\sigma$ as a consistency
     check. The supernova $X_i$-step emerges at $1.55\sigma$ in the
     TEP-predicted direction ($N=1470$ Hubble-flow), placing the longstanding host-mass residual in a concrete, falsifiable timescale-bias framework. These multi-scale detections
     align in both direction and order of magnitude to
@@ -131,12 +130,12 @@
     where $\kappa_P$ is the dimensionless period-response coefficient
     (governing Cepheid period contraction for $X_i > 0$ in massive
     hosts), $b \approx -3.26$ is the near-infrared Leavitt law slope,
-    and $\kappa_{\rm Cep}^{\rm equiv} = (0.365 \pm 0.304) \times 10^6\ {\rm mag}$ is the
+    and $\kappa_{\rm Cep}^{\rm equiv} = (1.220 \pm 0.531) \times 10^6\ {\rm mag}$ is the
     Cepheid-channel response coefficient from the endpoint slope
     conversion in TEP-H0 (Paper 11, Section 4). Here
     $X_i = (S_{\rm total}\, U_i - U_{\rm ref}^{\rm scr}) / c^2$ is the
-    dimensionless screened potential coordinate, with $U_i = u_\phi^2$
-    the rotation-based potential proxy, $S_{\rm total} \le 1$ the
+    dimensionless screened potential coordinate, with $U_i = \sigma_*^2$
+    the inner-potential stellar-dispersion proxy, $S_{\rm total} \le 1$ the
     screening factor that attenuates the potential for extended
     sources, and $U_{\rm ref}^{\rm scr} = (30.507\ {\rm km\,s^{-1}})^2$
     the screened anchor reference potential. The correction is
@@ -148,15 +147,15 @@
 <p>
     A note on notation. Two estimates of the Cepheid-channel
     coefficient appear in this paper:
-    $\kappa_{\rm Cep}^{\rm equiv} = (0.365 \pm 0.304) \times 10^6$
+    $\kappa_{\rm Cep}^{\rm equiv} = (1.220 \pm 0.531) \times 10^6$
     (the endpoint-slope conversion from TEP-H0, used in the
     matrix propagation) and
-    $\kappa_{\rm Cep} = (0.45 \pm 0.22) \times 10^6$
+    $\kappa_{\rm Cep} = (1.275 \pm 0.370) \times 10^6$
     (the redshift-only WLS estimate in $H_0$ space at
-    $\sigma_v = 150$ km/s, used in the scalar-tensor consistency analysis of
+    $\sigma_v = 150$ km/s, with $(1.206 \pm 0.528) \times 10^6$ at the canonical $\sigma_v = 250$ km/s, used in the scalar-tensor consistency analysis of
     Section 4.6). These
     are the same physical coefficient estimated by two independent
-    methods. The difference ($0.087 \times 10^6$) is $0.23\sigma$
+    methods. The difference ($0.055 \times 10^6$) is $0.08\sigma$
     relative to the combined uncertainty, confirming consistency.
     The matrix propagation uses $\kappa_{\rm Cep}^{\rm equiv}$ because
     it is the direct endpoint-slope conversion; the scalar-tensor analysis
@@ -168,7 +167,7 @@
 
 <p>
     The TEP correction is applied to the Cepheid calibrator hosts with
-    measured rotation velocities from the host potential catalog.
+    measured inner-potential stellar dispersions from the host potential catalog.
     The mean correction over these calibrators determines the
     zero-point shift $\Delta M_B$:
 </p>
@@ -191,8 +190,8 @@
 
 <p>
     The TEP correction shifts the mean Hubble residual by
-    $+0.035 \pm 0.030$ mag (equiv closure, $\kappa_{\rm Cep}^{\rm equiv}
-    = 0.365 \times 10^6$ mag, calibrator-only $\langle X_i \rangle$) in
+    $+0.077 \pm 0.036$ mag (equiv closure, $\kappa_{\rm Cep}^{\rm equiv}
+    = 1.220 \times 10^6$ mag, calibrator-only $\langle X_i \rangle$) in
     the direction predicted by TEP (reducing
     the negative residual caused by Cepheid distance compression). The
     uncertainty combines the imported $\kappa_{\rm Cep}^{\rm equiv}$
@@ -202,7 +201,7 @@
     \rangle)^2 + (\kappa_{\rm Cep}^{\rm equiv} \sigma_{\langle X_i \rangle})^2$.
     The $\kappa_{\rm Cep}^{\rm equiv}$ term dominates
     ($\sigma_{\kappa_{\rm Cep}^{\rm equiv}}/\kappa_{\rm Cep}^{\rm equiv}
-    = 0.304/0.365 \approx 83\%$), while the $\langle X_i \rangle$
+    = 0.531/1.220 \approx 44\%$), while the $\langle X_i \rangle$
     contribution is subdominant. The standard deviation of the
     residuals is unchanged ($0.183$ mag), confirming that the
     correction acts as a constant zero-point offset rather than
@@ -210,9 +209,9 @@
 </p>
 
 <p>
-    The direct shift of $+0.035 \pm 0.030$ mag is a simple
+    The direct shift of $+0.077 \pm 0.036$ mag is a simple
     calibrator-average estimator using the endpoint-slope
-    $\kappa_{\rm Cep}^{\rm equiv} = 0.365 \times 10^6$ mag applied to
+    $\kappa_{\rm Cep}^{\rm equiv} = 1.220 \times 10^6$ mag applied to
     the screened calibrator-only $\langle X_i \rangle$ via
     cross-validation. The
     Hubble tension demands a mean calibrator correction of
@@ -224,34 +223,49 @@
     <em>(i) SH0ES design-matrix propagation.</em> Propagating the
     endpoint-slope $\kappa_{\rm Cep}^{\rm equiv}$ through the
     3,490-row SH0ES design matrix yields
-    $H_0 = 71.77 \pm 0.99\ {\rm km\,s^{-1}\,Mpc^{-1}}$ (Paper 11,
+    $H_0 = 70.46 \pm 0.97\ {\rm km\,s^{-1}\,Mpc^{-1}}$ (Paper 11,
     Section 3.5) — a partial reduction from 73.04, because the
     37 unconstrained latent host moduli $\mu_i$
     algebraically absorb host-level environmental shifts (Paper 11,
     Section 4.2). The maximum per-host correction with
     $\kappa_{\rm Cep}^{\rm equiv}$ is
-    $\kappa_{\rm Cep}^{\rm equiv} \cdot X_{\rm max} = 0.365 \times
-    10^6 \times 3.28 \times 10^{-7} \approx 0.120$ mag (at M101).
+    $\kappa_{\rm Cep}^{\rm equiv} \cdot X_{\rm max} = 1.220 \times
+    10^6 \times 3.42 \times 10^{-7} \approx 0.42$ mag (at NGC 976).
     A propagation audit confirms: the mean calibrator
-    correction is $+0.039 \pm 0.019$ mag (using the redshift-only WLS
-    $\kappa_{\rm Cep} = 0.45 \times 10^6$), or $+0.035 \pm 0.030$
+    correction is $+0.077$ mag (using the redshift-only WLS
+    $\kappa_{\rm Cep} = 1.275 \times 10^6$), or $+0.077 \pm 0.036$
     mag using the endpoint-closure $\kappa_{\rm Cep}^{\rm equiv}$,
     consistent with the maximum per-host bound.
 </p>
 
 <p>
-    <em>(ii) Unified host-level reconstruction (Step 04).</em>
-    Paper 11's Step 04 bypasses the matrix degeneracy by
+    <em>(ii) Unified host-level reconstruction.</em>
+    Paper 11's host-level route bypasses the matrix degeneracy by
     correcting each host modulus in expansion-rate space and
     re-optimizing $\kappa_{\rm Cep}$ to flatten the environmental
-    gradient ($\partial H_{0,i} / \partial u_{\phi,i} \to 0$).
+    gradient ($\partial H_{0,i} / \partial \sigma_{*,i} \to 0$).
     This yields
-    $H_0 = 66.65 \pm 1.58\ {\rm km\,s^{-1}\,Mpc^{-1}}$,
-    consistent with Planck at $0.45\sigma$. The Step 04
-    reconstruction uses a larger effective $\kappa_{\rm Cep}$ than
-    the likelihood-derived value; the discrepancy between routes
-    (i) and (ii) reflects the latent-$\mu_i$ absorption degeneracy
-    documented in Paper 11, not a contradiction.
+    $H_0 = 67.83 \pm 1.56\ {\rm km\,s^{-1}\,Mpc^{-1}}$,
+    consistent with Planck at $0.26\sigma$. Two clarifications
+    delimit what this fitted route establishes. First, its
+    optimizer objective flattens the $\delta\mu$–$\sigma_*$ slope
+    linearly rather than the physical correction regressor
+    $X \propto \sigma_*^2$, returning $\kappa \approx
+    3.4\times10^6$; posed consistently — $\delta\mu$ on $X$ with
+    photometric plus peculiar-velocity weighting — the same
+    reconstruction data return $\kappa = (0.98 \pm 0.48)\times10^6$
+    mag, statistically consistent with the endpoint-fitted value
+    (Paper 11, Step 04 estimator decomposition). No residual
+    amplitude gap therefore separates the two routes once the
+    estimators are posed identically; the apparent $2.2\times$
+    mismatch was estimator geometry, not physics. Second, under
+    the standard reference $\sigma_{\rm ref}=87.165$ km/s the
+    host-sample mean correction regressor nearly vanishes
+    ($\langle X\rangle \approx -1.5\times10^{-9}$), so the
+    reconstructed $H_0$ level is largely $\kappa$-insensitive —
+    the raw unweighted host mean is already $67.72 \pm 1.58$ — and
+    the TEP-specific content of the route is the flattening of the
+    environmental slope rather than the absolute level.
 </p>
 
 <p>
@@ -361,13 +375,13 @@
         <tr>
             <td>Cepheid period transport</td>
             <td>$\kappa_{\rm Cep} \cdot X_i$</td>
-            <td>$\sim 0.02$–$0.09$ mag (per host)</td>
-            <td>Matched-host Cepheid–TRGB divergence (JWST $N=17$: $\Delta\mu = -0.023 \pm 0.022$, $1.02\sigma$; filter-corrected $-0.042 \pm 0.024$, $1.77\sigma$); $\kappa_{\rm Cep} = (0.45 \pm 0.22) \times 10^6$ mag (redshift-only WLS, $2.05\sigma$); LMC ($3.30\sigma$, robust) and M31 ($3.65\sigma$ PHAT, fails confounders) internal gradients; Step 04 reconstruction yields $H_0 = 66.65 \pm 1.58$</td>
+            <td>$\sim 0.01$–$0.44$ mag (per host)</td>
+            <td>Matched-host Cepheid–TRGB divergence (JWST $N=17$: $\Delta\mu = -0.023 \pm 0.022$, $1.02\sigma$; filter-corrected $-0.042 \pm 0.024$, $1.77\sigma$); $\kappa_{\rm Cep} = (1.275 \pm 0.370) \times 10^6$ mag (redshift-only WLS, $3.44\sigma$; $(1.206 \pm 0.528)\times 10^6$ mag, $2.29\sigma$ at $\sigma_v=250$ km/s); LMC ($3.30\sigma$, robust) and M31 ($3.65\sigma$ PHAT baseline, $2.18\sigma$ period–colour matched, $6.17\sigma$ density-matched crowding control) internal gradients; host-level reconstruction yields $H_0 = 67.83 \pm 1.56$</td>
         </tr>
         <tr>
             <td>SN light-curve stretch</td>
             <td>$\alpha \cdot \Delta x_1(X_i)$</td>
-            <td>SN Ia host-mass step ($0.057 \pm 0.018$ mag raw; $\sim 0.04$–$0.06$ mag after SALT3 host correction); HR channel null after $x_1$ absorption (pending decisive measured-$V_{\rm rot}$ sample test)</td>
+            <td>SN Ia host-mass step ($0.057 \pm 0.018$ mag raw; $\sim 0.04$–$0.06$ mag after SALT3 host correction); HR channel null after $x_1$ absorption (pending key measured-$V_{\rm rot}$ sample test)</td>
         </tr>
     </tbody>
 </table>
@@ -375,13 +389,12 @@
 <p>
     The Cepheid channel is the directly measured calibration bias.
     The SN stretch channel remains a falsifiable host-potential prediction;
-    an independently calibrated $x_1(X_i)$ test with a decisive
-    measured-$V_{\rm rot}$ sample remains outstanding.
+    an independently calibrated $x_1(X_i)$ test with a conclusive measured-$V_{\rm rot}$ sample remains outstanding.
     The two channels are additive and both scale
     with $X_i$, but the paper does not depend on the SN channel
     to balance the amplitude budget — the Cepheid channel
     reconstruction (Paper 11, Step 04) already yields
-    $H_0 = 66.65 \pm 1.58\ {\rm km\,s^{-1}\,Mpc^{-1}}$.
+    $H_0 = 67.83 \pm 1.56\ {\rm km\,s^{-1}\,Mpc^{-1}}$.
 </p>
 
 <p>
@@ -419,14 +432,14 @@
     will persist under refinement, a directional expectation
     that future data with larger indicator samples can test. The
     discriminating power of the TEP framework against the void model
-    rests on the redshift-profile falsification in Sections 7--8,
+    rests on the redshift-profile falsification in Sections 7&ndash;8,
     not on this four-point observation.
 </p>
 
 <p>
     The discriminating power of the TEP framework against the void
     model comes from the redshift-profile falsification in
-    Sections 7--8, evaluated through complementary absolute-shape and
+    Sections 7&ndash;8, evaluated through complementary absolute-shape and
     relative-evolution statistics. The flat $H_0(z)$ profile rejects
     the published KBC gradual decay curves (digitized from
     Mazurenko et al. 2025) at
@@ -445,8 +458,7 @@
     the central values match the TEP-predicted $\sim 0.02$–$0.05$ mag
     with stable sign). The two-channel structure (Table 7) shows
     the Cepheid channel (measured) and the SN stretch channel
-    (remaining a falsifiable host-potential prediction awaiting a decisive
-    measured-$V_{\rm rot}$ sample test), each bounded by an independent observational
+    (remaining a falsifiable host-potential prediction awaiting a conclusive measured-$V_{\rm rot}$ sample test), each bounded by an independent observational
     constraint. The standardized Hubble-residual channel is
     the subject of Section 10.
 </p>
@@ -468,7 +480,7 @@
     significantly directional ($D_{x_1} = +0.061 \pm 0.061$,
     $p = 0.32$). This directional $x_1$ null is distinct from the uncalibrated host-potential $x_1(X_i)$ prediction of Section 10.4; the two tests probe different spatial structures. The suppression is instead observed in the aggregate
     correction, where the pre-standardization magnitude dipole
-    ($D = -0.070 \pm 0.019$, $p_{\rm perm} < 10^{-3}$) is reduced to
+    ($D = -0.070 \pm 0.019$, $p_{\rm perm} &lt; 10^{-3}$) is reduced to
     $D = -0.021 \pm 0.010$ ($p_{\rm perm} = 0.014$) after the full
     SALT3 correction is applied. The standardization therefore
     suppresses approximately 70% of the pre-standardization

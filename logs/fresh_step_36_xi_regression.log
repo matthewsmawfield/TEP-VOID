@@ -1,0 +1,125 @@
+[0;37m[07:52:51] [INFO] [0m
+[0;37m[07:52:51] [INFO] ================================================================================[0m
+[0;37m[07:52:51] [INFO]    ============================================================[0m
+[0;37m[07:52:51] [INFO] ================================================================================[0m
+[0;37m[07:52:51] [INFO] [0m
+[0;37m[07:52:51] [INFO] [0m
+[0;37m[07:52:51] [INFO] ================================================================================[0m
+[0;37m[07:52:51] [INFO]    Step 36: Xi Regression — Δμ vs Potential Coordinate[0m
+[0;37m[07:52:51] [INFO] ================================================================================[0m
+[0;37m[07:52:51] [INFO] [0m
+[0;37m[07:52:51] [INFO] [0m
+[0;37m[07:52:51] [INFO] ================================================================================[0m
+[0;37m[07:52:51] [INFO]    ============================================================[0m
+[0;37m[07:52:51] [INFO] ================================================================================[0m
+[0;37m[07:52:51] [INFO] [0m
+[0;37m[07:52:51] [INFO] This step tests whether the Cepheid-TRGB distance divergence scales with the TEP gravitational potential coordinate X_i across the 22-galaxy CF4 matched sample, rather than splitting by provenance (R22 vs non-R22). TEP predicts Delta_mu = kappa_mu * X_i with a non-zero negative slope, while a pipeline-offset systematic would produce a constant offset independent of X_i (slope approximately zero). The key discriminating observable is the weighted regression slope of Delta_mu versus X_i, with TEP requiring a statistically significant non-zero slope of the predicted sign.[0m
+[0;34m[07:52:51] [PROCESS] Loading CF4 matched galaxy sample...[0m
+[1;32m[07:52:51] [SUCCESS]   22 galaxies with both Cepheid and TRGB[0m
+[0;34m[07:52:51] [PROCESS] Loading rotation velocity catalog...[0m
+[1;32m[07:52:51] [SUCCESS]   22 galaxies with rotation velocities[0m
+[0;34m[07:52:51] [PROCESS] Merging CF4 distances with rotation velocities...[0m
+[1;32m[07:52:51] [SUCCESS]   22 galaxies matched[0m
+[1;32m[07:52:51] [SUCCESS] 
+Final sample: 22 galaxies with Δμ, vrot, and X_i[0m
+[1;35m[07:52:51] [TEST] 
+--- Galaxy Summary ---[0m
+[1;35m[07:52:51] [TEST]   PGC  40809 [R22] NGC 4424                  vrot=  28.6  X_i=-1.0232e-08  Δμ=-0.1560 ± 0.1565[0m
+[1;35m[07:52:51] [TEST]   PGC    143 [   ] WLM                       vrot=  26.2  X_i=-6.5363e-09  Δμ=-0.0100 ± 0.0787[0m
+[1;35m[07:52:51] [TEST]   PGC   3844 [   ] IC 1613                   vrot=  26.8  X_i=-6.3594e-09  Δμ=-0.0800 ± 0.0675[0m
+[1;35m[07:52:51] [TEST]   PGC  45314 [   ] IC 4182                   vrot=  39.4  X_i=-1.7190e-09  Δμ=+0.0890 ± 0.0721[0m
+[1;35m[07:52:51] [TEST]   PGC   1014 [   ] NGC 0055                  vrot=  58.7  X_i=+8.8141e-09  Δμ=-0.1760 ± 0.0431[0m
+[1;35m[07:52:51] [TEST]   PGC  39600 [   ] NGC 4258                  vrot= 212.9  X_i=+1.3772e-08  Δμ=-0.0370 ± 0.0982[0m
+[1;35m[07:52:51] [TEST]   PGC  13179 [R22] NGC 1365                  vrot= 198.3  X_i=+1.7925e-08  Δμ=-0.0220 ± 0.1060[0m
+[1;35m[07:52:51] [TEST]   PGC   2758 [   ] NGC 0247                  vrot=  84.5  X_i=+2.9368e-08  Δμ=-0.1930 ± 0.0421[0m
+[1;35m[07:52:51] [TEST]   PGC  73049 [   ] NGC 7793                  vrot=  85.9  X_i=+3.0695e-08  Δμ=-0.1310 ± 0.0894[0m
+[1;35m[07:52:51] [TEST]   PGC   3238 [   ] NGC 0300                  vrot=  89.4  X_i=+3.4108e-08  Δμ=-0.2610 ± 0.0922[0m
+[1;35m[07:52:51] [TEST]   PGC  63616 [   ] NGC 6822                  vrot=  92.4  X_i=+3.7143e-08  Δμ=-0.2330 ± 0.0728[0m
+[1;35m[07:52:51] [TEST]   PGC   5818 [   ] NGC 0598 (M33)            vrot= 100.1  X_i=+4.5389e-08  Δμ=-0.1940 ± 0.0923[0m
+[1;35m[07:52:51] [TEST]   PGC   9332 [   ] NGC 0925                  vrot= 105.6  X_i=+4.8001e-08  Δμ=-0.0710 ± 0.0721[0m
+[1;35m[07:52:51] [TEST]   PGC  32007 [   ] NGC 3351 (M95)            vrot= 150.7  X_i=+4.9208e-08  Δμ=+0.0290 ± 0.0949[0m
+[1;35m[07:52:51] [TEST]   PGC  21396 [   ] NGC 2403                  vrot= 120.2  X_i=+6.5252e-08  Δμ=+0.0390 ± 0.1118[0m
+[1;35m[07:52:51] [TEST]   PGC  32192 [   ] NGC 3368 (M96)            vrot= 202.2  X_i=+9.6875e-08  Δμ=-0.1110 ± 0.1082[0m
+[1;35m[07:52:51] [TEST]   PGC  34695 [   ] NGC 3627 (M66)            vrot= 174.7  X_i=+1.0794e-07  Δμ=-0.2310 ± 0.1281[0m
+[1;35m[07:52:51] [TEST]   PGC  51969 [R22] NGC 5643                  vrot= 171.2  X_i=+1.1308e-07  Δμ=+0.1260 ± 0.1217[0m
+[1;35m[07:52:51] [TEST]   PGC  13727 [R22] NGC 1448                  vrot= 185.1  X_i=+1.3770e-07  Δμ=-0.0430 ± 0.0973[0m
+[1;35m[07:52:51] [TEST]   PGC  37967 [R22] NGC 4038                  vrot= 169.1  X_i=+1.3787e-07  Δμ=-0.0670 ± 0.1818[0m
+[1;35m[07:52:51] [TEST]   PGC   2557 [   ] M 31                      vrot= 256.7  X_i=+1.6247e-07  Δμ=-0.1330 ± 0.1198[0m
+[1;35m[07:52:51] [TEST]   PGC  50063 [R22] M 101                     vrot= 274.1  X_i=+3.2776e-07  Δμ=+0.1080 ± 0.0899[0m
+[0;34m[07:52:51] [PROCESS] Methodology: Weighted linear regression Delta_mu = slope * X_i + intercept is performed on the full CF4 matched sample, with weights = 1/delta_mu_err^2. The TEP-predicted slope is -kappa_Cep (negative, as deeper potentials yield shorter Cepheid distances). Both screened (S_total * U_i) and unscreened (U_i) potential coordinates are evaluated to assess screening sensitivity.[0m
+[0;34m[07:52:51] [PROCESS] Running Xi regression...[0m
+[1;35m[07:52:51] [TEST]   Weighted fit: Δμ = (5.3556e+05 ± 2.5438e+05) · X_i + (-0.1298 ± 0.0207)[0m
+[1;35m[07:52:51] [TEST]   Slope significance: 2.11σ[0m
+[1;35m[07:52:51] [TEST]   Pearson r: +0.3026 (p=0.1710)[0m
+[1;35m[07:52:51] [TEST]   Spearman ρ: +0.1508 (p=0.5030)[0m
+[1;35m[07:52:51] [TEST]   R² = 0.0693, χ²/dof = 1.71[0m
+[1;35m[07:52:51] [TEST]   TEP predicted slope: -1.2200e+06 (default), -6.6500e+05 (joint), -1.2750e+06 (WLS), -9.6000e+05 (canonical)[0m
+[1;35m[07:52:51] [TEST]   vs TEP (default): |slope - pred| / σ = 6.90σ[0m
+[1;35m[07:52:51] [TEST]   vs TEP (joint): |slope - pred| / σ = 4.72σ[0m
+[1;35m[07:52:51] [TEST]   vs TEP (wls): |slope - pred| / σ = 7.12σ[0m
+[1;35m[07:52:51] [TEST]   vs TEP (canonical): |slope - pred| / σ = 5.88σ[0m
+[1;35m[07:52:51] [TEST]   Unscreened fit: slope = 4.0324e+05 ± 1.6638e+05 (2.42σ)[0m
+[1;35m[07:52:51] [TEST] Sign test: 17/22 galaxies with Δμ < 0 (2.39σ, p=0.0085)[0m
+[1;35m[07:52:51] [TEST] Interpretation: The full-sample regression slope of 5.3556e+05 ± 2.5438e+05 (2.11σ) is compared against the TEP-predicted slope of -1.2200e+06 (default). A non-zero slope with the correct (negative) sign supports the TEP interpretation, while a slope consistent with zero supports a pipeline-offset systematic.[0m
+[0;34m[07:52:51] [PROCESS] 
+Running Xi regression by subset...[0m
+[1;35m[07:52:51] [TEST]   r22_matched (screened, N=6): slope = 5.1764e+05 ± 3.8856e+05 (1.33σ), r = +0.6555[0m
+[1;35m[07:52:51] [TEST]   r22_matched (unscreened, N=6): slope = 5.2204e+05 ± 3.7616e+05 (1.39σ), r = +0.7189[0m
+[1;35m[07:52:51] [TEST]   non_r22 (screened, N=16): slope = -5.4650e+05 ± 5.6043e+05 (0.98σ), r = -0.2511[0m
+[1;35m[07:52:51] [TEST]   non_r22 (unscreened, N=16): slope = 7.2937e+04 ± 2.4277e+05 (0.30σ), r = -0.0280[0m
+[0;34m[07:52:51] [PROCESS] 
+Checking mass/potential confound...[0m
+[1;35m[07:52:51] [TEST]   R22-matched (N=6): mean X_i = 1.2068e-07, median vrot = 178.1 km/s[0m
+[1;35m[07:52:51] [TEST]   Non-R22 (N=16): mean X_i = 4.4651e-08, median vrot = 96.2 km/s[0m
+[1;35m[07:52:51] [TEST]   Welch's t-test on X_i: t = 1.52, p = 0.1833[0m
+[1;35m[07:52:51] [TEST]   R22-matched: mean Δμ = -0.0090 mag[0m
+[1;35m[07:52:51] [TEST]   Non-R22: mean Δμ = -0.1065 mag[0m
+[1;35m[07:52:51] [TEST]   R22 mean vrot = 171.1 km/s[0m
+[1;35m[07:52:51] [TEST]   Non-R22 mean vrot = 114.1 km/s[0m
+[0;34m[07:52:51] [PROCESS] 
+Running leave-one-out on weighted mean Δμ...[0m
+[1;35m[07:52:51] [TEST]   Full weighted mean: -0.1053 ± 0.0172 (6.13σ)[0m
+[1;35m[07:52:51] [TEST]   Most influential: PGC 2758 — Δμ changes from -0.1053 to -0.0878 (6.13σ → 4.66σ)[0m
+[1;35m[07:52:51] [TEST]   LOO sigma range: 4.66σ to 6.61σ[0m
+[0;34m[07:52:51] [PROCESS] 
+Running leave-one-out on Xi regression slope...[0m
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_36_xi_regression.py:779: RuntimeWarning: divide by zero encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_36_xi_regression.py:779: RuntimeWarning: overflow encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/scripts/steps/step_36_xi_regression.py:779: RuntimeWarning: invalid value encountered in matmul
+  H = X @ np.linalg.inv(X.T @ W @ X) @ X.T @ W
+[1;35m[07:52:51] [TEST]   Student-t (nu=4) robust slope: 5.3556e+05[0m
+[1;35m[07:52:51] [TEST]   Full slope: 5.3556e+05[0m
+[1;35m[07:52:51] [TEST]   Most influential on slope: PGC 50063 — slope 5.3556e+05 → 1.0421e+05 (0.24σ)[0m
+[1;35m[07:52:51] [TEST]   M101 (PGC 50063) excluded: slope=1.0421e+05 ± 4.3732e+05 (0.24σ)[0m
+[0;34m[07:52:51] [PROCESS] Methodology: Sensitivity analysis comprises (1) simple regression with M101 and NGC 5643 excluded, (2) hierarchical regression Delta_mu = beta * X_i + gamma * I_R22 + alpha with a pipeline-offset indicator, and (3) Student-t (nu=4) robust regression via iteratively reweighted least squares to assess outlier influence on the slope.[0m
+[0;34m[07:52:51] [PROCESS] 
+Running sensitivity analysis (Table 3b)...[0m
+[1;35m[07:52:51] [TEST]   Excl. M101+NGC5643 (N=20): slope = -1.5526e+05 ± 4.5609e+05 (0.34σ)[0m
+[1;35m[07:52:51] [TEST]   Hierarchical (full, N=22): β=1.7217e+05±3.1932e+05 (0.54σ), γ=+0.1189±0.0631 (1.88σ)[0m
+[1;35m[07:52:51] [TEST]   Hierarchical (excl, N=20): β=-3.4828e+05±4.8195e+05 (0.72σ)[0m
+[1;35m[07:52:51] [TEST]   Student-t (ν=4, full, N=22): β=2.9482e+05±2.9896e+05 (0.99σ), γ=+0.1150±0.0591 (1.95σ)[0m
+[0;34m[07:52:51] [PROCESS] 
+Running power calculation for N=6 R22-matched test...[0m
+[1;35m[07:52:51] [TEST]   To detect 0.02 mag at 80% power: N ≈ 172[0m
+[1;35m[07:52:51] [TEST]   To detect 0.03 mag at 80% power: N ≈ 77[0m
+[1;35m[07:52:51] [TEST]   To detect 0.05 mag at 80% power: N ≈ 28[0m
+[1;35m[07:52:51] [TEST]   N=6 minimum detectable effect (80% power): 0.107 mag[0m
+[1;35m[07:52:51] [TEST]   Typical per-galaxy error: 0.094 mag[0m
+[0;34m[07:52:51] [PROCESS] Loading TEP-H0 raw data for comparison...[0m
+[1;32m[07:52:51] [SUCCESS]   18 TEP-H0 galaxies (excluding anchors)[0m
+[0;37m[07:52:51] [INFO]   Screening factors loaded from TEP-H0 Step 03[0m
+[0;34m[07:52:51] [PROCESS] 
+Running Xi regression on TEP-H0 raw data (screened)...[0m
+[1;35m[07:52:51] [TEST]   TEP-H0 (screened): slope = -1.4684e+05 ± 5.0769e+05 (0.29σ), r = +0.0098[0m
+[1;35m[07:52:51] [TEST]     Sign: NEGATIVE (correct for TEP)[0m
+[1;35m[07:52:51] [TEST]   TEP-H0 (unscreened): slope = -1.9100e+05 ± 3.0184e+05 (0.63σ), r = -0.0922[0m
+[1;35m[07:52:51] [TEST]     Sign: NEGATIVE (correct for TEP)[0m
+[1;35m[07:52:51] [TEST]   TEP predicted slope: -1.2200e+06 (default), -6.6500e+05 (joint), -1.2750e+06 (WLS)[0m
+[1;32m[07:52:51] [SUCCESS] Interpretation: The Xi regression on 22 galaxies yields a slope of 5.3556e+05 ± 2.5438e+05. The leave-one-out analysis identifies PGC 50063 as the most influential galaxy for the slope. The mass/potential confound check (Welch p = 0.1833) assesses whether R22 and non-R22 subsamples have comparable X_i distributions. Under TEP, the slope should be non-zero with negative sign; under a pipeline-offset systematic, the slope should be consistent with zero.[0m
+[1;32m[07:52:51] [SUCCESS] Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_36_xi_regression.png[0m
+[1;32m[07:52:51] [SUCCESS] 
+Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_36_xi_regression.json[0m
+[1;32m[07:52:51] [SUCCESS] Galaxy table CSV saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_36_22galaxy_table.csv[0m
+[1;32m[07:52:51] [SUCCESS] Step 36 complete[0m

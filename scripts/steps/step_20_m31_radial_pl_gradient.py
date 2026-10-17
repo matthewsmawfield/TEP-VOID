@@ -83,14 +83,16 @@ class Step20M31RadialGradient:
         # baseline Pan-STARRS delta_W (0.356) used in the manuscript;
         # step_11_m31_radial_suppression.json contains the step-model
         # delta_a (0.312) which is a related but distinct quantity.
-        # The HST PHAT baseline (ΔW = 0.630 ± 0.195, 3.24σ) from
+        # The HST PHAT baseline (ΔW = 0.681 ± 0.187, 3.65σ) from
         # step_26_m31_phat_robustness_summary.json uses the actual HST
         # J/H photometry of Kodric et al. 2018 with inner/outer cuts
         # at 5/15 kpc, restricted to the PHAT footprint. This value
-        # is consistent with the TEP-H0 manuscript, which reports
-        # ΔW = +0.630 ± 0.195 (3.24σ) and labels M31 as a diagnostic
-        # signal because it fails matched confounder controls
-        # (colour-matched 0.1σ, eW-matched 0.8σ). The LMC gradient
+        # is consistent with the TEP-H0 manuscript, which carries M31
+        # as conditional evidence: the channel survives period-colour
+        # matching (+0.604 ± 0.277, 2.2σ) and retains a reddening-free
+        # ΔW = +0.501 ± 0.171 under band decomposition, but collapses
+        # under joint environment-plus-quality control
+        # (-0.069 ± 0.126). The LMC gradient
         # (3.30σ, robust to confounders) is the strongest
         # single-galaxy evidence. Both M31 values are retained for
         # cross-validation.

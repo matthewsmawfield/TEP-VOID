@@ -1,22 +1,20 @@
-[23:48:46] [INFO] ======================================================================
-[23:48:46] [INFO] Step 72: H0(z) Falsification
-[23:48:46] [INFO] ======================================================================
-[23:48:46] [PROCESS] Loading Pantheon+ for H0(z) falsification...
-[23:48:46] [SUCCESS]   1459 Hubble-flow SNe
-[23:48:46] [INFO]   z range: 0.0103 - 2.2613
-[23:48:46] [PROCESS] Loading covariance /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/Pantheon+SH0ES_STAT+SYS.cov...
-[23:48:46] [SUCCESS]   Loaded 1701x1701 covariance
-[23:48:47] [INFO]   STAT+SYS file is not positive definite; reconstructing covariance from published errors
-[23:48:47] [PROCESS] 
+[22:24:32] [INFO] ======================================================================
+[22:24:32] [INFO] Step 72: H0(z) Falsification
+[22:24:32] [INFO] ======================================================================
+[22:24:32] [PROCESS] Loading Pantheon+ for H0(z) falsification...
+[22:24:32] [SUCCESS]   1459 Hubble-flow SNe
+[22:24:32] [INFO]   z range: 0.0103 - 2.2613
+[22:24:32] [PROCESS] Loading covariance /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/data/raw/Pantheon+SH0ES_STAT+SYS.cov...
+[22:24:32] [SUCCESS]   Loaded 1701x1701 covariance
+[22:24:32] [PROCESS] 
 Fitting models...
-[23:48:47] [TEST] 
+[22:24:32] [TEST] 
 Model comparison:
-[23:48:47] [INFO]   Flat_TEP               chi2=      4515.2  BIC=    4529.8  dBIC=    0.00  n_p=2
-[23:48:47] [INFO]   KBC_Exponential_Fixed  chi2=      5049.8  BIC=    5057.1  dBIC=  527.27  n_p=1
-[23:48:47] [INFO]   KBC_Gaussian_Fixed     chi2=      4658.7  BIC=    4666.0  dBIC=  136.16  n_p=1
-[23:48:47] [INFO]   Free_Exponential       chi2=      4515.2  BIC=    4544.4  dBIC=   14.57  n_p=4
-[23:48:47] [INFO]   Free_Gaussian          chi2=      4518.8  BIC=    4547.9  dBIC=   18.08  n_p=4
-[23:48:47] [SUCCESS] 
+[22:24:32] [INFO]   Flat_TEP               chi2=      1331.7  BIC=    1339.0  dBIC=    0.00  n_p=1
+[22:24:32] [INFO]   KBC_Exponential_Fixed  chi2=      1368.0  BIC=    1375.2  dBIC=   36.21  n_p=1
+[22:24:32] [INFO]   KBC_Gaussian_Fixed     chi2=      1339.5  BIC=    1346.8  dBIC=    7.75  n_p=1
+[22:24:32] [INFO]   Free_Exponential       chi2=      1331.7  BIC=    1353.6  dBIC=   14.57  n_p=3
+[22:24:32] [INFO]   Free_Gaussian          chi2=      1331.3  BIC=    1353.1  dBIC=   14.09  n_p=3
+[22:24:32] [SUCCESS] 
 Saved results to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_72_h0z_falsification.json
-[23:48:47] [SUCCESS] Saved figure /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_72_h0z_falsification.png
-[23:48:47] [SUCCESS] step_72 completed in 0.3s
+[22:24:33] [SUCCESS] Saved figure /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_72_h0z_falsification.png

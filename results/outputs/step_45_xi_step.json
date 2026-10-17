@@ -12,19 +12,26 @@
       "n_low": 878
     },
     "xi_step": {
-      "value_mag": 0.0055342659144213095,
-      "error_mag": 0.05310771622361921,
-      "significance_sigma": 0.10420832052198079,
+      "value_mag": 0.015043411922748643,
+      "error_mag": 0.00939846424883368,
+      "significance_sigma": 1.6006244769846822,
       "direction": "TEP-predicted",
-      "n_highX": 1336,
-      "n_lowX": 17
+      "n_highX": 924,
+      "n_lowX": 429,
+      "pre_bbc_tripp_xi_step_mag": -0.042421027063098554,
+      "pre_bbc_tripp_xi_step_err_mag": 0.010569419232087813,
+      "pre_bbc_tripp_xi_step_sigma": 4.013562725784602,
+      "pre_bbc_tripp_slope": -126518.90359698991,
+      "pre_bbc_tripp_slope_err": 26805.82874802123,
+      "pre_bbc_tripp_slope_sigma": 4.7198280935943595,
+      "pre_bbc_tripp_p_value": 2.6057588045731556e-06
     },
     "xi_regression": {
-      "slope": 16194.162336658806,
-      "slope_err": 18477.946881207212,
-      "significance_sigma": 0.8764048538925554,
-      "r": 0.023837114347832967,
-      "p_value": 0.38096578226429045
+      "slope": 22645.572234590672,
+      "slope_err": 24251.120916524458,
+      "significance_sigma": 0.9337948671543763,
+      "r": 0.025397074927298004,
+      "p_value": 0.350576577908979
     },
     "mass_regression": {
       "slope_mag_per_dex": 0.0031539971670889897,
@@ -34,32 +41,32 @@
       "p_value": 0.5040297764938504
     },
     "xi_step_mass_corrected": {
-      "value_mag": -0.0017516650538222378,
-      "error_mag": 0.053359178405359836,
-      "significance_sigma": 0.03282781156252372
+      "value_mag": 0.010369013474962621,
+      "error_mag": 0.009406843981459386,
+      "significance_sigma": 1.1022839855109368
     },
     "xi_regression_mass_corrected": {
-      "slope": 7989.849467479049,
-      "slope_err": 18478.865488390304,
-      "significance_sigma": 0.43237770589860197,
-      "r": 0.011762660755510076,
-      "p_value": 0.6655359233299762
+      "slope": 9089.463025673533,
+      "slope_err": 24253.67578767431,
+      "significance_sigma": 0.37476641088328505,
+      "r": 0.010195544196147092,
+      "p_value": 0.7078930159489554
     },
     "joint_fit": {
-      "mass_slope": 0.000728444301705343,
-      "mass_slope_err": null,
-      "xi_slope": 14299.301738412772,
-      "xi_slope_err": null,
-      "xi_significance": null,
-      "condition_number": 3572564783861191.0,
-      "degenerate": true
+      "mass_slope": -0.0017644256638767288,
+      "mass_slope_err": 0.008607812259595124,
+      "xi_slope": 30229.202061565138,
+      "xi_slope_err": 44241.52382907491,
+      "xi_significance": 0.6832766922394958,
+      "condition_number": 11.213789048150007,
+      "degenerate": false
     },
     "stretch_vs_xi": {
-      "slope": -1112298.0815177474,
-      "slope_err": 114654.94366711151,
-      "significance": 9.701265780106151,
-      "r": -0.25834568060304514,
-      "p_value": 1.5364534181597609e-21,
+      "slope": -1673076.299855064,
+      "slope_err": 149712.67416531497,
+      "significance": 11.175248249240596,
+      "r": -0.2944030754138361,
+      "p_value": 9.160758096029928e-28,
       "note": "X_i is derived from HOST_LOGMASS via the Tully-Fisher relation, so this correlation is a reparameterization of the well-known mass-stretch correlation and is NOT independent TEP evidence.",
       "stretch_vs_mass": {
         "slope": -0.3261444849946806,
@@ -69,8 +76,8 @@
         "p_value": 5.151309679451662e-28
       },
       "partial_corr_xi_given_mass": {
-        "r": -0.0878785722283287,
-        "p_value": 0.0014054948285903638,
+        "r": -0.09028019874226548,
+        "p_value": 0.001033851050281025,
         "note": "Partial correlation of stretch with X_i after controlling for mass. Since X_i is a deterministic function of mass via Tully-Fisher, this is ~0, confirming the stretch-X_i correlation is entirely explained by the mass-stretch correlation."
       }
     }

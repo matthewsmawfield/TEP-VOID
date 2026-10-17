@@ -1,48 +1,48 @@
-[19:15:22] [INFO] ======================================================================
-[19:15:22] [INFO] Step 46: Anchor Sensitivity Analysis
-[19:15:22] [INFO] ======================================================================
-[19:15:22] [PROCESS]   Loaded 41 host galaxies
-[19:15:22] [INFO]   Current sigma_ref = 87.165 km/s
-[19:15:22] [INFO]   Current U_ref = 7597.750 (km/s)^2
-[19:15:22] [INFO]   N4258 contribution: 7273.8 (95.7% of U_ref)
-[19:15:22] [INFO] 
-[19:15:22] [TEST]   --- N4258 sigma sensitivity ---
-[19:15:22] [TEST]   sigma_N4258 =  60: sigma_ref =  48.00, X_max =  8.869, kappa = 2.383e+05, Delta_mu_max = 0.2114 mag
-[19:15:22] [TEST]   sigma_N4258 =  70: sigma_ref =  54.95, X_max =  8.789, kappa = 2.358e+05, Delta_mu_max = 0.2072 mag
-[19:15:22] [TEST]   sigma_N4258 =  80: sigma_ref =  62.00, X_max =  8.697, kappa = 2.485e+05, Delta_mu_max = 0.2161 mag
-[19:15:22] [TEST]   sigma_N4258 =  90: sigma_ref =  69.13, X_max =  8.593, kappa = 2.492e+05, Delta_mu_max = 0.2141 mag
-[19:15:22] [TEST]   sigma_N4258 = 100: sigma_ref =  76.32, X_max =  8.477, kappa = 2.592e+05, Delta_mu_max = 0.2197 mag
-[19:15:22] [TEST]   sigma_N4258 = 115: sigma_ref =  87.17, X_max =  8.280, kappa = 2.660e+05, Delta_mu_max = 0.2202 mag
-[19:15:22] [TEST]   sigma_N4258 = 130: sigma_ref =  98.08, X_max =  8.055, kappa = 2.640e+05, Delta_mu_max = 0.2126 mag
-[19:15:22] [TEST]   sigma_N4258 = 150: sigma_ref = 112.69, X_max =  7.712, kappa = 2.786e+05, Delta_mu_max = 0.2149 mag
-[19:15:22] [INFO] 
-[19:15:22] [TEST]   --- Alternative weighting schemes ---
-[19:15:22] [TEST]   Current (0.20/0.25/0.55): sigma_ref =  87.17, X_max =  8.280, Delta_mu_max = 0.2202 mag
-[19:15:22] [TEST]   Disk N4258 (0.20/0.25/0.55): sigma_ref =  62.00, X_max =  8.697, Delta_mu_max = 0.2161 mag
-[19:15:22] [TEST]   Equal weights (1/3 each): sigma_ref =  70.00, X_max =  8.580, Delta_mu_max = 0.2155 mag
-[19:15:22] [TEST]   Equal weights, disk N4258: sigma_ref =  51.24, X_max =  8.833, Delta_mu_max = 0.2090 mag
-[19:15:22] [TEST]   Geometric only (0.50/0.50/0): sigma_ref =  27.17, X_max =  9.043, Delta_mu_max = 0.2119 mag
-[19:15:22] [TEST]   N4258 dominant (0.10/0.15/0.75): sigma_ref = 100.47, X_max =  8.002, Delta_mu_max = 0.2184 mag
-[19:15:22] [INFO] 
-[19:15:22] [INFO] ======================================================================
-[19:15:22] [INFO] KEY FINDINGS
-[19:15:22] [INFO] ======================================================================
-[19:15:22] [INFO]   1. N4258 sigma = 115 km/s contributes 95.7% of U_ref
-[19:15:22] [INFO]   2. Using disk sigma = 80 km/s reduces U_ref by 49.4%
-[19:15:22] [INFO]   3. All X_i increase by ~42.0% on average
-[19:15:22] [INFO]   4. kappa_Cep decreases by 6.6% (from 2.660e+05 to 2.485e+05)
-[19:15:22] [INFO]   5. Maximum per-host correction changes from 0.2202 to 0.2161 mag
-[19:15:22] [INFO]   6. The SIGNIFICANCE of kappa_Cep (1.11 sigma) is UNCHANGED
-[19:15:22] [INFO]      because it is a signal-to-noise ratio (kappa/error),
-[19:15:22] [INFO]      and both signal and noise scale by the same factor.
-[19:15:22] [INFO]   7. The amplitude ledger is NOT materially affected:
-[19:15:22] [INFO]      the Cepheid channel bound (~0.09 mag) is preserved.
-[19:15:22] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_46_anchor_sensitivity.png
-[19:15:22] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_46_anchor_sensitivity.json
-[19:15:22] [SUCCESS] Step 46 complete
-[19:15:22] [SUCCESS] step_46 completed in 0.4s
-[19:15:22] [INFO] 
-[19:15:22] [INFO] ================================================================================
-[19:15:22] [INFO]    Pipeline complete: 1 succeeded, 0 failed, 0.4s total
-[19:15:22] [INFO] ================================================================================
-[19:15:22] [INFO] 
+[09:32:52] [INFO] ======================================================================
+[09:32:52] [INFO] Step 46: Anchor Sensitivity Analysis
+[09:32:52] [INFO] ======================================================================
+[09:32:52] [PROCESS]   Loaded 41 host galaxies
+[09:32:52] [INFO]   Current sigma_ref = 87.165 km/s
+[09:32:52] [INFO]   Current U_ref = 7597.750 (km/s)^2
+[09:32:52] [INFO]   N4258 contribution: 7273.8 (95.7% of U_ref)
+[09:32:52] [INFO] 
+[09:32:52] [TEST]   --- N4258 sigma sensitivity ---
+[09:32:52] [TEST]   sigma_N4258 =  60: sigma_ref =  48.00, X_max =  6.046, kappa = 6.007e+05, Delta_mu_max = 0.3632 mag
+[09:32:52] [TEST]   sigma_N4258 =  70: sigma_ref =  54.95, X_max =  5.967, kappa = 6.116e+05, Delta_mu_max = 0.3649 mag
+[09:32:52] [TEST]   sigma_N4258 =  80: sigma_ref =  62.00, X_max =  5.875, kappa = 6.269e+05, Delta_mu_max = 0.3683 mag
+[09:32:52] [TEST]   sigma_N4258 =  90: sigma_ref =  69.13, X_max =  5.771, kappa = 6.296e+05, Delta_mu_max = 0.3634 mag
+[09:32:52] [TEST]   sigma_N4258 = 100: sigma_ref =  76.32, X_max =  5.654, kappa = 6.587e+05, Delta_mu_max = 0.3725 mag
+[09:32:52] [TEST]   sigma_N4258 = 115: sigma_ref =  87.17, X_max =  5.457, kappa = 6.650e+05, Delta_mu_max = 0.3629 mag
+[09:32:52] [TEST]   sigma_N4258 = 130: sigma_ref =  98.08, X_max =  5.232, kappa = 6.204e+05, Delta_mu_max = 0.3246 mag
+[09:32:52] [TEST]   sigma_N4258 = 150: sigma_ref = 112.69, X_max =  4.890, kappa = 4.134e+05, Delta_mu_max = 0.2021 mag
+[09:32:52] [INFO] 
+[09:32:52] [TEST]   --- Alternative weighting schemes ---
+[09:32:52] [TEST]   Current (0.20/0.25/0.55): sigma_ref =  87.17, X_max =  5.457, Delta_mu_max = 0.3629 mag
+[09:32:52] [TEST]   Disk N4258 (0.20/0.25/0.55): sigma_ref =  62.00, X_max =  5.875, Delta_mu_max = 0.3683 mag
+[09:32:52] [TEST]   Equal weights (1/3 each): sigma_ref =  70.00, X_max =  5.757, Delta_mu_max = 0.3671 mag
+[09:32:52] [TEST]   Equal weights, disk N4258: sigma_ref =  51.24, X_max =  6.010, Delta_mu_max = 0.3729 mag
+[09:32:52] [TEST]   Geometric only (0.50/0.50/0): sigma_ref =  27.17, X_max =  6.220, Delta_mu_max = 0.3321 mag
+[09:32:52] [TEST]   N4258 dominant (0.10/0.15/0.75): sigma_ref = 100.47, X_max =  5.179, Delta_mu_max = 0.3377 mag
+[09:32:52] [INFO] 
+[09:32:52] [INFO] ======================================================================
+[09:32:52] [INFO] KEY FINDINGS
+[09:32:52] [INFO] ======================================================================
+[09:32:52] [INFO]   1. N4258 sigma = 115 km/s contributes 95.7% of U_ref
+[09:32:52] [INFO]   2. Using disk sigma = 80 km/s reduces U_ref by 49.4%
+[09:32:52] [INFO]   3. All X_i increase by ~94.5% on average
+[09:32:52] [INFO]   4. kappa_Cep decreases by 5.7% (from 6.650e+05 to 6.269e+05)
+[09:32:52] [INFO]   5. Maximum per-host correction changes from 0.3629 to 0.3683 mag
+[09:32:52] [INFO]   6. The SIGNIFICANCE of kappa_Cep (1.83 sigma) is UNCHANGED
+[09:32:52] [INFO]      because it is a signal-to-noise ratio (kappa/error),
+[09:32:52] [INFO]      and both signal and noise scale by the same factor.
+[09:32:52] [INFO]   7. The amplitude ledger is NOT materially affected:
+[09:32:52] [INFO]      the Cepheid channel bound (~0.09 mag) is preserved.
+[09:32:52] [SUCCESS]   Figure saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/figures/step_46_anchor_sensitivity.png
+[09:32:52] [SUCCESS]   Summary saved to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_46_anchor_sensitivity.json
+[09:32:52] [SUCCESS] Step 46 complete
+[09:32:52] [SUCCESS] step_46 completed in 1.0s
+[09:32:52] [INFO] 
+[09:32:52] [INFO] ================================================================================
+[09:32:52] [INFO]    Pipeline complete: 1 succeeded, 0 failed, 1.0s total
+[09:32:52] [INFO] ================================================================================
+[09:32:52] [INFO] 

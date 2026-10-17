@@ -4,56 +4,56 @@
   "sample": "primary (MF2023)",
   "n_galaxies": 20,
   "ols": {
-    "slope": 351403.0054454789,
-    "slope_err": 42385.83635743282,
-    "slope_sigma": 8.29057618403834,
-    "intercept": -0.04762948440280709,
-    "chi2_dof": 22.705324785379183
+    "slope": -2006049.2330796975,
+    "slope_err": 140043.8021733383,
+    "slope_sigma": -14.324441367256817,
+    "intercept": 0.07123643913532617,
+    "chi2_dof": 15.12443780174453
   },
   "mcmc_hierarchical": {
-    "slope_median": -271832.8434962294,
-    "slope_std": 436064.4862108526,
-    "slope_16th": -707111.9476160796,
-    "slope_84th": 138980.15743304137,
-    "intercept_median": 0.010732051427108515,
-    "intercept_std": 0.043066357686876895,
-    "sigma_int_median": 0.14613653731553328,
-    "sigma_int_std": 0.027048116780629135,
-    "sigma_int_16th": 0.12322282368641804,
-    "sigma_int_84th": 0.1759146149323516,
-    "acceptance_rate": 0.2999833333333334,
-    "gelman_rubin_rhat_slope": 1.0006559040435345,
-    "gelman_rubin_rhat_intercept": 1.0005194778484978,
-    "gelman_rubin_rhat_sigma_int": 1.0010303176110462,
+    "slope_median": -1590735.7207578425,
+    "slope_std": 776115.1170908989,
+    "slope_16th": -2320333.0199741432,
+    "slope_84th": -817062.5405937333,
+    "intercept_median": 0.05233790096047011,
+    "intercept_std": 0.041119433684853074,
+    "sigma_int_median": 0.12977633067818165,
+    "sigma_int_std": 0.024983033707582643,
+    "sigma_int_16th": 0.10897165711441578,
+    "sigma_int_84th": 0.1565174567929687,
+    "acceptance_rate": 0.3093666666666667,
+    "gelman_rubin_rhat_slope": 1.0051157781939635,
+    "gelman_rubin_rhat_intercept": 1.0026859808593325,
+    "gelman_rubin_rhat_sigma_int": 1.0000939963197804,
     "converged": true,
     "n_chains": 4,
     "n_burn": 5000,
     "n_sample_per_chain": 10000,
-    "p_slope_negative": 0.749475,
-    "p_slope_below_predicted": 0.7061
+    "p_slope_negative": 0.976275,
+    "p_slope_below_predicted": 0.9613
   },
   "bootstrap": {
-    "slope_median": 375575.1383981545,
-    "slope_std": 433968.1998346344,
-    "slope_2_5": -525625.3651139755,
-    "slope_97_5": 1128491.8301076451
+    "slope_median": -1993308.3458947707,
+    "slope_std": 720406.3058593312,
+    "slope_2_5": -3469720.638978085,
+    "slope_97_5": -646823.1092289784
   },
   "tep_prediction": {
-    "predicted_slope_default": -55981.595092024545,
-    "predicted_slope_joint": -40797.546012269944,
-    "observed_over_predicted": 4.855753807110728,
+    "predicted_slope_default": -187116.56441717793,
+    "predicted_slope_joint": -101993.86503067486,
+    "observed_over_predicted": 8.501308933886174,
     "sign": "negative (NIR more compressed at high X_i)",
     "note": "TEP predicts a NEGATIVE slope for delta_mu_band = mu_NIR - mu_opt vs X_i, because NIR has steeper |b| and thus more distance compression."
   },
   "loo_analysis": {
     "most_influential_galaxy": "NGC 4424",
-    "loo_slope_without_most_influential": 351890.55681523436,
-    "loo_slope_min": -1146949.169879278,
-    "loo_slope_max": 432214.98892618844
+    "loo_slope_without_most_influential": -2006257.3626530762,
+    "loo_slope_min": -2228617.702666643,
+    "loo_slope_max": -1621995.3943598955
   },
   "outlier_analysis": {
     "n_outliers": 0,
-    "sigma_clipped_slope": 351403.0054454789,
-    "sigma_clipped_slope_err": 42385.83635743282
+    "sigma_clipped_slope": -2006049.2330796975,
+    "sigma_clipped_slope_err": 140043.8021733383
   }
 }

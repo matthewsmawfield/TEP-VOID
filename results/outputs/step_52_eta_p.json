@@ -26,12 +26,12 @@
     "manuscript_adoption": "eta_P = 1/2 (geometric fiducial); only the product eta_P * epsilon_0 is fixed by the fitted kappa_Cep"
   },
   "consistency_check": {
-    "kappa_Cep_fitted": 452000.0,
+    "kappa_Cep_fitted": 1275000.0,
     "b_nir": 3.26,
-    "epsilon_0_eta_P": 319254.1165644172,
-    "epsilon_0": 638508.2331288344,
-    "epsilon_env_typical": 0.06385082331288344,
+    "epsilon_0_eta_P": 900550.8819018406,
+    "epsilon_0": 1801101.7638036811,
+    "epsilon_env_typical": 0.1801101763803681,
     "X_i_typical": 1e-07,
-    "note": "With the geometric fiducial eta_P = 1/2, the fitted kappa_Cep = 0.452e6 (redshift-only WLS) implies bar_epsilon_0 ~ 6.38e5 and epsilon_env ~ 0.064 (6.4%) at typical Cepheid locations (X_i ~ 1e-7), matching the manuscript value. The disformal coupling is a spatial distortion (not a frequency shift), so the relevant constraint is on stellar dynamics, not spectroscopic line shifts."
+    "note": "With the geometric fiducial eta_P = 1/2, the fitted kappa_Cep = 1.275e6 (redshift-only WLS) implies bar_epsilon_0 ~ 1.80e6 and epsilon_env ~ 0.180 (18%) at typical Cepheid locations (X_i ~ 1e-7), matching the manuscript value. The disformal coupling is a spatial distortion (not a frequency shift), so the relevant constraint is on stellar dynamics, not spectroscopic line shifts."
   }
 }

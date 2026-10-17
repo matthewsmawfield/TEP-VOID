@@ -2,12 +2,13 @@
 """
 Step 51: Bayesian hierarchical analysis of the band-dependence test
 
-The step_49 OLS regression found a slope of +2.27e5 +/- 8.6e4 (2.62sigma)
-for the Madore & Freedman (2023) same-team band-dependence test — the
-WRONG sign for TEP (which predicts a negative slope), with chi^2/dof =
-6.40 indicating substantial intrinsic scatter.  The cross-team sample
-(KP vs R22, N=9) gives the predicted negative sign at 0.16sigma with
-chi^2/dof = 0.90.
+The step_49 OLS regression on the sigma_* potential coordinate finds a
+slope of -2.01e6 +/- 1.40e5 (chi^2/dof = 15.1) for the Madore &
+Freedman (2023) same-team band-dependence test — the predicted
+negative sign for TEP, with amplitude an order of magnitude above the
+pure kappa_P prediction.  The cross-team sample (KP vs R22, N=9)
+gives the predicted negative sign at 0.77sigma with large intrinsic
+scatter.
 
 This script performs a Bayesian hierarchical analysis that:
 1. Models intrinsic scatter (sigma_int) as a free parameter
@@ -49,8 +50,8 @@ DELTA_B = ABS_B_H - ABS_B_V  # 0.50
 
 # kappa_Cep from TEP-H0 (Paper 11) — full Cepheid coupling constants
 # kappa_Cep = |b| * kappa_P, so kappa_P = kappa_Cep / |b_H|
-KAPPA_CEP_EQUIV = 0.365e6
-KAPPA_CEP_JOINT = 0.266e6  # mag (joint multi-block, Paper 11 v0.10)
+KAPPA_CEP_EQUIV = 1.220e6
+KAPPA_CEP_JOINT = 0.665e6  # mag (joint multi-block, Paper 11, sigma_* coordinate)
 KAPPA_P_EQUIV = KAPPA_CEP_EQUIV / ABS_B_H  # ~111963
 KAPPA_P_JOINT = KAPPA_CEP_JOINT / ABS_B_H  # ~122699
 

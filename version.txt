@@ -1,5 +1,6 @@
-v0.3 (Valencia) — 13 September 2026
+v0.4 (Valencia) — 17 October 2026 — Inner-potential velocity-dispersion synchronization and two-channel distance-ladder calibration
 
-- Rewrote the TEP framework section around the core-disk clock-differential mechanism
-- Expanded falsification with the measured-V_rot multi-catalogue analysis and X_i step/regression tests
-- Reframed discussion and conclusions against the updated evidence; updated references
+- Synchronized the host-galaxy potential coordinate to the inner stellar velocity dispersion (U_i = sigma_*^2) established in the companion Cepheid distance-ladder analysis, yielding kappa_Cep = (1.275 +/- 0.370) x 10^6 mag (3.44 sigma) in redshift-only regression and (0.665 +/- 0.362) x 10^6 mag in the joint multi-block likelihood
+- Updated the CosmicFlows-4 Cepheid-minus-TRGB differential distance analysis with canonical central velocity dispersions, recovering the predicted negative slope across all screened subsamples and in the hierarchical registration-controlled model
+- Incorporated the crowding-controlled M31 HST PHAT internal Period-Luminosity gradient (+0.906 +/- 0.147 mag, 6.17 sigma) alongside the LMC OGLE-IV radial gradient (3.30 sigma)
+- Separated fixed-prediction KBC/MOND profile rejections (Delta AIC = 20.2 and 79.3) from the flexible-profile comparison in the falsification summary

@@ -105,7 +105,13 @@ def compute_screening(
     """
     known_screening, tully_nmb = load_screening_maps(project_root)
 
-    screening = np.ones(len(pgc_values), dtype=float)
+    # Canonical local disk screening factor matching U_REF_SCREENED / U_REF_UNSCREENED
+    # so that galaxies outside the 37-host SH0ES calibrator table are evaluated on
+    # the same screened footing as U_REF_SCREENED (rather than comparing unscreened
+    # S=1 potentials against the screened anchor reference).
+    s_local_default = U_REF_SCREENED / U_REF_UNSCREENED
+
+    screening = np.full(len(pgc_values), s_local_default, dtype=float)
     for i, pgc in enumerate(pgc_values):
         if pgc is None or (isinstance(pgc, float) and np.isnan(pgc)):
             continue
@@ -113,22 +119,22 @@ def compute_screening(
         if pgc_int <= 0:
             continue
 
-        # 1. TEP-H0 Step 03 full screening
+        # 1. TEP-H0 Step 03 full screening (already includes S_local * S_group)
         if pgc_int in known_screening:
             screening[i] = known_screening[pgc_int]
             continue
 
-        # 2. Tully group richness
+        # 2. Tully group richness (multiply by s_local_default for S_total = S_local * S_group)
         if pgc_int in tully_nmb:
-            screening[i] = group_screening_factor(tully_nmb[pgc_int])
+            screening[i] = s_local_default * group_screening_factor(tully_nmb[pgc_int])
             continue
 
         # 3. Anchor special values
         if pgc_int in ANCHOR_NMB:
-            screening[i] = group_screening_factor(ANCHOR_NMB[pgc_int])
+            screening[i] = s_local_default * group_screening_factor(ANCHOR_NMB[pgc_int])
             continue
 
-        # 4. Isolated / uncatalogued → S = 1.0 (already set)
+        # 4. Isolated / uncatalogued → S = s_local_default (already set)
 
     return screening
 
@@ -142,7 +148,7 @@ def screened_xi(U_i: np.ndarray | pd.Series, pgc_values: np.ndarray | pd.Series 
     Parameters
     ----------
     U_i : array-like
-        Host potential proxy (km/s)^2, typically u_phi^2 = (V_rot / sqrt(2))^2.
+        Host potential proxy (km/s)^2: U_i = sigma_*^2 for the calibrator hosts; the rotation proxy u_phi^2 = (V_rot/sqrt(2))^2 is used only for the extended CF4/Pantheon+ samples where inner dispersions are unavailable.
     pgc_values : array-like
         PGC identifiers for screening lookup.
     project_root : Path, optional

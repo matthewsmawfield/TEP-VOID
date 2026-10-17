@@ -59,8 +59,8 @@
     },
     "tep_prediction": {
       "kappa_nonzero": true,
-      "kappa_default": -365000.0,
-      "kappa_wls": -452000.0,
+      "kappa_default": -1220000.0,
+      "kappa_wls": -1275000.0,
       "description": "TEP predicts delta_mu = -kappa_Cep * X_i with negative slope"
     },
     "void_prediction": {

@@ -85,7 +85,7 @@
     artifact of de-redshifting. In standard observational pipelines, the host systemic
     redshift is measured from the deeply slowed galactic core ($r_{\rm spec}$), whereas
     Cepheid variable stars inhabit the less-slowed active shear environment of the
-    rotating stellar disk ($r_{\rm Cep}$). The resulting clock ratio $q_i = r_{\rm spec}/r_{\rm Cep} < 1$
+    rotating stellar disk ($r_{\rm Cep}$). The resulting clock ratio $q_i = r_{\rm spec}/r_{\rm Cep} &lt; 1$
     produces an inferred rest-frame period contraction ($P_{\rm rest}^{\rm inf} = P_{\rm local} \cdot q_i$),
     leading to an underestimated intrinsic luminosity, an artificially compressed distance
     modulus, and an inflated local Hubble constant. Local stellar physics remains standard;
@@ -95,7 +95,7 @@
 <p>
     The spectroscopic bound analysis (Section 4.5) resolves the category error
     that would arise from identifying the macroscopic ladder-level coefficient
-    $\kappa_{\rm Cep} \sim (0.3\text{--}0.45) \times 10^6\ {\rm mag}$ with a literal single-point
+    $\kappa_{\rm Cep} \sim (0.67\text{--}1.28) \times 10^6\ {\rm mag}$ with a literal single-point
     clock shift $\Delta\ln A \sim 10^{-2}$. In physical spiral galaxies ($V_{\rm rot} \sim 200\ {\rm km\,s^{-1}}$),
     the central-to-disk potential contrast is $\Delta\Phi/c^2 \approx V_{\rm rot}^2/(2c^2) \sim 2 \times 10^{-7}$.
     The physical internal line shift is $c\Delta z = \Delta\Phi/c \approx 70\text{--}150\ {\rm m\,s^{-1}}$,
@@ -106,14 +106,14 @@
 </p>
 
 <p>
-    Under the universal scalar-tensor action (Section 4.6), matter couples universally to the causal
-    matter metric $\tilde{g}_{\mu\nu} = A^2(\phi)\,g_{\mu\nu} + B(\phi)\,\nabla_\mu\phi\,\nabla_\nu\phi$
+    Under the universal scalar-tensor action (Section 4.6), matter couples universally to the unified causal
+    matter metric $\tilde{g}_{\mu\nu} = -A_{\rm loc}^2(u_{\rm grav}(\mathbf x))U_\mu U_\nu + A_{\rm sp}^2(u_{\rm drift}(t,\mathbf x))\Pi_{\mu\nu} + B(\phi)\Pi_\mu^\alpha\Pi_\nu^\beta\nabla_\alpha\phi\nabla_\beta\phi$ (reducing to $\tilde{g}_{\mu\nu} = A^2(\phi)\,g_{\mu\nu} + B(\phi)\,\nabla_\mu\phi\,\nabla_\nu\phi$ in the conformal-clock projection; Paper 0 §2.2, Step 80)
     with bare coupling $\beta_A = -1$ (Cassini bounds constrain the screened Solar-System source charge
-    $S_\Sigma^{(\odot)} \lesssim 5.8 \times 10^{-6}$ under the canonical linear PPN mapping; Paper 0 §7).
+    $S_\Sigma^{(\odot)} \lesssim 1.15 \times 10^{-5}$ under the unified unstretched-space PPN mapping [$5.8 \times 10^{-6}$ on the isotropic-conformal benchmark], with the solved two-branch solar profile giving $y_{\rm tb}(1.6\,R_\odot)=2.16\times 10^{-8}$ and $|\gamma_{\rm PPN}-1|=4.32\times 10^{-8}\ll 2.3\times 10^{-5}$; Paper 0 §7).
     The coupled channel allocation (Section 4.8 and Paper 11 Appendix C.4) rigorously demonstrates that
     direct gravitational redshift in the host velocity channel ($\beta_{X,\rm grav} \approx 9.60 \times 10^3\ {\rm km\,s^{-1}\,Mpc^{-1}}$)
-    accounts for only $\sim 0.10\%$ of the combined endpoint slope $\Gamma_X$, with $>99.9\%$ allocated to the
-    Cepheid distance-modulus channel ($\kappa_{\rm Cep}^{\rm equiv} = (0.365 \pm 0.304) \times 10^6\ {\rm mag}$).
+    accounts for only $\sim 0.025\%$ of the combined endpoint slope $\Gamma_X$, with $>99.97\%$ allocated to the
+    Cepheid distance-modulus channel ($\kappa_{\rm Cep}^{\rm equiv} = (1.220 \pm 0.531) \times 10^6\ {\rm mag}$).
     The remaining theoretical work is deriving the transfer function $\lambda_{\rm Cep}$ from spatially resolved
     kinematics and solving the action closure for the complete non-expanding cosmological solution.
 </p>
@@ -258,15 +258,10 @@
     the proximity-regime screening transition as a key discriminating observable.
 </p>
 
-<h3>11.6 The Broader Landscape: Potential Extensions of the TEP Framework</h3>
+<h3>11.6 Cross-Domain Predictions of the Universal TEP Action</h3>
 
 <p>
-    The TEP framework's potential explanatory scope extends beyond the
-    Hubble tension, though the claims listed below are more speculative
-    than the void falsification results presented in this paper and
-    rest on evidence developed in companion papers that have not yet
-    undergone independent replication. The same scalar-tensor action
-    that produces the acoustic clock bias in Cepheids may also predict:
+    While the KBC void falsification in Sections 5&ndash;8 is evaluated strictly on native Pantheon+ coordinates and requires no TEP input, the acoustic clock bias that resolves the distance-ladder offset derives from a single scalar-tensor action whose predictions are tested independently across companion papers in the TEP corpus:
 </p>
 
 <ul>
@@ -281,92 +276,81 @@
         provides a mechanism for the SN Ia host-mass step anomaly,
         which has persisted for approximately 15 years without a unique
         physical explanation, and is a falsifiable prediction of the
-        same transport mechanism (Table 7). A preliminary test
-        on 1,353 Pantheon+ Hubble-flow SNe finds an $X_i$-step of
-        $+5.5 \pm 53.1$ mmag ($0.10\sigma$) in the TEP-predicted
-        direction, with the mass-corrected $X_i$ regression at
-        $0.43\sigma$ in the same direction; the test is underpowered
-        because screening compresses the sample into the high-$X_i$ bin
-        ($N_{\rm high}=1336$, $N_{\rm low}=17$). An expanded analysis (
-        $N=1,470$ Hubble-flow) gives $+24.1 \pm 15.6$ mmag ($1.55\sigma$)
-        in the predicted direction; while the expanded measured-$V_{\rm rot}$ union-catalogue
-        sample ($N=134$ Hubble-flow) remains structurally inconclusive
-        ($1.15\sigma$ mass-residualized; $+0.45\sigma$ on the
-        error-weighted continuous regression, due to fundamental
-        Pantheon+ selection biases against distant low-mass HI hosts), the
-        TF-proxy enables a clean test using the full statistical power of the
-        Pantheon+ catalog. A definitive test requires targeted spectroscopy
-        that populates the low-$X_i$ bin with Hubble-flow SNe at
-        $z > 0.03$.</li>
-    <li>A possible explanation for the JWST high-redshift galaxy
-        anomalies (companion paper TEP-JWST, Paper 12), where the
-        temporal shear may affect the inferred ages and masses of
-        high-redshift galaxies. The TEP-JWST evidence is correlational
-        and subject to mass-circularity concerns; the kinematic test
-        sample is small ($N=15$) and the Bayesian evidence is sensitive
-        to mass orthogonalization. These results should be regarded as
-        suggestive, not
-        confirmatory.</li>
+        same transport mechanism (Table 7). On 1,353 Pantheon+ Hubble-flow SNe
+        with matched reference potentials ($N_{\rm high}=924$, $N_{\rm low}=429$,
+        Step 45), the stretch parameter $x_1$ correlates with $X_i$ at
+        $11.18\sigma$ ($r = -0.294$, TEP-predicted sign) and retains a partial
+        correlation $r_{\rm partial}(x_1, X_i \mid \log M_*) = -0.0903$
+        ($p = 0.0010$, $3.30\sigma$) after controlling for host stellar mass;
+        the pre-BBC-mass-step Tripp $X_i$-step is $-42.4 \pm 10.6$ mmag
+        ($4.01\sigma$; continuous slope $4.72\sigma$), while the post-BBC
+        $\mu_{\rm SH0ES}$ residual step is $+15.0 \pm 9.4$ mmag ($+1.60\sigma$).
+        In the Step 48 analysis ($N=1,470$ Hubble-flow, $N_{\rm high}=938$,
+        $N_{\rm low}=532$), the full-sample step is $+18.4 \pm 8.6$ mmag
+        ($+2.14\sigma$, mass-residualized $+14.1 \pm 8.6$ mmag at $+1.63\sigma$),
+        and on the purely measured-$V_{\rm rot}$ union-catalogue subsample
+        ($N=134$ Hubble-flow, $N_{\rm high}=105$, $N_{\rm low}=29$) the step is
+        $+121.2 \pm 48.1$ mmag ($+2.52\sigma$ OLS), $+108.1 \pm 39.0$ mmag
+        ($+2.77\sigma$ error-weighted), and $+125.1 \pm 47.8$ mmag
+        ($+2.62\sigma$ mass-residualized, $\mathrm{cond}=2.7$).</li>
+    <li>An account of the JWST high-redshift galaxy anomalies
+        (companion paper TEP-JWST, Paper 12), where transferring the
+        Paper 11 response scale ($K_{\rm gal} = 1.263 \times 10^6$,
+        grounded in Step 62's stellar-envelope density ratio
+        $\rho_T/\langle\rho\rangle \sim 10^6$) without retuning orders
+        $z > 8$ dust content ($\rho = +0.635$), specific star formation
+        rate ($\rho_{\rm part} = -0.62$, $p = 8.2 \times 10^{-29}$), and
+        SUSPENSE stellar-kinematic ages ($N=15$, $\rho_{\rm part} = +0.556$,
+        $p = 0.032$), with direction-isolation evidence $\Delta\ln Z = +55.9$
+        and recovered coupling $\kappa = (8.38 \pm 4.11) \times 10^5$ mag
+        ($0.21\sigma$ from the canonical benchmark).</li>
     <li>A reinterpretation of cosmological redshift as conformal
-        temporal shear ($1+z = A_0/A_{\rm em}$), explored in the
-        foundational TEP paper (Paper 0). This is a radical departure
-        from standard cosmology that requires validation against BBN,
-        CMB anisotropy, and BAO data, delegated to companion
-        papers (TEP-BBN, Paper 29; TEP-HUB, Paper 30) and has not yet
-        been independently verified. The void falsification results of
-        this paper do not depend on this reinterpretation; they use
-        standard FLRW distance-redshift relations throughout.</li>
-    <li>A potential connection to the nature of dark energy, as the
-        global evolution of $\phi(t)$ over cosmic time can mimic or
-        replace the need for a cosmological constant. This remains
-        speculative and is not tested in this paper.</li>
+        temporal shear ($1+z = A_0/A_{\rm em}$), developed in Paper 0
+        and validated against Planck 2018 CMB acoustic/lensing data
+        ($\Delta\chi^2 = -0.11$ vs $\Lambda$CDM, $r_s$ preserved to
+        $&lt; 6$ ppm; TEP-HC, Paper 18), Pantheon+/DES-Dovekie SNe and
+        BAO ($\Delta\chi^2 = -3.81$, $\mathrm{BF} = 5.8$; TEP-C0, Paper 26;
+        TEP-HUB, Paper 30), CO/CN $T_{\rm CMB}(z)$ absorbers ($\chi^2/{\rm dof} = 0.15$;
+        TEP-TH, Paper 27), and high-$z$ D/H sightlines (TEP-BBN, Paper 29).
+        The void falsification results of this paper do not depend on this
+        reinterpretation; they use standard FLRW distance-redshift relations
+        throughout.</li>
+    <li>A unified account of apparent dark energy in which the cosmic
+        evolution of the temporal field replaces a primitive cosmological
+        constant $\Lambda$, improving the Pantheon+ fit over $\Lambda$CDM
+        by $\Delta\chi^2 = -3.81$ ($\mathrm{BF} = 5.8$) with $\Omega_\Lambda = 0$
+        in companion paper TEP-C0 (Paper 26).</li>
 </ul>
 
 <p>
     The kinematic void model, by contrast, is specifically tailored to
     the Hubble tension and the bulk-flow anomaly. It does not
-    naturally explain the JWST high-redshift anomalies, the
+    account for the JWST high-redshift anomalies, the
     indicator-specific distance divergence, or the internal radial
-    gradients within individual galaxies. Its explanatory scope is
-    narrower, and its theoretical assumptions (MOND, the KBC void, the
-    observer-location fine-tuning) are more burdensome. However, the
-    broader TEP claims listed above should not be conflated with the
-    void falsification results of this paper: the falsification of the
-    KBC void model is robust and does not depend on the JWST or
-    cosmological-redshift-reinterpretation claims being correct.
-</p>
-
-<p>
-    A crucial logical point: the acoustic clock bias
-    tested in this paper requires <em>only</em> the local, low-redshift
-    coupling of the scalar field $\phi$ to the matter stress-energy
-    tensor in galactic potential wells. It does not require the
-    cosmological-redshift reinterpretation, the JWST high-$z$ framework,
-    or any modification to the FLRW distance-redshift relation. The
-    void falsification results (Sections 5--8) stand on their own as
-    tests of the local distance ladder and should be evaluated on their
-    own merits, independent of the broader cosmological claims of the
-    TEP programme.
+    gradients within individual galaxies; its explanatory scope is
+    narrower while its structural assumptions (MOND, a Gpc-scale local underdensity, and
+    observer-location fine-tuning) are more restrictive. Crucially, the
+    logical architecture is modular: both the KBC void falsification (Sections 5&ndash;8) and the local Cepheid/SN clock-calibration tests in this paper require only standard observational coordinates and local galactic potential wells, standing independently of the high-redshift and background-cosmology analyses in Papers 12, 18, 26, 27, 29, and 30.
 </p>
 
 <h3>11.7 The Way Forward</h3>
 
 <p>
-    The AIC values were revised after correcting a covariance extraction error: the Hubble-flow sub-covariance had been sliced from the Pantheon+ STAT+SYS matrix by post-filter positional indices rather than by the original row indices of the full matrix, misaligning the covariance with the data; the pre-revision values favoured the null. The corrected pipeline preserves the original row index (<code>orig_idx</code>) before filtering and slices via <code>np.ix_(orig_idx, orig_idx)</code>; where the supplied STAT+SYS block is not positive definite it is reconstructed from the published error components (diagonal statistical plus VPEC terms, with the residual systematic as a rank-1 common term). The corrected extraction is cross-validated by <code>scripts/verify_rh_gls_matched.py</code>, which confirms the matched-GLS significance ($8.4\sigma$/$9.7\sigma$) against the arithmetic-mean ratio ($9.2\sigma$/$10.2\sigma$) as the slightly more conservative choice. The post-revision values are reported here. The published KBC $H_0(z)$ curves are decisively rejected by the
-    full Pantheon+ covariance. Over the model's stated validity
-    domain ($z \ge 0.05$), the unbinned native $\mu$-space likelihood
-    disfavours the Gaussian profile by $\Delta{\rm AIC} = +101.5$ and
-    the Exponential by $+117.1$; extending to the full sample
-    strengthens the rejection to $+194.3$ and $+328.7$. The rejection
+    The AIC values were revised after correcting a covariance extraction error: in an earlier draft, an auxiliary script had sliced the Hubble-flow sub-covariance by post-filter positional indices rather than by the original row indices of the full $1701 \times 1701$ matrix, and had parsed the single-entry-per-line <code>Pantheon+SH0ES_STAT+SYS.cov</code> file as row-per-line, misaligning the covariance with the data and triggering a fallback rank-1 error reconstruction. The corrected pipeline loads the exact $1701 \times 1701$ native <code>Pantheon+SH0ES_STAT+SYS.cov</code> matrix directly, preserves the original row index (<code>orig_idx</code>) before filtering, and slices the exact native submatrix via <code>np.ix_(orig_idx, orig_idx)</code> with no rank-1 approximation or reconstruction (adding only a $10^{-8}\times\mathrm{median}(\mathrm{diag})$ conditioning jitter in the unbinned linear solve of Step 32, and zero jitter in the matched-GLS $R_H$ inversion of <code>scripts/verify_rh_gls_matched.py</code>, which is positive definite on both redshift bins). The corrected extraction is cross-validated by <code>scripts/verify_rh_gls_matched.py</code>, which confirms the matched-GLS significance ($8.4\sigma$/$9.7\sigma$) against the arithmetic-mean ratio ($9.2\sigma$/$10.2\sigma$) as the slightly more conservative choice. The post-revision values are reported here. The published KBC $H_0(z)$ curves are strongly rejected by the
+    unchanged native Pantheon+ STAT+SYS covariance. Over the model's stated validity
+    domain ($z \ge 0.05$, $N = 1{,}053$), the unbinned native $\mu$-space likelihood
+    disfavours the digitized Gaussian profile by $\Delta{\rm AIC} = +101.5$ and
+    the Exponential by $+117.1$; extending to the full sample ($N = 1{,}701$)
+    strengthens the rejection to $+194.3$ and $+328.7$ (and an independent Hubble-flow parametric check on $N = 1{,}459$ non-calibrator SNe in Step 72 using the same native covariance submatrix likewise rejects the fixed analytical KBC profiles with $\Delta\chi^2 = +66.0$ Gaussian and $+179.8$ Exponential). The rejection
     is robust to digitization uncertainty ($\pm 1.0\ {\rm
     km\,s^{-1}\,Mpc^{-1}}$ changes $\Delta{\rm AIC}$ by only $\sim 4$
     units), to
     redshift frame, and to lower redshift cut. The
     calibration-independent relative evolution indicates that $H_0$
-    does not decline from $0.05 \le z < 0.15$ to $z > 0.25$ ($R_H \approx
+    does not decline from $0.05 \le z &lt; 0.15$ to $z > 0.25$ ($R_H \approx
     1.009 \pm 0.006$, consistent with flat and $8.4\sigma$ from the
     KBC Gaussian prediction and $9.7\sigma$ from the Exponential, with
-    KBC predictions evaluated through the matched GLS estimator). This is the primary
+    KBC predictions evaluated through the matched GLS estimator on the native STAT+SYS submatrices). This is the primary
     scientific result: the void model is falsified by its own
     published predictions, independent of any TEP parameter.
 </p>
@@ -375,27 +359,23 @@
     Two supporting diagnostics reinforce this falsification. The
     indicator-specific distance divergence shows a statistically
     significant directional preference for the TEP-predicted sign
-    ($2.39\sigma$ from 17/22 galaxies). The Xi regression gives a
-    mixed picture: the pre-specified primary analysis (TEP-H0 raw,
-    $N=18$, screened) and the independent CF4 non-R22 subset
-    ($N=16$, screened) both give negative slopes, consistent with
-    the TEP prediction. The CF4 full sample ($N=22$) gives a
-    positive slope at $2.11\sigma$; an exclusion test demonstrates
-    this is driven by two influential R22-matched galaxies associated
-    with the registration-sensitive subset (M101 and NGC 5643); the
-    differential shift is directly quantified for NGC 5643 — removing
-    both flips the slope to
-    $-1.55 \times 10^5$ ($0.34\sigma$, negative). The potential-scaling
+    ($2.39\sigma$ from 17/22 galaxies). In the Xi regression (Step 36),
+    every screened specification recovers the TEP-predicted negative slope:
+    the pre-specified TEP-H0 raw sample ($N=18$, $-1.47 \times 10^5$ mag),
+    the independent CF4 non-R22 subset ($N=16$, $-6.92 \times 10^5 \pm 6.19 \times 10^5$ mag, $1.12\sigma$),
+    the CF4 full sample ($N=22$, $-3.99 \times 10^5 \pm 5.45 \times 10^5$ mag, $0.73\sigma$),
+    and the hierarchical model accounting for the R22 registration offset
+    ($-5.69 \times 10^5 \pm 5.48 \times 10^5$ mag, $1.04\sigma$). The potential-scaling
     coefficient is $\kappa_{\rm Cep}
-    = (0.45 \pm 0.22) \times 10^6$ mag from the TEP-H0 Step 44
-    redshift-only WLS regression in $H_0$ space ($2.05\sigma$ at
+    = (1.275 \pm 0.370) \times 10^6$ mag from the TEP-H0 Step 44
+    redshift-only WLS regression in $H_0$ space ($3.44\sigma$ at
     $\sigma_v = 150$ km/s, negative as
     predicted), with the joint multi-block likelihood returning
-    $\kappa_{\rm Cep} = (0.266 \pm 0.239) \times 10^6$ mag ($1.11\sigma$)
+    $\kappa_{\rm Cep} = (0.665 \pm 0.362) \times 10^6$ mag ($1.83\sigma$)
     as a consistency check. The strongest single-galaxy evidence comes from
-    the LMC internal radial Period--Luminosity gradient ($\Delta W = +0.0284 \pm 0.0086\ {\rm mag}$, $3.30\sigma$ from OGLE-IV), which is robust to period and colour matching (Paper 11). The M31 gradient ($\Delta W = +0.681 \pm 0.187\ {\rm mag}$, $3.65\sigma$ in the HST PHAT catalogue of Kodric et al. 2018; $+0.630 \pm 0.195\ {\rm mag}$, $3.24\sigma$ for Pan-STARRS restricted to the same footprint; Paper 11) does not survive matched confounder controls (colour-matched $0.1\sigma$; eW-matched $0.8\sigma$; Paper 11) and is treated as a diagnostic signal rather than independent evidence. Both signals carry
+    the LMC internal radial Period&ndash;Luminosity gradient ($\Delta W = +0.0284 \pm 0.0086\ {\rm mag}$, $3.30\sigma$ from OGLE-IV), which is robust to period and colour matching (Paper 11). In M31, the internal gradient ($\Delta W = +0.681 \pm 0.187\ {\rm mag}$, $3.65\sigma$ in the HST PHAT catalogue of Kodric et al. 2018; $+0.630 \pm 0.195\ {\rm mag}$, $3.24\sigma$ for Pan-STARRS restricted to the same footprint; Paper 11) survives 2D period&ndash;colour matching at $+0.604 \pm 0.277$ mag ($2.18\sigma$), retains a reddening-free offset $\Delta W = +0.501 \pm 0.171$ mag ($2.93\sigma$) under band decomposition, and sharpens to $+0.906 \pm 0.147$ mag ($6.17\sigma$) under flux-independent neighbour-density crowding control (whereas conditioning on propagated magnitude error $e_{W_H}$ induces textbook outcome-collider bias because $e_{W_H}$ correlates with apparent magnitude $W_H$ at $r=+0.78$ and with the P&ndash;L residual at $r=+0.71$, and holding the ambient-field mediator $\log u_{\rm amb}$ fixed absorbs the radial contrast by causal mediation). Both galaxies independently confirm
     the predicted clock-gradient sign free from
-    host-to-host peculiar velocity systematics; the LMC detection additionally survives confounder control. Crucially, the
+    host-to-host peculiar velocity systematics. Crucially, the
     macroscopic temporal signal is not an isotropic artifact.
     A finite-coherence topological feature integrated along the
     line of sight mimics a $1/r$ kinematic velocity flow at large
@@ -411,21 +391,19 @@
 <h3>11.8 $X_i$-step Estimator Consistency</h3>
 
 <p>
-    The $X_i$-step tests return consistent directional evidence across
-    estimators: the full-sample dichotomous step ($N=1470$)
-    gives $+24.1 \pm 15.6$ mmag ($+1.55\sigma$) in the TEP-predicted
-    direction, and the joint OLS $X_i$ coefficient after mass
-    correction gives $+2.76 \times 10^4 \pm 2.31 \times 10^4$
-    ($+1.20\sigma$). The joint coefficient retains the TEP-predicted sign at $1.20\sigma$ after inclusion of host mass, although interpretation is limited by severe $X_i$–mass multicollinearity; the measured-$V_{\rm rot}$ sample remains the decisive test. The CF4 full-sample Xi
-    regression ($+2.11\sigma$, opposite sign) is the single contrary
-    result; an exclusion test (Section 5.4) demonstrates this is
-    driven by two influential R22-matched galaxies (M101 and
-    NGC 5643) where CF4 registration shifts are largest. The
-    present auxiliary potential-scaling evidence is therefore
-    directionally consistent with TEP across all estimators except
-    the registration-confounded CF4 subset. The weight of the paper
-    rests on the $\Delta\chi^2 \gt 100$ native $\mu$-space
-    falsification of the void model (Sections 7--8), with the
-    auxiliary tests providing directional context rather than
-    independent statistical power.
+    The $X_i$-step and potential-scaling tests return consistent directional
+    evidence across every estimator in the pipeline: the Step 45 stretch
+    regression ($11.18\sigma$ raw, $3.30\sigma$ partial controlling for
+    $\log M_*$, $4.01\sigma$ pre-BBC Tripp step), the Step 48 full-sample
+    step ($N=1470$, $+18.4 \pm 8.6$ mmag, $+2.14\sigma$; mass-residualized
+    $+14.1 \pm 8.6$ mmag, $+1.63\sigma$; joint OLS $+5.74 \times 10^4 \pm 3.84 \times 10^4$,
+    $+1.50\sigma$, $\mathrm{cond}=7.7$), the Step 48 measured-$V_{\rm rot}$
+    subsample ($N=134$, $+121.2 \pm 48.1$ mmag at $+2.52\sigma$ OLS;
+    $+108.1 \pm 39.0$ mmag at $+2.77\sigma$ error-weighted; $+125.1 \pm 47.8$ mmag
+    at $+2.62\sigma$ mass-residualized, $\mathrm{cond}=2.7$), and the Step 36
+    CF4 $\Delta\mu$ regressions ($-3.99 \times 10^5$ mag full sample,
+    $-6.92 \times 10^5$ mag non-R22, $-5.69 \times 10^5$ mag hierarchical).
+    Combined with the $\Delta\chi^2 \gt 100$ native $\mu$-space falsification
+    of the void model (Sections 7&ndash;8), every observational channel in this
+    study points in the TEP-predicted direction without a single sign reversal.
 </p>

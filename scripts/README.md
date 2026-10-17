@@ -3,7 +3,7 @@
 ## Analysis Pipeline
 
 ```bash
-cd "/Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID"
+cd "TEP-VOID"
 python3 scripts/run_pipeline.py
 ```
 
@@ -116,7 +116,7 @@ python3 scripts/generate_site_pdf.py
 python3 scripts/generate_site_pdf.py --quality high --wait-time 10
 ```
 
-Generates `31-TEP-VOID-v0.3-Valencia.pdf` from the built static site.
+Generates `G31-TEP-VOID-v0.4-Valencia.pdf` from the built static site.
 Requires the site to be built first (`cd site && npm run build`).
 
 ## Utilities

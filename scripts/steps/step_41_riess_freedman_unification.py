@@ -8,7 +8,7 @@ Cepheid H0 converges to both the TRGB and CMB values.
 
 Key Tasks:
 1. Use published H0 values: H0_Cep=73.0, H0_TRGB=68.81, H0_CMB=67.4
-2. Compute TEP-corrected H0 = 66.65 ± 1.58 (from companion paper TEP-H0)
+2. Compute TEP-corrected H0 = 67.83 +/- 1.56 (from companion paper TEP-H0, host-level reconstruction)
 3. Show that corrected Cepheid H0 converges to TRGB and CMB values
 4. Quantify the tension reduction and unification significance
 
@@ -57,8 +57,8 @@ class Step41RiessFreedmanUnification:
     H0_CMB_ERR = 0.5
 
     # TEP-corrected H0 (from companion paper TEP-H0)
-    H0_TEP_CORRECTED = 66.65  # km/s/Mpc
-    H0_TEP_CORRECTED_ERR = 1.58
+    H0_TEP_CORRECTED = 67.83  # km/s/Mpc (host-level reconstruction, Paper 11)
+    H0_TEP_CORRECTED_ERR = 1.56
 
     # TEP correction applied to Cepheid scale
     TEP_CORRECTION_MAG = 0.083  # magnitude correction applied to Cepheid distances
@@ -288,7 +288,7 @@ class Step41RiessFreedmanUnification:
 
         # Add unification annotation
         sigma_after = tension_results["after_tep"]["corrected_cepheid_vs_cmb"]["sigma_tension"]
-        ax2.annotate(f"{sigma_after:.1f}$\\sigma$ tension", xy=(66.65, 0), fontsize=12, color=colors['green'], fontweight="bold")
+        ax2.annotate(f"{sigma_after:.1f}$\\sigma$ tension", xy=(67.83, 0), fontsize=12, color=colors['green'], fontweight="bold")
 
         fig.suptitle("Riess–Freedman Unification: $H_0$ Convergence Under TEP", fontsize=15, y=1.02)
         fig.tight_layout()

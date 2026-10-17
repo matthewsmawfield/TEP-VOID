@@ -12,7 +12,7 @@ where:
     the companion paper TEP-H0 (Paper 11), where it is determined from
     the host-level Cepheid analysis.
   - X_i = (S_total * U_i - U_ref) / c^2 is the dimensionless screened potential
-    coordinate, with U_i = u_phi^2 the rotation-based potential proxy
+    coordinate, with U_i = sigma_*^2 the inner-potential dispersion for calibrator hosts
     (from step_01) and U_ref = (30.507 km/s)^2 the screened anchor reference.
 
 IMPORTANT CAVEAT:
@@ -32,7 +32,7 @@ IMPORTANT CAVEAT:
 
 Key Tasks:
 1. Load Pantheon+ data (from step_03)
-2. Load kappa_Cep from TEP-H0 (Paper 11): kappa_Cep = 0.365 x 10^6 mag
+2. Load kappa_Cep from TEP-H0 (Paper 11): kappa_Cep = 1.275 x 10^6 mag
 3. Load host potential catalog from step_01
 4. Compute X_i for each SN host (actual or proxy)
 5. Apply TEP correction to distance moduli
@@ -75,14 +75,14 @@ class Step40RedshiftShearReconstruction:
     # kappa_Cep is the Cepheid-channel coupling constant in mag, determined
     # from the host-level Cepheid analysis in TEP-H0 (Section 4, Step 42).
     # The Cepheid-channel closure (beta_X = 0) yields:
-    #   kappa_Cep^equiv = (0.365 +/- 0.304) x 10^6 mag
+    #   kappa_Cep^equiv = (1.220 +/- 0.531) x 10^6 mag
     # The redshift-only WLS (Step 44, sigma_v=150) yields:
-    #   kappa_Cep = (0.452 +/- 0.220) x 10^6 mag
+    #   kappa_Cep = (1.275 +/- 0.370) x 10^6 mag
     # The canonical reference scaling is:
     #   kappa_canonical = 0.960 x 10^6 mag
     # We use the redshift-only WLS value as the primary estimate for the
     # TEP correction, with the equiv value recorded for the manuscript's
-    # calibrator-average estimator (+0.025 +/- 0.021 mag).
+    # calibrator-average estimator (+0.077 +/- 0.036 mag).
     # These are imported as fixed parameters from the companion paper; they
     # are NOT derived within the TEP-VOID pipeline. The load_kappa_ceph
     # method reads the value from the TEP-H0 results directory.
@@ -146,25 +146,49 @@ class Step40RedshiftShearReconstruction:
         the host-level Cepheid analysis in TEP-H0. It is NOT derived within the
         TEP-VOID pipeline — it is imported as a fixed parameter for cross-validation.
 
-        TEP-H0 reports three values:
-          - kappa_Cep^equiv = (0.365 +/- 0.304) x 10^6 mag  (Cepheid-channel closure)
-          - kappa_Cep = (0.452 +/- 0.220) x 10^6 mag         (redshift-only WLS, sigma_v=150)
+        TEP-H0 reports three values (regenerated under the inner-potential
+        sigma_* coordinate):
+          - kappa_Cep^equiv = (1.220 +/- 0.531) x 10^6 mag  (Cepheid-channel closure)
+          - kappa_Cep = (1.275 +/- 0.370) x 10^6 mag         (redshift-only WLS, sigma_v=150)
           - kappa_canonical = 0.960 x 10^6 mag                (reference scaling)
 
-        The redshift-only WLS value (0.452 +/- 0.220) x 10^6 is loaded as the
-        primary estimate for the TEP correction, with its uncertainty propagated
-        into the ΔM_B shift error. The equiv value (0.365 +/- 0.304) x 10^6 is
-        also recorded for the manuscript's calibrator-average estimator
-        (+0.025 +/- 0.021 mag), which uses the endpoint-slope closure value.
+        The redshift-only WLS value is loaded as the primary estimate for the
+        TEP correction, with its uncertainty propagated into the ΔM_B shift
+        error. The equiv value is loaded live from TEP-H0 step_39 (the
+        sigma_v = 250 km/s entry) for the manuscript's calibrator-average
+        estimator.
         """
         print_status("Loading kappa_Cep from TEP-H0 (Paper 11)...", "PROCESS")
+
+        # kappa_Cep^equiv (endpoint-slope closure value) from
+        # step_39_environment_slope_decomposition.json — the sigma_v=250 entry.
+        equiv_path = TEP_H0_RESULTS / "step_39_environment_slope_decomposition.json"
+        self.kappa_ceph_equiv = None
+        self.kappa_ceph_equiv_err = None
+        if equiv_path.exists():
+            try:
+                with open(equiv_path, "r") as f:
+                    equiv_rows = json.load(f)
+                for row in equiv_rows:
+                    if abs(float(row.get("sigma_v", -1)) - 250.0) < 1.0:
+                        self.kappa_ceph_equiv = float(row["kappa_equiv"])
+                        self.kappa_ceph_equiv_err = float(row["kappa_equiv_err"])
+                        break
+            except Exception as e:
+                print_status(f"Error reading kappa_equiv from step_39: {e}", "WARNING")
+        if self.kappa_ceph_equiv is None:
+            raise FileNotFoundError(
+                "Cannot load kappa_Cep^equiv from TEP-H0 "
+                "step_39_environment_slope_decomposition.json. "
+                "Re-run the TEP-H0 companion pipeline to regenerate it."
+            )
 
         # Try to load from the TEP-H0 companion results directory
         # step_42_tep_native_ladder.json contains kappa_B (the redshift-only WLS value)
         # step_44_joint_distance_redshift_likelihood.json contains redshift_only_wls[0].kappa_Cep
         tep_h0_files = [
-            ("step_42_tep_native_ladder.json", self._extract_kappa_from_step42),
             ("step_44_joint_distance_redshift_likelihood.json", self._extract_kappa_from_step44),
+            ("step_42_tep_native_ladder.json", self._extract_kappa_from_step42),
         ]
 
         for fname, extractor in tep_h0_files:
@@ -177,11 +201,7 @@ class Step40RedshiftShearReconstruction:
                     if kappa is not None:
                         # Store both for downstream use
                         self.kappa_ceph = float(kappa)
-                        self.kappa_ceph_err = float(kappa_err) if kappa_err is not None else 220046.0
-                        # Equiv value (Cepheid-channel closure) for the
-                        # manuscript calibrator-average estimator
-                        self.kappa_ceph_equiv = 365000.0
-                        self.kappa_ceph_equiv_err = 304000.0
+                        self.kappa_ceph_err = float(kappa_err) if kappa_err is not None else float("nan")
                         print_status(
                             f"Loaded kappa_Cep = {kappa:.4e} +/- {self.kappa_ceph_err:.4e} mag "
                             f"from TEP-H0/{fname}",
@@ -207,11 +227,19 @@ class Step40RedshiftShearReconstruction:
 
     @staticmethod
     def _extract_kappa_from_step42(data):
-        """Extract kappa_Cep from step_42_tep_native_ladder.json (kappa_B field)."""
-        if isinstance(data, list) and len(data) > 0:
-            kappa = data[0].get("kappa_B")
-            kappa_err = data[0].get("kappa_B_err")
-            return kappa, kappa_err
+        """Extract kappa_Cep from step_42_tep_native_ladder.json (kappa_B field).
+
+        Row 0 is the null model (T0, kappa_B = 0 by construction); select the
+        first non-null response row at the canonical sigma_v = 150 km/s.
+        """
+        if isinstance(data, list):
+            for row in data:
+                if (
+                    row.get("model") != "T0"
+                    and abs(float(row.get("sigma_v", -1)) - 150.0) < 1.0
+                    and row.get("kappa_B")
+                ):
+                    return row["kappa_B"], row.get("kappa_B_err")
         return None, None
 
     @staticmethod
@@ -278,7 +306,7 @@ class Step40RedshiftShearReconstruction:
 
         X_i = (S_total * U_i - U_ref_screened) / c^2
 
-        where U_i = u_phi^2 is the rotation-based potential proxy and
+        where U_i = sigma_*^2 is the inner-potential dispersion for calibrator hosts and
         U_ref_screened = (30.507 km/s)^2 is the screened anchor reference.
 
         For hosts with measured potentials (matched to step_01 catalog),
@@ -517,7 +545,7 @@ class Step40RedshiftShearReconstruction:
                 # Propagated uncertainty from kappa_Cep posterior.
                 # σ_ΔM_B^2 = (σ_κ · <X_i>)^2 + (κ · σ_<X_i>)^2
                 # The κ term dominates (σ_κ/κ ~ 49% for the redshift-only WLS
-                # value 0.452 +/- 0.220). Use the κ and σ_κ actually loaded
+                # value 1.275 +/- 0.370). Use the κ and σ_κ actually loaded
                 # (redshift-only WLS), NOT the equiv value's error.
                 kappa_val = self.kappa_ceph if hasattr(self, 'kappa_ceph') else 451682.0
                 sigma_kappa = (
@@ -562,7 +590,7 @@ class Step40RedshiftShearReconstruction:
                 )
 
                 # Manuscript calibrator-average estimator using the equiv
-                # (Cepheid-channel closure) value κ_Cep^equiv = 0.365 ± 0.304.
+                # (Cepheid-channel closure) value κ_Cep^equiv = 1.220 ± 0.531.
                 # This uses the CALIBRATOR-ONLY mean <X_i> (the 41 SH0ES
                 # Cepheid calibrator hosts), not the all-Pantheon+ host mean,
                 # because ΔM_B is a zero-point shift imprinted by the
@@ -751,7 +779,7 @@ class Step40RedshiftShearReconstruction:
         # Load kappa_Cep
         print_status(
             "Methodology: kappa_Cep is imported from TEP-H0 (Paper 11) as the "
-            "redshift-only WLS value (0.452 +/- 0.220) x 10^6 mag (sigma_v = 150 km/s), "
+            "redshift-only WLS value (1.275 +/- 0.370) x 10^6 mag (sigma_v = 150 km/s), "
             "loaded from the TEP-H0 companion results. The "
             "anchor reference potential U_ref = (30.507 km/s)^2 (screened) and the screened "
             "potential coordinate X_i = (S_total * U_i - U_ref) / c^2 are defined per the "
@@ -808,7 +836,7 @@ class Step40RedshiftShearReconstruction:
             "kappa_ceph_units": "mag",
             "kappa_ceph_source": (
                 "Imported from TEP-H0 (Paper 11, redshift-only WLS at sigma_v=150 km/s). "
-                "kappa_Cep = (0.452 +/- 0.220) x 10^6 mag. "
+                "kappa_Cep = (1.275 +/- 0.370) x 10^6 mag. "
                 "NOT derived within TEP-VOID — fixed parameter for cross-validation."
             ),
             "correction_formula": "Delta_mu = kappa_Cep * X_i",

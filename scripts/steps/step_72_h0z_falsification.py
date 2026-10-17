@@ -60,26 +60,27 @@ H0_SH0ES = 73.0
 
 
 def load_covariance(root):
-    """Load the Pantheon+ STAT+SYS covariance matrix."""
+    """Load the Pantheon+ STAT+SYS covariance matrix (single-entry-per-line format)."""
     path = root / "data" / "raw" / "Pantheon+SH0ES_STAT+SYS.cov"
     print_status(f"Loading covariance {path}...", "PROCESS")
     with open(path) as f:
         n = int(f.readline().strip())
-        cov = np.zeros((n, n))
-        for i in range(n):
-            vals = f.readline().split()
-            cov[i, :] = [float(v) for v in vals]
+        data = np.fromstring(f.read(), sep="\n")
+    cov = data[: n * n].reshape(n, n)
     print_status(f"  Loaded {n}x{n} covariance", "SUCCESS")
     return cov
 
 
 def comoving_distance(z, Hz_func, n_grid=2000):
-    """Numerically integrate comoving distance for an arbitrary H0(z)."""
-    z_max = max(np.max(z) * 1.05, 2.7)
+    """Numerically integrate dimensionless FLRW comoving distance I(z) = int_0^z dz'/E(z')
+    and scale by c / H0(z) (matching the native mu-space formulation of Step 32 / Step 32c)."""
+    z = np.asarray(z, dtype=float)
+    z_max = max(float(np.max(z)) * 1.05, 2.7)
     z_grid = np.linspace(0, z_max, n_grid)
-    E_grid = C_KMS / Hz_func(z_grid)
-    Dc_grid = cumulative_trapezoid(E_grid, z_grid, initial=0)
-    return np.interp(z, z_grid, Dc_grid)
+    ez_grid = np.sqrt(OMEGA_M * (1.0 + z_grid) ** 3 + (1.0 - OMEGA_M))
+    I_grid = cumulative_trapezoid(1.0 / ez_grid, z_grid, initial=0)
+    I_z = np.interp(z, z_grid, I_grid)
+    return (C_KMS / Hz_func(z)) * I_z
 
 
 def distance_modulus(z, Hz_func):
@@ -194,25 +195,23 @@ class Step72H0zFalsification:
     # Model fits
     # ------------------------------------------------------------------
     def fit_flat(self):
-        """Flat H0(z) = H0 (TEP prediction)."""
-        def objective(p):
-            H0, M_B = p
-            return self.nll(M_B, lambda z: H0 * np.ones_like(z))
-
-        p0 = [73.0, -19.25]
-        bounds = [(50.0, 85.0), (-21.0, -17.0)]
-        res = minimize(objective, p0, method="L-BFGS-B", bounds=bounds)
-        H0, M_B = res.x
-        chi2 = self.chi2(M_B, lambda z: H0 * np.ones_like(z))
+        """Flat H0(z) = H0_SH0ES (TEP prediction; M_B and H0 are degenerate on
+        calibrator-excluded Hubble-flow SNe via M = M_B - 5 log10 H0, so k_eff = 1
+        matching KBC_Fixed and Step 32c)."""
+        H0 = H0_SH0ES
+        hz = lambda z: H0 * np.ones_like(z)
+        res = minimize(lambda p: self.nll(float(p[0]), hz), [-19.25], method="L-BFGS-B", bounds=[(-21.0, -17.0)])
+        M_B = float(res.x[0])
+        chi2 = self.chi2(M_B, hz)
         return {
             "name": "Flat_TEP",
             "H0": float(H0),
             "M_B": float(M_B),
             "chi2": float(chi2),
-            "nll": float(res.fun),
+            "nll": float(0.5 * chi2),
             "n_data": self.N,
-            "n_params": 2,
-            "bic": float(chi2 + 2 * np.log(self.N)),
+            "n_params": 1,
+            "bic": float(chi2 + 1 * np.log(self.N)),
             "success": bool(res.success),
         }
 
@@ -296,8 +295,8 @@ class Step72H0zFalsification:
             "chi2": float(chi2),
             "nll": float(res.fun),
             "n_data": self.N,
-            "n_params": 4,
-            "bic": float(chi2 + 4 * np.log(self.N)),
+            "n_params": 3,
+            "bic": float(chi2 + 3 * np.log(self.N)),
             "success": bool(res.success),
         }
 
@@ -325,8 +324,8 @@ class Step72H0zFalsification:
             "chi2": float(chi2),
             "nll": float(res.fun),
             "n_data": self.N,
-            "n_params": 4,
-            "bic": float(chi2 + 4 * np.log(self.N)),
+            "n_params": 3,
+            "bic": float(chi2 + 3 * np.log(self.N)),
             "success": bool(res.success),
         }
 

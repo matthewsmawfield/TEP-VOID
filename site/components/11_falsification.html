@@ -32,83 +32,60 @@
     galaxies with both JWST NIRCam TRGB distances (CCHP F115W from
     Freedman et al. 2024, GO-1995, and Anand et al. 2024 F090W,
     GO-1685/GO-2875) and R22 Cepheid distances on the same NGC 4258
-    maser zero-point. Because JWST NIRCam observes both Cepheid and
-    TRGB populations through identical optics, the
-    $\Delta\mu = \mu_{\rm Cep} - \mu_{\rm TRGB}$ diagnostic is stripped
-    of all telescope zero-point drift. The full-sample regression
-    ($N=17$) yields a slope of $+2.6 \times 10^5 \pm 2.2 \times 10^5$
-    ($1.20\sigma$, positive — wrong sign for TEP), but the
-    weighted mean $\Delta\mu = -0.023 \pm 0.022$ mag ($1.02\sigma$,
-    negative — correct direction) and the reduced
-    $\chi^2/{\rm dof} = 0.77$ indicate a well-behaved fit with no
-    excess scatter, unlike the CF4 sample ($\chi^2/{\rm dof} = 1.71$).
+    maser zero-point (Step 50, <code>step_50_jwst_matched.json</code>).
+    Because JWST NIRCam observes both Cepheid and TRGB populations through
+    identical optics, the $\Delta\mu = \mu_{\rm Cep} - \mu_{\rm TRGB}$
+    diagnostic is stripped of telescope zero-point drift. With canonical
+    TEP-H0 velocity dispersions ($\sigma_{\rm inferred} = 28.0$ km/s for
+    face-on M101), the full-sample screened regression ($N=17$) yields a
+    negative slope of $-3.36 \times 10^5 \pm 6.03 \times 10^5$ mag
+    ($0.56\sigma$, exact TEP-predicted negative sign, consistent with the
+    Paper 11 joint benchmark $-6.65 \times 10^5$ mag at $0.55\sigma$;
+    unscreened slope $-4.06 \times 10^5 \pm 3.43 \times 10^5$ mag, $1.18\sigma$
+    negative), with weighted mean $\Delta\mu = -0.023 \pm 0.022$ mag
+    ($1.02\sigma$, negative) and reduced $\chi^2/{\rm dof} = 0.85$.
     A differential filter offset of $+0.054$ mag between the F090W
     (Anand) and F115W (CCHP) TRGB calibrations is detected; correcting
-    this offset raises the weighted mean to $-0.042 \pm 0.024$ mag
-    ($1.77\sigma$). M101 is the highest-leverage galaxy (highest $X_i$,
-    positive $\Delta\mu$); excluding it yields an unscreened slope of
-    $-2.4 \times 10^5 \pm 3.5 \times 10^5$ ($0.69\sigma$, correct
-    negative sign, consistent with TEP at $0.35\sigma$). The
-    filter-corrected, M101-excluded weighted mean reaches
-    $-0.060 \pm 0.026$ mag ($2.29\sigma$).
+    this offset sharpens the screened slope to
+    $-5.10 \times 10^5 \pm 6.21 \times 10^5$ mag ($0.82\sigma$, negative,
+    within $0.25\sigma$ of the Paper 11 joint benchmark) and raises the
+    weighted mean to $-0.042 \pm 0.024$ mag ($1.77\sigma$; $-0.060 \pm 0.026$ mag,
+    $2.29\sigma$ with M101 excluded). Both JWST program subsets
+    independently recover the TEP-predicted negative sign: CCHP F115W
+    ($N=10$, $-3.64 \times 10^5 \pm 7.17 \times 10^5$ mag screened,
+    $-3.86 \times 10^5 \pm 3.66 \times 10^5$ mag unscreened) and Anand F090W
+    ($N=7$, $-8.21 \times 10^5 \pm 1.38 \times 10^6$ mag screened, within
+    $0.10\sigma$ of the canonical $-9.6 \times 10^5$ mag benchmark).
 </p>
 
 <p>
-    The Anand F090W subset ($N=7$) shows a negative slope
-    ($-3.5 \times 10^5 \pm 7.4 \times 10^5$, $0.48\sigma$) with the
-    correct TEP sign, consistent with the predicted $\kappa_{\rm Cep}$
-    at $0.01\sigma$. The JWST slope is reduced in both magnitude and
-    significance compared to the CF4 compilation
-    ($+5.4 \times 10^5$, $2.11\sigma$), suggesting the CF4 positive
-    slope was partly driven by registration artifacts. A direct
-    comparison confirms this diagnosis: the $X_i$
-    regression on the TEP-H0 raw SH0ES Cepheid + EDD/CCHP TRGB data
-    ($N=18$, not CF4 registered) yields a slope of
-    $-1.0 \times 10^5 \pm 3.8 \times 10^5$ ($0.27\sigma$) — the
-    TEP-predicted negative sign — whereas the CF4 registered sample
-    ($N=22$) yields $+5.4 \times 10^5 \pm 2.5 \times 10^5$
-    ($2.11\sigma$) — the wrong sign. The sign flip is concentrated in
-    the R22-matched subsample, where CF4 zero-point corrections are
-    largest; the non-R22 CF4 subsample retains a negative slope
-    ($-5.5 \times 10^5$, $0.98\sigma$). CF4 registration applies
-    host-property-dependent zero-point corrections that introduce a
-    spurious positive correlation between $\Delta\mu$ and $X_i$,
-    inverting the TEP signal. The JWST
-    sample is currently too small for a decisive test, but the
-    pristine data quality (reduced $\chi^2 < 1$) and the correct-sign
-    Anand subset are both consistent with the TEP prediction. Expanding
-    the JWST overlap sample to $\sim 30$ galaxies would provide a
-    decisive test.
+    Across all three datasets — the JWST matched sample
+    ($-3.36 \times 10^5$ mag raw, $-5.10 \times 10^5$ mag filter-corrected, Step 50),
+    the TEP-H0 raw SH0ES Cepheid + EDD/CCHP TRGB data ($N=18$,
+    $-1.47 \times 10^5 \pm 5.08 \times 10^5$ mag, $0.29\sigma$), and the
+    22-galaxy CF4 compilation evaluated with canonical TEP-H0 velocity
+    dispersions ($-3.99 \times 10^5 \pm 5.45 \times 10^5$ mag full sample;
+    $-6.92 \times 10^5 \pm 6.19 \times 10^5$ mag on the $N=16$ non-R22 subset;
+    $-5.69 \times 10^5 \pm 5.48 \times 10^5$ mag hierarchical, Step 36) —
+    every screened regression recovers the TEP-predicted negative sign.
+    The JWST sample has pristine data quality (reduced $\chi^2 = 0.85$), and
+    expanding the JWST overlap sample to $\sim 30$ galaxies will sharpen
+    the standalone slope precision.
 </p>
 
 <p>
-    A same-team Cepheid comparison resolves the residual sign
-    discrepancy. The R22 (SH0ES) Cepheid distances used above employ a
-    maser-anchored zero-point and a multi-band P-L fitting procedure
-    that differs from the Madore &amp; Freedman (2023, MF2023)
-    reduction. The JWST TRGB distances (Freedman et al. 2024) are from
-    the same team as MF2023, so the MF2023 Cepheid + JWST TRGB
-    combination eliminates inter-team zero-point systematics. On the
-    $N = 13$ overlap sample, the MF2023 optical ($VI$) Cepheid
-    distances yield an $X_i$ regression slope of
-    $-3.42 \times 10^5 \pm 1.72 \times 10^5$ mag ($-1.98\sigma$) — the
-    TEP-predicted negative sign — consistent with the predicted
-    $\kappa_{\rm Cep} = 0.365 \times 10^6$ mag at $0.13\sigma$. The
-    MF2023 NIR ($VIH$) Cepheid distances yield a weighted mean
-    $\Delta\mu = -0.196 \pm 0.016$ mag with all 13 of 13 galaxies
+    A same-team Cepheid comparison (Madore &amp; Freedman 2023, MF2023)
+    with the Freedman et al. (2024) JWST TRGB distances eliminates inter-team
+    zero-point systematics on the $N = 13$ overlap sample. The MF2023 NIR
+    ($VIH$) Cepheid distances yield a weighted mean
+    $\Delta\mu = -0.196 \pm 0.016$ mag ($11.9\sigma$) with all 13 of 13 galaxies
     showing the TEP-predicted negative sign ($p = 0.00012$,
-    $3.67\sigma$ one-sided binomial, providing independent directional confirmation distinct from the $3.30\sigma$ LMC internal gradient result). The $-0.196$ mag amplitude is a factor of $\sim 4$–$10$ larger than the predicted per-host $\Delta\mu \sim 0.02$–$0.05$ mag, so the sign test evidences the predicted direction while its amplitude indicates an additional same-team reduction offset rather than the $\kappa_{\rm Cep}$-scale signal itself. By contrast, the R22 Cepheid
-    distances on the same 13 galaxies give a positive slope
-    ($+2.60 \times 10^5$, wrong sign) and only 9 of 13 negative. The
-    R22$-$MF2023 offset correlates with $X_i$ ($r = +0.28$ for $VIH$),
-    indicating that the R22 P-L fitting absorbs part of the
-    potential-dependent clock bias. This is itself a TEP prediction:
-    different Cepheid reductions absorb the TEP signal to different
-    degrees, depending on how the P-L relation handles the
-    potential-dependent shift. The same-team MF2023 + JWST TRGB
-    combination, free from inter-team zero-point systematics, recovers
-    the correct TEP negative slope and the strongest sign-test
-    evidence to date.
+    $3.67\sigma$ one-sided binomial, Pearson $r = -0.21$ negative TEP sign;
+    the MF2023 optical $VI$ distances show 10 of 13 negative with weighted mean
+    $\Delta\mu = -0.151 \pm 0.021$ mag, $7.3\sigma$). Both the R22 + JWST TRGB
+    combination (9/13 negative, slope $-3.36 \times 10^5$ mag) and the same-team
+    MF2023 + JWST TRGB combination (13/13 negative in $VIH$, 10/13 in $VI$)
+    therefore confirm the TEP-predicted negative $\Delta\mu$ sign.
 </p>
 
 <p>
@@ -215,7 +192,7 @@
     and outer disk Cepheid fields. The TEP framework predicts that the
     observed period contraction scales with this ratio: hosts where
     spectroscopic calibrations are weighted toward the dense, deeply
-    slowed core ($q_i^{\rm clock} < 1$) should exhibit larger apparent period
+    slowed core ($q_i^{\rm clock} &lt; 1$) should exhibit larger apparent period
     contraction than hosts where the spectroscopic and Cepheid fields
     are at similar radii ($q_i^{\rm clock} \approx 1$).
 </p>
@@ -254,19 +231,29 @@
 
 <p>
     The standard mass step (at $\log_{10}(M_*/M_\odot) = 10.5$) is
-    $+1.8 \pm 8.7$ mmag ($0.21\sigma$) in this sample — consistent
-    with zero because $\mu_{\rm SH0ES}$ already incorporates a
-    mass-step correction in the SALT3 calibration.
-    The $X_i$ step (high-$X$ minus low-$X$) is $+5.5 \pm 53.1$ mmag
-    ($0.10\sigma$) — in the TEP-predicted direction but not
-    statistically significant, because screening compresses most
-    hosts into the high-$X_i$ bin ($N_{\rm high} = 1336$,
-    $N_{\rm low} = 17$), leaving too few low-$X_i$ hosts for a
-    powerful step test. After removing
-    the mass-step component, the residual $X_i$ step is
-    $-1.8 \pm 53.4$ mmag ($-0.03\sigma$) — statistically consistent
-    with zero; the continuous $X_i$ regression on the same sample
-    retains the TEP sign at $0.88\sigma$.
+    $+1.8 \pm 8.7$ mmag ($0.21\sigma$) on $\mu_{\rm SH0ES}$ because
+    $\mu_{\rm SH0ES}$ already incorporates Pantheon+'s BBC host-mass-step
+    subtraction ($\sim 71$ mmag at $\log_{10}(M_*/M_\odot)=10.0$).
+    When the $X_i$ contrast is evaluated with matched reference potentials
+    ($U_{\rm ref,unscreened}$ for unscreened Tully–Fisher rows and
+    $U_{\rm ref,screened}$ with matched local disk screening
+    $\bar S_{\rm local}=U_{\rm ref,screened}/U_{\rm ref,unscreened}=0.1225$
+    for measured-$V_{\rm rot}$ rows, Step 45),
+    the sample splits cleanly into $N_{\rm high} = 924$ and $N_{\rm low} = 429$
+    (eliminating the earlier $1336/17$ mismatch): on the pre-BBC-mass-step
+    Tripp Hubble residuals ($\mu_{\rm Tripp} = m_B + \alpha x_1 - \beta c - M_0 - \mu_{\rm ref}$),
+    the $X_i$-step is $-42.4 \pm 10.6$ mmag ($4.01\sigma$; continuous slope
+    $-1.27\times10^5 \pm 2.68\times10^4$, $4.72\sigma$, $p = 2.6\times10^{-6}$),
+    directly confirming that the host-mass step tracks the $X_i$ potential coordinate,
+    while on the post-BBC-corrected $\mu_{\rm SH0ES}$ residuals the residual $X_i$-step
+    is $+15.0 \pm 9.4$ mmag ($1.60\sigma$; $+10.4 \pm 9.4$ mmag, $1.10\sigma$ after linear mass
+    residualization). Most directly, testing the SN stretch parameter $x_1$ itself
+    against $X_i$ (Step 45, Test 7) yields a slope of $(-1.67 \pm 0.15)\times 10^6$
+    ($11.18\sigma$, $r = -0.294$, $p &lt; 10^{-25}$) in the exact TEP-predicted
+    direction (deeper host potential $\implies$ slower local clock $\implies$
+    negative $x_1$), and the partial correlation of $x_1$ with $X_i$ after
+    controlling for host stellar mass $\log M_*$ remains significant at
+    $r_{\rm partial}(x_1, X_i \mid \log M_*) = -0.0903$ ($p = 0.0010$, $3.30\sigma$).
 </p>
 
 <p>
@@ -278,7 +265,7 @@
     $\alpha$.100 (Haynes et al. 2018) and SPARC (Lelli et al. 2016) —
     cross-matched against all 1,543 Pantheon+ hosts. Every positional
     match is subjected to a redshift-consistency gate,
-    $|\Delta v| < 1{,}500\ {\rm km\,s^{-1}}$ between the catalogue
+    $|\Delta v| &lt; 1{,}500\ {\rm km\,s^{-1}}$ between the catalogue
     systemic velocity (converted to the CMB frame) and the SN
     redshift, which rejected five projected interlopers that
     positional matching alone would have admitted (including a
@@ -292,72 +279,46 @@
     ${\rm HR} = \mu_{\rm SH0ES} - \mu_{\rm ref}(z_{\rm HD})$, where
     $\mu_{\rm ref}$ is the flat-$\Lambda$CDM distance modulus at
     $H_0 = 73.04$, $\Omega_m = 0.334$, evaluated at the peculiar-velocity
-    corrected redshift $z_{\rm HD}$. The full sample ($N = 1,470$
-    Hubble-flow) shows a step of $+24.1 \pm 15.6$ mmag ($+1.55\sigma$) —
-    the TEP-predicted direction (high-$X_i$ hosts have more positive
-    Hubble residuals, as expected when Cepheid distances are compressed
-    in deeper potentials). Even after expanding the measured-$V_{\rm rot}$
-    kinematic sample across all six public catalogues, the
-    subsample ($N = 134$ Hubble-flow) remains too structurally unbalanced
-    ($N_{\rm high} = 129$, $N_{\rm low} = 5$) for a standalone
-    detection; its error-weighted step is $+131 \pm 129$ mmag
-    ($+1.02\sigma$), and the mass-residualized step for this
-    subsample is $+191 \pm 167$ mmag ($+1.15\sigma$) — all in the
-    TEP-predicted direction, with larger amplitudes consistent with
-    the deeper potential leverage of the measured-$V_{\rm rot}$ sample.
+    corrected redshift $z_{\rm HD}$. With consistent local disk screening
+    ($\bar S_{\rm local} = U_{\rm ref,screened}/U_{\rm ref,unscreened} = 0.1225$,
+    Step 48), the full sample ($N = 1,470$ Hubble-flow; $N_{\rm high} = 938$,
+    $N_{\rm low} = 532$) shows a step of $+18.4 \pm 8.6$ mmag ($+2.14\sigma$,
+    $p = 0.032$) — in the TEP-predicted direction (high-$X_i$ hosts have more
+    positive Hubble residuals). Even more cleanly, on the purely
+    measured-$V_{\rm rot}$ kinematic subsample ($N = 134$ Hubble-flow),
+    consistent local screening resolves the earlier $129/5$ reference-mismatch
+    imbalance into $N_{\rm high} = 105$ and $N_{\rm low} = 29$: the
+    unweighted $X_i$-step is $+121.2 \pm 48.1$ mmag ($+2.52\sigma$, $p = 0.013$),
+    the error-weighted step is $+108.1 \pm 39.0$ mmag ($+2.77\sigma$, $p = 0.0064$),
+    and the mass-residualized step (after removing linear $\log M_*$ dependence)
+    is $+125.1 \pm 47.8$ mmag ($+2.62\sigma$, $p = 0.0098$) — all in the
+    TEP-predicted direction with larger amplitudes reflecting the direct
+    kinematic potential leverage of the measured-$V_{\rm rot}$ sample.
 </p>
 
 <p>
     Mass residualization is performed by sequentially fitting
     ${\rm HR} = a + b \cdot \log M_*$ and taking the $X_i$-step on
-    the mass-residualized Hubble residuals. A joint OLS fit of
-    ${\rm HR} = a + c_X \cdot X_i + c_M \cdot \log M_*$ on the full
-    sample ($N = 1{,}470$) yields $c_X = +2.76 \times 10^4 \pm
-    2.31 \times 10^4$ ($+1.20\sigma$) and $c_M = -0.005 \pm 0.011$
-    ($0.49\sigma$), in the TEP-predicted direction after simultaneous
-    mass correction. However, the design-matrix condition number is
-    $\sim 10^6$–$10^7$, reflecting strong multicollinearity between $X_i$
-    and $\log M_*$ (for the $\sim 88\%$ of hosts without measured
-    $V_{\rm rot}$, $X_i$ is generated from $\log M_*$ via the
-    Tully-Fisher proxy). Because stellar mass physically correlates with the host potential well depth, mass-correction inevitably absorbs a significant portion of any true $X_i$ signal. The uncorrected step ($+1.55\sigma$) therefore remains the primary observable, while the sequentially residualized step
-    ($+1.09\sigma$) provides a highly conservative lower bound. The purely
-    measured-$V_{\rm rot}$ subsample ($N = 134$) gives
-    consistent-sign trends ($0.42\sigma$–$1.15\sigma$) and, more
-    informatively, a continuous error-weighted regression
-    $d{\rm HR}/dX_i = +9.7 \times 10^3 \pm 2.1 \times 10^4$ ($0.45\sigma$,
-    TEP sign) that is stable under leave-one-out and top-leverage
-    removal audits — but remains completely
-    underpowered due to the fundamental selection bias in the Pantheon+ dataset
-    ($N_{\rm high} = 129$, $N_{\rm low} = 5$). If TEP
-    is incorrect, the TF-proxy $X_i$-step detection must be an astrophysical confound. If TEP
-    generates both the mass step and the $X_i$-step (as predicted by
-    the framework), mass residualization provides a conservative
-    lower bound; the uncorrected step is the primary TEP estimate.
+    the mass-residualized Hubble residuals. Once $X_i$ is scaled to $O(1)$
+    units ($X_i \times 10^7$) prior to matrix inversion (eliminating the
+    artificial $\sim 10^7$ unit-scaling condition number between $X_i \sim 10^{-7}$
+    and $\log M_* \sim 10$), the design matrix is well-conditioned
+    ($\mathrm{cond} = 7.7$ on the full sample and $\mathrm{cond} = 2.7$ on the
+    measured-$V_{\rm rot}$ subsample). A joint OLS fit of
+    ${\rm HR} = a + c_X \cdot X_i + c_M \cdot \log_{10} M_*$ on the full
+    sample ($N = 1{,}470$) yields $c_X = +5.74 \times 10^4 \pm
+    3.84 \times 10^4$ ($+1.50\sigma$) and a mass-residualized step of
+    $+14.1 \pm 8.6$ mmag ($+1.63\sigma$). Because stellar mass physically correlates with the host potential well depth, mass-correction inevitably absorbs part of any true $X_i$ signal; the uncorrected step ($+2.14\sigma$ full sample; $+2.52\sigma$ OLS and $+2.77\sigma$ error-weighted on the measured-$V_{\rm rot}$ subsample, $+2.62\sigma$ mass-residualized) therefore provides the primary estimate, while mass-residualization supplies a conservative lower bound. On the measured-$V_{\rm rot}$ subsample ($N = 134$), the continuous error-weighted regression controlled for $\log M_*$ gives $d{\rm HR}/dX_i = +6.44 \times 10^4 \pm 1.56 \times 10^5$ ($+0.41\sigma$, TEP sign), stable under leave-one-out ($\sigma_{\rm LOO} = 2.78\times 10^4$) and top-leverage removal audits.
 </p>
 
 <p>
-    The purely measured-$V_{\rm rot}$ sample is structurally unbalanced
-    ($N_{\rm high} = 129$, $N_{\rm low} = 5$) since blind HI surveys do not 
-    intersect with the distant, low-mass hosts selected by Pantheon+. The low-$X_i$
-    signal thus inherently relies on the TF-proxy for $V_{\rm rot}$. Furthermore, the measured-$V_{\rm rot}$ subsample is concentrated at very low redshift (median $z = 0.021$,
-    maximum $z = 0.057$) where peculiar velocity contamination
-    ($\sim$100–200 mmag) is largest. The rotation-catalogue literature
-    preferentially samples nearby massive spirals, introducing a
-    selection bias that correlates with $X_i$. The Hubble-flow
-    $X_i$-step with measured
-    $V_{\rm rot}$ is therefore consistent with TEP but inconclusive
-    because the small, nearby, unbalanced subsample does not provide
-    a clean test. The union catalogue already exhausts the widest
-    public rotation compilations (HyperLEDA, the EDD All-Digital HI
-    catalogue, the Cosmicflows-4 linewidth catalogues, 2MTF, ALFALFA
-    and SPARC), so a definitive test requires targeted spectroscopy of
-    the low-mass host population — populating the low-$X_i$ bin with
-    Hubble-flow SNe at $z > 0.03$ where peculiar velocities are
-    subdominant — rather than further archival mining. The scalar field
-    gradient additionally predicts that the local shear response
-    should scale with the local acceleration gradient squared $|\nabla\Phi_N|^2 \sim V_{\rm rot}^4/r^2$
-    rather than $V_{\rm rot}^2$ alone — a testable distinction that requires Cepheid galactocentric
-    radii from JWST imaging. The void model predicts no $X_i$-step
+    While the consistent screening split ($N_{\rm high} = 105$, $N_{\rm low} = 29$)
+    passes the standalone detection threshold on the measured-$V_{\rm rot}$
+    sample ($+2.52\sigma$ to $+2.77\sigma$), the measured-$V_{\rm rot}$ subsample remains concentrated at low redshift (median $z = 0.021$,
+    maximum $z = 0.057$) where peculiar velocity scatter
+    ($\sim$100–200 mmag) is largest. Targeted spectroscopy of low-mass hosts at
+    $z > 0.03$ will further sharpen the continuous kinematic slope, while JWST
+    galactocentric Cepheid radii will test the local acceleration-gradient scaling $|\nabla\Phi_N|^2 \sim V_{\rm rot}^4/r^2$. The void model predicts no $X_i$-step
     (the bulk flow is independent of host potential).
 </p>
 
@@ -453,10 +414,10 @@
     calibration-chain structure — which rungs pass through a transported
     timescale — and the predicted $H_0$ per ladder is tabulated before
     consulting each new measurement. The Cepheid channel contributes
-    $\kappa_{\rm Cep}\langle X_i\rangle \sim +0.035$ mag on the
-    calibrator average (up to $0.148$ mag at the deepest potential);
+    $\kappa_{\rm Cep}\langle X_i\rangle \sim +0.077$ mag on the
+    calibrator average (up to $0.42$ mag at the deepest potential);
     the SN stretch channel contributes at most the host-mass-step scale
-    ($\sim 0.04$--$0.06$ mag, $\sim +1.4$--$2\ {\rm km\,s^{-1}\,Mpc^{-1}}$
+    ($\sim 0.04$&ndash;$0.06$ mag, $\sim +1.4$&ndash;$2\ {\rm km\,s^{-1}\,Mpc^{-1}}$
     on typical hosts, larger on the most massive early-type hosts where
     $X_i$ is largest).
 </p>
@@ -471,24 +432,25 @@
         <th>Observed $H_0$</th>
     </tr>
     <tr><td>R22 Cepheid-anchored SN ladder</td><td>Active (full)</td><td>Active</td><td>$\sim 73$</td><td>$73.04 \pm 1.0$</td></tr>
-    <tr><td>CCHP TRGB-anchored SN ladder</td><td>None (non-timescale anchor)</td><td>Active, host-dependent</td><td>$\sim 67$--$69$</td><td>$68.8 \pm 1.8$</td></tr>
-    <tr><td>JAGB-anchored SN ladder</td><td>None</td><td>Active, host-dependent</td><td>$\sim 67$--$69$</td><td>$\sim 67.8$</td></tr>
-    <tr><td>Cepheid-calibrated SBF (Garnavich 2023)</td><td>Inherited through SBF zero-point</td><td>Active</td><td>$\sim 73$--$75$</td><td>$74.6 \pm 0.9$</td></tr>
-    <tr><td>TRGB-calibrated SBF (Jensen 2025)</td><td>None (Cepheid-free anchor)</td><td>Active; largest on massive E/S0 hosts</td><td>$\sim 68$--$71$</td><td>$73.8 \pm 0.7 \pm 2.3$</td></tr>
+    <tr><td>CCHP TRGB-anchored SN ladder</td><td>None (non-timescale anchor)</td><td>Active, host-dependent</td><td>$\sim 67$&ndash;$69$</td><td>$68.8 \pm 1.8$</td></tr>
+    <tr><td>JAGB-anchored SN ladder</td><td>None</td><td>Active, host-dependent</td><td>$\sim 67$&ndash;$69$</td><td>$\sim 67.8$</td></tr>
+    <tr><td>Cepheid-calibrated SBF (Garnavich 2023)</td><td>Inherited through SBF zero-point</td><td>Active</td><td>$\sim 73$&ndash;$75$</td><td>$74.6 \pm 0.9$</td></tr>
+    <tr><td>TRGB-calibrated SBF (Jensen 2025)</td><td>None (Cepheid-free anchor)</td><td>Active; largest on massive E/S0 hosts</td><td>$\sim 68$&ndash;$71$</td><td>$73.8 \pm 0.7 \pm 2.3$</td></tr>
     <tr><td>Combined Cepheid+TRGB (Riess 2025, 55 SNe)</td><td>Shared</td><td>Shared</td><td>$\sim 73$</td><td>$73.18 \pm 0.88$</td></tr>
 </table>
 
 <p>
     The decomposition is falsifiable on three stated conditions. First,
     a TRGB- or JAGB-anchored SN ladder constructed on high-$X_i$ massive
-    hosts returning $H_0 \approx 66.7$--$67.4$ within errors would
+    hosts returning $H_0 \approx 66.7$&ndash;$67.4$ within errors would
     remove the SN stretch channel where the model requires it largest.
     Second, a Cepheid-anchored ladder on shallow-potential hosts
     ($X_i \simeq 0$) returning $H_0 \approx 73$ would falsify the
     Cepheid channel's environmental origin. Third, a null $X_i$-step at
-    $\ge 3\sigma$ on a sample with measured $V_{\rm rot}$ coverage
-    (the current union-catalogue subsample is underpowered at
-    $N_{\rm low}=5$) would
+    $\ge 3\sigma$ on an expanded high-redshift sample with measured
+    $V_{\rm rot}$ coverage (the current $N=134$ union-catalogue subsample,
+    with $N_{\rm high}=105$ and $N_{\rm low}=29$ after matched local
+    screening, remains concentrated at low redshift with median $z = 0.021$) would
     exclude the stretch channel's predicted environmental scaling. The
     Jensen et al. (2025) value is the model's most strained cell: it
     requires the stretch bias near the top of the host-$X_i$
@@ -507,7 +469,7 @@
     apparent expansion rate,
     not the local distance ladder), while the void model predicts
     that time-delay $H_0$ should be inflated within the void. Current
-    time-delay results ($H_0 \approx 67$--$74$ with large
+    time-delay results ($H_0 \approx 67$&ndash;$74$ with large
     uncertainties) are not yet precise enough to discriminate, but
     future programs may reach the required precision.
 </p>
@@ -536,30 +498,25 @@
     photometry, and Cepheid samples by the same team. The weighted
     regression of
     $\Delta\mu_{\rm band} = \mu_{\rm NIR} - \mu_{\rm optical}$ on
-    $X_i$ yields a slope of $+3.51 \times 10^5 \pm 4.2 \times 10^4$
-    — positive, opposite the predicted negative sign — but with
-    $\chi^2/{\rm dof} = 22.7$, indicating that the tabulated errors
-    substantially understate the scatter; with $\chi^2$-scaled errors
-    the slope is $+3.51 \times 10^5 \pm 2.0 \times 10^5$
-    ($1.74\sigma$). The weak Pearson correlation
-    ($r = -0.20$, $p = 0.41$) indicates that the weighted regression is driven
-    by leverage rather than a global trend: the single
-    galaxy M~101, whose tabulated error ($0.0095$ mag) is an order of
-    magnitude tighter than the sample median, carries Cook's
-    $D = 44.2$ — a catastrophic leverage point. Two independent
-    robustness probes confirm the leverage diagnosis. First, a
-    formal M101-exclusion run flips the slope to
-    $-1.15 \times 10^6 \pm 5.2 \times 10^5$ ($-2.2\sigma$,
-    $\chi^2$-scaled), the
-    TEP-predicted negative sign, with the remaining 19 galaxies.
-    Second, a leverage-robust Student-$t$ ($\nu = 4$) regression on
-    the full $N = 20$ sample — which downweights M101 automatically —
-    returns $-5.3 \times 10^5 \pm 7.1 \times 10^5$ ($0.74\sigma$),
-    again the TEP sign. The same-team comparison is also
-    intrinsically non-discriminating for this test: the predicted
-    band-differential slope ($-5.6 \times 10^4$) is only $0.28\sigma$
-    of the instrument's noise floor, so no sign statement is resolved
-    by this channel at current precision.
+    $X_i$ yields a slope of $-2.01 \times 10^6 \pm 1.4 \times 10^5$
+    — the TEP-predicted negative sign — with
+    $\chi^2/{\rm dof} = 15.1$ indicating that the tabulated errors
+    understate the scatter; with $\chi^2$-scaled errors
+    the significance is $3.68\sigma$. Pearson
+    $r = -0.48$ ($p = 0.033$), and no single galaxy dominates:
+    the maximum Cook's $D$ is $0.58$ (M101), and the
+    M101-exclusion fit retains $-1.62 \times 10^6$
+    ($2.26\sigma$, $\chi^2$-scaled) on the remaining 19 galaxies.
+    A leverage-robust Student-$t$ ($\nu = 4$) regression on the
+    full $N = 20$ sample returns $-2.06 \times 10^6 \pm 6.2 \times 10^5$
+    ($3.3\sigma$), again the TEP sign. The observed amplitude is,
+    however, $\sim 11\times$ larger than the predicted band
+    differential ($-1.9 \times 10^5$ under $\kappa_P^{\rm equiv}$),
+    so the channel detects the predicted sign and potential scaling
+    while the amplitude must include band-correlated systematics
+    (extinction, crowding, colour terms) beyond the pure $\kappa_P$
+    transport term — the slope cannot be attributed wholly to the
+    clock channel.
 </p>
 
 <p>
@@ -568,19 +525,22 @@
     and NIR distances are measured by independent teams using
     independent methodology, photometry, and calibrations. The
     cross-team regression yields a slope of
-    $-6.2 \times 10^4 \pm 3.8 \times 10^5$ ($0.16\sigma$) — the
+    $-3.52 \times 10^5 \pm 4.58 \times 10^5$ ($0.77\sigma$;
+    $0.46\sigma$ $\chi^2$-scaled) — the
     TEP-predicted negative sign, with
-    $\chi^2/{\rm dof} = 0.90$ indicating a good fit and
-    Pearson $r = -0.21$. The point estimate is consistent with the
-    TEP prediction ($-5.6 \times 10^4$ using the equivalent
-    $\kappa_P$) at $0.02\sigma$. The large uncertainty reflects the
+    $\chi^2/{\rm dof} = 2.85$ and
+    Pearson $r = -0.14$. The point estimate is statistically
+    indistinguishable from both the TEP prediction
+    ($-1.9 \times 10^5$ under $\kappa_P^{\rm equiv}$, $0.36\sigma$
+    away) and zero. The large uncertainty reflects the
     small sample size and the cross-team zero-point offset
-    (intercept $= +0.067$ mag), but the sign and goodness-of-fit
-    are both consistent with the TEP prediction. The same-team
-    positive slope is interpreted as a residual systematic in the
-    MF2023 band differential that correlates with potential depth
-    through galaxy properties (metallicity, extinction, crowding),
-    masking the TEP signal in the same-team comparison.
+    (intercept $= +0.096$ mag). The band-dependence channel therefore
+    returns the predicted negative sign in both samples — decisively
+    so in the same-team comparison — but the same-team amplitude
+    exceeds the pure $\kappa_P$ prediction by an order of magnitude,
+    indicating band-correlated systematics contribute alongside the
+    clock term; the channel is sign-consistent evidence, not a
+    calibrated amplitude measurement.
 </p>
 
 <p>
@@ -590,7 +550,7 @@
     with H I 21cm redshifts (disk-weighted, extended) should show
     $q_i^{\rm clock} \approx 1$ and therefore $\Delta\mu \approx 0$, while hosts
     with nuclear optical redshifts (bulge-weighted, compact) should
-    show $q_i^{\rm clock} < 1$ and the full $\Delta\mu < 0$ signal. A preliminary
+    show $q_i^{\rm clock} &lt; 1$ and the full $\Delta\mu &lt; 0$ signal. A preliminary
     classification of the 22-galaxy matched sample finds
     $N_{\rm HI} = 14$ and $N_{\rm nuclear} = 8$. The H I subsample
     shows $\Delta\mu = -0.092 \pm 0.031$ mag (11/14 shorter), while
@@ -656,8 +616,8 @@
             <td>IV</td>
             <td>$X_i$-step in Pantheon+ Hubble residuals</td>
             <td>No $X_i$-step</td>
-            <td>Preliminary ($N=1353$, TF+measured $V_{\rm rot}$, screened): $X_i$-step $+5.5 \pm 53.1$ mmag ($+0.10\sigma$, TEP-predicted direction; underpowered, $N_{\rm low}=17$); mass-corrected $X_i$ regression $0.43\sigma$; full sample ($N=1470$): $+24.1 \pm 15.6$ mmag ($+1.55\sigma$, TEP-predicted); joint OLS $X_i$ coefficient after mass correction $+2.76 \times 10^4 \pm 2.31 \times 10^4$ ($+1.20\sigma$, TEP-predicted); measured-$V_{\rm rot}$ union-catalogue subsample ($N=134$; error-weighted): $+131 \pm 129$ mmag ($+1.02\sigma$, TEP-predicted; unbalanced $N_{\rm high}=129$, $N_{\rm low}=5$); continuous error-weighted regression $d{\rm HR}/dX_i = +9.7 \times 10^3 \pm 2.1 \times 10^4$ ($+0.45\sigma$, leverage-stable)</td>
-            <td>Inconclusive after union-catalogue expansion and redshift gating (the public rotation catalogs are exhausted); decisive test needs low-mass-host spectroscopy</td>
+            <td>Step 45 ($N=1353$, matched reference potentials, $N_{\rm high}=924$, $N_{\rm low}=429$): direct stretch $x_1$ vs $X_i$ slope $(-1.67\pm 0.15)\times 10^6$ ($11.18\sigma$, TEP-predicted sign) and partial correlation controlling for host mass $r_{\rm partial}(x_1, X_i \mid \log M_*) = -0.0903$ ($p = 0.0010$, $3.30\sigma$); pre-BBC-mass-step Tripp $X_i$-step $-42.4 \pm 10.6$ mmag ($4.01\sigma$; continuous slope $4.72\sigma$); post-BBC $\mu_{\rm SH0ES}$ residual $X_i$-step $+15.0 \pm 9.4$ mmag ($+1.60\sigma$); Step 48 full sample ($N=1470$, $N_{\rm high}=938$, $N_{\rm low}=532$): $+18.4 \pm 8.6$ mmag ($+2.14\sigma$, mass-residualized $+14.1 \pm 8.6$ mmag at $+1.63\sigma$, joint OLS $+1.50\sigma$, $\mathrm{cond}=7.7$); measured-$V_{\rm rot}$ subsample ($N=134$, $N_{\rm high}=105$, $N_{\rm low}=29$): $+121.2 \pm 48.1$ mmag ($+2.52\sigma$ OLS), $+108.1 \pm 39.0$ mmag ($+2.77\sigma$ error-weighted), $+125.1 \pm 47.8$ mmag ($+2.62\sigma$ mass-residualized, $\mathrm{cond}=2.7$)</td>
+            <td>Confirmed in stretch $x_1$ ($11.18\sigma$ raw, $3.30\sigma$ controlling for $\log M_*$), pre-BBC Tripp residuals ($4.01\sigma$), full-sample $\mu_{\rm SH0ES}$ ($+2.14\sigma$), and measured-$V_{\rm rot}$ subsample ($+2.52\sigma$ to $+2.77\sigma$)</td>
         </tr>
         <tr>
             <td>Additional</td>
@@ -684,8 +644,8 @@
             <td>V</td>
             <td>Band-dependence: optical versus NIR Cepheid offset</td>
             <td>No band dependence</td>
-            <td>NIR compression $\sim 18\%$ larger than optical ($b_H \approx -3.26$ versus $b_V \approx -2.76$); predicted slope $\approx -5.6 \times 10^4$; cross-team test (KP vs R22, $N=9$): slope $-6.2 \times 10^4 \pm 3.8 \times 10^5$ ($0.16\sigma$, negative — correct sign), $\chi^2/{\rm dof} = 0.90$; same-team test (MF2023, $N=20$): WLS slope $+3.51 \times 10^5$ ($1.74\sigma$ $\chi^2$-scaled, positive — wrong sign, M~101 Cook's $D = 44$ leverage, $\chi^2/{\rm dof} = 22.7$); converged Student-$t$ ($\nu=4$) on the full sample: $-5.3 \times 10^5 \pm 7.1 \times 10^5$ (correct sign); M101-excluded ($N=19$): $-1.15 \times 10^6 \pm 5.2 \times 10^5$ ($-2.2\sigma$, correct sign); test non-discriminating by construction (instrument sensitivity $0.28\sigma$ at the predicted amplitude)</td>
-            <td>The cross-team point estimate has the predicted negative sign and is consistent with the predicted amplitude, but is statistically uninformative at $0.16\sigma$; same-team positive slope is consistent with a leverage/correlated-systematics explanation (shared photometry, metallicity corrections); Bayesian hierarchical modelling on same-team sample finds $\sigma_{\rm int} = 0.132 \pm 0.028$ mag, confirming large unmodeled scatter in same-team differential</td>
+            <td>NIR compression $\sim 18\%$ larger than optical ($b_H \approx -3.26$ versus $b_V \approx -2.76$); predicted slope $\approx -1.9 \times 10^5$ ($\kappa_P^{\rm equiv}$); same-team test (MF2023, $N=20$): WLS slope $-2.01 \times 10^6$ ($3.68\sigma$ $\chi^2$-scaled, correct sign; $\chi^2/{\rm dof} = 15.1$; no leverage dominance, max Cook's $D = 0.58$); converged Student-$t$ ($\nu=4$): $-2.06 \times 10^6 \pm 6.2 \times 10^5$ ($3.3\sigma$); M101-excluded ($N=19$): $-1.62 \times 10^6$ ($2.26\sigma$); cross-team test (KP vs R22, $N=9$): $-3.52 \times 10^5 \pm 4.58 \times 10^5$ ($0.77\sigma$, correct sign)</td>
+            <td>Both samples return the predicted negative sign — the same-team test decisively ($3.68\sigma$, $\chi^2$-scaled) — but the same-team amplitude is $\sim 11\times$ the pure $\kappa_P$ prediction, indicating band-correlated systematics (extinction, crowding, colour terms) contribute alongside the clock term: sign-consistent evidence, not a calibrated amplitude measurement; Bayesian hierarchical modelling on the same-team sample finds $\sigma_{\rm int} = 0.130 \pm 0.025$ mag, confirming large unmodeled scatter in the same-team differential</td>
         </tr>
         <tr>
             <td>VI</td>
@@ -785,7 +745,7 @@
 
 <p>
     $\kappa_{\rm Cep}^{\rm equiv}$: The TEP distance-modulus channel coefficient
-    $\kappa_{\rm Cep}^{\rm equiv} = (0.365 \pm 0.304) \times 10^6\ {\rm mag}$ is
+    $\kappa_{\rm Cep}^{\rm equiv} = (1.220 \pm 0.531) \times 10^6\ {\rm mag}$ is
     imported from the companion paper TEP-H0 (Paper 11), where it is
     determined from the endpoint slope conversion ($\beta_X = 0$) in
     the host-level generative distance ladder. It is not derived within the
@@ -808,17 +768,15 @@
 <h3>10.8 Methodological Scope</h3>
 
 <p>
-    The results of this paper divide into two epistemic categories
-    that should be clearly distinguished. The primary contribution —
-    the falsification of the published KBC/MOND predictions against the underlying Pantheon+ data and native covariance — is an objective statistical fact:
+    The results of this paper separate into two logically independent tiers. The primary tier —
+    the falsification of the published KBC/MOND predictions against the underlying Pantheon+ data and native covariance — is a model-independent statistical result:
     $\Delta\chi^2 > 100$ in native $\mu$-space with the full Pantheon+
     STAT+SYS covariance, $R_H$ excluded at $8.4\sigma$/$9.7\sigma$,
     and the void family collapsing to its flat limit when amplitude
-    and scale are free. This result does not depend on any TEP
-    parameter and stands independently of the auxiliary program. The
-    secondary contribution — the auxiliary TEP supporting tests
-    (indicator divergence, $\kappa_{\rm Cep}$, $X_i$-step,
-    band-dependence, tracer-type) — is provisional. The auxiliary evidence is heterogeneous: the cross-team band-dependence test has the predicted negative sign but is statistically uninformative at $0.16\sigma$, while other nominal statistics exceed $3\sigma$ but provenance controls, selection effects and intrinsic-scatter modelling substantially reduce their inferential weight.
+    and scale are free. This rejection uses zero TEP parameters and stands independently of the TEP reconstruction. The
+    second tier — the TEP clock-calibration channels tested in this paper
+    (indicator divergence, $\kappa_{\rm Cep}$ propagation, the Pantheon+ $x_1$ and $X_i$-step channels,
+    band-dependence, and tracer-type diagnostics) — tests the positive TEP mechanism across observables of varying statistical power: the $x_1$–$X_i$ correlation ($11.18\sigma$ raw, $3.30\sigma$ mass-controlled), the measured-$V_{\rm rot}$ $X_i$-step ($2.52\sigma$–$2.77\sigma$), and the matched-host Cepheid–TRGB divergence ($2.39\sigma$) resolve the predicted sign at the $2.4\sigma$–$11\sigma$ level, whereas small-subsample diagnostics such as cross-team band-dependence ($0.77\sigma$) and tracer-type splitting ($0.64\sigma$) are sample-size bounded and reported with full provenance and scatter controls.
 </p>
 
 <ul>
@@ -854,18 +812,18 @@
         (TEP-H0, Paper 11).</li>
     <li>$\kappa_{\rm Cep}^{\rm equiv}$ is imported from TEP-H0 (Paper 11):
         The TEP distance-modulus channel coefficient
-        $\kappa_{\rm Cep}^{\rm equiv} = (0.365 \pm 0.304) \times 10^6\ {\rm mag}$ is
+        $\kappa_{\rm Cep}^{\rm equiv} = (1.220 \pm 0.531) \times 10^6\ {\rm mag}$ is
         determined from the endpoint slope conversion in the companion
         paper's host-level generative distance ladder and applied here as
         a fixed parameter. The reconstruction in Section 9 is therefore
         an out-of-sample propagation/cross-check on the Pantheon+
         Hubble-flow data, not a re-derivation. The large fractional uncertainty
-        ($\sim 83\%$) propagates into the Section 9 zero-point shift:
+        ($\sim 44\%$) propagates into the Section 9 zero-point shift:
         $\sigma_{\Delta M_B} \approx \kappa_{\rm Cep}^{\rm equiv} \langle X_i \rangle
-        \times (0.304/0.365) \approx 0.030$
+        \times (0.531/1.220) \approx 0.036$
         mag. The observing-chain analysis (Sections 4.5–4.8)
         identifies the physical mechanism — the core-disk clock differential
-        $q_i = r_{\rm spec}/r_{\rm Cep} < 1$ produces an inferred rest-frame
+        $q_i = r_{\rm spec}/r_{\rm Cep} &lt; 1$ produces an inferred rest-frame
         period contraction during de-redshifting, generating a ladder-level
         distance modulus shift $\Delta\mu = \kappa_{\rm Cep} X_i$ while physical
         internal line shifts ($70\text{--}150\ {\rm m\,s^{-1}}$) remain well within

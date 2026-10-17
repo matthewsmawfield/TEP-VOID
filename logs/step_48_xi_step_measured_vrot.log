@@ -1,9 +1,59 @@
-[22:12:41] [PROCESS] Loading data...
-[22:12:41] [INFO]   Pantheon+: 1543 unique SNe
-[22:12:41] [INFO]   V_rot catalog (Deep): 187 SNe with measured V_rot
-[22:12:41] [PROCESS] 
+[22:11:23] [INFO] ============================================================
+[22:11:23] [INFO] Step 48: X_i-step with Measured V_rot
+[22:11:23] [INFO] ============================================================
+[22:11:23] [PROCESS] Loading data...
+[22:11:23] [INFO]   Pantheon+: 1543 unique SNe
+[22:11:24] [INFO]   V_rot catalog (Deep): 187 SNe with measured V_rot
+[22:11:24] [PROCESS] 
 Computing X_i with measured V_rot...
-[22:12:41] [INFO]   SNe with measured V_rot: 187
-[22:12:41] [INFO]   SNe with TF proxy: 1356
-[22:12:41] [INFO]   Hubble-flow SNe (z > 0.01): 1470
-[22:12:41] [INFO]   Hubble-flow with measured V_rot: 134
+[22:11:24] [INFO]   SNe with measured V_rot: 187
+[22:11:24] [INFO]   SNe with TF proxy: 1356
+[22:11:24] [INFO]   Hubble-flow SNe (z > 0.01): 1470
+[22:11:24] [INFO]   Hubble-flow with measured V_rot: 134
+[22:11:24] [PROCESS] 
+Running X_i-step test...
+[22:11:24] [INFO]   Hubble residual: MU_SH0ES - mu_ref(zHD) [LCDM, H0=73.04, Omega_m=0.334]
+[22:11:24] [INFO]   HR range: -0.740 to 0.743 mag
+[22:11:24] [TEST]   Full sample:
+[22:11:24] [TEST]     N(X>0)=938, N(X<=0)=532
+[22:11:24] [TEST]     Step = 18.4 +/- 8.6 mmag (2.14sigma)
+[22:11:24] [TEST]     Direction: TEP-predicted (high-X -> positive HR)
+[22:11:24] [INFO]   WARNING: measured V_rot sample is selection-biased: N_high=105 vs N_low=29 (ratio 3.6:1), median z=0.0208. Results should not be interpreted as a clean TEP test.
+[22:11:24] [TEST]   Measured V_rot only:
+[22:11:24] [TEST]     N(X>0)=105, N(X<=0)=29
+[22:11:24] [TEST]     Step = 121.2 +/- 48.1 mmag (2.52sigma)
+[22:11:24] [TEST]     Direction: TEP-predicted (high-X -> positive HR)
+[22:11:24] [TEST]   Measured V_rot (error-weighted):
+[22:11:24] [TEST]     N(X>0)=105, N(X<=0)=29
+[22:11:24] [TEST]     Weighted step = 108.1 +/- 39.0 mmag (2.77sigma)
+[22:11:24] [TEST]   Measured V_rot continuous regression:
+[22:11:24] [TEST]     N=134; dHR/dX_i = 6.438e+04 +/- 1.561e+05 (0.41sigma), TEP-predicted sign positive
+[22:11:24] [TEST]     LOO slope std = 2.780e+04 (stable)
+[22:11:24] [TEST]     drop_top_1: slope=3.886e+04 (0.26sigma)
+[22:11:24] [TEST]     drop_top_3: slope=5.202e+04 (0.37sigma)
+[22:11:24] [TEST]     drop_top_5: slope=4.255e+04 (0.32sigma)
+[22:11:24] [TEST]   Measured V_rot (mass-corrected):
+[22:11:24] [TEST]     [Residualized] Step = 125.1 +/- 47.8 mmag (2.62sigma)
+[22:11:24] [TEST]     [Residualized] Mass slope = -6.5 mmag/dex
+[22:11:24] [TEST]     [Joint OLS] X_i coef = -1.140e+04 +/- 2.137e+05 (-0.05sigma)
+[22:11:24] [TEST]     [Joint OLS] Condition number = 2.7 (ok)
+[22:11:24] [INFO]     Note: uncorrected step is primary TEP estimate;
+[22:11:24] [INFO]     mass residualization removes shared TEP signal.
+[22:11:24] [TEST]   Full sample (mass-corrected):
+[22:11:24] [TEST]     [Residualized] Step = 14.1 +/- 8.6 mmag (1.63sigma)
+[22:11:24] [TEST]     [Residualized] Mass slope = 2.4 mmag/dex
+[22:11:24] [TEST]     [Joint OLS] X_i coef = 5.741e+04 +/- 3.835e+04 (1.50sigma)
+[22:11:24] [TEST]     [Joint OLS] Condition number = 7.7 (ok)
+[22:11:24] [INFO]     Note: uncorrected step is primary TEP estimate;
+[22:11:24] [INFO]     mass residualization removes shared TEP signal.
+[22:11:24] [PROCESS] 
+V_rot^2/r^2 scaling test (DHOST prediction)...
+[22:11:24] [INFO]   Requires Cepheid galactocentric radii — not available
+[22:11:24] [INFO]   in current data. Deferred to future work with JWST
+[22:11:24] [INFO]   Cepheid positions (GO-1995, GO-1685).
+[22:11:24] [INFO] 
+Saved results to results/outputs/step_48_xi_step_measured_vrot.json
+[22:11:24] [INFO] 
+============================================================
+[22:11:24] [INFO] Step 48 complete
+[22:11:24] [INFO] ============================================================

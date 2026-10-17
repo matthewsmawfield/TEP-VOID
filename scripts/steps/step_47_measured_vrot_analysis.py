@@ -28,7 +28,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
-from scripts.utils.screening import U_REF_SCREENED, compute_screening, compute_screening_by_name
+from scripts.utils.screening import U_REF_SCREENED, U_REF_UNSCREENED, compute_screening, compute_screening_by_name
 
 C_KMS = 299792.458
 U_REF = U_REF_SCREENED  # screened anchor reference (matches TEP-H0)
@@ -175,8 +175,19 @@ class MeasuredVrotAnalysis:
         merged['delta_mu'] = merged['dm_ceph'] - merged['dm_trgb']
         merged['delta_mu_err'] = np.sqrt(merged['e_dm_ceph']**2 + merged['e_dm_trgb']**2)
 
-        # Compute X_i for each galaxy with TEP screening
-        merged['U_i'] = (merged['vrot_kms'] / np.sqrt(2))**2
+        # Compute X_i for each galaxy with TEP screening (using TEP-H0 sigma_inferred where available)
+        tep_h0_strat = PROJECT_ROOT.parent / "TEP-H0" / "results" / "outputs" / "step_03_stratified_h0.csv"
+        h0_sigma_map = {2557: 160.0, 39600: 115.0}
+        if tep_h0_strat.exists():
+            strat_df = pd.read_csv(tep_h0_strat)
+            for _, srow in strat_df.iterrows():
+                if pd.notna(srow.get("pgc")) and pd.notna(srow.get("sigma_inferred")):
+                    h0_sigma_map[int(srow["pgc"])] = float(srow["sigma_inferred"])
+        u_phi = np.array([
+            h0_sigma_map.get(int(r["pgc"]), float(r["vrot_kms"]) / np.sqrt(2.0))
+            for _, r in merged.iterrows()
+        ])
+        merged['U_i'] = u_phi ** 2
         S_matched = compute_screening(merged['pgc'].fillna(0).astype(int).values)
         merged['S_total'] = S_matched
         merged['X_i'] = (S_matched * merged['U_i'].values - U_REF) / C_KMS**2
@@ -320,8 +331,8 @@ class MeasuredVrotAnalysis:
         M_star = 10.0 ** hf['HOST_LOGMASS'].values
         V_rot_tf = 200.0 * (M_star / 10.0**10.5) ** 0.25
         U_tf = (V_rot_tf / np.sqrt(2))**2
-        # TF proxy hosts are uncatalogued → S_total = 1.0
-        X_i_tf = (U_tf - U_REF) / C_KMS**2
+        # TF proxy hosts are uncatalogued (S_total = 1.0) -> compare against matched U_REF_UNSCREENED
+        X_i_tf = (U_tf - U_REF_UNSCREENED) / C_KMS**2
 
         # Also compute X_i from the calibrator host catalog (measured V_rot)
         # for comparison, with TEP screening by galaxy name
@@ -409,25 +420,26 @@ class MeasuredVrotAnalysis:
         # Fit: residual = a*X_i + b*mass_flag + const
         from numpy.linalg import lstsq
 
-        X = np.column_stack([
-            hf_valid['X_i'].values,
+        X_scale = 1e7
+        X_scaled = np.column_stack([
+            hf_valid['X_i'].values * X_scale,
             (hf_valid['HOST_LOGMASS'] >= 10.5).astype(float),
             np.ones(len(hf_valid))
         ])
         y = hf_valid['hubble_residual'].values
         try:
-            beta, _, _, _ = lstsq(X, y, rcond=None)
-            xi_coef = beta[0]
-            mass_coef = beta[1]
+            beta_s, _, _, _ = lstsq(X_scaled, y, rcond=None)
+            xi_coef = float(beta_s[0] * X_scale)
+            mass_coef = float(beta_s[1])
 
             # X_i-step after mass correction
             step_corrected = xi_coef * (high_x['X_i'].mean() - low_x['X_i'].mean())
             # Error estimate
-            residuals = y - X @ beta
+            residuals = y - (xi_coef * hf_valid['X_i'].values + mass_coef * (hf_valid['HOST_LOGMASS'] >= 10.5).astype(float) + float(beta_s[2]))
             dof = len(y) - 3
             sigma2 = np.sum(residuals**2) / dof
-            cov = sigma2 * np.linalg.inv(X.T @ X)
-            xi_err = np.sqrt(cov[0, 0])
+            cov_s = sigma2 * np.linalg.inv(X_scaled.T @ X_scaled)
+            xi_err = float(np.sqrt(cov_s[0, 0]) * X_scale)
             step_corrected_err = xi_err * abs(high_x['X_i'].mean() - low_x['X_i'].mean())
             step_corrected_sigma = step_corrected / step_corrected_err if step_corrected_err > 0 else 0
 

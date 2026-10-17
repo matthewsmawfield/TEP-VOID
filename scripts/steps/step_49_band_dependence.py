@@ -91,9 +91,9 @@ assert EXPECTED_TEP_SIGN == -1, "TEP predicts a negative slope because NIR is mo
 # kappa_Cep from TEP-H0 (Paper 11) — these are the full Cepheid coupling constants
 # kappa_Cep = |b| * kappa_P, where kappa_P = eta_P * epsilon_0 / ln(10)
 # (manuscript Section 4.9: "kappa_Cep = |b| * kappa_P, with b ≈ -3.26")
-KAPPA_CEP_EQUIV = 0.365e6    # mag (Cepheid-channel closure, beta_X = 0)
-KAPPA_CEP_JOINT = 0.266e6    # mag (joint multi-block, Paper 11 v0.10)
-KAPPA_CEP_WLS = 0.452e6      # mag (redshift-only WLS, sigma_v=150)
+KAPPA_CEP_EQUIV = 1.220e6    # mag (Cepheid-channel closure, beta_X = 0; sigma_* coordinate)
+KAPPA_CEP_JOINT = 0.665e6    # mag (joint multi-block, Paper 11, sigma_* coordinate)
+KAPPA_CEP_WLS = 1.275e6      # mag (redshift-only WLS, sigma_v=150)
 
 # Derive kappa_P = kappa_Cep / |b_H| (using NIR slope as reference)
 KAPPA_P_EQUIV = KAPPA_CEP_EQUIV / ABS_B_H   # ~111963
@@ -281,7 +281,7 @@ class Step49BandDependence:
             return pd.DataFrame()
         df = pd.read_csv(path)
         df["canonical"] = df["galaxy"].apply(canonical_name)
-        # sigma_kms in the host_potential_catalog is already u_phi = V_rot/sqrt(2),
+        # sigma_kms in the host_potential_catalog is the inner-potential scale sigma_*,
         # so U_i = sigma_kms^2 = (V_rot/sqrt(2))^2 = V_rot^2/2.
         df["U_i"] = df["sigma_kms"] ** 2
 

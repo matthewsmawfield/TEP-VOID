@@ -214,7 +214,7 @@ def derive_eta_p():
     # fixed by the fit; the individual values are conditional on the
     # fiducial eta_P choice.
 
-    kappa_ceph_fitted = 0.452e6  # mag (redshift-only WLS, sigma_v=150, from TEP-H0 step_44)
+    kappa_ceph_fitted = 1.275e6  # mag (redshift-only WLS, sigma_v=150, from TEP-H0 step_44)
     b_nir = 3.26
     ln10 = 2.302585
 
@@ -267,7 +267,7 @@ def derive_eta_p():
             'epsilon_0': float(epsilon_0),
             'epsilon_env_typical': float(epsilon_env),
             'X_i_typical': float(X_i_typical),
-            'note': 'With the geometric fiducial eta_P = 1/2, the fitted kappa_Cep = 0.452e6 (redshift-only WLS) implies bar_epsilon_0 ~ 6.38e5 and epsilon_env ~ 0.064 (6.4%) at typical Cepheid locations (X_i ~ 1e-7), matching the manuscript value. The disformal coupling is a spatial distortion (not a frequency shift), so the relevant constraint is on stellar dynamics, not spectroscopic line shifts.',
+            'note': 'With the geometric fiducial eta_P = 1/2, the fitted kappa_Cep = 1.275e6 (redshift-only WLS) implies bar_epsilon_0 ~ 1.80e6 and epsilon_env ~ 0.180 (18%) at typical Cepheid locations (X_i ~ 1e-7), matching the manuscript value. The disformal coupling is a spatial distortion (not a frequency shift), so the relevant constraint is on stellar dynamics, not spectroscopic line shifts.',
         },
     }
 

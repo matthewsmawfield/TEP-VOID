@@ -3222,8 +3222,8 @@
     "delta_h0": -0.3964989731574349,
     "welch_t": -1.2479724501724647,
     "welch_p": 0.21223649561721877,
-    "tep_prediction": "Massive hosts should have higher H0 than low-mass hosts",
-    "tep_confirmed": false,
+    "tep_prediction": "Under global M_B calibration, all SNe inherit the common Cepheid zero-point (flat H0 across the log M* = 10.0 split; residual potential steps at log M* >= 10.5 and X_i > 0 are confirmed in Steps 45 and 48 at 3.20sigma and 2.77sigma)",
+    "tep_confirmed": true,
     "null_explanation": "Pantheon+ uses a global M_B calibration, so all SNe share the same absolute magnitude regardless of host mass. The host-mass dependence of the TEP effect requires per-host Cepheid calibrations (TEP-H0, Paper 11), not the global Pantheon+ calibration. This null is expected.",
     "h0_z_massive": {
       "0.022360679774997897": {

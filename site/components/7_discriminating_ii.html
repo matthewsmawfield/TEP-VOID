@@ -116,8 +116,10 @@
 </div>
 
 <p>
-    where $X_i = (S_{\rm total}\,u_\phi^2 - U_{\rm ref})/c^2$ is the
-    screened TEP potential coordinate (Section 5.5). Since
+    where $X_i = (S_{\rm total}\,U_i - U_{\rm ref})/c^2$ is the
+    screened TEP potential coordinate (Section 5.5), with $U_i = \sigma_*^2$
+    for the calibrator hosts and the documented rotation/TF proxy for the
+    extended samples. Since
     $\Delta v_i$ is constructed proportionally to $X_i$, a
     correlation between $\Delta v_i$ and any variable entering $X_i$
     is partly built in by design. This is a prediction of the TEP
@@ -129,16 +131,17 @@
 
 <p>
     Using the matched calibrator sample with measured potentials, the
-    host-potential-dependent shift is of order a few tens of km/s
-    (approximately $-54$ to $+16$ km/s for the 18 galaxies with
-    potential data), not hundreds or thousands of km/s. A kinematic
+    host-potential-dependent shift ranges up to $\sim 160$ km/s
+    (approximately $-160$ to $+6$ km/s for the 18 galaxies with
+    potential data under the fitted $\kappa_{\rm Cep}$), smaller than
+    but comparable to bulk-flow amplitudes. A kinematic
     void model predicts no such host-mass dependence.
 </p>
 
 <h3>6.2 Directional $\Delta\mu$ (33 galaxies)</h3>
 
 <p>
-    If the Hubble tension originates from a local Gpc-scale underdensity, the observed kinematics should contain a dipole signature aligned with the bulk flow. Alternatively, under TEP, standard-candle calibration offsets $\Delta\mu$ might exhibit directional alignment. To test this, the Cepheid–TRGB distance modulus offset $\Delta\mu$ is tested for directional alignment with the CMB dipole. For a compiled sample of $N=33$ calibrator galaxies, the correlation between $\Delta\mu$ and the CMB dipole direction is $r = +0.329$ ($p = 0.062$). While this marginal alignment is in the direction of the CMB dipole, it lacks the statistical significance required for a decisive detection of a global gradient, motivating the need for a larger-scale hemispheric test.
+    If the Hubble tension originates from a local Gpc-scale underdensity, the observed kinematics should contain a dipole signature aligned with the bulk flow. Alternatively, under TEP, standard-candle calibration offsets $\Delta\mu$ might exhibit directional alignment. To test this, the Cepheid–TRGB distance modulus offset $\Delta\mu$ is tested for directional alignment with the CMB dipole. For a compiled sample of $N=33$ calibrator galaxies, the correlation between $\Delta\mu$ and the CMB dipole direction is $r = +0.329$ ($p = 0.062$). While this marginal alignment is in the direction of the CMB dipole, it lacks the statistical significance required for a clear detection of a global gradient, motivating the need for a larger-scale hemispheric test.
 </p>
 
 <h3>6.3 Directional Pantheon+ Consistency Check</h3>
@@ -179,18 +182,18 @@
 <p>
     The likelihood has an interior optimum at $L_T = 55.61$ Mpc rather than either
     limiting profile (the $L_T \to 0$ pure kinematic limit or the $L_T \to \infty$ long-coherence/unsaturated limit),
-    with the associated directional amplitude detected at a local $p < 0.001$. Because the continuous optimizer
+    with the associated directional amplitude detected at a local $p &lt; 0.001$. Because the continuous optimizer
     freely explores the $L_T$ parameter space, the raw $p$-value does not by itself account 
     for the coherence-scale scan. The look-elsewhere cost is calibrated directly by a
     permutation Monte Carlo (Step 66): the residuals are permuted against the fixed
     $(D, \cos\theta, {\rm controls})$ design, $L_T$ is re-optimized on each of 300 draws,
     and the best $-2\Delta\ln L$ of each null draw is compared with the observed
     improvement. The observed statistic ($-2\Delta\ln L = 24.0$) exceeds the maximum
-    null value (10.8), yielding a look-elsewhere-corrected global
-    $p = 0.0033$ ($\sim 2.7\sigma$). The interior optimum therefore survives the
+    null value (10.8) across all 300 permutation draws, setting a Monte Carlo resolution-limited look-elsewhere bound of
+    $p = 1/301 \approx 0.0033$ ($\gtrsim 2.7\sigma$). The interior optimum therefore survives the
     trials factor — an interior optimum is not the generic outcome of this scan on
-    structureless residuals — while the correction tempers the local significance
-    from $\sim 4\sigma$ to $\sim 2.7\sigma$. The best-fit coherence scale of
+    structureless residuals — while the finite-sample permutation floor bounds the calibrated global significance
+    at $p \le 1/301$ ($\gtrsim 2.7\sigma$, versus the uncalibrated local $\sim 4\sigma$). The best-fit coherence scale of
     55.6 Mpc places the characteristic structure on a tens-of-Mpc
     local-environment scale rather than the Gpc scale required
     by the KBC void.
@@ -244,8 +247,8 @@
     This test therefore neither confirms nor excludes the finite-coherence model — 
     the CF4 distance distribution lacks the leverage to discriminate between the two models. 
     Consequently, the coherence-scale evidence rests on the Pantheon+ optimization
-    alone, for which the permutation-calibrated global significance is
-    $p = 0.0033$. A definitive test of the coherence scale
+    alone, for which the 300-draw permutation calibration sets the resolution-limited global bound
+    $p = 1/301 \approx 0.0033$ ($0/300$ null exceedances). A definitive test of the coherence scale
     requires a dataset with uniform coverage extending to
     $D \gtrsim 100$ Mpc, where the two profiles diverge
     substantially.

@@ -1,0 +1,49 @@
+[0;37m[08:13:07] [INFO] ============================================================[0m
+[0;37m[08:13:07] [INFO] Step 51: Bayesian Hierarchical Band-Dependence Analysis[0m
+[0;37m[08:13:07] [INFO] ============================================================[0m
+[0;37m[08:13:07] [INFO] Loaded 29 galaxies from band-dependence catalog[0m
+[0;37m[08:13:07] [INFO] 
+Primary sample (MF2023): 20 galaxies[0m
+[0;37m[08:13:07] [INFO] Valid galaxies: 20[0m
+[0;37m[08:13:07] [INFO] X_i range: -9.08e-09 to 1.08e-07[0m
+[0;37m[08:13:07] [INFO] delta_mu_band range: -0.2940 to 0.1910[0m
+[0;34m[08:13:07] [PROCESS] 
+--- OLS Regression (baseline) ---[0m
+[1;35m[08:13:07] [TEST] OLS: slope = -2.006e+06 ± 1.400e+05 (-14.32sigma)[0m
+[1;35m[08:13:07] [TEST] OLS: intercept = 0.0712[0m
+[1;35m[08:13:07] [TEST] OLS: chi^2/dof = 15.12[0m
+[0;34m[08:13:07] [PROCESS] 
+--- MCMC Hierarchical (with intrinsic scatter) ---[0m
+[0;37m[08:13:07] [INFO] Running MCMC (4 chains, 5000 burn-in + 10000 samples each)...[0m
+[0;37m[08:13:07] [INFO] Acceptance rate: 0.31[0m
+[0;37m[08:13:07] [INFO] Gelman-Rubin R-hat: slope=1.005, intercept=1.003, sigma_int=1.000[0m
+[0;37m[08:13:07] [INFO] Convergence: CONVERGED (R-hat < 1.1)[0m
+[1;35m[08:13:07] [TEST] MCMC: slope = -1.591e+06 (+7.737e+05 / 7.296e+05)[0m
+[1;35m[08:13:07] [TEST] MCMC: slope sigma = -2.05sigma[0m
+[1;35m[08:13:07] [TEST] MCMC: intercept = 0.0523 ± 0.0411[0m
+[1;35m[08:13:07] [TEST] MCMC: sigma_int = 0.1298 (+0.0267 / 0.0208)[0m
+[0;34m[08:13:07] [PROCESS] 
+--- TEP Prediction Comparison ---[0m
+[0;37m[08:13:07] [INFO] TEP predicted slope (equiv kappa_P): -1.871e+05[0m
+[0;37m[08:13:07] [INFO] TEP predicted slope (joint kappa_P): -1.020e+05[0m
+[0;37m[08:13:07] [INFO] TEP predicts NEGATIVE slope (NIR more compressed at high X_i)[0m
+[1;35m[08:13:07] [TEST] Observed/predicted ratio: 8.50[0m
+[1;35m[08:13:07] [TEST] P(slope < 0) [TEP direction] = 0.9763[0m
+[1;35m[08:13:07] [TEST] P(slope < predicted) = 0.9613[0m
+[0;34m[08:13:07] [PROCESS] 
+--- Bootstrap Regression (10,000 resamples) ---[0m
+[1;35m[08:13:07] [TEST] Bootstrap: slope = -1.993e+06 ± 7.204e+05[0m
+[1;35m[08:13:07] [TEST] Bootstrap: 95% CI = [-3.470e+06, -6.468e+05][0m
+[0;34m[08:13:07] [PROCESS] 
+--- Leave-One-Out Influence Analysis ---[0m
+[1;35m[08:13:07] [TEST] Most influential: NGC 4424 (slope -> -2.006e+06)[0m
+[1;35m[08:13:07] [TEST] LOO slope range: -2.229e+06 to -1.622e+06[0m
+[0;34m[08:13:07] [PROCESS] 
+--- Outlier Analysis ---[0m
+[1;35m[08:13:07] [TEST] Outliers (|sigma| > 3): 0[0m
+[0;37m[08:13:07] [INFO] 
+Saved results to /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results/outputs/step_51_band_bayesian.json[0m
+[0;37m[08:13:07] [INFO] 
+============================================================[0m
+[0;37m[08:13:07] [INFO] Step 51 complete[0m
+[0;37m[08:13:07] [INFO] ============================================================[0m

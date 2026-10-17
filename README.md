@@ -2,37 +2,29 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22150139.svg)](https://doi.org/10.5281/zenodo.22150139)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-
 ![TEP-VOID: Cosmological Voids vs Temporal Shear](site/public/image.webp)
 
 **Author:** Matthew Lukin Smawfield  
-**Version:** v0.3 (Valencia)  
-**Date:** First published: 29 August 2026 · Last updated: 30 September 2026  
-**Status:** Preprint (Draft)  
+**Version:** v0.4 (Valencia)  
+**First published:** 29 August 2026 · **Last updated:** 17 October 2026  
+**Status:** Preprint  
 **DOI:** [10.5281/zenodo.22150139](https://doi.org/10.5281/zenodo.22150139)  
 **Website:** [https://mlsmawfield.com/tep/void/](https://mlsmawfield.com/tep/void/)  
-**Paper Series:** TEP Series: Paper 31 (Cosmological Observations)
+**Paper Series:** TEP Series · Group G (VII. Domain-Boundary & Observational Anomaly Case Studies) · Paper 31 (`G31`)
 
 ## Abstract
 
+<!-- Generated from site/components/1_abstract.html; update the manuscript source, then run tools/sync_current_corpus_readmes.py. -->
 
+The Hubble tension admits fundamentally different interpretations: a physical expansion rate inflated by local kinematics (e.g., a Gpc-scale underdensity), or an operational redshift-distance calibration artifact. This paper tests the kinematic void hypothesis against the Temporal Equivalence Principle (TEP), which models cosmological redshift as accumulated temporal shear on a static spatial manifold. Using the matched $z \ge 0.05$ submatrix of the native Pantheon+ STAT+SYS covariance, the published KBC/MOND gradual-decay profiles are strongly rejected ($\Delta\chi² > 100$). A calibration-independent ratio $R_H = 1.009 \pm 0.006$ excludes the predicted declines — $4.3\%$ (Gaussian profile) and $5.1\%$ (Exponential) — at $8.4\sigma$ and $9.7\sigma$ respectively, falsifying the published KBC/MOND gradual-decay void solution on its own native coordinates. While this competitor exclusion carries no direct evidential weight for TEP by itself, the residual directional and environmental data are consistent with the independent clock-transport predictions of TEP. An exploratory fit to pre-standardization Pantheon+ residuals has an interior optimum at $L_T=55.6$ Mpc along the pre-specified CF4 axis, surviving a 300-draw permutation look-elsewhere calibration with zero null exceedances ($-2\Delta\ln L = 24.0$ versus a null maximum of $10.8$, setting a Monte Carlo resolution-limited bound $p = 1/301 \approx 0.0033$, or $\gtrsim 2.7\sigma$), though CF4 cannot independently distinguish the kernel from its $1/r$ asymptote. However, the identified coherence scale places the characteristic structure in the tens-of-Mpc local-environment regime rather than the Gpc scale required by the KBC void. Because the standard rest-frame time mapping used by SALT3 implicitly assumes that the spectroscopic redshift fully accounts for the transformation between observed and emitted light-curve timescales, aggregate SALT3 standardization attenuates the pre-standardization directional signal by $70 \pm 16\%$, consistent with partial absorption of a temporal contribution. The underlying temporal shear instead manifests locally: host-galaxy systemic redshifts are weighted toward deeper central potentials than disk standard candles, artificially contracting rest-frame timescales. Consequently, Cepheid distances are systematically shorter than TRGB distances within the same galaxies ($2.39\sigma$ directional preference), and single-galaxy Period-Luminosity gradients within the LMC ($3.30\sigma$, robust to confounder controls) and M31 ($3.65\sigma$ baseline in the HST PHAT catalogue, $2.18\sigma$ period–colour matched, and $6.17\sigma$ under flux-independent neighbour-density crowding control; Paper 11) are directionally consistent with the predicted clock-rate differential; potential-scaling tests across independent samples are presently leverage-limited rather than excluded. The results are consistent with a clock-transport contribution across the distance-ladder measurement chain driven by localized temporal topology, and motivate the independent environmental and spectroscopic tests specified below.
 
+Keywords: Hubble tension, Temporal Equivalence Principle, isochrony violation, Cepheid variables, TRGB, KBC void, MOND, bulk flow, CosmicFlows-4, JWST, Pantheon+, scalar-tensor theory, distance ladder, cosmology
 
-
-The Hubble tension admits fundamentally different interpretations: a physical expansion rate inflated by local kinematics (e.g., a Gpc-scale underdensity), or an operational redshift-distance calibration artifact. This paper tests the kinematic void hypothesis against the Temporal Equivalence Principle (TEP), which models cosmological redshift as accumulated temporal shear on a static spatial manifold. Using the matched z ≥ 0.05 submatrix of the native Pantheon+ STAT+SYS covariance, the published KBC/MOND gradual-decay profiles are decisively rejected (Δχ² > 100). A calibration-independent ratio R_H = 1.009 ± 0.006 excludes the predicted declines — 4.3% (Gaussian profile) and 5.1% (Exponential) — at 8.4σ and 9.7σ respectively, falsifying the kinematic void solution. The residual directional evidence is consistent with TEP. An exploratory fit to pre-standardization Pantheon+ residuals has an interior optimum at L_T=55.6 Mpc along the pre-specified CF4 axis, surviving a 300-draw permutation look-elsewhere calibration at a global p = 0.0033 (~ 2.7σ), though CF4 cannot independently distinguish the kernel from its 1/r asymptote. However, the identified coherence scale places the characteristic structure in the tens-of-Mpc local-environment regime rather than the Gpc scale required by the KBC void. Because the standard rest-frame time mapping used by SALT3 implicitly assumes that the spectroscopic redshift fully accounts for the transformation between observed and emitted light-curve timescales, aggregate SALT3 standardization attenuates the pre-standardization directional signal by 70 ± 16%, consistent with partial absorption of a temporal contribution. The underlying temporal shear instead manifests locally: host-galaxy systemic redshifts are weighted toward deeper central potentials than disk standard candles, artificially contracting rest-frame timescales. Consequently, Cepheid distances are systematically shorter than TRGB distances within the same galaxies (2.39σ directional preference), and single-galaxy Period-Luminosity gradients within the LMC (3.30σ, robust to confounder controls) and M31 (3.65σ in the HST PHAT catalogue, failing matched confounder controls and retained as a diagnostic signal; Paper 11) are directionally consistent with the predicted clock-rate differential; potential-scaling tests across independent samples are presently leverage-limited rather than excluded. The Hubble tension is an observing-chain artifact driven by localized temporal topology.
-
+Current manuscript source: [1_abstract.html](site/components/1_abstract.html).
 
 ## Key Findings
 
-1. **Primary falsification — $H_0(z)$ native $\mu$-space likelihood**: The unbinned native $\mu$-space likelihood with the full $1701 \times 1701$ Pantheon+ STAT+SYS covariance rejects the published KBC Method-3 curves over $z \ge 0.05$ with $\Delta{\rm AIC} = +101.5$ (Gaussian) and $+117.1$ (Exponential). Even when amplitude and scale are free to vary, the void family's best fit is flat ($\Delta H_0 = 0$, $\Delta{\rm AIC} = +4.0$).
-
-2. **Calibration-independent relative evolution**: $R_H = 1.009 \pm 0.006$, $8.4\sigma$ from the KBC Gaussian prediction ($R_H = 0.9569$) and $9.7\sigma$ from the Exponential, with KBC predictions evaluated through the matched GLS estimator. The common zero-point cancels; the test is independent of the Cepheid calibration.
-
-3. **Indicator-specific distance divergence**: 17 of 22 galaxies with both Cepheid and TRGB distances in CF4 show Cepheid distances shorter than TRGB ($2.39\sigma$ one-sided). $\kappa_{\rm Cep} = (0.452 \pm 0.220) \times 10^6$ mag from the redshift-only WLS regression ($2.05\sigma$), with joint multi-block likelihoods providing consistent, though statistically diluted, support ($1.58\sigma$).
-
-4. **Two-channel amplitude ledger**: Cepheid channel bounded at $\sim 0.09$ mag; SN stretch channel bounded at $\sim 0.10$ mag; combined budget $\sim 0.06$–$0.19$ mag spans the $0.174$ mag tension. The SN channel provides a mechanism for the $\sim$15-year-unexplained host-mass step.
-
-5. **Preliminary $X_i$-step test**: $+22.3 \pm 15.1$ mmag ($1.47\sigma$) in the TEP-predicted direction on 1,470 Pantheon+ Hubble-flow SNe (step_48); joint OLS $X_i$ coefficient after mass correction $+7.92 \times 10^4 \pm 3.75 \times 10^4$ ($2.11\sigma$, TEP-predicted); the Tully-Fisher $V_{\rm rot}$ proxy subsample (step_45, $N=1353$) is underpowered ($+7.5 \pm 50.2$ mmag, $0.15\sigma$) due to screening compression.
+The current findings, numerical results and comparison assumptions are reported in [12. Conclusions](site/components/13_conclusion.html). The abstract above is synchronized from the current manuscript.
 
 ## The TEP Research Program
 
@@ -90,7 +82,7 @@ TEP-VOID/
 ├── scripts/steps/                  # Reproducible analysis pipeline (48 registered steps)
 ├── core/                           # Shared TEP framework modules
 ├── scripts/                        # Utility scripts (PDF generation, etc.)
-├── 31-TEP-VOID-v0.3-Valencia.md   # Generated manuscript (built from site/components)
+├── G31-TEP-VOID-v0.4-Valencia.md   # Generated manuscript (built from site/components)
 └── VERSION.json                    # Version metadata
 ```
 
@@ -102,7 +94,7 @@ npm install
 npm run build
 ```
 
-The built site will be in `site/dist/`. The build also regenerates `31-TEP-VOID-v0.3-Valencia.md` at the repository root.
+The built site will be in `site/dist/`. The build also regenerates `G31-TEP-VOID-v0.4-Valencia.md` at the repository root.
 
 ## Manuscript Editing
 
@@ -117,7 +109,7 @@ Edit `site/components/*.html` files only. The markdown and `site/dist/` files ar
   year         = {2026},
   doi          = {10.5281/zenodo.22150139},
   url          = {https://doi.org/10.5281/zenodo.22150139},
-  note         = {Preprint, Version v0.3 (Valencia)}
+  note         = {Preprint, Version v0.4 (Valencia)}
 }
 ```
 

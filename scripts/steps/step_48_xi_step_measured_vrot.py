@@ -30,7 +30,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 from scripts.utils.logger import TEPLogger, set_step_logger, print_status
-from scripts.utils.screening import U_REF_SCREENED, compute_screening
+from scripts.utils.screening import U_REF_SCREENED, U_REF_UNSCREENED, compute_screening
 
 C_KMS = 299792.458
 U_REF = U_REF_SCREENED  # screened anchor reference (matches TEP-H0)
@@ -91,13 +91,13 @@ class MeasuredVrotXiStep:
             df = df.merge(self.vrot_cat[['CID', 'V_rot', 'V_rot_source', 'U_i', 'S_total', 'X_i']],
                          on='CID', how='left')
 
-            # For SNe without V_rot in the catalog, use TF proxy (S_total = 1.0)
+            # For SNe without V_rot in the catalog, use TF proxy with matched U_REF_UNSCREENED
             needs_proxy = df['V_rot'].isna()
             if needs_proxy.sum() > 0:
                 M_star = 10.0 ** df.loc[needs_proxy, 'HOST_LOGMASS'].values
                 V_rot_tf = 200.0 * (M_star / 10.0**10.5) ** 0.25
                 U_tf = (V_rot_tf / np.sqrt(2))**2
-                X_i_tf = (U_tf - U_REF) / C_KMS**2
+                X_i_tf = (U_tf - U_REF_UNSCREENED) / C_KMS**2
                 df.loc[needs_proxy, 'V_rot'] = V_rot_tf
                 df.loc[needs_proxy, 'U_i'] = U_tf
                 df.loc[needs_proxy, 'S_total'] = 1.0
@@ -372,9 +372,12 @@ class MeasuredVrotXiStep:
 
         def slope_and_err(keep_mask):
             yy, XX, ll, ww = y[keep_mask], X[keep_mask], logm[keep_mask], w[keep_mask]
-            Xd = np.column_stack([np.ones(len(yy)), XX, ll])
+            # Scale XX by 1e7 during WLS inversion so pinv(rcond=1e-15) does not zero out
+            # the 1e-14 X^2 entry relative to logM^2 ~ 100:
+            X_scale = 1e7
+            Xd = np.column_stack([np.ones(len(yy)), XX * X_scale, ll])
             p, chi2, cov = wls(yy, Xd, ww)
-            return p[1], np.sqrt(cov[1, 1]), chi2
+            return p[1] * X_scale, np.sqrt(cov[1, 1]) * X_scale, chi2
 
         slope, slope_err, chi2 = slope_and_err(np.ones(n, bool))
         sigma = slope / slope_err
@@ -387,7 +390,8 @@ class MeasuredVrotXiStep:
         loo_std = float(np.std(loo))
 
         # Remove the single largest-residual point and refit (top-leverage check)
-        Xd_full = np.column_stack([np.ones(n), X, logm])
+        X_scale = 1e7
+        Xd_full = np.column_stack([np.ones(n), X * X_scale, logm])
         p_full, _, _ = wls(y, Xd_full, w)
         contrib = w * (y - Xd_full @ p_full) ** 2
         order = np.argsort(-contrib)
@@ -466,20 +470,23 @@ class MeasuredVrotXiStep:
             )
             step_resid_sigma = step_resid / step_resid_err if step_resid_err > 0 else 0
 
-            # Method 2: Joint OLS (for comparison, with condition number diagnostic)
-            X_joint = np.column_stack([
-                xi,
+            # Method 2: Joint OLS (with unit-normalized X_i * 1e7 to avoid artificial 1e7 unit scaling)
+            X_scale = 1e7
+            X_joint_scaled = np.column_stack([
+                xi * X_scale,
                 (logmass >= 10.5).astype(float),
                 np.ones(len(df))
             ])
-            beta_joint, _, _, _ = lstsq(X_joint, y, rcond=None)
-            xi_coef_joint = beta_joint[0]
-            residuals_joint = y - X_joint @ beta_joint
+            beta_joint_scaled, _, _, _ = lstsq(X_joint_scaled, y, rcond=None)
+            xi_coef_joint = float(beta_joint_scaled[0] * X_scale)
+            residuals_joint = y - (xi_coef_joint * xi + beta_joint_scaled[1] * (logmass >= 10.5).astype(float) + beta_joint_scaled[2])
             dof = max(len(y) - 3, 1)
             sigma2 = np.sum(residuals_joint**2) / dof
-            cov_joint = sigma2 * np.linalg.inv(X_joint.T @ X_joint)
-            xi_err_joint = np.sqrt(cov_joint[0, 0])
-            cond_number = np.linalg.cond(X_joint)
+            cov_joint_scaled = sigma2 * np.linalg.inv(X_joint_scaled.T @ X_joint_scaled)
+            xi_err_joint = float(np.sqrt(cov_joint_scaled[0, 0]) * X_scale)
+            beta_joint = [xi_coef_joint, float(beta_joint_scaled[1]), float(beta_joint_scaled[2])]
+            cov_joint = cov_joint_scaled
+            cond_number = float(np.linalg.cond(X_joint_scaled))
 
             print_status(f"  {label}:", "TEST")
             print_status(f"    [Residualized] Step = {step_resid*1000:.1f} +/- "

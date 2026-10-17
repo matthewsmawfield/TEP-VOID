@@ -1,16 +1,20 @@
-[19:58:09] [INFO] 
-[19:58:09] [INFO] ================================================================================
-[19:58:09] [INFO]    TEP-VOID Analysis Pipeline (Paper 31)
-[19:58:09] [INFO] ================================================================================
-[19:58:09] [INFO] 
-[19:58:09] [PROCESS] Cosmological Voids vs Temporal Shear
-[19:58:09] [INFO] Project root: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID
-[19:58:09] [INFO] Results: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results
-[19:58:09] [INFO] Logs: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/logs
-[19:58:09] [PROCESS] Running 1 step(s)
-[19:58:11] [INFO]   step_74: OK (1.3s)
-[19:58:11] [INFO] 
-[19:58:11] [INFO] ================================================================================
-[19:58:11] [INFO]    Pipeline complete: 1 succeeded, 0 failed, 1.3s total
-[19:58:11] [INFO] ================================================================================
-[19:58:11] [INFO] 
+[14:25:21] [INFO] 
+[14:25:21] [INFO] ================================================================================
+[14:25:21] [INFO]    TEP-VOID Analysis Pipeline (Paper 31)
+[14:25:21] [INFO] ================================================================================
+[14:25:21] [INFO] 
+[14:25:21] [PROCESS] Cosmological Voids vs Temporal Shear
+[14:25:21] [INFO] Project root: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID
+[14:25:21] [INFO] Results: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/results
+[14:25:21] [INFO] Logs: /Users/matthewsmawfield/www/Temporal Equivalence Principle/TEP-VOID/logs
+[14:25:21] [PROCESS] Running 0 step(s)
+[14:25:21] [INFO] 
+[14:25:21] [INFO] ================================================================================
+[14:25:21] [INFO]    Pipeline complete: 0 succeeded, 0 failed, 0.0s total
+[14:25:21] [INFO] ================================================================================
+[14:25:21] [INFO] 
+[14:25:21] [INFO] 
+[14:25:21] [INFO] ================================================================================
+[14:25:21] [INFO]    Pipeline complete: 0 succeeded, 0 failed, 0.0s total
+[14:25:21] [INFO] ================================================================================
+[14:25:21] [INFO] 
